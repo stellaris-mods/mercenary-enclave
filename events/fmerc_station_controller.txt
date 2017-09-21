@@ -1,0 +1,177 @@
+namespace = fmercstations
+
+country_event = {
+	id = fmercstations.1
+	hide_window = yes
+
+	trigger = {
+		is_country_type = fmerc_enclave
+	}
+
+	mean_time_to_happen = {
+		days = 720
+	}
+
+	immediate = {
+		# we dont remove stations from countries that attacked us, because we dont care if
+		# they allow us or not after that
+
+		# random_owned_fleet = {
+		# 	limit = {
+		# 		has_fleet_flag = folk_mercenary_station
+		# 	}
+		# 	fleet_event = {
+		# 		id = fmercstations.2
+		# 	}
+		# }
+
+		every_country = {
+			limit = {
+				has_country_flag = "fmerc_allow_stations"
+			}
+			if = {
+				limit = {
+					NOT = {
+						prev = {
+							any_owned_fleet = {
+								exists = solar_system
+								solar_system = {
+									exists = space_owner
+									space_owner = {
+										is_same_value = prevprevprevprev
+									}
+								}
+							}
+						}
+					}
+				}
+				random_owned_planet = {
+					solar_system = { # guess we didnt need this one, oh well
+						root = {
+							create_fleet = {
+								name = "Whiteout Enterprises Outpost"
+								settings = { spawn_debris = no }
+								effect = {
+									set_owner = prev
+									create_ship = {
+										name = " "
+										design = "Mercenary Enclave Century"
+										#graphical_culture = prev
+									}
+									create_ship = {
+										name = " "
+										design = "Mercenary Enclave Century"
+										#graphical_culture = prev
+									}
+									create_ship = {
+										name = "Spaceport"
+										design = "Mercenary Spaceport"
+										#graphical_culture = prev
+									}
+									create_ship = {
+										name = " "
+										design = "Mercenary Enclave Pioneer"
+										#graphical_culture = prev
+									}
+									create_ship = {
+										name = " "
+										design = "Mercenary Enclave Pioneer"
+										#graphical_culture = prev
+									}
+									set_fleet_formation = {
+										position = { x = 2.5    y = -2.5   } #4 spaceport 3
+										position = { x = -2.5   y = -2.5   } #3 spaceport 2
+										position = { x = -2.5    y = 2.5    } #2 spaceport 1
+										position = { x = 2.5    y = 2.5    } #2 spaceport
+										position = { x = 0    y = 0    } #1
+									}
+									set_formation_scale = 0.6
+									set_location = {
+										target = prevprevprev
+										distance = 120
+									}
+									set_fleet_flag = folk_mercenary_outpost
+								}
+							}
+						}
+					}
+				}
+			}
+
+		}
+	}
+}
+
+# fleet_event = {
+# 	id = fmercstations.2
+# 	hide_window = yes
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		while = {
+# 			limit = {
+# 				count_fleet_ships = {
+# 					limit = {
+# 						is_ship_size = military_station_medium
+# 					}
+# 					count < 4
+# 				}
+# 			}
+# 			create_ship = {
+# 				name = " "
+# 				design = "Mercenary Enclave Century"
+# 				effect = {
+#					doesnt work on ship scope, so we cant make it look nice like this
+#					setting the formation on the fleet again didnt work either
+# 					set_location = {
+# 						target = root
+# 						distance = 8
+# 						angle = random
+# 					}
+# 				}
+# 			}
+# 		}
+# 		while = {
+# 			limit = {
+# 				count_fleet_ships = {
+# 					limit = {
+# 						is_ship_size = orbital_station
+# 					}
+# 					count < 4
+# 				}
+# 			}
+# 			create_ship = {
+# 				name = "Spaceport"
+# 				design = "Mercenary Spaceport"
+# 				effect = {
+# 					set_location = {
+# 						target = root
+# 						distance = 2.5
+# 						angle = random
+# 					}
+# 				}
+# 			}
+# 		}
+# 		while = {
+# 			limit = {
+# 				count_fleet_ships = {
+# 					limit = {
+# 						is_ship_size = military_station_small
+# 					}
+# 					count < 8
+# 				}
+# 			}
+# 			create_ship = {
+# 				name = " "
+# 				design = "Mercenary Enclave Pioneer"
+# 				effect = {
+# 					set_location = {
+# 						target = root
+# 						distance = 6
+# 						angle = random
+# 					}
+# 				}
+# 			}
+# 		}
+# 	}
+# }

@@ -1,0 +1,115 @@
+namespace = fmercai
+
+# event = {
+# 	id = fmercai.1
+# 	hide_window = yes
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		every_country = {
+# 			limit = {
+# 				is_country_type = "fmerc_enclave"
+# 			}
+# 			country_event = { id = fmercai.2 }
+# 		}
+# 	}
+# }
+
+# country_event = {
+# 	id = fmercai.2
+# 	hide_window = yes
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		# Survey the galaxy so we know where to go and not go
+# 		# ZZZ the operations countries should do this, not the enclave
+# 		# ZZZ but I am not going to do it yet, it might not be necessary
+# 		every_planet = {
+# 			surveyed = {
+# 				set_surveyed = yes
+# 				surveyor = prev
+# 			}
+# 		}
+# 	}
+# }
+
+# We also do this in the meta contact events, but
+# I just want to be certain that the variable is actually set.
+country_event = {
+	id = fmercai.10
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			is_country_type = fmerc_enclave
+		}
+		is_country_type = default
+	}
+
+	immediate = {
+		set_variable = {
+			which = MercDeposit
+			value = 0
+		}
+	}
+}
+
+# on yearly pulse to increase opinion towards empires that
+# allow military border access
+event = {
+	id = fmercai.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = {
+				is_country_type = fmerc_enclave
+			}
+			country_event = {
+				id = fmercai.21
+			}
+		}
+	}
+}
+country_event = {
+	id = fmercai.21
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = {
+				has_country_flag = "fmerc_allow_stations"
+			}
+			root = {
+				add_trust = {
+					who = prev
+					amount = 4
+				}
+			}
+		}
+	}
+}
+
+# on yearly pulse to deduct deposit
+event = {
+	id = fmercai.30
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = {
+				check_variable = {
+					which = MercDeposit
+					value > 0
+				}
+			}
+			multiply_variable = {
+				which = MercDeposit
+				value = 0.95
+			}
+		}
+	}
+}

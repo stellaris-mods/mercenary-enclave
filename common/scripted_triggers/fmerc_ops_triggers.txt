@@ -1,0 +1,11 @@
+fmerc_in_system = {
+	any_ship_in_system = {
+		exists = fleet
+		fleet = {
+			OR = {
+				has_fleet_flag = folk_mercenary_station
+				has_fleet_flag = folk_mercenary_outpost
+			}
+		}
+	}
+}

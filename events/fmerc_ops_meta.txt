@@ -1,0 +1,266 @@
+namespace = fmerc_ops_meta
+
+# Triggered from mission setup effects, after the delay
+country_event = {
+	id = fmerc_ops_meta.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	# We should start the mission immediately, the delay has passed.
+	immediate = {
+		fmerc_ops_initial_buyer = yes
+	}
+}
+
+# Triggered from fmerc_ops_initial_buyer
+country_event = {
+	id = fmerc_ops_meta.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		fmerc_ops_initial_hq = yes
+	}
+}
+
+# Triggered from fmerc_ops_initial_hq
+country_event = {
+	id = fmerc_ops_meta.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		fmerc_ops_initial_target = yes
+	}
+}
+
+country_event = {
+	id = fmerc_ops_meta.911
+	hide_window = yes
+
+	mean_time_to_happen = {
+		days = 14
+	}
+
+	trigger = {
+		is_country_type = fmerc_operations
+		OR = {
+			has_country_flag = "fmerc_ops_completed"
+			NOT = {
+				has_country_flag = "fmerc_ops_timeout"
+			}
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { exists = event_target:fmerc_buyer }
+			}
+			random_country = {
+				limit = {
+					NOT = { is_country_type = fmerc_enclave }
+					reverse_has_relation_flag = {
+						who = root
+						flag = merc_operations_squad
+					}
+				}
+				save_event_target_as = fmerc_buyer
+			}
+		}
+		if = {
+			limit = {
+				NOT = { exists = event_target:fmerc_hq }
+			}
+			random_country = {
+				limit = {
+					is_country_type = fmerc_enclave
+					reverse_has_relation_flag = {
+						who = root
+						flag = merc_operations_squad
+					}
+				}
+				save_event_target_as = fmerc_hq
+			}
+		}
+		if = {
+			limit = {
+				NOT = { exists = event_target:fmerc_target_country }
+			}
+			random_country = {
+				limit = {
+					reverse_has_relation_flag = {
+						who = root
+						flag = merc_operations_target
+					}
+				}
+				save_event_target_as = fmerc_target_country
+			}
+		}
+		if = {
+			limit = {
+				exists = event_target:fmerc_target_country
+			}
+			event_target:fmerc_target_country = {
+				remove_country_flag = "fmerc_operations_target"
+				every_owned_ship = {
+					limit = { has_ship_flag = "fmerc_target" }
+					remove_ship_flag = "fmerc_target"
+				}
+				every_owned_planet = {
+					limit = { has_planet_flag = "fmerc_target" }
+					remove_planet_flag = "fmerc_target"
+				}
+			}
+		}
+
+		# If we were doing a clear operation, calculate the cost
+		if = {
+			limit = {
+				exists = event_target:fmerc_buyer
+				NOT = { has_country_flag = "fmerc_calculated_costs" }
+				OR = {
+					has_country_flag = "fmerc_amoeba"
+					has_country_flag = "fmerc_cloud"
+					has_country_flag = "fmerc_crystal"
+					has_country_flag = "fmerc_pirate"
+					has_country_flag = "fmerc_drone"
+				}
+			}
+			set_country_flag = "fmerc_calculated_costs"
+			if = {
+				limit = {
+					exists = event_target:fmerc_target_country
+					num_killed_ships = {
+						target = event_target:fmerc_target_country
+						value > 4
+					}
+				}
+				event_target:fmerc_buyer = {
+					set_variable = {
+						which = MercCost
+						value = 3000
+					}
+				}
+				else = { if = {
+				limit = {
+					exists = event_target:fmerc_target_country
+					num_killed_ships = {
+						target = event_target:fmerc_target_country
+						value > 3
+					}
+				}
+				event_target:fmerc_buyer = {
+					set_variable = {
+						which = MercCost
+						value = 2400
+					}
+				}
+				else = { if = {
+				limit = {
+					exists = event_target:fmerc_target_country
+					num_killed_ships = {
+						target = event_target:fmerc_target_country
+						value > 2
+					}
+				}
+				event_target:fmerc_buyer = {
+					set_variable = {
+						which = MercCost
+						value = 1800
+					}
+				}
+				else = { if = {
+				limit = {
+					exists = event_target:fmerc_target_country
+					num_killed_ships = {
+						target = event_target:fmerc_target_country
+						value > 1
+					}
+				}
+				event_target:fmerc_buyer = {
+					set_variable = {
+						which = MercCost
+						value = 1200
+					}
+				}
+				else = { if = {
+				limit = {
+					exists = event_target:fmerc_target_country
+					num_killed_ships = {
+						target = event_target:fmerc_target_country
+						value > 0
+					}
+				}
+				event_target:fmerc_buyer = {
+					set_variable = {
+						which = MercCost
+						value = 600
+					}
+				}
+				else = {
+					event_target:fmerc_buyer = {
+						set_variable = {
+							which = MercCost
+							value = 300
+						}
+					}
+				}
+			} } } } } } } } }
+			event_target:fmerc_buyer = {
+				fmerc_count_minerals = yes
+				fmerc_grabdatcash = yes
+			}
+		}
+
+		random_owned_fleet = {
+			limit = { exists = solar_system }
+			solar_system = { save_event_target_as = fmerc_target_system }
+		}
+		fmerc_ops_set_spawn_location = yes
+
+		if = {
+			limit = {
+				count_owned_ships = {
+					count > 0
+				}
+				exists = event_target:fmerc_spawn_location
+			}
+			set_faction_hostility = { set_hostile = no }
+			every_owned_fleet = {
+				queue_actions = {
+					repeat = {
+						while = {
+							id = fmerc_ops_fleet.911.trigger.1
+							NOR = {
+								exists = solar_system
+								solar_system = {
+									is_same_value = event_target:fmerc_spawn_location
+								}
+							}
+						}
+						move_to = event_target:fmerc_spawn_location.solar_system
+						wait = 7
+					}
+					move_to = event_target:fmerc_spawn_location
+					wait = 14
+					effect = {
+						id = fmerc_ops_fleet.911.effect.1
+						destroy_fleet = this
+					}
+				}
+			}
+			else = {
+				event_target:fmerc_buyer = {
+					remove_country_flag = "fmerc_active_operation"
+					country_event = {
+						id = fmercdiplo.9004
+					}
+				}
+
+				fmerc_detection = yes
+				destroy_country = yes
+			}
+		}
+	}
+}

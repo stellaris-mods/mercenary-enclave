@@ -1,0 +1,167 @@
+fmerc_detected = {
+	switch = {
+		trigger = has_country_flag
+		fmerc_spaceport = {
+			event_target:fmerc_target_country = {
+				add_opinion_modifier = {
+					modifier = fmerc_opinion_spaceport
+					who = event_target:fmerc_buyer
+				}
+			}
+		}
+		fmerc_liberate = {
+			event_target:fmerc_target_country = {
+				add_opinion_modifier = {
+					modifier = fmerc_opinion_liberate
+					who = event_target:fmerc_buyer
+				}
+			}
+		}
+		fmerc_raid = {
+			event_target:fmerc_target_country = {
+				add_opinion_modifier = {
+					modifier = fmerc_opinion_raid
+					who = event_target:fmerc_buyer
+				}
+			}
+		}
+		fmerc_fleet = {
+			event_target:fmerc_target_country = {
+				add_opinion_modifier = {
+					modifier = fmerc_opinion_fleet
+					who = event_target:fmerc_buyer
+				}
+			}
+		}
+	}
+	event_target:fmerc_target_country = {
+		country_event = {
+			id = fmercdiplo.915
+		}
+	}
+}
+
+
+fmerc_detection_50 = {
+	random = {
+		chance = 50
+		fmerc_detected = yes
+	}
+}
+fmerc_detection_45 = {
+	random = {
+		chance = 45
+		fmerc_detected = yes
+	}
+}
+fmerc_detection_40 = {
+	random = {
+		chance = 40
+		fmerc_detected = yes
+	}
+}
+fmerc_detection_35 = {
+	random = {
+		chance = 35
+		fmerc_detected = yes
+	}
+}
+fmerc_detection_30 = {
+	random = {
+		chance = 30
+		fmerc_detected = yes
+	}
+}
+fmerc_detection_25 = {
+	random = {
+		chance = 25
+		fmerc_detected = yes
+	}
+}
+fmerc_detection_20 = {
+	random = {
+		chance = 20
+		fmerc_detected = yes
+	}
+}
+fmerc_detection_15 = {
+	random = {
+		chance = 15
+		fmerc_detected = yes
+	}
+}
+fmerc_detection_10 = {
+	random = {
+		chance = 10
+		fmerc_detected = yes
+	}
+}
+fmerc_detection_5 = {
+	random = {
+		chance = 5
+		fmerc_detected = yes
+	}
+}
+fmerc_detection = {
+	if = {
+		limit = { check_variable = { which = MercDetect value = 50 } }
+		fmerc_detection_50 = yes
+		else = {
+	if = {
+		limit = { check_variable = { which = MercDetect value = 45 } }
+		fmerc_detection_45 = yes
+		else = {
+	if = {
+		limit = { check_variable = { which = MercDetect value = 40 } }
+		fmerc_detection_40 = yes
+		else = {
+	if = {
+		limit = { check_variable = { which = MercDetect value = 35 } }
+		fmerc_detection_35 = yes
+		else = {
+	if = {
+		limit = { check_variable = { which = MercDetect value = 30 } }
+		fmerc_detection_30 = yes
+		else = {
+	if = {
+		limit = { check_variable = { which = MercDetect value = 25 } }
+		fmerc_detection_25 = yes
+		else = {
+	if = {
+		limit = { check_variable = { which = MercDetect value = 20 } }
+		fmerc_detection_20 = yes
+		else = {
+	if = {
+		limit = { check_variable = { which = MercDetect value = 15 } }
+		fmerc_detection_15 = yes
+		else = {
+	if = {
+		limit = { check_variable = { which = MercDetect value = 10 } }
+		fmerc_detection_10 = yes
+		else = {
+	if = {
+		limit = { check_variable = { which = MercDetect value = 5 } }
+		fmerc_detection_5 = yes
+		else = {
+
+		}
+	}
+		}
+	}
+		}
+	}
+		}
+	}
+		}
+	}
+		}
+	}
+		}
+	}
+		}
+	}
+		}
+	}
+		}
+	}
+}

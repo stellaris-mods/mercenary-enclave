@@ -1,0 +1,56 @@
+fmerc_enclave = {
+	show_in_contacts_list = yes
+	playable = no
+	ai = {
+		enabled = no
+	}
+	faction = {
+		hostile = no
+		needs_border_access = no
+		generate_borders = no
+		needs_colony = no
+	}
+	custom_diplomacy = yes
+	custom_opinion = yes
+	modules = {
+		basic_technology_module = {}
+		standard_event_module = {}
+		exclusive_diplomacy_module = {
+			contact_rule = script_only
+		}
+	}
+}
+
+fmerc_operations = {
+	has_leaders = no
+	#leave_ftl_trails = no
+	show_in_contacts_list = no
+	share_communications = no
+	playable = no
+	has_capital = no
+	diplomatic_wars = no
+	relations = no
+
+	ai = {
+		enabled = no
+		#internal_policies = yes
+	}
+	faction = {
+		neutral = yes
+		hostile = no
+		auto_delete = no
+		needs_border_access = no
+		generate_borders = no
+		needs_colony = no
+	}
+	custom_diplomacy = yes
+	custom_opinion = yes
+	modules = {
+		standard_event_module = {}
+		#standard_leader_module = {}
+		all_technology_module = {}
+		exclusive_diplomacy_module = {
+			contact_rule = script_only
+		}
+	}
+}

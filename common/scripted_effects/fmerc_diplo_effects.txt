@@ -1,0 +1,54 @@
+fmerc_reset_diplo_screen = {
+	remove_country_flag = fmerc_diplomacy_engaged
+
+	remove_country_flag = fmerc_diplo_spaceport
+	remove_country_flag = fmerc_diplo_liberate
+	remove_country_flag = fmerc_diplo_miningraid
+	remove_country_flag = fmerc_diplo_fleetraid
+
+	remove_country_flag = fmerc_target_amoeba
+	remove_country_flag = fmerc_target_cloud
+	remove_country_flag = fmerc_target_crystal
+	remove_country_flag = fmerc_target_pirate
+	remove_country_flag = fmerc_target_drone
+
+	remove_country_flag = fmerc_diplo_empire_standard
+	remove_country_flag = fmerc_diplo_empire_fallen
+	remove_country_flag = fmerc_diplo_empire_swarm
+	remove_country_flag = fmerc_diplo_empire_ed
+	remove_country_flag = fmerc_diplo_empire_ai
+
+	remove_country_flag = fmerc_diplo_disguise_random
+	remove_country_flag = fmerc_diplo_disguise_other
+	remove_country_flag = fmerc_diplo_disguise_same
+	remove_country_flag = fmerc_diplo_disguise_pirate
+	remove_country_flag = fmerc_diplo_disguise_monster
+
+	set_variable = {
+		which = MercCost
+		value = 0
+	}
+	set_variable = {
+		which = MercSuccess
+		value = 0
+	}
+	set_variable = {
+		which = MercDetect
+		value = 0
+	}
+
+	# every_country = {
+	# 	limit = {
+	# 		reverse_has_relation_flag = {
+	# 			who = root
+	# 			flag = fmerc_target_country
+	# 		}
+	# 	}
+	# 	root = {
+	# 		remove_relation_flag = {
+	# 			who = prev
+	# 			flag = fmerc_target_country
+	# 		}
+	# 	}
+	# }
+}

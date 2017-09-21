@@ -1,0 +1,98 @@
+# on_game_start = {
+# 	events = {
+# 		fmercai.1
+# 	}
+# }
+
+# Triggered when two empires discover each other
+on_first_contact = {
+	events = {
+		fmercai.10
+	}
+}
+
+# Executed right after country has established communications with another country
+# This = Country which established the communications
+# From = Country which communications were established with
+# on_post_communications_established = {
+# 	events = {
+# 		fmercai.11
+# 	}
+# }
+
+# No scope, like on_game_start
+on_monthly_pulse = {
+	events = {
+		mercguardian.10
+	}
+}
+
+on_yearly_pulse = {
+	events = {
+		fmercai.20
+		fmercai.30
+	}
+}
+
+
+# A fleet has entered a system
+# Scope = Fleet
+# From = System
+#
+on_entering_system_fleet = {
+	events = {
+		mercguardian.90
+		mercguardian.96
+		fmercdiplo.911
+	}
+}
+
+# This = owner of ship 1 (destroyed)
+# From = owner of ship 2 (combatant)
+# FromFrom = ship 1
+# FromFromFrom = ship 2
+on_ship_destroyed_victim = {
+	events = {
+		mercguardian.140
+	}
+}
+
+# This = owner of fleet 1
+# From = owner of fleet 2
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+on_entering_battle = {
+	events = {
+		mercguardian.155
+	}
+}
+
+# Triggers when trying to open the diplomacy view for countries with custom diplomacy.
+# Country scope
+# This = target country (player)
+# From = source country
+on_custom_diplomacy = {
+	events = {
+		fmercdiplo.100
+	}
+}
+
+on_fleet_destroyed_victim = {
+	events = {
+		fmerc_ops_fleet.30
+		fmerc_ops_liberate.30
+	}
+}
+
+on_planet_attackers_lose = {
+	events = {
+		fmerc_ops_liberate.40
+	}
+}
+
+on_planet_attackers_win = {
+	events = {
+		fmerc_ops_liberate.50
+	}
+}
+

@@ -1,0 +1,317 @@
+ship_section_template = {
+	key = "station_enclave_fmercenary_01_key"
+	ship_size = enclave_station
+
+	fits_on_slot = "mid"
+	entity = "enclave_station_trader_hull_entity"
+	icon = "GFX_ship_part_core_mid"
+
+	component_slot = {
+		name = "EXTRA_LARGE_01"
+		slot_size = extra_large
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "EXTRA_LARGE_02"
+		slot_size = extra_large
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "EXTRA_LARGE_03"
+		slot_size = extra_large
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "LARGE_GUN_01"
+		slot_size = large
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "LARGE_GUN_02"
+		slot_size = large
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "LARGE_GUN_03"
+		slot_size = large
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "LARGE_GUN_04"
+		slot_size = large
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "LARGE_GUN_05"
+		slot_size = large
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "LARGE_GUN_06"
+		slot_size = large
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "MEDIUM_GUN_01"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "MEDIUM_GUN_02"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "MEDIUM_GUN_03"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "MEDIUM_GUN_04"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "MEDIUM_GUN_05"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "MEDIUM_GUN_06"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "PD_01"
+		slot_size = point_defence
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "PD_02"
+		slot_size = point_defence
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "PD_03"
+		slot_size = point_defence
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "PD_04"
+		slot_size = point_defence
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "SMALL_GUN_01"
+		slot_size = small
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "SMALL_GUN_02"
+		slot_size = small
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "SMALL_GUN_03"
+		slot_size = small
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "SMALL_GUN_04"
+		slot_size = small
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "SMALL_GUN_05"
+		slot_size = small
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "SMALL_GUN_06"
+		slot_size = small
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "TORPEDO_01"
+		slot_size = torpedo
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "TORPEDO_02"
+		slot_size = torpedo
+		slot_type = weapon
+		locatorname = "root"
+	}
+	component_slot = {
+		name = "TORPEDO_03"
+		slot_size = torpedo
+		slot_type = weapon
+		locatorname = "root"
+	}
+
+	large_utility_slots = 20
+	aux_utility_slots = 3
+}
+
+ship_section_template = {
+	key = "FMERC_MEDIUM_SECTION"
+	ship_size = military_station_medium
+	fits_on_slot = "north"
+	fits_on_slot = "west"
+	fits_on_slot = "east"
+	fits_on_slot = "south"
+	entity = "military_station_section_medium_entity"
+	icon = "GFX_ship_part_core_mid"
+
+	prerequisites = { tech_mercenary_enclave }
+
+	component_slot = {
+		name = "MEDIUM_GUN_01"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "medium_gun_01"
+	}
+
+	component_slot = {
+		name = "MEDIUM_GUN_02"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "medium_gun_02"
+	}
+
+	small_utility_slots = 2
+	medium_utility_slots = 1
+	large_utility_slots = 1
+}
+
+ship_section_template = {
+	key = "FMERC_LIGHT_SECTION"
+	ship_size = military_station_small
+
+	fits_on_slot = "west"
+	fits_on_slot = "east"
+	entity = "military_station_section_light_entity"
+	icon = "GFX_ship_part_core_mid"
+
+	prerequisites = { tech_mercenary_enclave }
+
+	component_slot = {
+		name = "SMALL_GUN_01"
+		slot_size = small
+		slot_type = weapon
+		locatorname = "small_gun_01"
+	}
+
+	component_slot = {
+		name = "SMALL_GUN_02"
+		slot_size = small
+		slot_type = weapon
+		locatorname = "small_gun_02"
+	}
+
+	component_slot = {
+		name = "SMALL_GUN_03"
+		slot_size = point_defence
+		slot_type = weapon
+		locatorname = "small_gun_03"
+		is_side_slot = no
+	}
+
+	component_slot = {
+		name = "SMALL_GUN_04"
+		slot_size = point_defence
+		slot_type = weapon
+		locatorname = "small_gun_04"
+		is_side_slot = no
+	}
+
+	small_utility_slots = 2
+	medium_utility_slots = 1
+	large_utility_slots = 1
+}
+
+ship_section_template = {
+	key = "FMERC_SPACEPORT_SECTION_1"
+	ship_size = orbital_station
+	entity = "orbital_station_assemblyyard_section_entity"
+	icon = "GFX_ship_part_core_mid"
+	fits_on_slot = "2"
+	fits_on_slot = "3"
+	fits_on_slot = "4"
+	fits_on_slot = "5"
+	fits_on_slot = "6"
+	fits_on_slot = "7"
+	prerequisites = { tech_mercenary_enclave }
+	large_utility_slots = 3
+}
+
+ship_section_template = {
+	key = "FMERC_SPACEPORT_SECTION_2"
+	ship_size = orbital_station
+	entity = "orbital_station_hangarbay_section_entity"
+	icon = "GFX_ship_part_core_mid"
+	fits_on_slot = "2"
+	fits_on_slot = "3"
+	fits_on_slot = "4"
+	fits_on_slot = "5"
+	fits_on_slot = "6"
+	fits_on_slot = "7"
+	prerequisites = { tech_mercenary_enclave }
+	large_utility_slots = 3
+}
+
+ship_section_template = {
+	key = "FMERC_SPACEPORT_SECTION_3"
+	ship_size = orbital_station
+	entity = "orbital_station_refinery_section_entity"
+	icon = "GFX_ship_part_core_mid"
+	fits_on_slot = "2"
+	fits_on_slot = "3"
+	fits_on_slot = "4"
+	fits_on_slot = "5"
+	fits_on_slot = "6"
+	fits_on_slot = "7"
+	prerequisites = { tech_mercenary_enclave }
+	large_utility_slots = 3
+}
+
+ship_section_template = {
+	key = "FMERC_SPACEPORT_SECTION_4"
+	ship_size = orbital_station
+	entity = "orbital_station_science_section_entity"
+	icon = "GFX_ship_part_core_mid"
+	fits_on_slot = "2"
+	fits_on_slot = "3"
+	fits_on_slot = "4"
+	fits_on_slot = "5"
+	fits_on_slot = "6"
+	fits_on_slot = "7"
+	prerequisites = { tech_mercenary_enclave }
+	large_utility_slots = 3
+}

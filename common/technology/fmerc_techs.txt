@@ -1,0 +1,13 @@
+
+tech_mercenary_enclave = {
+	area = engineering
+	cost = 7000
+	tier = 3
+	category = { materials }
+	ai_update_type = military
+	weight = 0
+
+	#is_reverse_engineerable = no
+	is_rare = yes
+	weight_modifier = { factor = 0 }
+}

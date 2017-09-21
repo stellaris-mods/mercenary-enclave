@@ -1,0 +1,26 @@
+utility_component_template = {
+	key = "MERC_SHIP_COMPUTER_1"
+	size = small
+	icon = "GFX_ship_part_computer_pregoc"
+	icon_frame = 1
+	power = -20
+	cost = 20
+	class_restriction = { shipclass_military }
+	size_restriction = { nongfx_fmerc_ship_01 }
+	component_set = "combat_computers"
+	ship_behavior = "destroyer_default"
+	prerequisites = { "tech_mercenary_enclave" }
+	hidden = yes
+
+	ship_modifier = {
+		ship_accuracy_add = 4
+		ship_fire_rate_mult = 0.10
+	}
+	modifier = {
+		ship_evasion_add = 5
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}

@@ -1,0 +1,716 @@
+namespace = mercguardian
+
+# The events in this file are copied mostly from vanilla.
+# The idea was to use the vanilla communication system for this enclave, but of course
+# they coded it in such a way that's not possible
+# So I copied it instead.
+
+# ZZZ Try not renaming event targets, they might be used in localisations
+
+@tier1influencecontact = 7
+@tier1influencecontactxenophile = 8
+@tier1influencecontactmin = 20
+@tier1influencecontactmax = 80
+
+@tier2influencecontact = 10
+@tier2influencecontactxenophile = 12
+@tier2influencecontactmin = 40
+@tier2influencecontactmax = 100
+
+# on_monthly_pulse
+event = {
+	id = mercguardian.10
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = { is_country_type = fmerc_enclave }
+			country_event = { id = mercguardian.11 }
+		}
+	}
+}
+
+country_event = {
+	id = mercguardian.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_fleet = {
+			limit = {
+				exists = solar_system
+				solar_system = {
+					exists = space_owner
+					space_owner = {
+						is_country_type = default
+						has_communications = root
+					}
+				}
+			}
+			solar_system = {
+				space_owner = {
+					root = {
+						add_trust = {
+							who = prev
+							amount = 1
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Special operations fleet enters a solar system that is owned by a default
+# country that does not have communications with a merc enclave
+fleet_event = {
+	id = mercguardian.90
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = { is_country_type = fmerc_operations }
+		from = {
+			exists = space_owner
+			space_owner = {
+				is_country_type = default
+				exists = capital_scope
+				any_country = {
+					is_country_type = fmerc_enclave
+					NOR = {
+						has_communications = prev
+						reverse_has_relation_flag = {
+							flag = ongoing_merc_enclave_investigation
+							who = prev
+						}
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		random_country = {
+			limit = { is_country_type = fmerc_enclave }
+			save_event_target_as = target_enclave
+			# Scope to HQ fleet and set that system as the target for the project
+			random_owned_fleet = {
+				limit = { has_fleet_flag = folk_mercenary_station }
+				solar_system = {
+					save_event_target_as = fmercsystem
+				}
+			}
+		}
+		from = {
+			space_owner = {
+				capital_scope = { save_event_target_as = player_capital_location }
+				country_event = { id = mercguardian.91 }
+			}
+		}
+	}
+}
+
+# A default country fleet enters a system where the mercenary enclave
+# has a station, and they have not established communications.
+# Allow the trigger to run anywhere, to catch
+# mercenary outposts as well as the HQ
+#has_star_flag = enclave
+fleet_event = {
+	id = mercguardian.96
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		owner = { is_country_type = default }
+		from = {
+			any_ship_in_system = {
+				exists = owner
+				owner = {
+					is_country_type = fmerc_enclave
+					NOR = {
+						has_communications = root.owner
+						reverse_has_relation_flag = {
+							flag = ongoing_merc_enclave_investigation
+							who = root.owner
+						}
+					}
+				}
+			}
+		}
+	}
+
+	immediate = {
+		owner = {
+			capital_scope = { save_event_target_as = player_capital_location }
+			from = {
+				random_fleet_in_system = {
+					limit = {
+						exists = owner
+						owner = { is_country_type = fmerc_enclave }
+					}
+					owner = {
+						save_event_target_as = target_enclave
+						# Scope to random owned fleet in case the default
+						# country stumbled across a random merc enclave installation
+						random_owned_fleet = {
+							limit = { has_fleet_flag = folk_mercenary_station }
+							solar_system = {
+								save_event_target_as = fmercsystem
+							}
+						}
+					}
+				}
+			}
+			country_event = { id = mercguardian.91 }
+		}
+	}
+}
+
+country_event = {
+	id = mercguardian.91
+	title = fmerc_enclave.precom_title
+	desc = fmerc_enclave.precom_desc
+	picture = GFX_evt_star_chart
+	location = event_target:fmercsystem
+	is_triggered_only = yes
+
+	option = {
+		name = INTERESTING
+
+		hidden_effect = {
+			# Project needs to be created in the enclaves country scope, so that FROMFROM points
+			# to the enclave in the special project event handlers
+			event_target:target_enclave = {
+				enable_special_project = {
+					name = "INVESTIGATE_MERC_ENCLAVE"
+					location = event_target:player_capital_location
+					owner = root
+				}
+			}
+			set_relation_flag = {
+				flag = ongoing_merc_enclave_investigation
+				who = event_target:target_enclave
+			}
+			event_target:target_enclave = {
+				country_event = { id = mercguardian.97 days = 250 random = 50 }
+			}
+		}
+	}
+}
+
+# Enclaves make contact after ~300 days
+country_event = {
+	id = mercguardian.97
+	hide_window = yes
+
+	trigger = {
+		exists = event_target:player_capital_location
+		event_target:player_capital_location = {
+			exists = owner
+			owner = {
+				NOT = { has_communications = root }
+				has_relation_flag = {
+					flag = ongoing_merc_enclave_investigation
+					who = root
+				}
+			}
+		}
+	}
+
+	immediate = {
+		event_target:player_capital_location = {
+			# if = {
+			# 	limit = {
+			# 		exists = owner
+			# 		owner = {
+			# 			NOT = {
+			# 				has_communications = root
+			# 			}
+			# 			has_relation_flag = {
+			# 				flag = ongoing_merc_enclave_investigation
+			# 				who = root
+			# 			}
+			# 		}
+			# 	}
+			owner = {
+				root = { establish_communications_no_message = prev }
+				country_event = { id = mercguardian.98 }
+			}
+			# }
+		}
+	}
+}
+
+# Enclave Establishes Communications
+country_event = {
+	id = mercguardian.98
+	title = guardian.98.name
+	desc = guardian.98.desc
+	picture = GFX_evt_throne_room
+	show_sound = event_radio_chatter
+
+	is_triggered_only = yes
+
+	option = {
+		name = guardian.98.a
+		if = {
+			limit = {
+				OR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
+			add_monthly_resource_mult = {
+				resource = influence
+				value = @tier1influencecontactxenophile
+				min = @tier1influencecontactmin
+				max = @tier1influencecontactmax
+			}
+			else = {
+				add_monthly_resource_mult = {
+					resource = influence
+					value = @tier1influencecontact
+					min = @tier1influencecontactmin
+					max = @tier1influencecontactmax
+				}
+			}
+		}
+		hidden_effect = {
+			from = { country_event = { id = mercguardian.101 } }
+		}
+	}
+}
+
+# Communication Established, triggered by special project
+country_event = {
+	id = mercguardian.99
+	title = "guardian.99.name"
+	desc = guardian.99.desc
+	picture = GFX_evt_throne_room
+	show_sound = event_radio_chatter
+
+	is_triggered_only = yes
+
+	immediate = { establish_communications_no_message = FROMFROM }
+
+	option = {
+		name = "guardian.98.a"
+		if = {
+			limit = {
+				OR = {
+					has_ethic = ethic_xenophile
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
+			add_monthly_resource_mult = {
+				resource = influence
+				value = @tier2influencecontactxenophile
+				min = @tier2influencecontactmin
+				max = @tier2influencecontactmax
+			}
+			else = {
+				add_monthly_resource_mult = {
+					resource = influence
+					value = @tier2influencecontact
+					min = @tier2influencecontactmin
+					max = @tier2influencecontactmax
+				}
+			}
+		}
+		hidden_effect = {
+			fromfrom = { country_event = { id = mercguardian.101 } }
+		}
+	}
+}
+
+# Port
+# Triggered after special project completion or forced introduction
+country_event = {
+	id = mercguardian.101
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		random_owned_ship = {
+			limit = { is_ship_size = enclave_station }
+			solar_system = { save_event_target_as = trader_system }
+		}
+		from = {
+			country_event = { id = mercguardian.102 }
+		}
+	}
+}
+
+# Mercenary Introduction
+country_event = {
+	id = mercguardian.102
+	title = guardian.102.name
+	desc = fmerc.introduction.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+
+	picture_event_data = {
+		portrait = from
+		room = enclave_trader_room
+	}
+
+	immediate = {
+		set_variable = {
+			which = MercDeposit
+			value = 0
+		}
+	}
+
+	option = {
+		name = guardian.502.a
+		custom_gui = "enclave_trader_option"
+	}
+}
+
+# Mercenary Destroyed (HIDDEN)
+country_event = {
+	id = mercguardian.140
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = fmerc_enclave
+		has_country_flag = folk_mercenary_country
+	}
+
+	immediate = {
+		FROMFROM = {
+			solar_system = { save_event_target_as = trader_system }
+		}
+		FROM = {
+			country_event = { id = mercguardian.141 }
+			save_event_target_as = trader_destroyer
+		}
+		# If we have zero fleets left, we are dead, so notify customers
+		if = {
+			limit = {
+				num_fleets = 0
+			}
+			every_country = {
+				limit = {
+					has_communications = ROOT
+					NOT = { is_country = event_target:trader_destroyer }
+					is_ai = no
+				}
+				country_event = { id = mercguardian.142 }
+			}
+		}
+	}
+}
+
+
+# Any Mercenary Destroyed (Destroyer)
+country_event = {
+	id = mercguardian.141
+	title = "guardian.141"
+	desc = "guardian.141.desc"
+	picture = GFX_evt_space_debris
+	location = event_target:trader_system
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = fmerc_has_destroyed_ship
+		if = {
+			limit = {
+				has_relation_flag = {
+					who = FROM
+					flag = fmercenary_trade
+				}
+			}
+			remove_relation_flag = {
+				who = FROM
+				flag = fmercenary_trade
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		add_minerals = 8000
+		add_energy = 8000
+	}
+}
+
+# Mercenary Destroyed
+country_event = {
+	id = mercguardian.142
+	title = "guardian.141"
+	desc = {
+		text = fmerc_enclave.a.desc
+		trigger = {
+			NOT = {
+				has_relation_flag = {
+					who = FROM
+					flag = fmercenary_trade
+				}
+			}
+			has_communications = event_target:trader_destroyer
+		}
+	}
+	desc = {
+		text = fmerc_enclave.b.desc
+		trigger = {
+			NOT = {
+				has_relation_flag = {
+					who = FROM
+					flag = fmercenary_trade
+				}
+			}
+			NOT = { has_communications = event_target:trader_destroyer }
+		}
+	}
+	desc = {
+		text = fmerc_enclave.c.desc
+		trigger = {
+			has_relation_flag = {
+				who = FROM
+				flag = fmercenary_trade
+			}
+			has_communications = event_target:trader_destroyer
+		}
+	}
+	desc = {
+		text = fmerc_enclave.d.desc
+		trigger = {
+			has_relation_flag = {
+				who = FROM
+				flag = fmercenary_trade
+			}
+			NOT = { has_communications = event_target:trader_destroyer }
+		}
+	}
+	picture = GFX_evt_exploding_ship
+	location = event_target:trader_system
+	show_sound = event_ship_explosion
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = folk_mercenary_destroyed
+		if = {
+			limit = {
+				has_relation_flag = {
+					who = FROM
+					flag = fmercenary_trade
+				}
+				is_ai = yes
+			}
+			add_opinion_modifier = {
+				who = event_target:trader_destroyer
+				modifier = opinion_destroyed_mercenary
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_relation_flag = {
+						who = FROM
+						flag = fmercenary_trade
+					}
+				}
+				is_ai = yes
+			}
+			add_opinion_modifier = {
+				who = event_target:trader_destroyer
+				modifier = opinion_destroyed_mercenary
+			}
+		}
+	}
+
+	option = {
+		name = "fmerc_enclave.a"
+		trigger = {
+			NOT = {
+				has_relation_flag = {
+					who = FROM
+					flag = fmercenary_trade
+				}
+			}
+		}
+	}
+	option = {
+		name = "fmerc_enclave.b"
+		trigger = {
+			has_relation_flag = {
+				who = FROM
+				flag = fmercenary_trade
+			}
+		}
+		hidden_effect = {
+			remove_relation_flag = {
+				who = FROM
+				flag = fmercenary_trade
+			}
+		}
+	}
+}
+
+# Attacked Mercenaries
+country_event = {
+	id = mercguardian.155
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+		FROM = { has_country_flag = folk_mercenary_country }
+	}
+
+	immediate = {
+		FROM = {
+			save_event_target_as = traders
+			add_trust = {
+				who = ROOT
+				amount = -100
+			}
+		}
+		set_country_flag = attacked_folk_mercenaries
+		if = {
+			limit = {
+				has_relation_flag = {
+					who = FROM
+					flag = fmercenary_trade
+				}
+			}
+			remove_relation_flag = {
+				who = FROM
+				flag = fmercenary_trade
+			}
+			country_event = { id = guardian.156 }
+		}
+	}
+}
+
+# Attacked Mercs - Trade Agreement Terminated
+country_event = {
+	id = mercguardian.156
+	title = fmerc_enclave.name
+	desc = fmerc_enclave.156.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	option = {
+		name = fmerc_enclave.156.a
+		custom_gui = "enclave_trader_option"
+	}
+}
+
+country_event = {
+	id = mercguardian.2000
+	hide_window = yes
+
+	# Only triggers once, across savegames, per game.
+	# I only use a country_event because event= behaves weirdly.
+	fire_only_once = yes
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = {
+					any_system = {
+						has_star_flag = "folk_mercenary_system"
+					}
+				}
+			}
+			random_system = {
+				limit = {
+					NOT = {
+						exists = space_owner
+						has_star_flag = "tiyanki_home_system"
+						has_star_flag = "void_system"
+						has_star_flag = "primitive_system"
+						has_star_flag = "elite_system"
+						has_star_flag = "hostile_system"
+						has_star_flag = "sanctuary_system"
+						has_star_flag = "pirate_system"
+						has_star_flag = "enclave"
+						has_star_flag = "guardian"
+						has_star_flag = "guardians_wraith_system"
+						has_star_flag = "guardians_curators_system"
+						has_star_flag = "guardians_traders_system"
+						has_star_flag = "guardians_dragon_system"
+						has_star_flag = "guardians_stellarite_system"
+						has_star_flag = "guardians_stellarite_about_to_spawn"
+						has_star_flag = "stellarite_present"
+						has_star_flag = "guardians_technosphere_system"
+						has_star_flag = "guardians_horror_system"
+						has_star_flag = "horror_spawned"
+						has_star_flag = "guardians_dreadnought_system"
+						has_star_flag = "guardians_hive_system"
+						has_star_flag = "guardians_artists_system"
+						any_planet = { is_capital = yes }
+						any_neighbor_system = { any_planet = { is_capital = yes } }
+					}
+				}
+				save_event_target_as = mercspawnlocation
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:mercspawnlocation
+					}
+				}
+				random_system = {
+					limit = {
+						NOT = {
+							exists = space_owner
+							any_planet = { is_capital = yes }
+							any_neighbor_system = { any_planet = { is_capital = yes } }
+						}
+					}
+					save_event_target_as = mercspawnlocation
+				}
+				if = {
+					limit = {
+						NOT = {
+							exists = event_target:mercspawnlocation
+						}
+					}
+					random_rim_system = {
+						limit = {
+							NOT = {
+								exists = space_owner
+							}
+						}
+						save_event_target_as = mercspawnlocation
+					}
+					if = {
+						limit = {
+							NOT = {
+								exists = event_target:mercspawnlocation
+							}
+						}
+						random_rim_system = {
+							save_event_target_as = mercspawnlocation
+						}
+					}
+				}
+			}
+
+			event_target:mercspawnlocation = {
+				spawn_system = {
+					min_distance = 20
+					max_distance = 50
+					initializer = "folk_merc_init"
+				}
+			}
+		}
+	}
+}

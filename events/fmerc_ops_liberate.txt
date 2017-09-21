@@ -1,0 +1,361 @@
+namespace = fmerc_ops_liberate
+
+# liberate
+# Triggered from fmerc_ops_initial_target
+country_event = {
+	id = fmerc_ops_liberate.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = "fmerc_ops_completed" }
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				exists = event_target:fmerc_target_country
+				exists = event_target:fmerc_target_planet
+				exists = event_target:fmerc_target_system
+			}
+			if = {
+				limit = {
+					exists = event_target:fmerc_ops_fleet
+					event_target:fmerc_ops_fleet = {
+						fleet_size < 4
+					}
+				}
+				event_target:fmerc_ops_fleet = {
+					destroy_fleet = this
+				}
+			}
+
+			if = {
+				limit = {
+					NOT = {
+						any_owned_fleet = {
+							has_fleet_flag = "fmerc_raiding_fleet"
+						}
+					}
+				}
+				fmerc_ops_set_spawn_location = yes
+				fmerc_ops_create_fleet = yes
+			}
+
+			event_target:fmerc_ops_fleet = {
+				queue_actions = {
+					repeat = {
+						while = {
+							id = fmerc_ops_liberate.1.trigger.1
+							exists = event_target:fmerc_target_planet
+							exists = owner
+							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
+							NOR = {
+								exists = solar_system
+								solar_system = {
+									any_planet = {
+										exists = owner
+										owner = {
+											is_same_value = event_target:fmerc_target_country
+										}
+										has_planet_flag = "fmerc_target"
+									}
+								}
+							}
+						}
+						move_to = event_target:fmerc_target_planet.solar_system
+						wait = 7
+					}
+					effect = {
+						id = fmerc_ops_liberate.1.effect.1
+						set_fleet_stance = aggressive
+						owner = {
+							# Turn hostile when we find our first target
+							set_faction_hostility = { set_hostile = yes }
+						}
+					}
+					repeat = {
+						while = {
+							id = fmerc_ops_liberate.1.trigger.2
+							exists = event_target:fmerc_target_planet
+							NOT = { exists = orbit }
+							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
+						}
+						orbit_planet = event_target:fmerc_target_planet
+						wait = 4
+					}
+					effect = {
+						id = fmerc_ops_liberate.1.effect.2
+						owner = {
+							set_country_flag = "fmerc_liberate_invade"
+						}
+					}
+				}
+			}
+
+			else = {
+				set_country_flag = "fmerc_ops_completed"
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fmerc_ops_liberate.20
+	hide_window = yes
+
+	trigger = {
+		NOT = { has_country_flag = "fmerc_ops_completed" }
+
+		OR = {
+			has_country_flag = "fmerc_liberate_invade"
+			has_country_flag = "fmerc_liberate_restart"
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 7
+	}
+
+	immediate = {
+		fmerc_ops_ensure_all_liberate_targets = yes
+
+		if = {
+			limit = {
+				has_country_flag = "fmerc_liberate_invade"
+			}
+			remove_country_flag = "fmerc_liberate_invade"
+			# check if we are in orbit
+			if = {
+				limit = {
+					exists = event_target:fmerc_ops_fleet
+					event_target:fmerc_ops_fleet = {
+						exists = orbit
+						orbit = {
+							is_same_value = event_target:fmerc_target_planet
+						}
+					}
+				}
+				if = {
+					limit = {
+						event_target:fmerc_target_country = {
+							is_country_type = default
+						}
+					}
+					event_target:fmerc_target_planet = {
+						random_list = {
+							50 = {
+								while = {
+									count = 10
+									create_army = {
+										name = random
+										owner = root
+										species = random
+										type = "robotic_army"
+									}
+								}
+							}
+							25 = {
+								while = {
+									count = 12
+									create_army = {
+										name = random
+										owner = root
+										species = random
+										type = "robotic_army"
+									}
+								}
+							}
+							25 = {
+								while = {
+									count = 8
+									create_army = {
+										name = random
+										owner = root
+										species = random
+										type = "robotic_army"
+									}
+								}
+							}
+						}
+					}
+					else = {
+						event_target:fmerc_target_planet = {
+							while = {
+								count = 12
+								create_army = {
+									name = random
+									owner = root
+									species = random
+									type = "robotic_army"
+								}
+							}
+						}
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							exists = event_target:fmerc_target_planet
+							event_target:fmerc_target_planet = {
+								is_owned_by = event_target:fmerc_target_country
+							}
+						}
+						# Try again
+						set_country_flag = "fmerc_liberate_restart"
+						else = {
+							set_country_flag = "fmerc_ops_completed"
+						}
+					}
+				}
+			}
+
+			else = {
+				remove_country_flag = "fmerc_liberate_restart"
+				if = {
+					limit = {
+						exists = event_target:fmerc_target_planet
+					}
+					subtract_variable = {
+						which = MercSuccess
+						value = 25
+					}
+					if = {
+						limit = {
+							check_variable = {
+								which = MercSuccess
+								value > 10
+							}
+						}
+						# Try again
+						if = {
+							limit = {
+								exists = event_target:fmerc_ops_fleet
+								event_target:fmerc_ops_fleet = {
+									exists = orbit
+									orbit = {
+										is_same_value = event_target:fmerc_target_planet
+									}
+								}
+							}
+							set_country_flag = "fmerc_liberate_invade"
+
+							else = {
+								country_event = {
+									id = fmerc_ops_liberate.1
+								}
+							}
+						}
+
+						else = {
+							set_country_flag = "fmerc_ops_completed"
+						}
+					}
+					else = {
+						set_country_flag = "fmerc_ops_completed"
+					}
+				}
+			}
+		}
+	}
+}
+
+# This = owner of fleet 1 (destroyed)
+# From = owner of fleet 2 (combatant)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+# on_fleet_destroyed_victim
+country_event = {
+	id = fmerc_ops_liberate.30
+	hide_window = yes
+	is_triggered_only = yes
+
+	# Our operations fleet has been destroyed.
+	trigger = {
+		is_country_type = "fmerc_operations"
+		has_country_flag = "fmerc_liberate"
+	}
+
+	immediate = {
+		set_country_flag = "fmerc_liberate_restart"
+	}
+}
+
+
+
+# on_planet_attackers_lose
+# Triggers country_event for the attacker upon defeat
+# This = country, attack leader
+# From = country, planet owner
+# FromFrom = planet
+country_event = {
+	id = fmerc_ops_liberate.40
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = "fmerc_operations"
+		has_country_flag = "fmerc_liberate"
+	}
+
+	immediate = {
+		set_country_flag = "fmerc_liberate_restart"
+	}
+}
+
+# on_planet_attackers_win
+# merc operations has won
+# This = country, leader attacker
+# From = country, planet owner
+# FromFrom = planet
+country_event = {
+	id = fmerc_ops_liberate.50
+	hide_window = yes
+	is_triggered_only = yes
+
+	# Dont check for ops_completed here, we do this anyway
+	trigger = {
+		is_country_type = "fmerc_operations"
+	}
+
+	immediate = {
+		fmerc_ops_ensure_all_liberate_targets = yes
+
+		fromfrom = {
+			# every_planet_army stops looping when you do remove_army, so we while loop it instead
+			while = {
+				limit = { has_army = yes }
+				random_planet_army = {
+					remove_army = yes
+				}
+			}
+			create_country = {
+				name = random
+				authority = random
+				released_by_country = event_target:fmerc_buyer
+				released_from_country = event_target:fmerc_target_country
+				species = event_target:fmerc_target_planet
+				ethos = event_target:fmerc_buyer
+				flag = random
+				type = default
+				day_zero_contact = no
+				effect = {
+					set_timed_country_flag = { flag = timed_liberated_country days = 1 }
+					establish_communications_no_message = event_target:fmerc_buyer
+					establish_communications_no_message = event_target:fmerc_target_country
+					establish_contact = { who = event_target:fmerc_buyer location = event_target:fmerc_target_planet }
+					establish_contact = { who = event_target:fmerc_target_country location = event_target:fmerc_target_planet }
+					add_modifier = {
+						modifier = "puppet_government"
+						days = 3600
+					}
+					save_event_target_as = merc_newcountry
+				}
+			}
+			set_owner = event_target:merc_newcountry
+			set_controller = event_target:merc_newcountry
+		}
+
+		set_country_flag = "fmerc_ops_completed"
+	}
+}

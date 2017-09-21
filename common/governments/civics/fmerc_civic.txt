@@ -1,0 +1,9 @@
+civic_mercenary_operations = {
+	modification = no
+	icon = "gfx/interface/icons/governments/civics/civic_warrior_culture.dds"
+	potential = {
+		country_type = { value = fmerc_enclave }
+	}
+	random_weight = { base = 1 }
+	modifier = { }
+}

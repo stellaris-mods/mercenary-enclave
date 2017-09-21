@@ -1,0 +1,200 @@
+namespace = fmerc_ops_fleet
+
+# ZZZ the only way we can have a "relation flag" to an arbitrary fleet or similar,
+# is to use a variable set on them
+# So when we create a new ops country, it needs to have an id number
+# that is created from the merc enclave country scope
+
+# Triggered from fmerc_ops_initial_target
+# In this, event_target:fmerc_target_fleet is a fleet
+country_event = {
+	id = fmerc_ops_fleet.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = "fmerc_ops_completed" }
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				exists = event_target:fmerc_target_country
+				exists = event_target:fmerc_target_fleet
+				exists = event_target:fmerc_target_system
+			}
+
+			if = {
+				limit = {
+					exists = event_target:fmerc_ops_fleet
+					event_target:fmerc_ops_fleet = {
+						fleet_size < 4
+					}
+				}
+				event_target:fmerc_ops_fleet = {
+					destroy_fleet = this
+				}
+			}
+
+			if = {
+				limit = {
+					NOT = {
+						any_owned_fleet = {
+							has_fleet_flag = "fmerc_raiding_fleet"
+						}
+					}
+				}
+				fmerc_ops_set_spawn_location = yes
+				fmerc_ops_create_fleet = yes
+			}
+
+			event_target:fmerc_ops_fleet = {
+				queue_actions = {
+					repeat = {
+						while = {
+							id = fmerc_ops_fleet.1.trigger.1
+							exists = event_target:fmerc_target_fleet
+							exists = owner
+							NOT = {
+								owner = { has_country_flag = "fmerc_ops_completed" }
+							}
+							OR = {
+								NOT = { exists = solar_system }
+								NOT = {
+									solar_system = {
+										any_ship_in_system = {
+											exists = fleet
+											fleet = {
+												is_same_value = event_target:fmerc_target_fleet
+											}
+										}
+									}
+								}
+							}
+						}
+						move_to = event_target:fmerc_target_fleet.solar_system
+						wait = 7
+					}
+					effect = {
+						id = fmerc_ops_fleet.1.effect.1
+						if = {
+							limit = {
+								exists = owner
+							}
+							owner = {
+								# Turn hostile when we find our first target
+								set_faction_hostility = { set_hostile = yes }
+							}
+						}
+					}
+					repeat = {
+						while = {
+							id = fmerc_ops_fleet.1.trigger.2
+							exists = event_target:fmerc_target_fleet
+							exists = owner
+							NOT = {
+								owner = { has_country_flag = "fmerc_ops_completed" }
+							}
+						}
+						move_to = event_target:fmerc_target_fleet
+						wait = 3
+					}
+					effect = {
+						id = fmerc_ops_fleet.1.effect.2
+						if = {
+							limit = {
+								exists = owner
+							}
+							owner = {
+								country_event = { id = fmerc_ops_fleet.20 }
+							}
+						}
+					}
+				}
+			}
+
+			else = {
+				set_country_flag = "fmerc_ops_completed"
+			}
+		}
+	}
+}
+
+# Exclusively triggered by the fleet queue being completed
+country_event = {
+	id = fmerc_ops_fleet.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = "fmerc_ops_completed" }
+	}
+
+	immediate = {
+		# This sets _fleet to the next ship target, if needed.
+		fmerc_ops_ensure_all_event_targets = yes
+
+		if = {
+			limit = {
+				exists = event_target:fmerc_target_fleet
+			}
+			# Try again
+			country_event = {
+				id = fmerc_ops_fleet.1
+			}
+			else = {
+				set_country_flag = "fmerc_ops_completed"
+			}
+		}
+	}
+}
+
+# This = owner of fleet 1 (destroyed)
+# From = owner of fleet 2 (combatant)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+# on_fleet_destroyed_victim
+country_event = {
+	id = fmerc_ops_fleet.30
+	hide_window = yes
+	is_triggered_only = yes
+
+	# Our operations fleet has been destroyed.
+	trigger = {
+		is_country_type = "fmerc_operations"
+		NOT = { has_country_flag = "fmerc_liberate" }
+		NOT = { has_country_flag = "fmerc_ops_completed" }
+	}
+
+	immediate = {
+		fmerc_ops_ensure_all_event_targets = yes
+
+		if = {
+			limit = {
+				exists = event_target:fmerc_target_fleet
+			}
+			subtract_variable = {
+				which = MercSuccess
+				value = 25
+			}
+			if = {
+				limit = {
+					check_variable = {
+						which = MercSuccess
+						value > 10
+					}
+				}
+				# Try again
+				country_event = {
+					id = fmerc_ops_fleet.1
+				}
+				else = {
+					set_country_flag = "fmerc_ops_completed"
+				}
+			}
+			else = {
+				set_country_flag = "fmerc_ops_completed"
+			}
+		}
+	}
+}

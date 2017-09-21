@@ -1,0 +1,98 @@
+fmerc_is_targetted_country_type = {
+	NOT = { is_same_value = ROOT }
+	has_communications = ROOT
+	OR = {
+		AND = {
+			ROOT = {
+				has_country_flag = "fmerc_diplo_empire_standard"
+			}
+			num_owned_planets > 1
+			is_country_type = default
+		}
+		AND = {
+			ROOT = {
+				has_country_flag = "fmerc_diplo_empire_fallen"
+			}
+			num_owned_planets > 1
+			OR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+		}
+		AND = {
+			ROOT = {
+				has_country_flag = "fmerc_diplo_empire_swarm"
+			}
+			is_country_type = swarm
+		}
+		AND = {
+			ROOT = {
+				has_country_flag = "fmerc_diplo_empire_ed"
+			}
+			OR = {
+				is_country_type = extradimensional
+				is_country_type = extradimensional_2
+				is_country_type = extradimensional_3
+			}
+		}
+		AND = {
+			ROOT = {
+				has_country_flag = "fmerc_diplo_empire_ai"
+			}
+			is_country_type = ai_empire
+		}
+	}
+}
+
+fmerc_is_valid_country = {
+	NOT = {
+		has_country_flag = "fmerc_operations_target"
+	}
+	OR = {
+		AND = {
+			ROOT = {
+				has_country_flag = "fmerc_diplo_spaceport"
+			}
+			any_owned_planet = {
+				has_spaceport = yes
+				is_capital = no
+			}
+			num_owned_planets > 2
+		}
+		AND = {
+			ROOT = {
+				has_country_flag = "fmerc_diplo_liberate"
+			}
+			any_owned_planet = {
+				has_ground_combat = no
+				is_capital = no
+				is_homeworld = no
+			}
+			num_owned_planets > 2
+		}
+		AND = {
+			ROOT = {
+				has_country_flag = "fmerc_diplo_miningraid"
+			}
+			count_owned_ships = {
+				limit = {
+					OR = {
+						is_ship_size = mining_station
+						is_ship_size = research_station
+					}
+				}
+				count > 5
+			}
+		}
+		AND = {
+			ROOT = {
+				has_country_flag = "fmerc_diplo_fleetraid"
+			}
+			num_fleets > 3
+			any_owned_fleet = {
+				is_ship_class = shipclass_military
+				fleet_size > 8
+			}
+		}
+	}
+}

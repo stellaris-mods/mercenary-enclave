@@ -1,0 +1,1116 @@
+
+fmerc_ops_ensure_all_event_targets = {
+	if = {
+		limit = {
+			NOT = { exists = event_target:fmerc_buyer }
+		}
+		random_country = {
+			limit = {
+				NOT = { is_country_type = fmerc_enclave }
+				reverse_has_relation_flag = {
+					who = root
+					flag = merc_operations_squad
+				}
+			}
+			save_event_target_as = fmerc_buyer
+		}
+	}
+	if = {
+		limit = {
+			NOT = { exists = event_target:fmerc_hq }
+		}
+		random_country = {
+			limit = {
+				is_country_type = fmerc_enclave
+				reverse_has_relation_flag = {
+					who = root
+					flag = merc_operations_squad
+				}
+			}
+			save_event_target_as = fmerc_hq
+		}
+	}
+	if = {
+		limit = {
+			NOT = { exists = event_target:fmerc_target_country }
+		}
+		random_country = {
+			limit = {
+				reverse_has_relation_flag = {
+					who = root
+					flag = merc_operations_target
+				}
+			}
+			save_event_target_as = fmerc_target_country
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target_country
+			NOT = { exists = event_target:fmerc_target_fleet }
+			event_target:fmerc_target_country = {
+				any_owned_ship = {
+					exists = fleet
+					has_ship_flag = "fmerc_target"
+				}
+			}
+		}
+		# If our fleet exists, we first try to find a target within the system it's in.
+		if = {
+			limit = {
+				exists = event_target:fmerc_ops_fleet
+				event_target:fmerc_ops_fleet = {
+					exists = solar_system
+				}
+			}
+			event_target:fmerc_target_country = {
+				random_owned_ship = {
+					limit = {
+						exists = fleet
+						has_ship_flag = "fmerc_target"
+						exists = solar_system
+						solar_system = {
+							is_same_value = event_target:fmerc_ops_fleet.solar_system
+						}
+					}
+					fleet = {
+						save_event_target_as = fmerc_target_fleet
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					exists = event_target:fmerc_target_fleet
+				}
+			}
+			event_target:fmerc_target_country = {
+				random_owned_ship = {
+					limit = {
+						exists = fleet
+						has_ship_flag = "fmerc_target"
+					}
+					fleet = {
+						save_event_target_as = fmerc_target_fleet
+					}
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target_country
+			exists = event_target:fmerc_target_fleet
+		}
+		event_target:fmerc_target_fleet = {
+			solar_system = {
+				save_event_target_as = fmerc_target_system
+			}
+		}
+	}
+	if = {
+		limit = {
+			NOT = { exists = event_target:fmerc_ops_fleet }
+			any_owned_fleet = {
+				has_fleet_flag = "fmerc_raiding_fleet"
+			}
+		}
+		random_owned_fleet = {
+			limit = {
+				has_fleet_flag = "fmerc_raiding_fleet"
+			}
+			save_event_target_as = fmerc_ops_fleet
+		}
+	}
+}
+
+fmerc_ops_ensure_all_liberate_targets = {
+	if = {
+		limit = {
+			NOT = { exists = event_target:fmerc_buyer }
+		}
+		random_country = {
+			limit = {
+				NOT = { is_country_type = fmerc_enclave }
+				reverse_has_relation_flag = {
+					who = root
+					flag = merc_operations_squad
+				}
+			}
+			save_event_target_as = fmerc_buyer
+		}
+	}
+	if = {
+		limit = {
+			NOT = { exists = event_target:fmerc_hq }
+		}
+		random_country = {
+			limit = {
+				is_country_type = fmerc_enclave
+				reverse_has_relation_flag = {
+					who = root
+					flag = merc_operations_squad
+				}
+			}
+			save_event_target_as = fmerc_hq
+		}
+	}
+	if = {
+		limit = {
+			NOT = { exists = event_target:fmerc_target_country }
+		}
+		random_country = {
+			limit = {
+				reverse_has_relation_flag = {
+					who = root
+					flag = merc_operations_target
+				}
+			}
+			save_event_target_as = fmerc_target_country
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target_country
+			NOT = { exists = event_target:fmerc_target_planet }
+			event_target:fmerc_target_country = {
+				any_owned_planet = {
+					has_planet_flag = "fmerc_target"
+				}
+			}
+		}
+		event_target:fmerc_target_country = {
+			random_owned_planet = {
+				limit = {
+					has_planet_flag = "fmerc_target"
+				}
+				save_event_target_as = fmerc_target_planet
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target_country
+			exists = event_target:fmerc_target_planet
+		}
+		event_target:fmerc_target_planet = {
+			solar_system = {
+				save_event_target_as = fmerc_target_system
+			}
+		}
+	}
+	if = {
+		limit = {
+			NOT = { exists = event_target:fmerc_ops_fleet }
+			any_owned_fleet = {
+				has_fleet_flag = "fmerc_raiding_fleet"
+			}
+		}
+		random_owned_fleet = {
+			limit = {
+				has_fleet_flag = "fmerc_raiding_fleet"
+			}
+			save_event_target_as = fmerc_ops_fleet
+		}
+	}
+}
+
+fmerc_ops_initial_buyer = {
+	if = {
+		limit = {
+			NOT = {
+				exists = event_target:fmerc_buyer
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = {
+					is_country_type = fmerc_enclave
+				}
+				reverse_has_relation_flag = {
+					who = root
+					flag = merc_operations_squad
+				}
+			}
+			save_event_target_as = fmerc_buyer
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_buyer
+		}
+		# We found the buyer
+		country_event = {
+			id = fmerc_ops_meta.2
+		}
+
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+
+fmerc_ops_initial_hq = {
+	if = {
+		limit = {
+			NOT = {
+				exists = event_target:fmerc_hq
+			}
+		}
+		random_country = {
+			limit = {
+				is_country_type = fmerc_enclave
+				reverse_has_relation_flag = {
+					who = root
+					flag = merc_operations_squad
+				}
+			}
+			save_event_target_as = fmerc_hq
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_hq
+		}
+		# We found the HQ
+		country_event = {
+			id = fmerc_ops_meta.3
+		}
+
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+
+fmerc_ops_initial_target_country = {
+	random_country = {
+		limit = {
+			reverse_has_relation_flag = {
+				who = root
+				flag = merc_operations_target
+			}
+		}
+		save_event_target_as = fmerc_target_country
+	}
+}
+
+fmerc_ops_initial_target_amoeba = {
+	event_target:fmerc_buyer = {
+		every_planet_within_border = {
+			limit = {
+				is_star = yes
+				exists = solar_system
+				solar_system = {
+					any_ship_in_system = {
+						exists = owner
+						owner = {
+							is_country_type = amoeba
+						}
+					}
+				}
+			}
+			solar_system = {
+				save_event_target_as = fmerc_target_system
+				random_fleet_in_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_country_type = amoeba
+						}
+					}
+					owner = {
+						save_event_target_as = fmerc_target_country
+					}
+					save_event_target_as = fmerc_target_fleet
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target_fleet
+		}
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
+		}
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+
+fmerc_ops_initial_target_cloud = {
+	event_target:fmerc_buyer = {
+		every_planet_within_border = {
+			limit = {
+				is_star = yes
+				exists = solar_system
+				solar_system = {
+					any_ship_in_system = {
+						exists = owner
+						owner = {
+							is_country_type = cloud
+						}
+					}
+				}
+			}
+			solar_system = {
+				save_event_target_as = fmerc_target_system
+				random_fleet_in_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_country_type = cloud
+						}
+					}
+					owner = {
+						save_event_target_as = fmerc_target_country
+					}
+					save_event_target_as = fmerc_target_fleet
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target_fleet
+		}
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
+		}
+
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+
+fmerc_ops_initial_target_crystal = {
+	event_target:fmerc_buyer = {
+		every_planet_within_border = {
+			limit = {
+				is_star = yes
+				exists = solar_system
+				solar_system = {
+					any_ship_in_system = {
+						exists = owner
+						owner = {
+							is_country_type = crystal
+						}
+					}
+				}
+			}
+			solar_system = {
+				save_event_target_as = fmerc_target_system
+				random_fleet_in_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_country_type = crystal
+						}
+					}
+					owner = {
+						save_event_target_as = fmerc_target_country
+					}
+					save_event_target_as = fmerc_target_fleet
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target_fleet
+		}
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
+		}
+
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+
+fmerc_ops_initial_target_pirate = {
+	event_target:fmerc_buyer = {
+		every_planet_within_border = {
+			limit = {
+				is_star = yes
+				exists = solar_system
+				solar_system = {
+					any_ship_in_system = {
+						exists = owner
+						owner = {
+							is_country_type = pirate
+						}
+					}
+				}
+			}
+			solar_system = {
+				save_event_target_as = fmerc_target_system
+				random_fleet_in_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_country_type = pirate
+						}
+					}
+					owner = {
+						save_event_target_as = fmerc_target_country
+					}
+					save_event_target_as = fmerc_target_fleet
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target_fleet
+		}
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
+		}
+
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+
+fmerc_ops_initial_target_drone = {
+	event_target:fmerc_buyer = {
+		every_planet_within_border = {
+			limit = {
+				is_star = yes
+				exists = solar_system
+				solar_system = {
+					any_ship_in_system = {
+						exists = owner
+						owner = {
+							is_country_type = drone
+						}
+					}
+				}
+			}
+			solar_system = {
+				save_event_target_as = fmerc_target_system
+				random_fleet_in_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_country_type = drone
+						}
+					}
+					owner = {
+						save_event_target_as = fmerc_target_country
+					}
+					save_event_target_as = fmerc_target_fleet
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target_fleet
+		}
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
+		}
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+
+fmerc_ops_tag_all_ships = {
+	if = {
+		limit = {
+			# Doesnt exist if we're doing a space clear event and there are zero creatures to attack
+			exists = event_target:fmerc_target_country
+			exists = event_target:fmerc_target_fleet
+		}
+		event_target:fmerc_target_country = {
+			every_owned_ship = {
+				limit = {
+					exists = fleet
+					fleet = {
+						is_same_value = event_target:fmerc_target_fleet
+					}
+				}
+				set_ship_flag = "fmerc_target"
+			}
+		}
+	}
+}
+
+fmerc_ops_initial_target_liberate = {
+	event_target:fmerc_buyer = {
+		# Capital of buyer
+		capital_scope = {
+			closest_system = {
+				limit = {
+					any_planet = {
+						is_owned_by = event_target:fmerc_target_country
+						has_ground_combat = no
+						is_capital = no
+						is_homeworld = no
+					}
+					NOT = {
+						any_planet = {
+							is_owned_by = event_target:fmerc_buyer
+						}
+					}
+					NOT = {
+						has_star_flag = enclave
+					}
+				}
+				#min_steps = 1
+				save_event_target_as = fmerc_target_system
+				random_system_planet = {
+					limit = {
+						has_ground_combat = no
+						is_capital = no
+						is_homeworld = no
+						exists = owner
+						owner = {
+							is_same_value = event_target:fmerc_target_country
+						}
+					}
+					set_planet_flag = "fmerc_target"
+					save_event_target_as = fmerc_target_planet
+				}
+			}
+		}
+	}
+}
+
+fmerc_ops_initial_target = {
+	switch = {
+		trigger = has_country_flag
+		fmerc_spaceport = {
+			fmerc_ops_initial_target_country = yes
+			fmerc_ops_set_spaceport_target = yes
+			fmerc_ops_tag_all_ships = yes
+			country_event = { id = fmerc_ops_fleet.1 }
+		}
+		fmerc_liberate = {
+			fmerc_ops_initial_target_country = yes
+			fmerc_ops_initial_target_liberate = yes
+			country_event = { id = fmerc_ops_liberate.1 }
+		}
+		fmerc_raid = {
+			fmerc_ops_initial_target_country = yes
+			# Ships are tagged in this
+			fmerc_ops_set_raid_targets = yes
+			country_event = { id = fmerc_ops_fleet.1 }
+		}
+		fmerc_fleet = {
+			fmerc_ops_initial_target_country = yes
+			fmerc_ops_set_fleet_target = yes
+			fmerc_ops_tag_all_ships = yes
+			country_event = { id = fmerc_ops_fleet.1 }
+		}
+		fmerc_amoeba = {
+			fmerc_ops_initial_target_amoeba = yes
+			fmerc_ops_tag_all_ships = yes
+			country_event = { id = fmerc_ops_fleet.1 }
+		}
+		fmerc_cloud = {
+			fmerc_ops_initial_target_cloud = yes
+			fmerc_ops_tag_all_ships = yes
+			country_event = { id = fmerc_ops_fleet.1 }
+		}
+		fmerc_crystal = {
+			fmerc_ops_initial_target_crystal = yes
+			fmerc_ops_tag_all_ships = yes
+			country_event = { id = fmerc_ops_fleet.1 }
+		}
+		fmerc_pirate = {
+			fmerc_ops_initial_target_pirate = yes
+			fmerc_ops_tag_all_ships = yes
+			country_event = { id = fmerc_ops_fleet.1 }
+		}
+		fmerc_drone = {
+			fmerc_ops_initial_target_drone = yes
+			fmerc_ops_tag_all_ships = yes
+			country_event = { id = fmerc_ops_fleet.1 }
+		}
+	}
+}
+
+fmerc_get_fleet_size = {
+	switch = {
+		trigger = fleet_size
+		5000 > { root = { set_variable = { which = MercTempSize value = 5000}}}
+		4960 > { root = { set_variable = { which = MercTempSize value = 4960}}}
+		4920 > { root = { set_variable = { which = MercTempSize value = 4920}}}
+		4880 > { root = { set_variable = { which = MercTempSize value = 4880}}}
+		4840 > { root = { set_variable = { which = MercTempSize value = 4840}}}
+		4800 > { root = { set_variable = { which = MercTempSize value = 4800}}}
+		4760 > { root = { set_variable = { which = MercTempSize value = 4760}}}
+		4720 > { root = { set_variable = { which = MercTempSize value = 4720}}}
+		4680 > { root = { set_variable = { which = MercTempSize value = 4680}}}
+		4640 > { root = { set_variable = { which = MercTempSize value = 4640}}}
+		4600 > { root = { set_variable = { which = MercTempSize value = 4600}}}
+		4560 > { root = { set_variable = { which = MercTempSize value = 4560}}}
+		4520 > { root = { set_variable = { which = MercTempSize value = 4520}}}
+		4480 > { root = { set_variable = { which = MercTempSize value = 4480}}}
+		4440 > { root = { set_variable = { which = MercTempSize value = 4440}}}
+		4400 > { root = { set_variable = { which = MercTempSize value = 4400}}}
+		4360 > { root = { set_variable = { which = MercTempSize value = 4360}}}
+		4320 > { root = { set_variable = { which = MercTempSize value = 4320}}}
+		4280 > { root = { set_variable = { which = MercTempSize value = 4280}}}
+		4240 > { root = { set_variable = { which = MercTempSize value = 4240}}}
+		4200 > { root = { set_variable = { which = MercTempSize value = 4200}}}
+		4160 > { root = { set_variable = { which = MercTempSize value = 4160}}}
+		4120 > { root = { set_variable = { which = MercTempSize value = 4120}}}
+		4080 > { root = { set_variable = { which = MercTempSize value = 4080}}}
+		4040 > { root = { set_variable = { which = MercTempSize value = 4040}}}
+		4000 > { root = { set_variable = { which = MercTempSize value = 4000}}}
+		3960 > { root = { set_variable = { which = MercTempSize value = 3960}}}
+		3920 > { root = { set_variable = { which = MercTempSize value = 3920}}}
+		3880 > { root = { set_variable = { which = MercTempSize value = 3880}}}
+		3840 > { root = { set_variable = { which = MercTempSize value = 3840}}}
+		3800 > { root = { set_variable = { which = MercTempSize value = 3800}}}
+		3760 > { root = { set_variable = { which = MercTempSize value = 3760}}}
+		3720 > { root = { set_variable = { which = MercTempSize value = 3720}}}
+		3680 > { root = { set_variable = { which = MercTempSize value = 3680}}}
+		3640 > { root = { set_variable = { which = MercTempSize value = 3640}}}
+		3600 > { root = { set_variable = { which = MercTempSize value = 3600}}}
+		3560 > { root = { set_variable = { which = MercTempSize value = 3560}}}
+		3520 > { root = { set_variable = { which = MercTempSize value = 3520}}}
+		3480 > { root = { set_variable = { which = MercTempSize value = 3480}}}
+		3440 > { root = { set_variable = { which = MercTempSize value = 3440}}}
+		3400 > { root = { set_variable = { which = MercTempSize value = 3400}}}
+		3360 > { root = { set_variable = { which = MercTempSize value = 3360}}}
+		3320 > { root = { set_variable = { which = MercTempSize value = 3320}}}
+		3280 > { root = { set_variable = { which = MercTempSize value = 3280}}}
+		3240 > { root = { set_variable = { which = MercTempSize value = 3240}}}
+		3200 > { root = { set_variable = { which = MercTempSize value = 3200}}}
+		3160 > { root = { set_variable = { which = MercTempSize value = 3160}}}
+		3120 > { root = { set_variable = { which = MercTempSize value = 3120}}}
+		3080 > { root = { set_variable = { which = MercTempSize value = 3080}}}
+		3040 > { root = { set_variable = { which = MercTempSize value = 3040}}}
+		3000 > { root = { set_variable = { which = MercTempSize value = 3000}}}
+		2960 > { root = { set_variable = { which = MercTempSize value = 2960}}}
+		2920 > { root = { set_variable = { which = MercTempSize value = 2920}}}
+		2880 > { root = { set_variable = { which = MercTempSize value = 2880}}}
+		2840 > { root = { set_variable = { which = MercTempSize value = 2840}}}
+		2800 > { root = { set_variable = { which = MercTempSize value = 2800}}}
+		2760 > { root = { set_variable = { which = MercTempSize value = 2760}}}
+		2720 > { root = { set_variable = { which = MercTempSize value = 2720}}}
+		2680 > { root = { set_variable = { which = MercTempSize value = 2680}}}
+		2640 > { root = { set_variable = { which = MercTempSize value = 2640}}}
+		2600 > { root = { set_variable = { which = MercTempSize value = 2600}}}
+		2560 > { root = { set_variable = { which = MercTempSize value = 2560}}}
+		2520 > { root = { set_variable = { which = MercTempSize value = 2520}}}
+		2480 > { root = { set_variable = { which = MercTempSize value = 2480}}}
+		2440 > { root = { set_variable = { which = MercTempSize value = 2440}}}
+		2400 > { root = { set_variable = { which = MercTempSize value = 2400}}}
+		2360 > { root = { set_variable = { which = MercTempSize value = 2360}}}
+		2320 > { root = { set_variable = { which = MercTempSize value = 2320}}}
+		2280 > { root = { set_variable = { which = MercTempSize value = 2280}}}
+		2240 > { root = { set_variable = { which = MercTempSize value = 2240}}}
+		2200 > { root = { set_variable = { which = MercTempSize value = 2200}}}
+		2160 > { root = { set_variable = { which = MercTempSize value = 2160}}}
+		2120 > { root = { set_variable = { which = MercTempSize value = 2120}}}
+		2080 > { root = { set_variable = { which = MercTempSize value = 2080}}}
+		2040 > { root = { set_variable = { which = MercTempSize value = 2040}}}
+		2000 > { root = { set_variable = { which = MercTempSize value = 2000}}}
+		1960 > { root = { set_variable = { which = MercTempSize value = 1960}}}
+		1920 > { root = { set_variable = { which = MercTempSize value = 1920}}}
+		1880 > { root = { set_variable = { which = MercTempSize value = 1880}}}
+		1840 > { root = { set_variable = { which = MercTempSize value = 1840}}}
+		1800 > { root = { set_variable = { which = MercTempSize value = 1800}}}
+		1760 > { root = { set_variable = { which = MercTempSize value = 1760}}}
+		1720 > { root = { set_variable = { which = MercTempSize value = 1720}}}
+		1680 > { root = { set_variable = { which = MercTempSize value = 1680}}}
+		1640 > { root = { set_variable = { which = MercTempSize value = 1640}}}
+		1600 > { root = { set_variable = { which = MercTempSize value = 1600}}}
+		1560 > { root = { set_variable = { which = MercTempSize value = 1560}}}
+		1520 > { root = { set_variable = { which = MercTempSize value = 1520}}}
+		1480 > { root = { set_variable = { which = MercTempSize value = 1480}}}
+		1440 > { root = { set_variable = { which = MercTempSize value = 1440}}}
+		1400 > { root = { set_variable = { which = MercTempSize value = 1400}}}
+		1360 > { root = { set_variable = { which = MercTempSize value = 1360}}}
+		1320 > { root = { set_variable = { which = MercTempSize value = 1320}}}
+		1280 > { root = { set_variable = { which = MercTempSize value = 1280}}}
+		1240 > { root = { set_variable = { which = MercTempSize value = 1240}}}
+		1200 > { root = { set_variable = { which = MercTempSize value = 1200}}}
+		1160 > { root = { set_variable = { which = MercTempSize value = 1160}}}
+		1120 > { root = { set_variable = { which = MercTempSize value = 1120}}}
+		1080 > { root = { set_variable = { which = MercTempSize value = 1080}}}
+		1040 > { root = { set_variable = { which = MercTempSize value = 1040}}}
+		1000 > { root = { set_variable = { which = MercTempSize value = 1000}}}
+		960 > { root = { set_variable = { which = MercTempSize value = 960}}}
+		920 > { root = { set_variable = { which = MercTempSize value = 920}}}
+		880 > { root = { set_variable = { which = MercTempSize value = 880}}}
+		840 > { root = { set_variable = { which = MercTempSize value = 840}}}
+		800 > { root = { set_variable = { which = MercTempSize value = 800}}}
+		760 > { root = { set_variable = { which = MercTempSize value = 760}}}
+		720 > { root = { set_variable = { which = MercTempSize value = 720}}}
+		680 > { root = { set_variable = { which = MercTempSize value = 680}}}
+		640 > { root = { set_variable = { which = MercTempSize value = 640}}}
+		600 > { root = { set_variable = { which = MercTempSize value = 600}}}
+		560 > { root = { set_variable = { which = MercTempSize value = 560}}}
+		520 > { root = { set_variable = { which = MercTempSize value = 520}}}
+		480 > { root = { set_variable = { which = MercTempSize value = 480}}}
+		440 > { root = { set_variable = { which = MercTempSize value = 440}}}
+		400 > { root = { set_variable = { which = MercTempSize value = 400}}}
+		360 > { root = { set_variable = { which = MercTempSize value = 360}}}
+		320 > { root = { set_variable = { which = MercTempSize value = 320}}}
+		280 > { root = { set_variable = { which = MercTempSize value = 280}}}
+		240 > { root = { set_variable = { which = MercTempSize value = 240}}}
+		200 > { root = { set_variable = { which = MercTempSize value = 200}}}
+		160 > { root = { set_variable = { which = MercTempSize value = 160}}}
+		120 > { root = { set_variable = { which = MercTempSize value = 120}}}
+		80 > { root = { set_variable = { which = MercTempSize value = 80}}}
+		60 > { root = { set_variable = { which = MercTempSize value = 70}}}
+		50 > { root = { set_variable = { which = MercTempSize value = 60}}}
+		40 > { root = { set_variable = { which = MercTempSize value = 50}}}
+		30 > { root = { set_variable = { which = MercTempSize value = 40}}}
+		20 > { root = { set_variable = { which = MercTempSize value = 30}}}
+		0 > { root = { set_variable = { which = MercTempSize value = 20}}}
+	}
+}
+
+
+fmerc_match_variable = {
+	root = {
+		# ZZZ remember that while loops only loop to 100
+		while = {
+			limit = {
+				check_variable = {
+					which = MercTempSize
+					value > 4
+				}
+			}
+			event_target:fmerc_ops_fleet = {
+				create_ship = {
+					name = random
+					random_existing_design = nongfx_fmerc_ship_01
+					prefix = no
+				}
+				create_ship = {
+					name = random
+					random_existing_design = nongfx_fmerc_ship_01
+					prefix = no
+				}
+				create_ship = {
+					name = random
+					random_existing_design = nongfx_fmerc_ship_01
+					prefix = no
+				}
+				create_ship = {
+					name = random
+					random_existing_design = nongfx_fmerc_ship_01
+					prefix = no
+				}
+			}
+			change_variable = {
+				which = MercTempSize
+				value = -16
+			}
+		}
+	}
+}
+
+fmerc_match_fleet = {
+	fmerc_get_fleet_size = yes
+	fmerc_match_variable = yes
+}
+
+# event_target:fmerc_target_system exists here
+fmerc_ops_set_spawn_location = {
+	if = {
+		limit = { exists = event_target:fmerc_target_system }
+		event_target:fmerc_target_system = {
+			closest_system = {
+				limit = {
+					any_ship_in_system = {
+						is_in_combat = no
+						exists = owner
+						owner = {
+							is_country_type = fmerc_enclave
+						}
+					}
+					OR = {
+						NOT = {
+							exists = space_owner
+						}
+						AND = {
+							exists = space_owner
+							space_owner = { is_same_value = event_target:fmerc_target_country }
+						}
+					}
+				}
+				#min_steps = 1
+				random_fleet_in_system = {
+					limit = {
+						is_in_combat = no
+						exists = owner
+						owner = {
+							is_country_type = fmerc_enclave
+						}
+					}
+					save_event_target_as = fmerc_spawn_location
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			NOT = { exists = event_target:fmerc_spawn_location }
+		}
+		event_target:fmerc_hq = {
+			random_owned_ship = {
+				save_event_target_as = fmerc_spawn_location
+			}
+		}
+	}
+}
+
+fmerc_ops_create_fleet = {
+	# For when we recreate the fleet
+	set_faction_hostility = { set_hostile = no }
+	create_fleet = {
+		settings = {
+			spawn_debris = no
+		}
+		effect = {
+			set_owner = root
+			save_event_target_as = fmerc_ops_fleet
+			set_fleet_flag = "fmerc_raiding_fleet"
+			set_location = {
+				target = event_target:fmerc_spawn_location
+				distance = 40
+				angle = random
+			}
+			create_ship = {
+				name = random
+				random_existing_design = nongfx_fmerc_ship_01
+				prefix = no
+			}
+			set_formation_scale = 1.8
+			set_fleet_stance = passive
+			set_aggro_range_measure_from = self
+			set_aggro_range = 80
+		}
+	}
+	event_target:fmerc_target_system = {
+		every_fleet_in_system = {
+			limit = {
+				exists = owner
+				owner = {
+					is_same_value = event_target:fmerc_target_country
+				}
+			}
+			fmerc_match_fleet = yes
+		}
+	}
+	event_target:fmerc_ops_fleet = {
+		if = {
+			limit = {
+				fleet_size < 20
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = nongfx_fmerc_ship_01
+					prefix = no
+				}
+			}
+		}
+	}
+	if = {
+		limit = { has_country_flag = "fmerc_liberate" }
+		event_target:fmerc_ops_fleet = {
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = nongfx_fmerc_ship_01
+					prefix = no
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target_country
+			NOT = { event_target:fmerc_target_country = { is_country_type = default } }
+		}
+		event_target:fmerc_ops_fleet = {
+			while = {
+				count = 10
+				create_ship = {
+					name = random
+					random_existing_design = nongfx_fmerc_ship_01
+					prefix = no
+				}
+			}
+		}
+	}
+}
+
+
+fmerc_ops_set_spaceport_target = {
+	event_target:fmerc_buyer = {
+		# Capital of buyer
+		capital_scope = {
+			closest_system = {
+				limit = {
+					any_ship_in_system = {
+						is_ship_size = orbital_station
+						exists = owner
+						owner = {
+							is_same_value = event_target:fmerc_target_country
+						}
+					}
+					NOT = {
+						has_star_flag = enclave
+					}
+				}
+				#min_steps = 1
+				save_event_target_as = fmerc_target_system
+				random_fleet_in_system = {
+					limit = {
+						is_ship_size = orbital_station
+						exists = owner
+						owner = {
+							is_same_value = event_target:fmerc_target_country
+						}
+					}
+					save_event_target_as = fmerc_target_fleet
+				}
+			}
+		}
+	}
+}
+
+fmerc_ops_set_fleet_target = {
+	event_target:fmerc_target_country = {
+		if = {
+			limit = {
+				any_owned_fleet = {
+					fleet_size > 8
+					fleet_size < 30
+					is_ship_class = shipclass_military
+					exists = solar_system
+				}
+			}
+			random_owned_fleet = {
+				limit = {
+					fleet_size > 8
+					fleet_size < 30
+					is_ship_class = shipclass_military
+					exists = solar_system
+				}
+				solar_system = {
+					save_event_target_as = fmerc_target_system
+				}
+				save_event_target_as = fmerc_target_fleet
+			}
+			else = {
+				random_owned_fleet = {
+					limit = {
+						is_ship_class = shipclass_military
+						fleet_size < 100
+						exists = solar_system
+					}
+					solar_system = {
+						save_event_target_as = fmerc_target_system
+					}
+					save_event_target_as = fmerc_target_fleet
+				}
+				if = {
+					limit = {
+						NOT = {
+							exists = event_target:fmerc_target_fleet
+						}
+					}
+					random_owned_fleet = {
+						solar_system = {
+							save_event_target_as = fmerc_target_system
+						}
+						save_event_target_as = fmerc_target_fleet
+					}
+				}
+			}
+		}
+	}
+}
+
+fmerc_ops_set_raid_targets = {
+	set_variable = {
+		which = MercRaidCount
+		value = 5
+	}
+	event_target:fmerc_target_country = {
+		every_owned_ship = {
+			limit = {
+				exists = solar_system
+				exists = fleet
+				OR = {
+					is_ship_size = mining_station
+					is_ship_size = research_station
+					is_ship_size = outpost_station
+					is_ship_size = observation_station
+				}
+				solar_system = {
+					NOT = { has_star_flag = enclave }
+					NOT = {
+						fmerc_in_system = yes
+					}
+				}
+			}
+			set_ship_flag = "fmerc_counter"
+		}
+
+		while = {
+			limit = {
+				root = {
+					check_variable = {
+						which = MercRaidCount
+						value > 0
+					}
+				}
+			}
+			root = {
+				subtract_variable = {
+					which = MercRaidCount
+					value = 1
+				}
+			}
+			random_owned_ship = {
+				limit = { has_ship_flag = "fmerc_counter" }
+				remove_ship_flag = "fmerc_counter"
+				set_ship_flag = "fmerc_target"
+			}
+		}
+		every_owned_ship = {
+			limit = { has_ship_flag = "fmerc_counter" }
+			remove_ship_flag = "fmerc_counter"
+		}
+		random_owned_ship = {
+			limit = {
+				has_ship_flag = "fmerc_target"
+				exists = solar_system
+			}
+			fleet = {
+				save_event_target_as = fmerc_target_fleet
+			}
+			solar_system = {
+				save_event_target_as = fmerc_target_system
+			}
+		}
+	}
+}

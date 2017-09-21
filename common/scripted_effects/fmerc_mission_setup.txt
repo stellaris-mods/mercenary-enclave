@@ -1,0 +1,420 @@
+fmerc_set_culture = {
+	random_list = {
+		14 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "arthropoid_01"
+			}
+		}
+		14 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "avian_01"
+			}
+		}
+		14 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fungoid_01"
+			}
+		}
+		16 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "mammalian_01"
+			}
+		}
+		14 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "molluscoid_01"
+			}
+		}
+		14 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "plantoid_01"
+			}
+		}
+		14 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "reptilian_01"
+			}
+		}
+	}
+}
+fmerc_set_same_culture = {
+	switch = {
+		trigger = graphical_culture
+		arthropoid_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "arthropoid_01"
+			}
+		}
+		avian_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "avian_01"
+			}
+		}
+		fungoid_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fungoid_01"
+			}
+		}
+		mammalian_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "mammalian_01"
+			}
+		}
+		molluscoid_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "molluscoid_01"
+			}
+		}
+		plantoid_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "plantoid_01"
+			}
+		}
+		reptilian_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "reptilian_01"
+			}
+		}
+		ai_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "ai_01"
+			}
+		}
+		extra_dimensional_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "extra_dimensional_01"
+			}
+		}
+		extra_dimensional_02 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "extra_dimensional_01"
+			}
+		}
+		extra_dimensional_03 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "extra_dimensional_01"
+			}
+		}
+		fallen_empire_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fallen_empire_01"
+			}
+		}
+		fallen_empire_02 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fallen_empire_01"
+			}
+		}
+		fallen_empire_03 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fallen_empire_01"
+			}
+		}
+		fallen_empire_04 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fallen_empire_01"
+			}
+		}
+		pirate_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "pirate_01"
+			}
+		}
+		swarm_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "swarm_01"
+			}
+		}
+		ancient_drone_01 = {
+			event_target:fmerc_operations = {
+				set_country_flag = "gfx_drone"
+			}
+		}
+		drone = {
+			event_target:fmerc_operations = {
+				set_country_flag = "gfx_drone"
+			}
+		}
+		ancient = {
+			event_target:fmerc_operations = {
+				set_country_flag = "gfx_drone"
+			}
+		}
+		techno = {
+			event_target:fmerc_operations = {
+				set_country_flag = "mammalian_01"
+			}
+		}
+		# default trigger doesnt work for this one
+		# default = {
+		# 	event_target:fmerc_operations = {
+		# 		set_graphical_culture = "mammalian_01"
+		# 	}
+		# }
+	}
+}
+
+fmerc_do_normal_setup = {
+	last_created_country = {
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
+		}
+	}
+
+	switch = {
+		trigger = has_country_flag
+		fmerc_diplo_disguise_random = {
+			fmerc_set_culture = yes
+		}
+		fmerc_diplo_disguise_other = {
+			# Anything except root
+			fmerc_set_culture = yes
+			if = {
+				limit = {
+					fmerc_same_culture_root = yes
+				}
+				set_country_flag = "gfx_drone"
+			}
+		}
+		fmerc_diplo_disguise_same = {
+			# Same as root
+			fmerc_set_same_culture = yes
+		}
+		fmerc_diplo_disguise_pirate = {
+			event_target:fmerc_operations = {
+				set_country_flag = "pirate_01"
+			}
+		}
+		fmerc_diplo_disguise_monster = {
+			event_target:fmerc_operations = {
+				random_list = {
+					20 = { set_country_flag = "gfx_spacewhale" }
+					20 = { set_country_flag = "gfx_cloud" }
+					20 = { set_country_flag = "gfx_amoeba" }
+					20 = { set_country_flag = "gfx_crystal" }
+					20 = { set_country_flag = "gfx_drone" }
+				}
+			}
+		}
+	}
+
+}
+
+fmerc_do_clear_setup = {
+	fmerc_set_same_culture = yes
+}
+
+fmerc_do_mission_setup = {
+	create_country = {
+		name = "Mercenary Operations"
+		name_list = "FMercenaries"
+		type = fmerc_operations
+		species = random
+		flag = { # Pirate flag copy
+			icon = {
+				category = "zoological"
+				file = "flag_zoological_1.dds"
+			}
+			background = {
+				category = "backgrounds"
+				file = "00_solid.dds"
+			}
+			colors = {
+				"black"
+				"black"
+				"null"
+				"null"
+			}
+		}
+		auto_delete = no
+	}
+	last_created_country = {
+		establish_communications_no_message = root
+		establish_contact = { who = root }
+		establish_communications_no_message = event_target:traders
+		establish_contact = { who = event_target:traders }
+
+		# This isn't actually needed, so not sure why I dont just remove it.
+		give_technology = {
+			tech = tech_mercenary_enclave
+			message = no
+		}
+		give_technology = {
+			tech = tech_jump_drive_1
+			message = no
+		}
+
+		# Doesnt seem to work, they still do light bombardment
+		# probably because the country type doesn't have internal policies flag set
+		set_policy = {
+			policy = orbital_bombardment
+			option = orbital_bombardment_full
+			cooldown = no
+		}
+
+		# ZZZ 5-year operation time limit
+		set_timed_country_flag = {
+			flag = fmerc_ops_timeout
+			days = 1800
+		}
+
+		# this makes it show in the contact list,
+		# but at the same time it prevents the operations squad from engaging
+		# the enclave
+		set_subject_of = {
+			who = event_target:traders
+			subject_type = mercsquad
+		}
+
+		set_relation_flag = {
+			who = event_target:traders
+			flag = merc_operations_squad
+		}
+		set_relation_flag = {
+			who = root
+			flag = merc_operations_squad
+		}
+		save_event_target_as = fmerc_operations
+		# XXX remove before release
+		#set_faction_hostility = { set_hostile = yes }
+	}
+
+	fmerc_copy_success = yes
+	fmerc_copy_detection = yes
+
+	switch = {
+		trigger = has_country_flag
+		fmerc_diplo_spaceport = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fmerc_spaceport"
+			}
+			fmerc_do_normal_setup = yes
+		}
+		fmerc_diplo_liberate = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fmerc_liberate"
+			}
+			fmerc_do_normal_setup = yes
+		}
+		fmerc_diplo_miningraid = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fmerc_raid"
+			}
+			fmerc_do_normal_setup = yes
+		}
+		fmerc_diplo_fleetraid = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fmerc_fleet"
+			}
+			fmerc_do_normal_setup = yes
+		}
+		fmerc_target_amoeba = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fmerc_amoeba"
+			}
+			fmerc_do_clear_setup = yes
+		}
+		fmerc_target_cloud = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fmerc_cloud"
+			}
+			fmerc_do_clear_setup = yes
+		}
+		fmerc_target_crystal = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fmerc_crystal"
+			}
+			fmerc_do_clear_setup = yes
+		}
+		fmerc_target_pirate = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fmerc_pirate"
+			}
+			fmerc_do_clear_setup = yes
+		}
+		fmerc_target_drone = {
+			event_target:fmerc_operations = {
+				set_country_flag = "fmerc_drone"
+			}
+			fmerc_do_clear_setup = yes
+		}
+	}
+
+	event_target:fmerc_operations = {
+		switch = {
+			trigger = has_country_flag
+			gfx_spacewhale = { create_ship_design = { design = "2FBY-31" } }
+			gfx_crystal = { create_ship_design = { design = "E-BMBU4" } }
+			gfx_cloud = { create_ship_design = { design = "UW-FS6J" } }
+			gfx_amoeba = { create_ship_design = { design = "NQ-SGTV" } }
+			arthropoid_01 = { create_ship_design = { design = "DTLS1-M" } }
+			avian_01 = { create_ship_design = { design = "RM8UT-9" } }
+			fungoid_01 = { create_ship_design = { design = "UJ0BO-1" } }
+			mammalian_01 = { create_ship_design = { design = "JK3XO-U" } }
+			molluscoid_01 = { create_ship_design = { design = "4EJVS-8" } }
+			plantoid_01 = { create_ship_design = { design = "D1NU-F7" } }
+			reptilian_01 = { create_ship_design = { design = "H4-9O58" } }
+			fallen_empire_01 = { create_ship_design = { design = "F49WQ-2" } }
+			pirate_01 = { create_ship_design = { design = "W3I-X2Y" } }
+			ai_01 = { create_ship_design = { design = "UR-IVS5" } }
+			swarm_01 = { create_ship_design = { design = "K7FXX-L"} }
+			extra_dimensional_01 = { create_ship_design = { design = "CF-X86W"} }
+			# Keep gfx_drone last since we use it as fallback in fmerc_do_normal_setup
+			# Does that make sense? Maybe it should be first in the switch. I dont know if it
+			# stops at first hit or continues.
+			gfx_drone = { create_ship_design = { design = "B370-NF" } }
+			default = {
+				# Confirmed this does trigger if none of the above
+				create_ship_design = { design = "W3I-X2Y" }
+			}
+		}
+		add_ship_design = last_created_design
+	}
+
+	event_target:fmerc_operations = {
+		switch = {
+			trigger = has_country_flag
+			fmerc_amoeba = { country_event = { id = fmerc_ops_meta.1 } }
+			fmerc_cloud = { country_event = { id = fmerc_ops_meta.1 } }
+			fmerc_crystal = { country_event = { id = fmerc_ops_meta.1 } }
+			fmerc_pirate = { country_event = { id = fmerc_ops_meta.1 } }
+			fmerc_drone = { country_event = { id = fmerc_ops_meta.1 } }
+			fmerc_spaceport = {
+				country_event = {
+					id = fmerc_ops_meta.1
+					days = 3
+					random = 70
+				}
+			}
+			fmerc_liberate = {
+				country_event = {
+					id = fmerc_ops_meta.1
+					days = 3
+					random = 70
+				}
+			}
+			fmerc_raid = {
+				country_event = {
+					id = fmerc_ops_meta.1
+					days = 3
+					random = 70
+				}
+			}
+			fmerc_fleet = {
+				country_event = {
+					id = fmerc_ops_meta.1
+					days = 3
+					random = 70
+				}
+			}
+			default = {
+				country_event = {
+					id = fmerc_ops_meta.1
+					days = 3
+					random = 70
+				}
+			}
+		}
+	}
+}

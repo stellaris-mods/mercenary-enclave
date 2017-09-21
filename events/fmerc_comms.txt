@@ -1,0 +1,2451 @@
+namespace = fmercdiplo
+
+# Mercenaries Main Menu #1
+country_event = {
+	id = fmercdiplo.100
+	title = fmerc_enclave.name
+	desc = {
+		trigger = {
+			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "fmerc_active_operation" }
+			check_variable = {
+				which = MercDeposit
+				value = 0
+			}
+		}
+		text = fmerc_enclave.100a.desc
+	}
+	desc = {
+		trigger = {
+			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "fmerc_active_operation" }
+			check_variable = {
+				which = MercDeposit
+				value > 0
+			}
+		}
+		text = fmerc_enclave.100b.desc
+	}
+	desc = {
+		trigger = { has_country_flag = "attacked_folk_mercenaries" }
+		text = fmerc_enclave.attacked.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = "fmerc_active_operation"
+		}
+		text = fmerc_enclave.100c.desc
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+	trigger = {
+		NOT = { has_country_flag = "fmerc_diplomacy_engaged" }
+		from = {
+			is_country_type = fmerc_enclave
+			has_country_flag = folk_mercenary_country
+		}
+	}
+	immediate = {
+		fmerc_reset_diplo_screen = yes
+		set_country_flag = "fmerc_diplomacy_engaged"
+		FROM = { save_event_target_as = traders }
+	}
+
+	option = { # Deposit Minerals
+		name = fmerc_enclave.100.minerals.button
+		#custom_gui = "enclave_trader_option"
+		custom_tooltip = fmerc_enclave.100.minerals.tooltip
+		trigger = {
+			NOT = { has_country_flag = "fmerc_active_operation" }
+		}
+		allow = {
+			minerals > 2500
+			hidden_trigger = {
+				NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			}
+		}
+		hidden_effect = {
+			add_minerals = -2500
+			change_variable = {
+				which = MercDeposit
+				value = 2500
+			}
+			event_target:traders = {
+				add_trust = {
+					who = root
+					amount = 5
+				}
+			}
+			set_relation_flag = {
+				who = event_target:traders
+				flag = fmercenary_trade
+			}
+		}
+		is_dialog_only = yes
+		response_text = fmerc_enclave.100.minerals.reply
+	}
+	option = {
+		name = fmerc_enclave.100.operations.button
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			NOT = { has_country_flag = "fmerc_active_operation" }
+		}
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = "attacked_folk_mercenaries" }
+				# NOT = { event_target:traders = { has_country_flag = "fmerc_active_operation" } }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = fmercdiplo.200 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.100.stations.button
+		custom_tooltip = "fmerc_enclave.100.stations.tooltip"
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			NOT = { has_country_flag = "fmerc_allow_stations" }
+			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "fmerc_active_operation" }
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_allow_stations"
+			country_event = { id = fmercdiplo.110 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.100.nostations.button
+		custom_tooltip = "fmerc_enclave.100.nostations.tooltip"
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			has_country_flag = "fmerc_allow_stations"
+			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "fmerc_active_operation" }
+		}
+		hidden_effect = {
+			remove_country_flag = "fmerc_allow_stations"
+			country_event = { id = fmercdiplo.110 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.100.insurance.button
+		custom_tooltip = "fmerc_enclave.100.insurance.tooltip"
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_modifier = merc_enclave_insurance }
+			NOT = { has_country_flag = "fmerc_active_operation" }
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.has_station
+				has_country_flag = "fmerc_allow_stations"
+			}
+			custom_tooltip = {
+				text = fmerc_enclave.trust
+				event_target:traders = {
+					trust = {
+						who = root
+						value > 49
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			add_modifier = {
+				modifier = merc_enclave_insurance
+				days = -1
+			}
+			country_event = { id = fmercdiplo.150 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.100.insurance.sell
+		custom_tooltip = "fmerc_enclave.100.insurance.tooltip"
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			has_modifier = merc_enclave_insurance
+			NOT = { has_country_flag = "fmerc_active_operation" }
+		}
+		hidden_effect = {
+			remove_modifier = merc_enclave_insurance
+			country_event = { id = fmercdiplo.150 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+# Main menu, non-initial
+# We always invoke fmerc_reset_diplo_screen before this screen
+country_event = {
+	id = fmercdiplo.101
+	title = fmerc_enclave.name
+	desc = {
+		trigger = {
+			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "fmerc_active_operation" }
+			check_variable = {
+				which = MercDeposit
+				value = 0
+			}
+		}
+		text = fmerc_enclave.100a.desc
+	}
+	desc = {
+		trigger = {
+			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "fmerc_active_operation" }
+			check_variable = {
+				which = MercDeposit
+				value > 0
+			}
+		}
+		text = fmerc_enclave.100b.desc
+	}
+	desc = {
+		trigger = { has_country_flag = "attacked_folk_mercenaries" }
+		text = fmerc_enclave.attacked.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = "fmerc_active_operation"
+		}
+		text = fmerc_enclave.100c.desc
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	# because we always invoke fmerc_reset_diplo_screen before this screen,
+	# the flag should not be set
+	trigger = { NOT = { has_country_flag = "fmerc_diplomacy_engaged" } }
+	immediate = { set_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = { # Deposit Minerals
+		name = fmerc_enclave.100.minerals.button
+		#custom_gui = "enclave_trader_option"
+		custom_tooltip = fmerc_enclave.100.minerals.tooltip
+		trigger = {
+			NOT = { has_country_flag = "fmerc_active_operation" }
+		}
+		allow = {
+			minerals > 2500
+			hidden_trigger = {
+				NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			}
+		}
+		hidden_effect = {
+			add_minerals = -2500
+			change_variable = {
+				which = MercDeposit
+				value = 2500
+			}
+			event_target:traders = {
+				add_trust = {
+					who = root
+					amount = 5
+				}
+			}
+			set_relation_flag = {
+				who = event_target:traders
+				flag = fmercenary_trade
+			}
+		}
+		is_dialog_only = yes
+		response_text = fmerc_enclave.100.minerals.reply
+	}
+	option = {
+		name = fmerc_enclave.100.operations.button
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			NOT = { has_country_flag = "fmerc_active_operation" }
+		}
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = fmercdiplo.200 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.100.stations.button
+		custom_tooltip = "fmerc_enclave.100.stations.tooltip"
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			NOT = { has_country_flag = "fmerc_allow_stations" }
+			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "fmerc_active_operation" }
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_allow_stations"
+			country_event = { id = fmercdiplo.110 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.100.nostations.button
+		custom_tooltip = "fmerc_enclave.100.nostations.tooltip"
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			has_country_flag = "fmerc_allow_stations"
+			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "fmerc_active_operation" }
+		}
+		hidden_effect = {
+			remove_country_flag = "fmerc_allow_stations"
+			country_event = { id = fmercdiplo.110 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.100.insurance.button
+		custom_tooltip = "fmerc_enclave.100.insurance.tooltip"
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_modifier = merc_enclave_insurance }
+			NOT = { has_country_flag = "fmerc_active_operation" }
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.has_station
+				has_country_flag = "fmerc_allow_stations"
+			}
+			custom_tooltip = {
+				text = fmerc_enclave.trust
+				event_target:traders = {
+					trust = {
+						who = root
+						value > 49
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			add_modifier = {
+				modifier = merc_enclave_insurance
+				days = -1
+			}
+			country_event = { id = fmercdiplo.150 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.100.insurance.sell
+		custom_tooltip = "fmerc_enclave.100.insurance.tooltip"
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			has_modifier = merc_enclave_insurance
+			NOT = { has_country_flag = "fmerc_active_operation" }
+		}
+		hidden_effect = {
+			remove_modifier = merc_enclave_insurance
+			country_event = { id = fmercdiplo.150 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = fmercdiplo.110
+	title = fmerc_enclave.name
+
+	desc = {
+		trigger = {
+			has_country_flag = "fmerc_allow_stations"
+		}
+		text = fmerc_enclave.110.open
+	}
+	desc = {
+		trigger = {
+			NOT = { has_country_flag = "fmerc_allow_stations" }
+		}
+		text = fmerc_enclave.110.close
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.back
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			fmerc_reset_diplo_screen = yes
+			country_event = { id = fmercdiplo.101 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = fmercdiplo.150
+	title = fmerc_enclave.name
+
+	desc = {
+		trigger = {
+			has_modifier = merc_enclave_insurance
+		}
+		text = fmerc_enclave.150.buy
+	}
+	desc = {
+		trigger = {
+			NOT = { has_modifier = merc_enclave_insurance }
+		}
+		text = fmerc_enclave.150.sell
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.back
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			fmerc_reset_diplo_screen = yes
+			country_event = { id = fmercdiplo.101 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+# Special Operations menu
+country_event = {
+	id = fmercdiplo.200
+	title = fmerc_enclave.200.name
+	desc = fmerc_enclave.200.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.300.name
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = { country_event = { id = fmercdiplo.300 } }
+	}
+	option = {
+		name = fmerc_enclave.400.name
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = { country_event = { id = fmercdiplo.400 } }
+	}
+	option = {
+		name = fmerc_enclave.500.name
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = { country_event = { id = fmercdiplo.500 } }
+	}
+	option = {
+		name = fmerc_enclave.600.name
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = { country_event = { id = fmercdiplo.600 } }
+	}
+	option = {
+		name = fmerc_enclave.700.name
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			custom_tooltip = {
+				text = fmerc_enclave.trust30
+				event_target:traders = {
+					trust = {
+						who = root
+						value > 29
+					}
+				}
+			}
+		}
+		hidden_effect = { country_event = { id = fmercdiplo.700 } }
+	}
+	option = {
+		name = fmerc_enclave.back
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			fmerc_reset_diplo_screen = yes
+			country_event = { id = fmercdiplo.101 }
+		}
+	}
+
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+
+# Attack spaceport
+country_event = {
+	id = fmercdiplo.300
+	title = fmerc_enclave.300.name
+	desc = fmerc_enclave.300.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.order
+		custom_tooltip = fmerc_enclave.order.tooltip
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			set_variable = {
+				which = MercCost
+				value = 5000
+			}
+			set_variable = {
+				which = MercSuccess
+				value = 80
+			}
+			set_variable = {
+				which = MercDetect
+				value = 20
+			}
+			set_country_flag = "fmerc_diplo_spaceport"
+			country_event = { id = fmercdiplo.1000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.back
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = { country_event = { id = fmercdiplo.200 } }
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+# Liberate Planet
+country_event = {
+	id = fmercdiplo.400
+	title = fmerc_enclave.400.name
+	desc = fmerc_enclave.400.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.order
+		custom_tooltip = fmerc_enclave.order.tooltip
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			set_variable = {
+				which = MercCost
+				value = 15000
+			}
+			set_variable = {
+				which = MercSuccess
+				value = 75
+			}
+			set_variable = {
+				which = MercDetect
+				value = 35
+			}
+			set_country_flag = "fmerc_diplo_liberate"
+			country_event = { id = fmercdiplo.1000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.back
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = { country_event = { id = fmercdiplo.200 } }
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+# Mining/Research Raid
+country_event = {
+	id = fmercdiplo.500
+	title = fmerc_enclave.500.name
+	desc = fmerc_enclave.500.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.order
+		custom_tooltip = fmerc_enclave.order.tooltip
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			set_variable = {
+				which = MercCost
+				value = 2500
+			}
+			set_variable = {
+				which = MercSuccess
+				value = 95
+			}
+			set_variable = {
+				which = MercDetect
+				value = 20
+			}
+			set_country_flag = "fmerc_diplo_miningraid"
+			country_event = { id = fmercdiplo.1000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.back
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = { country_event = { id = fmercdiplo.200 } }
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+
+# Fleet Battle
+country_event = {
+	id = fmercdiplo.600
+	title = fmerc_enclave.600.name
+	desc = fmerc_enclave.600.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.order
+		custom_tooltip = fmerc_enclave.order.tooltip
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			set_variable = {
+				which = MercCost
+				value = 10000
+			}
+			set_variable = {
+				which = MercSuccess
+				value = 80
+			}
+			set_variable = {
+				which = MercDetect
+				value = 25
+			}
+			set_country_flag = "fmerc_diplo_fleetraid"
+			country_event = { id = fmercdiplo.1000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.back
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = { country_event = { id = fmercdiplo.200 } }
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+# Clear space
+country_event = {
+	id = fmercdiplo.700
+	title = fmerc_enclave.700.name
+	desc = fmerc_enclave.700.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.700.amoeba
+		custom_tooltip = fmerc_enclave.700.tooltip
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.needsdeposit
+				check_variable = {
+					which = MercDeposit
+					value > 2500
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_target_amoeba"
+			country_event = { id = fmercdiplo.9001 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.700.cloud
+		custom_tooltip = fmerc_enclave.700.tooltip
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.needsdeposit
+				check_variable = {
+					which = MercDeposit
+					value > 2500
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_target_cloud"
+			country_event = { id = fmercdiplo.9001 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.700.crystal
+		custom_tooltip = fmerc_enclave.700.tooltip
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.needsdeposit
+				check_variable = {
+					which = MercDeposit
+					value > 2500
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_target_crystal"
+			country_event = { id = fmercdiplo.9001 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.700.pirates
+		custom_tooltip = fmerc_enclave.700.tooltip
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.needsdeposit
+				check_variable = {
+					which = MercDeposit
+					value > 2500
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_target_pirate"
+			country_event = { id = fmercdiplo.9001 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.700.drones
+		custom_tooltip = fmerc_enclave.700.tooltip
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.needsdeposit
+				check_variable = {
+					which = MercDeposit
+					value > 2500
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_target_drone"
+			country_event = { id = fmercdiplo.9001 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.back
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = { country_event = { id = fmercdiplo.200 } }
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = fmercdiplo.1000
+	title = fmerc_enclave.1000.name
+	desc = fmerc_enclave.1000.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.1000.default
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			any_country = {
+				is_country_type = default
+				has_communications = root
+				NOT = { is_same_value = ROOT }
+				num_owned_planets > 1
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_diplo_empire_standard"
+			country_event = { id = fmercdiplo.1100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.1000.fallen
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			any_country = {
+				OR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+				NOT = { is_same_value = ROOT }
+				has_communications = root
+				num_owned_planets > 1
+			}
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target.invalid_operation
+				NOT = { has_country_flag = "fmerc_diplo_spaceport" }
+				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
+			}
+		}
+		hidden_effect = {
+			multiply_variable = {
+				which = MercCost
+				value = 1.2
+			}
+			subtract_variable = {
+				which = MercSuccess
+				value = 10
+			}
+			subtract_variable = {
+				which = MercDetect
+				value = 10
+			}
+			set_country_flag = "fmerc_diplo_empire_fallen"
+			country_event = { id = fmercdiplo.1100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.1000.swarm
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			any_country = {
+				is_country_type = swarm
+				has_communications = root
+				NOT = { is_same_value = ROOT }
+			}
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target.invalid_operation
+				NOT = { has_country_flag = "fmerc_diplo_liberate" }
+				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
+			}
+		}
+		hidden_effect = {
+			multiply_variable = {
+				which = MercCost
+				value = 0.8
+			}
+			subtract_variable = {
+				which = MercSuccess
+				value = 10
+			}
+			set_country_flag = "fmerc_diplo_empire_swarm"
+			country_event = { id = fmercdiplo.1100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.1000.ed
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			any_country = {
+				OR = {
+					is_country_type = extradimensional
+					is_country_type = extradimensional_2
+					is_country_type = extradimensional_3
+				}
+				NOT = { is_same_value = ROOT }
+				has_communications = root
+			}
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target.invalid_operation
+				NOT = { has_country_flag = "fmerc_diplo_liberate" }
+				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
+			}
+		}
+		hidden_effect = {
+			multiply_variable = {
+				which = MercCost
+				value = 0.8
+			}
+			subtract_variable = {
+				which = MercSuccess
+				value = 10
+			}
+			set_country_flag = "fmerc_diplo_empire_ed"
+			country_event = { id = fmercdiplo.1100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.1000.ai
+		#custom_gui = "enclave_trader_option"
+		trigger = {
+			any_country = {
+				is_country_type = ai_empire
+				NOT = { is_same_value = ROOT }
+				has_communications = root
+			}
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target.invalid_operation
+				NOT = { has_country_flag = "fmerc_diplo_spaceport" }
+				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
+			}
+		}
+		hidden_effect = {
+			multiply_variable = {
+				which = MercCost
+				value = 0.9
+			}
+			subtract_variable = {
+				which = MercSuccess
+				value = 5
+			}
+			subtract_variable = {
+				which = MercDetect
+				value = 5
+			}
+			set_country_flag = "fmerc_diplo_empire_ai"
+			country_event = { id = fmercdiplo.1100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.back
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			fmerc_reset_diplo_screen = yes
+			country_event = { id = fmercdiplo.101 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = fmercdiplo.1100
+	title = fmerc_enclave.1000.name
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_empire_standard" }
+		text = fmerc_enclave.selected.default
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_empire_fallen" }
+		text = fmerc_enclave.selected.fallen
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_empire_swarm" }
+		text = fmerc_enclave.selected.swarm
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_empire_ed" }
+		text = fmerc_enclave.selected.ed
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_empire_ai" }
+		text = fmerc_enclave.selected.ai
+	}
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+	immediate = {
+		every_country = {
+			limit = {
+				fmerc_is_targetted_country_type = yes
+			}
+			set_country_flag = "fmerc_temp_country"
+		}
+		set_variable = {
+			which = FMercCountry
+			value = 1
+		}
+		while = {
+			limit = {
+				any_country = {
+					has_country_flag = "fmerc_temp_country"
+				}
+				check_variable = {
+					which = FMercCountry
+					value < 20
+				}
+			}
+			random_country = {
+				limit = { has_country_flag = "fmerc_temp_country" }
+				# We should have done an if-else below, but that results in too many {} all over the place
+				# it just looks untidy
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 1 } } }
+					save_event_target_as = fmerc_temp_country_1
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 2 } } }
+					save_event_target_as = fmerc_temp_country_2
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 3 } } }
+					save_event_target_as = fmerc_temp_country_3
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 4 } } }
+					save_event_target_as = fmerc_temp_country_4
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 5 } } }
+					save_event_target_as = fmerc_temp_country_5
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 6 } } }
+					save_event_target_as = fmerc_temp_country_6
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 7 } } }
+					save_event_target_as = fmerc_temp_country_7
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 8 } } }
+					save_event_target_as = fmerc_temp_country_8
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 9 } } }
+					save_event_target_as = fmerc_temp_country_9
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 10 } } }
+					save_event_target_as = fmerc_temp_country_10
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 11 } } }
+					save_event_target_as = fmerc_temp_country_11
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 12 } } }
+					save_event_target_as = fmerc_temp_country_12
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 13 } } }
+					save_event_target_as = fmerc_temp_country_13
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 14 } } }
+					save_event_target_as = fmerc_temp_country_14
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 15 } } }
+					save_event_target_as = fmerc_temp_country_15
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 16 } } }
+					save_event_target_as = fmerc_temp_country_16
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 17 } } }
+					save_event_target_as = fmerc_temp_country_17
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 18 } } }
+					save_event_target_as = fmerc_temp_country_18
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 19 } } }
+					save_event_target_as = fmerc_temp_country_19
+				}
+				if = {
+					limit = { prev = { check_variable = { which = FMercCountry value = 20 } } }
+					save_event_target_as = fmerc_temp_country_20
+				}
+				remove_country_flag = "fmerc_temp_country"
+			}
+			change_variable = {
+				which = FMercCountry
+				value = 1 # +1
+			}
+		}
+		every_country = {
+			limit = { has_country_flag = "fmerc_temp_country" }
+			remove_country_flag = "fmerc_temp_country"
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_1.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_1 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_1 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_1 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_2.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_2 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_2 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_2 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_3.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_3 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_3 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_3 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_4.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_4 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_4 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_4 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_5.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_5 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_5 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_5 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_6.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_6 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_6 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_6 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_7.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_7 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_7 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_7 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_8.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_8 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_8 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_8 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_9.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_9 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_9 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_9 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_10.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_10 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_10 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_10 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_11.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_11 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_11 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_11 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_12.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_12 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_12 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_12 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_13.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_13 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_13 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_13 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_14.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_14 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_14 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_14 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_15.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_15 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_15 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_15 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_16.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_16 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_16 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_16 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_17.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_17 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_17 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_17 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_18.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_18 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_18 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_18 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_19.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_19 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_19 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_19 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_20.GetName]"
+		#custom_gui = "enclave_trader_option"
+		trigger = { exists = event_target:fmerc_temp_country_20 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_20 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_20 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = fmercdiplo.2000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+# Target selected, next agenda is the disguise
+country_event = {
+	id = fmercdiplo.2000
+	title = fmerc_enclave.2000.name
+	desc = fmerc_enclave.2000.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.disguise.random
+		custom_tooltip = fmerc_enclave.disguise.random.tooltip
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			multiply_variable = {
+				which = MercCost
+				value = 0.95
+			}
+			change_variable = {
+				which = MercDetect
+				value = 5
+			}
+			set_country_flag = "fmerc_diplo_disguise_random"
+			country_event = { id = fmercdiplo.2100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.disguise.other
+		custom_tooltip = fmerc_enclave.disguise.other.tooltip
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			multiply_variable = {
+				which = MercCost
+				value = 1.05
+			}
+			subtract_variable = {
+				which = MercDetect
+				value = 5
+			}
+			set_country_flag = "fmerc_diplo_disguise_other"
+			country_event = { id = fmercdiplo.2100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.disguise.same
+		custom_tooltip = fmerc_enclave.disguise.same.tooltip
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			change_variable = {
+				which = MercSuccess
+				value = 15
+			}
+			change_variable = {
+				which = MercDetect
+				value = 10
+			}
+			set_country_flag = "fmerc_diplo_disguise_same"
+			country_event = { id = fmercdiplo.2100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.disguise.pirate
+		custom_tooltip = fmerc_enclave.disguise.pirate.tooltip
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			multiply_variable = {
+				which = MercCost
+				value = 0.95
+			}
+			subtract_variable = {
+				which = MercSuccess
+				value = 10
+			}
+			set_country_flag = "fmerc_diplo_disguise_pirate"
+			country_event = { id = fmercdiplo.2100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.disguise.monster
+		custom_tooltip = fmerc_enclave.disguise.monster.tooltip
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			multiply_variable = {
+				which = MercCost
+				value = 1.15
+			}
+			subtract_variable = {
+				which = MercDetect
+				value = 10
+			}
+			set_country_flag = "fmerc_diplo_disguise_monster"
+			country_event = { id = fmercdiplo.2100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = fmercdiplo.2100
+	title = fmerc_enclave.9000.signatures
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
+		text = fmerc_enclave.300.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_liberate" }
+		text = fmerc_enclave.400.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
+		text = fmerc_enclave.500.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
+		text = fmerc_enclave.600.conclusion
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	immediate = {
+		event_target:traders = {
+			create_leader = {
+				name = random
+				species = root
+				type = random
+				skill = random
+			}
+			last_created_leader = {
+				save_event_target_as = trader_leader
+				root = {
+					switch = {
+						trigger = has_country_flag
+						fmerc_diplo_disguise_random = {
+							event_target:trader_leader = {
+								set_name = "Random"
+							}
+						}
+						fmerc_diplo_disguise_other = {
+							event_target:trader_leader = {
+								set_name = "Anything but your ships"
+							}
+						}
+						fmerc_diplo_disguise_same = {
+							event_target:trader_leader = {
+								set_name = "Your ships"
+							}
+						}
+						fmerc_diplo_disguise_pirate = {
+							event_target:trader_leader = {
+								set_name = "Pirate"
+							}
+						}
+						fmerc_diplo_disguise_monster = {
+							event_target:trader_leader = {
+								set_name = "Xenofauna"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:trader_leader = {
+				kill_leader = {
+					show_notification = no
+				}
+			}
+		}
+	}
+
+	option = {
+		name = fmerc_enclave.accept.responsibility
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			country_event = { id = fmercdiplo.2101 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.terms
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.nda
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.treaty
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.signature
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = fmercdiplo.2101
+	title = fmerc_enclave.9000.signatures
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
+		text = fmerc_enclave.300.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_liberate" }
+		text = fmerc_enclave.400.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
+		text = fmerc_enclave.500.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
+		text = fmerc_enclave.600.conclusion
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.accept.responsibility
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.terms
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			country_event = { id = fmercdiplo.2102 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.nda
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.treaty
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.signature
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = fmercdiplo.2102
+	title = fmerc_enclave.9000.signatures
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
+		text = fmerc_enclave.300.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_liberate" }
+		text = fmerc_enclave.400.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
+		text = fmerc_enclave.500.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
+		text = fmerc_enclave.600.conclusion
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.accept.responsibility
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.terms
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.nda
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			country_event = { id = fmercdiplo.2103 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.treaty
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.signature
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = fmercdiplo.2103
+	title = fmerc_enclave.9000.signatures
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
+		text = fmerc_enclave.300.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_liberate" }
+		text = fmerc_enclave.400.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
+		text = fmerc_enclave.500.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
+		text = fmerc_enclave.600.conclusion
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.accept.responsibility
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.terms
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.nda
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.treaty
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			country_event = { id = fmercdiplo.2104 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.signature
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = fmercdiplo.2104
+	title = fmerc_enclave.9000.signatures
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
+		text = fmerc_enclave.300.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_liberate" }
+		text = fmerc_enclave.400.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
+		text = fmerc_enclave.500.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
+		text = fmerc_enclave.600.conclusion
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.accept.responsibility
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.terms
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.nda
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.treaty
+		#custom_gui = "enclave_trader_option"
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.signature
+		#custom_gui = "enclave_trader_option"
+		hidden_effect = {
+			country_event = { id = fmercdiplo.9000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = fmercdiplo.9000
+	title = fmerc_enclave.9000.go
+	desc = fmerc_enclave.execute.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+	option = {
+		name = fmerc_enclave.close
+		#custom_gui = "enclave_trader_option"
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = "fmerc_diplomacy_engaged"
+			fmerc_count_minerals = yes
+			if = {
+				limit = {
+					check_variable = {
+						which = MercMinerals
+						value > MercCost
+					}
+				}
+				country_event = { id = fmercdiplo.9002 }
+				else = {
+					country_event = { id = fmercdiplo.9003 }
+				}
+			}
+		}
+	}
+}
+
+
+# clear operation is a go
+country_event = {
+	id = fmercdiplo.9001
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		remove_country_flag = "fmerc_diplomacy_engaged"
+		set_country_flag = "fmerc_active_operation"
+		fmerc_do_mission_setup = yes
+	}
+}
+
+# need to check if the target is a country with insurance
+fleet_event = {
+	id = fmercdiplo.911
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = owner
+		exists = FROM
+		owner = {
+			is_country_type = "fmerc_operations"
+			NOT = {
+				# Set if the target country declines the insurance policy first
+				has_country_flag = "fmerc_insurance_ignored"
+			}
+		}
+		FROM = {
+			exists = space_owner
+			space_owner = { has_modifier = merc_enclave_insurance }
+		}
+		# Check that the merc operations fleet has a hostile relation flag
+		# towards the space owner
+		owner = {
+			has_relation_flag = {
+				who = from.space_owner
+				flag = merc_operations_target
+			}
+		}
+	}
+
+	immediate = {
+		FROM = {
+			space_owner = {
+				country_event = {
+					id = fmercdiplo.912
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fmercdiplo.912
+	is_triggered_only = yes
+	title = fmerc_enclave.insurance.title
+	desc = fmerc_enclave.insurance.desc
+	picture = GFX_evt_smugglers_in_bar
+
+	immediate = {
+		# First, find the merc operation country
+		random_country = {
+			limit = {
+				is_country_type = "fmerc_operations"
+				has_relation_flag = {
+					who = root
+					flag = merc_operations_target
+				}
+			}
+			save_event_target_as = fmerc_ops_country
+		}
+		# Then find the country who ordered the operation
+		random_country = {
+			limit = {
+				NOT = { is_country_type = "fmerc_enclave" }
+				reverse_has_relation_flag = {
+					who = event_target:fmerc_ops_country
+					flag = merc_operations_squad
+				}
+			}
+
+			save_event_target_as = fmerc_buyer
+
+			# We should copy the MercPreviousOperationCost from this scope to the root scope.
+			prev = {
+				set_variable = {
+					which = MercCost
+					value = 0
+				}
+			}
+			set_variable = {
+				which = temp_counter
+				value = MercPreviousOperationCost
+			}
+			# ZZZ copy temp_counter to cost
+			# isn't this nice, while loops only loop 100 times, no matter what
+			while = {
+				limit = {
+					check_variable = {
+						which = temp_counter
+						value > 1000
+					}
+				}
+				subtract_variable = {
+					which = temp_counter
+					value = 1000
+				}
+				prev = {
+					change_variable = {
+						which = MercCost
+						value = 1000
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = temp_counter
+						value > 100
+					}
+				}
+				subtract_variable = {
+					which = temp_counter
+					value = 100
+				}
+				prev = {
+					change_variable = {
+						which = MercCost
+						value = 100
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = temp_counter
+						value > 10
+					}
+				}
+				subtract_variable = {
+					which = temp_counter
+					value = 10
+				}
+				prev = {
+					change_variable = {
+						which = MercCost
+						value = 10
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = temp_counter
+						value > 0
+					}
+				}
+				subtract_variable = {
+					which = temp_counter
+					value = 1
+				}
+				prev = {
+					change_variable = {
+						which = MercCost
+						value = 1
+					}
+				}
+			}
+		}
+
+		# 25% discount for being a trusted customer
+		multiply_variable = {
+			which = MercCost
+			value = 0.75
+		}
+
+		# Count our total minerals
+		fmerc_count_minerals = yes
+	}
+
+	option = {
+		name = fmerc_enclave.insurance.offer
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.cantafford.title
+				check_variable = {
+					which = MercMinerals
+					value > MercCost
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_buyer = {
+				# Tell the buyer that their operation has been thwarted
+				country_event = {
+					id = fmercdiplo.914
+					days = 3
+					random = 11
+				}
+			}
+			fmerc_grabdatcash = yes
+			# Order the operation to complete immediately
+			event_target:fmerc_ops_country = {
+				set_country_flag = "fmerc_ops_completed"
+			}
+		}
+	}
+	option = {
+		name = fmerc_enclave.insurance.decline
+		hidden_effect = {
+			event_target:fmerc_ops_country = {
+				set_country_flag = "fmerc_insurance_ignored"
+			}
+		}
+	}
+}
+
+# Your operation has been prevented, the target country had insurance.
+country_event = {
+	id = fmercdiplo.914
+	is_triggered_only = yes
+	title = fmerc_enclave.insurance.title
+	desc = fmerc_enclave.insurance.prevented
+	picture = GFX_evt_smugglers_in_bar
+	option = {
+		name = fmerc_enclave.insurance.decline
+	}
+}
+
+# our operation has been detected
+# XXX add on monthly pulse that increases operation detect chance?
+country_event = {
+	id = fmercdiplo.915
+	title = fmerc_enclave.name
+	desc = fmerc_enclave.report
+	picture = GFX_evt_galactic_senate
+	is_triggered_only = yes
+	option = {
+		name = UNFORTUNATE
+	}
+}
+
+
+# Operation is a go
+# We are still in the player country scope
+country_event = {
+	id = fmercdiplo.9002
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		remove_country_flag = "fmerc_diplomacy_engaged"
+		set_country_flag = "fmerc_active_operation"
+		event_target:fmerc_target_country = {
+			set_country_flag = "fmerc_operations_target"
+		}
+		# For insurance purposes
+		set_variable = {
+			which = MercPreviousOperationCost
+			value = MercCost
+		}
+		fmerc_grabdatcash = yes
+		fmerc_do_mission_setup = yes
+	}
+}
+
+# Buyer is notified that they cant afford the operation
+country_event = {
+	id = fmercdiplo.9003
+	title = fmerc_enclave.cantafford.title
+	desc = fmerc_enclave.cantafford.desc
+	picture = GFX_evt_space_station
+	is_triggered_only = yes
+	immediate = {
+		fmerc_reset_diplo_screen = yes
+	}
+	option = {
+		name = UNFORTUNATE
+	}
+}
+
+# Buyer is notified that operation has been completed
+country_event = {
+	id = fmercdiplo.9004
+	title = fmerc_enclave.completed.title
+	desc = fmerc_enclave.completed.desc
+	picture = GFX_evt_smugglers_in_bar
+	is_triggered_only = yes
+	option = {
+		name = EXCELLENT
+	}
+}

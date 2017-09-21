@@ -1,0 +1,6 @@
+merc_enclave_insurance = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_planet_surface.dds"
+	icon_frame = 2
+	country_resource_minerals_add = -20
+	country_resource_energy_add = -20
+}

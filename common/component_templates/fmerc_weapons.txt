@@ -1,0 +1,31 @@
+
+weapon_component_template = {
+	key = "LARGE_MASS_ACCELERATOR_FMERC"
+	size = extra_large
+	entity = "invisible_turret_entity"
+	damage = { min = 140 max = 375 }
+	windup = { min = 2 max = 25 }
+	total_fire_time = 60
+	range = 120
+	accuracy = 0.9
+	tracking = 0
+	type = instant
+	power = 0
+	cost = 120
+	armor_penetration = 0.60
+	shield_penetration = 1
+	shield_damage = 1.33
+
+	icon = "GFX_ship_part_mass_accelerator_2"
+	icon_frame = 1
+
+	size_restriction = { enclave_station }
+	min_range = 2
+	static_rotation = no
+
+	prerequisites = { tech_mercenary_enclave }
+	component_set = "MASS_ACCELERATOR_MERC"
+	projectile_gfx = "adv_kinetic_artillery"
+	tags = { weapon_type_kinetic }
+	ai_tags = { weapon_role_long_range }
+}

@@ -1,0 +1,375 @@
+
+fmerc_count_minerals = {
+	set_variable = {
+		which = MercMinerals
+		value = 0
+	}
+	while = {
+		limit = {
+			has_country_resource = {
+				type = minerals
+				amount > 10000
+			}
+		}
+		add_minerals = -10000
+		change_variable = {
+			which = MercMinerals
+			value = 10000
+		}
+	}
+	while = {
+		limit = {
+			has_country_resource = {
+				type = minerals
+				amount > 1000
+			}
+		}
+		add_minerals = -1000
+		change_variable = {
+			which = MercMinerals
+			value = 1000
+		}
+	}
+	while = {
+		limit = {
+			has_country_resource = {
+				type = minerals
+				amount > 100
+			}
+		}
+		add_minerals = -100
+		change_variable = {
+			which = MercMinerals
+			value = 100
+		}
+	}
+	while = {
+		limit = {
+			has_country_resource = {
+				type = minerals
+				amount > 10
+			}
+		}
+		add_minerals = -10
+		change_variable = {
+			which = MercMinerals
+			value = 10
+		}
+	}
+	while = {
+		limit = {
+			has_country_resource = {
+				type = minerals
+				amount > 0
+			}
+		}
+		add_minerals = -1
+		change_variable = {
+			which = MercMinerals
+			value = 1
+		}
+	}
+	set_variable = {
+		which = MercMineralsTemp
+		value = MercMinerals
+	}
+	while = {
+		limit = {
+			check_variable = {
+				which = MercMineralsTemp
+				value > 1000
+			}
+		}
+		add_minerals = 1000
+		change_variable = {
+			which = MercMineralsTemp
+			value = -1000
+		}
+	}
+	while = {
+		limit = {
+			check_variable = {
+				which = MercMineralsTemp
+				value > 100
+			}
+		}
+		add_minerals = 100
+		change_variable = {
+			which = MercMineralsTemp
+			value = -100
+		}
+	}
+	while = {
+		limit = {
+			check_variable = {
+				which = MercMineralsTemp
+				value > 10
+			}
+		}
+		add_minerals = 10
+		change_variable = {
+			which = MercMineralsTemp
+			value = -10
+		}
+	}
+	while = {
+		limit = {
+			check_variable = {
+				which = MercMineralsTemp
+				value > 0
+			}
+		}
+		add_minerals = 1
+		change_variable = {
+			which = MercMineralsTemp
+			value = -1
+		}
+	}
+
+	# Add all minerals we may have deposited in the mercenary bank
+	change_variable = {
+		which = MercMinerals
+		value = MercDeposit
+	}
+}
+
+fmerc_grabdatcash = {
+	while = {
+		limit = {
+			check_variable = {
+				which = MercCost
+				value > 1000
+			}
+			check_variable = {
+				which = MercDeposit
+				value > 1000
+			}
+		}
+		change_variable = {
+			which = MercCost
+			value = -1000
+		}
+		change_variable = {
+			which = MercDeposit
+			value = -1000
+		}
+	}
+	while = {
+		limit = {
+			check_variable = {
+				which = MercCost
+				value > 100
+			}
+			check_variable = {
+				which = MercDeposit
+				value > 100
+			}
+		}
+		change_variable = {
+			which = MercCost
+			value = -100
+		}
+		change_variable = {
+			which = MercDeposit
+			value = -100
+		}
+	}
+	while = {
+		limit = {
+			check_variable = {
+				which = MercCost
+				value > 10
+			}
+			check_variable = {
+				which = MercDeposit
+				value > 10
+			}
+		}
+		change_variable = {
+			which = MercCost
+			value = -10
+		}
+		change_variable = {
+			which = MercDeposit
+			value = -10
+		}
+	}
+	while = {
+		limit = {
+			check_variable = {
+				which = MercCost
+				value > 0
+			}
+			check_variable = {
+				which = MercDeposit
+				value > 0
+			}
+		}
+		change_variable = {
+			which = MercCost
+			value = -1
+		}
+		change_variable = {
+			which = MercDeposit
+			value = -1
+		}
+	}
+
+	while = {
+		limit = {
+			check_variable = {
+				which = MercCost
+				value > 10000
+			}
+			has_country_resource = {
+				type = minerals
+				amount > 10000
+			}
+		}
+		add_minerals = -10000
+		change_variable = {
+			which = MercCost
+			value = -10000
+		}
+	}
+	while = {
+		limit = {
+			check_variable = {
+				which = MercCost
+				value > 1000
+			}
+			has_country_resource = {
+				type = minerals
+				amount > 1000
+			}
+		}
+		add_minerals = -1000
+		change_variable = {
+			which = MercCost
+			value = -1000
+		}
+	}
+	while = {
+		limit = {
+			check_variable = {
+				which = MercCost
+				value > 100
+			}
+			has_country_resource = {
+				type = minerals
+				amount > 100
+			}
+		}
+		add_minerals = -100
+		change_variable = {
+			which = MercCost
+			value = -100
+		}
+	}
+	while = {
+		limit = {
+			check_variable = {
+				which = MercCost
+				value > 10
+			}
+			has_country_resource = {
+				type = minerals
+				amount > 10
+			}
+		}
+		add_minerals = -10
+		change_variable = {
+			which = MercCost
+			value = -10
+		}
+	}
+	while = {
+		limit = {
+			check_variable = {
+				which = MercCost
+				value > 0
+			}
+			has_country_resource = {
+				type = minerals
+				amount > 0
+			}
+		}
+		add_minerals = -1
+		change_variable = {
+			which = MercCost
+			value = -1
+		}
+	}
+
+	if = {
+		limit = {
+			has_relation_flag = {
+				who = event_target:traders
+				flag = fmercenary_trade
+			}
+			check_variable = {
+				which = MercDeposit
+				value < 1
+			}
+		}
+		remove_relation_flag = {
+			who = event_target:traders
+			flag = fmercenary_trade
+		}
+	}
+}
+
+fmerc_copy_detection = {
+	event_target:fmerc_operations = {
+		set_variable = {
+			which = MercDetect
+			value = 0
+		}
+	}
+	# ZZZ works because mercdetect is never above 100
+	while = {
+		limit = {
+			check_variable = {
+				which = MercDetect
+				value > 0
+			}
+		}
+		subtract_variable = {
+			which = MercDetect
+			value = 1
+		}
+		event_target:fmerc_operations = {
+			change_variable = {
+				which = MercDetect
+				value = 1
+			}
+		}
+	}
+}
+fmerc_copy_success = {
+	event_target:fmerc_operations = {
+		set_variable = {
+			which = MercSuccess
+			value = 0
+		}
+	}
+	# ZZZ works because MercSuccess is never above 100
+	while = {
+		limit = {
+			check_variable = {
+				which = MercSuccess
+				value > 0
+			}
+		}
+		subtract_variable = {
+			which = MercSuccess
+			value = 1
+		}
+		event_target:fmerc_operations = {
+			change_variable = {
+				which = MercSuccess
+				value = 1
+			}
+		}
+	}
+}

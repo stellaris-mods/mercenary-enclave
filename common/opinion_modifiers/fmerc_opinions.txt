@@ -1,0 +1,72 @@
+opinion_destroyed_mercenary = {
+	opinion = {
+		base = -25
+	}
+
+	decay = {
+		base = 2
+	}
+}
+
+# Liberated planet with mercenaries
+fmerc_opinion_liberate = {
+	opinion = {
+		base = -95
+	}
+
+	accumulative = yes
+
+	decay = {
+		base = 1
+		modifier = {
+			add = 1
+			OR = {
+				has_ethic = "ethic_xenophile"
+				has_ethic = "ethic_fanatic_xenophile"
+			}
+		}
+		modifier = {
+			add = -1
+			OR = {
+				has_ethic = "ethic_xenophobe"
+				has_ethic = "ethic_fanatic_xenophobe"
+			}
+		}
+	}
+}
+
+fmerc_opinion_raid = {
+	opinion = {
+		base = -60
+	}
+
+	accumulative = yes
+
+	decay = {
+		base = 1
+	}
+}
+
+fmerc_opinion_fleet = {
+	opinion = {
+		base = -75
+	}
+
+	accumulative = yes
+
+	decay = {
+		base = 1
+	}
+}
+
+fmerc_opinion_spaceport = {
+	opinion = {
+		base = -65
+	}
+
+	accumulative = yes
+
+	decay = {
+		base = 1
+	}
+}
