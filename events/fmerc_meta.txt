@@ -329,8 +329,7 @@ country_event = {
 
 	immediate = { establish_communications_no_message = FROMFROM }
 
-	option = {
-		name = "guardian.98.a"
+	after = {
 		if = {
 			limit = {
 				OR = {
@@ -357,6 +356,38 @@ country_event = {
 			fromfrom = { country_event = { id = mercguardian.101 } }
 		}
 	}
+
+	option = {
+		name = SCUM
+		trigger = {
+			has_valid_civic = civic_fanatic_purifiers
+		}
+	}
+
+	option = {
+		name = TASTY
+		trigger = {
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+	}
+
+	option = {
+		name = EXTERMINATE
+		trigger = {
+			has_ai_personality = exterminators
+		}
+	}
+
+	option = {
+		name = "guardian.98.a"
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_ai_personality = exterminators
+			}
+		}
+	}
 }
 
 # Port
@@ -367,7 +398,6 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		random_owned_ship = {
-			limit = { is_ship_size = enclave_station }
 			solar_system = { save_event_target_as = trader_system }
 		}
 		from = {
@@ -399,7 +429,38 @@ country_event = {
 	}
 
 	option = {
+		name = SCUM
+		trigger = {
+			has_valid_civic = civic_fanatic_purifiers
+		}
+		custom_gui = "enclave_trader_option"
+	}
+
+	option = {
+		name = TASTY
+		trigger = {
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+		custom_gui = "enclave_trader_option"
+	}
+
+	option = {
+		name = EXTERMINATE
+		trigger = {
+			has_ai_personality = exterminators
+		}
+		custom_gui = "enclave_curator_option"
+	}
+
+	option = {
 		name = guardian.502.a
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_ai_personality = exterminators
+			}
+		}
 		custom_gui = "enclave_trader_option"
 	}
 }
