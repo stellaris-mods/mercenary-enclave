@@ -47,204 +47,201 @@ folk_merc_init = {
 
 		init_effect = {
 			prevent_anomaly = yes
-			if = {
-				limit = {
-					NOT = {
-						exists = event_target:FolkMercenaryPlanet
+			set_planet_flag = folk_mercenary_planet
+			create_species = {
+				name = "Harcrow"
+				plural = "Harcrow"
+				class = random_non_machine
+				portrait = random
+				immortal = yes
+				traits = {
+					trait = trait_thrifty
+					trait = trait_extremely_adaptive
+					trait = trait_nomadic
+				}
+			}
+			create_country = {
+				name = "Whiteout Enterprises"
+				type = fmerc_enclave
+				authority = "auth_dictatorial"
+				civics = {
+					civic = civic_mercenary_operations
+				}
+				species = last_created
+				flag = {
+					icon = {
+						category = "enclaves"
+						file = "enclaves_flag_trader.dds"
+					}
+					background = {
+						category = "backgrounds"
+						file = "00_solid.dds"
+					}
+					colors={
+						"green"
+						"dark_green"
+						"null"
+						"null"
 					}
 				}
-				save_event_target_as = FolkMercenaryPlanet
-				set_planet_flag = folk_mercenary_planet
-				create_species = {
-					name = "Harcrow"
-					plural = "Harcrow"
-					class = random_non_machine
-					portrait = random
-					immortal = yes
-					traits = {
-						trait = trait_thrifty
-						trait = trait_extremely_adaptive
-						trait = trait_nomadic
+				ethos = {
+					ethic = ethic_militarist
+					ethic = ethic_materialist
+				}
+				ignore_initial_colony_error = yes
+			}
+			last_created_country = {
+				# Double mod, lulzpatrol
+				guardian_difficulty = yes
+				add_modifier = {
+					modifier = guardian_insane
+					days = -1
+				}
+				set_variable = {
+					which = MercOpsId
+					value = 10
+				}
+				set_country_flag = folk_mercenary_country
+				set_graphical_culture = fungoid_01
+				create_fleet = {
+					name = "Whiteout Enterprises HQ"
+					settings = { spawn_debris = no }
+					effect = {
+						set_owner = prev
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Century"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Century"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Century"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Century"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = "Spaceport"
+							design = "Mercenary Spaceport"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = "Spaceport"
+							design = "Mercenary Spaceport"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = "Spaceport"
+							design = "Mercenary Spaceport"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = "Spaceport"
+							design = "Mercenary Spaceport"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = "Headquarters"
+							design = "Mercenary Enclave Station"
+							graphical_culture = "mammalian_01"
+						}
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Pioneer"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Pioneer"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Pioneer"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Pioneer"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Pioneer"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Pioneer"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Pioneer"
+							#graphical_culture = prev
+						}
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Pioneer"
+							#graphical_culture = prev
+						}
+						set_fleet_formation = {
+							# bottom right
+							position = { x = 2    y = -6   } #19
+							position = { x = 6    y = -2   } #18
+							# bottom left
+							position = { x = -2   y = -6   } #17
+							position = { x = -6   y = -2   } #16
+							# top right
+							position = { x = 6    y = 2    } #15
+							position = { x = 2    y = 6    } #14
+							# top left
+							position = { x = -2   y = 6    } #13
+							position = { x = -6   y = 2    } #12
+							# medium stations at the edges
+							position = { x = 0    y = -8   } #11 medium 4
+							position = { x = 0    y = 8    } #10 medium 3
+							position = { x = -8   y = 0    } #9 medium 2
+							position = { x = 8    y = 0    } #8 medium 1
+							position = { x = 2.5    y = -2.5   } #4 spaceport 3
+							position = { x = -2.5   y = -2.5   } #3 spaceport 2
+							position = { x = -2.5    y = 2.5    } #2 spaceport 1
+							position = { x = 2.5    y = 2.5    } #2 spaceport
+							position = { x = 0    y = 0    } #1
+						}
+						set_formation_scale = 0.8
+						set_location = {
+							target = prevprev
+							distance = 80
+							angle = random
+						}
+						# This is really fucking weird. Why can't I just do
+						# set_custom_capital_location = this
+						# Maybe I can, I haven't even tried. This is used lots
+						# of times in vanilla, and they always do it this way.
+						# Which means I'm not going to bother |this|.
+						save_event_target_as = CustomCapital
+						prev = {
+							set_custom_capital_location = event_target:CustomCapital
+						}
+						set_fleet_flag = folk_mercenary_station
 					}
 				}
-				create_country = {
-					name = "Whiteout Enterprises"
-					type = fmerc_enclave
-					authority = "auth_dictatorial"
-					civics = {
-						civic = civic_mercenary_operations
-					}
-					species = last_created
-					flag = {
-						icon = {
-							category = "enclaves"
-							file = "enclaves_flag_trader.dds"
-						}
-						background = {
-							category = "backgrounds"
-							file = "00_solid.dds"
-						}
-						colors={
-							"green"
-							"dark_green"
-							"null"
-							"null"
-						}
-					}
-					ethos = {
-						ethic = ethic_militarist
-						ethic = ethic_materialist
-					}
-					ignore_initial_colony_error = yes
+				create_leader = {
+					type = ruler
+					species = prev
+					name = random
+					skill = 2000
 				}
-				last_created_country = {
-					# Double mod, lulzpatrol
-					guardian_difficulty = yes
-					add_modifier = {
-						modifier = guardian_insane
-						days = -1
-					}
-					set_variable = {
-						which = MercOpsId
-						value = 10
-					}
-					set_country_flag = folk_mercenary_country
-					set_graphical_culture = fungoid_01
-					create_fleet = {
-						name = "Whiteout Enterprises HQ"
-						settings = { spawn_debris = no }
-						effect = {
-							set_owner = prev
-							create_ship = {
-								name = " "
-								design = "Mercenary Enclave Century"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = " "
-								design = "Mercenary Enclave Century"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = " "
-								design = "Mercenary Enclave Century"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = " "
-								design = "Mercenary Enclave Century"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = "Spaceport"
-								design = "Mercenary Spaceport"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = "Spaceport"
-								design = "Mercenary Spaceport"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = "Spaceport"
-								design = "Mercenary Spaceport"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = "Spaceport"
-								design = "Mercenary Spaceport"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = "Headquarters"
-								design = "Mercenary Enclave Station"
-								graphical_culture = "mammalian_01"
-							}
-							create_ship = {
-								name = " "
-								design = "Mercenary Enclave Pioneer"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = " "
-								design = "Mercenary Enclave Pioneer"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = " "
-								design = "Mercenary Enclave Pioneer"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = " "
-								design = "Mercenary Enclave Pioneer"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = " "
-								design = "Mercenary Enclave Pioneer"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = " "
-								design = "Mercenary Enclave Pioneer"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = " "
-								design = "Mercenary Enclave Pioneer"
-								#graphical_culture = prev
-							}
-							create_ship = {
-								name = " "
-								design = "Mercenary Enclave Pioneer"
-								#graphical_culture = prev
-							}
-							set_fleet_formation = {
-								# bottom right
-								position = { x = 2    y = -6   } #19
-								position = { x = 6    y = -2   } #18
-								# bottom left
-								position = { x = -2   y = -6   } #17
-								position = { x = -6   y = -2   } #16
-								# top right
-								position = { x = 6    y = 2    } #15
-								position = { x = 2    y = 6    } #14
-								# top left
-								position = { x = -2   y = 6    } #13
-								position = { x = -6   y = 2    } #12
-								# medium stations at the edges
-								position = { x = 0    y = -8   } #11 medium 4
-								position = { x = 0    y = 8    } #10 medium 3
-								position = { x = -8   y = 0    } #9 medium 2
-								position = { x = 8    y = 0    } #8 medium 1
-								position = { x = 2.5    y = -2.5   } #4 spaceport 3
-								position = { x = -2.5   y = -2.5   } #3 spaceport 2
-								position = { x = -2.5    y = 2.5    } #2 spaceport 1
-								position = { x = 2.5    y = 2.5    } #2 spaceport
-								position = { x = 0    y = 0    } #1
-							}
-							set_formation_scale = 0.8
-							set_location = {
-								target = prevprev
-								distance = 80
-								angle = random
-							}
-							save_event_target_as = CustomCapital
-							prev = {
-								set_custom_capital_location = event_target:CustomCapital
-							}
-							set_fleet_flag = folk_mercenary_station
-						}
-					}
-					create_leader = {
-						type = ruler
-						species = prev
-						name = random
-						skill = 2000
-					}
-					set_leader = last_created_leader
-				}
+				set_leader = last_created_leader
 			}
 		}
 	}
