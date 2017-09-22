@@ -618,6 +618,9 @@ country_event = {
 
 	# Only triggers once, across savegames, per game.
 	# I only use a country_event because event= behaves weirdly.
+	# While the initializer has a chance of 100, this event
+	# ensures that the enclave is spawned into existing games
+	# on load, if the addon was subscribed to after game creation.
 	fire_only_once = yes
 
 	immediate = {
@@ -631,7 +634,7 @@ country_event = {
 			}
 			random_system = {
 				limit = {
-					NOT = {
+					NOR = {
 						exists = space_owner
 						has_star_flag = "tiyanki_home_system"
 						has_star_flag = "void_system"
@@ -669,7 +672,7 @@ country_event = {
 				}
 				random_system = {
 					limit = {
-						NOT = {
+						NOR = {
 							exists = space_owner
 							any_planet = { is_capital = yes }
 							any_neighbor_system = { any_planet = { is_capital = yes } }
