@@ -1,0 +1,48 @@
+
+
+fmerc_set_hq = {
+	if = {
+		limit = { NOT = { exists = event_target:fmerc_hq } }
+		random_country = {
+			limit = {
+				is_country_type = fmerc_enclave
+				reverse_has_relation_flag = {
+					who = root
+					flag = merc_operations_squad
+				}
+			}
+			save_event_target_as = fmerc_hq
+		}
+	}
+}
+
+fmerc_set_buyer = {
+	if = {
+		limit = { NOT = { exists = event_target:fmerc_buyer } }
+		random_country = {
+			limit = {
+				NOT = { is_country_type = fmerc_enclave }
+				reverse_has_relation_flag = {
+					who = root
+					flag = merc_operations_squad
+				}
+			}
+			save_event_target_as = fmerc_buyer
+		}
+	}
+}
+
+fmerc_set_target_country = {
+	if = {
+		limit = { NOT = { exists = event_target:fmerc_target_country } }
+		random_country = {
+			limit = {
+				reverse_has_relation_flag = {
+					who = root
+					flag = merc_operations_target
+				}
+			}
+			save_event_target_as = fmerc_target_country
+		}
+	}
+}

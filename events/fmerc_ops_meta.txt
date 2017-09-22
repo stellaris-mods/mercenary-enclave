@@ -53,50 +53,9 @@ country_event = {
 	}
 
 	immediate = {
-		if = {
-			limit = {
-				NOT = { exists = event_target:fmerc_buyer }
-			}
-			random_country = {
-				limit = {
-					NOT = { is_country_type = fmerc_enclave }
-					reverse_has_relation_flag = {
-						who = root
-						flag = merc_operations_squad
-					}
-				}
-				save_event_target_as = fmerc_buyer
-			}
-		}
-		if = {
-			limit = {
-				NOT = { exists = event_target:fmerc_hq }
-			}
-			random_country = {
-				limit = {
-					is_country_type = fmerc_enclave
-					reverse_has_relation_flag = {
-						who = root
-						flag = merc_operations_squad
-					}
-				}
-				save_event_target_as = fmerc_hq
-			}
-		}
-		if = {
-			limit = {
-				NOT = { exists = event_target:fmerc_target_country }
-			}
-			random_country = {
-				limit = {
-					reverse_has_relation_flag = {
-						who = root
-						flag = merc_operations_target
-					}
-				}
-				save_event_target_as = fmerc_target_country
-			}
-		}
+		fmerc_set_buyer = yes
+		fmerc_set_hq = yes
+		fmerc_set_target_country = yes
 		if = {
 			limit = {
 				exists = event_target:fmerc_target_country

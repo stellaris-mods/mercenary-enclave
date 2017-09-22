@@ -1,49 +1,8 @@
 
 fmerc_ops_ensure_all_event_targets = {
-	if = {
-		limit = {
-			NOT = { exists = event_target:fmerc_buyer }
-		}
-		random_country = {
-			limit = {
-				NOT = { is_country_type = fmerc_enclave }
-				reverse_has_relation_flag = {
-					who = root
-					flag = merc_operations_squad
-				}
-			}
-			save_event_target_as = fmerc_buyer
-		}
-	}
-	if = {
-		limit = {
-			NOT = { exists = event_target:fmerc_hq }
-		}
-		random_country = {
-			limit = {
-				is_country_type = fmerc_enclave
-				reverse_has_relation_flag = {
-					who = root
-					flag = merc_operations_squad
-				}
-			}
-			save_event_target_as = fmerc_hq
-		}
-	}
-	if = {
-		limit = {
-			NOT = { exists = event_target:fmerc_target_country }
-		}
-		random_country = {
-			limit = {
-				reverse_has_relation_flag = {
-					who = root
-					flag = merc_operations_target
-				}
-			}
-			save_event_target_as = fmerc_target_country
-		}
-	}
+	fmerc_set_buyer = yes
+	fmerc_set_hq = yes
+	fmerc_set_target_country = yes
 	if = {
 		limit = {
 			exists = event_target:fmerc_target_country
@@ -126,50 +85,9 @@ fmerc_ops_ensure_all_event_targets = {
 }
 
 fmerc_ops_ensure_all_liberate_targets = {
-	if = {
-		limit = {
-			NOT = { exists = event_target:fmerc_buyer }
-		}
-		random_country = {
-			limit = {
-				NOT = { is_country_type = fmerc_enclave }
-				reverse_has_relation_flag = {
-					who = root
-					flag = merc_operations_squad
-				}
-			}
-			save_event_target_as = fmerc_buyer
-		}
-	}
-	if = {
-		limit = {
-			NOT = { exists = event_target:fmerc_hq }
-		}
-		random_country = {
-			limit = {
-				is_country_type = fmerc_enclave
-				reverse_has_relation_flag = {
-					who = root
-					flag = merc_operations_squad
-				}
-			}
-			save_event_target_as = fmerc_hq
-		}
-	}
-	if = {
-		limit = {
-			NOT = { exists = event_target:fmerc_target_country }
-		}
-		random_country = {
-			limit = {
-				reverse_has_relation_flag = {
-					who = root
-					flag = merc_operations_target
-				}
-			}
-			save_event_target_as = fmerc_target_country
-		}
-	}
+	fmerc_set_buyer = yes
+	fmerc_set_hq = yes
+	fmerc_set_target_country = yes
 	if = {
 		limit = {
 			exists = event_target:fmerc_target_country
@@ -217,25 +135,7 @@ fmerc_ops_ensure_all_liberate_targets = {
 }
 
 fmerc_ops_initial_buyer = {
-	if = {
-		limit = {
-			NOT = {
-				exists = event_target:fmerc_buyer
-			}
-		}
-		random_country = {
-			limit = {
-				NOT = {
-					is_country_type = fmerc_enclave
-				}
-				reverse_has_relation_flag = {
-					who = root
-					flag = merc_operations_squad
-				}
-			}
-			save_event_target_as = fmerc_buyer
-		}
-	}
+	fmerc_set_buyer = yes
 	if = {
 		limit = {
 			exists = event_target:fmerc_buyer
@@ -252,23 +152,7 @@ fmerc_ops_initial_buyer = {
 }
 
 fmerc_ops_initial_hq = {
-	if = {
-		limit = {
-			NOT = {
-				exists = event_target:fmerc_hq
-			}
-		}
-		random_country = {
-			limit = {
-				is_country_type = fmerc_enclave
-				reverse_has_relation_flag = {
-					who = root
-					flag = merc_operations_squad
-				}
-			}
-			save_event_target_as = fmerc_hq
-		}
-	}
+	fmerc_set_hq = yes
 	if = {
 		limit = {
 			exists = event_target:fmerc_hq
@@ -296,6 +180,8 @@ fmerc_ops_initial_target_country = {
 	}
 }
 
+# XXX should rewrite all every_planet_within_border users below to use
+# XXX closest_system instead, and is_within_borders_of = event_target:fmerc_buyer
 fmerc_ops_initial_target_amoeba = {
 	event_target:fmerc_buyer = {
 		every_planet_within_border = {
@@ -828,6 +714,8 @@ fmerc_match_fleet = {
 }
 
 # event_target:fmerc_target_system exists here
+# XXX we can remove fmerc_target_system entirely, because fmerc_target types
+# XXX support scoping directly to solar_system
 fmerc_ops_set_spawn_location = {
 	if = {
 		limit = { exists = event_target:fmerc_target_system }

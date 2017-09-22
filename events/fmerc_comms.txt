@@ -2228,6 +2228,7 @@ country_event = {
 			}
 			save_event_target_as = fmerc_ops_country
 		}
+
 		# Then find the country who ordered the operation
 		random_country = {
 			limit = {
