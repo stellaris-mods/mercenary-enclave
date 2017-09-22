@@ -50,7 +50,6 @@ country_event = {
 		NOT = { has_country_flag = "fmerc_diplomacy_engaged" }
 		from = {
 			is_country_type = fmerc_enclave
-			has_country_flag = folk_mercenary_country
 		}
 	}
 	immediate = {

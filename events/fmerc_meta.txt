@@ -378,7 +378,6 @@ country_event = {
 
 	trigger = {
 		is_country_type = fmerc_enclave
-		has_country_flag = folk_mercenary_country
 	}
 
 	immediate = {
@@ -563,7 +562,7 @@ country_event = {
 
 	trigger = {
 		is_country_type = default
-		FROM = { has_country_flag = folk_mercenary_country }
+		FROM = { is_country_type = fmerc_enclave }
 	}
 
 	immediate = {
