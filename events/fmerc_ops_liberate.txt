@@ -346,14 +346,17 @@ country_event = {
 					establish_contact = { who = event_target:fmerc_buyer location = event_target:fmerc_target_planet }
 					establish_contact = { who = event_target:fmerc_target_country location = event_target:fmerc_target_planet }
 					add_modifier = {
-						modifier = "puppet_government"
-						days = 3600
+						modifier = "recently_liberated"
+						days = 7200
 					}
 					save_event_target_as = merc_newcountry
 				}
 			}
 			set_owner = event_target:merc_newcountry
 			set_controller = event_target:merc_newcountry
+			event_target:merc_newcountry = {
+				create_fleet_from_naval_cap = 0.5
+			}
 		}
 
 		set_country_flag = "fmerc_ops_completed"
