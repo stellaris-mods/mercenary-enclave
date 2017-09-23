@@ -92,11 +92,6 @@ fmerc_ops_ensure_all_liberate_targets = {
 		limit = {
 			exists = event_target:fmerc_target_country
 			NOT = { exists = event_target:fmerc_target_planet }
-			event_target:fmerc_target_country = {
-				any_owned_planet = {
-					has_planet_flag = "fmerc_target"
-				}
-			}
 		}
 		event_target:fmerc_target_country = {
 			random_owned_planet = {
@@ -448,6 +443,9 @@ fmerc_ops_initial_target_liberate = {
 						is_capital = no
 						is_homeworld = no
 					}
+					# In some rare cases you end up with two empires
+					# with colonized planets in the same system. These
+					# can not be targetted. I'm not sure why I made it this way.
 					NOT = {
 						any_planet = {
 							is_owned_by = event_target:fmerc_buyer

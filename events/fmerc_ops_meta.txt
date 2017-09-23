@@ -34,6 +34,7 @@ country_event = {
 	}
 }
 
+# The mercenary operations are complete!
 country_event = {
 	id = fmerc_ops_meta.911
 	hide_window = yes
