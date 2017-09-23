@@ -82,7 +82,7 @@ country_event = {
 							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
 						}
 						orbit_planet = event_target:fmerc_target_planet
-						wait = 4
+						wait = 7
 					}
 					effect = {
 						id = fmerc_ops_liberate.1.effect.2

@@ -769,11 +769,9 @@ fmerc_ops_create_fleet = {
 	# For when we recreate the fleet
 	set_faction_hostility = { set_hostile = no }
 	create_fleet = {
-		settings = {
-			spawn_debris = no
-		}
 		effect = {
 			set_owner = root
+			# XXX These may not be necessary, need to check closer
 			save_event_target_as = fmerc_ops_fleet
 			set_fleet_flag = "fmerc_raiding_fleet"
 			set_location = {
@@ -790,6 +788,8 @@ fmerc_ops_create_fleet = {
 			set_fleet_stance = passive
 			set_aggro_range_measure_from = self
 			set_aggro_range = 80
+			# This exists in the game, but apparently it's not exposed.
+			#set_fleet_ground_support_stance_command = ..
 		}
 	}
 	event_target:fmerc_target_system = {

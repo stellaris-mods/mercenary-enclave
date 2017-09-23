@@ -10,6 +10,6 @@ mercsquad = {
 	diplo_threat = 1.5
 
 	potential = {
-		from = { is_country_type = fmerc_operations }
+		is_country_type = fmerc_operations
 	}
 }
