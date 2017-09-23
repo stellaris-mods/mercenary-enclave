@@ -16,8 +16,7 @@ country_event = {
 		if = {
 			limit = {
 				exists = event_target:fmerc_target_country
-				exists = event_target:fmerc_target_planet
-				exists = event_target:fmerc_target_system
+				exists = event_target:fmerc_target
 			}
 			if = {
 				limit = {
@@ -50,7 +49,7 @@ country_event = {
 					repeat = {
 						while = {
 							id = fmerc_ops_liberate.1.trigger.1
-							exists = event_target:fmerc_target_planet
+							exists = event_target:fmerc_target
 							exists = owner
 							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
 							NOR = {
@@ -66,7 +65,7 @@ country_event = {
 								}
 							}
 						}
-						move_to = event_target:fmerc_target_planet.solar_system
+						move_to = event_target:fmerc_target.solar_system
 						wait = 4
 					}
 					effect = {
@@ -80,11 +79,11 @@ country_event = {
 					repeat = {
 						while = {
 							id = fmerc_ops_liberate.1.trigger.2
-							exists = event_target:fmerc_target_planet
+							exists = event_target:fmerc_target
 							NOT = { exists = orbit }
 							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
 						}
-						orbit_planet = event_target:fmerc_target_planet
+						orbit_planet = event_target:fmerc_target
 						wait = 4
 					}
 					effect = {
@@ -129,7 +128,7 @@ country_event = {
 					exists = solar_system
 					solar_system = {
 						any_planet = {
-							is_same_value = event_target:fmerc_target_planet
+							is_same_value = event_target:fmerc_target
 						}
 					}
 				}
@@ -156,7 +155,7 @@ country_event = {
 					}
 					save_event_target_as = tmp_army_country
 				}
-				event_target:event_target:fmerc_target_planet = {
+				event_target:fmerc_target = {
 					while = {
 						count = 20
 						random = {
@@ -173,7 +172,7 @@ country_event = {
 				else = {
 					log = "There was no existing rebel country, creating new one."
 					# The rebel country does NOT exist, so create a new one
-					event_target:fmerc_target_planet = {
+					event_target:fmerc_target = {
 						create_rebels = {
 							name = random
 							ethos = event_target:fmerc_buyer

@@ -205,6 +205,7 @@ fmerc_do_clear_setup = {
 	fmerc_set_same_culture = yes
 }
 
+# Scope is the buyer country
 fmerc_do_mission_setup = {
 	create_country = {
 		name = "Mercenary Operations"
@@ -236,11 +237,11 @@ fmerc_do_mission_setup = {
 		auto_delete = no
 	}
 	last_created_country = {
-		establish_communications_no_message = root
-		establish_contact = { who = root }
-		establish_communications_no_message = event_target:traders
-		establish_contact = { who = event_target:traders }
-		establish_communications_no_message = event_target:fmerc_target_country
+		#establish_communications_no_message = root
+		#establish_contact = { who = root }
+		#establish_communications_no_message = event_target:traders
+		#establish_contact = { who = event_target:traders }
+		#establish_communications_no_message = event_target:fmerc_target_country
 
 		# This isn't actually needed, so not sure why I dont just remove it.
 		give_technology = {
@@ -282,8 +283,6 @@ fmerc_do_mission_setup = {
 			flag = merc_operations_squad
 		}
 		save_event_target_as = fmerc_operations
-		# XXX remove before release
-		#set_faction_hostility = { set_hostile = yes }
 	}
 
 	fmerc_copy_success = yes

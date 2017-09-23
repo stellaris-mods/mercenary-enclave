@@ -1,6 +1,9 @@
 fmerc_enclave = {
 	needs_survey = no
 	show_in_contacts_list = yes
+	# XXX check in new game whether we can uncomment the share_comm lines and still bombard,
+	# provided this is set.
+	share_communications = no
 	playable = no
 	ai = {
 		enabled = no

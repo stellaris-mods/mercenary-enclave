@@ -1,134 +1,4 @@
 
-fmerc_ops_ensure_all_event_targets = {
-	fmerc_set_buyer = yes
-	fmerc_set_hq = yes
-	fmerc_set_target_country = yes
-	if = {
-		limit = {
-			exists = event_target:fmerc_target_country
-			NOT = { exists = event_target:fmerc_target_fleet }
-			event_target:fmerc_target_country = {
-				any_owned_ship = {
-					exists = fleet
-					has_ship_flag = "fmerc_target"
-				}
-			}
-		}
-		# If our fleet exists, we first try to find a target within the system it's in.
-		if = {
-			limit = {
-				exists = event_target:fmerc_ops_fleet
-				event_target:fmerc_ops_fleet = {
-					exists = solar_system
-				}
-			}
-			event_target:fmerc_target_country = {
-				random_owned_ship = {
-					limit = {
-						exists = fleet
-						has_ship_flag = "fmerc_target"
-						exists = solar_system
-						solar_system = {
-							is_same_value = event_target:fmerc_ops_fleet.solar_system
-						}
-					}
-					fleet = {
-						save_event_target_as = fmerc_target_fleet
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				NOT = {
-					exists = event_target:fmerc_target_fleet
-				}
-			}
-			event_target:fmerc_target_country = {
-				random_owned_ship = {
-					limit = {
-						exists = fleet
-						has_ship_flag = "fmerc_target"
-					}
-					fleet = {
-						save_event_target_as = fmerc_target_fleet
-					}
-				}
-			}
-		}
-	}
-	if = {
-		limit = {
-			exists = event_target:fmerc_target_country
-			exists = event_target:fmerc_target_fleet
-		}
-		event_target:fmerc_target_fleet = {
-			solar_system = {
-				save_event_target_as = fmerc_target_system
-			}
-		}
-	}
-	if = {
-		limit = {
-			NOT = { exists = event_target:fmerc_ops_fleet }
-			any_owned_fleet = {
-				has_fleet_flag = "fmerc_raiding_fleet"
-			}
-		}
-		random_owned_fleet = {
-			limit = {
-				has_fleet_flag = "fmerc_raiding_fleet"
-			}
-			save_event_target_as = fmerc_ops_fleet
-		}
-	}
-}
-
-fmerc_ops_ensure_all_liberate_targets = {
-	fmerc_set_buyer = yes
-	fmerc_set_hq = yes
-	fmerc_set_target_country = yes
-	if = {
-		limit = {
-			exists = event_target:fmerc_target_country
-			NOT = { exists = event_target:fmerc_target_planet }
-		}
-		event_target:fmerc_target_country = {
-			random_owned_planet = {
-				limit = {
-					has_planet_flag = "fmerc_target"
-				}
-				save_event_target_as = fmerc_target_planet
-			}
-		}
-	}
-	if = {
-		limit = {
-			exists = event_target:fmerc_target_country
-			exists = event_target:fmerc_target_planet
-		}
-		event_target:fmerc_target_planet = {
-			solar_system = {
-				save_event_target_as = fmerc_target_system
-			}
-		}
-	}
-	if = {
-		limit = {
-			NOT = { exists = event_target:fmerc_ops_fleet }
-			any_owned_fleet = {
-				has_fleet_flag = "fmerc_raiding_fleet"
-			}
-		}
-		random_owned_fleet = {
-			limit = {
-				has_fleet_flag = "fmerc_raiding_fleet"
-			}
-			save_event_target_as = fmerc_ops_fleet
-		}
-	}
-}
-
 fmerc_ops_initial_buyer = {
 	fmerc_set_buyer = yes
 	if = {
@@ -136,9 +6,7 @@ fmerc_ops_initial_buyer = {
 			exists = event_target:fmerc_buyer
 		}
 		# We found the buyer
-		country_event = {
-			id = fmerc_ops_meta.2
-		}
+		fmerc_ops_initial_hq = yes
 
 		else = {
 			set_country_flag = "fmerc_ops_completed"
@@ -153,9 +21,7 @@ fmerc_ops_initial_hq = {
 			exists = event_target:fmerc_hq
 		}
 		# We found the HQ
-		country_event = {
-			id = fmerc_ops_meta.3
-		}
+		fmerc_ops_initial_target = yes
 
 		else = {
 			set_country_flag = "fmerc_ops_completed"
@@ -193,7 +59,6 @@ fmerc_ops_initial_target_amoeba = {
 				}
 			}
 			solar_system = {
-				save_event_target_as = fmerc_target_system
 				random_fleet_in_system = {
 					limit = {
 						exists = owner
@@ -204,14 +69,14 @@ fmerc_ops_initial_target_amoeba = {
 					owner = {
 						save_event_target_as = fmerc_target_country
 					}
-					save_event_target_as = fmerc_target_fleet
+					save_event_target_as = fmerc_target
 				}
 			}
 		}
 	}
 	if = {
 		limit = {
-			exists = event_target:fmerc_target_fleet
+			exists = event_target:fmerc_target
 		}
 		set_relation_flag = {
 			who = event_target:fmerc_target_country
@@ -239,7 +104,6 @@ fmerc_ops_initial_target_cloud = {
 				}
 			}
 			solar_system = {
-				save_event_target_as = fmerc_target_system
 				random_fleet_in_system = {
 					limit = {
 						exists = owner
@@ -250,14 +114,14 @@ fmerc_ops_initial_target_cloud = {
 					owner = {
 						save_event_target_as = fmerc_target_country
 					}
-					save_event_target_as = fmerc_target_fleet
+					save_event_target_as = fmerc_target
 				}
 			}
 		}
 	}
 	if = {
 		limit = {
-			exists = event_target:fmerc_target_fleet
+			exists = event_target:fmerc_target
 		}
 		set_relation_flag = {
 			who = event_target:fmerc_target_country
@@ -286,7 +150,6 @@ fmerc_ops_initial_target_crystal = {
 				}
 			}
 			solar_system = {
-				save_event_target_as = fmerc_target_system
 				random_fleet_in_system = {
 					limit = {
 						exists = owner
@@ -297,14 +160,14 @@ fmerc_ops_initial_target_crystal = {
 					owner = {
 						save_event_target_as = fmerc_target_country
 					}
-					save_event_target_as = fmerc_target_fleet
+					save_event_target_as = fmerc_target
 				}
 			}
 		}
 	}
 	if = {
 		limit = {
-			exists = event_target:fmerc_target_fleet
+			exists = event_target:fmerc_target
 		}
 		set_relation_flag = {
 			who = event_target:fmerc_target_country
@@ -333,7 +196,6 @@ fmerc_ops_initial_target_pirate = {
 				}
 			}
 			solar_system = {
-				save_event_target_as = fmerc_target_system
 				random_fleet_in_system = {
 					limit = {
 						exists = owner
@@ -344,14 +206,14 @@ fmerc_ops_initial_target_pirate = {
 					owner = {
 						save_event_target_as = fmerc_target_country
 					}
-					save_event_target_as = fmerc_target_fleet
+					save_event_target_as = fmerc_target
 				}
 			}
 		}
 	}
 	if = {
 		limit = {
-			exists = event_target:fmerc_target_fleet
+			exists = event_target:fmerc_target
 		}
 		set_relation_flag = {
 			who = event_target:fmerc_target_country
@@ -380,7 +242,6 @@ fmerc_ops_initial_target_drone = {
 				}
 			}
 			solar_system = {
-				save_event_target_as = fmerc_target_system
 				random_fleet_in_system = {
 					limit = {
 						exists = owner
@@ -391,14 +252,14 @@ fmerc_ops_initial_target_drone = {
 					owner = {
 						save_event_target_as = fmerc_target_country
 					}
-					save_event_target_as = fmerc_target_fleet
+					save_event_target_as = fmerc_target
 				}
 			}
 		}
 	}
 	if = {
 		limit = {
-			exists = event_target:fmerc_target_fleet
+			exists = event_target:fmerc_target
 		}
 		set_relation_flag = {
 			who = event_target:fmerc_target_country
@@ -415,14 +276,14 @@ fmerc_ops_tag_all_ships = {
 		limit = {
 			# Doesnt exist if we're doing a space clear event and there are zero creatures to attack
 			exists = event_target:fmerc_target_country
-			exists = event_target:fmerc_target_fleet
+			exists = event_target:fmerc_target
 		}
 		event_target:fmerc_target_country = {
 			every_owned_ship = {
 				limit = {
 					exists = fleet
 					fleet = {
-						is_same_value = event_target:fmerc_target_fleet
+						is_same_value = event_target:fmerc_target
 					}
 				}
 				set_ship_flag = "fmerc_target"
@@ -451,13 +312,12 @@ fmerc_ops_initial_target_liberate = {
 					}
 				}
 				#min_steps = 1
-				save_event_target_as = fmerc_target_system
 				random_system_planet = {
 					limit = {
 						fmerc_valid_liberation_planet = yes
 					}
 					set_planet_flag = "fmerc_target"
-					save_event_target_as = fmerc_target_planet
+					save_event_target_as = fmerc_target
 				}
 			}
 		}
@@ -700,52 +560,50 @@ fmerc_match_fleet = {
 	fmerc_match_variable = yes
 }
 
-# event_target:fmerc_target_system exists here
-# XXX we can remove fmerc_target_system entirely, because fmerc_target types
-# XXX support scoping directly to solar_system
+# requires event_target:fmerc_target_country
 fmerc_ops_set_spawn_location = {
-	if = {
-		limit = { exists = event_target:fmerc_target_system }
-		event_target:fmerc_target_system = {
-			closest_system = {
-				limit = {
-					any_ship_in_system = {
-						is_in_combat = no
-						exists = owner
-						owner = {
-							is_country_type = fmerc_enclave
-						}
-					}
-					OR = {
-						NOT = {
-							exists = space_owner
-						}
-						AND = {
-							exists = space_owner
-							space_owner = { is_same_value = event_target:fmerc_target_country }
-						}
-					}
-				}
-				#min_steps = 1
-				random_fleet_in_system = {
-					limit = {
-						is_in_combat = no
-						exists = owner
-						owner = {
-							is_country_type = fmerc_enclave
-						}
-					}
-					save_event_target_as = fmerc_spawn_location
+	closest_system = {
+		limit = {
+			any_ship_in_system = {
+				is_in_combat = no
+				exists = owner
+				owner = {
+					is_country_type = fmerc_enclave
 				}
 			}
+			# If we can, try to spawn inside the targets borders.
+			# This gives the "Allow border access" enclave option some
+			# real value.
+			OR = {
+				NOT = {
+					exists = space_owner
+				}
+				AND = {
+					exists = space_owner
+					exists = event_target:fmerc_target_country
+					space_owner = { is_same_value = event_target:fmerc_target_country }
+				}
+			}
+		}
+		#min_steps = 1
+		random_fleet_in_system = {
+			limit = {
+				is_in_combat = no
+				exists = owner
+				owner = {
+					is_country_type = fmerc_enclave
+				}
+			}
+			save_event_target_as = fmerc_spawn_location
 		}
 	}
 	if = {
 		limit = {
 			NOT = { exists = event_target:fmerc_spawn_location }
 		}
-		event_target:fmerc_hq = {
-			random_owned_ship = {
+		random_country = {
+			limit = { is_country_type = fmerc_enclave }
+			random_owned_fleet = {
 				save_event_target_as = fmerc_spawn_location
 			}
 		}
@@ -779,15 +637,18 @@ fmerc_ops_create_fleet = {
 			#set_fleet_ground_support_stance_command = ..
 		}
 	}
-	event_target:fmerc_target_system = {
-		every_fleet_in_system = {
-			limit = {
-				exists = owner
-				owner = {
-					is_same_value = event_target:fmerc_target_country
+	# fmerc_target is always a planet or fleet
+	event_target:fmerc_target = {
+		solar_system = {
+			every_fleet_in_system = {
+				limit = {
+					exists = owner
+					owner = {
+						is_same_value = event_target:fmerc_target_country
+					}
 				}
+				fmerc_match_fleet = yes
 			}
-			fmerc_match_fleet = yes
 		}
 	}
 	event_target:fmerc_ops_fleet = {
@@ -855,7 +716,6 @@ fmerc_ops_set_spaceport_target = {
 					}
 				}
 				#min_steps = 1
-				save_event_target_as = fmerc_target_system
 				random_fleet_in_system = {
 					limit = {
 						is_ship_size = orbital_station
@@ -864,7 +724,7 @@ fmerc_ops_set_spaceport_target = {
 							is_same_value = event_target:fmerc_target_country
 						}
 					}
-					save_event_target_as = fmerc_target_fleet
+					save_event_target_as = fmerc_target
 				}
 			}
 		}
@@ -889,10 +749,7 @@ fmerc_ops_set_fleet_target = {
 					is_ship_class = shipclass_military
 					exists = solar_system
 				}
-				solar_system = {
-					save_event_target_as = fmerc_target_system
-				}
-				save_event_target_as = fmerc_target_fleet
+				save_event_target_as = fmerc_target
 			}
 			else = {
 				random_owned_fleet = {
@@ -901,22 +758,16 @@ fmerc_ops_set_fleet_target = {
 						fleet_size < 100
 						exists = solar_system
 					}
-					solar_system = {
-						save_event_target_as = fmerc_target_system
-					}
-					save_event_target_as = fmerc_target_fleet
+					save_event_target_as = fmerc_target
 				}
 				if = {
 					limit = {
 						NOT = {
-							exists = event_target:fmerc_target_fleet
+							exists = event_target:fmerc_target
 						}
 					}
 					random_owned_fleet = {
-						solar_system = {
-							save_event_target_as = fmerc_target_system
-						}
-						save_event_target_as = fmerc_target_fleet
+						save_event_target_as = fmerc_target
 					}
 				}
 			}
@@ -981,10 +832,7 @@ fmerc_ops_set_raid_targets = {
 				exists = solar_system
 			}
 			fleet = {
-				save_event_target_as = fmerc_target_fleet
-			}
-			solar_system = {
-				save_event_target_as = fmerc_target_system
+				save_event_target_as = fmerc_target
 			}
 		}
 	}

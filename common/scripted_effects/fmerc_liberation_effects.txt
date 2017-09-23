@@ -1,4 +1,39 @@
 
+# These effects are only used by the liberation mission type
+
+fmerc_ops_ensure_all_liberate_targets = {
+	fmerc_set_buyer = yes
+	fmerc_set_hq = yes
+	fmerc_set_target_country = yes
+	if = {
+		limit = {
+			exists = event_target:fmerc_target_country
+			NOT = { exists = event_target:fmerc_target }
+		}
+		event_target:fmerc_target_country = {
+			random_owned_planet = {
+				limit = {
+					has_planet_flag = "fmerc_target"
+				}
+				save_event_target_as = fmerc_target
+			}
+		}
+	}
+	if = {
+		limit = {
+			NOT = { exists = event_target:fmerc_ops_fleet }
+			any_owned_fleet = {
+				has_fleet_flag = "fmerc_raiding_fleet"
+			}
+		}
+		random_owned_fleet = {
+			limit = {
+				has_fleet_flag = "fmerc_raiding_fleet"
+			}
+			save_event_target_as = fmerc_ops_fleet
+		}
+	}
+}
 
 #GARRISON_SIZE_BASE					= 2			# Planet always spawns this number of garrisons
 #GARRISON_SIZE_MULT					= 0.4		# Per pop over 1

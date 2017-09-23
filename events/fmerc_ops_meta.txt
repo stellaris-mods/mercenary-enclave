@@ -12,28 +12,6 @@ country_event = {
 	}
 }
 
-# Triggered from fmerc_ops_initial_buyer
-country_event = {
-	id = fmerc_ops_meta.2
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		fmerc_ops_initial_hq = yes
-	}
-}
-
-# Triggered from fmerc_ops_initial_hq
-country_event = {
-	id = fmerc_ops_meta.3
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		fmerc_ops_initial_target = yes
-	}
-}
-
 # The mercenary operations are complete!
 country_event = {
 	id = fmerc_ops_meta.911
@@ -173,10 +151,6 @@ country_event = {
 			}
 		}
 
-		random_owned_fleet = {
-			limit = { exists = solar_system }
-			solar_system = { save_event_target_as = fmerc_target_system }
-		}
 		fmerc_ops_set_spawn_location = yes
 
 		if = {

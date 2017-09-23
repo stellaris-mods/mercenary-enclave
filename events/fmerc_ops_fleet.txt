@@ -6,7 +6,7 @@ namespace = fmerc_ops_fleet
 # that is created from the merc enclave country scope
 
 # Triggered from fmerc_ops_initial_target
-# In this, event_target:fmerc_target_fleet is a fleet
+# In this, event_target:fmerc_target is a fleet
 country_event = {
 	id = fmerc_ops_fleet.1
 	hide_window = yes
@@ -20,8 +20,7 @@ country_event = {
 		if = {
 			limit = {
 				exists = event_target:fmerc_target_country
-				exists = event_target:fmerc_target_fleet
-				exists = event_target:fmerc_target_system
+				exists = event_target:fmerc_target
 			}
 
 			if = {
@@ -53,7 +52,7 @@ country_event = {
 					repeat = {
 						while = {
 							id = fmerc_ops_fleet.1.trigger.1
-							exists = event_target:fmerc_target_fleet
+							exists = event_target:fmerc_target
 							exists = owner
 							NOT = {
 								owner = { has_country_flag = "fmerc_ops_completed" }
@@ -65,14 +64,14 @@ country_event = {
 										any_ship_in_system = {
 											exists = fleet
 											fleet = {
-												is_same_value = event_target:fmerc_target_fleet
+												is_same_value = event_target:fmerc_target
 											}
 										}
 									}
 								}
 							}
 						}
-						move_to = event_target:fmerc_target_fleet.solar_system
+						move_to = event_target:fmerc_target.solar_system
 						wait = 7
 					}
 					effect = {
@@ -90,13 +89,13 @@ country_event = {
 					repeat = {
 						while = {
 							id = fmerc_ops_fleet.1.trigger.2
-							exists = event_target:fmerc_target_fleet
+							exists = event_target:fmerc_target
 							exists = owner
 							NOT = {
 								owner = { has_country_flag = "fmerc_ops_completed" }
 							}
 						}
-						move_to = event_target:fmerc_target_fleet
+						move_to = event_target:fmerc_target
 						wait = 3
 					}
 					effect = {
@@ -136,7 +135,7 @@ country_event = {
 
 		if = {
 			limit = {
-				exists = event_target:fmerc_target_fleet
+				exists = event_target:fmerc_target
 			}
 			# Try again
 			country_event = {
@@ -171,7 +170,7 @@ country_event = {
 
 		if = {
 			limit = {
-				exists = event_target:fmerc_target_fleet
+				exists = event_target:fmerc_target
 			}
 			subtract_variable = {
 				which = MercSuccess
