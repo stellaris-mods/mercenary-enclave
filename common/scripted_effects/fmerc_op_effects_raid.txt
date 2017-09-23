@@ -3,7 +3,6 @@
 
 fmerc_ops_ensure_all_event_targets = {
 	fmerc_set_buyer = yes
-	fmerc_set_hq = yes
 	fmerc_set_target_country = yes
 	if = {
 		limit = {

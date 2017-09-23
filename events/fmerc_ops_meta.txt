@@ -33,7 +33,6 @@ country_event = {
 
 	immediate = {
 		fmerc_set_buyer = yes
-		fmerc_set_hq = yes
 		fmerc_set_target_country = yes
 		if = {
 			limit = {

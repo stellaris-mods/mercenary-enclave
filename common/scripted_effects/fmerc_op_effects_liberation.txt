@@ -36,7 +36,6 @@ fmerc_ops_initial_target_liberate = {
 
 fmerc_ops_ensure_all_liberate_targets = {
 	fmerc_set_buyer = yes
-	fmerc_set_hq = yes
 	fmerc_set_target_country = yes
 	if = {
 		limit = {

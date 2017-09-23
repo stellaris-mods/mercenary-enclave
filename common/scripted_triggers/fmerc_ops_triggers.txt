@@ -9,3 +9,10 @@ fmerc_in_system = {
 		}
 	}
 }
+
+fmerc_enclave_exists = {
+	any_country = {
+		is_country_type = fmerc_enclave
+		num_ships > 0
+	}
+}

@@ -1,26 +1,13 @@
 
+# This is delayed
 fmerc_ops_initial_buyer = {
 	fmerc_set_buyer = yes
 	if = {
 		limit = {
 			exists = event_target:fmerc_buyer
+			fmerc_enclave_exists = yes
 		}
-		# We found the buyer
-		fmerc_ops_initial_hq = yes
-
-		else = {
-			set_country_flag = "fmerc_ops_completed"
-		}
-	}
-}
-
-fmerc_ops_initial_hq = {
-	fmerc_set_hq = yes
-	if = {
-		limit = {
-			exists = event_target:fmerc_hq
-		}
-		# We found the HQ
+		# We found the buyer, and an enclave exists
 		fmerc_ops_initial_target = yes
 
 		else = {
