@@ -320,7 +320,7 @@ fmerc_grabdatcash = {
 }
 
 fmerc_copy_detection = {
-	event_target:fmerc_operations = {
+	last_created_country = {
 		set_variable = {
 			which = MercDetect
 			value = 0
@@ -338,7 +338,7 @@ fmerc_copy_detection = {
 			which = MercDetect
 			value = 1
 		}
-		event_target:fmerc_operations = {
+		last_created_country = {
 			change_variable = {
 				which = MercDetect
 				value = 1
@@ -347,7 +347,7 @@ fmerc_copy_detection = {
 	}
 }
 fmerc_copy_success = {
-	event_target:fmerc_operations = {
+	last_created_country = {
 		set_variable = {
 			which = MercSuccess
 			value = 0
@@ -365,7 +365,7 @@ fmerc_copy_success = {
 			which = MercSuccess
 			value = 1
 		}
-		event_target:fmerc_operations = {
+		last_created_country = {
 			change_variable = {
 				which = MercSuccess
 				value = 1

@@ -425,9 +425,19 @@ country_event = {
 			}
 			log = "Notifying merc operations that we are done."
 			set_country_flag = "fmerc_ops_completed"
-			save_event_target_as = fmerc_operations
-		}
 
+			# Find the target country
+			random_country = {
+				limit = {
+					reverse_has_relation_flag = {
+						who = prev
+						flag = merc_operations_target
+					}
+				}
+				log = "Found target country."
+				save_event_target_as = fmerc_target_country
+			}
+		}
 		random_country = {
 			limit = {
 				is_country_type = default
@@ -438,17 +448,6 @@ country_event = {
 			}
 			log = "Found buyer."
 			save_event_target_as = fmerc_buyer
-		}
-
-		random_country = {
-			limit = {
-				reverse_has_relation_flag = {
-					who = event_target:fmerc_operations
-					flag = merc_operations_target
-				}
-			}
-			log = "Found target country."
-			save_event_target_as = fmerc_target_country
 		}
 
 		FROM = {
