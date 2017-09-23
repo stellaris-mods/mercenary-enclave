@@ -12,24 +12,24 @@ fmerc_init_stage2 = {
 		switch = {
 			trigger = has_country_flag
 			fmerc_spaceport = {
-				fmerc_stage2_set_target_country = yes
+				fmerc_set_target_country = yes
 				fmerc_stage2_init_spaceport = yes
 				fmerc_stage2_tag_ships = yes
 				country_event = { id = fmerc_ops_fleet.1 }
 			}
 			fmerc_liberate = {
-				fmerc_stage2_set_target_country = yes
+				fmerc_set_target_country = yes
 				fmerc_stage2_init_liberation = yes
 				country_event = { id = fmerc_ops_liberate.1 }
 			}
 			fmerc_raid = {
-				fmerc_stage2_set_target_country = yes
+				fmerc_set_target_country = yes
 				# Ships are tagged in this
 				fmerc_stage2_init_raid = yes
 				country_event = { id = fmerc_ops_fleet.1 }
 			}
 			fmerc_fleet = {
-				fmerc_stage2_set_target_country = yes
+				fmerc_set_target_country = yes
 				fmerc_stage2_init_fleet = yes
 				fmerc_stage2_tag_ships = yes
 				country_event = { id = fmerc_ops_fleet.1 }
@@ -66,18 +66,6 @@ fmerc_init_stage2 = {
 		else = {
 			set_country_flag = "fmerc_ops_completed"
 		}
-	}
-}
-
-fmerc_stage2_set_target_country = {
-	random_country = {
-		limit = {
-			reverse_has_relation_flag = {
-				who = root
-				flag = merc_operations_target
-			}
-		}
-		save_event_target_as = fmerc_target_country
 	}
 }
 

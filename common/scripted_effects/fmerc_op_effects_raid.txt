@@ -172,7 +172,6 @@ fmerc_stage2_init_raid = {
 		random_owned_ship = {
 			limit = {
 				has_ship_flag = "fmerc_target"
-				exists = solar_system
 			}
 			fleet = {
 				save_event_target_as = fmerc_target
