@@ -1,4 +1,5 @@
 fmerc_enclave = {
+	needs_survey = no
 	show_in_contacts_list = yes
 	playable = no
 	ai = {
@@ -22,18 +23,20 @@ fmerc_enclave = {
 }
 
 fmerc_operations = {
+	government = no
+	needs_survey = no
 	has_leaders = no
-	#leave_ftl_trails = no
 	show_in_contacts_list = no
 	share_communications = no
 	playable = no
 	has_capital = no
 	diplomatic_wars = no
 	relations = no
+	orbital_bombardment = yes
+	debris = no
 
 	ai = {
 		enabled = no
-		#internal_policies = yes
 	}
 	faction = {
 		neutral = yes
