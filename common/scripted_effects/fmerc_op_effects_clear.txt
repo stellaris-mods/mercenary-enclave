@@ -1,0 +1,233 @@
+
+# Effects for space clearing operations
+
+# XXX should rewrite all every_planet_within_border users below to use
+# XXX closest_system instead, and is_within_borders_of = event_target:fmerc_buyer
+fmerc_ops_initial_target_amoeba = {
+	event_target:fmerc_buyer = {
+		every_planet_within_border = {
+			limit = {
+				is_star = yes
+				exists = solar_system
+				solar_system = {
+					any_ship_in_system = {
+						exists = owner
+						owner = {
+							is_country_type = amoeba
+						}
+					}
+				}
+			}
+			solar_system = {
+				random_fleet_in_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_country_type = amoeba
+						}
+					}
+					owner = {
+						save_event_target_as = fmerc_target_country
+					}
+					save_event_target_as = fmerc_target
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target
+		}
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
+		}
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+
+fmerc_ops_initial_target_cloud = {
+	event_target:fmerc_buyer = {
+		every_planet_within_border = {
+			limit = {
+				is_star = yes
+				exists = solar_system
+				solar_system = {
+					any_ship_in_system = {
+						exists = owner
+						owner = {
+							is_country_type = cloud
+						}
+					}
+				}
+			}
+			solar_system = {
+				random_fleet_in_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_country_type = cloud
+						}
+					}
+					owner = {
+						save_event_target_as = fmerc_target_country
+					}
+					save_event_target_as = fmerc_target
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target
+		}
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
+		}
+
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+
+fmerc_ops_initial_target_crystal = {
+	event_target:fmerc_buyer = {
+		every_planet_within_border = {
+			limit = {
+				is_star = yes
+				exists = solar_system
+				solar_system = {
+					any_ship_in_system = {
+						exists = owner
+						owner = {
+							is_country_type = crystal
+						}
+					}
+				}
+			}
+			solar_system = {
+				random_fleet_in_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_country_type = crystal
+						}
+					}
+					owner = {
+						save_event_target_as = fmerc_target_country
+					}
+					save_event_target_as = fmerc_target
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target
+		}
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
+		}
+
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+
+fmerc_ops_initial_target_pirate = {
+	event_target:fmerc_buyer = {
+		every_planet_within_border = {
+			limit = {
+				is_star = yes
+				exists = solar_system
+				solar_system = {
+					any_ship_in_system = {
+						exists = owner
+						owner = {
+							is_country_type = pirate
+						}
+					}
+				}
+			}
+			solar_system = {
+				random_fleet_in_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_country_type = pirate
+						}
+					}
+					owner = {
+						save_event_target_as = fmerc_target_country
+					}
+					save_event_target_as = fmerc_target
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target
+		}
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
+		}
+
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+
+fmerc_ops_initial_target_drone = {
+	event_target:fmerc_buyer = {
+		every_planet_within_border = {
+			limit = {
+				is_star = yes
+				exists = solar_system
+				solar_system = {
+					any_ship_in_system = {
+						exists = owner
+						owner = {
+							is_country_type = drone
+						}
+					}
+				}
+			}
+			solar_system = {
+				random_fleet_in_system = {
+					limit = {
+						exists = owner
+						owner = {
+							is_country_type = drone
+						}
+					}
+					owner = {
+						save_event_target_as = fmerc_target_country
+					}
+					save_event_target_as = fmerc_target
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = event_target:fmerc_target
+		}
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
+		}
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+

@@ -1,0 +1,184 @@
+
+# These effects are only used by the raid operation types
+
+fmerc_ops_ensure_all_event_targets = {
+	fmerc_set_buyer = yes
+	fmerc_set_hq = yes
+	fmerc_set_target_country = yes
+	if = {
+		limit = {
+			exists = event_target:fmerc_target_country
+			NOT = { exists = event_target:fmerc_target }
+			event_target:fmerc_target_country = {
+				any_owned_ship = {
+					exists = fleet
+					has_ship_flag = "fmerc_target"
+				}
+			}
+		}
+		# If our fleet exists, we first try to find a target within the system it's in.
+		if = {
+			limit = {
+				exists = event_target:fmerc_ops_fleet
+				event_target:fmerc_ops_fleet = {
+					exists = solar_system
+				}
+			}
+			event_target:fmerc_target_country = {
+				random_owned_ship = {
+					limit = {
+						exists = fleet
+						has_ship_flag = "fmerc_target"
+						exists = solar_system
+						solar_system = {
+							is_same_value = event_target:fmerc_ops_fleet.solar_system
+						}
+					}
+					fleet = {
+						save_event_target_as = fmerc_target
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					exists = event_target:fmerc_target
+				}
+			}
+			event_target:fmerc_target_country = {
+				random_owned_ship = {
+					limit = {
+						exists = fleet
+						has_ship_flag = "fmerc_target"
+					}
+					fleet = {
+						save_event_target_as = fmerc_target
+					}
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			NOT = { exists = event_target:fmerc_ops_fleet }
+			any_owned_fleet = {
+				has_fleet_flag = "fmerc_raiding_fleet"
+			}
+		}
+		random_owned_fleet = {
+			limit = {
+				has_fleet_flag = "fmerc_raiding_fleet"
+			}
+			save_event_target_as = fmerc_ops_fleet
+		}
+	}
+}
+
+fmerc_ops_set_fleet_target = {
+	event_target:fmerc_target_country = {
+		if = {
+			limit = {
+				any_owned_fleet = {
+					fleet_size > 8
+					fleet_size < 30
+					is_ship_class = shipclass_military
+					exists = solar_system
+				}
+			}
+			random_owned_fleet = {
+				limit = {
+					fleet_size > 8
+					fleet_size < 30
+					is_ship_class = shipclass_military
+					exists = solar_system
+				}
+				save_event_target_as = fmerc_target
+			}
+			else = {
+				random_owned_fleet = {
+					limit = {
+						is_ship_class = shipclass_military
+						fleet_size < 100
+						exists = solar_system
+					}
+					save_event_target_as = fmerc_target
+				}
+				if = {
+					limit = {
+						NOT = {
+							exists = event_target:fmerc_target
+						}
+					}
+					random_owned_fleet = {
+						save_event_target_as = fmerc_target
+					}
+				}
+			}
+		}
+	}
+}
+
+fmerc_ops_set_raid_targets = {
+	set_variable = {
+		which = MercRaidCount
+		value = 5
+	}
+	event_target:fmerc_target_country = {
+		every_owned_ship = {
+			limit = {
+				exists = solar_system
+				exists = fleet
+				OR = {
+					is_ship_size = mining_station
+					is_ship_size = research_station
+					is_ship_size = outpost_station
+					is_ship_size = observation_station
+				}
+				solar_system = {
+					NOT = { has_star_flag = enclave }
+					NOT = {
+						fmerc_in_system = yes
+					}
+				}
+			}
+			set_ship_flag = "fmerc_counter"
+		}
+
+		while = {
+			limit = {
+				root = {
+					check_variable = {
+						which = MercRaidCount
+						value > 0
+					}
+				}
+			}
+			root = {
+				subtract_variable = {
+					which = MercRaidCount
+					value = 1
+				}
+			}
+			random_owned_ship = {
+				limit = { has_ship_flag = "fmerc_counter" }
+				remove_ship_flag = "fmerc_counter"
+				set_ship_flag = "fmerc_target"
+			}
+		}
+		every_owned_ship = {
+			limit = { has_ship_flag = "fmerc_counter" }
+			remove_ship_flag = "fmerc_counter"
+		}
+		random_owned_ship = {
+			limit = {
+				has_ship_flag = "fmerc_target"
+				exists = solar_system
+			}
+			fleet = {
+				save_event_target_as = fmerc_target
+			}
+		}
+	}
+}
+

@@ -1,6 +1,39 @@
 
 # These effects are only used by the liberation mission type
 
+fmerc_ops_initial_target_liberate = {
+	event_target:fmerc_buyer = {
+		# Capital of buyer
+		capital_scope = {
+			closest_system = {
+				limit = {
+					NOT = { has_star_flag = enclave }
+					any_planet = {
+						fmerc_valid_liberation_planet = yes
+					}
+					# In some rare cases you end up with two empires
+					# with colonized planets in the same system. These
+					# can not be targetted. I'm not sure why I made it this way.
+					NOT = {
+						any_planet = {
+							is_owned_by = event_target:fmerc_buyer
+						}
+					}
+				}
+				#min_steps = 1
+				random_system_planet = {
+					limit = {
+						fmerc_valid_liberation_planet = yes
+					}
+					set_planet_flag = "fmerc_target"
+					save_event_target_as = fmerc_target
+				}
+			}
+		}
+	}
+}
+
+
 fmerc_ops_ensure_all_liberate_targets = {
 	fmerc_set_buyer = yes
 	fmerc_set_hq = yes

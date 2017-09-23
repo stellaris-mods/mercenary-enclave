@@ -1,0 +1,36 @@
+
+# Effects for the spaceport operation type
+# Will probably get merged to _raid.txt.
+
+fmerc_ops_set_spaceport_target = {
+	event_target:fmerc_buyer = {
+		# Capital of buyer
+		capital_scope = {
+			closest_system = {
+				limit = {
+					any_ship_in_system = {
+						is_ship_size = orbital_station
+						exists = owner
+						owner = {
+							is_same_value = event_target:fmerc_target_country
+						}
+					}
+					NOT = {
+						has_star_flag = enclave
+					}
+				}
+				#min_steps = 1
+				random_fleet_in_system = {
+					limit = {
+						is_ship_size = orbital_station
+						exists = owner
+						owner = {
+							is_same_value = event_target:fmerc_target_country
+						}
+					}
+					save_event_target_as = fmerc_target
+				}
+			}
+		}
+	}
+}
