@@ -260,7 +260,6 @@ fmerc_do_mission_setup = {
 			who = root
 			flag = merc_operations_squad
 		}
-		save_event_target_as = fmerc_operations
 	}
 
 	fmerc_copy_success = yes
