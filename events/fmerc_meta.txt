@@ -175,20 +175,18 @@ country_event = {
 	title = fmerc_enclave.precom_title
 	desc = fmerc_enclave.precom_desc
 	picture = GFX_evt_star_chart
-	location = event_target:fmercsystem
+	location = FROM # FROM is fleet
 	is_triggered_only = yes
 
 	option = {
 		name = INTERESTING
-		tooltip = {
-			# Project needs to be created in the enclaves country scope, so that FROMFROM points
-			# to the enclave in the special project event handlers
-			event_target:target_enclave = {
-				enable_special_project = {
-					name = "INVESTIGATE_MERC_ENCLAVE"
-					location = event_target:player_capital_location
-					owner = root
-				}
+		# Project needs to be created in the enclaves country scope, so that FROMFROM points
+		# to the enclave in the special project event handlers
+		event_target:target_enclave = {
+			enable_special_project = {
+				name = "INVESTIGATE_MERC_ENCLAVE"
+				location = event_target:player_capital_location
+				owner = root
 			}
 		}
 		hidden_effect = {
