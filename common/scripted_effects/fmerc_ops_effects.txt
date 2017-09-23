@@ -437,11 +437,9 @@ fmerc_ops_initial_target_liberate = {
 		capital_scope = {
 			closest_system = {
 				limit = {
+					NOT = { has_star_flag = enclave }
 					any_planet = {
-						is_owned_by = event_target:fmerc_target_country
-						has_ground_combat = no
-						is_capital = no
-						is_homeworld = no
+						fmerc_valid_liberation_planet = yes
 					}
 					# In some rare cases you end up with two empires
 					# with colonized planets in the same system. These
@@ -451,21 +449,12 @@ fmerc_ops_initial_target_liberate = {
 							is_owned_by = event_target:fmerc_buyer
 						}
 					}
-					NOT = {
-						has_star_flag = enclave
-					}
 				}
 				#min_steps = 1
 				save_event_target_as = fmerc_target_system
 				random_system_planet = {
 					limit = {
-						has_ground_combat = no
-						is_capital = no
-						is_homeworld = no
-						exists = owner
-						owner = {
-							is_same_value = event_target:fmerc_target_country
-						}
+						fmerc_valid_liberation_planet = yes
 					}
 					set_planet_flag = "fmerc_target"
 					save_event_target_as = fmerc_target_planet

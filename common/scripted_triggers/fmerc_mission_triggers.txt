@@ -110,3 +110,18 @@ fmerc_same_culture_root = {
 		}
 	}
 }
+
+fmerc_valid_liberation_planet = {
+	exists = owner
+	is_colony = yes
+	is_owned_by = event_target:fmerc_target_country
+	is_controlled_by = event_target:fmerc_target_country
+	has_ground_combat = no
+	is_capital = no
+	is_homeworld = no
+	num_pops > 0
+	is_terraforming = no
+	NOT = {
+		has_planet_flag = "fmerc_target"
+	}
+}

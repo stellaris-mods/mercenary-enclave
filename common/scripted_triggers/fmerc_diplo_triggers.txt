@@ -64,9 +64,16 @@ fmerc_is_valid_country = {
 				has_country_flag = "fmerc_diplo_liberate"
 			}
 			any_owned_planet = {
+				# XXX should check that controller is owner as well
+				is_colony = yes
 				has_ground_combat = no
 				is_capital = no
 				is_homeworld = no
+				num_pops > 0
+				is_terraforming = no
+				NOT = {
+					has_planet_flag = "fmerc_target"
+				}
 			}
 			num_owned_planets > 2
 		}

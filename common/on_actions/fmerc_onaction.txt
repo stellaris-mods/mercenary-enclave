@@ -84,15 +84,43 @@ on_fleet_destroyed_victim = {
 	}
 }
 
-on_planet_attackers_lose = {
-	events = {
-		fmerc_ops_liberate.40
-	}
-}
 
-on_planet_attackers_win = {
+# Triggers country_event for the defender upon victory
+# Root = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+on_planet_defenders_win = {
 	events = {
 		fmerc_ops_liberate.50
 	}
 }
 
+# Triggers country_event for the defender upon defeat
+# This = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+on_planet_defenders_lose = {
+	events = {
+		fmerc_ops_liberate.60
+	}
+}
+
+# Initial rebels manage to take control of the planet, happens before the new owner is set, after the war is created.
+# This = Rebel Country
+# From = Planet
+# FromFrom = War
+on_rebels_take_planet = {
+	events = {
+		fmerc_ops_liberate.70
+	}
+}
+
+# Initial rebels manage to take control of the planet, happens after the new owner is set, after the war is created.
+# This = Rebel Country
+# From = Planet
+# FromFrom = War
+on_rebels_take_planet_owner_switched = {
+	events = {
+		fmerc_ops_liberate.71
+	}
+}

@@ -1,0 +1,324 @@
+
+
+#GARRISON_SIZE_BASE					= 2			# Planet always spawns this number of garrisons
+#GARRISON_SIZE_MULT					= 0.4		# Per pop over 1
+
+# Scope should be planet
+# event_target:tmp_army_country gets the new armies
+# root needs to be the mercenary country
+# event_target:fmerc_buyer must be set
+
+fmerc_liberation_create_armies = {
+	ROOT = {
+		set_variable = {
+			which = MercLiberationArmyCount
+			value = 2 #GARRISON_SIZE_BASE
+		}
+	}
+	every_owned_pop = { # only loops the ones on planet
+		limit = { # Should skip 1 pop.
+			tile = {
+				NOT = {
+					has_building = building_capital_1
+					has_building = building_capital_2
+					has_building = building_capital_3
+				}
+			}
+		}
+		ROOT = {
+			# There is a chance this should be multiply_variable by 1.4
+			# There is also a chance it should be multiply_variable by ( 1 + ( num_pops * 0.4 ) )
+			# But it probably isn't, it's probably 0.4 armies per pop.
+			change_variable = {
+				which = MercLiberationArmyCount
+				value = 0.4 # GARRISON_SIZE_MULT
+			}
+		}
+	} # There are some army types we dont respond to, because I think they should give a defense advantage
+	every_planet_army = {
+		switch = {
+			trigger = army_type
+			assault_army         = { fmerc_assault_army = yes }
+			slave_army           = { fmerc_slave_army = yes }
+			clone_army           = { fmerc_clone_army = yes }
+			robotic_army         = { fmerc_robotic_army = yes }
+			robotic_defense_army = { fmerc_robotic_defense_army = yes }
+			android_army         = { fmerc_android_army = yes }
+			android_defense_army = { fmerc_android_defense_army = yes }
+			psionic_army         = { fmerc_psionic_army = yes }
+			xenomorph_army       = { fmerc_xenomorph_army = yes }
+			gene_warrior_army    = { fmerc_gene_warrior_army = yes }
+			swarm_army           = { fmerc_swarm_army = yes }
+			elite_guard_army     = { fmerc_elite_guard_army = yes }
+			shroud_army          = { fmerc_shroud_army = yes }
+			machine_assault_1    = { fmerc_machine_assault_1 = yes }
+			machine_defense_1    = { fmerc_machine_defense_1 = yes }
+			machine_assault_2    = { fmerc_machine_assault_2 = yes }
+			machine_defense_2    = { fmerc_machine_defense_2 = yes }
+			machine_assault_3    = { fmerc_machine_assault_3 = yes }
+			default = {
+				ROOT = {
+					change_variable = {
+						which = MercLiberationArmyCount
+						value = 1
+					}
+				}
+			}
+		}
+	}
+	# Now we invade with the same number of armies that we found.
+	ROOT = {
+		set_variable = {
+			which = MercLiberationArmyAdditional
+			value = MercSuccess
+		}
+		while = { # ye I could use divide_variable. I wasn't thinking straight
+			limit = {
+				check_variable = {
+					which = MercLiberationArmyAdditional
+					value > 20
+				}
+			}
+			change_variable = {
+				which = MercLiberationArmyCount
+				value = 1
+			}
+			subtract_variable = {
+				which = MercLiberationArmyAdditional
+				value = 20
+			}
+		}
+		log = "Spawning [Root.MercLiberationArmyCount] armies."
+		while = {
+			limit = {
+				check_variable = {
+					which = MercLiberationArmyCount
+					value > 0.9
+				}
+			}
+			PREV = { # Planet
+				create_army = {
+					name = "Hired Rebels"
+					owner = event_target:tmp_army_country
+					species = event_target:fmerc_buyer
+					type = "defense_army"
+				}
+			}
+			subtract_variable = {
+				which = MercLiberationArmyCount
+				value = 1
+			}
+		}
+	}
+}
+
+# army_type - Checks the army's type
+# army_type = assault_army
+# has_army - Checks if the planet has an army
+# has_army = yes
+
+# every_planet_army
+
+# every_owned_pop = {
+# 							planet = {
+
+# 							}
+# 						}
+
+# event_target:tmp_army_country = {
+# 	while = {
+# 		limit = {
+# 			count_owned_army = {
+
+# 			}
+# 		}
+# 	}
+# }
+
+fmerc_assault_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "assault_army"
+		}
+	}
+}
+fmerc_slave_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "slave_army"
+		}
+	}
+}
+fmerc_clone_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "clone_army"
+		}
+	}
+}
+fmerc_robotic_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "robotic_army"
+		}
+	}
+}
+fmerc_robotic_defense_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "robotic_defense_army"
+		}
+	}
+}
+fmerc_android_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "android_army"
+		}
+	}
+}
+fmerc_android_defense_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "android_defense_army"
+		}
+	}
+}
+fmerc_psionic_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "psionic_army"
+		}
+	}
+}
+fmerc_xenomorph_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "xenomorph_army"
+		}
+	}
+}
+fmerc_gene_warrior_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "gene_warrior_army"
+		}
+	}
+}
+fmerc_swarm_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "swarm_army"
+		}
+	}
+}
+fmerc_elite_guard_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "elite_guard_army"
+		}
+	}
+}
+fmerc_shroud_army = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "shroud_army"
+		}
+	}
+}
+fmerc_machine_assault_1 = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "machine_assault_1"
+		}
+	}
+}
+fmerc_machine_defense_1 = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "machine_defense_1"
+		}
+	}
+}
+fmerc_machine_assault_2 = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "machine_assault_2"
+		}
+	}
+}
+fmerc_machine_defense_2 = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "machine_defense_2"
+		}
+	}
+}
+fmerc_machine_assault_3 = {
+	PREV = { # Planet
+		create_army = {
+			name = "Hired Rebels"
+			owner = event_target:tmp_army_country
+			species = event_target:fmerc_buyer
+			type = "machine_assault_3"
+		}
+	}
+}
+
+
+
+
+
+
+
