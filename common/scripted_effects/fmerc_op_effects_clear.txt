@@ -1,9 +1,11 @@
 
 # Effects for space clearing operations
 
+# XXX should try to consolidate the clear inits
+
 # XXX should rewrite all every_planet_within_border users below to use
 # XXX closest_system instead, and is_within_borders_of = event_target:fmerc_buyer
-fmerc_ops_initial_target_amoeba = {
+fmerc_stage2_init_amoeba = {
 	event_target:fmerc_buyer = {
 		every_planet_within_border = {
 			limit = {
@@ -48,7 +50,7 @@ fmerc_ops_initial_target_amoeba = {
 	}
 }
 
-fmerc_ops_initial_target_cloud = {
+fmerc_stage2_init_cloud = {
 	event_target:fmerc_buyer = {
 		every_planet_within_border = {
 			limit = {
@@ -94,7 +96,7 @@ fmerc_ops_initial_target_cloud = {
 	}
 }
 
-fmerc_ops_initial_target_crystal = {
+fmerc_stage2_init_crystal = {
 	event_target:fmerc_buyer = {
 		every_planet_within_border = {
 			limit = {
@@ -140,7 +142,7 @@ fmerc_ops_initial_target_crystal = {
 	}
 }
 
-fmerc_ops_initial_target_pirate = {
+fmerc_stage2_init_pirate = {
 	event_target:fmerc_buyer = {
 		every_planet_within_border = {
 			limit = {
@@ -186,7 +188,7 @@ fmerc_ops_initial_target_pirate = {
 	}
 }
 
-fmerc_ops_initial_target_drone = {
+fmerc_stage2_init_drone = {
 	event_target:fmerc_buyer = {
 		every_planet_within_border = {
 			limit = {

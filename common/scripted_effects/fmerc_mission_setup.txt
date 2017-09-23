@@ -1,5 +1,5 @@
 
-fmerc_set_culture = {
+fmerc_stage1_culture_random = {
 	last_created_country = {
 		random_list = {
 			14 = { set_country_flag = "arthropoid_01" }
@@ -16,7 +16,9 @@ fmerc_set_culture = {
 		}
 	}
 }
-fmerc_set_same_culture = {
+
+# XXX add new culture types from new patches, if any
+fmerc_stage1_culture_copy = {
 	switch = {
 		trigger = graphical_culture
 		arthropoid_01 = {
@@ -134,7 +136,7 @@ fmerc_set_same_culture = {
 }
 
 # scope is the buyer country
-fmerc_do_normal_setup = {
+fmerc_stage1_setup_mission = {
 	last_created_country = {
 		set_relation_flag = {
 			who = event_target:fmerc_target_country
@@ -144,21 +146,21 @@ fmerc_do_normal_setup = {
 	switch = {
 		trigger = has_country_flag
 		fmerc_diplo_disguise_random = {
-			fmerc_set_culture = yes
+			fmerc_stage1_culture_random = yes
 		}
 		fmerc_diplo_disguise_other = {
 			# Anything except root
-			fmerc_set_culture = yes
+			fmerc_stage1_culture_random = yes
 			if = {
 				limit = {
-					fmerc_same_culture_root = yes
+					fmerc_stage1_same_culture = yes
 				}
 				set_country_flag = "gfx_drone"
 			}
 		}
 		fmerc_diplo_disguise_same = {
 			# Same as root
-			fmerc_set_same_culture = yes
+			fmerc_stage1_culture_copy = yes
 		}
 		fmerc_diplo_disguise_pirate = {
 			last_created_country = {
@@ -179,12 +181,14 @@ fmerc_do_normal_setup = {
 	}
 }
 
-fmerc_do_clear_setup = {
-	fmerc_set_same_culture = yes
+fmerc_stage1_setup_clear = {
+	fmerc_stage1_culture_copy = yes
 }
 
+# Simple rule of thumb: any scripted effect that has "init"
+# in it must exclusively flow from this.
 # Scope is the buyer country
-fmerc_do_mission_setup = {
+fmerc_init_stage1 = {
 	create_country = {
 		name = "Mercenary Operations"
 		name_list = "FMercenaries"
@@ -262,8 +266,8 @@ fmerc_do_mission_setup = {
 		}
 	}
 
-	fmerc_copy_success = yes
-	fmerc_copy_detection = yes
+	fmerc_stage1_copy_success = yes
+	fmerc_stage1_copy_detection = yes
 
 	switch = {
 		trigger = has_country_flag
@@ -271,55 +275,55 @@ fmerc_do_mission_setup = {
 			last_created_country = {
 				set_country_flag = "fmerc_spaceport"
 			}
-			fmerc_do_normal_setup = yes
+			fmerc_stage1_setup_mission = yes
 		}
 		fmerc_diplo_liberate = {
 			last_created_country = {
 				set_country_flag = "fmerc_liberate"
 			}
-			fmerc_do_normal_setup = yes
+			fmerc_stage1_setup_mission = yes
 		}
 		fmerc_diplo_miningraid = {
 			last_created_country = {
 				set_country_flag = "fmerc_raid"
 			}
-			fmerc_do_normal_setup = yes
+			fmerc_stage1_setup_mission = yes
 		}
 		fmerc_diplo_fleetraid = {
 			last_created_country = {
 				set_country_flag = "fmerc_fleet"
 			}
-			fmerc_do_normal_setup = yes
+			fmerc_stage1_setup_mission = yes
 		}
 		fmerc_target_amoeba = {
 			last_created_country = {
 				set_country_flag = "fmerc_amoeba"
 			}
-			fmerc_do_clear_setup = yes
+			fmerc_stage1_setup_clear = yes
 		}
 		fmerc_target_cloud = {
 			last_created_country = {
 				set_country_flag = "fmerc_cloud"
 			}
-			fmerc_do_clear_setup = yes
+			fmerc_stage1_setup_clear = yes
 		}
 		fmerc_target_crystal = {
 			last_created_country = {
 				set_country_flag = "fmerc_crystal"
 			}
-			fmerc_do_clear_setup = yes
+			fmerc_stage1_setup_clear = yes
 		}
 		fmerc_target_pirate = {
 			last_created_country = {
 				set_country_flag = "fmerc_pirate"
 			}
-			fmerc_do_clear_setup = yes
+			fmerc_stage1_setup_clear = yes
 		}
 		fmerc_target_drone = {
 			last_created_country = {
 				set_country_flag = "fmerc_drone"
 			}
-			fmerc_do_clear_setup = yes
+			fmerc_stage1_setup_clear = yes
 		}
 	}
 
@@ -342,7 +346,7 @@ fmerc_do_mission_setup = {
 			ai_01 = { create_ship_design = { design = "UR-IVS5" } }
 			swarm_01 = { create_ship_design = { design = "K7FXX-L"} }
 			extra_dimensional_01 = { create_ship_design = { design = "CF-X86W"} }
-			# Keep gfx_drone last since we use it as fallback in fmerc_do_normal_setup
+			# Keep gfx_drone last since we use it as fallback in fmerc_stage1_setup_mission
 			# Does that make sense? Maybe it should be first in the switch. I dont know if it
 			# stops at first hit or continues.
 			gfx_drone = { create_ship_design = { design = "B370-NF" } }

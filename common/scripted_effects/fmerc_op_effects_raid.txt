@@ -74,7 +74,7 @@ fmerc_ops_ensure_all_event_targets = {
 	}
 }
 
-fmerc_ops_set_fleet_target = {
+fmerc_stage2_init_fleet = {
 	event_target:fmerc_target_country = {
 		if = {
 			limit = {
@@ -118,7 +118,7 @@ fmerc_ops_set_fleet_target = {
 	}
 }
 
-fmerc_ops_set_raid_targets = {
+fmerc_stage2_init_raid = {
 	set_variable = {
 		which = MercRaidCount
 		value = 5

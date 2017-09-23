@@ -2,7 +2,7 @@
 # Effects for the spaceport operation type
 # Will probably get merged to _raid.txt.
 
-fmerc_ops_set_spaceport_target = {
+fmerc_stage2_init_spaceport = {
 	event_target:fmerc_buyer = {
 		# Capital of buyer
 		capital_scope = {

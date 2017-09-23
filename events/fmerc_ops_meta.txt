@@ -8,7 +8,7 @@ country_event = {
 
 	# We should start the mission immediately, the delay has passed.
 	immediate = {
-		fmerc_ops_initial_buyer = yes
+		fmerc_init_stage2 = yes
 	}
 }
 

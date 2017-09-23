@@ -1,7 +1,7 @@
 
 # These effects are only used by the liberation mission type
 
-fmerc_ops_initial_target_liberate = {
+fmerc_stage2_init_liberation = {
 	event_target:fmerc_buyer = {
 		# Capital of buyer
 		capital_scope = {
@@ -32,7 +32,6 @@ fmerc_ops_initial_target_liberate = {
 		}
 	}
 }
-
 
 fmerc_ops_ensure_all_liberate_targets = {
 	fmerc_set_buyer = yes

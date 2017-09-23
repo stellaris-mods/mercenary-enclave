@@ -1,6 +1,7 @@
 
 # This is delayed
-fmerc_ops_initial_buyer = {
+# stage 2 is in the operations country scope
+fmerc_init_stage2 = {
 	fmerc_set_buyer = yes
 	if = {
 		limit = {
@@ -8,15 +9,67 @@ fmerc_ops_initial_buyer = {
 			fmerc_enclave_exists = yes
 		}
 		# We found the buyer, and an enclave exists
-		fmerc_ops_initial_target = yes
+		switch = {
+			trigger = has_country_flag
+			fmerc_spaceport = {
+				fmerc_stage2_set_target_country = yes
+				fmerc_stage2_init_spaceport = yes
+				fmerc_stage2_tag_ships = yes
+				country_event = { id = fmerc_ops_fleet.1 }
+			}
+			fmerc_liberate = {
+				fmerc_stage2_set_target_country = yes
+				fmerc_stage2_init_liberation = yes
+				country_event = { id = fmerc_ops_liberate.1 }
+			}
+			fmerc_raid = {
+				fmerc_stage2_set_target_country = yes
+				# Ships are tagged in this
+				fmerc_stage2_init_raid = yes
+				country_event = { id = fmerc_ops_fleet.1 }
+			}
+			fmerc_fleet = {
+				fmerc_stage2_set_target_country = yes
+				fmerc_stage2_init_fleet = yes
+				fmerc_stage2_tag_ships = yes
+				country_event = { id = fmerc_ops_fleet.1 }
+			}
+			fmerc_amoeba = {
+				fmerc_stage2_init_amoeba = yes
+				fmerc_stage2_tag_ships = yes
+				country_event = { id = fmerc_ops_fleet.1 }
+			}
+			fmerc_cloud = {
+				fmerc_stage2_init_cloud = yes
+				fmerc_stage2_tag_ships = yes
+				country_event = { id = fmerc_ops_fleet.1 }
+			}
+			fmerc_crystal = {
+				fmerc_stage2_init_crystal = yes
+				fmerc_stage2_tag_ships = yes
+				country_event = { id = fmerc_ops_fleet.1 }
+			}
+			fmerc_pirate = {
+				fmerc_stage2_init_pirate = yes
+				fmerc_stage2_tag_ships = yes
+				country_event = { id = fmerc_ops_fleet.1 }
+			}
+			fmerc_drone = {
+				fmerc_stage2_init_drone = yes
+				fmerc_stage2_tag_ships = yes
+				country_event = { id = fmerc_ops_fleet.1 }
+			}
+		}
 
+		# Either the buyer country is gone, or there are
+		# no mercenary enclaves left.
 		else = {
 			set_country_flag = "fmerc_ops_completed"
 		}
 	}
 }
 
-fmerc_ops_initial_target_country = {
+fmerc_stage2_set_target_country = {
 	random_country = {
 		limit = {
 			reverse_has_relation_flag = {
@@ -28,7 +81,7 @@ fmerc_ops_initial_target_country = {
 	}
 }
 
-fmerc_ops_tag_all_ships = {
+fmerc_stage2_tag_ships = {
 	if = {
 		limit = {
 			# Doesnt exist if we're doing a space clear event and there are zero creatures to attack
@@ -45,60 +98,6 @@ fmerc_ops_tag_all_ships = {
 				}
 				set_ship_flag = "fmerc_target"
 			}
-		}
-	}
-}
-
-fmerc_ops_initial_target = {
-	switch = {
-		trigger = has_country_flag
-		fmerc_spaceport = {
-			fmerc_ops_initial_target_country = yes
-			fmerc_ops_set_spaceport_target = yes
-			fmerc_ops_tag_all_ships = yes
-			country_event = { id = fmerc_ops_fleet.1 }
-		}
-		fmerc_liberate = {
-			fmerc_ops_initial_target_country = yes
-			fmerc_ops_initial_target_liberate = yes
-			country_event = { id = fmerc_ops_liberate.1 }
-		}
-		fmerc_raid = {
-			fmerc_ops_initial_target_country = yes
-			# Ships are tagged in this
-			fmerc_ops_set_raid_targets = yes
-			country_event = { id = fmerc_ops_fleet.1 }
-		}
-		fmerc_fleet = {
-			fmerc_ops_initial_target_country = yes
-			fmerc_ops_set_fleet_target = yes
-			fmerc_ops_tag_all_ships = yes
-			country_event = { id = fmerc_ops_fleet.1 }
-		}
-		fmerc_amoeba = {
-			fmerc_ops_initial_target_amoeba = yes
-			fmerc_ops_tag_all_ships = yes
-			country_event = { id = fmerc_ops_fleet.1 }
-		}
-		fmerc_cloud = {
-			fmerc_ops_initial_target_cloud = yes
-			fmerc_ops_tag_all_ships = yes
-			country_event = { id = fmerc_ops_fleet.1 }
-		}
-		fmerc_crystal = {
-			fmerc_ops_initial_target_crystal = yes
-			fmerc_ops_tag_all_ships = yes
-			country_event = { id = fmerc_ops_fleet.1 }
-		}
-		fmerc_pirate = {
-			fmerc_ops_initial_target_pirate = yes
-			fmerc_ops_tag_all_ships = yes
-			country_event = { id = fmerc_ops_fleet.1 }
-		}
-		fmerc_drone = {
-			fmerc_ops_initial_target_drone = yes
-			fmerc_ops_tag_all_ships = yes
-			country_event = { id = fmerc_ops_fleet.1 }
 		}
 	}
 }

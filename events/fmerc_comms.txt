@@ -2165,7 +2165,7 @@ country_event = {
 	immediate = {
 		remove_country_flag = "fmerc_diplomacy_engaged"
 		set_country_flag = "fmerc_active_operation"
-		fmerc_do_mission_setup = yes
+		fmerc_init_stage1 = yes
 	}
 }
 
@@ -2419,7 +2419,7 @@ country_event = {
 			value = MercCost
 		}
 		fmerc_grabdatcash = yes
-		fmerc_do_mission_setup = yes
+		fmerc_init_stage1 = yes
 	}
 }
 

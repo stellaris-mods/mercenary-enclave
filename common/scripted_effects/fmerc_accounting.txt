@@ -319,7 +319,7 @@ fmerc_grabdatcash = {
 	}
 }
 
-fmerc_copy_detection = {
+fmerc_stage1_copy_detection = {
 	last_created_country = {
 		set_variable = {
 			which = MercDetect
@@ -346,7 +346,8 @@ fmerc_copy_detection = {
 		}
 	}
 }
-fmerc_copy_success = {
+
+fmerc_stage1_copy_success = {
 	last_created_country = {
 		set_variable = {
 			which = MercSuccess
