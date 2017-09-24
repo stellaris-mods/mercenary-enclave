@@ -1,10 +1,5 @@
 namespace = fmerc_ops_fleet
 
-# ZZZ the only way we can have a "relation flag" to an arbitrary fleet or similar,
-# is to use a variable set on them
-# So when we create a new ops country, it needs to have an id number
-# that is created from the merc enclave country scope
-
 # Triggered from fmerc_ops_initial_target
 # In this, event_target:fmerc_target is a fleet
 country_event = {
@@ -19,7 +14,6 @@ country_event = {
 	immediate = {
 		if = {
 			limit = {
-				exists = event_target:fmerc_target_country
 				exists = event_target:fmerc_target
 			}
 			if = {

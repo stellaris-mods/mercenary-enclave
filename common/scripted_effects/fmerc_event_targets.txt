@@ -3,7 +3,7 @@ fmerc_set_buyer = {
 	random_country = {
 		limit = {
 			reverse_has_relation_flag = {
-				who = root
+				who = ROOT
 				flag = merc_operations_squad
 			}
 		}
