@@ -121,8 +121,8 @@ country_event = {
 	}
 
 	immediate = {
-		# This sets _fleet to the next ship target, if needed.
-		fmerc_ops_ensure_all_event_targets = yes
+		# This sets fmerc_target to the next ship target, if needed.
+		fmerc_set_raid_target = yes
 
 		if = {
 			limit = {
@@ -157,7 +157,8 @@ country_event = {
 	}
 
 	immediate = {
-		fmerc_ops_ensure_all_event_targets = yes
+		# This sets fmerc_target to the next ship target, if needed.
+		fmerc_set_raid_target = yes
 
 		if = {
 			limit = {
