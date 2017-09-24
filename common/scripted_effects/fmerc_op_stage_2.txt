@@ -12,7 +12,7 @@ fmerc_init_stage2 = {
 
 	log = "Stage 2: Launch Mercenary Operations"
 
-	if = { limit = { NOT = { fmerc_enclave_exists = yes } }
+	if = { limit = { fmerc_enclave_exists = no }
 		log = "Mercenary Enclave no longer exists, aborting mission."
 		set_country_flag = "fmerc_ops_completed"
 		break = yes
