@@ -62,15 +62,7 @@ fmerc_set_raid_target = {
 fmerc_stage2_init_fleet = {
 	log = "Fleet: Locating military fleet target."
 	event_target:fmerc_target_country = {
-		if = {
-			limit = {
-				any_owned_fleet = {
-					fleet_size > 8
-					fleet_size < 30
-					is_ship_class = shipclass_military
-					exists = solar_system
-				}
-			}
+		if = { limit = { NOT = { exists = event_target:fmerc_target } }
 			random_owned_fleet = {
 				limit = {
 					fleet_size > 8
@@ -80,25 +72,26 @@ fmerc_stage2_init_fleet = {
 				}
 				save_event_target_as = fmerc_target
 			}
-			else = {
-				random_owned_fleet = {
-					limit = {
-						is_ship_class = shipclass_military
-						fleet_size < 100
-						exists = solar_system
-					}
-					save_event_target_as = fmerc_target
+		}
+		if = { limit = { NOT = { exists = event_target:fmerc_target } }
+			random_owned_fleet = {
+				limit = {
+					is_ship_class = shipclass_military
+					fleet_size < 100
+					exists = solar_system
 				}
-				if = {
-					limit = {
-						NOT = {
-							exists = event_target:fmerc_target
-						}
-					}
-					random_owned_fleet = {
-						save_event_target_as = fmerc_target
-					}
-				}
+				save_event_target_as = fmerc_target
+			}
+		}
+		if = { limit = { NOT = { exists = event_target:fmerc_target } }
+			random_owned_fleet = {
+				limit = { is_ship_class = shipclass_military }
+				save_event_target_as = fmerc_target
+			}
+		}
+		if = { limit = { NOT = { exists = event_target:fmerc_target } }
+			random_owned_fleet = {
+				save_event_target_as = fmerc_target
 			}
 		}
 	}
