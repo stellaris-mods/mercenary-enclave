@@ -16,29 +16,20 @@ country_event = {
 	}
 
 	immediate = {
-		log = "fmerc_ops_fleet.1"
+		log = "fmerc_ops_fleet: Start mission (.1)"
 
 		if = {
 			limit = {
 				exists = event_target:fmerc_target
 			}
-			if = {
-				limit = {
-					any_owned_fleet = {
-						fleet_size < 4
-					}
-				}
-				every_owned_fleet = {
-					destroy_fleet = THIS
-				}
-			}
 
 			if = {
-				limit = { num_fleets = 0 }
+				limit = { count_owned_ships { count = 0 } }
+				log = "Attempting to spawn new fleet."
 				fmerc_stage3_create_fleet = yes
 			}
 
-			random_owned_fleet = {
+			every_owned_fleet = {
 				queue_actions = {
 					repeat = {
 						while = {
@@ -67,14 +58,10 @@ country_event = {
 					}
 					effect = {
 						id = fmerc_ops_fleet.1.effect.1
-						if = {
-							limit = {
-								exists = owner
-							}
-							owner = {
-								# Turn hostile when we find our first target
-								set_faction_hostility = { set_hostile = yes }
-							}
+						set_fleet_stance = aggressive
+						owner = {
+							# Turn hostile when we find our first target
+							set_faction_hostility = { set_hostile = yes }
 						}
 					}
 					repeat = {
@@ -91,13 +78,8 @@ country_event = {
 					}
 					effect = {
 						id = fmerc_ops_fleet.1.effect.2
-						if = {
-							limit = {
-								exists = owner
-							}
-							owner = {
-								country_event = { id = fmerc_ops_fleet.20 }
-							}
+						owner = {
+							country_event = { id = fmerc_ops_fleet.10 }
 						}
 					}
 				}
@@ -113,7 +95,7 @@ country_event = {
 
 # Exclusively triggered by the fleet queue being completed
 country_event = {
-	id = fmerc_ops_fleet.20
+	id = fmerc_ops_fleet.10
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -122,7 +104,7 @@ country_event = {
 	}
 
 	immediate = {
-		log = "fmerc_ops_fleet.20"
+		log = "fmerc_ops_fleet: queue_actions done (.10)"
 
 		# This sets fmerc_target to the next ship target, if needed.
 		fmerc_set_raid_target = yes
@@ -158,10 +140,12 @@ country_event = {
 		is_country_type = "fmerc_operations"
 		NOT = { has_country_flag = "fmerc_liberate" }
 		NOT = { has_country_flag = "fmerc_ops_completed" }
+		FROMFROM = { has_fleet_flag = "fmerc_count_towards_success" }
+		count_owned_ships = { count = 0 }
 	}
 
 	immediate = {
-		log = "fmerc_ops_fleet.30"
+		log = "fmerc_ops_fleet: on_fleet_destroyed_victim (.30)"
 
 		# This sets fmerc_target to the next ship target, if needed.
 		fmerc_set_raid_target = yes
@@ -181,6 +165,7 @@ country_event = {
 						value > 10
 					}
 				}
+				log = "Success chance is [this.MercSuccess]%, so try again!"
 				# Try again
 				country_event = {
 					id = fmerc_ops_fleet.1

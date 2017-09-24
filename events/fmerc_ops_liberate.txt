@@ -16,29 +16,18 @@ country_event = {
 	}
 
 	immediate = {
-		log = "fmerc_ops_liberate.1"
+		log = "fmerc_ops_liberate: Start mission (.1)"
 		if = {
 			limit = {
 				exists = event_target:fmerc_target
 			}
-			if = {
-				limit = {
-					any_owned_fleet = {
-						fleet_size < 4
-					}
-				}
-				log = "Fleet is too small, destroying."
-				every_owned_fleet = {
-					destroy_fleet = THIS
-				}
-			}
 
 			if = {
-				limit = { num_fleets = 0 }
+				limit = { count_owned_ships { count = 0 } }
 				fmerc_stage3_create_fleet = yes
 			}
 
-			random_owned_fleet = {
+			every_owned_fleet = {
 				queue_actions = {
 					repeat = {
 						while = {
@@ -102,7 +91,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		log = "fmerc_ops_liberate.10"
+		log = "fmerc_ops_liberate: queue_actions done (.10)"
 		fmerc_liberation_set_target_planet = yes
 
 		if = {
@@ -175,6 +164,11 @@ country_event = {
 							flag = random
 							effect = {
 								set_country_flag = "fmerc_liberation_rebels"
+								# This is weird; it seems that when the rebels win,
+								# this country is immediately turned into a "default" one,
+								# and so anyone that had contact with them is notified by
+								# vanilla event action.61. Try to prevent that.
+								set_country_flag = "silence_destroy_event"
 								# XXX
 								# event target only for create_army below.
 								# I don't know if last_created_country works with
@@ -221,10 +215,13 @@ country_event = {
 	trigger = {
 		is_country_type = "fmerc_operations"
 		has_country_flag = "fmerc_liberate"
+		NOT = { has_country_flag = "fmerc_ops_completed" }
+		FROMFROM = { has_fleet_flag = "fmerc_count_towards_success" }
+		count_owned_ships = { count = 0 }
 	}
 
 	immediate = {
-		log = "fmerc_ops_liberate.30"
+		log = "fmerc_ops_liberate: on_fleet_destroyed_victim (.30)"
 		subtract_variable = {
 			which = MercSuccess
 			value = 25
@@ -237,7 +234,7 @@ country_event = {
 				}
 			}
 			# Try again
-			log = "Restart mission."
+			log = "Success chance is [this.MercSuccess]%, so try again!"
 			fmerc_liberation_set_target_planet = yes
 			country_event = {
 				id = fmerc_ops_liberate.1
@@ -289,7 +286,7 @@ country_event = {
 		}
 	}
 	immediate = {
-		log = "fmerc_ops_liberate.50"
+		log = "fmerc_ops_liberate: on_planet_defenders_win (.50)"
 		random_country = {
 			limit = {
 				is_country_type = "fmerc_operations"
@@ -343,7 +340,7 @@ country_event = {
 		}
 	}
 	immediate = {
-		log = "fmerc_ops_liberate.60"
+		log = "fmerc_ops_liberate: on_planet_defenders_lose (.60)"
 		# In vanilla, the leader was killed.
 		# But now that there's only one governor per sector,
 		# that sounds unreasonable to me.
@@ -384,7 +381,7 @@ country_event = {
 		has_country_flag = "fmerc_liberation_rebels"
 	}
 	immediate = {
-		log = "fmerc_ops_liberate.70"
+		log = "fmerc_ops_liberate: on_rebels_take_planet (.70)"
 		FROM.owner = {
 			# Event target used in 4211
 			save_event_target_as = rebelled_against
@@ -406,7 +403,7 @@ country_event = {
 		has_country_flag = "fmerc_liberation_rebels"
 	}
 	immediate = {
-		log = "fmerc_ops_liberate.71"
+		log = "fmerc_ops_liberate: on_rebels_take_planet_owner_switched (.71)"
 
 		# Find mercenary operations
 		random_country = {
@@ -459,7 +456,6 @@ country_event = {
 				day_zero_contact = no
 				effect = {
 					set_country_flag = "fmerc_liberated_await_clear_skies"
-					set_timed_country_flag = { flag = timed_liberated_country days = 1 }
 					establish_communications_no_message = event_target:fmerc_buyer
 					establish_contact = { who = event_target:fmerc_buyer location = FROM }
 					if = {
@@ -469,7 +465,7 @@ country_event = {
 					}
 					add_modifier = {
 						modifier = "recently_liberated"
-						days = 7200
+						days = 3600
 					}
 					save_event_target_as = merc_newcountry
 				}
@@ -539,7 +535,7 @@ country_event = {
 	}
 
 	immediate = {
-		log = "fmerc_ops_liberate.1337"
+		log = "fmerc_ops_liberate: Solar system empty (.1337)"
 		remove_country_flag = "fmerc_liberated_await_clear_skies"
 		country_event = { id = game_start.9 } # Empire init - add ships
 		create_fleet_from_naval_cap = 0.5

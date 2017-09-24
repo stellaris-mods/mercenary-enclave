@@ -775,6 +775,7 @@ country_event = {
 				limit = {
 					is_country_type = "amoeba"
 					any_owned_ship = { is_inside_border = ROOT }
+					NOT = { has_country_flag = "fmerc_operations_target" }
 				}
 				save_event_target_as = fmerc_target_country
 			}
@@ -800,6 +801,7 @@ country_event = {
 				limit = {
 					is_country_type = "cloud"
 					any_owned_ship = { is_inside_border = ROOT }
+					NOT = { has_country_flag = "fmerc_operations_target" }
 				}
 				save_event_target_as = fmerc_target_country
 			}
@@ -825,6 +827,7 @@ country_event = {
 				limit = {
 					is_country_type = "crystal"
 					any_owned_ship = { is_inside_border = ROOT }
+					NOT = { has_country_flag = "fmerc_operations_target" }
 				}
 				save_event_target_as = fmerc_target_country
 			}
@@ -850,6 +853,7 @@ country_event = {
 				limit = {
 					is_country_type = "pirate"
 					any_owned_ship = { is_inside_border = ROOT }
+					NOT = { has_country_flag = "fmerc_operations_target" }
 				}
 				save_event_target_as = fmerc_target_country
 			}
@@ -875,6 +879,7 @@ country_event = {
 				limit = {
 					is_country_type = "drone"
 					any_owned_ship = { is_inside_border = ROOT }
+					NOT = { has_country_flag = "fmerc_operations_target" }
 				}
 				save_event_target_as = fmerc_target_country
 			}
@@ -2443,9 +2448,6 @@ country_event = {
 	immediate = {
 		remove_country_flag = "fmerc_diplomacy_engaged"
 		set_country_flag = "fmerc_active_operation"
-		event_target:fmerc_target_country = {
-			set_country_flag = "fmerc_operations_target"
-		}
 		# For insurance purposes
 		set_variable = {
 			which = MercPreviousOperationCost

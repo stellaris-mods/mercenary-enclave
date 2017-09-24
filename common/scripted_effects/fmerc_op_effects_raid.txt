@@ -16,7 +16,7 @@ fmerc_set_raid_target = {
 		}
 		# If our fleet exists, we first try to find a target within the system it's in.
 		if = {
-			limit = { num_fleets > 0 }
+			limit = { count_owned_ships { count > 0 } }
 			event_target:fmerc_target_country = {
 				random_owned_ship = {
 					limit = {

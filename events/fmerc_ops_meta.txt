@@ -39,6 +39,9 @@ country_event = {
 		if = {
 			limit = {
 				exists = event_target:fmerc_target_country
+				event_target:fmerc_target_country = {
+					has_country_flag = "fmerc_operations_target"
+				}
 			}
 			log = "Clearing fmerc_target flags from [fmerc_target_country.GetName]'s ships and/or planets, if any."
 			event_target:fmerc_target_country = {
@@ -158,7 +161,7 @@ country_event = {
 
 		if = {
 			limit = {
-				num_fleets > 0
+				count_owned_ships { count > 0 }
 				exists = event_target:fmerc_spawn_at
 			}
 			log = "Returning mercenary operations fleet to enclave."
@@ -182,6 +185,7 @@ country_event = {
 					wait = 14
 					effect = {
 						id = fmerc_ops_fleet.911.effect.1
+						remove_fleet_flag = "fmerc_count_towards_success"
 						destroy_fleet = THIS
 					}
 				}

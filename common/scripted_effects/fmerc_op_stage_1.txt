@@ -282,11 +282,10 @@ fmerc_init_stage1 = {
 		auto_delete = no
 	}
 	last_created_country = {
-		#establish_communications_no_message = ROOT
-		#establish_contact = { who = ROOT }
-		#establish_communications_no_message = event_target:traders
-		#establish_contact = { who = event_target:traders }
-		#establish_communications_no_message = event_target:fmerc_target_country
+		establish_communications_no_message = ROOT
+		establish_contact = { who = ROOT }
+		establish_communications_no_message = event_target:traders
+		establish_contact = { who = event_target:traders }
 
 		# This isn't actually needed, so not sure why I dont just remove it.
 		give_technology = {
@@ -307,7 +306,7 @@ fmerc_init_stage1 = {
 
 		# ZZZ 5-year operation time limit
 		set_timed_country_flag = {
-			flag = fmerc_ops_timeout
+			flag = "fmerc_ops_timeout"
 			days = 1800
 		}
 
@@ -330,9 +329,12 @@ fmerc_init_stage1 = {
 			# type with ships inside the buyers borders. Simply break,
 			# and do nothing.
 			limit = { exists = event_target:fmerc_target_country }
-				set_relation_flag = {
+			set_relation_flag = {
 				who = event_target:fmerc_target_country
 				flag = merc_operations_target
+			}
+			event_target:fmerc_target_country = {
+				set_country_flag = "fmerc_operations_target"
 			}
 		}
 	}
