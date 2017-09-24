@@ -154,9 +154,7 @@ country_event = {
 
 		if = {
 			limit = {
-				count_owned_ships = {
-					count > 0
-				}
+				num_fleets > 0
 				exists = event_target:fmerc_spawn_location
 			}
 			set_faction_hostility = { set_hostile = no }

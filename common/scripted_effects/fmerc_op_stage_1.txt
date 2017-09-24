@@ -240,7 +240,7 @@ fmerc_stage1_setup_clear = {
 	fmerc_stage1_culture_copy = yes
 }
 
-# event_target:fmerc_target_country must be set before this
+# event_target:fmerc_target_country should be set before this
 # Scope is the buyer country
 fmerc_init_stage1 = {
 	create_country = {
@@ -315,9 +315,16 @@ fmerc_init_stage1 = {
 			flag = merc_operations_squad
 		}
 
-		set_relation_flag = {
-			who = event_target:fmerc_target_country
-			flag = merc_operations_target
+		if = {
+			# If this is a "clear space" operation, this might not be set
+			# If it isn't, that means there are no countries of the selected
+			# type with ships inside the buyers borders. Simply break,
+			# and do nothing.
+			limit = { exists = event_target:fmerc_target_country }
+				set_relation_flag = {
+				who = event_target:fmerc_target_country
+				flag = merc_operations_target
+			}
 		}
 	}
 
