@@ -222,26 +222,20 @@ country_event = {
 
 	immediate = {
 		log = "fmerc_ops_liberate: on_fleet_destroyed_victim (.30)"
-		subtract_variable = {
-			which = MercSuccess
-			value = 25
-		}
+
+		fmerc_stage3_update_can_retry = yes
 		if = {
 			limit = {
-				check_variable = {
-					which = MercSuccess
-					value > 10
-				}
+				has_country_flag = "fmerc_retry_mission"
 			}
-			# Try again
-			log = "Success chance is [this.MercSuccess]%, so try again!"
+			remove_country_flag = "fmerc_retry_mission"
+			log = "Success chance is [this.MercSuccess]%, and the RNG was in our favor."
 			fmerc_liberation_set_target_planet = yes
 			country_event = {
 				id = fmerc_ops_liberate.1
 			}
-			# We failed
 			else = {
-				log = "Liberation mission aborted due to low success factor."
+				log = "Liberation mission aborted due to low success factor ([this.MercSuccess])."
 				set_country_flag = "fmerc_ops_completed"
 			}
 		}

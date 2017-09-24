@@ -154,24 +154,19 @@ country_event = {
 			limit = {
 				exists = event_target:fmerc_target
 			}
-			subtract_variable = {
-				which = MercSuccess
-				value = 25
-			}
+
+			fmerc_stage3_update_can_retry = yes
 			if = {
 				limit = {
-					check_variable = {
-						which = MercSuccess
-						value > 10
-					}
+					has_country_flag = "fmerc_retry_mission"
 				}
-				log = "Success chance is [this.MercSuccess]%, so try again!"
-				# Try again
+				remove_country_flag = "fmerc_retry_mission"
+				log = "Success chance is [this.MercSuccess]%, and the RNG was in our favor."
 				country_event = {
 					id = fmerc_ops_fleet.1
 				}
 				else = {
-					log = "Fleet operation cancelled due to low success factor."
+					log = "Fleet operation cancelled due to low success factor ([this.MercSuccess])."
 					set_country_flag = "fmerc_ops_completed"
 				}
 			}

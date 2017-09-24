@@ -5,6 +5,42 @@
 # - ROOT/THIS can be anything, depending on the effect
 # - Effects can be used by any operation
 
+fmerc_stage3_update_can_retry = {
+	subtract_variable = {
+		which = MercSuccess
+		value = 25
+	}
+	remove_country_flag = "fmerc_retry_mission"
+	if = { limit = { check_variable = { which = MercSuccess value > 90 } }
+		random = { chance = 95 set_country_flag = "fmerc_retry_mission" }
+	}
+	if = { limit = { check_variable = { which = MercSuccess value > 80 } }
+		random = { chance = 85 set_country_flag = "fmerc_retry_mission" }
+	}
+	if = { limit = { check_variable = { which = MercSuccess value > 70 } }
+		random = { chance = 75 set_country_flag = "fmerc_retry_mission" }
+	}
+	if = { limit = { check_variable = { which = MercSuccess value > 60 } }
+		random = { chance = 65 set_country_flag = "fmerc_retry_mission" }
+	}
+	if = { limit = { check_variable = { which = MercSuccess value > 50 } }
+		random = { chance = 55 set_country_flag = "fmerc_retry_mission" }
+	}
+	if = { limit = { check_variable = { which = MercSuccess value > 40 } }
+		random = { chance = 45 set_country_flag = "fmerc_retry_mission" }
+	}
+	if = { limit = { check_variable = { which = MercSuccess value > 30 } }
+		random = { chance = 35 set_country_flag = "fmerc_retry_mission" }
+	}
+	if = { limit = { check_variable = { which = MercSuccess value > 20 } }
+		random = { chance = 25 set_country_flag = "fmerc_retry_mission" }
+	}
+	if = { limit = { check_variable = { which = MercSuccess value > 10 } }
+		random = { chance = 15 set_country_flag = "fmerc_retry_mission" }
+	}
+}
+
+
 
 # XXX I'm not actually certain that fleet_size works.
 # XXX need to investigate, and potentially use fleet_power instead if possible.
@@ -288,7 +324,14 @@ fmerc_stage3_create_fleet = {
 				limit = {
 					exists = owner
 					owner = {
-						is_same_value = event_target:fmerc_target_country
+						OR = {
+							is_overlord_to = event_target:fmerc_target_country
+							is_same_value = event_target:fmerc_target_country
+							AND = {
+								has_federation = yes
+								is_in_federation_with = event_target:fmerc_target_country
+							}
+						}
 					}
 				}
 				fmerc_get_fleet_size = yes
