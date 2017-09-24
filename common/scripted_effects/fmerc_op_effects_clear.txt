@@ -28,7 +28,7 @@ fmerc_stage2_init_amoeba = {
 					any_ship_in_system = {
 						exists = owner
 						owner = {
-							is_country_type = amoeba
+							is_country_type = "amoeba"
 						}
 					}
 				}
@@ -38,7 +38,7 @@ fmerc_stage2_init_amoeba = {
 					limit = {
 						exists = owner
 						owner = {
-							is_country_type = amoeba
+							is_country_type = "amoeba"
 						}
 					}
 					owner = {
@@ -62,7 +62,7 @@ fmerc_stage2_init_cloud = {
 					any_ship_in_system = {
 						exists = owner
 						owner = {
-							is_country_type = cloud
+							is_country_type = "cloud"
 						}
 					}
 				}
@@ -72,7 +72,7 @@ fmerc_stage2_init_cloud = {
 					limit = {
 						exists = owner
 						owner = {
-							is_country_type = cloud
+							is_country_type = "cloud"
 						}
 					}
 					owner = {
@@ -96,7 +96,7 @@ fmerc_stage2_init_crystal = {
 					any_ship_in_system = {
 						exists = owner
 						owner = {
-							is_country_type = crystal
+							is_country_type = "crystal"
 						}
 					}
 				}
@@ -106,7 +106,7 @@ fmerc_stage2_init_crystal = {
 					limit = {
 						exists = owner
 						owner = {
-							is_country_type = crystal
+							is_country_type = "crystal"
 						}
 					}
 					owner = {
@@ -130,7 +130,7 @@ fmerc_stage2_init_pirate = {
 					any_ship_in_system = {
 						exists = owner
 						owner = {
-							is_country_type = pirate
+							is_country_type = "pirate"
 						}
 					}
 				}
@@ -140,7 +140,7 @@ fmerc_stage2_init_pirate = {
 					limit = {
 						exists = owner
 						owner = {
-							is_country_type = pirate
+							is_country_type = "pirate"
 						}
 					}
 					owner = {
@@ -164,7 +164,7 @@ fmerc_stage2_init_drone = {
 					any_ship_in_system = {
 						exists = owner
 						owner = {
-							is_country_type = drone
+							is_country_type = "drone"
 						}
 					}
 				}
@@ -174,7 +174,7 @@ fmerc_stage2_init_drone = {
 					limit = {
 						exists = owner
 						owner = {
-							is_country_type = drone
+							is_country_type = "drone"
 						}
 					}
 					owner = {

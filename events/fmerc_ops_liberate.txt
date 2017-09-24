@@ -282,7 +282,7 @@ country_event = {
 	is_triggered_only = yes
 	hide_window = yes
 	trigger = {
-		is_country_type = default
+		is_country_type = "default"
 		FromFrom = {
 			has_planet_flag = "fmerc_target"
 			controller = { is_same_value = root }
@@ -292,7 +292,7 @@ country_event = {
 		log = "fmerc_ops_liberate.50"
 		random_country = {
 			limit = {
-				is_country_type = fmerc_operations
+				is_country_type = "fmerc_operations"
 				reverse_has_relation_flag = {
 					flag = fmerc_liberation_rebels
 					who = from
@@ -336,9 +336,9 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		FROM = { is_country_type = rebel }
+		FROM = { is_country_type = "rebel" }
 		FROMFROM = {
-			has_planet_flag = fmerc_target
+			has_planet_flag = "fmerc_target"
 			exists = leader
 		}
 	}
@@ -410,7 +410,7 @@ country_event = {
 		# Find mercenary operations
 		random_country = {
 			limit = {
-				is_country_type = fmerc_operations
+				is_country_type = "fmerc_operations"
 				reverse_has_relation_flag = {
 					flag = fmerc_liberation_rebels
 					who = ROOT
@@ -433,7 +433,7 @@ country_event = {
 		}
 		random_country = {
 			limit = {
-				is_country_type = default
+				is_country_type = "default"
 				reverse_has_relation_flag = {
 					flag = fmerc_liberation_rebels
 					who = ROOT

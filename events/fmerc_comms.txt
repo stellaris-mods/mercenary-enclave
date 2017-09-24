@@ -49,7 +49,7 @@ country_event = {
 	trigger = {
 		NOT = { has_country_flag = "fmerc_diplomacy_engaged" }
 		from = {
-			is_country_type = fmerc_enclave
+			is_country_type = "fmerc_enclave"
 		}
 	}
 	immediate = {
@@ -880,7 +880,7 @@ country_event = {
 		#custom_gui = "enclave_trader_option"
 		trigger = {
 			any_country = {
-				is_country_type = default
+				is_country_type = "default"
 				has_communications = root
 				NOT = { is_same_value = ROOT }
 				num_owned_planets > 1
@@ -897,8 +897,8 @@ country_event = {
 		trigger = {
 			any_country = {
 				OR = {
-					is_country_type = fallen_empire
-					is_country_type = awakened_fallen_empire
+					is_country_type = "fallen_empire"
+					is_country_type = "awakened_fallen_empire"
 				}
 				NOT = { is_same_value = ROOT }
 				has_communications = root
@@ -934,7 +934,7 @@ country_event = {
 		#custom_gui = "enclave_trader_option"
 		trigger = {
 			any_country = {
-				is_country_type = swarm
+				is_country_type = "swarm"
 				has_communications = root
 				NOT = { is_same_value = ROOT }
 			}
@@ -965,9 +965,9 @@ country_event = {
 		trigger = {
 			any_country = {
 				OR = {
-					is_country_type = extradimensional
-					is_country_type = extradimensional_2
-					is_country_type = extradimensional_3
+					is_country_type = "extradimensional"
+					is_country_type = "extradimensional_2"
+					is_country_type = "extradimensional_3"
 				}
 				NOT = { is_same_value = ROOT }
 				has_communications = root
@@ -998,7 +998,7 @@ country_event = {
 		#custom_gui = "enclave_trader_option"
 		trigger = {
 			any_country = {
-				is_country_type = ai_empire
+				is_country_type = "ai_empire"
 				NOT = { is_same_value = ROOT }
 				has_communications = root
 			}

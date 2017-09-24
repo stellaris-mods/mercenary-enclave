@@ -1,18 +1,3 @@
-# folk_mercenary_government = {
-# 	icon = "gfx/interface/icons/governments/plutocratic_oligarchy.dds"
-# 	potential = {
-# 		is_country_type = fmerc_enclave
-# 	}
-
-# 	modifier = {
-# 	}
-
-# 	has_heir = yes
-
-# 	pickable_at_start = no
-
-# 	ruler_title = FOLK_HIGH_MERC
-# }
 
 folk_mercenary_government = {
 	ruler_title = FOLK_HIGH_MERC

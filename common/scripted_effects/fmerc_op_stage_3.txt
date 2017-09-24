@@ -191,7 +191,7 @@ fmerc_stage3_ensure_spawn_location = {
 				is_in_combat = no
 				exists = owner
 				owner = {
-					is_country_type = fmerc_enclave
+					is_country_type = "fmerc_enclave"
 				}
 			}
 			# If we can, try to spawn inside the targets borders.
@@ -214,7 +214,7 @@ fmerc_stage3_ensure_spawn_location = {
 				is_in_combat = no
 				exists = owner
 				owner = {
-					is_country_type = fmerc_enclave
+					is_country_type = "fmerc_enclave"
 				}
 			}
 			save_event_target_as = fmerc_spawn_location
@@ -223,7 +223,7 @@ fmerc_stage3_ensure_spawn_location = {
 	if = {
 		limit = { NOT = { exists = event_target:fmerc_spawn_location } }
 		random_country = {
-			limit = { is_country_type = fmerc_enclave }
+			limit = { is_country_type = "fmerc_enclave" }
 			random_owned_fleet = {
 				save_event_target_as = fmerc_spawn_location
 			}
@@ -311,7 +311,7 @@ fmerc_stage3_create_fleet = {
 	if = {
 		limit = {
 			exists = event_target:fmerc_target_country
-			NOT = { event_target:fmerc_target_country = { is_country_type = default } }
+			NOT = { event_target:fmerc_target_country = { is_country_type = "default" } }
 		}
 		event_target:fmerc_ops_fleet = {
 			while = {

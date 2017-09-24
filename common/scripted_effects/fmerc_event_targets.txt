@@ -4,7 +4,7 @@ fmerc_set_buyer = {
 		limit = { NOT = { exists = event_target:fmerc_buyer } }
 		random_country = {
 			limit = {
-				NOT = { is_country_type = fmerc_enclave }
+				NOT = { is_country_type = "fmerc_enclave" }
 				reverse_has_relation_flag = {
 					who = root
 					flag = merc_operations_squad

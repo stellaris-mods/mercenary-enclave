@@ -25,7 +25,7 @@ event = {
 
 	immediate = {
 		every_country = {
-			limit = { is_country_type = fmerc_enclave }
+			limit = { is_country_type = "fmerc_enclave" }
 			country_event = { id = mercguardian.11 }
 		}
 	}
@@ -43,7 +43,7 @@ country_event = {
 				solar_system = {
 					exists = space_owner
 					space_owner = {
-						is_country_type = default
+						is_country_type = "default"
 						has_communications = root
 					}
 				}
@@ -70,14 +70,14 @@ fleet_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		owner = { is_country_type = fmerc_operations }
+		owner = { is_country_type = "fmerc_operations" }
 		from = {
 			exists = space_owner
 			space_owner = {
-				is_country_type = default
+				is_country_type = "default"
 				exists = capital_scope
 				any_country = {
-					is_country_type = fmerc_enclave
+					is_country_type = "fmerc_enclave"
 					NOR = {
 						has_communications = prev
 						reverse_has_relation_flag = {
@@ -92,11 +92,11 @@ fleet_event = {
 
 	immediate = {
 		random_country = {
-			limit = { is_country_type = fmerc_enclave }
+			limit = { is_country_type = "fmerc_enclave" }
 			save_event_target_as = target_enclave
 			# Scope to HQ fleet and set that system as the target for the project
 			random_owned_fleet = {
-				limit = { has_fleet_flag = folk_mercenary_station }
+				limit = { has_fleet_flag = "folk_mercenary_station" }
 				solar_system = {
 					save_event_target_as = fmercsystem
 				}
@@ -123,14 +123,14 @@ fleet_event = {
 
 	trigger = {
 		owner = {
-			is_country_type = default
+			is_country_type = "default"
 			exists = capital_scope
 		}
 		from = {
 			any_ship_in_system = {
 				exists = owner
 				owner = {
-					is_country_type = fmerc_enclave
+					is_country_type = "fmerc_enclave"
 					NOR = {
 						has_communications = root.owner
 						reverse_has_relation_flag = {
@@ -150,14 +150,14 @@ fleet_event = {
 				random_fleet_in_system = {
 					limit = {
 						exists = owner
-						owner = { is_country_type = fmerc_enclave }
+						owner = { is_country_type = "fmerc_enclave" }
 					}
 					owner = {
 						save_event_target_as = target_enclave
 						# Scope to random owned fleet in case the default
 						# country stumbled across a random merc enclave installation
 						random_owned_fleet = {
-							limit = { has_fleet_flag = folk_mercenary_station }
+							limit = { has_fleet_flag = "folk_mercenary_station" }
 							solar_system = {
 								save_event_target_as = fmercsystem
 							}
@@ -471,7 +471,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		is_country_type = fmerc_enclave
+		is_country_type = "fmerc_enclave"
 	}
 
 	immediate = {
@@ -512,7 +512,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		set_country_flag = fmerc_has_destroyed_ship
+		set_country_flag = "fmerc_has_destroyed_ship"
 		if = {
 			limit = {
 				has_relation_flag = {
@@ -655,8 +655,8 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		is_country_type = default
-		FROM = { is_country_type = fmerc_enclave }
+		is_country_type = "default"
+		FROM = { is_country_type = "fmerc_enclave" }
 	}
 
 	immediate = {
@@ -667,7 +667,7 @@ country_event = {
 				amount = -100
 			}
 		}
-		set_country_flag = attacked_folk_mercenaries
+		set_country_flag = "attacked_folk_mercenaries"
 		if = {
 			limit = {
 				has_relation_flag = {

@@ -22,7 +22,7 @@ country_event = {
 	}
 
 	trigger = {
-		is_country_type = fmerc_operations
+		is_country_type = "fmerc_operations"
 		OR = {
 			has_country_flag = "fmerc_ops_completed"
 			NOT = {

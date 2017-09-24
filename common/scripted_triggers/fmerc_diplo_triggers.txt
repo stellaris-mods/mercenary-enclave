@@ -7,7 +7,7 @@ fmerc_is_targetted_country_type = {
 				has_country_flag = "fmerc_diplo_empire_standard"
 			}
 			num_owned_planets > 1
-			is_country_type = default
+			is_country_type = "default"
 		}
 		AND = {
 			ROOT = {
@@ -15,31 +15,31 @@ fmerc_is_targetted_country_type = {
 			}
 			num_owned_planets > 1
 			OR = {
-				is_country_type = fallen_empire
-				is_country_type = awakened_fallen_empire
+				is_country_type = "fallen_empire"
+				is_country_type = "awakened_fallen_empire"
 			}
 		}
 		AND = {
 			ROOT = {
 				has_country_flag = "fmerc_diplo_empire_swarm"
 			}
-			is_country_type = swarm
+			is_country_type = "swarm"
 		}
 		AND = {
 			ROOT = {
 				has_country_flag = "fmerc_diplo_empire_ed"
 			}
 			OR = {
-				is_country_type = extradimensional
-				is_country_type = extradimensional_2
-				is_country_type = extradimensional_3
+				is_country_type = "extradimensional"
+				is_country_type = "extradimensional_2"
+				is_country_type = "extradimensional_3"
 			}
 		}
 		AND = {
 			ROOT = {
 				has_country_flag = "fmerc_diplo_empire_ai"
 			}
-			is_country_type = ai_empire
+			is_country_type = "ai_empire"
 		}
 	}
 }

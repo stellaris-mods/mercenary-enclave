@@ -10,7 +10,7 @@ empire_name_format = {
 		factor = 0
 		modifier = {
 			add = 100
-			is_country_type = fmerc_enclave
+			is_country_type = "fmerc_enclave"
 		}
 	}
 	format = "format.mercenary.1"

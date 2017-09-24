@@ -5,7 +5,7 @@ country_event = {
 	hide_window = yes
 
 	trigger = {
-		is_country_type = fmerc_enclave
+		is_country_type = "fmerc_enclave"
 	}
 
 	mean_time_to_happen = {
@@ -18,7 +18,7 @@ country_event = {
 
 		# random_owned_fleet = {
 		# 	limit = {
-		# 		has_fleet_flag = folk_mercenary_station
+		# 		has_fleet_flag = "folk_mercenary_station"
 		# 	}
 		# 	fleet_event = {
 		# 		id = fmercstations.2
@@ -90,7 +90,7 @@ country_event = {
 										target = prevprevprev
 										distance = 120
 									}
-									set_fleet_flag = folk_mercenary_outpost
+									set_fleet_flag = "folk_mercenary_outpost"
 								}
 							}
 						}
