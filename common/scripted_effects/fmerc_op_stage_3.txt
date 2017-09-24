@@ -2,6 +2,10 @@
 # Effects in this stage are while operations are underway
 # They may be used from any operation type.
 
+# XXX I'm not actually certain that fleet_size works.
+# XXX need to investigate, and potentially use fleet_power instead if possible.
+# XXX the alternative is count_fleet_ships
+
 fmerc_get_fleet_size = {
 	switch = {
 		trigger = fleet_size
@@ -217,15 +221,18 @@ fmerc_stage3_ensure_spawn_location = {
 		}
 	}
 	if = {
-		limit = {
-			NOT = { exists = event_target:fmerc_spawn_location }
-		}
+		limit = { NOT = { exists = event_target:fmerc_spawn_location } }
 		random_country = {
 			limit = { is_country_type = fmerc_enclave }
 			random_owned_fleet = {
 				save_event_target_as = fmerc_spawn_location
 			}
 		}
+	}
+	if = {
+		limit = { NOT = { exists = event_target:fmerc_spawn_location } }
+		set_country_flag = "fmerc_ops_completed"
+		break = yes
 	}
 }
 
