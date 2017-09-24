@@ -85,6 +85,7 @@ country_event = {
 				}
 			}
 			else = {
+				log = "Liberation target did not exist, aborting mission."
 				set_country_flag = "fmerc_ops_completed"
 			}
 		}
@@ -243,7 +244,7 @@ country_event = {
 			}
 			# We failed
 			else = {
-				log = "Mission failed."
+				log = "Liberation mission aborted due to low success factor."
 				set_country_flag = "fmerc_ops_completed"
 			}
 		}
@@ -416,7 +417,7 @@ country_event = {
 					who = ROOT
 				}
 			}
-			log = "Notifying merc operations that we are done."
+			log = "Liberation mission is complete!"
 			set_country_flag = "fmerc_ops_completed"
 
 			# Find the target country
