@@ -771,6 +771,13 @@ country_event = {
 		}
 		hidden_effect = {
 			set_country_flag = "fmerc_target_amoeba"
+			random_country = {
+				limit = {
+					is_country_type = "amoeba"
+					any_owned_ship = { is_inside_border = root }
+				}
+				save_event_target_as = fmerc_target_country
+			}
 			country_event = { id = fmercdiplo.9001 }
 		}
 	}
@@ -789,6 +796,13 @@ country_event = {
 		}
 		hidden_effect = {
 			set_country_flag = "fmerc_target_cloud"
+			random_country = {
+				limit = {
+					is_country_type = "cloud"
+					any_owned_ship = { is_inside_border = root }
+				}
+				save_event_target_as = fmerc_target_country
+			}
 			country_event = { id = fmercdiplo.9001 }
 		}
 	}
@@ -807,6 +821,13 @@ country_event = {
 		}
 		hidden_effect = {
 			set_country_flag = "fmerc_target_crystal"
+			random_country = {
+				limit = {
+					is_country_type = "crystal"
+					any_owned_ship = { is_inside_border = root }
+				}
+				save_event_target_as = fmerc_target_country
+			}
 			country_event = { id = fmercdiplo.9001 }
 		}
 	}
@@ -825,6 +846,13 @@ country_event = {
 		}
 		hidden_effect = {
 			set_country_flag = "fmerc_target_pirate"
+			random_country = {
+				limit = {
+					is_country_type = "pirate"
+					any_owned_ship = { is_inside_border = root }
+				}
+				save_event_target_as = fmerc_target_country
+			}
 			country_event = { id = fmercdiplo.9001 }
 		}
 	}
@@ -843,6 +871,13 @@ country_event = {
 		}
 		hidden_effect = {
 			set_country_flag = "fmerc_target_drone"
+			random_country = {
+				limit = {
+					is_country_type = "drone"
+					any_owned_ship = { is_inside_border = root }
+				}
+				save_event_target_as = fmerc_target_country
+			}
 			country_event = { id = fmercdiplo.9001 }
 		}
 	}

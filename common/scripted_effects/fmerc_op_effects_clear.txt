@@ -1,190 +1,44 @@
 
 # Effects for space clearing operations
 
-fmerc_stage2_continue_clear = {
-	if = {
-		limit = { exists = event_target:fmerc_target }
-		set_relation_flag = {
-			who = event_target:fmerc_target_country
-			flag = merc_operations_target
-		}
-		else = {
-			set_country_flag = "fmerc_ops_completed"
-		}
+fmerc_stage2_init_clear = {
+	set_variable = {
+		which = MercRaidCount
+		value = 5
 	}
-}
-
-# XXX should try to consolidate the clear inits
-
-# XXX should rewrite all every_planet_within_border users below to use
-# XXX closest_system instead, and is_within_borders_of = event_target:fmerc_buyer
-fmerc_stage2_init_amoeba = {
-	event_target:fmerc_buyer = {
-		every_planet_within_border = {
+	event_target:fmerc_target_country = {
+		every_owned_ship = { set_ship_flag = "fmerc_counter" }
+		while = {
 			limit = {
-				is_star = yes
-				exists = solar_system
-				solar_system = {
-					any_ship_in_system = {
-						exists = owner
-						owner = {
-							is_country_type = "amoeba"
-						}
+				ROOT = {
+					check_variable = {
+						which = MercRaidCount
+						value > 0
 					}
 				}
 			}
-			solar_system = {
-				random_fleet_in_system = {
-					limit = {
-						exists = owner
-						owner = {
-							is_country_type = "amoeba"
-						}
-					}
-					owner = {
-						save_event_target_as = fmerc_target_country
-					}
-					save_event_target_as = fmerc_target
+			ROOT = {
+				subtract_variable = {
+					which = MercRaidCount
+					value = 1
 				}
+			}
+			random_owned_ship = {
+				limit = {
+					is_inside_border = event_target:fmerc_buyer
+					has_ship_flag = "fmerc_counter"
+				}
+				remove_ship_flag = "fmerc_counter"
+				set_ship_flag = "fmerc_target"
 			}
 		}
-	}
-	fmerc_stage2_continue_clear = yes
-}
-
-fmerc_stage2_init_cloud = {
-	event_target:fmerc_buyer = {
-		every_planet_within_border = {
-			limit = {
-				is_star = yes
-				exists = solar_system
-				solar_system = {
-					any_ship_in_system = {
-						exists = owner
-						owner = {
-							is_country_type = "cloud"
-						}
-					}
-				}
-			}
-			solar_system = {
-				random_fleet_in_system = {
-					limit = {
-						exists = owner
-						owner = {
-							is_country_type = "cloud"
-						}
-					}
-					owner = {
-						save_event_target_as = fmerc_target_country
-					}
-					save_event_target_as = fmerc_target
-				}
-			}
+		every_owned_ship = {
+			limit = { has_ship_flag = "fmerc_counter" }
+			remove_ship_flag = "fmerc_counter"
+		}
+		random_owned_ship = {
+			limit = { has_ship_flag = "fmerc_target" }
+			fleet = { save_event_target_as = fmerc_target }
 		}
 	}
-	fmerc_stage2_continue_clear = yes
 }
-
-fmerc_stage2_init_crystal = {
-	event_target:fmerc_buyer = {
-		every_planet_within_border = {
-			limit = {
-				is_star = yes
-				exists = solar_system
-				solar_system = {
-					any_ship_in_system = {
-						exists = owner
-						owner = {
-							is_country_type = "crystal"
-						}
-					}
-				}
-			}
-			solar_system = {
-				random_fleet_in_system = {
-					limit = {
-						exists = owner
-						owner = {
-							is_country_type = "crystal"
-						}
-					}
-					owner = {
-						save_event_target_as = fmerc_target_country
-					}
-					save_event_target_as = fmerc_target
-				}
-			}
-		}
-	}
-	fmerc_stage2_continue_clear = yes
-}
-
-fmerc_stage2_init_pirate = {
-	event_target:fmerc_buyer = {
-		every_planet_within_border = {
-			limit = {
-				is_star = yes
-				exists = solar_system
-				solar_system = {
-					any_ship_in_system = {
-						exists = owner
-						owner = {
-							is_country_type = "pirate"
-						}
-					}
-				}
-			}
-			solar_system = {
-				random_fleet_in_system = {
-					limit = {
-						exists = owner
-						owner = {
-							is_country_type = "pirate"
-						}
-					}
-					owner = {
-						save_event_target_as = fmerc_target_country
-					}
-					save_event_target_as = fmerc_target
-				}
-			}
-		}
-	}
-	fmerc_stage2_continue_clear = yes
-}
-
-fmerc_stage2_init_drone = {
-	event_target:fmerc_buyer = {
-		every_planet_within_border = {
-			limit = {
-				is_star = yes
-				exists = solar_system
-				solar_system = {
-					any_ship_in_system = {
-						exists = owner
-						owner = {
-							is_country_type = "drone"
-						}
-					}
-				}
-			}
-			solar_system = {
-				random_fleet_in_system = {
-					limit = {
-						exists = owner
-						owner = {
-							is_country_type = "drone"
-						}
-					}
-					owner = {
-						save_event_target_as = fmerc_target_country
-					}
-					save_event_target_as = fmerc_target
-				}
-			}
-		}
-	}
-	fmerc_stage2_continue_clear = yes
-}
-

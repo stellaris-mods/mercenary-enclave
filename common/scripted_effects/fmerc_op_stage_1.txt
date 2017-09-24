@@ -197,16 +197,6 @@ fmerc_stage1_culture_copy = {
 
 # scope is the buyer country
 fmerc_stage1_setup_mission = {
-	# Set relation flag here for standard mission types,
-	# because we get event_target:fmerc_target_country from
-	# the diplomatic screen. The "clear space" missions
-	# do not set this relation flag until stage 2.
-	last_created_country = {
-		set_relation_flag = {
-			who = event_target:fmerc_target_country
-			flag = merc_operations_target
-		}
-	}
 	switch = {
 		trigger = has_country_flag
 		fmerc_diplo_disguise_random = {
@@ -250,8 +240,7 @@ fmerc_stage1_setup_clear = {
 	fmerc_stage1_culture_copy = yes
 }
 
-# Simple rule of thumb: any scripted effect that has "init"
-# in it must exclusively flow from this.
+# event_target:fmerc_target_country must be set before this
 # Scope is the buyer country
 fmerc_init_stage1 = {
 	create_country = {
@@ -324,6 +313,11 @@ fmerc_init_stage1 = {
 		set_relation_flag = {
 			who = ROOT
 			flag = merc_operations_squad
+		}
+
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
 		}
 	}
 
