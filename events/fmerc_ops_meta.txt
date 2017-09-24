@@ -150,7 +150,7 @@ country_event = {
 			}
 		}
 
-		fmerc_ops_set_spawn_location = yes
+		fmerc_stage3_ensure_spawn_location = yes
 
 		if = {
 			limit = {

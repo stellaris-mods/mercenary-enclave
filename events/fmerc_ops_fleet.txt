@@ -43,8 +43,7 @@ country_event = {
 						}
 					}
 				}
-				fmerc_ops_set_spawn_location = yes
-				fmerc_ops_create_fleet = yes
+				fmerc_stage3_create_fleet = yes
 			}
 
 			event_target:fmerc_ops_fleet = {
