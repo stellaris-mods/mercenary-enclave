@@ -225,22 +225,22 @@ fmerc_stage3_ensure_spawn_location = {
 							is_country_type = "fmerc_enclave"
 						}
 					}
-					save_event_target_as = fmerc_spawn_location
+					save_event_target_as = fmerc_spawn_at
 				}
 			}
 		}
 	}
 	if = {
-		limit = { NOT = { exists = event_target:fmerc_spawn_location } }
+		limit = { NOT = { exists = event_target:fmerc_spawn_at } }
 		random_country = {
 			limit = { is_country_type = "fmerc_enclave" }
 			random_owned_fleet = {
-				save_event_target_as = fmerc_spawn_location
+				save_event_target_as = fmerc_spawn_at
 			}
 		}
 	}
 	if = {
-		limit = { NOT = { exists = event_target:fmerc_spawn_location } }
+		limit = { NOT = { exists = event_target:fmerc_spawn_at } }
 		log = "Stage 3: Unable to find spawn location, aborting mission."
 		set_country_flag = "fmerc_ops_completed"
 		break = yes
@@ -251,7 +251,7 @@ fmerc_stage3_create_fleet = {
 	# Make sure we have somewhere to spawn
 	fmerc_stage3_ensure_spawn_location = yes
 
-	log = "Creating new fleet in [fmerc_spawn_location.GetStarName]."
+	log = "Creating new fleet in [fmerc_spawn_at.GetStarName]."
 
 	# For when we recreate the fleet
 	set_faction_hostility = { set_hostile = no }
@@ -259,7 +259,7 @@ fmerc_stage3_create_fleet = {
 		effect = {
 			set_owner = ROOT
 			set_location = {
-				target = event_target:fmerc_spawn_location
+				target = event_target:fmerc_spawn_at
 				distance = 40
 				angle = random
 			}

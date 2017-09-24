@@ -155,7 +155,7 @@ country_event = {
 		if = {
 			limit = {
 				num_fleets > 0
-				exists = event_target:fmerc_spawn_location
+				exists = event_target:fmerc_spawn_at
 			}
 			set_faction_hostility = { set_hostile = no }
 			every_owned_fleet = {
@@ -166,14 +166,14 @@ country_event = {
 							NOR = {
 								exists = solar_system
 								solar_system = {
-									is_same_value = event_target:fmerc_spawn_location
+									is_same_value = event_target:fmerc_spawn_at.solar_system
 								}
 							}
 						}
-						move_to = event_target:fmerc_spawn_location.solar_system
+						move_to = event_target:fmerc_spawn_at.solar_system
 						wait = 7
 					}
-					move_to = event_target:fmerc_spawn_location
+					move_to = event_target:fmerc_spawn_at
 					wait = 14
 					effect = {
 						id = fmerc_ops_fleet.911.effect.1
