@@ -36,13 +36,7 @@ country_event = {
 			}
 
 			if = {
-				limit = {
-					NOT = {
-						any_owned_fleet = {
-							has_fleet_flag = "fmerc_raiding_fleet"
-						}
-					}
-				}
+				limit = { num_fleets = 0 }
 				fmerc_stage3_create_fleet = yes
 			}
 

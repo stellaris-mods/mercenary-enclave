@@ -61,14 +61,8 @@ fmerc_ops_ensure_all_event_targets = {
 	if = {
 		limit = {
 			NOT = { exists = event_target:fmerc_ops_fleet }
-			any_owned_fleet = {
-				has_fleet_flag = "fmerc_raiding_fleet"
-			}
 		}
 		random_owned_fleet = {
-			limit = {
-				has_fleet_flag = "fmerc_raiding_fleet"
-			}
 			save_event_target_as = fmerc_ops_fleet
 		}
 	}
