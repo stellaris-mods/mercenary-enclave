@@ -664,8 +664,6 @@ fmerc_stage3_create_fleet = {
 			set_aggro_range_measure_from = self
 			set_aggro_range = 80
 			set_fleet_flag = "fmerc_count_towards_success"
-			# This exists in the game, but apparently it's not exposed.
-			#set_fleet_ground_support_stance_command = ..
 		}
 	}
 

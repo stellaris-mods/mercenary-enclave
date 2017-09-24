@@ -169,7 +169,7 @@ country_event = {
 								# and so anyone that had contact with them is notified by
 								# vanilla event action.61. Try to prevent that.
 								set_country_flag = "silence_destroy_event"
-								# XXX
+								# ZZZ
 								# event target only for create_army below.
 								# I don't know if last_created_country works with
 								# create_rebels, and I don't want to run it even once
