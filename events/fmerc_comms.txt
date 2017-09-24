@@ -2220,7 +2220,6 @@ country_event = {
 		# First, find the merc operation country
 		random_country = {
 			limit = {
-				is_country_type = "fmerc_operations"
 				has_relation_flag = {
 					who = root
 					flag = merc_operations_target
@@ -2232,7 +2231,6 @@ country_event = {
 		# Then find the country who ordered the operation
 		random_country = {
 			limit = {
-				NOT = { is_country_type = "fmerc_enclave" }
 				reverse_has_relation_flag = {
 					who = event_target:fmerc_ops_country
 					flag = merc_operations_squad

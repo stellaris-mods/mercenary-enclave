@@ -73,7 +73,6 @@ fmerc_stage1_culture_random = {
 	}
 }
 
-# XXX add new culture types from new patches, if any
 fmerc_stage1_culture_copy = {
 	switch = {
 		trigger = graphical_culture
@@ -152,6 +151,11 @@ fmerc_stage1_culture_copy = {
 				set_country_flag = "fallen_empire_01"
 			}
 		}
+		fallen_machine_empire_01 = {
+			last_created_country = {
+				set_country_flag = "fallen_empire_01"
+			}
+		}
 		pirate_01 = {
 			last_created_country = {
 				set_country_flag = "pirate_01"
@@ -193,6 +197,10 @@ fmerc_stage1_culture_copy = {
 
 # scope is the buyer country
 fmerc_stage1_setup_mission = {
+	# Set relation flag here for standard mission types,
+	# because we get event_target:fmerc_target_country from
+	# the diplomatic screen. The "clear space" missions
+	# do not set this relation flag until stage 2.
 	last_created_country = {
 		set_relation_flag = {
 			who = event_target:fmerc_target_country
@@ -238,6 +246,7 @@ fmerc_stage1_setup_mission = {
 }
 
 fmerc_stage1_setup_clear = {
+	# The "clear space" missions do not set relation flag until stage 2.
 	fmerc_stage1_culture_copy = yes
 }
 
@@ -313,11 +322,7 @@ fmerc_init_stage1 = {
 		}
 
 		set_relation_flag = {
-			who = event_target:traders
-			flag = merc_operations_squad
-		}
-		set_relation_flag = {
-			who = root
+			who = ROOT
 			flag = merc_operations_squad
 		}
 	}
