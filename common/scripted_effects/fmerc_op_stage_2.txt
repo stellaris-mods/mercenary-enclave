@@ -17,12 +17,12 @@ fmerc_init_stage2 = {
 		set_country_flag = "fmerc_ops_completed"
 		break = yes
 	}
-	if = { limit = { NOT = { exists = event_target:fmerc_buyer } }
+	if = { limit = { NOT = { exists = event_target:fmerc_buyer } }
 		log = "The country who ordered this operation no longer exists, aborting mission."
 		set_country_flag = "fmerc_ops_completed"
 		break = yes
 	}
-	if = { limit = { NOT = { exists = event_target:fmerc_target_country } }
+	if = { limit = { NOT = { exists = event_target:fmerc_target_country } }
 		log = "The target country of this operation could not be found, aborting mission."
 		set_country_flag = "fmerc_ops_completed"
 		break = yes
