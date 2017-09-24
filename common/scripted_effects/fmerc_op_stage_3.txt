@@ -189,39 +189,45 @@ fmerc_match_variable = {
 
 # requires event_target:fmerc_target_country
 fmerc_stage3_ensure_spawn_location = {
-	closest_system = {
-		limit = {
-			any_ship_in_system = {
-				is_in_combat = no
-				exists = owner
-				owner = {
-					is_country_type = "fmerc_enclave"
+	# even though the trigger_docs say "Supported Scopes: all",
+	# closest_system does in fact not support the country scope.
+	event_target:fmerc_target_country = {
+		capital_scope = {
+			closest_system = {
+				limit = {
+					any_ship_in_system = {
+						is_in_combat = no
+						exists = owner
+						owner = {
+							is_country_type = "fmerc_enclave"
+						}
+					}
+					# If we can, try to spawn inside the targets borders.
+					# This gives the "Allow border access" enclave option some
+					# real value.
+					OR = {
+						NOT = {
+							exists = space_owner
+						}
+						AND = {
+							exists = space_owner
+							exists = event_target:fmerc_target_country
+							space_owner = { is_same_value = event_target:fmerc_target_country }
+						}
+					}
+				}
+				#min_steps = 1
+				random_fleet_in_system = {
+					limit = {
+						is_in_combat = no
+						exists = owner
+						owner = {
+							is_country_type = "fmerc_enclave"
+						}
+					}
+					save_event_target_as = fmerc_spawn_location
 				}
 			}
-			# If we can, try to spawn inside the targets borders.
-			# This gives the "Allow border access" enclave option some
-			# real value.
-			OR = {
-				NOT = {
-					exists = space_owner
-				}
-				AND = {
-					exists = space_owner
-					exists = event_target:fmerc_target_country
-					space_owner = { is_same_value = event_target:fmerc_target_country }
-				}
-			}
-		}
-		#min_steps = 1
-		random_fleet_in_system = {
-			limit = {
-				is_in_combat = no
-				exists = owner
-				owner = {
-					is_country_type = "fmerc_enclave"
-				}
-			}
-			save_event_target_as = fmerc_spawn_location
 		}
 	}
 	if = {
@@ -235,6 +241,7 @@ fmerc_stage3_ensure_spawn_location = {
 	}
 	if = {
 		limit = { NOT = { exists = event_target:fmerc_spawn_location } }
+		log = "Stage 3: Unable to find spawn location, aborting mission."
 		set_country_flag = "fmerc_ops_completed"
 		break = yes
 	}
