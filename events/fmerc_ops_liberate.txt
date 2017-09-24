@@ -20,13 +20,12 @@ country_event = {
 			}
 			if = {
 				limit = {
-					exists = event_target:fmerc_ops_fleet
-					event_target:fmerc_ops_fleet = {
+					any_owned_fleet = {
 						fleet_size < 4
 					}
 				}
 				log = "Fleet is too small, destroying."
-				event_target:fmerc_ops_fleet = {
+				every_owned_fleet = {
 					destroy_fleet = this
 				}
 			}
@@ -37,7 +36,7 @@ country_event = {
 				fmerc_stage3_create_fleet = yes
 			}
 
-			event_target:fmerc_ops_fleet = {
+			random_owned_fleet = {
 				queue_actions = {
 					repeat = {
 						while = {
@@ -116,8 +115,7 @@ country_event = {
 
 				# We can't check for orbit, because the fleet drifts
 				# for some reason. It did not do this pre-1.8.
-				exists = event_target:fmerc_ops_fleet
-				event_target:fmerc_ops_fleet = {
+				any_owned_fleet = {
 					exists = solar_system
 					solar_system = {
 						any_planet = {

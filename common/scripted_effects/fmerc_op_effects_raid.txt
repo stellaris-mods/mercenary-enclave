@@ -17,20 +17,20 @@ fmerc_ops_ensure_all_event_targets = {
 		}
 		# If our fleet exists, we first try to find a target within the system it's in.
 		if = {
-			limit = {
-				exists = event_target:fmerc_ops_fleet
-				event_target:fmerc_ops_fleet = {
-					exists = solar_system
-				}
-			}
+			limit = { num_fleets > 0 }
 			event_target:fmerc_target_country = {
 				random_owned_ship = {
 					limit = {
 						exists = fleet
 						has_ship_flag = "fmerc_target"
-						exists = solar_system
-						solar_system = {
-							is_same_value = event_target:fmerc_ops_fleet.solar_system
+						fleet = { # There is probably some neater way to get at this that I can't think of
+							exists = solar_system
+							solar_system = {
+								any_ship_in_system = {
+									exists = owner
+									owner = { is_country_type = "fmerc_operations" }
+								}
+							}
 						}
 					}
 					fleet = {
@@ -56,14 +56,6 @@ fmerc_ops_ensure_all_event_targets = {
 					}
 				}
 			}
-		}
-	}
-	if = {
-		limit = {
-			NOT = { exists = event_target:fmerc_ops_fleet }
-		}
-		random_owned_fleet = {
-			save_event_target_as = fmerc_ops_fleet
 		}
 	}
 }

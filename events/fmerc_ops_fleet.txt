@@ -22,15 +22,13 @@ country_event = {
 				exists = event_target:fmerc_target_country
 				exists = event_target:fmerc_target
 			}
-
 			if = {
 				limit = {
-					exists = event_target:fmerc_ops_fleet
-					event_target:fmerc_ops_fleet = {
+					any_owned_fleet = {
 						fleet_size < 4
 					}
 				}
-				event_target:fmerc_ops_fleet = {
+				every_owned_fleet = {
 					destroy_fleet = this
 				}
 			}
@@ -40,7 +38,7 @@ country_event = {
 				fmerc_stage3_create_fleet = yes
 			}
 
-			event_target:fmerc_ops_fleet = {
+			random_owned_fleet = {
 				queue_actions = {
 					repeat = {
 						while = {

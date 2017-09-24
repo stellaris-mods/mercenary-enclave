@@ -153,7 +153,7 @@ fmerc_match_variable = {
 					value > 4
 				}
 			}
-			event_target:fmerc_ops_fleet = {
+			last_created_fleet = {
 				create_ship = {
 					name = random
 					random_existing_design = nongfx_fmerc_ship_01
@@ -245,8 +245,6 @@ fmerc_stage3_create_fleet = {
 	create_fleet = {
 		effect = {
 			set_owner = root
-			# XXX These may not be necessary, need to check closer
-			save_event_target_as = fmerc_ops_fleet
 			set_location = {
 				target = event_target:fmerc_spawn_location
 				distance = 40
@@ -280,7 +278,7 @@ fmerc_stage3_create_fleet = {
 			}
 		}
 	}
-	event_target:fmerc_ops_fleet = {
+	last_created_fleet = {
 		if = {
 			limit = {
 				fleet_size < 20
@@ -297,7 +295,7 @@ fmerc_stage3_create_fleet = {
 	}
 	if = {
 		limit = { has_country_flag = "fmerc_liberate" }
-		event_target:fmerc_ops_fleet = {
+		last_created_fleet = {
 			while = {
 				count = 5
 				create_ship = {
@@ -313,7 +311,7 @@ fmerc_stage3_create_fleet = {
 			exists = event_target:fmerc_target_country
 			NOT = { event_target:fmerc_target_country = { is_country_type = "default" } }
 		}
-		event_target:fmerc_ops_fleet = {
+		last_created_fleet = {
 			while = {
 				count = 10
 				create_ship = {
