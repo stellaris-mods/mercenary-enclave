@@ -1,5 +1,9 @@
 namespace = fmerc_ops_fleet
 
+# STAGE 3 CONTROLLER
+# These events are used for all operation types except "Liberation".
+#
+
 # Triggered from fmerc_ops_initial_target
 # In this, event_target:fmerc_target is a fleet
 country_event = {
@@ -12,6 +16,8 @@ country_event = {
 	}
 
 	immediate = {
+		log = "fmerc_ops_fleet.1"
+
 		if = {
 			limit = {
 				exists = event_target:fmerc_target
@@ -115,6 +121,8 @@ country_event = {
 	}
 
 	immediate = {
+		log = "fmerc_ops_fleet.20"
+
 		# This sets fmerc_target to the next ship target, if needed.
 		fmerc_set_raid_target = yes
 
@@ -151,6 +159,8 @@ country_event = {
 	}
 
 	immediate = {
+		log = "fmerc_ops_fleet.30"
+
 		# This sets fmerc_target to the next ship target, if needed.
 		fmerc_set_raid_target = yes
 

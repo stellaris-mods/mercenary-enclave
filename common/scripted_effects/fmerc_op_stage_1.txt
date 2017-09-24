@@ -250,6 +250,8 @@ fmerc_stage1_setup_clear = {
 # event_target:fmerc_target_country should be set before this
 # Scope is the buyer country
 fmerc_init_stage1 = {
+	log = "Stage 1: Init Mercenary Operations"
+	log = "Buyer is [Root.GetName]."
 	create_country = {
 		name = "Mercenary Operations"
 		name_list = "FMercenaries"

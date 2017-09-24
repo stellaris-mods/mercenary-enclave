@@ -3,6 +3,7 @@
 # Will probably get merged to _raid.txt.
 
 fmerc_stage2_init_spaceport = {
+	log = "Spaceport: Locating target fleet."
 	event_target:fmerc_buyer = {
 		# Capital of buyer
 		capital_scope = {
@@ -28,6 +29,7 @@ fmerc_stage2_init_spaceport = {
 							is_same_value = event_target:fmerc_target_country
 						}
 					}
+					log = "Spaceport: Target spaceport is [this.GetName] in [This.GetStarName]."
 					save_event_target_as = fmerc_target
 				}
 			}

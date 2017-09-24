@@ -2,6 +2,7 @@
 # These effects are only used by the liberation mission type
 
 fmerc_stage2_init_liberation = {
+	log = "Liberation: Locating target planet."
 	event_target:fmerc_buyer = {
 		# Capital of buyer
 		capital_scope = {
@@ -25,6 +26,7 @@ fmerc_stage2_init_liberation = {
 					limit = {
 						fmerc_valid_liberation_planet = yes
 					}
+					log = "Liberation: Target planet is [this.GetName] in [This.GetStarName]."
 					set_planet_flag = "fmerc_target"
 					save_event_target_as = fmerc_target
 				}
@@ -33,19 +35,13 @@ fmerc_stage2_init_liberation = {
 	}
 }
 
-fmerc_ops_ensure_all_liberate_targets = {
-	fmerc_set_buyer = yes
-	fmerc_set_target_country = yes
+fmerc_liberation_set_target_planet = {
 	if = {
-		limit = {
-			exists = event_target:fmerc_target_country
-			NOT = { exists = event_target:fmerc_target }
-		}
+		limit = { NOT = { exists = event_target:fmerc_target } }
+		fmerc_set_target_country = yes
 		event_target:fmerc_target_country = {
 			random_owned_planet = {
-				limit = {
-					has_planet_flag = "fmerc_target"
-				}
+				limit = { has_planet_flag = "fmerc_target" }
 				save_event_target_as = fmerc_target
 			}
 		}

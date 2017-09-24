@@ -2,6 +2,7 @@
 # Effects for space clearing operations
 
 fmerc_stage2_init_clear = {
+	log = "Clear: Locating and marking 5 targets for destruction inside buyers borders."
 	set_variable = {
 		which = MercRaidCount
 		value = 5
@@ -29,6 +30,7 @@ fmerc_stage2_init_clear = {
 					has_ship_flag = "fmerc_counter"
 				}
 				remove_ship_flag = "fmerc_counter"
+				log = "Clear: - Marked [this.GetName]."
 				set_ship_flag = "fmerc_target"
 			}
 		}
@@ -38,7 +40,10 @@ fmerc_stage2_init_clear = {
 		}
 		random_owned_ship = {
 			limit = { has_ship_flag = "fmerc_target" }
-			fleet = { save_event_target_as = fmerc_target }
+			fleet = {
+				log = "Clear: First target is in fleet [this.GetName]."
+				save_event_target_as = fmerc_target
+			}
 		}
 	}
 }

@@ -244,6 +244,8 @@ fmerc_stage3_create_fleet = {
 	# Make sure we have somewhere to spawn
 	fmerc_stage3_ensure_spawn_location = yes
 
+	log = "Creating new fleet in [fmerc_spawn_location.GetStarName]."
+
 	# For when we recreate the fleet
 	set_faction_hostility = { set_hostile = no }
 	create_fleet = {

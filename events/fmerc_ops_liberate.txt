@@ -1,5 +1,9 @@
 namespace = fmerc_ops_liberate
 
+# STAGE 3 CONTROLLER
+# These events are used exclusively by the "Liberation" operation.
+#
+
 # liberate
 # Triggered from fmerc_ops_initial_target
 country_event = {
@@ -12,10 +16,9 @@ country_event = {
 	}
 
 	immediate = {
-		log = "Liberation mission start."
+		log = "fmerc_ops_liberate.1"
 		if = {
 			limit = {
-				exists = event_target:fmerc_target_country
 				exists = event_target:fmerc_target
 			}
 			if = {
@@ -32,7 +35,6 @@ country_event = {
 
 			if = {
 				limit = { num_fleets = 0 }
-				log = "We need a new fleet."
 				fmerc_stage3_create_fleet = yes
 			}
 
@@ -47,13 +49,7 @@ country_event = {
 							NOR = {
 								exists = solar_system
 								solar_system = {
-									any_planet = {
-										exists = owner
-										owner = {
-											is_same_value = event_target:fmerc_target_country
-										}
-										has_planet_flag = "fmerc_target"
-									}
+									is_same_value = event_target:fmerc_target.solar_system
 								}
 							}
 						}
@@ -106,7 +102,8 @@ country_event = {
 
 	immediate = {
 		log = "fmerc_ops_liberate.10"
-		fmerc_ops_ensure_all_liberate_targets = yes
+		fmerc_liberation_set_target_planet = yes
+
 		if = {
 			limit = {
 				# We only check this because the event might have been
@@ -125,6 +122,8 @@ country_event = {
 				}
 			}
 			log = "We have a fleet in the system of target planet."
+
+			fmerc_set_buyer = yes
 			if = {
 				limit = {
 					any_country = {
@@ -162,6 +161,8 @@ country_event = {
 				}
 				else = {
 					log = "There was no existing rebel country, creating new one."
+					fmerc_set_target_country = yes
+
 					# The rebel country does NOT exist, so create a new one
 					event_target:fmerc_target = {
 						create_rebels = {
@@ -236,7 +237,7 @@ country_event = {
 			}
 			# Try again
 			log = "Restart mission."
-			fmerc_ops_ensure_all_liberate_targets = yes
+			fmerc_liberation_set_target_planet = yes
 			country_event = {
 				id = fmerc_ops_liberate.1
 			}
@@ -341,6 +342,7 @@ country_event = {
 		}
 	}
 	immediate = {
+		log = "fmerc_ops_liberate.60"
 		# In vanilla, the leader was killed.
 		# But now that there's only one governor per sector,
 		# that sounds unreasonable to me.
@@ -536,6 +538,7 @@ country_event = {
 	}
 
 	immediate = {
+		log = "fmerc_ops_liberate.1337"
 		remove_country_flag = "fmerc_liberated_await_clear_skies"
 		country_event = { id = game_start.9 } # Empire init - add ships
 		create_fleet_from_naval_cap = 0.5
