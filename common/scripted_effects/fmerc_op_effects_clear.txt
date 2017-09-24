@@ -1,6 +1,19 @@
 
 # Effects for space clearing operations
 
+fmerc_stage2_continue_clear = {
+	if = {
+		limit = { exists = event_target:fmerc_target }
+		set_relation_flag = {
+			who = event_target:fmerc_target_country
+			flag = merc_operations_target
+		}
+		else = {
+			set_country_flag = "fmerc_ops_completed"
+		}
+	}
+}
+
 # XXX should try to consolidate the clear inits
 
 # XXX should rewrite all every_planet_within_border users below to use
@@ -36,18 +49,7 @@ fmerc_stage2_init_amoeba = {
 			}
 		}
 	}
-	if = {
-		limit = {
-			exists = event_target:fmerc_target
-		}
-		set_relation_flag = {
-			who = event_target:fmerc_target_country
-			flag = merc_operations_target
-		}
-		else = {
-			set_country_flag = "fmerc_ops_completed"
-		}
-	}
+	fmerc_stage2_continue_clear = yes
 }
 
 fmerc_stage2_init_cloud = {
@@ -81,19 +83,7 @@ fmerc_stage2_init_cloud = {
 			}
 		}
 	}
-	if = {
-		limit = {
-			exists = event_target:fmerc_target
-		}
-		set_relation_flag = {
-			who = event_target:fmerc_target_country
-			flag = merc_operations_target
-		}
-
-		else = {
-			set_country_flag = "fmerc_ops_completed"
-		}
-	}
+	fmerc_stage2_continue_clear = yes
 }
 
 fmerc_stage2_init_crystal = {
@@ -127,19 +117,7 @@ fmerc_stage2_init_crystal = {
 			}
 		}
 	}
-	if = {
-		limit = {
-			exists = event_target:fmerc_target
-		}
-		set_relation_flag = {
-			who = event_target:fmerc_target_country
-			flag = merc_operations_target
-		}
-
-		else = {
-			set_country_flag = "fmerc_ops_completed"
-		}
-	}
+	fmerc_stage2_continue_clear = yes
 }
 
 fmerc_stage2_init_pirate = {
@@ -173,19 +151,7 @@ fmerc_stage2_init_pirate = {
 			}
 		}
 	}
-	if = {
-		limit = {
-			exists = event_target:fmerc_target
-		}
-		set_relation_flag = {
-			who = event_target:fmerc_target_country
-			flag = merc_operations_target
-		}
-
-		else = {
-			set_country_flag = "fmerc_ops_completed"
-		}
-	}
+	fmerc_stage2_continue_clear = yes
 }
 
 fmerc_stage2_init_drone = {
@@ -219,17 +185,6 @@ fmerc_stage2_init_drone = {
 			}
 		}
 	}
-	if = {
-		limit = {
-			exists = event_target:fmerc_target
-		}
-		set_relation_flag = {
-			who = event_target:fmerc_target_country
-			flag = merc_operations_target
-		}
-		else = {
-			set_country_flag = "fmerc_ops_completed"
-		}
-	}
+	fmerc_stage2_continue_clear = yes
 }
 
