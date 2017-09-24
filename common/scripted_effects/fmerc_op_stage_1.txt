@@ -1,4 +1,11 @@
 
+# STAGE 1
+# - Initiated from the diplomacy screen
+# - ROOT/THIS must be the buyer country for all stage1 effects
+# - last_created_country is always the new mercenary operations country
+#   created immediately in stage 1 init
+# - fmerc_target_country is NOT guaranteed to exist
+
 fmerc_stage1_copy_detection = {
 	last_created_country = {
 		set_variable = {

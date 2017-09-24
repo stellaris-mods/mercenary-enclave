@@ -1,6 +1,11 @@
 
-# This is delayed
-# stage 2 is in the operations country scope
+
+# STAGE 2
+# - Initialization starts after a random delay.
+# - ROOT/THIS is always the mercenary operations country
+# - event_targets fmerc_buyer and fmerc_target_country always exist
+# - Must chain to the specific operation types init event
+
 fmerc_init_stage2 = {
 	fmerc_set_buyer = yes
 	fmerc_set_target_country = yes

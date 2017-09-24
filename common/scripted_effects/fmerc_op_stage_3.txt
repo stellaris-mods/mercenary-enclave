@@ -1,6 +1,10 @@
 
-# Effects in this stage are while operations are underway
-# They may be used from any operation type.
+
+# STAGE 3
+# - Operation is ongoing
+# - ROOT/THIS can be anything, depending on the effect
+# - Effects can be used by any operation
+
 
 # XXX I'm not actually certain that fleet_size works.
 # XXX need to investigate, and potentially use fleet_power instead if possible.
