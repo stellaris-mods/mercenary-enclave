@@ -104,7 +104,6 @@ fleet_event = {
 		}
 		FROM = {
 			space_owner = {
-				capital_scope = { save_event_target_as = player_capital_location }
 				country_event = { id = mercguardian.91 }
 			}
 		}
@@ -145,7 +144,6 @@ fleet_event = {
 
 	immediate = {
 		owner = {
-			capital_scope = { save_event_target_as = player_capital_location }
 			FROM = {
 				random_fleet_in_system = {
 					limit = {
@@ -185,7 +183,7 @@ country_event = {
 		event_target:target_enclave = {
 			enable_special_project = {
 				name = "INVESTIGATE_MERC_ENCLAVE"
-				location = event_target:player_capital_location
+				location = ROOT.capital_scope
 				owner = ROOT
 			}
 		}
@@ -194,25 +192,23 @@ country_event = {
 				flag = ongoing_merc_enclave_investigation
 				who = event_target:target_enclave
 			}
-			event_target:target_enclave = {
-				country_event = { id = mercguardian.97 days = 250 random = 50 }
-			}
+			country_event = { id = mercguardian.97 days = 300 random = 600 }
 		}
 	}
 }
 
-# Enclaves make contact after ~300 days
+# Enclaves make contact, delayed
 country_event = {
 	id = mercguardian.97
 	hide_window = yes
+	is_triggered_only = yes
 
 	trigger = {
-		exists = event_target:player_capital_location
-		event_target:player_capital_location = {
-			exists = owner
-			owner = {
-				NOT = { has_communications = ROOT }
-				has_relation_flag = {
+		any_country = {
+			is_country_type = "fmerc_enclave"
+			NOR = {
+				has_communications = ROOT
+				reverse_has_relation_flag = {
 					flag = ongoing_merc_enclave_investigation
 					who = ROOT
 				}
@@ -221,12 +217,20 @@ country_event = {
 	}
 
 	immediate = {
-		event_target:player_capital_location = {
-			owner = {
-				ROOT = { establish_communications_no_message = PREV }
-				country_event = { id = mercguardian.98 }
+		random_country = {
+			limit = {
+				is_country_type = "fmerc_enclave"
+				NOR = {
+					has_communications = ROOT
+					reverse_has_relation_flag = {
+						flag = ongoing_merc_enclave_investigation
+						who = ROOT
+					}
+				}
 			}
+			ROOT = { establish_communications_no_message = PREV }
 		}
+		country_event = { id = mercguardian.98 }
 	}
 }
 
@@ -471,7 +475,7 @@ country_event = {
 		# If we have zero fleets left, we are dead, so notify customers
 		if = {
 			limit = {
-				num_fleets = 0
+				count_owned_ships { count = 0 }
 			}
 			every_country = {
 				limit = {
