@@ -48,7 +48,7 @@ country_event = {
 	}
 	trigger = {
 		NOT = { has_country_flag = "fmerc_diplomacy_engaged" }
-		from = {
+		FROM = {
 			is_country_type = "fmerc_enclave"
 		}
 	}
@@ -79,7 +79,7 @@ country_event = {
 			}
 			event_target:traders = {
 				add_trust = {
-					who = root
+					who = ROOT
 					amount = 5
 				}
 			}
@@ -153,7 +153,7 @@ country_event = {
 				text = fmerc_enclave.trust
 				event_target:traders = {
 					trust = {
-						who = root
+						who = ROOT
 						value > 49
 					}
 				}
@@ -264,7 +264,7 @@ country_event = {
 			}
 			event_target:traders = {
 				add_trust = {
-					who = root
+					who = ROOT
 					amount = 5
 				}
 			}
@@ -337,7 +337,7 @@ country_event = {
 				text = fmerc_enclave.trust
 				event_target:traders = {
 					trust = {
-						who = root
+						who = ROOT
 						value > 49
 					}
 				}
@@ -508,7 +508,7 @@ country_event = {
 				text = fmerc_enclave.trust30
 				event_target:traders = {
 					trust = {
-						who = root
+						who = ROOT
 						value > 29
 					}
 				}
@@ -774,7 +774,7 @@ country_event = {
 			random_country = {
 				limit = {
 					is_country_type = "amoeba"
-					any_owned_ship = { is_inside_border = root }
+					any_owned_ship = { is_inside_border = ROOT }
 				}
 				save_event_target_as = fmerc_target_country
 			}
@@ -799,7 +799,7 @@ country_event = {
 			random_country = {
 				limit = {
 					is_country_type = "cloud"
-					any_owned_ship = { is_inside_border = root }
+					any_owned_ship = { is_inside_border = ROOT }
 				}
 				save_event_target_as = fmerc_target_country
 			}
@@ -824,7 +824,7 @@ country_event = {
 			random_country = {
 				limit = {
 					is_country_type = "crystal"
-					any_owned_ship = { is_inside_border = root }
+					any_owned_ship = { is_inside_border = ROOT }
 				}
 				save_event_target_as = fmerc_target_country
 			}
@@ -849,7 +849,7 @@ country_event = {
 			random_country = {
 				limit = {
 					is_country_type = "pirate"
-					any_owned_ship = { is_inside_border = root }
+					any_owned_ship = { is_inside_border = ROOT }
 				}
 				save_event_target_as = fmerc_target_country
 			}
@@ -874,7 +874,7 @@ country_event = {
 			random_country = {
 				limit = {
 					is_country_type = "drone"
-					any_owned_ship = { is_inside_border = root }
+					any_owned_ship = { is_inside_border = ROOT }
 				}
 				save_event_target_as = fmerc_target_country
 			}
@@ -916,7 +916,7 @@ country_event = {
 		trigger = {
 			any_country = {
 				is_country_type = "default"
-				has_communications = root
+				has_communications = ROOT
 				NOT = { is_same_value = ROOT }
 				num_owned_planets > 1
 			}
@@ -936,7 +936,7 @@ country_event = {
 					is_country_type = "awakened_fallen_empire"
 				}
 				NOT = { is_same_value = ROOT }
-				has_communications = root
+				has_communications = ROOT
 				num_owned_planets > 1
 			}
 		}
@@ -970,7 +970,7 @@ country_event = {
 		trigger = {
 			any_country = {
 				is_country_type = "swarm"
-				has_communications = root
+				has_communications = ROOT
 				NOT = { is_same_value = ROOT }
 			}
 		}
@@ -1005,7 +1005,7 @@ country_event = {
 					is_country_type = "extradimensional_3"
 				}
 				NOT = { is_same_value = ROOT }
-				has_communications = root
+				has_communications = ROOT
 			}
 		}
 		allow = {
@@ -1035,7 +1035,7 @@ country_event = {
 			any_country = {
 				is_country_type = "ai_empire"
 				NOT = { is_same_value = ROOT }
-				has_communications = root
+				has_communications = ROOT
 			}
 		}
 		allow = {
@@ -1137,83 +1137,83 @@ country_event = {
 				# We should have done an if-else below, but that results in too many {} all over the place
 				# it just looks untidy
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 1 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 1 } } }
 					save_event_target_as = fmerc_temp_country_1
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 2 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 2 } } }
 					save_event_target_as = fmerc_temp_country_2
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 3 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 3 } } }
 					save_event_target_as = fmerc_temp_country_3
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 4 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 4 } } }
 					save_event_target_as = fmerc_temp_country_4
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 5 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 5 } } }
 					save_event_target_as = fmerc_temp_country_5
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 6 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 6 } } }
 					save_event_target_as = fmerc_temp_country_6
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 7 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 7 } } }
 					save_event_target_as = fmerc_temp_country_7
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 8 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 8 } } }
 					save_event_target_as = fmerc_temp_country_8
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 9 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 9 } } }
 					save_event_target_as = fmerc_temp_country_9
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 10 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 10 } } }
 					save_event_target_as = fmerc_temp_country_10
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 11 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 11 } } }
 					save_event_target_as = fmerc_temp_country_11
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 12 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 12 } } }
 					save_event_target_as = fmerc_temp_country_12
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 13 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 13 } } }
 					save_event_target_as = fmerc_temp_country_13
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 14 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 14 } } }
 					save_event_target_as = fmerc_temp_country_14
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 15 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 15 } } }
 					save_event_target_as = fmerc_temp_country_15
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 16 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 16 } } }
 					save_event_target_as = fmerc_temp_country_16
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 17 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 17 } } }
 					save_event_target_as = fmerc_temp_country_17
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 18 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 18 } } }
 					save_event_target_as = fmerc_temp_country_18
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 19 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 19 } } }
 					save_event_target_as = fmerc_temp_country_19
 				}
 				if = {
-					limit = { prev = { check_variable = { which = FMercCountry value = 20 } } }
+					limit = { PREV = { check_variable = { which = FMercCountry value = 20 } } }
 					save_event_target_as = fmerc_temp_country_20
 				}
 				remove_country_flag = "fmerc_temp_country"
@@ -1762,13 +1762,13 @@ country_event = {
 		event_target:traders = {
 			create_leader = {
 				name = random
-				species = root
+				species = ROOT
 				type = random
 				skill = random
 			}
 			last_created_leader = {
 				save_event_target_as = trader_leader
-				root = {
+				ROOT = {
 					switch = {
 						trigger = has_country_flag
 						fmerc_diplo_disguise_random = {
@@ -2227,7 +2227,7 @@ fleet_event = {
 		# towards the space owner
 		owner = {
 			has_relation_flag = {
-				who = from.space_owner
+				who = FROM.space_owner
 				flag = merc_operations_target
 			}
 		}
@@ -2256,7 +2256,7 @@ country_event = {
 		random_country = {
 			limit = {
 				has_relation_flag = {
-					who = root
+					who = ROOT
 					flag = merc_operations_target
 				}
 			}
@@ -2274,8 +2274,8 @@ country_event = {
 
 			save_event_target_as = fmerc_buyer
 
-			# We should copy the MercPreviousOperationCost from this scope to the root scope.
-			prev = {
+			# We should copy the MercPreviousOperationCost from this scope to the ROOT scope.
+			PREV = {
 				set_variable = {
 					which = MercCost
 					value = 0
@@ -2298,7 +2298,7 @@ country_event = {
 					which = temp_counter
 					value = 1000
 				}
-				prev = {
+				PREV = {
 					change_variable = {
 						which = MercCost
 						value = 1000
@@ -2316,7 +2316,7 @@ country_event = {
 					which = temp_counter
 					value = 100
 				}
-				prev = {
+				PREV = {
 					change_variable = {
 						which = MercCost
 						value = 100
@@ -2334,7 +2334,7 @@ country_event = {
 					which = temp_counter
 					value = 10
 				}
-				prev = {
+				PREV = {
 					change_variable = {
 						which = MercCost
 						value = 10
@@ -2352,7 +2352,7 @@ country_event = {
 					which = temp_counter
 					value = 1
 				}
-				prev = {
+				PREV = {
 					change_variable = {
 						which = MercCost
 						value = 1

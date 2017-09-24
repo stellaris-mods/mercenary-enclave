@@ -44,15 +44,15 @@ country_event = {
 					exists = space_owner
 					space_owner = {
 						is_country_type = "default"
-						has_communications = root
+						has_communications = ROOT
 					}
 				}
 			}
 			solar_system = {
 				space_owner = {
-					root = {
+					ROOT = {
 						add_trust = {
-							who = prev
+							who = PREV
 							amount = 1
 						}
 					}
@@ -71,7 +71,7 @@ fleet_event = {
 
 	trigger = {
 		owner = { is_country_type = "fmerc_operations" }
-		from = {
+		FROM = {
 			exists = space_owner
 			space_owner = {
 				is_country_type = "default"
@@ -79,10 +79,10 @@ fleet_event = {
 				any_country = {
 					is_country_type = "fmerc_enclave"
 					NOR = {
-						has_communications = prev
+						has_communications = PREV
 						reverse_has_relation_flag = {
 							flag = ongoing_merc_enclave_investigation
-							who = prev
+							who = PREV
 						}
 					}
 				}
@@ -102,7 +102,7 @@ fleet_event = {
 				}
 			}
 		}
-		from = {
+		FROM = {
 			space_owner = {
 				capital_scope = { save_event_target_as = player_capital_location }
 				country_event = { id = mercguardian.91 }
@@ -126,16 +126,16 @@ fleet_event = {
 			is_country_type = "default"
 			exists = capital_scope
 		}
-		from = {
+		FROM = {
 			any_ship_in_system = {
 				exists = owner
 				owner = {
 					is_country_type = "fmerc_enclave"
 					NOR = {
-						has_communications = root.owner
+						has_communications = ROOT.owner
 						reverse_has_relation_flag = {
 							flag = ongoing_merc_enclave_investigation
-							who = root.owner
+							who = ROOT.owner
 						}
 					}
 				}
@@ -146,7 +146,7 @@ fleet_event = {
 	immediate = {
 		owner = {
 			capital_scope = { save_event_target_as = player_capital_location }
-			from = {
+			FROM = {
 				random_fleet_in_system = {
 					limit = {
 						exists = owner
@@ -186,7 +186,7 @@ country_event = {
 			enable_special_project = {
 				name = "INVESTIGATE_MERC_ENCLAVE"
 				location = event_target:player_capital_location
-				owner = root
+				owner = ROOT
 			}
 		}
 		hidden_effect = {
@@ -211,10 +211,10 @@ country_event = {
 		event_target:player_capital_location = {
 			exists = owner
 			owner = {
-				NOT = { has_communications = root }
+				NOT = { has_communications = ROOT }
 				has_relation_flag = {
 					flag = ongoing_merc_enclave_investigation
-					who = root
+					who = ROOT
 				}
 			}
 		}
@@ -222,24 +222,10 @@ country_event = {
 
 	immediate = {
 		event_target:player_capital_location = {
-			# if = {
-			# 	limit = {
-			# 		exists = owner
-			# 		owner = {
-			# 			NOT = {
-			# 				has_communications = root
-			# 			}
-			# 			has_relation_flag = {
-			# 				flag = ongoing_merc_enclave_investigation
-			# 				who = root
-			# 			}
-			# 		}
-			# 	}
 			owner = {
-				root = { establish_communications_no_message = prev }
+				ROOT = { establish_communications_no_message = PREV }
 				country_event = { id = mercguardian.98 }
 			}
-			# }
 		}
 	}
 }
@@ -278,7 +264,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			from = { country_event = { id = mercguardian.101 } }
+			FROM = { country_event = { id = mercguardian.101 } }
 		}
 	}
 
@@ -351,7 +337,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			fromfrom = { country_event = { id = mercguardian.101 } }
+			FROMFROM = { country_event = { id = mercguardian.101 } }
 		}
 	}
 
@@ -398,7 +384,7 @@ country_event = {
 		random_owned_ship = {
 			solar_system = { save_event_target_as = trader_system }
 		}
-		from = {
+		FROM = {
 			country_event = { id = mercguardian.102 }
 		}
 	}
@@ -415,7 +401,7 @@ country_event = {
 	custom_gui = "enclave_trader_window"
 
 	picture_event_data = {
-		portrait = from
+		portrait = FROM
 		room = enclave_trader_room
 	}
 

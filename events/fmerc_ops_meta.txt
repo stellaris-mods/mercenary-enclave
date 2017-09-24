@@ -177,7 +177,7 @@ country_event = {
 					wait = 14
 					effect = {
 						id = fmerc_ops_fleet.911.effect.1
-						destroy_fleet = this
+						destroy_fleet = THIS
 					}
 				}
 			}

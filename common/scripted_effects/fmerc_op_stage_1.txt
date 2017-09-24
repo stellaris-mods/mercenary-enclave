@@ -210,7 +210,7 @@ fmerc_stage1_setup_mission = {
 			fmerc_stage1_culture_random = yes
 		}
 		fmerc_diplo_disguise_other = {
-			# Anything except root
+			# Anything except ROOT
 			fmerc_stage1_culture_random = yes
 			if = {
 				limit = {
@@ -220,7 +220,7 @@ fmerc_stage1_setup_mission = {
 			}
 		}
 		fmerc_diplo_disguise_same = {
-			# Same as root
+			# Same as ROOT
 			fmerc_stage1_culture_copy = yes
 		}
 		fmerc_diplo_disguise_pirate = {
@@ -280,8 +280,8 @@ fmerc_init_stage1 = {
 		auto_delete = no
 	}
 	last_created_country = {
-		#establish_communications_no_message = root
-		#establish_contact = { who = root }
+		#establish_communications_no_message = ROOT
+		#establish_contact = { who = ROOT }
 		#establish_communications_no_message = event_target:traders
 		#establish_contact = { who = event_target:traders }
 		#establish_communications_no_message = event_target:fmerc_target_country

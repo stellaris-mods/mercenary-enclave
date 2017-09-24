@@ -57,7 +57,7 @@ fmerc_ops_ensure_all_liberate_targets = {
 
 # Scope should be planet
 # event_target:tmp_army_country gets the new armies
-# root needs to be the mercenary country
+# ROOT needs to be the mercenary country
 # event_target:fmerc_buyer must be set
 
 fmerc_liberation_create_armies = {

@@ -131,14 +131,14 @@ fmerc_stage2_init_raid = {
 
 		while = {
 			limit = {
-				root = {
+				ROOT = {
 					check_variable = {
 						which = MercRaidCount
 						value > 0
 					}
 				}
 			}
-			root = {
+			ROOT = {
 				subtract_variable = {
 					which = MercRaidCount
 					value = 1

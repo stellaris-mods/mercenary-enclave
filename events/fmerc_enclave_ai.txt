@@ -1,38 +1,5 @@
 namespace = fmercai
 
-# event = {
-# 	id = fmercai.1
-# 	hide_window = yes
-# 	is_triggered_only = yes
-
-# 	immediate = {
-# 		every_country = {
-# 			limit = {
-# 				is_country_type = "fmerc_enclave"
-# 			}
-# 			country_event = { id = fmercai.2 }
-# 		}
-# 	}
-# }
-
-# country_event = {
-# 	id = fmercai.2
-# 	hide_window = yes
-# 	is_triggered_only = yes
-
-# 	immediate = {
-# 		# Survey the galaxy so we know where to go and not go
-# 		# ZZZ the operations countries should do this, not the enclave
-# 		# ZZZ but I am not going to do it yet, it might not be necessary
-# 		every_planet = {
-# 			surveyed = {
-# 				set_surveyed = yes
-# 				surveyor = prev
-# 			}
-# 		}
-# 	}
-# }
-
 # We also do this in the meta contact events, but
 # I just want to be certain that the variable is actually set.
 country_event = {
@@ -40,7 +7,7 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		from = {
+		FROM = {
 			is_country_type = "fmerc_enclave"
 		}
 		is_country_type = "default"
@@ -82,9 +49,9 @@ country_event = {
 			limit = {
 				has_country_flag = "fmerc_allow_stations"
 			}
-			root = {
+			ROOT = {
 				add_trust = {
-					who = prev
+					who = PREV
 					amount = 4
 				}
 			}

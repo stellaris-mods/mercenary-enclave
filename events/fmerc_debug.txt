@@ -9,17 +9,17 @@ country_event = {
 		every_country = {
 			limit = {
 				has_relation_flag = {
-					who = root
+					who = ROOT
 					flag = merc_operations_squad
 				}
 			}
 			every_owned_fleet = {
-				delete_fleet = this
+				delete_fleet = THIS
 			}
 			random_country = {
 				limit = {
 					reverse_has_relation_flag = {
-						who = prev
+						who = PREV
 						flag = merc_operations_target
 					}
 				}

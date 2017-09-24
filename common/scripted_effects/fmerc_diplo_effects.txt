@@ -40,13 +40,13 @@ fmerc_reset_diplo_screen = {
 	# every_country = {
 	# 	limit = {
 	# 		reverse_has_relation_flag = {
-	# 			who = root
+	# 			who = ROOT
 	# 			flag = fmerc_target_country
 	# 		}
 	# 	}
-	# 	root = {
+	# 	ROOT = {
 	# 		remove_relation_flag = {
-	# 			who = prev
+	# 			who = PREV
 	# 			flag = fmerc_target_country
 	# 		}
 	# 	}

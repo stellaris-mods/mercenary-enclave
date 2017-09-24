@@ -26,7 +26,7 @@ country_event = {
 				}
 				log = "Fleet is too small, destroying."
 				every_owned_fleet = {
-					destroy_fleet = this
+					destroy_fleet = THIS
 				}
 			}
 
@@ -130,7 +130,7 @@ country_event = {
 					any_country = {
 						has_relation_flag = {
 							flag = fmerc_liberation_rebels
-							who = root
+							who = ROOT
 						}
 					}
 				}
@@ -141,7 +141,7 @@ country_event = {
 					limit = {
 						has_relation_flag = {
 							flag = fmerc_liberation_rebels
-							who = root
+							who = ROOT
 						}
 					}
 					save_event_target_as = tmp_army_country
@@ -179,17 +179,17 @@ country_event = {
 								# create_rebels, and I don't want to run it even once
 								# to find out.
 								save_event_target_as = tmp_army_country
-								establish_communications_no_message = root # merc operations
+								establish_communications_no_message = ROOT # merc operations
 								establish_communications_no_message = event_target:fmerc_target_country
 								#establish_communications_no_message = event_target:fmerc_buyer
 								#event_target:fmerc_target_country = {
 								#	every_relation = {
-								#		establish_communications_no_message = prevprev
+								#		establish_communications_no_message = PREVPREV
 								#	}
 								#}
 								set_relation_flag = {
 									flag = fmerc_liberation_rebels
-									who = root
+									who = ROOT
 								}
 								set_relation_flag = {
 									flag = fmerc_liberation_rebels
@@ -283,7 +283,7 @@ country_event = {
 		is_country_type = "default"
 		FromFrom = {
 			has_planet_flag = "fmerc_target"
-			controller = { is_same_value = root }
+			controller = { is_same_value = ROOT }
 		}
 	}
 	immediate = {
@@ -293,7 +293,7 @@ country_event = {
 				is_country_type = "fmerc_operations"
 				reverse_has_relation_flag = {
 					flag = fmerc_liberation_rebels
-					who = from
+					who = FROM
 				}
 			}
 			log = "Checking if we should try again..."
@@ -345,7 +345,7 @@ country_event = {
 		# But now that there's only one governor per sector,
 		# that sounds unreasonable to me.
 		FROMFROM = {
-			leader = { unassign_leader = this }
+			leader = { unassign_leader = THIS }
 		}
 	}
 }
@@ -382,7 +382,7 @@ country_event = {
 	}
 	immediate = {
 		log = "fmerc_ops_liberate.70"
-		from.owner = {
+		FROM.owner = {
 			# Event target used in 4211
 			save_event_target_as = rebelled_against
 			# This vanilla event can be used directly
@@ -421,7 +421,7 @@ country_event = {
 			random_country = {
 				limit = {
 					reverse_has_relation_flag = {
-						who = prev
+						who = PREV
 						flag = merc_operations_target
 					}
 				}

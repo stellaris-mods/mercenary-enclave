@@ -23,7 +23,7 @@ country_event = {
 					}
 				}
 				every_owned_fleet = {
-					destroy_fleet = this
+					destroy_fleet = THIS
 				}
 			}
 

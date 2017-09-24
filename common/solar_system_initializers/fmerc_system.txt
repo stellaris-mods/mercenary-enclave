@@ -108,46 +108,38 @@ folk_merc_init = {
 					name = "Whiteout Enterprises HQ"
 					settings = { spawn_debris = no }
 					effect = {
-						set_owner = prev
+						set_owner = PREV
 						create_ship = {
 							name = " "
 							design = "Mercenary Enclave Century"
-							#graphical_culture = prev
-						}
-						create_ship = {
-							name = " "
-							design = "Mercenary Enclave Century"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = " "
 							design = "Mercenary Enclave Century"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = " "
 							design = "Mercenary Enclave Century"
-							#graphical_culture = prev
+						}
+						create_ship = {
+							name = " "
+							design = "Mercenary Enclave Century"
 						}
 						create_ship = {
 							name = "Spaceport"
 							design = "Mercenary Spaceport"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = "Spaceport"
 							design = "Mercenary Spaceport"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = "Spaceport"
 							design = "Mercenary Spaceport"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = "Spaceport"
 							design = "Mercenary Spaceport"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = "Headquarters"
@@ -157,42 +149,34 @@ folk_merc_init = {
 						create_ship = {
 							name = " "
 							design = "Mercenary Enclave Pioneer"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = " "
 							design = "Mercenary Enclave Pioneer"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = " "
 							design = "Mercenary Enclave Pioneer"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = " "
 							design = "Mercenary Enclave Pioneer"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = " "
 							design = "Mercenary Enclave Pioneer"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = " "
 							design = "Mercenary Enclave Pioneer"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = " "
 							design = "Mercenary Enclave Pioneer"
-							#graphical_culture = prev
 						}
 						create_ship = {
 							name = " "
 							design = "Mercenary Enclave Pioneer"
-							#graphical_culture = prev
 						}
 						set_fleet_formation = {
 							# bottom right
@@ -220,7 +204,7 @@ folk_merc_init = {
 						}
 						set_formation_scale = 0.8
 						set_location = {
-							target = prevprev
+							target = PREVPREV
 							distance = 80
 							angle = random
 						}
@@ -230,7 +214,7 @@ folk_merc_init = {
 						# of times in vanilla, and they always do it this way.
 						# Which means I'm not going to bother |this|.
 						save_event_target_as = CustomCapital
-						prev = {
+						PREV = {
 							set_custom_capital_location = event_target:CustomCapital
 						}
 						set_fleet_flag = "folk_mercenary_station"
@@ -238,7 +222,7 @@ folk_merc_init = {
 				}
 				create_leader = {
 					type = ruler
-					species = prev
+					species = PREV
 					name = random
 					skill = 2000
 				}
