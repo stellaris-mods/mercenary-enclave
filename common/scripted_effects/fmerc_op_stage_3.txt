@@ -46,6 +46,10 @@ fmerc_stage3_update_can_retry = {
 # XXX need to investigate, and potentially use fleet_power instead if possible.
 # XXX the alternative is count_fleet_ships
 
+# ZZZ As of 1.8, FLEET_MAX_SHIPS is set to 500
+# ZZZ Largest standard vanilla ship is BS, size 8
+# (there are non-standard ships that are larger, like the Titan etc)
+# ZZZ 500 * 8 = 4000. So stop matching around there.
 fmerc_get_fleet_size = {
 	switch = {
 		trigger = fleet_size
@@ -180,6 +184,7 @@ fmerc_get_fleet_size = {
 		20 > { ROOT = { set_variable = { which = MercTempSize value = 30}}}
 		0 > { ROOT = { set_variable = { which = MercTempSize value = 20}}}
 	}
+	log = "Matching [this.GetName]'s fleet size: [ROOT.MercTempSize]."
 }
 
 
