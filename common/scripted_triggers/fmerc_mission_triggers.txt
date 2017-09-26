@@ -111,11 +111,10 @@ fmerc_stage1_same_culture = {
 	}
 }
 
+# Note that this trigger is used both in the diplomacy screen, and during the mission
 fmerc_valid_liberation_planet = {
-	exists = owner
+	is_occupied_flag = no
 	is_colony = yes
-	is_owned_by = event_target:fmerc_target_country
-	is_controlled_by = event_target:fmerc_target_country
 	has_ground_combat = no
 	is_capital = no
 	is_homeworld = no
@@ -124,4 +123,20 @@ fmerc_valid_liberation_planet = {
 	NOT = {
 		has_planet_flag = "fmerc_target"
 	}
+}
+
+# Note that this trigger is used both in the diplomacy screen, and during the mission
+fmerc_valid_spaceport_planet = {
+	is_occupied_flag = no
+	is_colony = yes
+	has_ground_combat = no
+	is_capital = no
+	is_homeworld = no
+	num_pops > 0
+	is_terraforming = no
+
+	# XXX I have not checked if has_spaceport_construction checks only the spaceport itself,
+	# XXX or if it is true when the spaceport is building modules/ships/whatever
+	#has_spaceport_construction = no
+	has_spaceport = yes
 }

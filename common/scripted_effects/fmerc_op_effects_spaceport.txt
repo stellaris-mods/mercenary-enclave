@@ -9,28 +9,24 @@ fmerc_stage2_init_spaceport = {
 		capital_scope = {
 			closest_system = {
 				limit = {
-					any_ship_in_system = {
-						is_ship_size = orbital_station
+					any_planet = {
 						exists = owner
-						owner = {
-							is_same_value = event_target:fmerc_target_country
-						}
-					}
-					NOT = {
-						has_star_flag = enclave
+						owner = { is_same_value = event_target:fmerc_target_country }
+						controller = { is_same_value = event_target:fmerc_target_country }
+						fmerc_valid_spaceport_planet = yes
 					}
 				}
-				#min_steps = 1
-				random_fleet_in_system = {
+				random_system_planet = {
 					limit = {
-						is_ship_size = orbital_station
 						exists = owner
-						owner = {
-							is_same_value = event_target:fmerc_target_country
-						}
+						owner = { is_same_value = event_target:fmerc_target_country }
+						controller = { is_same_value = event_target:fmerc_target_country }
+						fmerc_valid_spaceport_planet = yes
 					}
-					log = "Spaceport: Target spaceport is [this.GetName] in [This.GetStarName]."
-					save_event_target_as = fmerc_target
+					spaceport = {
+						log = "Spaceport: Target spaceport is [this.GetName] in [This.GetStarName]."
+						save_event_target_as = fmerc_target
+					}
 				}
 			}
 		}

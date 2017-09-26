@@ -10,6 +10,9 @@ fmerc_stage2_init_liberation = {
 				limit = {
 					NOT = { has_star_flag = enclave }
 					any_planet = {
+						exists = owner
+						is_owned_by = event_target:fmerc_target_country
+						is_controlled_by = event_target:fmerc_target_country
 						fmerc_valid_liberation_planet = yes
 					}
 					# In some rare cases you end up with two empires
@@ -24,6 +27,9 @@ fmerc_stage2_init_liberation = {
 				#min_steps = 1
 				random_system_planet = {
 					limit = {
+						exists = owner
+						is_owned_by = event_target:fmerc_target_country
+						is_controlled_by = event_target:fmerc_target_country
 						fmerc_valid_liberation_planet = yes
 					}
 					log = "Liberation: Target planet is [this.GetName] in [This.GetStarName]."
