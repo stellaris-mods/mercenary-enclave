@@ -679,6 +679,16 @@ fmerc_stage3_create_fleet = {
 			set_variable = { which = MercSpawn value = 3 }
 		}
 	}
+	if = {
+		limit = { has_country_flag = "fmerc_liberate" }
+		# Almost 1.5k extra fleet power.
+		# I don't want to add more right now, because it's not going to
+		# scale well in any meaningful way. I need to do a more indepth
+		# examination of the target country, see how many military fleets
+		# and how large they are before I can more easily determine
+		# what our "success chance" is.
+		change_variable = { which = MercSpawn value = 3 }
+	}
 
 	# fmerc_target is always a planet or fleet
 	event_target:fmerc_target = {
