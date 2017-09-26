@@ -297,7 +297,7 @@ fmerc_init_stage1 = {
 			message = no
 		}
 
-		# XXX Does not apply to created fleets for some reason
+		# ZZZ Does not apply to created fleets for some reason
 		set_policy = {
 			policy = orbital_bombardment
 			option = orbital_bombardment_full

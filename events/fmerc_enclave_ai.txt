@@ -14,6 +14,8 @@ country_event = {
 	}
 
 	immediate = {
+		# This event actually does nothing, because setting a variable to zero
+		# just removes the variable.
 		set_variable = {
 			which = MercDeposit
 			value = 0

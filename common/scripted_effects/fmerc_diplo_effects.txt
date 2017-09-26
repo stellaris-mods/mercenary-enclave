@@ -24,6 +24,7 @@ fmerc_reset_diplo_screen = {
 	remove_country_flag = "fmerc_diplo_disguise_pirate"
 	remove_country_flag = "fmerc_diplo_disguise_monster"
 
+	# This actually "deletes" the variables. Printing them now yields " " + an error.log entry
 	set_variable = {
 		which = MercCost
 		value = 0
@@ -36,19 +37,4 @@ fmerc_reset_diplo_screen = {
 		which = MercDetect
 		value = 0
 	}
-
-	# every_country = {
-	# 	limit = {
-	# 		reverse_has_relation_flag = {
-	# 			who = ROOT
-	# 			flag = fmerc_target_country
-	# 		}
-	# 	}
-	# 	ROOT = {
-	# 		remove_relation_flag = {
-	# 			who = PREV
-	# 			flag = fmerc_target_country
-	# 		}
-	# 	}
-	# }
 }

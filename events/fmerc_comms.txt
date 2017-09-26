@@ -1140,7 +1140,8 @@ country_event = {
 			random_country = {
 				limit = { has_country_flag = "fmerc_temp_country" }
 				# We should have done an if-else below, but that results in too many {} all over the place
-				# it just looks untidy
+				# it just looks untidy.
+				# Or I could have used a flag, with a switch instead.
 				if = {
 					limit = { PREV = { check_variable = { which = FMercCountry value = 1 } } }
 					save_event_target_as = fmerc_temp_country_1
@@ -2426,7 +2427,6 @@ country_event = {
 }
 
 # our operation has been detected
-# XXX add on monthly pulse that increases operation detect chance?
 country_event = {
 	id = fmercdiplo.915
 	title = fmerc_enclave.name

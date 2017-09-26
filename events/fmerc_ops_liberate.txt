@@ -123,7 +123,7 @@ country_event = {
 						}
 					}
 				}
-				# XXX I don't think this will ever happen.
+				# ZZZ I don't think this will ever happen.
 				log = "And we found an existing rebel country, so creating new armies."
 				# The rebel country exists, so create more armies
 				random_country = {
@@ -242,8 +242,6 @@ country_event = {
 	}
 }
 
-# XXX run unrest.4235 when the operation is over?
-
 # 17. ------------------------------
 # 18. - Printing the current scopes (trigger) -
 # 19. - This: Klaggian Conclave
@@ -274,7 +272,7 @@ country_event = {
 	hide_window = yes
 	trigger = {
 		is_country_type = "default"
-		FromFrom = {
+		FROMFROM = {
 			has_planet_flag = "fmerc_target"
 			controller = { is_same_value = ROOT }
 		}
