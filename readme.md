@@ -2,38 +2,31 @@
 
 # Todo / Ideas
 
-- maybe initiate comms to space owner?
-- maybe transport fleets left over are actually preventing mission completion
-- it seems that if the liberation fleet is destroyed after/right when the planet is liberated, on its way home
-  the quest never ends? nah, that's not it.
-
-
-- make sure we dont show the enclave dead thing if there's any outposts left
+- Add new ship types for the mercenaries
+- Really need to investigate what makes a hostile fleet able to bombard or not.
+  I know it has something to do with country communications, so `share_communications = yes/no`
+  in the fmerc_enclave country type has an effect
+- Make sure we dont show the enclave dead thing if there's any outposts left
 - does swarm have spaceports?
-
+- add on monthly pulse that increases operation detect chance?
 - AI Rebellion can colonize planets that we should be able to liberate
-- ED and Swarm annihilate planets
+- ED and Swarm annihilate planets?
 - make sure the enclave can spawn their operations fleet if the enclave HQ is
   inside the borders of an empire that has given them access, AND they are the target
-
-* NEW ADDON: Assassination/covert/espionage
-* kill leaders
-
-* NEW ADDON: Scrapyard
-* Repair Fleet, send a rapid response construction crew to any of your fleets to repair them
-buy/sell ships of random designs and graphical culture/entity
-perhaps be a "default" empire that just grows with the number of wars in the
-game
-
-if you allow border access for their salvaging efforts, try to spawn in custom science ships that
-have a very fast project research time and snap up all the debris
-then they give you a ship per debris
-and you gain trust per debris
-
-when you reach certain levels of trust the menu to buy new classes of ships opens up
-
-then after 200-250 years they grow and become a galactic crisis
-
+- Make a copy of unrest.4235 and run that on the target if a planet liberation attempt
+  fails? We would have to make a copy, because the vanilla event uses FROM/FROMFROM
+  in the localisation strings
+- Probably want to ignore systems/planets with `has_any_megastructure = yes` for various
+  operation types
+- Military fleet raid target selection probably needs tweaking
+- What are the `shroud` and `shroud_spirits` country types? Should they be valid targets for
+  any operations?
+- Add new mission type: Assist fleet, where the Mercenary Enclave will rush in to assist
+  you in combat for the next 5-10-20-50 or whatever years (cheaper per year, if the contract
+  is longer). Perhaps tie it to a specific Admiral, and if that admiral dies somehow,
+  open a window to let the player select the next admiral the ME should follow
+- During a Liberation mission, if the target planet suddenly is NOT a valid liberation target,
+  either find a new target, or abort, depending on how far along we are
 
 # Steam description
 
