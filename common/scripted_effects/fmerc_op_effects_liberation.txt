@@ -73,9 +73,9 @@ fmerc_liberation_create_armies = {
 		limit = { # Should skip 1 pop.
 			tile = {
 				NOT = {
-					has_building = building_capital_1
-					has_building = building_capital_2
-					has_building = building_capital_3
+					has_building = "building_capital_1"
+					has_building = "building_capital_2"
+					has_building = "building_capital_3"
 				}
 			}
 		}
