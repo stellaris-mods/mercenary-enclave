@@ -76,6 +76,9 @@ fmerc_liberation_create_armies = {
 					has_building = "building_capital_1"
 					has_building = "building_capital_2"
 					has_building = "building_capital_3"
+					has_building = "building_machine_capital_1"
+					has_building = "building_machine_capital_2"
+					has_building = "building_machine_capital_3"
 				}
 			}
 		}
