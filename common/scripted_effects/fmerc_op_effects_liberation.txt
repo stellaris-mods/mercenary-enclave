@@ -66,22 +66,10 @@ fmerc_liberation_create_armies = {
 	ROOT = {
 		set_variable = {
 			which = MercLiberationArmyCount
-			value = 2 #GARRISON_SIZE_BASE
+			value = 3 #GARRISON_SIZE_BASE + 1
 		}
 	}
 	every_owned_pop = { # only loops the ones on planet
-		limit = { # Should skip 1 pop.
-			tile = {
-				NOT = {
-					has_building = "building_capital_1"
-					has_building = "building_capital_2"
-					has_building = "building_capital_3"
-					has_building = "building_machine_capital_1"
-					has_building = "building_machine_capital_2"
-					has_building = "building_machine_capital_3"
-				}
-			}
-		}
 		ROOT = {
 			# There is a chance this should be multiply_variable by 1.4
 			# There is also a chance it should be multiply_variable by ( 1 + ( num_pops * 0.4 ) )
@@ -92,6 +80,10 @@ fmerc_liberation_create_armies = {
 			}
 		}
 	} # There are some army types we dont respond to, because I think they should give a defense advantage
+	# XXX should use an if-else statement instead
+# [21:44:59][trigger_impl.cpp:8524]: Error in army_type trigger, cannot find Army Type
+# [21:44:59][trigger_impl.cpp:8524]: Error in army_type trigger, cannot find Army Type
+# [21:44:59][trigger_impl.cpp:8524]: Error in army_type trigger, cannot find Army Type
 	every_planet_army = {
 		switch = {
 			trigger = army_type
