@@ -81,6 +81,32 @@ country_event = {
 	}
 }
 
+country_event = {
+	id = fmerc_ops_liberate.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		log = "fmerc_ops_liberate: Checking if we should try again ..."
+		fmerc_stage3_update_can_retry = yes
+		if = {
+			limit = {
+				has_country_flag = "fmerc_retry_mission"
+			}
+			remove_country_flag = "fmerc_retry_mission"
+			log = "Success chance is [this.MercSuccess]%, and the RNG was in our favor."
+			fmerc_liberation_set_target_planet = yes
+			country_event = {
+				id = fmerc_ops_liberate.1
+			}
+			else = {
+				log = "Liberation mission aborted due to low success factor ([this.MercSuccess])."
+				set_country_flag = "fmerc_ops_completed"
+			}
+		}
+	}
+}
+
 # Triggered after our bombardment fleet is in orbit
 # This might trigger again while the rebel country still exists
 # If a merc fleet is destroyed after reaching orbit, and there's
@@ -222,23 +248,7 @@ country_event = {
 
 	immediate = {
 		log = "fmerc_ops_liberate: on_fleet_destroyed_victim (.30)"
-
-		fmerc_stage3_update_can_retry = yes
-		if = {
-			limit = {
-				has_country_flag = "fmerc_retry_mission"
-			}
-			remove_country_flag = "fmerc_retry_mission"
-			log = "Success chance is [this.MercSuccess]%, and the RNG was in our favor."
-			fmerc_liberation_set_target_planet = yes
-			country_event = {
-				id = fmerc_ops_liberate.1
-			}
-			else = {
-				log = "Liberation mission aborted due to low success factor ([this.MercSuccess])."
-				set_country_flag = "fmerc_ops_completed"
-			}
-		}
+		country_event = { id = fmerc_ops_liberate.2 }
 	}
 }
 
@@ -287,10 +297,7 @@ country_event = {
 					who = FROM
 				}
 			}
-			log = "Checking if we should try again..."
-			country_event = {
-				id = fmerc_ops_liberate.30
-			}
+			country_event = { id = fmerc_ops_liberate.2 }
 		}
 	}
 }
