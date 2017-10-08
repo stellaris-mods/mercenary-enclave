@@ -13,31 +13,23 @@ fmerc_stage3_update_can_retry = {
 	remove_country_flag = "fmerc_retry_mission"
 	if = { limit = { check_variable = { which = MercSuccess value > 90 } }
 		random = { chance = 95 set_country_flag = "fmerc_retry_mission" }
-	}
-	if = { limit = { check_variable = { which = MercSuccess value > 80 } }
+	else = { if = { limit = { check_variable = { which = MercSuccess value > 80 } }
 		random = { chance = 85 set_country_flag = "fmerc_retry_mission" }
-	}
-	if = { limit = { check_variable = { which = MercSuccess value > 70 } }
+	else = { if = { limit = { check_variable = { which = MercSuccess value > 70 } }
 		random = { chance = 75 set_country_flag = "fmerc_retry_mission" }
-	}
-	if = { limit = { check_variable = { which = MercSuccess value > 60 } }
+	else = { if = { limit = { check_variable = { which = MercSuccess value > 60 } }
 		random = { chance = 65 set_country_flag = "fmerc_retry_mission" }
-	}
-	if = { limit = { check_variable = { which = MercSuccess value > 50 } }
+	else = { if = { limit = { check_variable = { which = MercSuccess value > 50 } }
 		random = { chance = 55 set_country_flag = "fmerc_retry_mission" }
-	}
-	if = { limit = { check_variable = { which = MercSuccess value > 40 } }
+	else = { if = { limit = { check_variable = { which = MercSuccess value > 40 } }
 		random = { chance = 45 set_country_flag = "fmerc_retry_mission" }
-	}
-	if = { limit = { check_variable = { which = MercSuccess value > 30 } }
+	else = { if = { limit = { check_variable = { which = MercSuccess value > 30 } }
 		random = { chance = 35 set_country_flag = "fmerc_retry_mission" }
-	}
-	if = { limit = { check_variable = { which = MercSuccess value > 20 } }
+	else = { if = { limit = { check_variable = { which = MercSuccess value > 20 } }
 		random = { chance = 25 set_country_flag = "fmerc_retry_mission" }
-	}
-	if = { limit = { check_variable = { which = MercSuccess value > 10 } }
+	else = { if = { limit = { check_variable = { which = MercSuccess value > 10 } }
 		random = { chance = 15 set_country_flag = "fmerc_retry_mission" }
-	}
+	} } } } } } } } } } } } } } } } }
 }
 
 # local tmpl = [[%d > { ROOT = { change_variable = { which = MercSpawn value = %d } } }]]
