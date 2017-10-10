@@ -28,15 +28,15 @@ ship_design = {
 
 		component = {
 			slot = "EXTRA_LARGE_01"
-			template = "LARGE_MASS_ACCELERATOR_FMERC"
+			template = "TITAN_LASER"
 		}
 		component = {
 			slot = "EXTRA_LARGE_02"
-			template = "LARGE_MASS_ACCELERATOR_FMERC"
+			template = "LARGE_MASS_ACCELERATOR_2"
 		}
 		component = {
 			slot = "EXTRA_LARGE_03"
-			template = "LARGE_MASS_ACCELERATOR_FMERC"
+			template = "LARGE_MASS_ACCELERATOR_2"
 		}
 		component = {
 			slot = "LARGE_GUN_01"

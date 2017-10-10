@@ -280,502 +280,6 @@ fmerc_stage3_get_fleet_power = {
 1380 > { ROOT = { change_variable = { which = MercSpawn value = 1380 } } }
 920 > { ROOT = { change_variable = { which = MercSpawn value = 920 } } }
 460 > { ROOT = { change_variable = { which = MercSpawn value = 460 } } }
-# 228620 > { ROOT = { change_variable = { which = MercSpawn value = 497 } } }
-# 228160 > { ROOT = { change_variable = { which = MercSpawn value = 496 } } }
-# 227700 > { ROOT = { change_variable = { which = MercSpawn value = 495 } } }
-# 227240 > { ROOT = { change_variable = { which = MercSpawn value = 494 } } }
-# 226780 > { ROOT = { change_variable = { which = MercSpawn value = 493 } } }
-# 226320 > { ROOT = { change_variable = { which = MercSpawn value = 492 } } }
-# 225860 > { ROOT = { change_variable = { which = MercSpawn value = 491 } } }
-# 225400 > { ROOT = { change_variable = { which = MercSpawn value = 490 } } }
-# 224940 > { ROOT = { change_variable = { which = MercSpawn value = 489 } } }
-# 224480 > { ROOT = { change_variable = { which = MercSpawn value = 488 } } }
-# 224020 > { ROOT = { change_variable = { which = MercSpawn value = 487 } } }
-# 223560 > { ROOT = { change_variable = { which = MercSpawn value = 486 } } }
-# 223100 > { ROOT = { change_variable = { which = MercSpawn value = 485 } } }
-# 222640 > { ROOT = { change_variable = { which = MercSpawn value = 484 } } }
-# 222180 > { ROOT = { change_variable = { which = MercSpawn value = 483 } } }
-# 221720 > { ROOT = { change_variable = { which = MercSpawn value = 482 } } }
-# 221260 > { ROOT = { change_variable = { which = MercSpawn value = 481 } } }
-# 220800 > { ROOT = { change_variable = { which = MercSpawn value = 480 } } }
-# 220340 > { ROOT = { change_variable = { which = MercSpawn value = 479 } } }
-# 219880 > { ROOT = { change_variable = { which = MercSpawn value = 478 } } }
-# 219420 > { ROOT = { change_variable = { which = MercSpawn value = 477 } } }
-# 218960 > { ROOT = { change_variable = { which = MercSpawn value = 476 } } }
-# 218500 > { ROOT = { change_variable = { which = MercSpawn value = 475 } } }
-# 218040 > { ROOT = { change_variable = { which = MercSpawn value = 474 } } }
-# 217580 > { ROOT = { change_variable = { which = MercSpawn value = 473 } } }
-# 217120 > { ROOT = { change_variable = { which = MercSpawn value = 472 } } }
-# 216660 > { ROOT = { change_variable = { which = MercSpawn value = 471 } } }
-# 216200 > { ROOT = { change_variable = { which = MercSpawn value = 470 } } }
-# 215740 > { ROOT = { change_variable = { which = MercSpawn value = 469 } } }
-# 215280 > { ROOT = { change_variable = { which = MercSpawn value = 468 } } }
-# 214820 > { ROOT = { change_variable = { which = MercSpawn value = 467 } } }
-# 214360 > { ROOT = { change_variable = { which = MercSpawn value = 466 } } }
-# 213900 > { ROOT = { change_variable = { which = MercSpawn value = 465 } } }
-# 213440 > { ROOT = { change_variable = { which = MercSpawn value = 464 } } }
-# 212980 > { ROOT = { change_variable = { which = MercSpawn value = 463 } } }
-# 212520 > { ROOT = { change_variable = { which = MercSpawn value = 462 } } }
-# 212060 > { ROOT = { change_variable = { which = MercSpawn value = 461 } } }
-# 211600 > { ROOT = { change_variable = { which = MercSpawn value = 460 } } }
-# 211140 > { ROOT = { change_variable = { which = MercSpawn value = 459 } } }
-# 210680 > { ROOT = { change_variable = { which = MercSpawn value = 458 } } }
-# 210220 > { ROOT = { change_variable = { which = MercSpawn value = 457 } } }
-# 209760 > { ROOT = { change_variable = { which = MercSpawn value = 456 } } }
-# 209300 > { ROOT = { change_variable = { which = MercSpawn value = 455 } } }
-# 208840 > { ROOT = { change_variable = { which = MercSpawn value = 454 } } }
-# 208380 > { ROOT = { change_variable = { which = MercSpawn value = 453 } } }
-# 207920 > { ROOT = { change_variable = { which = MercSpawn value = 452 } } }
-# 207460 > { ROOT = { change_variable = { which = MercSpawn value = 451 } } }
-# 207000 > { ROOT = { change_variable = { which = MercSpawn value = 450 } } }
-# 206540 > { ROOT = { change_variable = { which = MercSpawn value = 449 } } }
-# 206080 > { ROOT = { change_variable = { which = MercSpawn value = 448 } } }
-# 205620 > { ROOT = { change_variable = { which = MercSpawn value = 447 } } }
-# 205160 > { ROOT = { change_variable = { which = MercSpawn value = 446 } } }
-# 204700 > { ROOT = { change_variable = { which = MercSpawn value = 445 } } }
-# 204240 > { ROOT = { change_variable = { which = MercSpawn value = 444 } } }
-# 203780 > { ROOT = { change_variable = { which = MercSpawn value = 443 } } }
-# 203320 > { ROOT = { change_variable = { which = MercSpawn value = 442 } } }
-# 202860 > { ROOT = { change_variable = { which = MercSpawn value = 441 } } }
-# 202400 > { ROOT = { change_variable = { which = MercSpawn value = 440 } } }
-# 201940 > { ROOT = { change_variable = { which = MercSpawn value = 439 } } }
-# 201480 > { ROOT = { change_variable = { which = MercSpawn value = 438 } } }
-# 201020 > { ROOT = { change_variable = { which = MercSpawn value = 437 } } }
-# 200560 > { ROOT = { change_variable = { which = MercSpawn value = 436 } } }
-# 200100 > { ROOT = { change_variable = { which = MercSpawn value = 435 } } }
-# 199640 > { ROOT = { change_variable = { which = MercSpawn value = 434 } } }
-# 199180 > { ROOT = { change_variable = { which = MercSpawn value = 433 } } }
-# 198720 > { ROOT = { change_variable = { which = MercSpawn value = 432 } } }
-# 198260 > { ROOT = { change_variable = { which = MercSpawn value = 431 } } }
-# 197800 > { ROOT = { change_variable = { which = MercSpawn value = 430 } } }
-# 197340 > { ROOT = { change_variable = { which = MercSpawn value = 429 } } }
-# 196880 > { ROOT = { change_variable = { which = MercSpawn value = 428 } } }
-# 196420 > { ROOT = { change_variable = { which = MercSpawn value = 427 } } }
-# 195960 > { ROOT = { change_variable = { which = MercSpawn value = 426 } } }
-# 195500 > { ROOT = { change_variable = { which = MercSpawn value = 425 } } }
-# 195040 > { ROOT = { change_variable = { which = MercSpawn value = 424 } } }
-# 194580 > { ROOT = { change_variable = { which = MercSpawn value = 423 } } }
-# 194120 > { ROOT = { change_variable = { which = MercSpawn value = 422 } } }
-# 193660 > { ROOT = { change_variable = { which = MercSpawn value = 421 } } }
-# 193200 > { ROOT = { change_variable = { which = MercSpawn value = 420 } } }
-# 192740 > { ROOT = { change_variable = { which = MercSpawn value = 419 } } }
-# 192280 > { ROOT = { change_variable = { which = MercSpawn value = 418 } } }
-# 191820 > { ROOT = { change_variable = { which = MercSpawn value = 417 } } }
-# 191360 > { ROOT = { change_variable = { which = MercSpawn value = 416 } } }
-# 190900 > { ROOT = { change_variable = { which = MercSpawn value = 415 } } }
-# 190440 > { ROOT = { change_variable = { which = MercSpawn value = 414 } } }
-# 189980 > { ROOT = { change_variable = { which = MercSpawn value = 413 } } }
-# 189520 > { ROOT = { change_variable = { which = MercSpawn value = 412 } } }
-# 189060 > { ROOT = { change_variable = { which = MercSpawn value = 411 } } }
-# 188600 > { ROOT = { change_variable = { which = MercSpawn value = 410 } } }
-# 188140 > { ROOT = { change_variable = { which = MercSpawn value = 409 } } }
-# 187680 > { ROOT = { change_variable = { which = MercSpawn value = 408 } } }
-# 187220 > { ROOT = { change_variable = { which = MercSpawn value = 407 } } }
-# 186760 > { ROOT = { change_variable = { which = MercSpawn value = 406 } } }
-# 186300 > { ROOT = { change_variable = { which = MercSpawn value = 405 } } }
-# 185840 > { ROOT = { change_variable = { which = MercSpawn value = 404 } } }
-# 185380 > { ROOT = { change_variable = { which = MercSpawn value = 403 } } }
-# 184920 > { ROOT = { change_variable = { which = MercSpawn value = 402 } } }
-# 184460 > { ROOT = { change_variable = { which = MercSpawn value = 401 } } }
-# 184000 > { ROOT = { change_variable = { which = MercSpawn value = 400 } } }
-# 183540 > { ROOT = { change_variable = { which = MercSpawn value = 399 } } }
-# 183080 > { ROOT = { change_variable = { which = MercSpawn value = 398 } } }
-# 182620 > { ROOT = { change_variable = { which = MercSpawn value = 397 } } }
-# 182160 > { ROOT = { change_variable = { which = MercSpawn value = 396 } } }
-# 181700 > { ROOT = { change_variable = { which = MercSpawn value = 395 } } }
-# 181240 > { ROOT = { change_variable = { which = MercSpawn value = 394 } } }
-# 180780 > { ROOT = { change_variable = { which = MercSpawn value = 393 } } }
-# 180320 > { ROOT = { change_variable = { which = MercSpawn value = 392 } } }
-# 179860 > { ROOT = { change_variable = { which = MercSpawn value = 391 } } }
-# 179400 > { ROOT = { change_variable = { which = MercSpawn value = 390 } } }
-# 178940 > { ROOT = { change_variable = { which = MercSpawn value = 389 } } }
-# 178480 > { ROOT = { change_variable = { which = MercSpawn value = 388 } } }
-# 178020 > { ROOT = { change_variable = { which = MercSpawn value = 387 } } }
-# 177560 > { ROOT = { change_variable = { which = MercSpawn value = 386 } } }
-# 177100 > { ROOT = { change_variable = { which = MercSpawn value = 385 } } }
-# 176640 > { ROOT = { change_variable = { which = MercSpawn value = 384 } } }
-# 176180 > { ROOT = { change_variable = { which = MercSpawn value = 383 } } }
-# 175720 > { ROOT = { change_variable = { which = MercSpawn value = 382 } } }
-# 175260 > { ROOT = { change_variable = { which = MercSpawn value = 381 } } }
-# 174800 > { ROOT = { change_variable = { which = MercSpawn value = 380 } } }
-# 174340 > { ROOT = { change_variable = { which = MercSpawn value = 379 } } }
-# 173880 > { ROOT = { change_variable = { which = MercSpawn value = 378 } } }
-# 173420 > { ROOT = { change_variable = { which = MercSpawn value = 377 } } }
-# 172960 > { ROOT = { change_variable = { which = MercSpawn value = 376 } } }
-# 172500 > { ROOT = { change_variable = { which = MercSpawn value = 375 } } }
-# 172040 > { ROOT = { change_variable = { which = MercSpawn value = 374 } } }
-# 171580 > { ROOT = { change_variable = { which = MercSpawn value = 373 } } }
-# 171120 > { ROOT = { change_variable = { which = MercSpawn value = 372 } } }
-# 170660 > { ROOT = { change_variable = { which = MercSpawn value = 371 } } }
-# 170200 > { ROOT = { change_variable = { which = MercSpawn value = 370 } } }
-# 169740 > { ROOT = { change_variable = { which = MercSpawn value = 369 } } }
-# 169280 > { ROOT = { change_variable = { which = MercSpawn value = 368 } } }
-# 168820 > { ROOT = { change_variable = { which = MercSpawn value = 367 } } }
-# 168360 > { ROOT = { change_variable = { which = MercSpawn value = 366 } } }
-# 167900 > { ROOT = { change_variable = { which = MercSpawn value = 365 } } }
-# 167440 > { ROOT = { change_variable = { which = MercSpawn value = 364 } } }
-# 166980 > { ROOT = { change_variable = { which = MercSpawn value = 363 } } }
-# 166520 > { ROOT = { change_variable = { which = MercSpawn value = 362 } } }
-# 166060 > { ROOT = { change_variable = { which = MercSpawn value = 361 } } }
-# 165600 > { ROOT = { change_variable = { which = MercSpawn value = 360 } } }
-# 165140 > { ROOT = { change_variable = { which = MercSpawn value = 359 } } }
-# 164680 > { ROOT = { change_variable = { which = MercSpawn value = 358 } } }
-# 164220 > { ROOT = { change_variable = { which = MercSpawn value = 357 } } }
-# 163760 > { ROOT = { change_variable = { which = MercSpawn value = 356 } } }
-# 163300 > { ROOT = { change_variable = { which = MercSpawn value = 355 } } }
-# 162840 > { ROOT = { change_variable = { which = MercSpawn value = 354 } } }
-# 162380 > { ROOT = { change_variable = { which = MercSpawn value = 353 } } }
-# 161920 > { ROOT = { change_variable = { which = MercSpawn value = 352 } } }
-# 161460 > { ROOT = { change_variable = { which = MercSpawn value = 351 } } }
-# 161000 > { ROOT = { change_variable = { which = MercSpawn value = 350 } } }
-# 160540 > { ROOT = { change_variable = { which = MercSpawn value = 349 } } }
-# 160080 > { ROOT = { change_variable = { which = MercSpawn value = 348 } } }
-# 159620 > { ROOT = { change_variable = { which = MercSpawn value = 347 } } }
-# 159160 > { ROOT = { change_variable = { which = MercSpawn value = 346 } } }
-# 158700 > { ROOT = { change_variable = { which = MercSpawn value = 345 } } }
-# 158240 > { ROOT = { change_variable = { which = MercSpawn value = 344 } } }
-# 157780 > { ROOT = { change_variable = { which = MercSpawn value = 343 } } }
-# 157320 > { ROOT = { change_variable = { which = MercSpawn value = 342 } } }
-# 156860 > { ROOT = { change_variable = { which = MercSpawn value = 341 } } }
-# 156400 > { ROOT = { change_variable = { which = MercSpawn value = 340 } } }
-# 155940 > { ROOT = { change_variable = { which = MercSpawn value = 339 } } }
-# 155480 > { ROOT = { change_variable = { which = MercSpawn value = 338 } } }
-# 155020 > { ROOT = { change_variable = { which = MercSpawn value = 337 } } }
-# 154560 > { ROOT = { change_variable = { which = MercSpawn value = 336 } } }
-# 154100 > { ROOT = { change_variable = { which = MercSpawn value = 335 } } }
-# 153640 > { ROOT = { change_variable = { which = MercSpawn value = 334 } } }
-# 153180 > { ROOT = { change_variable = { which = MercSpawn value = 333 } } }
-# 152720 > { ROOT = { change_variable = { which = MercSpawn value = 332 } } }
-# 152260 > { ROOT = { change_variable = { which = MercSpawn value = 331 } } }
-# 151800 > { ROOT = { change_variable = { which = MercSpawn value = 330 } } }
-# 151340 > { ROOT = { change_variable = { which = MercSpawn value = 329 } } }
-# 150880 > { ROOT = { change_variable = { which = MercSpawn value = 328 } } }
-# 150420 > { ROOT = { change_variable = { which = MercSpawn value = 327 } } }
-# 149960 > { ROOT = { change_variable = { which = MercSpawn value = 326 } } }
-# 149500 > { ROOT = { change_variable = { which = MercSpawn value = 325 } } }
-# 149040 > { ROOT = { change_variable = { which = MercSpawn value = 324 } } }
-# 148580 > { ROOT = { change_variable = { which = MercSpawn value = 323 } } }
-# 148120 > { ROOT = { change_variable = { which = MercSpawn value = 322 } } }
-# 147660 > { ROOT = { change_variable = { which = MercSpawn value = 321 } } }
-# 147200 > { ROOT = { change_variable = { which = MercSpawn value = 320 } } }
-# 146740 > { ROOT = { change_variable = { which = MercSpawn value = 319 } } }
-# 146280 > { ROOT = { change_variable = { which = MercSpawn value = 318 } } }
-# 145820 > { ROOT = { change_variable = { which = MercSpawn value = 317 } } }
-# 145360 > { ROOT = { change_variable = { which = MercSpawn value = 316 } } }
-# 144900 > { ROOT = { change_variable = { which = MercSpawn value = 315 } } }
-# 144440 > { ROOT = { change_variable = { which = MercSpawn value = 314 } } }
-# 143980 > { ROOT = { change_variable = { which = MercSpawn value = 313 } } }
-# 143520 > { ROOT = { change_variable = { which = MercSpawn value = 312 } } }
-# 143060 > { ROOT = { change_variable = { which = MercSpawn value = 311 } } }
-# 142600 > { ROOT = { change_variable = { which = MercSpawn value = 310 } } }
-# 142140 > { ROOT = { change_variable = { which = MercSpawn value = 309 } } }
-# 141680 > { ROOT = { change_variable = { which = MercSpawn value = 308 } } }
-# 141220 > { ROOT = { change_variable = { which = MercSpawn value = 307 } } }
-# 140760 > { ROOT = { change_variable = { which = MercSpawn value = 306 } } }
-# 140300 > { ROOT = { change_variable = { which = MercSpawn value = 305 } } }
-# 139840 > { ROOT = { change_variable = { which = MercSpawn value = 304 } } }
-# 139380 > { ROOT = { change_variable = { which = MercSpawn value = 303 } } }
-# 138920 > { ROOT = { change_variable = { which = MercSpawn value = 302 } } }
-# 138460 > { ROOT = { change_variable = { which = MercSpawn value = 301 } } }
-# 138000 > { ROOT = { change_variable = { which = MercSpawn value = 300 } } }
-# 137540 > { ROOT = { change_variable = { which = MercSpawn value = 299 } } }
-# 137080 > { ROOT = { change_variable = { which = MercSpawn value = 298 } } }
-# 136620 > { ROOT = { change_variable = { which = MercSpawn value = 297 } } }
-# 136160 > { ROOT = { change_variable = { which = MercSpawn value = 296 } } }
-# 135700 > { ROOT = { change_variable = { which = MercSpawn value = 295 } } }
-# 135240 > { ROOT = { change_variable = { which = MercSpawn value = 294 } } }
-# 134780 > { ROOT = { change_variable = { which = MercSpawn value = 293 } } }
-# 134320 > { ROOT = { change_variable = { which = MercSpawn value = 292 } } }
-# 133860 > { ROOT = { change_variable = { which = MercSpawn value = 291 } } }
-# 133400 > { ROOT = { change_variable = { which = MercSpawn value = 290 } } }
-# 132940 > { ROOT = { change_variable = { which = MercSpawn value = 289 } } }
-# 132480 > { ROOT = { change_variable = { which = MercSpawn value = 288 } } }
-# 132020 > { ROOT = { change_variable = { which = MercSpawn value = 287 } } }
-# 131560 > { ROOT = { change_variable = { which = MercSpawn value = 286 } } }
-# 131100 > { ROOT = { change_variable = { which = MercSpawn value = 285 } } }
-# 130640 > { ROOT = { change_variable = { which = MercSpawn value = 284 } } }
-# 130180 > { ROOT = { change_variable = { which = MercSpawn value = 283 } } }
-# 129720 > { ROOT = { change_variable = { which = MercSpawn value = 282 } } }
-# 129260 > { ROOT = { change_variable = { which = MercSpawn value = 281 } } }
-# 128800 > { ROOT = { change_variable = { which = MercSpawn value = 280 } } }
-# 128340 > { ROOT = { change_variable = { which = MercSpawn value = 279 } } }
-# 127880 > { ROOT = { change_variable = { which = MercSpawn value = 278 } } }
-# 127420 > { ROOT = { change_variable = { which = MercSpawn value = 277 } } }
-# 126960 > { ROOT = { change_variable = { which = MercSpawn value = 276 } } }
-# 126500 > { ROOT = { change_variable = { which = MercSpawn value = 275 } } }
-# 126040 > { ROOT = { change_variable = { which = MercSpawn value = 274 } } }
-# 125580 > { ROOT = { change_variable = { which = MercSpawn value = 273 } } }
-# 125120 > { ROOT = { change_variable = { which = MercSpawn value = 272 } } }
-# 124660 > { ROOT = { change_variable = { which = MercSpawn value = 271 } } }
-# 124200 > { ROOT = { change_variable = { which = MercSpawn value = 270 } } }
-# 123740 > { ROOT = { change_variable = { which = MercSpawn value = 269 } } }
-# 123280 > { ROOT = { change_variable = { which = MercSpawn value = 268 } } }
-# 122820 > { ROOT = { change_variable = { which = MercSpawn value = 267 } } }
-# 122360 > { ROOT = { change_variable = { which = MercSpawn value = 266 } } }
-# 121900 > { ROOT = { change_variable = { which = MercSpawn value = 265 } } }
-# 121440 > { ROOT = { change_variable = { which = MercSpawn value = 264 } } }
-# 120980 > { ROOT = { change_variable = { which = MercSpawn value = 263 } } }
-# 120520 > { ROOT = { change_variable = { which = MercSpawn value = 262 } } }
-# 120060 > { ROOT = { change_variable = { which = MercSpawn value = 261 } } }
-# 119600 > { ROOT = { change_variable = { which = MercSpawn value = 260 } } }
-# 119140 > { ROOT = { change_variable = { which = MercSpawn value = 259 } } }
-# 118680 > { ROOT = { change_variable = { which = MercSpawn value = 258 } } }
-# 118220 > { ROOT = { change_variable = { which = MercSpawn value = 257 } } }
-# 117760 > { ROOT = { change_variable = { which = MercSpawn value = 256 } } }
-# 117300 > { ROOT = { change_variable = { which = MercSpawn value = 255 } } }
-# 116840 > { ROOT = { change_variable = { which = MercSpawn value = 254 } } }
-# 116380 > { ROOT = { change_variable = { which = MercSpawn value = 253 } } }
-# 115920 > { ROOT = { change_variable = { which = MercSpawn value = 252 } } }
-# 115460 > { ROOT = { change_variable = { which = MercSpawn value = 251 } } }
-# 115000 > { ROOT = { change_variable = { which = MercSpawn value = 250 } } }
-# 114540 > { ROOT = { change_variable = { which = MercSpawn value = 249 } } }
-# 114080 > { ROOT = { change_variable = { which = MercSpawn value = 248 } } }
-# 113620 > { ROOT = { change_variable = { which = MercSpawn value = 247 } } }
-# 113160 > { ROOT = { change_variable = { which = MercSpawn value = 246 } } }
-# 112700 > { ROOT = { change_variable = { which = MercSpawn value = 245 } } }
-# 112240 > { ROOT = { change_variable = { which = MercSpawn value = 244 } } }
-# 111780 > { ROOT = { change_variable = { which = MercSpawn value = 243 } } }
-# 111320 > { ROOT = { change_variable = { which = MercSpawn value = 242 } } }
-# 110860 > { ROOT = { change_variable = { which = MercSpawn value = 241 } } }
-# 110400 > { ROOT = { change_variable = { which = MercSpawn value = 240 } } }
-# 109940 > { ROOT = { change_variable = { which = MercSpawn value = 239 } } }
-# 109480 > { ROOT = { change_variable = { which = MercSpawn value = 238 } } }
-# 109020 > { ROOT = { change_variable = { which = MercSpawn value = 237 } } }
-# 108560 > { ROOT = { change_variable = { which = MercSpawn value = 236 } } }
-# 108100 > { ROOT = { change_variable = { which = MercSpawn value = 235 } } }
-# 107640 > { ROOT = { change_variable = { which = MercSpawn value = 234 } } }
-# 107180 > { ROOT = { change_variable = { which = MercSpawn value = 233 } } }
-# 106720 > { ROOT = { change_variable = { which = MercSpawn value = 232 } } }
-# 106260 > { ROOT = { change_variable = { which = MercSpawn value = 231 } } }
-# 105800 > { ROOT = { change_variable = { which = MercSpawn value = 230 } } }
-# 105340 > { ROOT = { change_variable = { which = MercSpawn value = 229 } } }
-# 104880 > { ROOT = { change_variable = { which = MercSpawn value = 228 } } }
-# 104420 > { ROOT = { change_variable = { which = MercSpawn value = 227 } } }
-# 103960 > { ROOT = { change_variable = { which = MercSpawn value = 226 } } }
-# 103500 > { ROOT = { change_variable = { which = MercSpawn value = 225 } } }
-# 103040 > { ROOT = { change_variable = { which = MercSpawn value = 224 } } }
-# 102580 > { ROOT = { change_variable = { which = MercSpawn value = 223 } } }
-# 102120 > { ROOT = { change_variable = { which = MercSpawn value = 222 } } }
-# 101660 > { ROOT = { change_variable = { which = MercSpawn value = 221 } } }
-# 101200 > { ROOT = { change_variable = { which = MercSpawn value = 220 } } }
-# 100740 > { ROOT = { change_variable = { which = MercSpawn value = 219 } } }
-# 100280 > { ROOT = { change_variable = { which = MercSpawn value = 218 } } }
-# 99820 > { ROOT = { change_variable = { which = MercSpawn value = 217 } } }
-# 99360 > { ROOT = { change_variable = { which = MercSpawn value = 216 } } }
-# 98900 > { ROOT = { change_variable = { which = MercSpawn value = 215 } } }
-# 98440 > { ROOT = { change_variable = { which = MercSpawn value = 214 } } }
-# 97980 > { ROOT = { change_variable = { which = MercSpawn value = 213 } } }
-# 97520 > { ROOT = { change_variable = { which = MercSpawn value = 212 } } }
-# 97060 > { ROOT = { change_variable = { which = MercSpawn value = 211 } } }
-# 96600 > { ROOT = { change_variable = { which = MercSpawn value = 210 } } }
-# 96140 > { ROOT = { change_variable = { which = MercSpawn value = 209 } } }
-# 95680 > { ROOT = { change_variable = { which = MercSpawn value = 208 } } }
-# 95220 > { ROOT = { change_variable = { which = MercSpawn value = 207 } } }
-# 94760 > { ROOT = { change_variable = { which = MercSpawn value = 206 } } }
-# 94300 > { ROOT = { change_variable = { which = MercSpawn value = 205 } } }
-# 93840 > { ROOT = { change_variable = { which = MercSpawn value = 204 } } }
-# 93380 > { ROOT = { change_variable = { which = MercSpawn value = 203 } } }
-# 92920 > { ROOT = { change_variable = { which = MercSpawn value = 202 } } }
-# 92460 > { ROOT = { change_variable = { which = MercSpawn value = 201 } } }
-# 92000 > { ROOT = { change_variable = { which = MercSpawn value = 200 } } }
-# 91540 > { ROOT = { change_variable = { which = MercSpawn value = 199 } } }
-# 91080 > { ROOT = { change_variable = { which = MercSpawn value = 198 } } }
-# 90620 > { ROOT = { change_variable = { which = MercSpawn value = 197 } } }
-# 90160 > { ROOT = { change_variable = { which = MercSpawn value = 196 } } }
-# 89700 > { ROOT = { change_variable = { which = MercSpawn value = 195 } } }
-# 89240 > { ROOT = { change_variable = { which = MercSpawn value = 194 } } }
-# 88780 > { ROOT = { change_variable = { which = MercSpawn value = 193 } } }
-# 88320 > { ROOT = { change_variable = { which = MercSpawn value = 192 } } }
-# 87860 > { ROOT = { change_variable = { which = MercSpawn value = 191 } } }
-# 87400 > { ROOT = { change_variable = { which = MercSpawn value = 190 } } }
-# 86940 > { ROOT = { change_variable = { which = MercSpawn value = 189 } } }
-# 86480 > { ROOT = { change_variable = { which = MercSpawn value = 188 } } }
-# 86020 > { ROOT = { change_variable = { which = MercSpawn value = 187 } } }
-# 85560 > { ROOT = { change_variable = { which = MercSpawn value = 186 } } }
-# 85100 > { ROOT = { change_variable = { which = MercSpawn value = 185 } } }
-# 84640 > { ROOT = { change_variable = { which = MercSpawn value = 184 } } }
-# 84180 > { ROOT = { change_variable = { which = MercSpawn value = 183 } } }
-# 83720 > { ROOT = { change_variable = { which = MercSpawn value = 182 } } }
-# 83260 > { ROOT = { change_variable = { which = MercSpawn value = 181 } } }
-# 82800 > { ROOT = { change_variable = { which = MercSpawn value = 180 } } }
-# 82340 > { ROOT = { change_variable = { which = MercSpawn value = 179 } } }
-# 81880 > { ROOT = { change_variable = { which = MercSpawn value = 178 } } }
-# 81420 > { ROOT = { change_variable = { which = MercSpawn value = 177 } } }
-# 80960 > { ROOT = { change_variable = { which = MercSpawn value = 176 } } }
-# 80500 > { ROOT = { change_variable = { which = MercSpawn value = 175 } } }
-# 80040 > { ROOT = { change_variable = { which = MercSpawn value = 174 } } }
-# 79580 > { ROOT = { change_variable = { which = MercSpawn value = 173 } } }
-# 79120 > { ROOT = { change_variable = { which = MercSpawn value = 172 } } }
-# 78660 > { ROOT = { change_variable = { which = MercSpawn value = 171 } } }
-# 78200 > { ROOT = { change_variable = { which = MercSpawn value = 170 } } }
-# 77740 > { ROOT = { change_variable = { which = MercSpawn value = 169 } } }
-# 77280 > { ROOT = { change_variable = { which = MercSpawn value = 168 } } }
-# 76820 > { ROOT = { change_variable = { which = MercSpawn value = 167 } } }
-# 76360 > { ROOT = { change_variable = { which = MercSpawn value = 166 } } }
-# 75900 > { ROOT = { change_variable = { which = MercSpawn value = 165 } } }
-# 75440 > { ROOT = { change_variable = { which = MercSpawn value = 164 } } }
-# 74980 > { ROOT = { change_variable = { which = MercSpawn value = 163 } } }
-# 74520 > { ROOT = { change_variable = { which = MercSpawn value = 162 } } }
-# 74060 > { ROOT = { change_variable = { which = MercSpawn value = 161 } } }
-# 73600 > { ROOT = { change_variable = { which = MercSpawn value = 160 } } }
-# 73140 > { ROOT = { change_variable = { which = MercSpawn value = 159 } } }
-# 72680 > { ROOT = { change_variable = { which = MercSpawn value = 158 } } }
-# 72220 > { ROOT = { change_variable = { which = MercSpawn value = 157 } } }
-# 71760 > { ROOT = { change_variable = { which = MercSpawn value = 156 } } }
-# 71300 > { ROOT = { change_variable = { which = MercSpawn value = 155 } } }
-# 70840 > { ROOT = { change_variable = { which = MercSpawn value = 154 } } }
-# 70380 > { ROOT = { change_variable = { which = MercSpawn value = 153 } } }
-# 69920 > { ROOT = { change_variable = { which = MercSpawn value = 152 } } }
-# 69460 > { ROOT = { change_variable = { which = MercSpawn value = 151 } } }
-# 69000 > { ROOT = { change_variable = { which = MercSpawn value = 150 } } }
-# 68540 > { ROOT = { change_variable = { which = MercSpawn value = 149 } } }
-# 68080 > { ROOT = { change_variable = { which = MercSpawn value = 148 } } }
-# 67620 > { ROOT = { change_variable = { which = MercSpawn value = 147 } } }
-# 67160 > { ROOT = { change_variable = { which = MercSpawn value = 146 } } }
-# 66700 > { ROOT = { change_variable = { which = MercSpawn value = 145 } } }
-# 66240 > { ROOT = { change_variable = { which = MercSpawn value = 144 } } }
-# 65780 > { ROOT = { change_variable = { which = MercSpawn value = 143 } } }
-# 65320 > { ROOT = { change_variable = { which = MercSpawn value = 142 } } }
-# 64860 > { ROOT = { change_variable = { which = MercSpawn value = 141 } } }
-# 64400 > { ROOT = { change_variable = { which = MercSpawn value = 140 } } }
-# 63940 > { ROOT = { change_variable = { which = MercSpawn value = 139 } } }
-# 63480 > { ROOT = { change_variable = { which = MercSpawn value = 138 } } }
-# 63020 > { ROOT = { change_variable = { which = MercSpawn value = 137 } } }
-# 62560 > { ROOT = { change_variable = { which = MercSpawn value = 136 } } }
-# 62100 > { ROOT = { change_variable = { which = MercSpawn value = 135 } } }
-# 61640 > { ROOT = { change_variable = { which = MercSpawn value = 134 } } }
-# 61180 > { ROOT = { change_variable = { which = MercSpawn value = 133 } } }
-# 60720 > { ROOT = { change_variable = { which = MercSpawn value = 132 } } }
-# 60260 > { ROOT = { change_variable = { which = MercSpawn value = 131 } } }
-# 59800 > { ROOT = { change_variable = { which = MercSpawn value = 130 } } }
-# 59340 > { ROOT = { change_variable = { which = MercSpawn value = 129 } } }
-# 58880 > { ROOT = { change_variable = { which = MercSpawn value = 128 } } }
-# 58420 > { ROOT = { change_variable = { which = MercSpawn value = 127 } } }
-# 57960 > { ROOT = { change_variable = { which = MercSpawn value = 126 } } }
-# 57500 > { ROOT = { change_variable = { which = MercSpawn value = 125 } } }
-# 57040 > { ROOT = { change_variable = { which = MercSpawn value = 124 } } }
-# 56580 > { ROOT = { change_variable = { which = MercSpawn value = 123 } } }
-# 56120 > { ROOT = { change_variable = { which = MercSpawn value = 122 } } }
-# 55660 > { ROOT = { change_variable = { which = MercSpawn value = 121 } } }
-# 55200 > { ROOT = { change_variable = { which = MercSpawn value = 120 } } }
-# 54740 > { ROOT = { change_variable = { which = MercSpawn value = 119 } } }
-# 54280 > { ROOT = { change_variable = { which = MercSpawn value = 118 } } }
-# 53820 > { ROOT = { change_variable = { which = MercSpawn value = 117 } } }
-# 53360 > { ROOT = { change_variable = { which = MercSpawn value = 116 } } }
-# 52900 > { ROOT = { change_variable = { which = MercSpawn value = 115 } } }
-# 52440 > { ROOT = { change_variable = { which = MercSpawn value = 114 } } }
-# 51980 > { ROOT = { change_variable = { which = MercSpawn value = 113 } } }
-# 51520 > { ROOT = { change_variable = { which = MercSpawn value = 112 } } }
-# 51060 > { ROOT = { change_variable = { which = MercSpawn value = 111 } } }
-# 50600 > { ROOT = { change_variable = { which = MercSpawn value = 110 } } }
-# 50140 > { ROOT = { change_variable = { which = MercSpawn value = 109 } } }
-# 49680 > { ROOT = { change_variable = { which = MercSpawn value = 108 } } }
-# 49220 > { ROOT = { change_variable = { which = MercSpawn value = 107 } } }
-# 48760 > { ROOT = { change_variable = { which = MercSpawn value = 106 } } }
-# 48300 > { ROOT = { change_variable = { which = MercSpawn value = 105 } } }
-# 47840 > { ROOT = { change_variable = { which = MercSpawn value = 104 } } }
-# 47380 > { ROOT = { change_variable = { which = MercSpawn value = 103 } } }
-# 46920 > { ROOT = { change_variable = { which = MercSpawn value = 102 } } }
-# 46460 > { ROOT = { change_variable = { which = MercSpawn value = 101 } } }
-# 46000 > { ROOT = { change_variable = { which = MercSpawn value = 100 } } }
-# 45540 > { ROOT = { change_variable = { which = MercSpawn value = 99 } } }
-# 45080 > { ROOT = { change_variable = { which = MercSpawn value = 98 } } }
-# 44620 > { ROOT = { change_variable = { which = MercSpawn value = 97 } } }
-# 44160 > { ROOT = { change_variable = { which = MercSpawn value = 96 } } }
-# 43700 > { ROOT = { change_variable = { which = MercSpawn value = 95 } } }
-# 43240 > { ROOT = { change_variable = { which = MercSpawn value = 94 } } }
-# 42780 > { ROOT = { change_variable = { which = MercSpawn value = 93 } } }
-# 42320 > { ROOT = { change_variable = { which = MercSpawn value = 92 } } }
-# 41860 > { ROOT = { change_variable = { which = MercSpawn value = 91 } } }
-# 41400 > { ROOT = { change_variable = { which = MercSpawn value = 90 } } }
-# 40940 > { ROOT = { change_variable = { which = MercSpawn value = 89 } } }
-# 40480 > { ROOT = { change_variable = { which = MercSpawn value = 88 } } }
-# 40020 > { ROOT = { change_variable = { which = MercSpawn value = 87 } } }
-# 39560 > { ROOT = { change_variable = { which = MercSpawn value = 86 } } }
-# 39100 > { ROOT = { change_variable = { which = MercSpawn value = 85 } } }
-# 38640 > { ROOT = { change_variable = { which = MercSpawn value = 84 } } }
-# 38180 > { ROOT = { change_variable = { which = MercSpawn value = 83 } } }
-# 37720 > { ROOT = { change_variable = { which = MercSpawn value = 82 } } }
-# 37260 > { ROOT = { change_variable = { which = MercSpawn value = 81 } } }
-# 36800 > { ROOT = { change_variable = { which = MercSpawn value = 80 } } }
-# 36340 > { ROOT = { change_variable = { which = MercSpawn value = 79 } } }
-# 35880 > { ROOT = { change_variable = { which = MercSpawn value = 78 } } }
-# 35420 > { ROOT = { change_variable = { which = MercSpawn value = 77 } } }
-# 34960 > { ROOT = { change_variable = { which = MercSpawn value = 76 } } }
-# 34500 > { ROOT = { change_variable = { which = MercSpawn value = 75 } } }
-# 34040 > { ROOT = { change_variable = { which = MercSpawn value = 74 } } }
-# 33580 > { ROOT = { change_variable = { which = MercSpawn value = 73 } } }
-# 33120 > { ROOT = { change_variable = { which = MercSpawn value = 72 } } }
-# 32660 > { ROOT = { change_variable = { which = MercSpawn value = 71 } } }
-# 32200 > { ROOT = { change_variable = { which = MercSpawn value = 70 } } }
-# 31740 > { ROOT = { change_variable = { which = MercSpawn value = 69 } } }
-# 31280 > { ROOT = { change_variable = { which = MercSpawn value = 68 } } }
-# 30820 > { ROOT = { change_variable = { which = MercSpawn value = 67 } } }
-# 30360 > { ROOT = { change_variable = { which = MercSpawn value = 66 } } }
-# 29900 > { ROOT = { change_variable = { which = MercSpawn value = 65 } } }
-# 29440 > { ROOT = { change_variable = { which = MercSpawn value = 64 } } }
-# 28980 > { ROOT = { change_variable = { which = MercSpawn value = 63 } } }
-# 28520 > { ROOT = { change_variable = { which = MercSpawn value = 62 } } }
-# 28060 > { ROOT = { change_variable = { which = MercSpawn value = 61 } } }
-# 27600 > { ROOT = { change_variable = { which = MercSpawn value = 60 } } }
-# 27140 > { ROOT = { change_variable = { which = MercSpawn value = 59 } } }
-# 26680 > { ROOT = { change_variable = { which = MercSpawn value = 58 } } }
-# 26220 > { ROOT = { change_variable = { which = MercSpawn value = 57 } } }
-# 25760 > { ROOT = { change_variable = { which = MercSpawn value = 56 } } }
-# 25300 > { ROOT = { change_variable = { which = MercSpawn value = 55 } } }
-# 24840 > { ROOT = { change_variable = { which = MercSpawn value = 54 } } }
-# 24380 > { ROOT = { change_variable = { which = MercSpawn value = 53 } } }
-# 23920 > { ROOT = { change_variable = { which = MercSpawn value = 52 } } }
-# 23460 > { ROOT = { change_variable = { which = MercSpawn value = 51 } } }
-# 23000 > { ROOT = { change_variable = { which = MercSpawn value = 50 } } }
-# 22540 > { ROOT = { change_variable = { which = MercSpawn value = 49 } } }
-# 22080 > { ROOT = { change_variable = { which = MercSpawn value = 48 } } }
-# 21620 > { ROOT = { change_variable = { which = MercSpawn value = 47 } } }
-# 21160 > { ROOT = { change_variable = { which = MercSpawn value = 46 } } }
-# 20700 > { ROOT = { change_variable = { which = MercSpawn value = 45 } } }
-# 20240 > { ROOT = { change_variable = { which = MercSpawn value = 44 } } }
-# 19780 > { ROOT = { change_variable = { which = MercSpawn value = 43 } } }
-# 19320 > { ROOT = { change_variable = { which = MercSpawn value = 42 } } }
-# 18860 > { ROOT = { change_variable = { which = MercSpawn value = 41 } } }
-# 18400 > { ROOT = { change_variable = { which = MercSpawn value = 40 } } }
-# 17940 > { ROOT = { change_variable = { which = MercSpawn value = 39 } } }
-# 17480 > { ROOT = { change_variable = { which = MercSpawn value = 38 } } }
-# 17020 > { ROOT = { change_variable = { which = MercSpawn value = 37 } } }
-# 16560 > { ROOT = { change_variable = { which = MercSpawn value = 36 } } }
-# 16100 > { ROOT = { change_variable = { which = MercSpawn value = 35 } } }
-# 15640 > { ROOT = { change_variable = { which = MercSpawn value = 34 } } }
-# 15180 > { ROOT = { change_variable = { which = MercSpawn value = 33 } } }
-# 14720 > { ROOT = { change_variable = { which = MercSpawn value = 32 } } }
-# 14260 > { ROOT = { change_variable = { which = MercSpawn value = 31 } } }
-# 13800 > { ROOT = { change_variable = { which = MercSpawn value = 30 } } }
-# 13340 > { ROOT = { change_variable = { which = MercSpawn value = 29 } } }
-# 12880 > { ROOT = { change_variable = { which = MercSpawn value = 28 } } }
-# 12420 > { ROOT = { change_variable = { which = MercSpawn value = 27 } } }
-# 11960 > { ROOT = { change_variable = { which = MercSpawn value = 26 } } }
-# 11500 > { ROOT = { change_variable = { which = MercSpawn value = 25 } } }
-# 11040 > { ROOT = { change_variable = { which = MercSpawn value = 24 } } }
-# 10580 > { ROOT = { change_variable = { which = MercSpawn value = 23 } } }
-# 10120 > { ROOT = { change_variable = { which = MercSpawn value = 22 } } }
-# 9660 > { ROOT = { change_variable = { which = MercSpawn value = 21 } } }
-# 9200 > { ROOT = { change_variable = { which = MercSpawn value = 20 } } }
-# 8740 > { ROOT = { change_variable = { which = MercSpawn value = 19 } } }
-# 8280 > { ROOT = { change_variable = { which = MercSpawn value = 18 } } }
-# 7820 > { ROOT = { change_variable = { which = MercSpawn value = 17 } } }
-# 7360 > { ROOT = { change_variable = { which = MercSpawn value = 16 } } }
-# 6900 > { ROOT = { change_variable = { which = MercSpawn value = 15 } } }
-# 6440 > { ROOT = { change_variable = { which = MercSpawn value = 14 } } }
-# 5980 > { ROOT = { change_variable = { which = MercSpawn value = 13 } } }
-# 5520 > { ROOT = { change_variable = { which = MercSpawn value = 12 } } }
-# 5060 > { ROOT = { change_variable = { which = MercSpawn value = 11 } } }
-# 4600 > { ROOT = { change_variable = { which = MercSpawn value = 10 } } }
-# 4140 > { ROOT = { change_variable = { which = MercSpawn value = 9 } } }
-# 3680 > { ROOT = { change_variable = { which = MercSpawn value = 8 } } }
-# 3220 > { ROOT = { change_variable = { which = MercSpawn value = 7 } } }
-# 2760 > { ROOT = { change_variable = { which = MercSpawn value = 6 } } }
-# 2300 > { ROOT = { change_variable = { which = MercSpawn value = 5 } } }
-# 1840 > { ROOT = { change_variable = { which = MercSpawn value = 4 } } }
-# 1380 > { ROOT = { change_variable = { which = MercSpawn value = 3 } } }
-# 920 > { ROOT = { change_variable = { which = MercSpawn value = 2 } } }
 default = { ROOT = { change_variable = { which = MercSpawn value = 400 } } }
 	}
 }
@@ -819,76 +323,60 @@ fmerc_stage3_spawn_battleship = {
 
 # While loops only loop to 100.
 fmerc_stage3_match_fleet_power = {
+	# XXX How the fuck can FP vary between game loads with the same set of addons?!
+	if = { limit = { has_global_flag = "has_zhow"}
+		set_variable = { which = "Battleship" value = 1200 }
+		set_variable = { which = "Cruiser"    value = 470 }
+		set_variable = { which = "Destroyer"  value = 170 }
+		set_variable = { which = "Corvette"   value = 110 }
+	else = {
+		set_variable = { which = "Battleship" value = 960 }
+		set_variable = { which = "Cruiser"    value = 420 }
+		set_variable = { which = "Destroyer"  value = 145 }
+		set_variable = { which = "Corvette"   value = 95  }
+	} }
+	# 4 corvettes to every destroyer
+	set_variable = { which = "DestroyerSquad" value = "Destroyer" }
+	change_variable = { which = "DestroyerSquad" value = "Corvette" }
+	change_variable = { which = "DestroyerSquad" value = "Corvette" }
+	change_variable = { which = "DestroyerSquad" value = "Corvette" }
+	change_variable = { which = "DestroyerSquad" value = "Corvette" }
+
+	# 2 destroyers to every cruiser
+	set_variable = { which = "CruiserSquad" value = "Cruiser" }
+	change_variable = { which = "CruiserSquad" value = "DestroyerSquad" }
+	change_variable = { which = "CruiserSquad" value = "DestroyerSquad" }
+
+	# 4 cruisers to every battleship
+	set_variable = { which = "BattleshipSquad" value = "Battleship" }
+	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
+	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
+	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
+	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
 
 	while = {
-		limit = { check_variable = { which = MercSpawn value > 90 } }
-		if = { limit = { check_variable = { which = MercSpawn value > 6400 } }
+		limit = { check_variable = { which = "MercSpawn" value > "Corvette" } }
+		if = { limit = { check_variable = { which = "MercSpawn" value > "BattleshipSquad" } }
 			while = { count = 32 fmerc_stage3_spawn_corvette = yes }
 			while = { count = 8 fmerc_stage3_spawn_destroyer = yes }
 			while = { count = 4 fmerc_stage3_spawn_cruiser = yes }
 			fmerc_stage3_spawn_battleship = yes
-			subtract_variable = { which = MercSpawn value = 6400 }
-		else = { if = { limit = { check_variable = { which = MercSpawn value > 1400 } }
-			while = { count = 10 fmerc_stage3_spawn_corvette = yes }
+			subtract_variable = { which = "MercSpawn" value = "BattleshipSquad" }
+		else = { if = { limit = { check_variable = { which = "MercSpawn" value > "CruiserSquad" } }
+			while = { count = 8 fmerc_stage3_spawn_corvette = yes }
 			while = { count = 2 fmerc_stage3_spawn_destroyer = yes }
 			fmerc_stage3_spawn_cruiser = yes
-			subtract_variable = { which = MercSpawn value = 1400 }
-		else = { if = { limit = { check_variable = { which = MercSpawn value > 500 } }
-			while = { count = 5 fmerc_stage3_spawn_corvette = yes }
+			subtract_variable = { which = "MercSpawn" value = "CruiserSquad" }
+		else = { if = { limit = { check_variable = { which = "MercSpawn" value > "DestroyerSquad" } }
+			while = { count = 4 fmerc_stage3_spawn_corvette = yes }
 			fmerc_stage3_spawn_destroyer = yes
-			subtract_variable = { which = MercSpawn value = 500 }
+			subtract_variable = { which = "MercSpawn" value = "DestroyerSquad" }
 		else = {
 			fmerc_stage3_spawn_corvette = yes
+			subtract_variable = { which = "MercSpawn" value = "Corvette" }
 		} } } } } }
 	}
-
-	# corvette: 88
-	# destroyer: 139
-	# cruiser: 396
-	# battleship: 897
-
-	# We want:
-	# 4 corvettes to every destroyer
-	# 2 destroyers to every cruiser
-	# 4 cruisers to every battleship
-	#
-	# so to get 1 battleship
-	# 1x battleship = 897
-	# 4x cruiser    = 1584
-	# 8x destroyer  = 1112
-	# 32x corvette  = 2816
-	#
-	# 6409
-
-
-	# while = {
-	# 	limit = { check_variable = { which = MercSpawn value > 10 } }
-	# 	last_created_fleet = {
-	# 		while = {
-	# 			count = 10
-	# 			create_ship = {
-	# 				name = random
-	# 				random_existing_design = nongfx_fmerc_ship_01
-	# 				prefix = no
-	# 			}
-	# 		}
-	# 	}
-	# 	subtract_variable = { which = MercSpawn value = 10 }
-	# }
-	# while = {
-	# 	limit = { check_variable = { which = MercSpawn value > 1 } }
-	# 	last_created_fleet = {
-	# 		create_ship = {
-	# 			name = random
-	# 			random_existing_design = nongfx_fmerc_ship_01
-	# 			prefix = no
-	# 		}
-	# 	}
-	# 	subtract_variable = { which = MercSpawn value = 1 }
-	# }
 }
-
-# Our ships have a fleet power of 460, roughly.
 
 # requires event_target:fmerc_target_country
 fmerc_stage3_ensure_spawn_location = {
@@ -966,7 +454,6 @@ fmerc_stage3_create_fleet = {
 				distance = 40
 				angle = random
 			}
-			#set_formation_scale = 1.8
 			set_fleet_stance = passive
 			set_aggro_range_measure_from = self
 			set_aggro_range = 80
@@ -997,7 +484,35 @@ fmerc_stage3_create_fleet = {
 		change_variable = { which = MercSpawn value = 1500 }
 	}
 
-	# XXX Add MercSpawn per trust level with merc hq
+	# Add MercSpawn per opinion level with merc hq
+	fmerc_set_buyer = yes
+	if = {
+		limit = { exists = event_target:fmerc_buyer }
+		random_country = {
+			limit = { is_country_type = "fmerc_enclave" }
+			if = { limit = { trust = { who = event_target:fmerc_buyer value = 100 } }
+				PREV = { change_variable = { which = MercSpawn value = 1000 } }
+			else = { if = { limit = { trust = { who = event_target:fmerc_buyer value > 90 } }
+				PREV = { change_variable = { which = MercSpawn value = 900 } }
+			else = { if = { limit = { trust = { who = event_target:fmerc_buyer value > 80 } }
+				PREV = { change_variable = { which = MercSpawn value = 800 } }
+			else = { if = { limit = { trust = { who = event_target:fmerc_buyer value > 70 } }
+				PREV = { change_variable = { which = MercSpawn value = 700 } }
+			else = { if = { limit = { trust = { who = event_target:fmerc_buyer value > 60 } }
+				PREV = { change_variable = { which = MercSpawn value = 600 } }
+			else = { if = { limit = { trust = { who = event_target:fmerc_buyer value > 50 } }
+				PREV = { change_variable = { which = MercSpawn value = 500 } }
+			else = { if = { limit = { trust = { who = event_target:fmerc_buyer value > 40 } }
+				PREV = { change_variable = { which = MercSpawn value = 400 } }
+			else = { if = { limit = { trust = { who = event_target:fmerc_buyer value > 30 } }
+				PREV = { change_variable = { which = MercSpawn value = 300 } }
+			else = { if = { limit = { trust = { who = event_target:fmerc_buyer value > 20 } }
+				PREV = { change_variable = { which = MercSpawn value = 200 } }
+			else = { if = { limit = { trust = { who = event_target:fmerc_buyer value > 10 } }
+				PREV = { change_variable = { which = MercSpawn value = 100 } }
+			}}}}}}}}}}}}}}}}}}}
+		}
+	}
 
 	# fmerc_target is always a planet or fleet
 	event_target:fmerc_target = {
