@@ -116,6 +116,12 @@ fmerc_stage1_same_culture = {
 			}
 		}
 		AND = {
+			graphical_culture = "fallen_machine_empire_01"
+			last_created_country = {
+				has_country_flag = "fallen_empire_01"
+			}
+		}
+		AND = {
 			graphical_culture = "swarm_01"
 			last_created_country = {
 				has_country_flag = "swarm_01"

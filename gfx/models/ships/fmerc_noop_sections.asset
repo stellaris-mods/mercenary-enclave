@@ -1,0 +1,104 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+# empty sections for the merc_noop_sections gfx culture
+
+#CORVETTE_MID_S3
+entity = {
+	name = "merc_noop_sections_corvette_S3_entity"
+	locator = { name = "small_gun_01" }
+	locator = { name = "small_gun_02" }
+	locator = { name = "small_gun_03" }
+	scale = 0
+}
+
+#DESTROYER_BOW_M1S2
+entity = {
+	name = "merc_noop_sections_destroyer_bow_M1S2_entity"
+	locator = { name = "medium_gun_01" }
+	locator = { name = "small_gun_01" }
+	locator = { name = "small_gun_02" }
+	scale = 0
+}
+
+#DESTROYER_STERN_S2
+entity = {
+	name = "merc_noop_sections_destroyer_stern_S2_entity"
+	locator = { name = "small_gun_01" }
+	locator = { name = "small_gun_02" }
+	scale = 0
+}
+
+#CRUISER_BOW_M2
+entity = {
+	name = "merc_noop_sections_cruiser_bow_M2_entity"
+	locator = { name = "medium_gun_01" }
+	locator = { name = "medium_gun_02" }
+	scale = 0
+}
+
+#CRUISER_MID_L1M1
+
+entity = {
+	name = "merc_noop_sections_cruiser_mid_L1M1_entity"
+	locator = { name = "large_gun_01" }
+	locator = { name = "medium_gun_01" }
+	scale = 0
+}
+
+#CRUISER_STERN_M1
+
+entity = {
+	name = "merc_noop_sections_cruiser_stern_M1_entity"
+	locator = { name = "medium_gun_01" }
+	scale = 0
+}
+
+#BATTLESHIP_BOW_L2
+
+entity = {
+	name = "merc_noop_sections_battleship_bow_L2_entity"
+	locator = { name = "large_gun_01" }
+	locator = { name = "large_gun_02" }
+	scale = 0
+}
+
+#BATTLESHIP_MID_L3
+
+entity = {
+	name = "merc_noop_sections_battleship_mid_L3_entity"
+	locator = { name = "large_gun_01" }
+	locator = { name = "large_gun_02" }
+	locator = { name = "large_gun_03" }
+	scale = 0
+}
+
+
+#BATTLESHIP_STERN_M2
+
+entity = {
+	name = "merc_noop_sections_battleship_stern_M2_entity"
+	locator = { name = "medium_gun_01" }
+	locator = { name = "medium_gun_02" }
+	scale = 0
+}
+
+
+

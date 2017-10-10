@@ -37,11 +37,6 @@ tech_mercenary_enclave_desc: "This technology is only for the Mercenary Enclave.
 merc_enclave_insurance: "Mercenary Insurance Policy"
 merc_enclave_insurance_desc: "Whiteout Enterprises will contact you and allow you to make a counter-offer if some other empire tries to order an operation against you."
 
-MERC_SHIP_SENSOR_4: "Ship-mounted $OBSERVATORY_4$"
-MERC_SHIP_SENSOR_4_DESC: "$OBSERVATORY_4_DESC$"
-MERC_SHIP_COMPUTER_1: "Mercenary Computer"
-nongfx_fmerc_ship_01: "Weird"
-nongfx_fmerc_ship_01_plural: "Weird"
 name_list_FMercenaries: "Wannabe Pirates"
 SUBJECT_merc_operations_squad: "Inconspicuous Operatives"
 
@@ -212,6 +207,18 @@ fmerc_enclave.insurance.prevented: "We regret to inform you that the target you 
 # mission completed
 fmerc_enclave.completed.title: "Friendly \"Hello\""
 fmerc_enclave.completed.desc: "§YWhiteout Enterprises§! is pleased to inform you that our services menu is now open for business. We hope you are happy with any services we might have rendered in the past.\n\nHave a nice day."
+fmerc.completed.pretext: "Signatures picked up by our long range scanners reveal the following discrepancies before and after:"
+fmerc.completed.frontier: "   - §G[from.MercKillsFrontier]x§! $outpost_station_plural$"
+fmerc.completed.obspost: "   - §G[from.MercKillsObs]x§! $observation_station_plural$"
+fmerc.completed.wormhole: "   - §G[from.MercKillsWormhole]x§! $wormhole_station_plural$"
+fmerc.completed.research: "   - §G[from.MercKillsResearch]x§! $research_station_plural$"
+fmerc.completed.mining: "   - §G[from.MercKillsMining]x§! $mining_station_plural$"
+fmerc.completed.spaceport: "   - §G[from.MercKillsSpaceport]x§! $orbital_station_plural$"
+fmerc.completed.stations: "   - §G[from.MercKillsStations]x§! $shipclass_military_station$"
+fmerc.completed.ships: "   - §G[from.MercKillsShips]x§! $shipclass_military$"
+fmerc.completed.total: "   - §G[from.MercKillsTotal]§! total signatures lost"
+fmerc.completed.nothing: "   - No discrepancies. All transactions are final."
+
 
 # Merc Enclave destroyed / attacked
 fmerc_enclave.a.desc: "$fmerc_enclave.desc.first$ $fmerc_enclave.desc.known$ $fmerc_enclave.desc.second$"

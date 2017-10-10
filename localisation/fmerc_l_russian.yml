@@ -45,16 +45,6 @@ merc_enclave_insurance: "Страхование"
 ##merc_enclave_insurance_desc: "Whiteout Enterprises will contact you and allow you to make a counter-offer if some other empire tries to order an operation against you."
 merc_enclave_insurance_desc: "Whiteout Enterprises свяжется с вами и позволит вам сделать встречное предложение, если какая-то империя решит заказать операцию против вас."
 
-##MERC_SHIP_SENSOR_4: "Ship-mounted $OBSERVATORY_4$"
-MERC_SHIP_SENSOR_4: "Корабельный модуль: $OBSERVATORY_4$"
-##MERC_SHIP_SENSOR_4_DESC: "$OBSERVATORY_4_DESC$"
-MERC_SHIP_SENSOR_4_DESC: "$OBSERVATORY_4_DESC$"
-##MERC_SHIP_COMPUTER_1: "Mercenary Computer"
-MERC_SHIP_COMPUTER_1: "Компьютер Наемников"
-##nongfx_fmerc_ship_01: "Weird"
-nongfx_fmerc_ship_01: "Странный"
-##nongfx_fmerc_ship_01_plural: "Weird"
-nongfx_fmerc_ship_01_plural: "Странный"
 ##name_list_FMercenaries: "Wannabe Pirates"
 name_list_FMercenaries: "Подражающие пиратам"
 ##SUBJECT_merc_operations_squad: "Inconspicuous Operatives"
@@ -360,6 +350,19 @@ fmerc_enclave.insurance.prevented: "Нам жаль, но ваша цель в �
 fmerc_enclave.completed.title: "Дружеское \"Привет\""
 ##fmerc_enclave.completed.desc: "§YWhiteout Enterprises§! is pleased to inform you that our services menu is now open for business. We hope you are happy with any services we might have rendered in the past.\n\nHave a nice day."
 fmerc_enclave.completed.desc: "§YWhiteout Enterprises§! рада уведомить, что наши услуги открыты для всех желающих. Надеемся, вы рады оказанным вам в прошлом услугами.\n\nПриятного дня."
+fmerc.completed.pretext: "Signatures picked up by our long range scanners reveal the following discrepancies before and after:"
+fmerc.completed.frontier: "   - §G[from.MercKillsFrontier]x§! $outpost_station_plural$"
+fmerc.completed.obspost: "   - §G[from.MercKillsObs]x§! $observation_station_plural$"
+fmerc.completed.wormhole: "   - §G[from.MercKillsWormhole]x§! $wormhole_station_plural$"
+fmerc.completed.research: "   - §G[from.MercKillsResearch]x§! $research_station_plural$"
+fmerc.completed.mining: "   - §G[from.MercKillsMining]x§! $mining_station_plural$"
+fmerc.completed.spaceport: "   - §G[from.MercKillsSpaceport]x§! $orbital_station_plural$"
+fmerc.completed.stations: "   - §G[from.MercKillsStations]x§! $shipclass_military_station$"
+fmerc.completed.ships: "   - §G[from.MercKillsShips]x§! $shipclass_military$"
+fmerc.completed.total: "   - §G[from.MercKillsTotal]§! total signatures lost"
+fmerc.completed.nothing: "   - No discrepancies. All transactions are final."
+
+
 
 # Merc Enclave destroyed / attacked
 

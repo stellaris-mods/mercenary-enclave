@@ -1672,7 +1672,11 @@ country_event = {
 				value = 5
 			}
 			set_country_flag = "fmerc_diplo_disguise_random"
-			country_event = { id = fmercdiplo.2100 }
+			if = { limit = { has_global_flag = "debug" }
+				country_event = { id = fmercdiplo.9000 }
+			else = {
+				country_event = { id = fmercdiplo.2100 }
+			} }
 		}
 	}
 	option = {
@@ -1689,7 +1693,11 @@ country_event = {
 				value = 5
 			}
 			set_country_flag = "fmerc_diplo_disguise_other"
-			country_event = { id = fmercdiplo.2100 }
+			if = { limit = { has_global_flag = "debug" }
+				country_event = { id = fmercdiplo.9000 }
+			else = {
+				country_event = { id = fmercdiplo.2100 }
+			} }
 		}
 	}
 	option = {
@@ -1706,7 +1714,11 @@ country_event = {
 				value = 10
 			}
 			set_country_flag = "fmerc_diplo_disguise_same"
-			country_event = { id = fmercdiplo.2100 }
+			if = { limit = { has_global_flag = "debug" }
+				country_event = { id = fmercdiplo.9000 }
+			else = {
+				country_event = { id = fmercdiplo.2100 }
+			} }
 		}
 	}
 	option = {
@@ -1723,7 +1735,11 @@ country_event = {
 				value = 10
 			}
 			set_country_flag = "fmerc_diplo_disguise_pirate"
-			country_event = { id = fmercdiplo.2100 }
+			if = { limit = { has_global_flag = "debug" }
+				country_event = { id = fmercdiplo.9000 }
+			else = {
+				country_event = { id = fmercdiplo.2100 }
+			} }
 		}
 	}
 	option = {
@@ -1740,7 +1756,11 @@ country_event = {
 				value = 10
 			}
 			set_country_flag = "fmerc_diplo_disguise_monster"
-			country_event = { id = fmercdiplo.2100 }
+			if = { limit = { has_global_flag = "debug" }
+				country_event = { id = fmercdiplo.9000 }
+			else = {
+				country_event = { id = fmercdiplo.2100 }
+			} }
 		}
 	}
 	option = {
@@ -2493,10 +2513,60 @@ country_event = {
 }
 
 # Buyer is notified that operation has been completed
+# FROM is the mercenary operations country
 country_event = {
 	id = fmercdiplo.9004
 	title = fmerc_enclave.completed.title
-	desc = fmerc_enclave.completed.desc
+	desc = {
+		trigger = {
+			text = fmerc_enclave.completed.desc
+			text = newline
+			success_text = {
+				text = "fmerc.completed.pretext"
+				FROM = { check_variable = { which = "MercKillsTotal" value > 0 } }
+			}
+			success_text = {
+				text = "fmerc.completed.frontier"
+				FROM = { check_variable = { which = "MercKillsFrontier" value > 0 } }
+			}
+			success_text = {
+				text = "fmerc.completed.obspost"
+				FROM = { check_variable = { which = "MercKillsObs" value > 0 } }
+			}
+			success_text = {
+				text = "fmerc.completed.wormhole"
+				FROM = { check_variable = { which = "MercKillsWormhole" value > 0 } }
+			}
+			success_text = {
+				text = "fmerc.completed.research"
+				FROM = { check_variable = { which = "MercKillsResearch" value > 0 } }
+			}
+			success_text = {
+				text = "fmerc.completed.mining"
+				FROM = { check_variable = { which = "MercKillsMining" value > 0 } }
+			}
+			success_text = {
+				text = "fmerc.completed.spaceport"
+				FROM = { check_variable = { which = "MercKillsSpaceport" value > 0 } }
+			}
+			success_text = {
+				text = "fmerc.completed.stations"
+				FROM = { check_variable = { which = "MercKillsStations" value > 0 } }
+			}
+			success_text = {
+				text = "fmerc.completed.ships"
+				FROM = { check_variable = { which = "MercKillsShips" value > 0 } }
+			}
+			success_text = {
+				text = "fmerc.completed.total"
+				FROM = { check_variable = { which = "MercKillsTotal" value > 0 } }
+			}
+			success_text = {
+				text = "fmerc.completed.nothing"
+				FROM = { check_variable = { which = "MercKillsTotal" value = 0 } }
+			}
+		}
+	}
 	picture = GFX_evt_smugglers_in_bar
 	is_triggered_only = yes
 	option = {
