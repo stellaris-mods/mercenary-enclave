@@ -383,7 +383,9 @@ fmerc_stage3_ensure_spawn_location = {
 	# even though the trigger_docs say "Supported Scopes: all",
 	# closest_system does in fact not support the country scope.
 	event_target:fmerc_target_country = {
-		capital_scope = {
+		# ZZZ ED doesn't have a capital_scope, so find the closest
+		# enclave from a random owned system instead.
+		random_system_within_border = {
 			closest_system = {
 				limit = {
 					any_ship_in_system = {

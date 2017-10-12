@@ -93,7 +93,7 @@ fleet_event = {
 		FROM = {
 			exists = space_owner
 			space_owner = {
-				is_country_type = "default"
+				is_ai = no
 				exists = capital_scope
 				any_country = {
 					is_country_type = "fmerc_enclave"
@@ -141,7 +141,7 @@ fleet_event = {
 
 	trigger = {
 		owner = {
-			is_country_type = "default"
+			is_ai = no
 			exists = capital_scope
 		}
 		FROM = {
