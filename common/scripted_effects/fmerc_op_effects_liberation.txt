@@ -99,40 +99,38 @@ fmerc_liberation_create_armies = {
 			}
 		}
 	} # There are some army types we dont respond to, because I think they should give a defense advantage
-	# XXX should use an if-else statement instead
-# [21:44:59][trigger_impl.cpp:8524]: Error in army_type trigger, cannot find Army Type
-# [21:44:59][trigger_impl.cpp:8524]: Error in army_type trigger, cannot find Army Type
-# [21:44:59][trigger_impl.cpp:8524]: Error in army_type trigger, cannot find Army Type
+
+	# Since switch{} on army_type does not properly trigger default{} for an
+	# unmatched case, but _errors_ instead, we need to use an if-else-if block.
+	# For fucks sake.
+	# [21:44:59][trigger_impl.cpp:8524]: Error in army_type trigger, cannot find Army Type
 	every_planet_army = {
-		switch = {
-			trigger = army_type
-			assault_army         = { fmerc_assault_army = yes }
-			slave_army           = { fmerc_slave_army = yes }
-			clone_army           = { fmerc_clone_army = yes }
-			robotic_army         = { fmerc_robotic_army = yes }
-			robotic_defense_army = { fmerc_robotic_defense_army = yes }
-			android_army         = { fmerc_android_army = yes }
-			android_defense_army = { fmerc_android_defense_army = yes }
-			psionic_army         = { fmerc_psionic_army = yes }
-			xenomorph_army       = { fmerc_xenomorph_army = yes }
-			gene_warrior_army    = { fmerc_gene_warrior_army = yes }
-			swarm_army           = { fmerc_swarm_army = yes }
-			elite_guard_army     = { fmerc_elite_guard_army = yes }
-			shroud_army          = { fmerc_shroud_army = yes }
-			machine_assault_1    = { fmerc_machine_assault_1 = yes }
-			machine_defense_1    = { fmerc_machine_defense_1 = yes }
-			machine_assault_2    = { fmerc_machine_assault_2 = yes }
-			machine_defense_2    = { fmerc_machine_defense_2 = yes }
-			machine_assault_3    = { fmerc_machine_assault_3 = yes }
-			default = {
-				ROOT = {
-					change_variable = {
-						which = MercLiberationArmyCount
-						value = 1
-					}
+		if = { limit = { army_type = assault_army } fmerc_assault_army = yes
+		else = { if = { limit = { army_type = slave_army } fmerc_slave_army = yes
+		else = { if = { limit = { army_type = clone_army } fmerc_clone_army = yes
+		else = { if = { limit = { army_type = robotic_army } fmerc_robotic_army = yes
+		else = { if = { limit = { army_type = robotic_defense_army } fmerc_robotic_defense_army = yes
+		else = { if = { limit = { army_type = android_army } fmerc_android_army = yes
+		else = { if = { limit = { army_type = android_defense_army } fmerc_android_defense_army = yes
+		else = { if = { limit = { army_type = psionic_army } fmerc_psionic_army = yes
+		else = { if = { limit = { army_type = xenomorph_army } fmerc_xenomorph_army = yes
+		else = { if = { limit = { army_type = gene_warrior_army } fmerc_gene_warrior_army = yes
+		else = { if = { limit = { army_type = swarm_army } fmerc_swarm_army = yes
+		else = { if = { limit = { army_type = elite_guard_army } fmerc_elite_guard_army = yes
+		else = { if = { limit = { army_type = shroud_army } fmerc_shroud_army = yes
+		else = { if = { limit = { army_type = machine_assault_1 } fmerc_machine_assault_1 = yes
+		else = { if = { limit = { army_type = machine_defense_1 } fmerc_machine_defense_1 = yes
+		else = { if = { limit = { army_type = machine_assault_2 } fmerc_machine_assault_2 = yes
+		else = { if = { limit = { army_type = machine_defense_2 } fmerc_machine_defense_2 = yes
+		else = { if = { limit = { army_type = machine_assault_3 } fmerc_machine_assault_3 = yes
+		else = {
+			ROOT = {
+				change_variable = {
+					which = MercLiberationArmyCount
+					value = 1
 				}
 			}
-		}
+		}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 	}
 	# Now we invade with the same number of armies that we found.
 	ROOT = {
@@ -179,29 +177,6 @@ fmerc_liberation_create_armies = {
 		}
 	}
 }
-
-# army_type - Checks the army's type
-# army_type = assault_army
-# has_army - Checks if the planet has an army
-# has_army = yes
-
-# every_planet_army
-
-# every_owned_pop = {
-# 							planet = {
-
-# 							}
-# 						}
-
-# event_target:tmp_army_country = {
-# 	while = {
-# 		limit = {
-# 			count_owned_army = {
-
-# 			}
-# 		}
-# 	}
-# }
 
 fmerc_assault_army = {
 	PREV = { # Planet
@@ -383,10 +358,3 @@ fmerc_machine_assault_3 = {
 		}
 	}
 }
-
-
-
-
-
-
-
