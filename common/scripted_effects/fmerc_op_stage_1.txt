@@ -266,16 +266,91 @@ fmerc_stage1_setup_clear = {
 	fmerc_stage1_culture_copy = yes
 }
 
-# event_target:fmerc_target_country should be set before this
-# Scope is the buyer country
-fmerc_init_stage1 = {
-	log = "Stage 1: Init Mercenary Operations"
-	log = "Buyer is [Root.GetName]."
+# THIS is the operations country
+# event_target:traders is the enclave
+fmerc_stage1_determine_ship_powers = {
+	# So, every time we create a new fmerc_operations country, their ship
+	# designs are different, because of the DESIGNER_WEAPON_STACKING_DIV
+	# and other defines. There could also be other reasons that I don't see.
+	#
+	# Anyway, the result is we need to spawn one of each ship to determine
+	# how many ships we need to spawn later to match the target. And we need
+	# to do this every time we create a new operations country.
+
+	# Get a location to spawn in. This doesn't need to be safe, because our
+	# fleets will be created and destroyed instantly, and never show ingame.
+	event_target:traders = {
+		random_owned_fleet = { save_event_target_as = spawn }
+	}
+	# FROM here should be the merc enclave itself, and event_target:traders
+
+	# CORVETTE
+	create_fleet = {
+		effect = {
+			set_owner = PREV
+			set_location = event_target:spawn
+			create_ship = { name = random random_existing_design = "corvette" }
+			add_modifier = { modifier = merc_fleet_scaling days = -1 }
+		}
+	}
+	last_created_fleet = { merc_get_fleet_power = yes }
+	set_variable = { which = "Corvette" value = "FleetPower" }
+	set_variable = { which = "FleetPower" value = 0 }
+	last_created_fleet = { delete_fleet = THIS }
+
+	# DESTROYER
+	create_fleet = {
+		effect = {
+			set_owner = PREV
+			set_location = event_target:spawn
+			create_ship = { name = random random_existing_design = "destroyer" }
+			add_modifier = { modifier = merc_fleet_scaling days = -1 }
+		}
+	}
+	last_created_fleet = { merc_get_fleet_power = yes }
+	set_variable = { which = "Destroyer" value = "FleetPower" }
+	set_variable = { which = "FleetPower" value = 0 }
+	last_created_fleet = { delete_fleet = THIS }
+
+	# CRUISER
+	create_fleet = {
+		effect = {
+			set_owner = PREV
+			set_location = event_target:spawn
+			create_ship = { name = random random_existing_design = "cruiser" }
+			add_modifier = { modifier = merc_fleet_scaling days = -1 }
+		}
+	}
+	last_created_fleet = { merc_get_fleet_power = yes }
+	set_variable = { which = "Cruiser" value = "FleetPower" }
+	set_variable = { which = "FleetPower" value = 0 }
+	last_created_fleet = { delete_fleet = THIS }
+
+	# BATTLESHIP
+	create_fleet = {
+		effect = {
+			set_owner = PREV
+			set_location = event_target:spawn
+			create_ship = { name = random random_existing_design = "battleship" }
+			add_modifier = { modifier = merc_fleet_scaling days = -1 }
+		}
+	}
+	last_created_fleet = { merc_get_fleet_power = yes }
+	set_variable = { which = "Battleship" value = "FleetPower" }
+	set_variable = { which = "FleetPower" value = 0 }
+	last_created_fleet = { delete_fleet = THIS }
+
+	# Some of these might be zero, if there was no valid design.
+	# In which case we won't use that type later.
+	log = "OP Fleet Powers: C=[this.Corvette] D=[this.Destroyer] C=[this.Cruiser] B=[this.Battleship]."
+}
+
+fmerc_stage1_create_mercenaries = {
 	create_country = {
 		name = "Mercenary Operations"
 		name_list = "FMercenaries"
 		type = fmerc_operations
-		species = random
+		species = ROOT.owner_species
 		flag = { # Pirate flag copy
 			icon = {
 				category = "zoological"
@@ -296,9 +371,13 @@ fmerc_init_stage1 = {
 			ethic = ethic_militarist
 			ethic = ethic_materialist
 		}
-		civics = random
+		civics = {
+			civic = civic_mercenary_operations
+		}
 		authority = auth_dictatorial
 		auto_delete = no
+		ignore_initial_colony_error = yes
+		day_zero_contact = no
 	}
 	last_created_country = {
 		establish_communications_no_message = ROOT
@@ -306,16 +385,27 @@ fmerc_init_stage1 = {
 		establish_communications_no_message = event_target:traders
 		establish_contact = { who = event_target:traders }
 
-		# This isn't actually needed, so not sure why I dont just remove it.
-		give_technology = {
-			tech = tech_mercenary_enclave
-			message = no
-		}
-		give_technology = {
-			tech = tech_jump_drive_1
-			message = no
+		# this makes it show in the contact list,
+		# but at the same time it prevents the operations squad from engaging
+		# the enclave
+		set_subject_of = {
+			who = event_target:traders
+			subject_type = mercsquad
 		}
 
+		fmerc_stage1_determine_ship_powers = yes
+	}
+}
+
+# event_target:fmerc_target_country should be set before this
+# Scope is the buyer country
+fmerc_init_stage1 = {
+	log = "Stage 1: Init Mercenary Operations"
+	log = "Buyer is [Root.GetName]."
+
+	fmerc_stage1_create_mercenaries = yes
+
+	last_created_country = {
 		# ZZZ Does not apply to created fleets for some reason
 		set_policy = {
 			policy = orbital_bombardment
@@ -327,14 +417,6 @@ fmerc_init_stage1 = {
 		set_timed_country_flag = {
 			flag = "fmerc_ops_timeout"
 			days = 1800
-		}
-
-		# this makes it show in the contact list,
-		# but at the same time it prevents the operations squad from engaging
-		# the enclave
-		set_subject_of = {
-			who = event_target:traders
-			subject_type = mercsquad
 		}
 
 		set_relation_flag = {

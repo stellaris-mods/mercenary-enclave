@@ -284,7 +284,7 @@ default = { ROOT = { change_variable = { which = MercSpawn value = 400 } } }
 	}
 }
 
-fmerc_stage3_spawn_corvette = {
+fmerc_stage3_spawn_fixed_corvette = {
 	last_created_fleet = {
 		create_ship = {
 			name = random
@@ -293,11 +293,20 @@ fmerc_stage3_spawn_corvette = {
 		}
 	}
 }
+fmerc_stage3_spawn_corvette = {
+	last_created_fleet = {
+		create_ship = {
+			name = random
+			random_existing_design = "corvette"
+			prefix = no
+		}
+	}
+}
 fmerc_stage3_spawn_destroyer = {
 	last_created_fleet = {
 		create_ship = {
 			name = random
-			design = "Mercenary Destroyer"
+			random_existing_design = "battleship"
 			prefix = no
 		}
 	}
@@ -306,7 +315,7 @@ fmerc_stage3_spawn_cruiser = {
 	last_created_fleet = {
 		create_ship = {
 			name = random
-			design = "Mercenary Cruiser"
+			random_existing_design = "battleship"
 			prefix = no
 		}
 	}
@@ -315,7 +324,7 @@ fmerc_stage3_spawn_battleship = {
 	last_created_fleet = {
 		create_ship = {
 			name = random
-			design = "Mercenary Battleship"
+			random_existing_design = "battleship"
 			prefix = no
 		}
 	}
@@ -323,18 +332,6 @@ fmerc_stage3_spawn_battleship = {
 
 # While loops only loop to 100.
 fmerc_stage3_match_fleet_power = {
-	# XXX How the fuck can FP vary between game loads with the same set of addons?!
-	if = { limit = { has_global_flag = "has_zhow"}
-		set_variable = { which = "Battleship" value = 1200 }
-		set_variable = { which = "Cruiser"    value = 470 }
-		set_variable = { which = "Destroyer"  value = 170 }
-		set_variable = { which = "Corvette"   value = 110 }
-	else = {
-		set_variable = { which = "Battleship" value = 960 }
-		set_variable = { which = "Cruiser"    value = 420 }
-		set_variable = { which = "Destroyer"  value = 145 }
-		set_variable = { which = "Corvette"   value = 95  }
-	} }
 	# 4 corvettes to every destroyer
 	set_variable = { which = "DestroyerSquad" value = "Destroyer" }
 	change_variable = { which = "DestroyerSquad" value = "Corvette" }
@@ -354,27 +351,57 @@ fmerc_stage3_match_fleet_power = {
 	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
 	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
 
+	# We need to spawn _something_ no matter what. The player bought a service.
+	if = {
+		limit = { check_variable = { which = "MercSpawn" value < "Corvette" } }
+		change_variable = { which = "MercSpawn" value = "Corvette" }
+		change_variable = { which = "MercSpawn" value = "Corvette" }
+	}
 	while = {
-		limit = { check_variable = { which = "MercSpawn" value > "Corvette" } }
-		if = { limit = { check_variable = { which = "MercSpawn" value > "BattleshipSquad" } }
+		limit = { check_variable = { which = "MercSpawn" value < "Corvette" } }
+		change_variable = { which = "MercSpawn" value = 200 }
+	}
+
+	while = {
+		# Spawn if value is greater than zero, so that we never create
+		# a _smaller_ fleet than the one we wanted, but maybe slightly bigger.
+		limit = { check_variable = { which = "MercSpawn" value > 0 } }
+		if = { limit = {
+				check_variable = { which = "MercSpawn" value > "BattleshipSquad" }
+				# Make sure there is a valid battleship design
+				check_variable = { which = "Battleship" value > 0 }
+			}
 			while = { count = 32 fmerc_stage3_spawn_corvette = yes }
 			while = { count = 8 fmerc_stage3_spawn_destroyer = yes }
 			while = { count = 4 fmerc_stage3_spawn_cruiser = yes }
 			fmerc_stage3_spawn_battleship = yes
 			subtract_variable = { which = "MercSpawn" value = "BattleshipSquad" }
-		else = { if = { limit = { check_variable = { which = "MercSpawn" value > "CruiserSquad" } }
+		else = { if = { limit = {
+				check_variable = { which = "MercSpawn" value > "CruiserSquad" }
+				# Make sure there is a valid cruiser design
+				check_variable = { which = "Cruiser" value > 0 }
+			}
 			while = { count = 8 fmerc_stage3_spawn_corvette = yes }
 			while = { count = 2 fmerc_stage3_spawn_destroyer = yes }
 			fmerc_stage3_spawn_cruiser = yes
 			subtract_variable = { which = "MercSpawn" value = "CruiserSquad" }
-		else = { if = { limit = { check_variable = { which = "MercSpawn" value > "DestroyerSquad" } }
+		else = { if = { limit = {
+				check_variable = { which = "MercSpawn" value > "DestroyerSquad" }
+				# Make sure there is a valid Destroyer design
+				check_variable = { which = "Destroyer" value > 0 }
+			}
 			while = { count = 4 fmerc_stage3_spawn_corvette = yes }
 			fmerc_stage3_spawn_destroyer = yes
 			subtract_variable = { which = "MercSpawn" value = "DestroyerSquad" }
+		else = { if = { limit = { check_variable = { which = "Corvette" value = 0 } }
+			# There is no valid design for corvettes, so use the global one
+			fmerc_stage3_spawn_fixed_corvette = yes
+			subtract_variable = { which = "MercSpawn" value = 50 }
+			log = "MERCOPS ERROR: No valid Corvette design in operations country."
 		else = {
 			fmerc_stage3_spawn_corvette = yes
 			subtract_variable = { which = "MercSpawn" value = "Corvette" }
-		} } } } } }
+		} } } } } } } }
 	}
 }
 
@@ -543,4 +570,11 @@ fmerc_stage3_create_fleet = {
 	multiply_variable = { which = MercSpawn value = MercPercentSuccess }
 	log = "Spawning [this.MercSpawn] (x[this.MercPercentSuccess]) fleet power for operation fleet."
 	fmerc_stage3_match_fleet_power = yes
+
+	last_created_fleet = {
+		add_modifier = {
+			modifier = merc_fleet_scaling
+			days = -1
+		}
+	}
 }

@@ -23,3 +23,8 @@ merc_enclave_insurance = {
 	country_resource_minerals_add = -20
 	country_resource_energy_add = -20
 }
+
+merc_fleet_scaling = {
+	ship_weapon_damage = -0.5
+	ship_hitpoints_mult = -0.5
+}

@@ -2148,6 +2148,7 @@ fleet_event = {
 	trigger = {
 		exists = owner
 		exists = FROM
+		has_fleet_flag = "fmerc_count_towards_success"
 		owner = {
 			is_country_type = "fmerc_operations"
 			NOT = {

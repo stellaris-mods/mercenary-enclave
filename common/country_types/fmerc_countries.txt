@@ -22,6 +22,8 @@ fmerc_enclave = {
 	show_in_contacts_list = yes
 	share_communications = no
 	playable = no
+	debris = no
+
 	ai = {
 		enabled = no
 	}
