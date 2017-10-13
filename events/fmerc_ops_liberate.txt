@@ -531,9 +531,26 @@ country_event = {
 	}
 }
 
+event = {
+	id = fmerc_ops_liberate.1337
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = { has_country_flag = "fmerc_liberated_await_clear_skies" }
+	}
+
+	immediate = {
+		every_country = {
+			limit = { has_country_flag = "fmerc_liberated_await_clear_skies" }
+			country_event = { id = fmerc_ops_liberate.1338 }
+		}
+	}
+}
+
 
 country_event = {
-	id = fmerc_ops_liberate.1337
+	id = fmerc_ops_liberate.1338
 	hide_window = yes
 	is_triggered_only = yes
 
