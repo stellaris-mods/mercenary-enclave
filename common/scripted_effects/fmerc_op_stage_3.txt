@@ -397,6 +397,7 @@ fmerc_stage3_match_fleet_power = {
 			# There is no valid design for corvettes, so use the global one
 			fmerc_stage3_spawn_fixed_corvette = yes
 			subtract_variable = { which = "MercSpawn" value = 50 }
+			# XXX Need to make sure FTL types are the same.
 			log = "MERCOPS ERROR: No valid Corvette design in operations country."
 		else = {
 			fmerc_stage3_spawn_corvette = yes

@@ -1,32 +1,25 @@
 # Mercenary Enclave
 
 # Todo / Ideas
-
-- Add new ship types for the mercenaries
-- Really need to investigate what makes a hostile fleet able to bombard or not.
-  I know it has something to do with country communications, so `share_communications = yes/no`
-  in the fmerc_enclave country type has an effect
+- After enclave establishes contact with their first country, send out a scouting expedition fleet that tries to make contact with other empires
+- Change operation costs to use energy instead of minerals
+- Reduce cost of Mining/Research Raid so that it's useful earlier in the game, and make sure the enclave doesn't risk killing lots of spaceports and military fleets during the operation
+- Remove trust +1 every month, and add a +trust when you order an operation instead. This removes the benefit of the "allow station access" option, so that needs to provide something else then, or be removed
+- Reduce cost of Liberation, and check the cost of all the operations
+- Perhaps add a small influence cost to operations, to signify that you're probably going behind the back of your fellow politicians or whatever. Perhaps price it depending on country ethos
+- MISSION TYPE: Guard Solar System (or Guard Colony), where the mercenaries will guard a system/colony from hostile fleets/invasions. This should probably cost influence per month, and not be usable while you're in an active conflict.
 - Make sure we dont show the enclave dead thing if there's any outposts left
-- does swarm have spaceports?
-- add on monthly pulse that increases operation detect chance?
+- Does Swarm have spaceports?
+- Add on monthly pulse (while operation is active) that increases operation detect chance?
 - AI Rebellion can colonize planets that we should be able to liberate
-- ED and Swarm annihilate planets?
-- make sure the enclave can spawn their operations fleet if the enclave HQ is
-  inside the borders of an empire that has given them access, AND they are the target
-- Make a copy of unrest.4235 and run that on the target if a planet liberation attempt
-  fails? We would have to make a copy, because the vanilla event uses FROM/FROMFROM
-  in the localisation strings
-- Probably want to ignore systems/planets with `has_any_megastructure = yes` for various
-  operation types
+- ED and Swarm annihilate planets completely, I think? This means we never need to "liberate" them.
+- Make sure the enclave can spawn their operations fleet if the enclave HQ is inside the borders of an empire that has given them access, AND they are the target.
+- Make a copy of unrest.4235 and run that on the target if a planet liberation attempt fails? We would have to make a copy, because the vanilla event uses FROM/FROMFROM in the localisation strings
+- Probably want to ignore systems/planets with `has_any_megastructure = yes` for various operation types
 - Military fleet raid target selection probably needs tweaking
-- What are the `shroud` and `shroud_spirits` country types? Should they be valid targets for
-  any operations?
-- Add new mission type: Assist fleet, where the Mercenary Enclave will rush in to assist
-  you in combat for the next 5-10-20-50 or whatever years (cheaper per year, if the contract
-  is longer). Perhaps tie it to a specific Admiral, and if that admiral dies somehow,
-  open a window to let the player select the next admiral the ME should follow
-- During a Liberation mission, if the target planet suddenly is NOT a valid liberation target,
-  either find a new target, or abort, depending on how far along we are
+- What are the `shroud` and `shroud_spirits` country types? Should they be valid targets for any operations?
+- MISSION TYPE: Assist Fleet/Admiral, where the Mercenary Enclave will rush in to assist you in combat for the next 5-10-20-50 or whatever years (cheaper per year, if the contract is longer). Perhaps tie it to a specific Admiral, and if that admiral dies somehow open a window to let the player select the next admiral the ME should follow
+- During a Liberation mission, if the target planet suddenly is NOT a valid liberation target, either find a new target, or abort, depending on how far along we are
 
 # Steam description
 
