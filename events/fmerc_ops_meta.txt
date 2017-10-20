@@ -222,7 +222,7 @@ country_event = {
 					remove_country_flag = "fmerc_active_operation"
 					remove_country_flag = "fmerc_calculated_costs"
 					country_event = {
-						id = fmercdiplo.9004
+						id = mercMenu.9004
 					}
 				}
 

@@ -17,11 +17,11 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-namespace = fmercdiplo
+namespace = mercMenu
 
 # Mercenaries Main Menu #1
 country_event = {
-	id = fmercdiplo.100
+	id = mercMenu.100
 	title = fmerc_enclave.name
 	desc = {
 		trigger = {
@@ -121,7 +121,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			country_event = { id = fmercdiplo.200 }
+			country_event = { id = mercMenu.200 }
 		}
 	}
 	option = {
@@ -134,7 +134,7 @@ country_event = {
 		}
 		hidden_effect = {
 			set_country_flag = "fmerc_allow_stations"
-			country_event = { id = fmercdiplo.110 }
+			country_event = { id = mercMenu.110 }
 		}
 	}
 	option = {
@@ -147,7 +147,7 @@ country_event = {
 		}
 		hidden_effect = {
 			remove_country_flag = "fmerc_allow_stations"
-			country_event = { id = fmercdiplo.110 }
+			country_event = { id = mercMenu.110 }
 		}
 	}
 	option = {
@@ -178,7 +178,7 @@ country_event = {
 				modifier = merc_enclave_insurance
 				days = -1
 			}
-			country_event = { id = fmercdiplo.150 }
+			country_event = { id = mercMenu.150 }
 		}
 	}
 	option = {
@@ -191,7 +191,7 @@ country_event = {
 		}
 		hidden_effect = {
 			remove_modifier = merc_enclave_insurance
-			country_event = { id = fmercdiplo.150 }
+			country_event = { id = mercMenu.150 }
 		}
 	}
 	option = {
@@ -204,7 +204,7 @@ country_event = {
 # Main menu, non-initial
 # We always invoke fmerc_reset_diplo_screen before this screen
 country_event = {
-	id = fmercdiplo.101
+	id = mercMenu.101
 	title = fmerc_enclave.name
 	desc = {
 		trigger = {
@@ -298,7 +298,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			country_event = { id = fmercdiplo.200 }
+			country_event = { id = mercMenu.200 }
 		}
 	}
 	option = {
@@ -311,7 +311,7 @@ country_event = {
 		}
 		hidden_effect = {
 			set_country_flag = "fmerc_allow_stations"
-			country_event = { id = fmercdiplo.110 }
+			country_event = { id = mercMenu.110 }
 		}
 	}
 	option = {
@@ -324,7 +324,7 @@ country_event = {
 		}
 		hidden_effect = {
 			remove_country_flag = "fmerc_allow_stations"
-			country_event = { id = fmercdiplo.110 }
+			country_event = { id = mercMenu.110 }
 		}
 	}
 	option = {
@@ -355,7 +355,7 @@ country_event = {
 				modifier = merc_enclave_insurance
 				days = -1
 			}
-			country_event = { id = fmercdiplo.150 }
+			country_event = { id = mercMenu.150 }
 		}
 	}
 	option = {
@@ -368,7 +368,7 @@ country_event = {
 		}
 		hidden_effect = {
 			remove_modifier = merc_enclave_insurance
-			country_event = { id = fmercdiplo.150 }
+			country_event = { id = mercMenu.150 }
 		}
 	}
 	option = {
@@ -379,7 +379,7 @@ country_event = {
 }
 
 country_event = {
-	id = fmercdiplo.110
+	id = mercMenu.110
 	title = fmerc_enclave.name
 
 	desc = {
@@ -411,7 +411,7 @@ country_event = {
 		name = fmerc_enclave.back
 		hidden_effect = {
 			fmerc_reset_diplo_screen = yes
-			country_event = { id = fmercdiplo.101 }
+			country_event = { id = mercMenu.101 }
 		}
 	}
 	option = {
@@ -422,7 +422,7 @@ country_event = {
 }
 
 country_event = {
-	id = fmercdiplo.150
+	id = mercMenu.150
 	title = fmerc_enclave.name
 
 	desc = {
@@ -454,7 +454,7 @@ country_event = {
 		name = fmerc_enclave.back
 		hidden_effect = {
 			fmerc_reset_diplo_screen = yes
-			country_event = { id = fmercdiplo.101 }
+			country_event = { id = mercMenu.101 }
 		}
 	}
 	option = {
@@ -466,7 +466,7 @@ country_event = {
 
 # Special Operations menu
 country_event = {
-	id = fmercdiplo.200
+	id = mercMenu.200
 	title = fmerc_enclave.200.name
 	desc = fmerc_enclave.200.desc
 	is_triggered_only = yes
@@ -483,19 +483,19 @@ country_event = {
 
 	option = {
 		name = fmerc_enclave.300.name
-		hidden_effect = { country_event = { id = fmercdiplo.300 } }
+		hidden_effect = { country_event = { id = mercMenu.300 } }
 	}
 	option = {
 		name = fmerc_enclave.400.name
-		hidden_effect = { country_event = { id = fmercdiplo.400 } }
+		hidden_effect = { country_event = { id = mercMenu.400 } }
 	}
 	option = {
 		name = fmerc_enclave.500.name
-		hidden_effect = { country_event = { id = fmercdiplo.500 } }
+		hidden_effect = { country_event = { id = mercMenu.500 } }
 	}
 	option = {
 		name = fmerc_enclave.600.name
-		hidden_effect = { country_event = { id = fmercdiplo.600 } }
+		hidden_effect = { country_event = { id = mercMenu.600 } }
 	}
 	option = {
 		name = fmerc_enclave.700.name
@@ -510,13 +510,13 @@ country_event = {
 				}
 			}
 		}
-		hidden_effect = { country_event = { id = fmercdiplo.700 } }
+		hidden_effect = { country_event = { id = mercMenu.700 } }
 	}
 	option = {
 		name = fmerc_enclave.back
 		hidden_effect = {
 			fmerc_reset_diplo_screen = yes
-			country_event = { id = fmercdiplo.101 }
+			country_event = { id = mercMenu.101 }
 		}
 	}
 
@@ -530,7 +530,7 @@ country_event = {
 
 # Attack spaceport
 country_event = {
-	id = fmercdiplo.300
+	id = mercMenu.300
 	title = fmerc_enclave.300.name
 	desc = fmerc_enclave.300.desc
 	is_triggered_only = yes
@@ -562,12 +562,12 @@ country_event = {
 				value = 20
 			}
 			set_country_flag = "fmerc_diplo_spaceport"
-			country_event = { id = fmercdiplo.1000 }
+			country_event = { id = mercMenu.1000 }
 		}
 	}
 	option = {
 		name = fmerc_enclave.back
-		hidden_effect = { country_event = { id = fmercdiplo.200 } }
+		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
 		name = fmerc_enclave.close
@@ -578,7 +578,7 @@ country_event = {
 
 # Liberate Planet
 country_event = {
-	id = fmercdiplo.400
+	id = mercMenu.400
 	title = fmerc_enclave.400.name
 	desc = fmerc_enclave.400.desc
 	is_triggered_only = yes
@@ -610,12 +610,12 @@ country_event = {
 				value = 35
 			}
 			set_country_flag = "fmerc_diplo_liberate"
-			country_event = { id = fmercdiplo.1000 }
+			country_event = { id = mercMenu.1000 }
 		}
 	}
 	option = {
 		name = fmerc_enclave.back
-		hidden_effect = { country_event = { id = fmercdiplo.200 } }
+		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
 		name = fmerc_enclave.close
@@ -626,7 +626,7 @@ country_event = {
 
 # Mining/Research Raid
 country_event = {
-	id = fmercdiplo.500
+	id = mercMenu.500
 	title = fmerc_enclave.500.name
 	desc = fmerc_enclave.500.desc
 	is_triggered_only = yes
@@ -658,12 +658,12 @@ country_event = {
 				value = 20
 			}
 			set_country_flag = "fmerc_diplo_miningraid"
-			country_event = { id = fmercdiplo.1000 }
+			country_event = { id = mercMenu.1000 }
 		}
 	}
 	option = {
 		name = fmerc_enclave.back
-		hidden_effect = { country_event = { id = fmercdiplo.200 } }
+		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
 		name = fmerc_enclave.close
@@ -675,7 +675,7 @@ country_event = {
 
 # Fleet Battle
 country_event = {
-	id = fmercdiplo.600
+	id = mercMenu.600
 	title = fmerc_enclave.600.name
 	desc = fmerc_enclave.600.desc
 	is_triggered_only = yes
@@ -707,12 +707,12 @@ country_event = {
 				value = 25
 			}
 			set_country_flag = "fmerc_diplo_fleetraid"
-			country_event = { id = fmercdiplo.1000 }
+			country_event = { id = mercMenu.1000 }
 		}
 	}
 	option = {
 		name = fmerc_enclave.back
-		hidden_effect = { country_event = { id = fmercdiplo.200 } }
+		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
 		name = fmerc_enclave.close
@@ -723,7 +723,7 @@ country_event = {
 
 # Clear space
 country_event = {
-	id = fmercdiplo.700
+	id = mercMenu.700
 	title = fmerc_enclave.700.name
 	desc = fmerc_enclave.700.desc
 	is_triggered_only = yes
@@ -760,7 +760,7 @@ country_event = {
 				}
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.9001 }
+			country_event = { id = mercMenu.9001 }
 		}
 	}
 	option = {
@@ -785,7 +785,7 @@ country_event = {
 				}
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.9001 }
+			country_event = { id = mercMenu.9001 }
 		}
 	}
 	option = {
@@ -810,7 +810,7 @@ country_event = {
 				}
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.9001 }
+			country_event = { id = mercMenu.9001 }
 		}
 	}
 	option = {
@@ -835,7 +835,7 @@ country_event = {
 				}
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.9001 }
+			country_event = { id = mercMenu.9001 }
 		}
 	}
 	option = {
@@ -860,12 +860,12 @@ country_event = {
 				}
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.9001 }
+			country_event = { id = mercMenu.9001 }
 		}
 	}
 	option = {
 		name = fmerc_enclave.back
-		hidden_effect = { country_event = { id = fmercdiplo.200 } }
+		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
 		name = fmerc_enclave.close
@@ -875,7 +875,7 @@ country_event = {
 }
 
 country_event = {
-	id = fmercdiplo.1000
+	id = mercMenu.1000
 	title = fmerc_enclave.1000.name
 	desc = fmerc_enclave.1000.desc
 	is_triggered_only = yes
@@ -902,7 +902,7 @@ country_event = {
 		}
 		hidden_effect = {
 			set_country_flag = "fmerc_diplo_empire_standard"
-			country_event = { id = fmercdiplo.1100 }
+			country_event = { id = mercMenu.1100 }
 		}
 	}
 	option = {
@@ -939,7 +939,7 @@ country_event = {
 				value = 10
 			}
 			set_country_flag = "fmerc_diplo_empire_fallen"
-			country_event = { id = fmercdiplo.1100 }
+			country_event = { id = mercMenu.1100 }
 		}
 	}
 	option = {
@@ -968,7 +968,7 @@ country_event = {
 				value = 10
 			}
 			set_country_flag = "fmerc_diplo_empire_swarm"
-			country_event = { id = fmercdiplo.1100 }
+			country_event = { id = mercMenu.1100 }
 		}
 	}
 	option = {
@@ -1001,7 +1001,7 @@ country_event = {
 				value = 10
 			}
 			set_country_flag = "fmerc_diplo_empire_ed"
-			country_event = { id = fmercdiplo.1100 }
+			country_event = { id = mercMenu.1100 }
 		}
 	}
 	option = {
@@ -1034,14 +1034,14 @@ country_event = {
 				value = 5
 			}
 			set_country_flag = "fmerc_diplo_empire_ai"
-			country_event = { id = fmercdiplo.1100 }
+			country_event = { id = mercMenu.1100 }
 		}
 	}
 	option = {
 		name = fmerc_enclave.back
 		hidden_effect = {
 			fmerc_reset_diplo_screen = yes
-			country_event = { id = fmercdiplo.101 }
+			country_event = { id = mercMenu.101 }
 		}
 	}
 	option = {
@@ -1052,7 +1052,7 @@ country_event = {
 }
 
 country_event = {
-	id = fmercdiplo.1100
+	id = mercMenu.1100
 	title = fmerc_enclave.1000.name
 	desc = {
 		trigger = { has_country_flag = "fmerc_diplo_empire_standard" }
@@ -1217,7 +1217,7 @@ country_event = {
 			event_target:fmerc_temp_country_1 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1235,7 +1235,7 @@ country_event = {
 			event_target:fmerc_temp_country_2 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1253,7 +1253,7 @@ country_event = {
 			event_target:fmerc_temp_country_3 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1271,7 +1271,7 @@ country_event = {
 			event_target:fmerc_temp_country_4 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1289,7 +1289,7 @@ country_event = {
 			event_target:fmerc_temp_country_5 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1307,7 +1307,7 @@ country_event = {
 			event_target:fmerc_temp_country_6 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1325,7 +1325,7 @@ country_event = {
 			event_target:fmerc_temp_country_7 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1343,7 +1343,7 @@ country_event = {
 			event_target:fmerc_temp_country_8 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1361,7 +1361,7 @@ country_event = {
 			event_target:fmerc_temp_country_9 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1379,7 +1379,7 @@ country_event = {
 			event_target:fmerc_temp_country_10 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1397,7 +1397,7 @@ country_event = {
 			event_target:fmerc_temp_country_11 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1415,7 +1415,7 @@ country_event = {
 			event_target:fmerc_temp_country_12 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1433,7 +1433,7 @@ country_event = {
 			event_target:fmerc_temp_country_13 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1451,7 +1451,7 @@ country_event = {
 			event_target:fmerc_temp_country_14 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1469,7 +1469,7 @@ country_event = {
 			event_target:fmerc_temp_country_15 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1487,7 +1487,7 @@ country_event = {
 			event_target:fmerc_temp_country_16 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1505,7 +1505,7 @@ country_event = {
 			event_target:fmerc_temp_country_17 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1523,7 +1523,7 @@ country_event = {
 			event_target:fmerc_temp_country_18 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1541,7 +1541,7 @@ country_event = {
 			event_target:fmerc_temp_country_19 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1559,7 +1559,7 @@ country_event = {
 			event_target:fmerc_temp_country_20 = {
 				save_event_target_as = fmerc_target_country
 			}
-			country_event = { id = fmercdiplo.2000 }
+			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
@@ -1571,7 +1571,7 @@ country_event = {
 
 # Target selected, next agenda is the disguise
 country_event = {
-	id = fmercdiplo.2000
+	id = mercMenu.2000
 	title = fmerc_enclave.2000.name
 	desc = fmerc_enclave.2000.desc
 	is_triggered_only = yes
@@ -1600,9 +1600,9 @@ country_event = {
 			}
 			set_country_flag = "fmerc_diplo_disguise_random"
 			if = { limit = { has_global_flag = "debug" }
-				country_event = { id = fmercdiplo.9000 }
+				country_event = { id = mercMenu.9000 }
 			else = {
-				country_event = { id = fmercdiplo.2100 }
+				country_event = { id = mercMenu.2100 }
 			} }
 		}
 	}
@@ -1620,9 +1620,9 @@ country_event = {
 			}
 			set_country_flag = "fmerc_diplo_disguise_other"
 			if = { limit = { has_global_flag = "debug" }
-				country_event = { id = fmercdiplo.9000 }
+				country_event = { id = mercMenu.9000 }
 			else = {
-				country_event = { id = fmercdiplo.2100 }
+				country_event = { id = mercMenu.2100 }
 			} }
 		}
 	}
@@ -1640,9 +1640,9 @@ country_event = {
 			}
 			set_country_flag = "fmerc_diplo_disguise_same"
 			if = { limit = { has_global_flag = "debug" }
-				country_event = { id = fmercdiplo.9000 }
+				country_event = { id = mercMenu.9000 }
 			else = {
-				country_event = { id = fmercdiplo.2100 }
+				country_event = { id = mercMenu.2100 }
 			} }
 		}
 	}
@@ -1660,9 +1660,9 @@ country_event = {
 			}
 			set_country_flag = "fmerc_diplo_disguise_pirate"
 			if = { limit = { has_global_flag = "debug" }
-				country_event = { id = fmercdiplo.9000 }
+				country_event = { id = mercMenu.9000 }
 			else = {
-				country_event = { id = fmercdiplo.2100 }
+				country_event = { id = mercMenu.2100 }
 			} }
 		}
 	}
@@ -1680,9 +1680,9 @@ country_event = {
 			}
 			set_country_flag = "fmerc_diplo_disguise_monster"
 			if = { limit = { has_global_flag = "debug" }
-				country_event = { id = fmercdiplo.9000 }
+				country_event = { id = mercMenu.9000 }
 			else = {
-				country_event = { id = fmercdiplo.2100 }
+				country_event = { id = mercMenu.2100 }
 			} }
 		}
 	}
@@ -1694,7 +1694,7 @@ country_event = {
 }
 
 country_event = {
-	id = fmercdiplo.2100
+	id = mercMenu.2100
 	title = fmerc_enclave.9000.signatures
 	desc = {
 		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
@@ -1781,7 +1781,7 @@ country_event = {
 	option = {
 		name = fmerc_enclave.accept.responsibility
 		hidden_effect = {
-			country_event = { id = fmercdiplo.2101 }
+			country_event = { id = mercMenu.2101 }
 		}
 	}
 	option = {
@@ -1816,7 +1816,7 @@ country_event = {
 }
 
 country_event = {
-	id = fmercdiplo.2101
+	id = mercMenu.2101
 	title = fmerc_enclave.9000.signatures
 	desc = {
 		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
@@ -1856,7 +1856,7 @@ country_event = {
 	option = {
 		name = fmerc_enclave.accept.terms
 		hidden_effect = {
-			country_event = { id = fmercdiplo.2102 }
+			country_event = { id = mercMenu.2102 }
 		}
 	}
 	option = {
@@ -1885,76 +1885,7 @@ country_event = {
 }
 
 country_event = {
-	id = fmercdiplo.2102
-	title = fmerc_enclave.9000.signatures
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
-		text = fmerc_enclave.300.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_liberate" }
-		text = fmerc_enclave.400.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
-		text = fmerc_enclave.500.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
-		text = fmerc_enclave.600.conclusion
-	}
-
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_trader_window"
-	custom_gui_option = "enclave_trader_option"
-	force_open = yes
-	picture_event_data = {
-		portrait = event_target:traders
-		room = enclave_trader_room
-	}
-
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
-
-	option = {
-		name = fmerc_enclave.accept.responsibility
-		allow = {
-			hidden_trigger = { always = no }
-		}
-	}
-	option = {
-		name = fmerc_enclave.accept.terms
-		allow = {
-			hidden_trigger = { always = no }
-		}
-	}
-	option = {
-		name = fmerc_enclave.accept.nda
-		hidden_effect = {
-			country_event = { id = fmercdiplo.2103 }
-		}
-	}
-	option = {
-		name = fmerc_enclave.accept.treaty
-		allow = {
-			hidden_trigger = { always = no }
-		}
-	}
-	option = {
-		name = fmerc_enclave.accept.signature
-		allow = {
-			hidden_trigger = { always = no }
-		}
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-}
-
-country_event = {
-	id = fmercdiplo.2103
+	id = mercMenu.2102
 	title = fmerc_enclave.9000.signatures
 	desc = {
 		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
@@ -1999,14 +1930,14 @@ country_event = {
 	}
 	option = {
 		name = fmerc_enclave.accept.nda
-		allow = {
-			hidden_trigger = { always = no }
+		hidden_effect = {
+			country_event = { id = mercMenu.2103 }
 		}
 	}
 	option = {
 		name = fmerc_enclave.accept.treaty
-		hidden_effect = {
-			country_event = { id = fmercdiplo.2104 }
+		allow = {
+			hidden_trigger = { always = no }
 		}
 	}
 	option = {
@@ -2023,7 +1954,7 @@ country_event = {
 }
 
 country_event = {
-	id = fmercdiplo.2104
+	id = mercMenu.2103
 	title = fmerc_enclave.9000.signatures
 	desc = {
 		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
@@ -2074,14 +2005,14 @@ country_event = {
 	}
 	option = {
 		name = fmerc_enclave.accept.treaty
-		allow = {
-			hidden_trigger = { always = no }
+		hidden_effect = {
+			country_event = { id = mercMenu.2104 }
 		}
 	}
 	option = {
 		name = fmerc_enclave.accept.signature
-		hidden_effect = {
-			country_event = { id = fmercdiplo.9000 }
+		allow = {
+			hidden_trigger = { always = no }
 		}
 	}
 	option = {
@@ -2092,7 +2023,76 @@ country_event = {
 }
 
 country_event = {
-	id = fmercdiplo.9000
+	id = mercMenu.2104
+	title = fmerc_enclave.9000.signatures
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
+		text = fmerc_enclave.300.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_liberate" }
+		text = fmerc_enclave.400.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
+		text = fmerc_enclave.500.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
+		text = fmerc_enclave.600.conclusion
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.accept.responsibility
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.terms
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.nda
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.treaty
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.signature
+		hidden_effect = {
+			country_event = { id = mercMenu.9000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = mercMenu.9000
 	title = fmerc_enclave.9000.go
 	desc = fmerc_enclave.execute.desc
 	is_triggered_only = yes
@@ -2118,9 +2118,9 @@ country_event = {
 						value > MercCost
 					}
 				}
-				country_event = { id = fmercdiplo.9002 }
+				country_event = { id = mercMenu.9002 }
 				else = {
-					country_event = { id = fmercdiplo.9003 }
+					country_event = { id = mercMenu.9003 }
 				}
 			}
 		}
@@ -2130,7 +2130,7 @@ country_event = {
 
 # clear operation is a go
 country_event = {
-	id = fmercdiplo.9001
+	id = mercMenu.9001
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
@@ -2142,7 +2142,7 @@ country_event = {
 
 # need to check if the target is a country with insurance
 fleet_event = {
-	id = fmercdiplo.911
+	id = mercMenu.911
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
@@ -2174,7 +2174,7 @@ fleet_event = {
 		FROM = {
 			space_owner = {
 				country_event = {
-					id = fmercdiplo.912
+					id = mercMenu.912
 				}
 			}
 		}
@@ -2182,7 +2182,7 @@ fleet_event = {
 }
 
 country_event = {
-	id = fmercdiplo.912
+	id = mercMenu.912
 	is_triggered_only = yes
 	title = fmerc_enclave.insurance.title
 	desc = fmerc_enclave.insurance.desc
@@ -2323,7 +2323,7 @@ country_event = {
 			event_target:fmerc_buyer = {
 				# Tell the buyer that their operation has been thwarted
 				country_event = {
-					id = fmercdiplo.914
+					id = mercMenu.914
 					days = 3
 					random = 11
 				}
@@ -2347,7 +2347,7 @@ country_event = {
 
 # Your operation has been prevented, the target country had insurance.
 country_event = {
-	id = fmercdiplo.914
+	id = mercMenu.914
 	is_triggered_only = yes
 	title = fmerc_enclave.insurance.title
 	desc = fmerc_enclave.insurance.prevented
@@ -2359,7 +2359,7 @@ country_event = {
 
 # our operation has been detected
 country_event = {
-	id = fmercdiplo.915
+	id = mercMenu.915
 	title = fmerc_enclave.name
 	desc = fmerc_enclave.report
 	picture = GFX_evt_galactic_senate
@@ -2373,7 +2373,7 @@ country_event = {
 # Operation is a go
 # We are still in the player country scope
 country_event = {
-	id = fmercdiplo.9002
+	id = mercMenu.9002
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
@@ -2391,7 +2391,7 @@ country_event = {
 
 # Buyer is notified that they cant afford the operation
 country_event = {
-	id = fmercdiplo.9003
+	id = mercMenu.9003
 	title = fmerc_enclave.cantafford.title
 	desc = fmerc_enclave.cantafford.desc
 	picture = GFX_evt_space_station
@@ -2407,7 +2407,7 @@ country_event = {
 # Buyer is notified that operation has been completed
 # FROM is the mercenary operations country
 country_event = {
-	id = fmercdiplo.9004
+	id = mercMenu.9004
 	title = fmerc_enclave.completed.title
 	desc = {
 		trigger = {
