@@ -247,33 +247,33 @@ merc_account_internal_grab_minerals = {
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 1000 }
-			owner = { minerals > 1000 }
+			minerals > 1000
 		}
-		owner = { add_minerals = -1000 }
+		add_minerals = -1000
 		subtract_variable = { which = "MercTmp" value = 1000 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 100 }
-			owner = { minerals > 100 }
+			minerals > 100
 		}
-		owner = { add_minerals = -100 }
+		add_minerals = -100
 		subtract_variable = { which = "MercTmp" value = 100 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 10 }
-			owner = { minerals > 10 }
+			minerals > 10
 		}
-		owner = { add_minerals = -10 }
+		add_minerals = -10
 		subtract_variable = { which = "MercTmp" value = 10 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 0 }
-			owner = { minerals > 0 }
+			minerals > 0
 		}
-		owner = { add_minerals = -1 }
+		add_minerals = -1
 		subtract_variable = { which = "MercTmp" value = 1 }
 	}
 }
@@ -284,33 +284,33 @@ merc_account_internal_grab_energy = {
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 1000 }
-			owner = { energy > 1000 }
+			energy > 1000
 		}
-		owner = { add_energy = -1000 }
+		add_energy = -1000
 		subtract_variable = { which = "MercTmp" value = 1000 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 100 }
-			owner = { energy > 100 }
+			energy > 100
 		}
-		owner = { add_energy = -100 }
+		add_energy = -100
 		subtract_variable = { which = "MercTmp" value = 100 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 10 }
-			owner = { energy > 10 }
+			energy > 10
 		}
-		owner = { add_energy = -10 }
+		add_energy = -10
 		subtract_variable = { which = "MercTmp" value = 10 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 0 }
-			owner = { energy > 0 }
+			energy > 0
 		}
-		owner = { add_energy = -1 }
+		add_energy = -1
 		subtract_variable = { which = "MercTmp" value = 1 }
 	}
 }
@@ -321,25 +321,25 @@ merc_account_internal_grab_influence = {
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 100 }
-			owner = { influence > 100 }
+			influence > 100
 		}
-		owner = { add_influence = -100 }
+		add_influence = -100
 		subtract_variable = { which = "MercTmp" value = 100 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 10 }
-			owner = { influence > 10 }
+			influence > 10
 		}
-		owner = { add_influence = -10 }
+		add_influence = -10
 		subtract_variable = { which = "MercTmp" value = 10 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 0 }
-			owner = { influence > 0 }
+			influence > 0
 		}
-		owner = { add_influence = -1 }
+		add_influence = -1
 		subtract_variable = { which = "MercTmp" value = 1 }
 	}
 }
