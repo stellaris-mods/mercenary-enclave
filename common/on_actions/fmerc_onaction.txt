@@ -1,10 +1,4 @@
 
-on_first_contact = {
-	events = {
-		fmercai.10
-	}
-}
-
 on_monthly_pulse = {
 	events = {
 		fmerc_ops_meta.100
@@ -14,7 +8,6 @@ on_monthly_pulse = {
 
 on_yearly_pulse = {
 	events = {
-		fmercai.20
 		fmercai.30
 	}
 }

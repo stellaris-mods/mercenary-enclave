@@ -19,67 +19,6 @@
 
 namespace = fmercai
 
-# We also do this in the meta contact events, but
-# I just want to be certain that the variable is actually set.
-country_event = {
-	id = fmercai.10
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		FROM = {
-			is_country_type = "fmerc_enclave"
-		}
-		is_country_type = "default"
-	}
-
-	immediate = {
-		# This event actually does nothing, because setting a variable to zero
-		# just removes the variable.
-		set_variable = {
-			which = MercDeposit
-			value = 0
-		}
-	}
-}
-
-# on yearly pulse to increase opinion towards empires that
-# allow military border access
-event = {
-	id = fmercai.20
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		every_country = {
-			limit = {
-				is_country_type = "fmerc_enclave"
-			}
-			country_event = {
-				id = fmercai.21
-			}
-		}
-	}
-}
-country_event = {
-	id = fmercai.21
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		every_country = {
-			limit = {
-				has_country_flag = "fmerc_allow_stations"
-			}
-			ROOT = {
-				add_trust = {
-					who = PREV
-					amount = 4
-				}
-			}
-		}
-	}
-}
-
 # on yearly pulse to deduct deposit
 event = {
 	id = fmercai.30
