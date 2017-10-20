@@ -123,43 +123,43 @@ fmerc_detection_5 = {
 }
 fmerc_detection = {
 	if = {
-		limit = { check_variable = { which = MercDetect value = 50 } }
+		limit = { check_variable = { which = "MercDetect" value = 50 } }
 		fmerc_detection_50 = yes
 		else = {
 	if = {
-		limit = { check_variable = { which = MercDetect value = 45 } }
+		limit = { check_variable = { which = "MercDetect" value = 45 } }
 		fmerc_detection_45 = yes
 		else = {
 	if = {
-		limit = { check_variable = { which = MercDetect value = 40 } }
+		limit = { check_variable = { which = "MercDetect" value = 40 } }
 		fmerc_detection_40 = yes
 		else = {
 	if = {
-		limit = { check_variable = { which = MercDetect value = 35 } }
+		limit = { check_variable = { which = "MercDetect" value = 35 } }
 		fmerc_detection_35 = yes
 		else = {
 	if = {
-		limit = { check_variable = { which = MercDetect value = 30 } }
+		limit = { check_variable = { which = "MercDetect" value = 30 } }
 		fmerc_detection_30 = yes
 		else = {
 	if = {
-		limit = { check_variable = { which = MercDetect value = 25 } }
+		limit = { check_variable = { which = "MercDetect" value = 25 } }
 		fmerc_detection_25 = yes
 		else = {
 	if = {
-		limit = { check_variable = { which = MercDetect value = 20 } }
+		limit = { check_variable = { which = "MercDetect" value = 20 } }
 		fmerc_detection_20 = yes
 		else = {
 	if = {
-		limit = { check_variable = { which = MercDetect value = 15 } }
+		limit = { check_variable = { which = "MercDetect" value = 15 } }
 		fmerc_detection_15 = yes
 		else = {
 	if = {
-		limit = { check_variable = { which = MercDetect value = 10 } }
+		limit = { check_variable = { which = "MercDetect" value = 10 } }
 		fmerc_detection_10 = yes
 		else = {
 	if = {
-		limit = { check_variable = { which = MercDetect value = 5 } }
+		limit = { check_variable = { which = "MercDetect" value = 5 } }
 		fmerc_detection_5 = yes
 		else = {
 

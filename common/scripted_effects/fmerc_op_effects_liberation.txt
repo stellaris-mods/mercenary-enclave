@@ -84,7 +84,7 @@ fmerc_liberation_set_target_planet = {
 fmerc_liberation_create_armies = {
 	ROOT = {
 		set_variable = {
-			which = MercLiberationArmyCount
+			which = "MercLiberationArmyCount"
 			value = 3 #GARRISON_SIZE_BASE + 1
 		}
 	}
@@ -94,7 +94,7 @@ fmerc_liberation_create_armies = {
 			# There is also a chance it should be multiply_variable by ( 1 + ( num_pops * 0.4 ) )
 			# But it probably isn't, it's probably 0.4 armies per pop.
 			change_variable = {
-				which = MercLiberationArmyCount
+				which = "MercLiberationArmyCount"
 				value = 0.4 # GARRISON_SIZE_MULT
 			}
 		}
@@ -126,7 +126,7 @@ fmerc_liberation_create_armies = {
 		else = {
 			ROOT = {
 				change_variable = {
-					which = MercLiberationArmyCount
+					which = "MercLiberationArmyCount"
 					value = 1
 				}
 			}
@@ -135,22 +135,22 @@ fmerc_liberation_create_armies = {
 	# Now we invade with the same number of armies that we found.
 	ROOT = {
 		set_variable = {
-			which = MercLiberationArmyAdditional
-			value = MercSuccess
+			which = "MercLiberationArmyAdditional"
+			value = "MercSuccess"
 		}
 		while = { # ye I could use divide_variable. I wasn't thinking straight
 			limit = {
 				check_variable = {
-					which = MercLiberationArmyAdditional
+					which = "MercLiberationArmyAdditional"
 					value > 20
 				}
 			}
 			change_variable = {
-				which = MercLiberationArmyCount
+				which = "MercLiberationArmyCount"
 				value = 1
 			}
 			subtract_variable = {
-				which = MercLiberationArmyAdditional
+				which = "MercLiberationArmyAdditional"
 				value = 20
 			}
 		}
@@ -158,7 +158,7 @@ fmerc_liberation_create_armies = {
 		while = {
 			limit = {
 				check_variable = {
-					which = MercLiberationArmyCount
+					which = "MercLiberationArmyCount"
 					value > 0.9
 				}
 			}
@@ -171,7 +171,7 @@ fmerc_liberation_create_armies = {
 				}
 			}
 			subtract_variable = {
-				which = MercLiberationArmyCount
+				which = "MercLiberationArmyCount"
 				value = 1
 			}
 		}

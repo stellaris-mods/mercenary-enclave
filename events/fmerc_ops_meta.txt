@@ -107,7 +107,7 @@ country_event = {
 				}
 				event_target:fmerc_buyer = {
 					set_variable = {
-						which = MercCost
+						which = "MercCost"
 						value = 3000
 					}
 				}
@@ -121,7 +121,7 @@ country_event = {
 				}
 				event_target:fmerc_buyer = {
 					set_variable = {
-						which = MercCost
+						which = "MercCost"
 						value = 2400
 					}
 				}
@@ -135,7 +135,7 @@ country_event = {
 				}
 				event_target:fmerc_buyer = {
 					set_variable = {
-						which = MercCost
+						which = "MercCost"
 						value = 1800
 					}
 				}
@@ -149,7 +149,7 @@ country_event = {
 				}
 				event_target:fmerc_buyer = {
 					set_variable = {
-						which = MercCost
+						which = "MercCost"
 						value = 1200
 					}
 				}
@@ -163,14 +163,14 @@ country_event = {
 				}
 				event_target:fmerc_buyer = {
 					set_variable = {
-						which = MercCost
+						which = "MercCost"
 						value = 600
 					}
 				}
 				else = {
 					event_target:fmerc_buyer = {
 						set_variable = {
-							which = MercCost
+							which = "MercCost"
 							value = 300
 						}
 					}

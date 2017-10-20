@@ -28,7 +28,7 @@ country_event = {
 			NOT = { has_country_flag = "attacked_folk_mercenaries" }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 			check_variable = {
-				which = MercDeposit
+				which = "MercDeposit"
 				value = 0
 			}
 		}
@@ -39,7 +39,7 @@ country_event = {
 			NOT = { has_country_flag = "attacked_folk_mercenaries" }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 			check_variable = {
-				which = MercDeposit
+				which = "MercDeposit"
 				value > 0
 			}
 		}
@@ -92,7 +92,7 @@ country_event = {
 		hidden_effect = {
 			add_minerals = -2500
 			change_variable = {
-				which = MercDeposit
+				which = "MercDeposit"
 				value = 2500
 			}
 			event_target:traders = {
@@ -211,7 +211,7 @@ country_event = {
 			NOT = { has_country_flag = "attacked_folk_mercenaries" }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 			check_variable = {
-				which = MercDeposit
+				which = "MercDeposit"
 				value = 0
 			}
 		}
@@ -222,7 +222,7 @@ country_event = {
 			NOT = { has_country_flag = "attacked_folk_mercenaries" }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 			check_variable = {
-				which = MercDeposit
+				which = "MercDeposit"
 				value > 0
 			}
 		}
@@ -270,7 +270,7 @@ country_event = {
 		hidden_effect = {
 			add_minerals = -2500
 			change_variable = {
-				which = MercDeposit
+				which = "MercDeposit"
 				value = 2500
 			}
 			event_target:traders = {
@@ -550,15 +550,15 @@ country_event = {
 		custom_tooltip = fmerc_enclave.order.tooltip
 		hidden_effect = {
 			set_variable = {
-				which = MercCost
+				which = "MercCost"
 				value = 5000
 			}
 			set_variable = {
-				which = MercSuccess
+				which = "MercSuccess"
 				value = 80
 			}
 			set_variable = {
-				which = MercDetect
+				which = "MercDetect"
 				value = 20
 			}
 			set_country_flag = "fmerc_diplo_spaceport"
@@ -598,15 +598,15 @@ country_event = {
 		custom_tooltip = fmerc_enclave.order.tooltip
 		hidden_effect = {
 			set_variable = {
-				which = MercCost
+				which = "MercCost"
 				value = 15000
 			}
 			set_variable = {
-				which = MercSuccess
+				which = "MercSuccess"
 				value = 75
 			}
 			set_variable = {
-				which = MercDetect
+				which = "MercDetect"
 				value = 35
 			}
 			set_country_flag = "fmerc_diplo_liberate"
@@ -646,15 +646,15 @@ country_event = {
 		custom_tooltip = fmerc_enclave.order.tooltip
 		hidden_effect = {
 			set_variable = {
-				which = MercCost
+				which = "MercCost"
 				value = 2500
 			}
 			set_variable = {
-				which = MercSuccess
+				which = "MercSuccess"
 				value = 95
 			}
 			set_variable = {
-				which = MercDetect
+				which = "MercDetect"
 				value = 20
 			}
 			set_country_flag = "fmerc_diplo_miningraid"
@@ -695,15 +695,15 @@ country_event = {
 		custom_tooltip = fmerc_enclave.order.tooltip
 		hidden_effect = {
 			set_variable = {
-				which = MercCost
+				which = "MercCost"
 				value = 10000
 			}
 			set_variable = {
-				which = MercSuccess
+				which = "MercSuccess"
 				value = 80
 			}
 			set_variable = {
-				which = MercDetect
+				which = "MercDetect"
 				value = 25
 			}
 			set_country_flag = "fmerc_diplo_fleetraid"
@@ -745,7 +745,7 @@ country_event = {
 			custom_tooltip_fail = {
 				text = fmerc_enclave.needsdeposit
 				check_variable = {
-					which = MercDeposit
+					which = "MercDeposit"
 					value > 2500
 				}
 			}
@@ -770,7 +770,7 @@ country_event = {
 			custom_tooltip_fail = {
 				text = fmerc_enclave.needsdeposit
 				check_variable = {
-					which = MercDeposit
+					which = "MercDeposit"
 					value > 2500
 				}
 			}
@@ -795,7 +795,7 @@ country_event = {
 			custom_tooltip_fail = {
 				text = fmerc_enclave.needsdeposit
 				check_variable = {
-					which = MercDeposit
+					which = "MercDeposit"
 					value > 2500
 				}
 			}
@@ -820,7 +820,7 @@ country_event = {
 			custom_tooltip_fail = {
 				text = fmerc_enclave.needsdeposit
 				check_variable = {
-					which = MercDeposit
+					which = "MercDeposit"
 					value > 2500
 				}
 			}
@@ -845,7 +845,7 @@ country_event = {
 			custom_tooltip_fail = {
 				text = fmerc_enclave.needsdeposit
 				check_variable = {
-					which = MercDeposit
+					which = "MercDeposit"
 					value > 2500
 				}
 			}
@@ -927,15 +927,15 @@ country_event = {
 		}
 		hidden_effect = {
 			multiply_variable = {
-				which = MercCost
+				which = "MercCost"
 				value = 1.2
 			}
 			subtract_variable = {
-				which = MercSuccess
+				which = "MercSuccess"
 				value = 10
 			}
 			subtract_variable = {
-				which = MercDetect
+				which = "MercDetect"
 				value = 10
 			}
 			set_country_flag = "fmerc_diplo_empire_fallen"
@@ -960,11 +960,11 @@ country_event = {
 		}
 		hidden_effect = {
 			multiply_variable = {
-				which = MercCost
+				which = "MercCost"
 				value = 0.8
 			}
 			subtract_variable = {
-				which = MercSuccess
+				which = "MercSuccess"
 				value = 10
 			}
 			set_country_flag = "fmerc_diplo_empire_swarm"
@@ -993,11 +993,11 @@ country_event = {
 		}
 		hidden_effect = {
 			multiply_variable = {
-				which = MercCost
+				which = "MercCost"
 				value = 0.8
 			}
 			subtract_variable = {
-				which = MercSuccess
+				which = "MercSuccess"
 				value = 10
 			}
 			set_country_flag = "fmerc_diplo_empire_ed"
@@ -1022,15 +1022,15 @@ country_event = {
 		}
 		hidden_effect = {
 			multiply_variable = {
-				which = MercCost
+				which = "MercCost"
 				value = 0.9
 			}
 			subtract_variable = {
-				which = MercSuccess
+				which = "MercSuccess"
 				value = 5
 			}
 			subtract_variable = {
-				which = MercDetect
+				which = "MercDetect"
 				value = 5
 			}
 			set_country_flag = "fmerc_diplo_empire_ai"
@@ -1591,11 +1591,11 @@ country_event = {
 		custom_tooltip = fmerc_enclave.disguise.random.tooltip
 		hidden_effect = {
 			multiply_variable = {
-				which = MercCost
+				which = "MercCost"
 				value = 0.95
 			}
 			change_variable = {
-				which = MercDetect
+				which = "MercDetect"
 				value = 5
 			}
 			set_country_flag = "fmerc_diplo_disguise_random"
@@ -1611,11 +1611,11 @@ country_event = {
 		custom_tooltip = fmerc_enclave.disguise.other.tooltip
 		hidden_effect = {
 			multiply_variable = {
-				which = MercCost
+				which = "MercCost"
 				value = 1.05
 			}
 			subtract_variable = {
-				which = MercDetect
+				which = "MercDetect"
 				value = 5
 			}
 			set_country_flag = "fmerc_diplo_disguise_other"
@@ -1631,11 +1631,11 @@ country_event = {
 		custom_tooltip = fmerc_enclave.disguise.same.tooltip
 		hidden_effect = {
 			change_variable = {
-				which = MercSuccess
+				which = "MercSuccess"
 				value = 15
 			}
 			change_variable = {
-				which = MercDetect
+				which = "MercDetect"
 				value = 10
 			}
 			set_country_flag = "fmerc_diplo_disguise_same"
@@ -1651,11 +1651,11 @@ country_event = {
 		custom_tooltip = fmerc_enclave.disguise.pirate.tooltip
 		hidden_effect = {
 			multiply_variable = {
-				which = MercCost
+				which = "MercCost"
 				value = 0.95
 			}
 			subtract_variable = {
-				which = MercSuccess
+				which = "MercSuccess"
 				value = 10
 			}
 			set_country_flag = "fmerc_diplo_disguise_pirate"
@@ -1671,11 +1671,11 @@ country_event = {
 		custom_tooltip = fmerc_enclave.disguise.monster.tooltip
 		hidden_effect = {
 			multiply_variable = {
-				which = MercCost
+				which = "MercCost"
 				value = 1.15
 			}
 			subtract_variable = {
-				which = MercDetect
+				which = "MercDetect"
 				value = 10
 			}
 			set_country_flag = "fmerc_diplo_disguise_monster"
@@ -2114,7 +2114,7 @@ country_event = {
 			if = {
 				limit = {
 					check_variable = {
-						which = MercMinerals
+						which = "MercMinerals"
 						value > MercCost
 					}
 				}
@@ -2214,13 +2214,13 @@ country_event = {
 			# We should copy the MercPreviousOperationCost from this scope to the ROOT scope.
 			PREV = {
 				set_variable = {
-					which = MercCost
+					which = "MercCost"
 					value = 0
 				}
 			}
 			set_variable = {
 				which = temp_counter
-				value = MercPreviousOperationCost
+				value = "MercPreviousOperationCost"
 			}
 			# ZZZ copy temp_counter to cost
 			# isn't this nice, while loops only loop 100 times, no matter what
@@ -2237,7 +2237,7 @@ country_event = {
 				}
 				PREV = {
 					change_variable = {
-						which = MercCost
+						which = "MercCost"
 						value = 1000
 					}
 				}
@@ -2255,7 +2255,7 @@ country_event = {
 				}
 				PREV = {
 					change_variable = {
-						which = MercCost
+						which = "MercCost"
 						value = 100
 					}
 				}
@@ -2273,7 +2273,7 @@ country_event = {
 				}
 				PREV = {
 					change_variable = {
-						which = MercCost
+						which = "MercCost"
 						value = 10
 					}
 				}
@@ -2291,7 +2291,7 @@ country_event = {
 				}
 				PREV = {
 					change_variable = {
-						which = MercCost
+						which = "MercCost"
 						value = 1
 					}
 				}
@@ -2300,7 +2300,7 @@ country_event = {
 
 		# 25% discount for being a trusted customer
 		multiply_variable = {
-			which = MercCost
+			which = "MercCost"
 			value = 0.75
 		}
 
@@ -2314,7 +2314,7 @@ country_event = {
 			custom_tooltip_fail = {
 				text = fmerc_enclave.cantafford.title
 				check_variable = {
-					which = MercMinerals
+					which = "MercMinerals"
 					value > MercCost
 				}
 			}
@@ -2381,8 +2381,8 @@ country_event = {
 		set_country_flag = "fmerc_active_operation"
 		# For insurance purposes
 		set_variable = {
-			which = MercPreviousOperationCost
-			value = MercCost
+			which = "MercPreviousOperationCost"
+			value = "MercCost"
 		}
 		merc_account_grabdatcash = yes
 		fmerc_init_stage1 = yes

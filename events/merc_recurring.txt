@@ -29,12 +29,12 @@ event = {
 		every_country = {
 			limit = {
 				check_variable = {
-					which = MercDeposit
+					which = "MercDeposit"
 					value > 0
 				}
 			}
 			multiply_variable = {
-				which = MercDeposit
+				which = "MercDeposit"
 				value = 0.95
 			}
 		}

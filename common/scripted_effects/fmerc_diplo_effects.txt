@@ -45,15 +45,15 @@ fmerc_reset_diplo_screen = {
 
 	# This actually "deletes" the variables. Printing them now yields " " + an error.log entry
 	set_variable = {
-		which = MercCost
+		which = "MercCost"
 		value = 0
 	}
 	set_variable = {
-		which = MercSuccess
+		which = "MercSuccess"
 		value = 0
 	}
 	set_variable = {
-		which = MercDetect
+		which = "MercDetect"
 		value = 0
 	}
 }

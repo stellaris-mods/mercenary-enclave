@@ -23,7 +23,7 @@
 fmerc_stage2_init_clear = {
 	log = "Clear: Locating and marking 5 targets for destruction inside buyers borders."
 	set_variable = {
-		which = MercRaidCount
+		which = "MercRaidCount"
 		value = 5
 	}
 	event_target:fmerc_target_country = {
@@ -32,14 +32,14 @@ fmerc_stage2_init_clear = {
 			limit = {
 				ROOT = {
 					check_variable = {
-						which = MercRaidCount
+						which = "MercRaidCount"
 						value > 0
 					}
 				}
 			}
 			ROOT = {
 				subtract_variable = {
-					which = MercRaidCount
+					which = "MercRaidCount"
 					value = 1
 				}
 			}

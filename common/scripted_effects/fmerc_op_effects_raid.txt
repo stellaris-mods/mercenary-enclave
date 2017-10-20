@@ -124,7 +124,7 @@ fmerc_stage2_init_fleet = {
 fmerc_stage2_init_raid = {
 	log = "Raid: Locating and marking 5 targets for destruction."
 	set_variable = {
-		which = MercRaidCount
+		which = "MercRaidCount"
 		value = 5
 	}
 	event_target:fmerc_target_country = {
@@ -152,14 +152,14 @@ fmerc_stage2_init_raid = {
 			limit = {
 				ROOT = {
 					check_variable = {
-						which = MercRaidCount
+						which = "MercRaidCount"
 						value > 0
 					}
 				}
 			}
 			ROOT = {
 				subtract_variable = {
-					which = MercRaidCount
+					which = "MercRaidCount"
 					value = 1
 				}
 			}
