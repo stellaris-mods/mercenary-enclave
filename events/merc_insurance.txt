@@ -1,0 +1,239 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+namespace = mercInsurance
+
+# A mercenary fleet has entered the system of an empire with insurance
+fleet_event = {
+	id = mercInsurance.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = owner
+		exists = FROM
+		has_fleet_flag = "fmerc_count_towards_success"
+		owner = {
+			is_country_type = "fmerc_operations"
+			NOT = {
+				# Set if the target country declines the insurance policy first
+				# XXX this needs to be a relation flag
+				has_country_flag = "fmerc_insurance_ignored"
+			}
+		}
+		FROM = {
+			exists = space_owner
+			space_owner = { has_modifier = merc_enclave_insurance }
+		}
+		# Check that the merc operations fleet has a hostile relation flag
+		# towards the space owner
+		owner = {
+			has_relation_flag = {
+				who = FROM.space_owner
+				flag = merc_operations_target
+			}
+		}
+	}
+
+	immediate = {
+		FROM = {
+			space_owner = {
+				country_event = {
+					id = mercInsurance.912
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = mercInsurance.912
+	is_triggered_only = yes
+	title = fmerc_enclave.insurance.title
+	desc = fmerc_enclave.insurance.desc
+	picture = GFX_evt_smugglers_in_bar
+
+	immediate = {
+		# First, find the merc operation country
+		random_country = {
+			limit = {
+				has_relation_flag = {
+					who = ROOT
+					flag = merc_operations_target
+				}
+			}
+			save_event_target_as = fmerc_ops_country
+		}
+
+		# Then find the country who ordered the operation
+		random_country = {
+			limit = {
+				reverse_has_relation_flag = {
+					who = event_target:fmerc_ops_country
+					flag = merc_operations_squad
+				}
+			}
+
+			save_event_target_as = fmerc_buyer
+
+			# We should copy the MercPreviousOperationCost from this scope to the ROOT scope.
+			PREV = {
+				set_variable = {
+					which = "MercCost"
+					value = 0
+				}
+			}
+			set_variable = {
+				which = temp_counter
+				value = "MercPreviousOperationCost"
+			}
+			# ZZZ copy temp_counter to cost
+			# isn't this nice, while loops only loop 100 times, no matter what
+			while = {
+				limit = {
+					check_variable = {
+						which = temp_counter
+						value > 1000
+					}
+				}
+				subtract_variable = {
+					which = temp_counter
+					value = 1000
+				}
+				PREV = {
+					change_variable = {
+						which = "MercCost"
+						value = 1000
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = temp_counter
+						value > 100
+					}
+				}
+				subtract_variable = {
+					which = temp_counter
+					value = 100
+				}
+				PREV = {
+					change_variable = {
+						which = "MercCost"
+						value = 100
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = temp_counter
+						value > 10
+					}
+				}
+				subtract_variable = {
+					which = temp_counter
+					value = 10
+				}
+				PREV = {
+					change_variable = {
+						which = "MercCost"
+						value = 10
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = {
+						which = temp_counter
+						value > 0
+					}
+				}
+				subtract_variable = {
+					which = temp_counter
+					value = 1
+				}
+				PREV = {
+					change_variable = {
+						which = "MercCost"
+						value = 1
+					}
+				}
+			}
+		}
+
+		# 25% discount for being a trusted customer
+		multiply_variable = {
+			which = "MercCost"
+			value = 0.75
+		}
+
+		# Count our total minerals
+		merc_account_update = yes
+	}
+
+	option = {
+		name = fmerc_enclave.insurance.offer
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.cantafford.title
+				check_variable = {
+					which = "MercMinerals"
+					value > MercCost
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_buyer = {
+				# Tell the buyer that their operation has been thwarted
+				country_event = {
+					id = mercInsurance.914
+					days = 3
+					random = 11
+				}
+			}
+			merc_account_grabdatcash = yes
+			# Order the operation to complete immediately
+			event_target:fmerc_ops_country = {
+				set_country_flag = "fmerc_ops_completed"
+			}
+		}
+	}
+	option = {
+		name = fmerc_enclave.insurance.decline
+		hidden_effect = {
+			event_target:fmerc_ops_country = {
+				set_country_flag = "fmerc_insurance_ignored"
+			}
+		}
+	}
+}
+
+# Your operation has been prevented, the target country had insurance.
+country_event = {
+	id = mercInsurance.914
+	is_triggered_only = yes
+	title = fmerc_enclave.insurance.title
+	desc = fmerc_enclave.insurance.prevented
+	picture = GFX_evt_smugglers_in_bar
+	option = {
+		name = fmerc_enclave.insurance.decline
+	}
+}

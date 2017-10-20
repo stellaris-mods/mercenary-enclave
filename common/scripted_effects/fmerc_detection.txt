@@ -55,7 +55,7 @@ fmerc_detected = {
 	}
 	event_target:fmerc_target_country = {
 		country_event = {
-			id = mercMenu.915
+			id = mercDetection.1
 		}
 	}
 }
