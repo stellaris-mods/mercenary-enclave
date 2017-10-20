@@ -23,7 +23,26 @@ namespace = mercMenu
 country_event = {
 	id = mercMenu.9000
 	title = fmerc_enclave.9000.go
-	desc = fmerc_enclave.execute.desc
+	desc = {
+		text = fmerc_enclave.execute.desc
+		trigger = {
+			check_variable = {
+				which = "MercMinerals"
+				value > "MercCost"
+			}
+		}
+	}
+	desc = {
+		text = fmerc_enclave.cantafford.desc
+		trigger = {
+			NOT = {
+				check_variable = {
+					which = "MercMinerals"
+					value > "MercCost"
+				}
+			}
+		}
+	}
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -34,12 +53,15 @@ country_event = {
 		room = enclave_trader_room
 	}
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
+
+	immediate = {
+		merc_account_update = yes
+	}
+
+	after = {
 		hidden_effect = {
 			remove_country_flag = "fmerc_diplomacy_engaged"
-			merc_account_update = yes
+			fmerc_reset_diplo_screen = yes
 			if = {
 				limit = {
 					check_variable = {
@@ -47,46 +69,21 @@ country_event = {
 						value > "MercCost"
 					}
 				}
-				country_event = { id = mercMenu.9002 }
-				else = {
-					country_event = { id = mercMenu.9003 }
+				set_country_flag = "fmerc_active_operation"
+				# For insurance purposes
+				set_variable = {
+					which = "MercPreviousOperationCost"
+					value = "MercCost"
 				}
+				merc_account_grabdatcash = yes
+				fmerc_init_stage1 = yes
 			}
 		}
 	}
-}
 
-# Operation is a go
-# We are still in the player country scope
-country_event = {
-	id = mercMenu.9002
-	hide_window = yes
-	is_triggered_only = yes
-	immediate = {
-		remove_country_flag = "fmerc_diplomacy_engaged"
-		set_country_flag = "fmerc_active_operation"
-		# For insurance purposes
-		set_variable = {
-			which = "MercPreviousOperationCost"
-			value = "MercCost"
-		}
-		merc_account_grabdatcash = yes
-		fmerc_init_stage1 = yes
-	}
-}
-
-# Buyer is notified that they cant afford the operation
-country_event = {
-	id = mercMenu.9003
-	title = fmerc_enclave.cantafford.title
-	desc = fmerc_enclave.cantafford.desc
-	picture = GFX_evt_space_station
-	is_triggered_only = yes
-	immediate = {
-		fmerc_reset_diplo_screen = yes
-	}
 	option = {
-		name = UNFORTUNATE
+		name = fmerc_enclave.close
+		default_hide_option = yes
 	}
 }
 

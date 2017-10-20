@@ -71,7 +71,6 @@ country_event = {
 	option = {
 		name = fmerc_enclave.back
 		hidden_effect = {
-			fmerc_reset_diplo_screen = yes
 			country_event = { id = mercMenu.101 }
 		}
 	}

@@ -152,7 +152,7 @@ fmerc_enclave.100.minerals.reply: "Прекрасно, уверен, этот д
 fmerc_enclave.100.operations.button: "Дайте список ваших услуг"
 ##fmerc_enclave.100.stations.button: "Allow border access"
 fmerc_enclave.100.stations.button: "Открыть границы"
-##fmerc_enclave.100.stations.tooltip: "This allows §YWhiteout Enterprises§! access to your territories. Doing this will slowly increase their trust towards you over time.\n\nHowever, rest assured it will also increase their effectiveness against you should someone else contract their services towards you."
+##fmerc_enclave.100.stations.tooltip: "This allows §YWhiteout Enterprises§! access to your territories. It's hard to speculate why they might want this, but they assure us it will be to our mutual benefit.\n\nHowever, rest assured it will also increase their effectiveness against you should someone else contract their services towards you."
 fmerc_enclave.100.stations.tooltip: "Дает допуск §YWhiteout Enterprises§! к нашим территориям. Их доверие к нам так же будет расти.\n\nОднако, это так же увеличит их эффективность против нас, если кто-то решит нанять их против нас."
 ##fmerc_enclave.100.nostations.button: "Revoke border access"
 fmerc_enclave.100.nostations.button: "Закрыть границы"

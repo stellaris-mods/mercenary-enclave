@@ -173,11 +173,11 @@ country_event = {
 				}
 			}
 		}
+		add_modifier = {
+			modifier = merc_enclave_insurance
+			days = -1
+		}
 		hidden_effect = {
-			add_modifier = {
-				modifier = merc_enclave_insurance
-				days = -1
-			}
 			country_event = { id = mercMenu.150 }
 		}
 	}
@@ -189,8 +189,8 @@ country_event = {
 			has_modifier = merc_enclave_insurance
 			NOT = { has_country_flag = "fmerc_active_operation" }
 		}
+		remove_modifier = merc_enclave_insurance
 		hidden_effect = {
-			remove_modifier = merc_enclave_insurance
 			country_event = { id = mercMenu.150 }
 		}
 	}
@@ -250,10 +250,10 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	# because we always invoke fmerc_reset_diplo_screen before this screen,
-	# the flag should not be set
-	trigger = { NOT = { has_country_flag = "fmerc_diplomacy_engaged" } }
-	immediate = { set_country_flag = "fmerc_diplomacy_engaged" }
+	immediate = {
+		fmerc_reset_diplo_screen = yes
+		set_country_flag = "fmerc_diplomacy_engaged"
+	}
 
 	option = { # Deposit Minerals
 		name = fmerc_enclave.100.minerals.button
@@ -350,11 +350,11 @@ country_event = {
 				}
 			}
 		}
+		add_modifier = {
+			modifier = merc_enclave_insurance
+			days = -1
+		}
 		hidden_effect = {
-			add_modifier = {
-				modifier = merc_enclave_insurance
-				days = -1
-			}
 			country_event = { id = mercMenu.150 }
 		}
 	}
@@ -366,8 +366,8 @@ country_event = {
 			has_modifier = merc_enclave_insurance
 			NOT = { has_country_flag = "fmerc_active_operation" }
 		}
+		remove_modifier = merc_enclave_insurance
 		hidden_effect = {
-			remove_modifier = merc_enclave_insurance
 			country_event = { id = mercMenu.150 }
 		}
 	}
@@ -410,7 +410,6 @@ country_event = {
 	option = {
 		name = fmerc_enclave.back
 		hidden_effect = {
-			fmerc_reset_diplo_screen = yes
 			country_event = { id = mercMenu.101 }
 		}
 	}
@@ -453,7 +452,6 @@ country_event = {
 	option = {
 		name = fmerc_enclave.back
 		hidden_effect = {
-			fmerc_reset_diplo_screen = yes
 			country_event = { id = mercMenu.101 }
 		}
 	}
