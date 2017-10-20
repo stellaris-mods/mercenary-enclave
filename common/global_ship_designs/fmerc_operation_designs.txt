@@ -33,12 +33,20 @@ ship_design = {
 			template = "SMALL_AUTOCANNON_3"
 		}
 		component = {
+			slot = "SMALL_GUN_03"
+			template = "SMALL_RED_LASER"
+		}
+		component = {
+			slot = "SMALL_UTILITY_1"
+			template = "SMALL_ZERO_POINT_REACTOR"
+		}
+		component = {
 			slot = "SMALL_UTILITY_2"
 			template = "SMALL_ZERO_POINT_REACTOR"
 		}
 		component = {
 			slot = "SMALL_UTILITY_3"
-			template = "SMALL_ZERO_POINT_REACTOR"
+			template = "SMALL_SHIELD_5"
 		}
 		component = {
 			slot = "MEDIUM_UTILITY_1"
@@ -47,18 +55,6 @@ ship_design = {
 		component = {
 			slot = "MEDIUM_UTILITY_2"
 			template = "MEDIUM_SHIELD_5"
-		}
-		component = {
-			slot = "AUX_UTILITY_1"
-			template = "AUTO_REPAIR"
-		}
-		component = {
-			slot = "SMALL_UTILITY_1"
-			template = "SMALL_SHIELD_5"
-		}
-		component = {
-			slot = "SMALL_GUN_03"
-			template = "SMALL_DISRUPTOR_3"
 		}
 	}
 	required_component = "JUMP_DRIVE_1"

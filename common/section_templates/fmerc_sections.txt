@@ -17,6 +17,7 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
+
 ship_section_template = {
 	key = "station_enclave_fmercenary_01_key"
 	ship_size = enclave_station
