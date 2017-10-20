@@ -1,0 +1,145 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+namespace = mercMenu
+
+# Target selected, next agenda is the disguise
+country_event = {
+	id = mercMenu.2000
+	title = fmerc_enclave.2000.name
+	desc = fmerc_enclave.2000.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.disguise.random
+		custom_tooltip = fmerc_enclave.disguise.random.tooltip
+		hidden_effect = {
+			multiply_variable = {
+				which = "MercCost"
+				value = 0.95
+			}
+			change_variable = {
+				which = "MercDetect"
+				value = 5
+			}
+			set_country_flag = "fmerc_diplo_disguise_random"
+			if = { limit = { has_global_flag = "debug" }
+				country_event = { id = mercMenu.9000 }
+			else = {
+				country_event = { id = mercMenu.2100 }
+			} }
+		}
+	}
+	option = {
+		name = fmerc_enclave.disguise.other
+		custom_tooltip = fmerc_enclave.disguise.other.tooltip
+		hidden_effect = {
+			multiply_variable = {
+				which = "MercCost"
+				value = 1.05
+			}
+			subtract_variable = {
+				which = "MercDetect"
+				value = 5
+			}
+			set_country_flag = "fmerc_diplo_disguise_other"
+			if = { limit = { has_global_flag = "debug" }
+				country_event = { id = mercMenu.9000 }
+			else = {
+				country_event = { id = mercMenu.2100 }
+			} }
+		}
+	}
+	option = {
+		name = fmerc_enclave.disguise.same
+		custom_tooltip = fmerc_enclave.disguise.same.tooltip
+		hidden_effect = {
+			change_variable = {
+				which = "MercSuccess"
+				value = 15
+			}
+			change_variable = {
+				which = "MercDetect"
+				value = 10
+			}
+			set_country_flag = "fmerc_diplo_disguise_same"
+			if = { limit = { has_global_flag = "debug" }
+				country_event = { id = mercMenu.9000 }
+			else = {
+				country_event = { id = mercMenu.2100 }
+			} }
+		}
+	}
+	option = {
+		name = fmerc_enclave.disguise.pirate
+		custom_tooltip = fmerc_enclave.disguise.pirate.tooltip
+		hidden_effect = {
+			multiply_variable = {
+				which = "MercCost"
+				value = 0.95
+			}
+			subtract_variable = {
+				which = "MercSuccess"
+				value = 10
+			}
+			set_country_flag = "fmerc_diplo_disguise_pirate"
+			if = { limit = { has_global_flag = "debug" }
+				country_event = { id = mercMenu.9000 }
+			else = {
+				country_event = { id = mercMenu.2100 }
+			} }
+		}
+	}
+	option = {
+		name = fmerc_enclave.disguise.monster
+		custom_tooltip = fmerc_enclave.disguise.monster.tooltip
+		hidden_effect = {
+			multiply_variable = {
+				which = "MercCost"
+				value = 1.15
+			}
+			subtract_variable = {
+				which = "MercDetect"
+				value = 10
+			}
+			set_country_flag = "fmerc_diplo_disguise_monster"
+			if = { limit = { has_global_flag = "debug" }
+				country_event = { id = mercMenu.9000 }
+			else = {
+				country_event = { id = mercMenu.2100 }
+			} }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}

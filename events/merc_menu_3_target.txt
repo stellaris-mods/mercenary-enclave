@@ -1,0 +1,716 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+namespace = mercMenu
+
+country_event = {
+	id = mercMenu.1000
+	title = fmerc_enclave.1000.name
+	desc = fmerc_enclave.1000.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.1000.default
+		trigger = {
+			any_country = {
+				is_country_type = "default"
+				has_communications = ROOT
+				NOT = { is_same_value = ROOT }
+				num_owned_planets > 1
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_diplo_empire_standard"
+			country_event = { id = mercMenu.1100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.1000.fallen
+		trigger = {
+			any_country = {
+				OR = {
+					is_country_type = "fallen_empire"
+					is_country_type = "awakened_fallen_empire"
+				}
+				NOT = { is_same_value = ROOT }
+				has_communications = ROOT
+				num_owned_planets > 1
+			}
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target.invalid_operation
+				NOT = { has_country_flag = "fmerc_diplo_spaceport" }
+				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
+			}
+		}
+		hidden_effect = {
+			multiply_variable = {
+				which = "MercCost"
+				value = 1.2
+			}
+			subtract_variable = {
+				which = "MercSuccess"
+				value = 10
+			}
+			subtract_variable = {
+				which = "MercDetect"
+				value = 10
+			}
+			set_country_flag = "fmerc_diplo_empire_fallen"
+			country_event = { id = mercMenu.1100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.1000.swarm
+		trigger = {
+			any_country = {
+				is_country_type = "swarm"
+				has_communications = ROOT
+				NOT = { is_same_value = ROOT }
+			}
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target.invalid_operation
+				NOT = { has_country_flag = "fmerc_diplo_liberate" }
+				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
+			}
+		}
+		hidden_effect = {
+			multiply_variable = {
+				which = "MercCost"
+				value = 0.8
+			}
+			subtract_variable = {
+				which = "MercSuccess"
+				value = 10
+			}
+			set_country_flag = "fmerc_diplo_empire_swarm"
+			country_event = { id = mercMenu.1100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.1000.ed
+		trigger = {
+			any_country = {
+				OR = {
+					is_country_type = "extradimensional"
+					is_country_type = "extradimensional_2"
+					is_country_type = "extradimensional_3"
+				}
+				NOT = { is_same_value = ROOT }
+				has_communications = ROOT
+			}
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target.invalid_operation
+				NOT = { has_country_flag = "fmerc_diplo_liberate" }
+				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
+			}
+		}
+		hidden_effect = {
+			multiply_variable = {
+				which = "MercCost"
+				value = 0.8
+			}
+			subtract_variable = {
+				which = "MercSuccess"
+				value = 10
+			}
+			set_country_flag = "fmerc_diplo_empire_ed"
+			country_event = { id = mercMenu.1100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.1000.ai
+		trigger = {
+			any_country = {
+				is_country_type = "ai_empire"
+				NOT = { is_same_value = ROOT }
+				has_communications = ROOT
+			}
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target.invalid_operation
+				NOT = { has_country_flag = "fmerc_diplo_spaceport" }
+				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
+			}
+		}
+		hidden_effect = {
+			multiply_variable = {
+				which = "MercCost"
+				value = 0.9
+			}
+			subtract_variable = {
+				which = "MercSuccess"
+				value = 5
+			}
+			subtract_variable = {
+				which = "MercDetect"
+				value = 5
+			}
+			set_country_flag = "fmerc_diplo_empire_ai"
+			country_event = { id = mercMenu.1100 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.back
+		hidden_effect = {
+			fmerc_reset_diplo_screen = yes
+			country_event = { id = mercMenu.101 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = mercMenu.1100
+	title = fmerc_enclave.1000.name
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_empire_standard" }
+		text = fmerc_enclave.selected.default
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_empire_fallen" }
+		text = fmerc_enclave.selected.fallen
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_empire_swarm" }
+		text = fmerc_enclave.selected.swarm
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_empire_ed" }
+		text = fmerc_enclave.selected.ed
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_empire_ai" }
+		text = fmerc_enclave.selected.ai
+	}
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+	immediate = {
+		every_country = {
+			limit = {
+				fmerc_is_targetted_country_type = yes
+			}
+			set_country_flag = "fmerc_temp_country"
+		}
+		set_variable = {
+			which = FMercCountry
+			value = 1
+		}
+		while = {
+			limit = {
+				any_country = {
+					has_country_flag = "fmerc_temp_country"
+				}
+				check_variable = {
+					which = FMercCountry
+					value < 20
+				}
+			}
+			random_country = {
+				limit = { has_country_flag = "fmerc_temp_country" }
+				# We should have done an if-else below, but that results in too many {} all over the place
+				# it just looks untidy.
+				# Or I could have used a flag, with a switch instead.
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 1 } } }
+					save_event_target_as = fmerc_temp_country_1
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 2 } } }
+					save_event_target_as = fmerc_temp_country_2
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 3 } } }
+					save_event_target_as = fmerc_temp_country_3
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 4 } } }
+					save_event_target_as = fmerc_temp_country_4
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 5 } } }
+					save_event_target_as = fmerc_temp_country_5
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 6 } } }
+					save_event_target_as = fmerc_temp_country_6
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 7 } } }
+					save_event_target_as = fmerc_temp_country_7
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 8 } } }
+					save_event_target_as = fmerc_temp_country_8
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 9 } } }
+					save_event_target_as = fmerc_temp_country_9
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 10 } } }
+					save_event_target_as = fmerc_temp_country_10
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 11 } } }
+					save_event_target_as = fmerc_temp_country_11
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 12 } } }
+					save_event_target_as = fmerc_temp_country_12
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 13 } } }
+					save_event_target_as = fmerc_temp_country_13
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 14 } } }
+					save_event_target_as = fmerc_temp_country_14
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 15 } } }
+					save_event_target_as = fmerc_temp_country_15
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 16 } } }
+					save_event_target_as = fmerc_temp_country_16
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 17 } } }
+					save_event_target_as = fmerc_temp_country_17
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 18 } } }
+					save_event_target_as = fmerc_temp_country_18
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 19 } } }
+					save_event_target_as = fmerc_temp_country_19
+				}
+				if = {
+					limit = { PREV = { check_variable = { which = FMercCountry value = 20 } } }
+					save_event_target_as = fmerc_temp_country_20
+				}
+				remove_country_flag = "fmerc_temp_country"
+			}
+			change_variable = {
+				which = FMercCountry
+				value = 1 # +1
+			}
+		}
+		every_country = {
+			limit = { has_country_flag = "fmerc_temp_country" }
+			remove_country_flag = "fmerc_temp_country"
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_1.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_1 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_1 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_1 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_2.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_2 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_2 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_2 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_3.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_3 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_3 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_3 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_4.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_4 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_4 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_4 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_5.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_5 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_5 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_5 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_6.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_6 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_6 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_6 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_7.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_7 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_7 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_7 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_8.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_8 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_8 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_8 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_9.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_9 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_9 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_9 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_10.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_10 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_10 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_10 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_11.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_11 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_11 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_11 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_12.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_12 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_12 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_12 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_13.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_13 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_13 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_13 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_14.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_14 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_14 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_14 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_15.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_15 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_15 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_15 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_16.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_16 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_16 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_16 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_17.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_17 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_17 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_17 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_18.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_18 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_18 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_18 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_19.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_19 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_19 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_19 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = "[fmerc_temp_country_20.GetName]"
+		trigger = { exists = event_target:fmerc_temp_country_20 }
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.target_not_valid
+				event_target:fmerc_temp_country_20 = {
+					fmerc_is_valid_country = yes
+				}
+			}
+		}
+		hidden_effect = {
+			event_target:fmerc_temp_country_20 = {
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.2000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}

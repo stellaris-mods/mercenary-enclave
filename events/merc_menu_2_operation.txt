@@ -1,0 +1,431 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+namespace = mercMenu
+
+# Special Operations menu
+country_event = {
+	id = mercMenu.200
+	title = fmerc_enclave.200.name
+	desc = fmerc_enclave.200.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.300.name
+		hidden_effect = { country_event = { id = mercMenu.300 } }
+	}
+	option = {
+		name = fmerc_enclave.400.name
+		hidden_effect = { country_event = { id = mercMenu.400 } }
+	}
+	option = {
+		name = fmerc_enclave.500.name
+		hidden_effect = { country_event = { id = mercMenu.500 } }
+	}
+	option = {
+		name = fmerc_enclave.600.name
+		hidden_effect = { country_event = { id = mercMenu.600 } }
+	}
+	option = {
+		name = fmerc_enclave.700.name
+		allow = {
+			custom_tooltip = {
+				text = fmerc_enclave.trust30
+				event_target:traders = {
+					trust = {
+						who = ROOT
+						value > 29
+					}
+				}
+			}
+		}
+		hidden_effect = { country_event = { id = mercMenu.700 } }
+	}
+	option = {
+		name = fmerc_enclave.back
+		hidden_effect = {
+			fmerc_reset_diplo_screen = yes
+			country_event = { id = mercMenu.101 }
+		}
+	}
+
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+
+# Attack spaceport
+country_event = {
+	id = mercMenu.300
+	title = fmerc_enclave.300.name
+	desc = fmerc_enclave.300.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.order
+		custom_tooltip = fmerc_enclave.order.tooltip
+		hidden_effect = {
+			set_variable = {
+				which = "MercCost"
+				value = 5000
+			}
+			set_variable = {
+				which = "MercSuccess"
+				value = 80
+			}
+			set_variable = {
+				which = "MercDetect"
+				value = 20
+			}
+			set_country_flag = "fmerc_diplo_spaceport"
+			country_event = { id = mercMenu.1000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.back
+		hidden_effect = { country_event = { id = mercMenu.200 } }
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+# Liberate Planet
+country_event = {
+	id = mercMenu.400
+	title = fmerc_enclave.400.name
+	desc = fmerc_enclave.400.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.order
+		custom_tooltip = fmerc_enclave.order.tooltip
+		hidden_effect = {
+			set_variable = {
+				which = "MercCost"
+				value = 15000
+			}
+			set_variable = {
+				which = "MercSuccess"
+				value = 75
+			}
+			set_variable = {
+				which = "MercDetect"
+				value = 35
+			}
+			set_country_flag = "fmerc_diplo_liberate"
+			country_event = { id = mercMenu.1000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.back
+		hidden_effect = { country_event = { id = mercMenu.200 } }
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+# Mining/Research Raid
+country_event = {
+	id = mercMenu.500
+	title = fmerc_enclave.500.name
+	desc = fmerc_enclave.500.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.order
+		custom_tooltip = fmerc_enclave.order.tooltip
+		hidden_effect = {
+			set_variable = {
+				which = "MercCost"
+				value = 2500
+			}
+			set_variable = {
+				which = "MercSuccess"
+				value = 95
+			}
+			set_variable = {
+				which = "MercDetect"
+				value = 20
+			}
+			set_country_flag = "fmerc_diplo_miningraid"
+			country_event = { id = mercMenu.1000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.back
+		hidden_effect = { country_event = { id = mercMenu.200 } }
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+
+# Fleet Battle
+country_event = {
+	id = mercMenu.600
+	title = fmerc_enclave.600.name
+	desc = fmerc_enclave.600.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.order
+		custom_tooltip = fmerc_enclave.order.tooltip
+		hidden_effect = {
+			set_variable = {
+				which = "MercCost"
+				value = 10000
+			}
+			set_variable = {
+				which = "MercSuccess"
+				value = 80
+			}
+			set_variable = {
+				which = "MercDetect"
+				value = 25
+			}
+			set_country_flag = "fmerc_diplo_fleetraid"
+			country_event = { id = mercMenu.1000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.back
+		hidden_effect = { country_event = { id = mercMenu.200 } }
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+# Clear space
+country_event = {
+	id = mercMenu.700
+	title = fmerc_enclave.700.name
+	desc = fmerc_enclave.700.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.700.amoeba
+		custom_tooltip = fmerc_enclave.700.tooltip
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.needsdeposit
+				check_variable = {
+					which = "MercDeposit"
+					value > 2500
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_target_amoeba"
+			random_country = {
+				limit = {
+					is_country_type = "amoeba"
+					any_owned_ship = { is_inside_border = ROOT }
+					NOT = { has_country_flag = "fmerc_operations_target" }
+				}
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.9001 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.700.cloud
+		custom_tooltip = fmerc_enclave.700.tooltip
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.needsdeposit
+				check_variable = {
+					which = "MercDeposit"
+					value > 2500
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_target_cloud"
+			random_country = {
+				limit = {
+					is_country_type = "cloud"
+					any_owned_ship = { is_inside_border = ROOT }
+					NOT = { has_country_flag = "fmerc_operations_target" }
+				}
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.9001 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.700.crystal
+		custom_tooltip = fmerc_enclave.700.tooltip
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.needsdeposit
+				check_variable = {
+					which = "MercDeposit"
+					value > 2500
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_target_crystal"
+			random_country = {
+				limit = {
+					is_country_type = "crystal"
+					any_owned_ship = { is_inside_border = ROOT }
+					NOT = { has_country_flag = "fmerc_operations_target" }
+				}
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.9001 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.700.pirates
+		custom_tooltip = fmerc_enclave.700.tooltip
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.needsdeposit
+				check_variable = {
+					which = "MercDeposit"
+					value > 2500
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_target_pirate"
+			random_country = {
+				limit = {
+					is_country_type = "pirate"
+					any_owned_ship = { is_inside_border = ROOT }
+					NOT = { has_country_flag = "fmerc_operations_target" }
+				}
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.9001 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.700.drones
+		custom_tooltip = fmerc_enclave.700.tooltip
+		allow = {
+			custom_tooltip_fail = {
+				text = fmerc_enclave.needsdeposit
+				check_variable = {
+					which = "MercDeposit"
+					value > 2500
+				}
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "fmerc_target_drone"
+			random_country = {
+				limit = {
+					is_country_type = "drone"
+					any_owned_ship = { is_inside_border = ROOT }
+					NOT = { has_country_flag = "fmerc_operations_target" }
+				}
+				save_event_target_as = fmerc_target_country
+			}
+			country_event = { id = mercMenu.9001 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.back
+		hidden_effect = { country_event = { id = mercMenu.200 } }
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}

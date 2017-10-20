@@ -1,0 +1,419 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+namespace = mercMenu
+
+country_event = {
+	id = mercMenu.2100
+	title = fmerc_enclave.9000.signatures
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
+		text = fmerc_enclave.300.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_liberate" }
+		text = fmerc_enclave.400.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
+		text = fmerc_enclave.500.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
+		text = fmerc_enclave.600.conclusion
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	immediate = {
+		event_target:traders = {
+			create_leader = {
+				name = random
+				species = ROOT
+				type = random
+				skill = random
+			}
+			last_created_leader = {
+				save_event_target_as = trader_leader
+				ROOT = {
+					switch = {
+						trigger = has_country_flag
+						fmerc_diplo_disguise_random = {
+							event_target:trader_leader = {
+								set_name = "Random"
+							}
+						}
+						fmerc_diplo_disguise_other = {
+							event_target:trader_leader = {
+								set_name = "Anything but your ships"
+							}
+						}
+						fmerc_diplo_disguise_same = {
+							event_target:trader_leader = {
+								set_name = "Your ships"
+							}
+						}
+						fmerc_diplo_disguise_pirate = {
+							event_target:trader_leader = {
+								set_name = "Pirate"
+							}
+						}
+						fmerc_diplo_disguise_monster = {
+							event_target:trader_leader = {
+								set_name = "Xenofauna"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:trader_leader = {
+				kill_leader = {
+					show_notification = no
+				}
+			}
+		}
+	}
+
+	option = {
+		name = fmerc_enclave.accept.responsibility
+		hidden_effect = {
+			country_event = { id = mercMenu.2101 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.terms
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.nda
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.treaty
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.signature
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = mercMenu.2101
+	title = fmerc_enclave.9000.signatures
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
+		text = fmerc_enclave.300.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_liberate" }
+		text = fmerc_enclave.400.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
+		text = fmerc_enclave.500.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
+		text = fmerc_enclave.600.conclusion
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.accept.responsibility
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.terms
+		hidden_effect = {
+			country_event = { id = mercMenu.2102 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.nda
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.treaty
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.signature
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = mercMenu.2102
+	title = fmerc_enclave.9000.signatures
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
+		text = fmerc_enclave.300.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_liberate" }
+		text = fmerc_enclave.400.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
+		text = fmerc_enclave.500.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
+		text = fmerc_enclave.600.conclusion
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.accept.responsibility
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.terms
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.nda
+		hidden_effect = {
+			country_event = { id = mercMenu.2103 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.treaty
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.signature
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = mercMenu.2103
+	title = fmerc_enclave.9000.signatures
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
+		text = fmerc_enclave.300.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_liberate" }
+		text = fmerc_enclave.400.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
+		text = fmerc_enclave.500.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
+		text = fmerc_enclave.600.conclusion
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.accept.responsibility
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.terms
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.nda
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.treaty
+		hidden_effect = {
+			country_event = { id = mercMenu.2104 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.signature
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = mercMenu.2104
+	title = fmerc_enclave.9000.signatures
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
+		text = fmerc_enclave.300.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_liberate" }
+		text = fmerc_enclave.400.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
+		text = fmerc_enclave.500.conclusion
+	}
+	desc = {
+		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
+		text = fmerc_enclave.600.conclusion
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+
+	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	option = {
+		name = fmerc_enclave.accept.responsibility
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.terms
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.nda
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.treaty
+		allow = {
+			hidden_trigger = { always = no }
+		}
+	}
+	option = {
+		name = fmerc_enclave.accept.signature
+		hidden_effect = {
+			country_event = { id = mercMenu.9000 }
+		}
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
