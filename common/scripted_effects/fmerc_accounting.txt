@@ -18,322 +18,328 @@
 ###
 
 
-fmerc_count_minerals = {
-	set_variable = {
-		which = MercMinerals
-		value = 0
-	}
+merc_account_update = {
+	merc_account_internal_update_empire_minerals = yes
+	merc_account_internal_update_empire_energy = yes
+	merc_account_internal_update_empire_influence = yes
+}
+
+merc_account_grabdatcash = {
+	merc_account_internal_grab_minerals = yes
+	merc_account_internal_grab_energy = yes
+	merc_account_internal_grab_influence = yes
+}
+
+###############################################################################
+#
+# Rest of the file contains internal implementation details that you should
+# be able to ignore safely and never use outside this file.
+#
+
+merc_account_internal_update_empire_minerals = {
+	set_variable = { which = "MercMinerals" value = 0 }
 	while = {
-		limit = {
-			has_country_resource = {
-				type = minerals
-				amount > 10000
-			}
-		}
+		limit = { minerals > 10000 }
 		add_minerals = -10000
-		change_variable = {
-			which = MercMinerals
-			value = 10000
-		}
+		change_variable = { which = "MercMinerals" value = 10000 }
 	}
 	while = {
-		limit = {
-			has_country_resource = {
-				type = minerals
-				amount > 1000
-			}
-		}
+		limit = { minerals > 1000 }
 		add_minerals = -1000
-		change_variable = {
-			which = MercMinerals
-			value = 1000
-		}
+		change_variable = { which = "MercMinerals" value = 1000 }
 	}
 	while = {
-		limit = {
-			has_country_resource = {
-				type = minerals
-				amount > 100
-			}
-		}
+		limit = { minerals > 100 }
 		add_minerals = -100
-		change_variable = {
-			which = MercMinerals
-			value = 100
-		}
+		change_variable = { which = "MercMinerals" value = 100 }
 	}
 	while = {
-		limit = {
-			has_country_resource = {
-				type = minerals
-				amount > 10
-			}
-		}
+		limit = { minerals > 10 }
 		add_minerals = -10
-		change_variable = {
-			which = MercMinerals
-			value = 10
-		}
+		change_variable = { which = "MercMinerals" value = 10 }
 	}
 	while = {
-		limit = {
-			has_country_resource = {
-				type = minerals
-				amount > 0
-			}
-		}
+		limit = { minerals > 0 }
 		add_minerals = -1
-		change_variable = {
-			which = MercMinerals
-			value = 1
-		}
+		change_variable = { which = "MercMinerals" value = 1 }
 	}
-	set_variable = {
-		which = MercMineralsTemp
-		value = MercMinerals
+	# Make a copy we can mangle
+	set_variable = { which = "MercTmp" value = "MercMinerals" }
+	# And give the country its minerals back
+	while = {
+		limit = { check_variable = { which = "MercTmp" value > 10000 } }
+		add_minerals = 10000
+		subtract_variable = { which = "MercTmp" value = 10000 }
 	}
 	while = {
-		limit = {
-			check_variable = {
-				which = MercMineralsTemp
-				value > 1000
-			}
-		}
+		limit = { check_variable = { which = "MercTmp" value > 1000 } }
 		add_minerals = 1000
-		change_variable = {
-			which = MercMineralsTemp
-			value = -1000
-		}
+		subtract_variable = { which = "MercTmp" value = 1000 }
 	}
 	while = {
-		limit = {
-			check_variable = {
-				which = MercMineralsTemp
-				value > 100
-			}
-		}
+		limit = { check_variable = { which = "MercTmp" value > 100 } }
 		add_minerals = 100
-		change_variable = {
-			which = MercMineralsTemp
-			value = -100
-		}
+		subtract_variable = { which = "MercTmp" value = 100 }
 	}
 	while = {
-		limit = {
-			check_variable = {
-				which = MercMineralsTemp
-				value > 10
-			}
-		}
+		limit = { check_variable = { which = "MercTmp" value > 10 } }
 		add_minerals = 10
-		change_variable = {
-			which = MercMineralsTemp
-			value = -10
-		}
+		subtract_variable = { which = "MercTmp" value = 10 }
 	}
 	while = {
-		limit = {
-			check_variable = {
-				which = MercMineralsTemp
-				value > 0
-			}
-		}
+		limit = { check_variable = { which = "MercTmp" value > 0 } }
 		add_minerals = 1
-		change_variable = {
-			which = MercMineralsTemp
-			value = -1
-		}
+		subtract_variable = { which = "MercTmp" value = 1 }
 	}
 
 	# Add all minerals we may have deposited in the mercenary bank
 	change_variable = {
-		which = MercMinerals
-		value = MercDeposit
+		which = "MercMinerals"
+		value = "MercDeposit"
+	}
+}
+# Counts the available energy
+merc_account_internal_update_empire_energy = {
+	set_variable = { which = "MercEnergy" value = 0 }
+	while = {
+		limit = { energy > 10000 }
+		add_energy = -10000
+		change_variable = { which = "MercEnergy" value = 10000 }
+	}
+	while = {
+		limit = { energy > 1000 }
+		add_energy = -1000
+		change_variable = { which = "MercEnergy" value = 1000 }
+	}
+	while = {
+		limit = { energy > 100 }
+		add_energy = -100
+		change_variable = { which = "MercEnergy" value = 100 }
+	}
+	while = {
+		limit = { energy > 10 }
+		add_energy = -10
+		change_variable = { which = "MercEnergy" value = 10 }
+	}
+	while = {
+		limit = { energy > 0 }
+		add_energy = -1
+		change_variable = { which = "MercEnergy" value = 1 }
+	}
+	# Make a copy we can mangle
+	set_variable = { which = "MercTmp" value = "MercEnergy" }
+	# And give the country its energy back
+	while = {
+		limit = { check_variable = { which = "MercTmp" value > 10000 } }
+		add_energy = 10000
+		subtract_variable = { which = "MercTmp" value = 10000 }
+	}
+	while = {
+		limit = { check_variable = { which = "MercTmp" value > 1000 } }
+		add_energy = 1000
+		subtract_variable = { which = "MercTmp" value = 1000 }
+	}
+	while = {
+		limit = { check_variable = { which = "MercTmp" value > 100 } }
+		add_energy = 100
+		subtract_variable = { which = "MercTmp" value = 100 }
+	}
+	while = {
+		limit = { check_variable = { which = "MercTmp" value > 10 } }
+		add_energy = 10
+		subtract_variable = { which = "MercTmp" value = 10 }
+	}
+	while = {
+		limit = { check_variable = { which = "MercTmp" value > 0 } }
+		add_energy = 1
+		subtract_variable = { which = "MercTmp" value = 1 }
 	}
 }
 
-fmerc_grabdatcash = {
+merc_account_internal_update_empire_influence = {
+	set_variable = { which = "MercInfluence" value = 0 }
 	while = {
-		limit = {
-			check_variable = {
-				which = MercCost
-				value > 1000
-			}
-			check_variable = {
-				which = MercDeposit
-				value > 1000
-			}
-		}
-		change_variable = {
-			which = MercCost
-			value = -1000
-		}
-		change_variable = {
-			which = MercDeposit
-			value = -1000
-		}
+		limit = { influence > 100 }
+		add_influence = -100
+		change_variable = { which = "MercInfluence" value = 100 }
 	}
 	while = {
-		limit = {
-			check_variable = {
-				which = MercCost
-				value > 100
-			}
-			check_variable = {
-				which = MercDeposit
-				value > 100
-			}
-		}
-		change_variable = {
-			which = MercCost
-			value = -100
-		}
-		change_variable = {
-			which = MercDeposit
-			value = -100
-		}
+		limit = { influence > 10 }
+		add_influence = -10
+		change_variable = { which = "MercInfluence" value = 10 }
 	}
 	while = {
-		limit = {
-			check_variable = {
-				which = MercCost
-				value > 10
-			}
-			check_variable = {
-				which = MercDeposit
-				value > 10
-			}
-		}
-		change_variable = {
-			which = MercCost
-			value = -10
-		}
-		change_variable = {
-			which = MercDeposit
-			value = -10
-		}
+		limit = { influence > 0 }
+		add_influence = -1
+		change_variable = { which = "MercInfluence" value = 1 }
+	}
+	# Make a copy we can mangle
+	set_variable = { which = "MercTmp" value = "MercInfluence" }
+	# And give the country its influence back
+	while = {
+		limit = { check_variable = { which = "MercTmp" value > 100 } }
+		add_influence = 100
+		subtract_variable = { which = "MercTmp" value = 100 }
 	}
 	while = {
-		limit = {
-			check_variable = {
-				which = MercCost
-				value > 0
-			}
-			check_variable = {
-				which = MercDeposit
-				value > 0
-			}
-		}
-		change_variable = {
-			which = MercCost
-			value = -1
-		}
-		change_variable = {
-			which = MercDeposit
-			value = -1
-		}
+		limit = { check_variable = { which = "MercTmp" value > 10 } }
+		add_influence = 10
+		subtract_variable = { which = "MercTmp" value = 10 }
 	}
+	while = {
+		limit = { check_variable = { which = "MercTmp" value > 0 } }
+		add_influence = 1
+		subtract_variable = { which = "MercTmp" value = 1 }
+	}
+}
+
+merc_account_internal_grab_minerals = {
+	# Make a copy we can mangle
+	set_variable = { which = "MercTmp" value = "MercCost" }
 
 	while = {
 		limit = {
-			check_variable = {
-				which = MercCost
-				value > 10000
-			}
-			has_country_resource = {
-				type = minerals
-				amount > 10000
-			}
+			check_variable = { which = "MercTmp" value > 1000 }
+			check_variable = { which = "MercDeposit" value > 1000 }
 		}
-		add_minerals = -10000
-		change_variable = {
-			which = MercCost
-			value = -10000
-		}
+		change_variable = { which = "MercTmp" value = -1000 }
+		change_variable = { which = "MercDeposit" value = -1000 }
 	}
 	while = {
 		limit = {
-			check_variable = {
-				which = MercCost
-				value > 1000
-			}
-			has_country_resource = {
-				type = minerals
-				amount > 1000
-			}
+			check_variable = { which = "MercTmp" value > 100 }
+			check_variable = { which = "MercDeposit" value > 100 }
 		}
-		add_minerals = -1000
-		change_variable = {
-			which = MercCost
-			value = -1000
-		}
+		change_variable = { which = "MercTmp" value = -100 }
+		change_variable = { which = "MercDeposit" value = -100 }
 	}
 	while = {
 		limit = {
-			check_variable = {
-				which = MercCost
-				value > 100
-			}
-			has_country_resource = {
-				type = minerals
-				amount > 100
-			}
+			check_variable = { which = "MercTmp" value > 10 }
+			check_variable = { which = "MercDeposit" value > 10 }
 		}
-		add_minerals = -100
-		change_variable = {
-			which = MercCost
-			value = -100
-		}
+		change_variable = { which = "MercTmp" value = -10 }
+		change_variable = { which = "MercDeposit" value = -10 }
 	}
 	while = {
 		limit = {
-			check_variable = {
-				which = MercCost
-				value > 10
-			}
-			has_country_resource = {
-				type = minerals
-				amount > 10
-			}
+			check_variable = { which = "MercTmp" value > 0 }
+			check_variable = { which = "MercDeposit" value > 0 }
 		}
-		add_minerals = -10
-		change_variable = {
-			which = MercCost
-			value = -10
-		}
-	}
-	while = {
-		limit = {
-			check_variable = {
-				which = MercCost
-				value > 0
-			}
-			has_country_resource = {
-				type = minerals
-				amount > 0
-			}
-		}
-		add_minerals = -1
-		change_variable = {
-			which = MercCost
-			value = -1
-		}
+		change_variable = { which = "MercTmp" value = -1 }
+		change_variable = { which = "MercDeposit" value = -1 }
 	}
 
 	if = {
 		limit = {
+			check_variable = { which = "MercDeposit" value < 1 }
 			has_relation_flag = {
 				who = event_target:traders
 				flag = fmercenary_trade
-			}
-			check_variable = {
-				which = MercDeposit
-				value < 1
 			}
 		}
 		remove_relation_flag = {
 			who = event_target:traders
 			flag = fmercenary_trade
 		}
+	}
+
+	while = {
+		limit = {
+			check_variable = { which = "MercTmp" value > 1000 }
+			owner = { minerals > 1000 }
+		}
+		owner = { add_minerals = -1000 }
+		subtract_variable = { which = "MercTmp" value = 1000 }
+	}
+	while = {
+		limit = {
+			check_variable = { which = "MercTmp" value > 100 }
+			owner = { minerals > 100 }
+		}
+		owner = { add_minerals = -100 }
+		subtract_variable = { which = "MercTmp" value = 100 }
+	}
+	while = {
+		limit = {
+			check_variable = { which = "MercTmp" value > 10 }
+			owner = { minerals > 10 }
+		}
+		owner = { add_minerals = -10 }
+		subtract_variable = { which = "MercTmp" value = 10 }
+	}
+	while = {
+		limit = {
+			check_variable = { which = "MercTmp" value > 0 }
+			owner = { minerals > 0 }
+		}
+		owner = { add_minerals = -1 }
+		subtract_variable = { which = "MercTmp" value = 1 }
+	}
+}
+
+merc_account_internal_grab_energy = {
+	# Make a copy we can mangle
+	set_variable = { which = "MercTmp" value = "MercCostEnergy" }
+	while = {
+		limit = {
+			check_variable = { which = "MercTmp" value > 1000 }
+			owner = { energy > 1000 }
+		}
+		owner = { add_energy = -1000 }
+		subtract_variable = { which = "MercTmp" value = 1000 }
+	}
+	while = {
+		limit = {
+			check_variable = { which = "MercTmp" value > 100 }
+			owner = { energy > 100 }
+		}
+		owner = { add_energy = -100 }
+		subtract_variable = { which = "MercTmp" value = 100 }
+	}
+	while = {
+		limit = {
+			check_variable = { which = "MercTmp" value > 10 }
+			owner = { energy > 10 }
+		}
+		owner = { add_energy = -10 }
+		subtract_variable = { which = "MercTmp" value = 10 }
+	}
+	while = {
+		limit = {
+			check_variable = { which = "MercTmp" value > 0 }
+			owner = { energy > 0 }
+		}
+		owner = { add_energy = -1 }
+		subtract_variable = { which = "MercTmp" value = 1 }
+	}
+}
+
+merc_account_internal_grab_influence = {
+	# Make a copy we can mangle
+	set_variable = { which = "MercTmp" value = "MercCostInfluence" }
+	while = {
+		limit = {
+			check_variable = { which = "MercTmp" value > 100 }
+			owner = { influence > 100 }
+		}
+		owner = { add_influence = -100 }
+		subtract_variable = { which = "MercTmp" value = 100 }
+	}
+	while = {
+		limit = {
+			check_variable = { which = "MercTmp" value > 10 }
+			owner = { influence > 10 }
+		}
+		owner = { add_influence = -10 }
+		subtract_variable = { which = "MercTmp" value = 10 }
+	}
+	while = {
+		limit = {
+			check_variable = { which = "MercTmp" value > 0 }
+			owner = { influence > 0 }
+		}
+		owner = { add_influence = -1 }
+		subtract_variable = { which = "MercTmp" value = 1 }
 	}
 }

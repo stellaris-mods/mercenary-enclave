@@ -178,8 +178,8 @@ country_event = {
 			} } } } } } } } }
 			event_target:fmerc_buyer = {
 				log = "Clear: Calculated cost is [this.MercCost]."
-				fmerc_count_minerals = yes
-				fmerc_grabdatcash = yes
+				merc_account_update = yes
+				merc_account_grabdatcash = yes
 			}
 		}
 
