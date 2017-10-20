@@ -17,11 +17,11 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-namespace = fmercai
+namespace = mercRecurring
 
 # on yearly pulse to deduct deposit
 event = {
-	id = fmercai.30
+	id = mercRecurring.100
 	hide_window = yes
 	is_triggered_only = yes
 
