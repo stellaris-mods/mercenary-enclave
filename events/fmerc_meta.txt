@@ -36,53 +36,9 @@ namespace = mercguardian
 @tier2influencecontactmin = 40
 @tier2influencecontactmax = 100
 
-# on_monthly_pulse
-event = {
-	id = mercguardian.10
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		every_country = {
-			limit = { is_country_type = "fmerc_enclave" }
-			country_event = { id = mercguardian.11 }
-		}
-	}
-}
-
-country_event = {
-	id = mercguardian.11
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		every_owned_fleet = {
-			limit = {
-				exists = solar_system
-				solar_system = {
-					exists = space_owner
-					space_owner = {
-						is_country_type = "default"
-						has_communications = ROOT
-					}
-				}
-			}
-			solar_system = {
-				space_owner = {
-					ROOT = {
-						add_trust = {
-							who = PREV
-							amount = 1
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
 # Special operations fleet enters a solar system that is owned by a default
 # country that does not have communications with a merc enclave
+# on_entering_system_fleet
 fleet_event = {
 	id = mercguardian.90
 	hide_window = yes
@@ -134,7 +90,7 @@ fleet_event = {
 # has a station, and they have not established communications.
 # Allow the trigger to run anywhere, to catch
 # mercenary outposts as well as the HQ
-#has_star_flag = enclave
+# on_entering_system_fleet
 fleet_event = {
 	id = mercguardian.96
 	is_triggered_only = yes
@@ -188,6 +144,7 @@ fleet_event = {
 	}
 }
 
+# Chained from both on_entering_system_fleet events above
 country_event = {
 	id = mercguardian.91
 	title = fmerc_enclave.precom_title
@@ -195,6 +152,14 @@ country_event = {
 	picture = GFX_evt_star_chart
 	location = FROM # FROM is fleet
 	is_triggered_only = yes
+
+	immediate = {
+		set_relation_flag = {
+			flag = ongoing_merc_enclave_investigation
+			who = event_target:target_enclave
+		}
+		country_event = { id = mercguardian.98 days = 300 random = 600 }
+	}
 
 	option = {
 		name = INTERESTING
@@ -207,20 +172,16 @@ country_event = {
 				owner = ROOT
 			}
 		}
-		hidden_effect = {
-			set_relation_flag = {
-				flag = ongoing_merc_enclave_investigation
-				who = event_target:target_enclave
-			}
-			country_event = { id = mercguardian.97 days = 300 random = 600 }
-		}
 	}
 }
 
 # Enclaves make contact, delayed
 country_event = {
-	id = mercguardian.97
-	hide_window = yes
+	id = mercguardian.98
+	title = guardian.98.name
+	desc = guardian.98.desc
+	picture = GFX_evt_throne_room
+	show_sound = event_radio_chatter
 	is_triggered_only = yes
 
 	trigger = {
@@ -238,19 +199,7 @@ country_event = {
 			}
 			ROOT = { establish_communications_no_message = PREV }
 		}
-		country_event = { id = mercguardian.98 }
 	}
-}
-
-# Enclave Establishes Communications
-country_event = {
-	id = mercguardian.98
-	title = guardian.98.name
-	desc = guardian.98.desc
-	picture = GFX_evt_throne_room
-	show_sound = event_radio_chatter
-
-	is_triggered_only = yes
 
 	after = {
 		if = {
@@ -280,37 +229,7 @@ country_event = {
 		}
 	}
 
-	option = {
-		name = SCUM
-		trigger = {
-			has_valid_civic = civic_fanatic_purifiers
-		}
-	}
-
-	option = {
-		name = TASTY
-		trigger = {
-			has_valid_civic = civic_hive_devouring_swarm
-		}
-	}
-
-	option = {
-		name = EXTERMINATE
-		trigger = {
-			has_ai_personality = exterminators
-		}
-	}
-
-	option = {
-		name = guardian.98.a
-		trigger = {
-			NOR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_ai_personality = exterminators
-			}
-		}
-	}
+	option = { name = "guardian.98.a" }
 }
 
 # Communication Established, triggered by special project
@@ -320,7 +239,6 @@ country_event = {
 	desc = guardian.99.desc
 	picture = GFX_evt_throne_room
 	show_sound = event_radio_chatter
-
 	is_triggered_only = yes
 
 	immediate = { establish_communications_no_message = FROMFROM }
@@ -353,125 +271,42 @@ country_event = {
 		}
 	}
 
-	option = {
-		name = SCUM
-		trigger = {
-			has_valid_civic = civic_fanatic_purifiers
-		}
-	}
-
-	option = {
-		name = TASTY
-		trigger = {
-			has_valid_civic = civic_hive_devouring_swarm
-		}
-	}
-
-	option = {
-		name = EXTERMINATE
-		trigger = {
-			has_ai_personality = exterminators
-		}
-	}
-
-	option = {
-		name = "guardian.98.a"
-		trigger = {
-			NOR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_ai_personality = exterminators
-			}
-		}
-	}
+	option = { name = "guardian.98.a" }
 }
 
-# Port
 # Triggered after special project completion or forced introduction
+# This is just really so that the FROM scope in .102 can be the enclave,
+# because it's used in the vanilla l10n strings
 country_event = {
 	id = mercguardian.101
 	hide_window = yes
 	is_triggered_only = yes
-	immediate = {
-		random_owned_ship = {
-			solar_system = { save_event_target_as = trader_system }
-		}
-		FROM = {
-			country_event = { id = mercguardian.102 }
-		}
-	}
+	immediate = { FROM = { country_event = { id = mercguardian.102 } } }
 }
-
-# Mercenary Introduction
 country_event = {
 	id = mercguardian.102
 	title = guardian.102.name
 	desc = fmerc.introduction.desc
-
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
 
 	picture_event_data = {
 		portrait = FROM
 		room = enclave_trader_room
 	}
 
-	immediate = {
-		set_variable = {
-			which = MercDeposit
-			value = 0
-		}
-	}
-
-	option = {
-		name = SCUM
-		trigger = {
-			has_valid_civic = civic_fanatic_purifiers
-		}
-		custom_gui = "enclave_trader_option"
-	}
-
-	option = {
-		name = TASTY
-		trigger = {
-			has_valid_civic = civic_hive_devouring_swarm
-		}
-		custom_gui = "enclave_trader_option"
-	}
-
-	option = {
-		name = EXTERMINATE
-		trigger = {
-			has_ai_personality = exterminators
-		}
-		custom_gui = "enclave_curator_option"
-	}
-
-	option = {
-		name = guardian.502.a
-		trigger = {
-			NOR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_ai_personality = exterminators
-			}
-		}
-		custom_gui = "enclave_trader_option"
-	}
+	option = { name = guardian.502.a }
 }
 
-# Mercenary Destroyed (HIDDEN)
+# on_ship_destroyed_victim
 country_event = {
 	id = mercguardian.140
 	hide_window = yes
-
 	is_triggered_only = yes
 
-	trigger = {
-		is_country_type = "fmerc_enclave"
-	}
-
+	trigger = { is_country_type = "fmerc_enclave" }
 	immediate = {
 		FROMFROM = {
 			solar_system = { save_event_target_as = trader_system }
@@ -482,14 +317,12 @@ country_event = {
 		}
 		# If we have zero fleets left, we are dead, so notify customers
 		if = {
-			limit = {
-				count_owned_ships { count = 0 }
-			}
+			limit = { count_owned_ships { count = 0 } }
+			set_global_flag = "folk_mercenary_destroyed"
 			every_country = {
 				limit = {
 					has_communications = ROOT
 					NOT = { is_country = event_target:trader_destroyer }
-					is_ai = no
 				}
 				country_event = { id = mercguardian.142 }
 			}
@@ -497,8 +330,9 @@ country_event = {
 	}
 }
 
-
-# Any Mercenary Destroyed (Destroyer)
+# XXX
+# ROOT attacked and killed _one_ mercenary enclave ship. Surely this must
+# be a mistake. It should be if we destroyed a FLEET maybe?
 country_event = {
 	id = mercguardian.141
 	title = "guardian.141"
@@ -506,33 +340,19 @@ country_event = {
 	picture = GFX_evt_space_debris
 	location = event_target:trader_system
 	show_sound = event_ship_bridge
-
 	is_triggered_only = yes
 
-	immediate = {
-		set_country_flag = "fmerc_has_destroyed_ship"
-		if = {
-			limit = {
-				has_relation_flag = {
-					who = FROM
-					flag = fmercenary_trade
-				}
-			}
-			remove_relation_flag = {
-				who = FROM
-				flag = fmercenary_trade
-			}
-		}
-	}
-
+	immediate = { set_country_flag = "fmerc_has_destroyed_ship" }
 	option = {
 		name = EXCELLENT
 		add_minerals = 8000
 		add_energy = 8000
+		# XXX get back some of the deposit
 	}
 }
 
 # Mercenary Destroyed
+# Notification for everyone who had contact with the enclave except attacker
 country_event = {
 	id = mercguardian.142
 	title = "guardian.141"
@@ -545,19 +365,6 @@ country_event = {
 					flag = fmercenary_trade
 				}
 			}
-			has_communications = event_target:trader_destroyer
-		}
-	}
-	desc = {
-		text = fmerc_enclave.b.desc
-		trigger = {
-			NOT = {
-				has_relation_flag = {
-					who = FROM
-					flag = fmercenary_trade
-				}
-			}
-			NOT = { has_communications = event_target:trader_destroyer }
 		}
 	}
 	desc = {
@@ -567,91 +374,28 @@ country_event = {
 				who = FROM
 				flag = fmercenary_trade
 			}
-			has_communications = event_target:trader_destroyer
-		}
-	}
-	desc = {
-		text = fmerc_enclave.d.desc
-		trigger = {
-			has_relation_flag = {
-				who = FROM
-				flag = fmercenary_trade
-			}
-			NOT = { has_communications = event_target:trader_destroyer }
 		}
 	}
 	picture = GFX_evt_exploding_ship
 	location = event_target:trader_system
 	show_sound = event_ship_explosion
-
 	is_triggered_only = yes
 
 	immediate = {
-		set_global_flag = folk_mercenary_destroyed
-		if = {
-			limit = {
-				has_relation_flag = {
-					who = FROM
-					flag = fmercenary_trade
-				}
-				is_ai = yes
-			}
-			add_opinion_modifier = {
-				who = event_target:trader_destroyer
-				modifier = opinion_destroyed_mercenary
-			}
-		}
-		if = {
-			limit = {
-				NOT = {
-					has_relation_flag = {
-						who = FROM
-						flag = fmercenary_trade
-					}
-				}
-				is_ai = yes
-			}
-			add_opinion_modifier = {
-				who = event_target:trader_destroyer
-				modifier = opinion_destroyed_mercenary
-			}
+		add_opinion_modifier = {
+			who = event_target:trader_destroyer
+			modifier = opinion_destroyed_mercenary
 		}
 	}
 
-	option = {
-		name = "fmerc_enclave.a"
-		trigger = {
-			NOT = {
-				has_relation_flag = {
-					who = FROM
-					flag = fmercenary_trade
-				}
-			}
-		}
-	}
-	option = {
-		name = "fmerc_enclave.b"
-		trigger = {
-			has_relation_flag = {
-				who = FROM
-				flag = fmercenary_trade
-			}
-		}
-		hidden_effect = {
-			remove_relation_flag = {
-				who = FROM
-				flag = fmercenary_trade
-			}
-		}
-	}
+	option = { name = "fmerc_enclave.a" }
 }
 
-# Attacked Mercenaries
+# on_entering_battle
 country_event = {
 	id = mercguardian.155
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
 		is_country_type = "default"
 		FROM = { is_country_type = "fmerc_enclave" }
@@ -687,7 +431,6 @@ country_event = {
 	id = mercguardian.156
 	title = fmerc_enclave.name
 	desc = fmerc_enclave.156.desc
-
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"

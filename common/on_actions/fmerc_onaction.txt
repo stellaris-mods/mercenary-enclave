@@ -7,7 +7,6 @@ on_first_contact = {
 
 on_monthly_pulse = {
 	events = {
-		mercguardian.10
 		fmerc_ops_meta.100
 		fmerc_ops_liberate.1337
 	}
