@@ -60,6 +60,7 @@ fmerc_stage2_init_liberation = {
 	}
 }
 
+# THIS is the operations country
 fmerc_liberation_set_target_planet = {
 	if = {
 		limit = { NOT = { exists = event_target:fmerc_target } }

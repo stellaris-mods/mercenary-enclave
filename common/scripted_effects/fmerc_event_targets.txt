@@ -18,11 +18,12 @@
 ###
 
 
+# THIS must be an fmerc_operations_country
 fmerc_set_buyer = {
 	random_country = {
 		limit = {
 			reverse_has_relation_flag = {
-				who = ROOT
+				who = PREV
 				flag = merc_operations_squad
 			}
 		}
@@ -30,11 +31,12 @@ fmerc_set_buyer = {
 	}
 }
 
+# THIS must be an fmerc_operations country
 fmerc_set_target_country = {
 	random_country = {
 		limit = {
 			reverse_has_relation_flag = {
-				who = ROOT
+				who = PREV
 				flag = merc_operations_target
 			}
 		}

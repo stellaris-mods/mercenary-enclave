@@ -29,6 +29,21 @@ merc_has_presence = {
 	}
 }
 
+merc_has_station = {
+	any_ship_in_system = {
+		exists = owner
+		owner = { is_country_type = "fmerc_enclave" }
+		NOT = { is_ship_size = science }
+		is_in_combat = no
+	}
+}
+
+merc_is_station = {
+	exists = owner
+	owner = { is_country_type = "fmerc_enclave" }
+	NOT = { is_ship_size = science }
+}
+
 fmerc_enclave_exists = {
 	any_country = {
 		is_country_type = "fmerc_enclave"

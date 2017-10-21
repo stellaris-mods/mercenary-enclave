@@ -24,7 +24,7 @@ namespace = mercOpsLiberation
 #
 
 # liberate
-# Triggered from fmerc_ops_initial_target
+# Triggered from fmerc_init_stage2
 country_event = {
 	id = mercOpsLiberation.1
 	hide_window = yes
@@ -69,6 +69,7 @@ country_event = {
 						set_fleet_stance = aggressive
 						owner = {
 							# Turn hostile when we find our first target
+							# XXX maybe dont need this if our target is already hostile to us
 							set_faction_hostility = { set_hostile = yes }
 						}
 					}

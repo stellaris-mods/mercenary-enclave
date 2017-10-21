@@ -20,6 +20,7 @@
 namespace = mercOpsMeta
 
 # Triggered from mission setup effects, after the delay
+# THIS is the operations country
 country_event = {
 	id = mercOpsMeta.1
 	hide_window = yes
@@ -129,7 +130,7 @@ country_event = {
 			}
 		}
 
-		fmerc_stage3_ensure_spawn_location = yes
+		merc_find_best_harbour = yes
 
 		if = {
 			limit = {

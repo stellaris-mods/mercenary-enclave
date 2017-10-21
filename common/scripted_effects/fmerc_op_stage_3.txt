@@ -426,56 +426,62 @@ fmerc_stage3_match_fleet_power = {
 	} }
 }
 
+# THIS is the operations country
 # requires event_target:fmerc_target_country
-fmerc_stage3_ensure_spawn_location = {
-	# even though the trigger_docs say "Supported Scopes: all",
-	# closest_system does in fact not support the country scope.
-	event_target:fmerc_target_country = {
-		# ZZZ ED doesn't have a capital_scope, so find the closest
-		# enclave from a random owned system instead.
-		random_system_within_border = {
+merc_find_best_harbour = {
+	# First try to find something close to any existing operations fleet
+	if = { limit = { count_owned_ships { count > 0 } }
+		# ZZZ so apparently, at least for countries without a capital,
+		# ZZZ random_owned_fleet actually scopes to something even if
+		# ZZZ no actual fleets exist ingame
+		random_owned_fleet = {
 			closest_system = {
-				limit = {
-					any_ship_in_system = {
-						is_in_combat = no
-						exists = owner
-						owner = {
-							is_country_type = "fmerc_enclave"
-						}
-					}
-					# If we can, try to spawn inside the targets borders.
-					# This gives the "Allow border access" enclave option some
-					# real value.
-					OR = {
-						NOT = {
-							exists = space_owner
-						}
-						AND = {
-							exists = space_owner
-							exists = event_target:fmerc_target_country
-							space_owner = { is_same_value = event_target:fmerc_target_country }
-						}
-					}
-				}
-				#min_steps = 1
+				limit = { merc_has_station = yes }
 				random_fleet_in_system = {
-					limit = {
-						is_in_combat = no
-						exists = owner
-						owner = {
-							is_country_type = "fmerc_enclave"
-						}
-					}
+					limit = { merc_is_station = yes }
 					save_event_target_as = fmerc_spawn_at
 				}
 			}
 		}
 	}
-	if = {
-		limit = { NOT = { exists = event_target:fmerc_spawn_at } }
+	if = { limit = { NOT = { exists = event_target:fmerc_target_country } }
+		fmerc_set_target_country = yes
+	}
+
+	# Then try to find a location inside the targets borders
+	if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
+		event_target:fmerc_target_country = {
+			random_system_within_border = {
+				limit = { merc_has_station = yes }
+				random_fleet_in_system = {
+					limit = { merc_is_station = yes }
+					save_event_target_as = fmerc_spawn_at
+				}
+			}
+		}
+	}
+	# If we still found nothing, find one of our targets and get
+	# the closest location to the target
+	if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
+		event_target:fmerc_target_country = {
+			random_owned_ship = {
+				limit = { has_ship_flag = "fmerc_target" }
+				closest_system = {
+					limit = { merc_has_station = yes }
+					random_fleet_in_system = {
+						limit = { merc_is_station = yes }
+						save_event_target_as = fmerc_spawn_at
+					}
+				}
+			}
+		}
+	}
+	# Fall back to any station owned by an enclave
+	if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
 		random_country = {
 			limit = { is_country_type = "fmerc_enclave" }
 			random_owned_fleet = {
+				limit = { merc_is_station = yes }
 				save_event_target_as = fmerc_spawn_at
 			}
 		}
@@ -490,7 +496,7 @@ fmerc_stage3_ensure_spawn_location = {
 
 fmerc_stage3_create_fleet = {
 	# Make sure we have somewhere to spawn
-	fmerc_stage3_ensure_spawn_location = yes
+	merc_find_best_harbour = yes
 
 	log = "Creating new fleet in [fmerc_spawn_at.GetStarName]."
 
