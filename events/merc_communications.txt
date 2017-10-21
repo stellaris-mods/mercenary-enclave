@@ -411,7 +411,7 @@ fleet_event = {
 					}
 					wait = {
 						duration = 14
-						random = 14 # 60
+						random = 60
 					}
 				}
 			}
