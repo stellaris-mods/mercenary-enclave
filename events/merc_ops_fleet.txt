@@ -50,51 +50,48 @@ country_event = {
 
 			every_owned_fleet = {
 				queue_actions = {
+					move_to = event_target:fmerc_target.solar_system
 					repeat = {
 						while = {
 							id = mercOpsFleet.1.trigger.1
+							NOT = { is_fleet_idle = yes }
 							exists = event_target:fmerc_target
 							exists = owner
-							NOT = {
-								owner = { has_country_flag = "fmerc_ops_completed" }
-							}
-							OR = {
-								NOT = { exists = solar_system }
-								NOT = {
-									solar_system = {
-										any_ship_in_system = {
-											exists = fleet
-											fleet = {
-												is_same_value = event_target:fmerc_target
-											}
-										}
-									}
+							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
+							NOR = {
+								exists = solar_system
+								solar_system = {
+									is_same_value = event_target:fmerc_target.solar_system
 								}
 							}
 						}
-						move_to = event_target:fmerc_target.solar_system
 						wait = 7
 					}
 					effect = {
 						id = mercOpsFleet.1.effect.1
 						set_fleet_stance = aggressive
-						owner = {
-							# Turn hostile when we find our first target
-							# XXX maybe dont need this if our target is already hostile to us
-							set_faction_hostility = { set_hostile = yes }
+						if = {
+							limit = {
+								exists = event_target:fmerc_target
+								event_target:fmerc_target = { owner = { NOT = { is_hostile = ROOT } } }
+							}
+							owner = {
+								# Turn hostile when we find our first target,
+								# unless they are already hostile towards us.
+								set_faction_hostility = { set_hostile = yes }
+							}
 						}
 					}
+					move_to = event_target:fmerc_target
 					repeat = {
 						while = {
 							id = mercOpsFleet.1.trigger.2
+							NOT = { is_fleet_idle = yes }
 							exists = event_target:fmerc_target
 							exists = owner
-							NOT = {
-								owner = { has_country_flag = "fmerc_ops_completed" }
-							}
+							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
 						}
-						move_to = event_target:fmerc_target
-						wait = 3
+						wait = 7
 					}
 					effect = {
 						id = mercOpsFleet.1.effect.2

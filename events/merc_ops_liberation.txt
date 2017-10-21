@@ -48,9 +48,11 @@ country_event = {
 
 			every_owned_fleet = {
 				queue_actions = {
+					move_to = event_target:fmerc_target.solar_system
 					repeat = {
 						while = {
 							id = mercOpsLiberation.1.trigger.1
+							NOT = { is_fleet_idle = yes }
 							exists = event_target:fmerc_target
 							exists = owner
 							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
@@ -61,26 +63,32 @@ country_event = {
 								}
 							}
 						}
-						move_to = event_target:fmerc_target.solar_system
 						wait = 4
 					}
 					effect = {
 						id = mercOpsLiberation.1.effect.1
 						set_fleet_stance = aggressive
-						owner = {
-							# Turn hostile when we find our first target
-							# XXX maybe dont need this if our target is already hostile to us
-							set_faction_hostility = { set_hostile = yes }
+						if = {
+							limit = {
+								exists = event_target:fmerc_target
+								event_target:fmerc_target = { owner = { NOT = { is_hostile = ROOT } } }
+							}
+							owner = {
+								# Turn hostile when we find our first target,
+								# unless they are already hostile towards us.
+								set_faction_hostility = { set_hostile = yes }
+							}
 						}
 					}
+					orbit_planet = event_target:fmerc_target
 					repeat = {
 						while = {
 							id = mercOpsLiberation.1.trigger.2
 							exists = event_target:fmerc_target
+							exists = owner
 							NOT = { exists = orbit }
 							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
 						}
-						orbit_planet = event_target:fmerc_target
 						wait = 4
 					}
 					effect = {
