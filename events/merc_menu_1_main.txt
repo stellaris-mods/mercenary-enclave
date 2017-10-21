@@ -39,7 +39,7 @@ country_event = {
 			country_event = { id = mercMenu.103 }
 		else = {
 			country_event = { id = mercMenu.101 }
-		} } }
+		} } } }
 	}
 }
 
@@ -50,20 +50,26 @@ country_event = {
 	title = fmerc_enclave.name
 	desc = {
 		trigger = {
-			check_variable = { which = "MercDeposit" value = 0 }
-			check_variable = { which = "MercDepositEnergy" value = 0 }
-		}
-		text = fmerc_enclave.100a.desc
-	}
-	desc = {
-		trigger = {
-			OR = {
+			text = fmerc_enclave.100b.desc
+			text = newline
+			success_text = {
+				text = "fmerc_enclave.100b.minerals"
 				check_variable = { which = "MercDeposit" value > 0 }
+			}
+			success_text = {
+				text = "fmerc_enclave.100b.energy"
 				check_variable = { which = "MercDepositEnergy" value > 0 }
 			}
+			success_text = {
+				text = "fmerc_enclave.100b.fee"
+				OR = {
+					check_variable = { which = "MercDeposit" value > 0 }
+					check_variable = { which = "MercDepositEnergy" value > 0 }
+				}
+			}
 		}
-		text = fmerc_enclave.100b.desc
 	}
+
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"

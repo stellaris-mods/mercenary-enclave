@@ -83,8 +83,10 @@ fmerc_enclave.execute.desc: "Thank you for doing business with §YWhiteout Enter
 fmerc_enclave.needsdeposit: "You need at least £minerals §G2500§! deposited with §YWhiteout Enterprises§!."
 
 # Initial diplomacy window
-fmerc_enclave.100a.desc: "Got a problem we can handle for you?"
-fmerc_enclave.100b.desc: "Greetings, customer! If there's any service we can render, please browse our selection on the right-hand screen.\n\nCurrent deposit:  £minerals §G[Root.MercDeposit]§!\nAdministrative fee: §R5% / year§!"
+fmerc_enclave.100b.desc: "Greetings! If there's any service we can render, please browse our selection on the right-hand screen."
+fmerc_enclave.100b.minerals: "Minerals deposited:  £minerals §G[Root.MercDeposit]§!\n"
+fmerc_enclave.100b.energy: "Energy deposited:  £energy §G[Root.MercDepositEnergy]§!\n"
+fmerc_enclave.100b.fee: "Administrative fee: §R5% / year§!"
 fmerc_enclave.100c.desc: "§YWhiteout Enterprises§! is currently engaged in special operations activity on behalf of someone in your government. Please check back at a later date.\n\nNote that all our special operations are be terminated immediately after 5 years, regardless of progress."
 fmerc_enclave.100.insurance.button: "Buy insurance plan"
 fmerc_enclave.100.insurance.sell: "Cancel insurance plan"

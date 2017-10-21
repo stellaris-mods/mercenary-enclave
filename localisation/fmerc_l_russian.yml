@@ -126,12 +126,11 @@ fmerc_enclave.needsdeposit: "Вам необходимо иметь как ми�
 
 # Initial diplomacy window
 
+fmerc_enclave.100b.desc: "Greetings! If there's any service we can render, please browse our selection on the right-hand screen."
+fmerc_enclave.100b.minerals: "Minerals deposited:  £minerals §G[Root.MercDeposit]§!\n"
+fmerc_enclave.100b.energy: "Energy deposited:  £energy §G[Root.MercDepositEnergy]§!\n"
+fmerc_enclave.100b.fee: "Administrative fee: §R5% / year§!"
 
-
-##fmerc_enclave.100a.desc: "Got a problem we can handle for you?"
-fmerc_enclave.100a.desc: "Есть проблема с которой мы можем вам помочь?"
-##fmerc_enclave.100b.desc: "Greetings, customer! If there's any service we can render, please browse our selection on the right-hand screen.\n\nCurrent deposit:  £minerals §G[Root.MercDeposit]§!\nAdministrative fee: §R5% / year§!"
-fmerc_enclave.100b.desc: "Приветствуем вас, наш клиент! Если вы заинтересованны в некоторых наших услугах, пожалуйста, выберите ее на экране справа.\n\nТекущий счет:  £minerals §G[Root.MercDeposit]§!\nПроцент удержания: §R5% / год§!"
 ##fmerc_enclave.100c.desc: "§YWhiteout Enterprises§! is currently engaged in special operations activity on behalf of someone in your government. Please check back at a later date.\n\nNote that all our special operations are be terminated immediately after 5 years, regardless of progress."
 fmerc_enclave.100c.desc: "В настоящий момент §YWhiteout Enterprises§! выполняет заказ вашего правительства и не может ответить на ваш запрос. Пожалуйста, вернитесь в течении нескольких дней."
 ##fmerc_enclave.100.insurance.button: "Buy insurance"
