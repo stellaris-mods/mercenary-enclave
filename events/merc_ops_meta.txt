@@ -226,7 +226,7 @@ country_event = {
 					}
 				}
 
-				fmerc_detection = yes
+				merc_check_detection = yes
 				destroy_country = yes
 			}
 		}

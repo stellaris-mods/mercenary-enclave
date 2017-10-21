@@ -17,7 +17,7 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-fmerc_detected = {
+merc_operation_detected = {
 	switch = {
 		trigger = has_country_flag
 		fmerc_spaceport = {
@@ -60,127 +60,72 @@ fmerc_detected = {
 	}
 }
 
+# #!/usr/bin/lua
+# local effect = [[merc_detection_%d = { random = { chance = %d merc_operation_detected = yes } }]]
+# local tmpl = [[
+# 	else = { if = { limit = { check_variable = { which = "MercDetect" value > %d } }
+# 		merc_detection_%d = yes]]
+# for i = 95, 1, -5 do print(effect:format(i, i)) end
+# for i = 95, 1, -5 do print(tmpl:format(i, i)) end
 
-fmerc_detection_50 = {
-	random = {
-		chance = 50
-		fmerc_detected = yes
-	}
-}
-fmerc_detection_45 = {
-	random = {
-		chance = 45
-		fmerc_detected = yes
-	}
-}
-fmerc_detection_40 = {
-	random = {
-		chance = 40
-		fmerc_detected = yes
-	}
-}
-fmerc_detection_35 = {
-	random = {
-		chance = 35
-		fmerc_detected = yes
-	}
-}
-fmerc_detection_30 = {
-	random = {
-		chance = 30
-		fmerc_detected = yes
-	}
-}
-fmerc_detection_25 = {
-	random = {
-		chance = 25
-		fmerc_detected = yes
-	}
-}
-fmerc_detection_20 = {
-	random = {
-		chance = 20
-		fmerc_detected = yes
-	}
-}
-fmerc_detection_15 = {
-	random = {
-		chance = 15
-		fmerc_detected = yes
-	}
-}
-fmerc_detection_10 = {
-	random = {
-		chance = 10
-		fmerc_detected = yes
-	}
-}
-fmerc_detection_5 = {
-	random = {
-		chance = 5
-		fmerc_detected = yes
-	}
-}
-fmerc_detection = {
-	if = {
-		limit = { check_variable = { which = "MercDetect" value = 50 } }
-		fmerc_detection_50 = yes
-		else = {
-	if = {
-		limit = { check_variable = { which = "MercDetect" value = 45 } }
-		fmerc_detection_45 = yes
-		else = {
-	if = {
-		limit = { check_variable = { which = "MercDetect" value = 40 } }
-		fmerc_detection_40 = yes
-		else = {
-	if = {
-		limit = { check_variable = { which = "MercDetect" value = 35 } }
-		fmerc_detection_35 = yes
-		else = {
-	if = {
-		limit = { check_variable = { which = "MercDetect" value = 30 } }
-		fmerc_detection_30 = yes
-		else = {
-	if = {
-		limit = { check_variable = { which = "MercDetect" value = 25 } }
-		fmerc_detection_25 = yes
-		else = {
-	if = {
-		limit = { check_variable = { which = "MercDetect" value = 20 } }
-		fmerc_detection_20 = yes
-		else = {
-	if = {
-		limit = { check_variable = { which = "MercDetect" value = 15 } }
-		fmerc_detection_15 = yes
-		else = {
-	if = {
-		limit = { check_variable = { which = "MercDetect" value = 10 } }
-		fmerc_detection_10 = yes
-		else = {
-	if = {
-		limit = { check_variable = { which = "MercDetect" value = 5 } }
-		fmerc_detection_5 = yes
-		else = {
+merc_detection_95 = { random = { chance = 95 merc_operation_detected = yes } }
+merc_detection_90 = { random = { chance = 90 merc_operation_detected = yes } }
+merc_detection_85 = { random = { chance = 85 merc_operation_detected = yes } }
+merc_detection_80 = { random = { chance = 80 merc_operation_detected = yes } }
+merc_detection_75 = { random = { chance = 75 merc_operation_detected = yes } }
+merc_detection_70 = { random = { chance = 70 merc_operation_detected = yes } }
+merc_detection_65 = { random = { chance = 65 merc_operation_detected = yes } }
+merc_detection_60 = { random = { chance = 60 merc_operation_detected = yes } }
+merc_detection_55 = { random = { chance = 55 merc_operation_detected = yes } }
+merc_detection_50 = { random = { chance = 50 merc_operation_detected = yes } }
+merc_detection_45 = { random = { chance = 45 merc_operation_detected = yes } }
+merc_detection_40 = { random = { chance = 40 merc_operation_detected = yes } }
+merc_detection_35 = { random = { chance = 35 merc_operation_detected = yes } }
+merc_detection_30 = { random = { chance = 30 merc_operation_detected = yes } }
+merc_detection_25 = { random = { chance = 25 merc_operation_detected = yes } }
+merc_detection_20 = { random = { chance = 20 merc_operation_detected = yes } }
+merc_detection_15 = { random = { chance = 15 merc_operation_detected = yes } }
+merc_detection_10 = { random = { chance = 10 merc_operation_detected = yes } }
+merc_detection_5 = { random = { chance = 5 merc_operation_detected = yes } }
 
-		}
-	}
-		}
-	}
-		}
-	}
-		}
-	}
-		}
-	}
-		}
-	}
-		}
-	}
-		}
-	}
-		}
-	}
-		}
-	}
+merc_check_detection = {
+	if = { limit = { check_variable = { which = "MercDetect" value > 95 } }
+		merc_detection_95 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 90 } }
+		merc_detection_90 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 85 } }
+		merc_detection_85 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 80 } }
+		merc_detection_80 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 75 } }
+		merc_detection_75 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 70 } }
+		merc_detection_70 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 65 } }
+		merc_detection_65 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 60 } }
+		merc_detection_60 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 55 } }
+		merc_detection_55 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 50 } }
+		merc_detection_50 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 45 } }
+		merc_detection_45 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 40 } }
+		merc_detection_40 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 35 } }
+		merc_detection_35 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 30 } }
+		merc_detection_30 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 25 } }
+		merc_detection_25 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 20 } }
+		merc_detection_20 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 15 } }
+		merc_detection_15 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 10 } }
+		merc_detection_10 = yes
+	else = { if = { limit = { check_variable = { which = "MercDetect" value > 0 } }
+		merc_detection_5 = yes
+	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 }

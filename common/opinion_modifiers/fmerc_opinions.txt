@@ -17,75 +17,35 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
+# This modifier is added towards anyone who destroys the mercenaries
+# from everyone who had contact with them.
 opinion_destroyed_mercenary = {
-	opinion = {
-		base = -25
-	}
-
-	decay = {
-		base = 2
-	}
+	opinion = { base = -25 }
+	decay = { base = 1 }
 }
 
-# Liberated planet with mercenaries
+# These opinion modifiers are added to targets if they detect who
+# ordered the mercenary operation.
 fmerc_opinion_liberate = {
-	opinion = {
-		base = -95
-	}
-
+	opinion = { base = -95 }
 	accumulative = yes
-
-	decay = {
-		base = 1
-		modifier = {
-			add = 1
-			OR = {
-				has_ethic = "ethic_xenophile"
-				has_ethic = "ethic_fanatic_xenophile"
-			}
-		}
-		modifier = {
-			add = -1
-			OR = {
-				has_ethic = "ethic_xenophobe"
-				has_ethic = "ethic_fanatic_xenophobe"
-			}
-		}
-	}
+	decay = { base = 1 }
 }
 
 fmerc_opinion_raid = {
-	opinion = {
-		base = -60
-	}
-
+	opinion = { base = -60 }
 	accumulative = yes
-
-	decay = {
-		base = 1
-	}
+	decay = { base = 1 }
 }
 
 fmerc_opinion_fleet = {
-	opinion = {
-		base = -75
-	}
-
+	opinion = { base = -75 }
 	accumulative = yes
-
-	decay = {
-		base = 1
-	}
+	decay = { base = 1 }
 }
 
 fmerc_opinion_spaceport = {
-	opinion = {
-		base = -65
-	}
-
+	opinion = { base = -65 }
 	accumulative = yes
-
-	decay = {
-		base = 1
-	}
+	decay = { base = 1 }
 }
