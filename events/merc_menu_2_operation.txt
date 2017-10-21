@@ -315,9 +315,7 @@ country_event = {
 				}
 				save_event_target_as = fmerc_target_country
 			}
-			remove_country_flag = "fmerc_diplomacy_engaged"
-			set_country_flag = "fmerc_active_operation"
-			fmerc_init_stage1 = yes
+			country_event = { id = mercMenu.701 }
 		}
 	}
 	option = {
@@ -342,9 +340,7 @@ country_event = {
 				}
 				save_event_target_as = fmerc_target_country
 			}
-			remove_country_flag = "fmerc_diplomacy_engaged"
-			set_country_flag = "fmerc_active_operation"
-			fmerc_init_stage1 = yes
+			country_event = { id = mercMenu.701 }
 		}
 	}
 	option = {
@@ -369,9 +365,7 @@ country_event = {
 				}
 				save_event_target_as = fmerc_target_country
 			}
-			remove_country_flag = "fmerc_diplomacy_engaged"
-			set_country_flag = "fmerc_active_operation"
-			fmerc_init_stage1 = yes
+			country_event = { id = mercMenu.701 }
 		}
 	}
 	option = {
@@ -396,9 +390,7 @@ country_event = {
 				}
 				save_event_target_as = fmerc_target_country
 			}
-			remove_country_flag = "fmerc_diplomacy_engaged"
-			set_country_flag = "fmerc_active_operation"
-			fmerc_init_stage1 = yes
+			country_event = { id = mercMenu.701 }
 		}
 	}
 	option = {
@@ -423,9 +415,7 @@ country_event = {
 				}
 				save_event_target_as = fmerc_target_country
 			}
-			remove_country_flag = "fmerc_diplomacy_engaged"
-			set_country_flag = "fmerc_active_operation"
-			fmerc_init_stage1 = yes
+			country_event = { id = mercMenu.701 }
 		}
 	}
 	option = {
@@ -436,5 +426,17 @@ country_event = {
 		name = fmerc_enclave.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+country_event = {
+	id = mercMenu.701
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		remove_country_flag = "fmerc_diplomacy_engaged"
+		set_country_flag = "fmerc_active_operation"
+		fmerc_init_stage1 = yes
 	}
 }
