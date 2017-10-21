@@ -196,7 +196,6 @@ country_event = {
 		add_minerals = 500
 		hidden_effect = {
 			set_country_flag = "fmerc_allow_stations"
-			log = "[this.GetName] accepted station offer"
 			set_timed_country_flag = {
 				flag = "merc_cant_restrict_access"
 				days = 1800
