@@ -18,9 +18,8 @@
 ###
 
 merc_enclave_insurance = {
-	icon = "gfx/interface/icons/planet_modifiers/pm_planet_surface.dds"
-	icon_frame = 2
-	country_resource_minerals_add = -20
+	icon = "gfx/interface/icons/modifiers/mod_country_sensor_range_mult.dds"
+	country_sensor_range_mult = 0.1
 	country_resource_energy_add = -20
 }
 
