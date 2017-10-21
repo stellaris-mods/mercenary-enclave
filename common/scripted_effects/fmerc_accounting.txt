@@ -279,7 +279,7 @@ merc_account_internal_update_empire_energy = {
 
 	# Add all energy we may have deposited in the mercenary bank
 	change_variable = {
-		which = "MercMinerals"
+		which = "MercEnergy"
 		value = "MercDepositEnergy"
 	}
 }
