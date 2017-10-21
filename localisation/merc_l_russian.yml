@@ -149,16 +149,16 @@ merc.initial.minerals.tooltip: "Кладет на счет еще 2500 мине�
 merc.initial.minerals.reply: "Прекрасно, уверен, этот депозит когда-нибудь будет полезен.\n\nИтого:  £minerals §G[Root.MercDeposit] +2500§!\nПроцент удержания: §R5% / год§!"
 merc.initial.minerals.withdraw: "Withdraw £minerals §G2500§!"
 merc.initial.minerals.withdraw.tooltip: "Withdraws 2500 minerals from your account."
-merc.condition.minerals.withdraw.fail: "Not enough minerals in account."
+merc.condition.minerals.withdraw: "Not enough minerals in account."
 merc.initial.minerals.withdraw.reply: "We appreciate our continued business relationship.\n\nTotal deposit:  £minerals §G[Root.MercDeposit] -2500§!\nAdministrative fee: §R5% / year§!"
-merc.condition.clearspace.fail: "$merc.name.colored$ requires you to have at least £minerals 4500 deposited before they will undertake this type of operation."
+merc.condition.clearspace: "$merc.name.colored$ requires you to have at least £minerals 4500 deposited before they will undertake this type of operation."
 
 merc.initial.energy.button: "Deposit £energy §G2500§!"
 merc.initial.energy.tooltip: "Deposits another 2500 energy credits in the §YWhiteout Enterprise§! emergency account. Any funds in this account will be spent first if you order any combat maneuvers or other services at a later date.\n\nAdministrative fee: §R5% / year§!\n"
 merc.initial.energy.reply: "Excellent, I'm sure those funds will come in handy for you one day.\n\nTotal deposit:  £energy §G[Root.MercDepositEnergy] +2500§!\nAdministrative fee: §R5% / year§!"
 merc.initial.energy.withdraw: "Withdraw £energy §G2500§!"
 merc.initial.energy.withdraw.tooltip: "Withdraws 2500 energy credits from your account."
-merc.condition.energy.withdraw.fail: "Not enough energy credits in account."
+merc.condition.energy.withdraw: "Not enough energy credits in account."
 merc.initial.energy.withdraw.reply: "We appreciate our continued business relationship.\n\nTotal deposit:  £energy §G[Root.MercDepositEnergy] -2500§!\nAdministrative fee: §R5% / year§!"
 
 
@@ -398,4 +398,5 @@ merc.precommunications.desc: "Мы встретили неизвестные к�
 # Asks for station access
 merc.stationoffer.title: "Allow station access?"
 merc.stationoffer.desc: "Greetings, [root.GetRulerName]! We here at §YWhiteout Enterprises§! would like to offer you an exciting business opportunity!\n\nIt would be to our mutual benefit if you were to §Gallow us access§! to construct an operations outpost inside your borders.\n\nWe realise that this might seem intimidating, or sneaky, so we are prepared to offer you some compensation to grease the wheels of bureaucracy, so to speak:\n\n£energy §G2500§!\n£minerals §G500§!\n\nThis deal only comes once in a lifetime, so weigh your decision accordingly."
-merc.stationoffer.cooldown: "You have recently accepted a monetary offer to allow station access, and as such won't be able to restrict it yet."
+merc.condition.station.access.cooldown: "You have recently accepted a monetary offer to allow station access, and as such won't be able to restrict it yet."
+merc.condition.not.insured: "You can't restrict border access while you subscribe to their insurance policy."

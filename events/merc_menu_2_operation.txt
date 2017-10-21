@@ -68,7 +68,7 @@ country_event = {
 		name = merc.clearspace.name
 		allow = {
 			custom_tooltip_fail = {
-				text = "merc.condition.clearspace.fail"
+				text = "merc.condition.clearspace"
 				check_variable = { which = "MercDeposit" value > 4500 }
 			}
 		}

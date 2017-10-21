@@ -113,7 +113,7 @@ country_event = {
 		custom_tooltip = merc.initial.minerals.withdraw.tooltip
 		allow = {
 			custom_tooltip_fail = {
-				text = "merc.condition.minerals.withdraw.fail"
+				text = "merc.condition.minerals.withdraw"
 				check_variable = { which = "MercDeposit" value > 2500 }
 			}
 		}
@@ -146,7 +146,7 @@ country_event = {
 		custom_tooltip = merc.initial.energy.withdraw.tooltip
 		allow = {
 			custom_tooltip_fail = {
-				text = "merc.condition.energy.withdraw.fail"
+				text = "merc.condition.energy.withdraw"
 				check_variable = { which = "MercDepositEnergy" value > 2500 }
 			}
 		}
@@ -172,8 +172,12 @@ country_event = {
 		trigger = { has_country_flag = "fmerc_allow_stations" }
 		allow = {
 			custom_tooltip_fail = {
-				text = "merc.stationoffer.cooldown"
+				text = "merc.condition.station.access.cooldown"
 				NOT = { has_country_flag = "merc_cant_restrict_access" }
+			}
+			custom_tooltip_fail = {
+				text = "merc.condition.not.insured"
+				NOT = { has_modifier = merc_enclave_insurance }
 			}
 		}
 		hidden_effect = {

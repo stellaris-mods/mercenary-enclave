@@ -108,7 +108,6 @@ merc.buyer.detected.desc: "We're being hailed by the head of our interior minist
 # Asks for station access
 merc.stationoffer.title: "Allow station access?"
 merc.stationoffer.desc: "Greetings, [root.GetRulerName]! We here at $merc.name.colored$ would like to offer you an exciting business opportunity!\n\nIt would be to our mutual benefit if you were to §Gallow us access§! to construct an operations outpost inside your borders.\n\nWe realise that this might seem intimidating, or sneaky, so we are prepared to offer you some compensation to grease the wheels of bureaucracy, so to speak:\n\n£energy §G2500§!\n£minerals §G500§!\n\nThis deal only comes once in a lifetime, so weigh your decision accordingly."
-merc.stationoffer.cooldown: "You have recently accepted a monetary offer to allow station access, and as such won't be able to restrict it yet."
 
 # insurance
 merc.insurance.title: "Friendly alert"
@@ -144,9 +143,11 @@ merc.condition.station.access: "We need to allow them access to construct operat
 merc.condition.deposit: "You need at least £minerals §G2500§! deposited with $merc.name.colored$."
 merc.condition.invalid.target: "We can not execute this type of operation against this type of empire."
 merc.condition.funds: "Not enough funds"
-merc.condition.minerals.withdraw.fail: "Not enough minerals in account."
-merc.condition.energy.withdraw.fail: "Not enough energy credits in account."
-merc.condition.clearspace.fail: "$merc.name.colored$ requires you to have at least £minerals 4500 deposited before they will undertake this type of operation."
+merc.condition.minerals.withdraw: "Not enough minerals in account."
+merc.condition.energy.withdraw: "Not enough energy credits in account."
+merc.condition.clearspace: "$merc.name.colored$ requires you to have at least £minerals 4500 deposited before they will undertake this type of operation."
+merc.condition.station.access.cooldown: "You have recently accepted a monetary offer to allow station access, and as such won't be able to restrict it yet."
+merc.condition.not.insured: "You can't restrict border access while you subscribe to their insurance policy."
 
 ###############################################################################
 # Diplomacy screen
