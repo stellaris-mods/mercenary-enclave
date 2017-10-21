@@ -26,20 +26,18 @@ country_event = {
 	desc = {
 		text = fmerc_enclave.execute.desc
 		trigger = {
-			check_variable = {
-				which = "MercMinerals"
-				value > "MercCost"
-			}
+			check_variable = { which = "MercMinerals" value > "MercCost" }
+			check_variable = { which = "MercEnergy" value > "MercCostEnergy" }
+			check_variable = { which = "MercInfluence" value > "MercCostInfluence" }
 		}
 	}
 	desc = {
 		text = fmerc_enclave.cantafford.desc
 		trigger = {
 			NOT = {
-				check_variable = {
-					which = "MercMinerals"
-					value > "MercCost"
-				}
+				check_variable = { which = "MercMinerals" value > "MercCost" }
+				check_variable = { which = "MercEnergy" value > "MercCostEnergy" }
+				check_variable = { which = "MercInfluence" value > "MercCostInfluence" }
 			}
 		}
 	}
@@ -54,35 +52,43 @@ country_event = {
 	}
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
-	immediate = {
-		merc_account_update = yes
-	}
-
-	after = {
-		hidden_effect = {
-			remove_country_flag = "fmerc_diplomacy_engaged"
-			fmerc_reset_diplo_screen = yes
-			if = {
-				limit = {
-					check_variable = {
-						which = "MercMinerals"
-						value > "MercCost"
-					}
-				}
-				set_country_flag = "fmerc_active_operation"
-				# For insurance purposes
-				set_variable = { which = "MercInsuranceBase" value = "MercCost" }
-				change_variable = { which = "MercInsuranceBase" value = "MercCostEnergy" }
-				change_variable = { which = "MercInsuranceBase" value = "MercCostInfluence" }
-				merc_account_grabdatcash = yes
-				fmerc_init_stage1 = yes
-			}
-		}
-	}
+	immediate = { merc_account_update = yes }
+	after = { hidden_effect = { country_event = { id = mercMenu.9001 } } }
 
 	option = {
 		name = fmerc_enclave.close
 		default_hide_option = yes
+	}
+}
+
+# The reason this is separated into its own event is because all effects and
+# triggers in option={} and after={} are continously evaluated 10 times per
+# second for what stellaris wants to show in the button tooltips. Even
+# scripted_effects are chained to and inspected for tooltip-text, and also
+# even if you wrap it in hidden_effect/hidden_trigger, it's still evaluated.
+# Which is obviously completely crazy.
+country_event = {
+	id = mercMenu.9001
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		remove_country_flag = "fmerc_diplomacy_engaged"
+		fmerc_reset_diplo_screen = yes
+		if = {
+			limit = {
+				check_variable = { which = "MercMinerals" value > "MercCost" }
+				check_variable = { which = "MercEnergy" value > "MercCostEnergy" }
+				check_variable = { which = "MercInfluence" value > "MercCostInfluence" }
+			}
+			set_country_flag = "fmerc_active_operation"
+			# For insurance purposes
+			set_variable = { which = "MercInsuranceBase" value = "MercCost" }
+			change_variable = { which = "MercInsuranceBase" value = "MercCostEnergy" }
+			change_variable = { which = "MercInsuranceBase" value = "MercCostInfluence" }
+			merc_account_grabdatcash = yes
+			fmerc_init_stage1 = yes
+		}
 	}
 }
 
