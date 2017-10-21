@@ -1,4 +1,10 @@
 
+on_game_start = {
+	events = {
+		mercInit.10
+	}
+}
+
 on_monthly_pulse = {
 	events = {
 		mercOpsMeta.100
@@ -71,6 +77,5 @@ on_rebels_take_planet_owner_switched = {
 		mercOpsLiberation.71
 	}
 }
-
 
 on_ship_destroyed_perp = { events = { mercOpsMeta.200 } }

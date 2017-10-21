@@ -37,6 +37,54 @@ merc_account_update_multiplier = {
 }
 
 merc_account_set_base_multiplier = {
+	if = { limit = { has_global_flag = "has_mercenary_enclave_v2" }
+		merc_account_set_trust_multiplier = yes
+	else = {
+		set_variable = { which = "MercMultiplier" value = 1.2 }
+	} }
+	merc_account_update_multiplier = yes
+}
+
+merc_account_apply_cost_modifiers = {
+	if = { limit = { check_variable = { which = "MercCost" value > 0 } }
+		multiply_variable = { which = "MercCost" value = "MercMultiplier" }
+	}
+	if = { limit = { check_variable = { which = "MercCostEnergy" value > 0 } }
+		multiply_variable = { which = "MercCostEnergy" value = "MercMultiplier" }
+	}
+	if = { limit = { check_variable = { which = "MercCostInfluence" value > 0 } }
+		multiply_variable = { which = "MercCostInfluence" value = "MercMultiplier" }
+	}
+	if = { limit = { check_variable = { which = "MercMonthlyCost" value > 0 } }
+		multiply_variable = { which = "MercMonthlyCost" value = "MercMultiplier" }
+	}
+	if = { limit = { check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+		multiply_variable = { which = "MercMonthlyCostEnergy" value = "MercMultiplier" }
+	}
+	if = { limit = { check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+		multiply_variable = { which = "MercMonthlyCostInfluence" value = "MercMultiplier" }
+	}
+}
+
+merc_account_update = {
+	merc_account_internal_update_empire_minerals = yes
+	merc_account_internal_update_empire_energy = yes
+	merc_account_internal_update_empire_influence = yes
+}
+
+merc_account_grabdatcash = {
+	merc_account_internal_grab_minerals = yes
+	merc_account_internal_grab_energy = yes
+	merc_account_internal_grab_influence = yes
+}
+
+###############################################################################
+#
+# Rest of the file contains internal implementation details that you should
+# be able to ignore safely and never use outside this file.
+#
+
+merc_account_set_trust_multiplier = {
 	if = { limit = { event_target:mercenaries = { trust = { who = PREV value > 95 } } }
 		set_variable = { which = "MercMultiplier" value = 0.5 }
 	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > 90 } } }
@@ -116,47 +164,7 @@ merc_account_set_base_multiplier = {
 	else = {
 		set_variable = { which = "MercMultiplier" value = 2 }
 	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
-	merc_account_update_multiplier = yes
 }
-
-merc_account_apply_cost_modifiers = {
-	if = { limit = { check_variable = { which = "MercCost" value > 0 } }
-		multiply_variable = { which = "MercCost" value = "MercMultiplier" }
-	}
-	if = { limit = { check_variable = { which = "MercCostEnergy" value > 0 } }
-		multiply_variable = { which = "MercCostEnergy" value = "MercMultiplier" }
-	}
-	if = { limit = { check_variable = { which = "MercCostInfluence" value > 0 } }
-		multiply_variable = { which = "MercCostInfluence" value = "MercMultiplier" }
-	}
-	if = { limit = { check_variable = { which = "MercMonthlyCost" value > 0 } }
-		multiply_variable = { which = "MercMonthlyCost" value = "MercMultiplier" }
-	}
-	if = { limit = { check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
-		multiply_variable = { which = "MercMonthlyCostEnergy" value = "MercMultiplier" }
-	}
-	if = { limit = { check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-		multiply_variable = { which = "MercMonthlyCostInfluence" value = "MercMultiplier" }
-	}
-}
-
-merc_account_update = {
-	merc_account_internal_update_empire_minerals = yes
-	merc_account_internal_update_empire_energy = yes
-	merc_account_internal_update_empire_influence = yes
-}
-
-merc_account_grabdatcash = {
-	merc_account_internal_grab_minerals = yes
-	merc_account_internal_grab_energy = yes
-	merc_account_internal_grab_influence = yes
-}
-
-###############################################################################
-#
-# Rest of the file contains internal implementation details that you should
-# be able to ignore safely and never use outside this file.
-#
 
 merc_account_internal_update_empire_minerals = {
 	set_variable = { which = "MercMinerals" value = 0 }

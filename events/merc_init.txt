@@ -111,3 +111,17 @@ country_event = {
 		}
 	}
 }
+
+event = {
+	id = mercInit.10
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		# This gates the very cheap cost modifier you get with high trust
+		# levels, because getting high trust levels with the enclave was
+		# exceptionally easy before. Now, there is essentially no way
+		# to get it except to deposit lots of resources with them.
+		# Which means you'll probably use their operations more often.
+		set_global_flag = "has_mercenary_enclave_v2"
+	}
+}
