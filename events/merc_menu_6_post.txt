@@ -22,19 +22,21 @@ namespace = mercMenu
 
 country_event = {
 	id = mercMenu.9000
-	title = merc.signature.go
+	title = merc.conclusion.title
 	desc = {
 		text = merc.conclusion.mission.go
 		trigger = {
-			check_variable = { which = "MercMinerals" value > "MercCost" }
-			check_variable = { which = "MercEnergy" value > "MercCostEnergy" }
-			check_variable = { which = "MercInfluence" value > "MercCostInfluence" }
+			AND = {
+				check_variable = { which = "MercMinerals" value > "MercCost" }
+				check_variable = { which = "MercEnergy" value > "MercCostEnergy" }
+				check_variable = { which = "MercInfluence" value > "MercCostInfluence" }
+			}
 		}
 	}
 	desc = {
 		text = merc.conclusion.mission.abort
 		trigger = {
-			NOT = {
+			NAND = { # Make sure we check all, dont bail on the first positive
 				check_variable = { which = "MercMinerals" value > "MercCost" }
 				check_variable = { which = "MercEnergy" value > "MercCostEnergy" }
 				check_variable = { which = "MercInfluence" value > "MercCostInfluence" }
@@ -50,8 +52,8 @@ country_event = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
-
 	immediate = { merc_account_update = yes }
+
 	after = { hidden_effect = { country_event = { id = mercMenu.9001 } } }
 
 	option = {

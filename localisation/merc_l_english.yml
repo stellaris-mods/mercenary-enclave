@@ -264,8 +264,8 @@ merc.signature.nda: "Sign NDA"
 merc.signature.treaty: "Sign for treasury access"
 merc.signature.executive: "Sign executive order"
 merc.signature.title: "Signatures Required"
-merc.signature.go: "Operation will commence"
+merc.conclusion.title: "Mercenary Operation Conclusion"
 
 # Conclusion
 merc.conclusion.mission.go: "Thank you for doing business with $merc.name.colored$.\n\nThe operation will commence within 3-90 days. There will be no further communication regarding this operation.\n\nFunds will be withdrawn from your account and treasury immediately.\n\nMay our names never be mentioned."
-merc.conclusion.mission.abort: "$merc.name.colored$ was unable to withdraw the required funds from our treasury department.\n\nAs a result, the order has been cancelled."
+merc.conclusion.mission.abort: "$merc.name.colored$ was unable to withdraw the required funds from our treasury department.\n\n§RAs a result, the order has been cancelled.§!"

@@ -336,14 +336,13 @@ merc.signature.treaty: "Дать доступ к казне"
 merc.signature.executive: "Дать добро на операцию"
 ##merc.signature.title: "Signatures Required"
 merc.signature.title: "Требуются подписи"
-##merc.signature.go: "Operation will commence"
-merc.signature.go: "Операция начинается"
+merc.conclusion.title: "Mercenary Operation Conclusion"
 
 
 ##merc.condition.funds: "Not enough minerals"
 merc.condition.funds: "Недостаточно минералов"
-##merc.conclusion.mission.abort: "§YWhiteout Enterprises§! was unable to withdraw the required funds from our treasury department.\n\nAs a result, the order has been cancelled."
-merc.conclusion.mission.abort: "§YWhiteout Enterprises§! не смогли снять нужное количество средств.\n\nВ следствии этого, заказ был отменен."
+##merc.conclusion.mission.abort: "§YWhiteout Enterprises§! was unable to withdraw the required funds from our treasury department.\n\n§RAs a result, the order has been cancelled.§!"
+merc.conclusion.mission.abort: "§YWhiteout Enterprises§! не смогли снять нужное количество средств.\n\n§RВ следствии этого, заказ был отменен.§!"
 
 # insurance
 

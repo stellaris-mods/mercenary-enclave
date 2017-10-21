@@ -58,6 +58,7 @@ event = {
 						planet_event = { id = mercStations.2 }
 					}
 				}
+				# XXX prioritize spawning in systems without any presence
 				# XXX make sure we spawned something
 			}
 		}
