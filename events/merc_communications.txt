@@ -23,10 +23,6 @@ namespace = mercCommunications
 # This file was initially copied out of guardian_events.txt to mimic the
 # standard enclave contact events, but has been heavily modified since then.
 
-# XXX Add contact spread somehow. Preferrably, once the first default
-# XXX empire makes contact, the enclave should send out a scouting fleet,
-# XXX like the nomad fleet, that tries to find other countries.
-
 @tier1influencecontact = 7
 @tier1influencecontactxenophile = 8
 @tier1influencecontactmin = 20
@@ -46,12 +42,19 @@ fleet_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		has_fleet_flag = "fmerc_count_towards_success"
-		owner = { is_country_type = "fmerc_operations" }
+		OR = {
+			AND = {
+				has_fleet_flag = "fmerc_count_towards_success"
+				owner = { is_country_type = "fmerc_operations" }
+			}
+			AND = {
+				has_fleet_flag = "merc_exploration_fleet"
+				owner = { is_country_type = "fmerc_enclave"}
+			}
+		}
 		FROM = {
 			exists = space_owner
 			space_owner = {
-				is_ai = no
 				exists = capital_scope
 				any_country = {
 					is_country_type = "fmerc_enclave"
@@ -88,9 +91,9 @@ fleet_event = {
 }
 
 # A default country fleet enters a system where the mercenary enclave
-# has a station, and they have not established communications.
-# Allow the trigger to run anywhere, to catch
-# mercenary outposts as well as the HQ
+# has a station (or science ship), and they have not established
+# communications. Allow the trigger to run anywhere, to catch mercenary
+# outposts as well as the HQ, and the science ships.
 # on_entering_system_fleet
 fleet_event = {
 	id = mercCommunications.96
@@ -98,10 +101,7 @@ fleet_event = {
 	hide_window = yes
 
 	trigger = {
-		owner = {
-			is_ai = no
-			exists = capital_scope
-		}
+		owner = { exists = capital_scope }
 		FROM = {
 			any_ship_in_system = {
 				exists = owner
@@ -299,4 +299,134 @@ country_event = {
 	}
 
 	option = { name = guardian.502.a }
+}
+
+
+###############################################################################
+# Communication "spread"
+#
+
+event = {
+	id = mercCommunications.1000
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		random_country = {
+			limit = { is_country_type = "fmerc_enclave" }
+			country_event = { id = mercCommunications.1001 }
+		}
+	}
+}
+
+country_event = {
+	id = mercCommunications.1001
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		num_communications > 0
+		NOT = { any_owned_fleet = { has_fleet_flag = "merc_exploration_fleet" } }
+		count_country = {
+			count > 0
+			limit = {
+				exists = this
+				OR = {
+					is_ai = no
+					is_country_type = "default"
+					is_country_type = "ascended_empire"
+					is_country_type = "lost_empire"
+					is_country_type = "ascended_hive_mind"
+				}
+				NOT = { has_communications = ROOT }
+				NOT = { has_special_project = "INVESTIGATE_MERC_ENCLAVE" }
+			}
+		}
+	}
+
+	immediate = {
+		log = "Mercenary Enclave spawning exploration fleet."
+		random_owned_fleet = { save_event_target_as = spawn }
+		create_leader = {
+			type = scientist
+			sub_type = survey
+			name = random
+			species = owner_main_species
+		}
+		create_fleet = {
+			name = "Mercenary Exploration"
+			effect = {
+				set_owner = ROOT
+				create_ship = {
+					name = "Enclave"
+					design = "Mercenary Exploration"
+					graphical_culture = "mammalian_01"
+					prefix = no
+				}
+				set_location = event_target:spawn
+				set_leader = last_created_leader
+				set_fleet_flag = "merc_exploration_fleet"
+			}
+		}
+		last_created_fleet = { fleet_event = { id = mercCommunications.1010 } }
+	}
+}
+
+fleet_event = {
+	id = mercCommunications.1010
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			random_owned_fleet = {
+				limit = { is_ship_class = shipclass_military_station }
+				save_event_target_as = home
+			}
+		}
+		queue_actions = {
+			repeat = {
+				max_iterations = 4
+				find_random_system = {
+					trigger = {
+						id = mercScience.1
+						exists = space_owner
+						NOT = { is_same_value = ROOT.solar_system }
+						NOT = { space_owner = { is_hostile = ROOT.owner } }
+						space_owner = { NOT = { has_communications = ROOT.owner } }
+					}
+					found_system = { move_to = this }
+				}
+				repeat = {
+					while = {
+						id = mercScience.2
+						NOT = { is_fleet_idle = yes }
+					}
+					wait = 14
+				}
+				find_random_planet = { found_planet = { orbit_planet = this } }
+				repeat = {
+					while = {
+						id = mercScience.3
+						NOT = { is_fleet_idle = yes }
+					}
+					wait = {
+						duration = 14
+						random = 14 # 60
+					}
+				}
+			}
+			move_to = event_target:home
+			repeat = {
+				while = {
+					id = mercScience.5
+					NOT = { is_fleet_idle = yes }
+				}
+				wait = 14
+			}
+			effect = {
+				id = mercScience.6
+				delete_fleet = ROOT
+			}
+		}
+	}
 }

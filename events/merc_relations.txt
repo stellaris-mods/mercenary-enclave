@@ -28,7 +28,11 @@ country_event = {
 	id = mercRelations.140
 	hide_window = yes
 	is_triggered_only = yes
-	trigger = { is_country_type = "fmerc_enclave" }
+	trigger = {
+		# Allow this to trigger even on the exploration science vessel, which
+		# means if anyone kills it somehow, they get the prize!
+		is_country_type = "fmerc_enclave"
+	}
 	immediate = {
 		FROMFROM = { solar_system = { save_event_target_as = trader_system } }
 		FROM = {
@@ -101,6 +105,8 @@ country_event = {
 	trigger = {
 		is_ai = no
 		FROM = { is_country_type = "fmerc_enclave" }
+		# The science ship is fair game
+		FROMFROMFROM = { NOT = { is_ship_size = science } }
 	}
 
 	immediate = {
