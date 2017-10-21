@@ -18,7 +18,7 @@
 ###
 
 
-namespace = mercStationController
+namespace = mercStations
 
 # XXX Add event that if the enclave has less than FOO station complexes
 # XXX in the galaxy, offer a deal with a random default country to allow
@@ -28,7 +28,7 @@ namespace = mercStationController
 # XXX Obviously, they need to have contact with the enclave.
 
 event = {
-	id = mercStationController.1
+	id = mercStations.1
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
@@ -48,7 +48,7 @@ event = {
 				random_system_within_border = {
 					limit = { NOT = { any_planet = { is_colony = yes } } }
 					random_system_planet = {
-						planet_event = { id = mercStationController.2 }
+						planet_event = { id = mercStations.2 }
 					}
 				}
 				# XXX make sure we spawned something
@@ -64,7 +64,7 @@ event = {
 }
 
 planet_event = {
-	id = mercStationController.2
+	id = mercStations.2
 	hide_window = yes
 	is_triggered_only = yes
 
