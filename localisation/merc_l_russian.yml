@@ -232,10 +232,7 @@ merc.fleet: "Налет на флотиллию военных кораблей"
 # Clear Space
 ##merc.clearspace.name: "Clear Space"
 merc.clearspace.name: "Очистить пространство"
-##merc.clearspace.desc: "Pirates, Drones, Amoebas, or other random annoying hostiles lounge about inside your territories? §YWhiteout Enterprises§! can handle some of those targets for you. For a price.\n\nSelect the type of target you want us to §Rimmediately§! engage in our services menu on the right, and let us get to work. §GThere is no red tape on this one.§!\n\nCost: £minerals §GBetween 300 and 3000§!\nChance of success: §G95%§!\nDetection risk: §G0%§!"
-merc.clearspace.desc: "Пираты, дроны, амебы, и прочие агрессивные существа надоедают вам? §YWhiteout Enterprises§! может заняться некоторыми из них. За цену.\n\nВыберите тип целей, которыми мы §Rнемедленно§! займемся в меню справа. §GЛенточек не ожидайте.§!\n\nЦена: £minerals §GМежду 300 и 3000§!\nШанс успеха: §G95%§!\nРиск обнаружения: §G0%§!"
-##merc.clearspace.desc: "Пираты, дроны, амебы, и прочие агрессивные существа надоедают вам? §YWhiteout Enterprises§! может заняться некоторыми из них. За цену.\n\nВыберите тип целей, которыми мы займемся §Rнемедленно§! в меню справа. §GЛенточек не ожидайте.§!\n\nЦена: £minerals §GBetween 300 and 3000§!\nШанс успеха: §G95%§!\nРиск обнаружения: §G0%§!"
-
+merc.clearspace.desc: "Are pirates, drones, amoebas, or some other annoying monstrous hostile lounging about inside your territory? $merc.name.colored$ can handle that for you. For a price!\n\nSelect the type of target you want us to §Rimmediately§! engage in our services menu on the right, and let us get to work. §GThere is no red tape on this one.§!\n\nCost: £minerals §GBetween 300 and 3000§!\nChance of success: §G95%§!\n"
 
 
 ##merc.clearspace.amoeba: "Immediately attack $space_amoeba_plural$"

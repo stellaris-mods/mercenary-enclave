@@ -97,88 +97,34 @@ country_event = {
 				}
 			}
 			set_country_flag = "fmerc_calculated_costs"
-			if = {
-				limit = {
-					exists = event_target:fmerc_target_country
-					num_killed_ships = {
-						target = event_target:fmerc_target_country
-						value > 4
-					}
-				}
-				event_target:fmerc_buyer = {
-					set_variable = {
-						which = "MercCost"
-						value = 3000
-					}
-				}
-				else = { if = {
-				limit = {
-					exists = event_target:fmerc_target_country
-					num_killed_ships = {
-						target = event_target:fmerc_target_country
-						value > 3
-					}
-				}
-				event_target:fmerc_buyer = {
-					set_variable = {
-						which = "MercCost"
-						value = 2400
-					}
-				}
-				else = { if = {
-				limit = {
-					exists = event_target:fmerc_target_country
-					num_killed_ships = {
-						target = event_target:fmerc_target_country
-						value > 2
-					}
-				}
-				event_target:fmerc_buyer = {
-					set_variable = {
-						which = "MercCost"
-						value = 1800
-					}
-				}
-				else = { if = {
-				limit = {
-					exists = event_target:fmerc_target_country
-					num_killed_ships = {
-						target = event_target:fmerc_target_country
-						value > 1
-					}
-				}
-				event_target:fmerc_buyer = {
-					set_variable = {
-						which = "MercCost"
-						value = 1200
-					}
-				}
-				else = { if = {
-				limit = {
-					exists = event_target:fmerc_target_country
-					num_killed_ships = {
-						target = event_target:fmerc_target_country
-						value > 0
-					}
-				}
-				event_target:fmerc_buyer = {
-					set_variable = {
-						which = "MercCost"
-						value = 600
-					}
-				}
-				else = {
-					event_target:fmerc_buyer = {
-						set_variable = {
-							which = "MercCost"
-							value = 300
-						}
-					}
-				}
-			} } } } } } } } }
+			event_target:fmerc_buyer = { set_variable = { which = "MercCost" value = 300 } }
+
+			if = { limit = { exists = event_target:fmerc_target_country }
+				if = { limit = { num_killed_ships = { target = event_target:fmerc_target_country value > 4 } }
+					event_target:fmerc_buyer = { set_variable = { which = "MercCost" value = 3000 } }
+				else = { if = { limit = { num_killed_ships = { target = event_target:fmerc_target_country value > 3 } }
+					event_target:fmerc_buyer = { set_variable = { which = "MercCost" value = 2400 } }
+				else = { if = { limit = { num_killed_ships = { target = event_target:fmerc_target_country value > 2 } }
+					event_target:fmerc_buyer = { set_variable = { which = "MercCost" value = 1800 } }
+				else = { if = { limit = { num_killed_ships = { target = event_target:fmerc_target_country value > 1 } }
+					event_target:fmerc_buyer = { set_variable = { which = "MercCost" value = 1200 } }
+				else = { if = { limit = { num_killed_ships = { target = event_target:fmerc_target_country value > 0 } }
+					event_target:fmerc_buyer = { set_variable = { which = "MercCost" value = 600 } }
+				} } } } } } } } }
+			}
+
 			event_target:fmerc_buyer = {
-				log = "Clear: Calculated cost is [this.MercCost]."
+				log = "Clear: Base cost is [this.MercCost]."
 				merc_account_update = yes
+				# Need this for the multiplier
+				random_country = {
+					limit = { is_country_type = "fmerc_enclave" }
+					save_event_target_as = mercenaries
+				}
+				merc_account_set_base_multiplier = yes
+				merc_account_apply_cost_modifiers = yes
+				log = "Clear: Modified cost is [this.MercCost]."
+				log = "Clear: Multiplier is [this.MercMultiplierPercent]%."
 				merc_account_grabdatcash = yes
 			}
 		}

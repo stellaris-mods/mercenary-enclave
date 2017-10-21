@@ -299,7 +299,12 @@ country_event = {
 	id = mercMenu.700
 	title = merc.clearspace.name
 	# Custom desc because variables can't represent zero
-	desc = merc.clearspace.desc
+	desc = {
+		trigger = {
+			text = "merc.clearspace.desc"
+			text = "merc.param.multiplier"
+		}
+	}
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -308,10 +313,6 @@ country_event = {
 	picture_event_data = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
-	}
-
-	immediate = {
-		# XXX apply multiplier, needs to be done when mission is complete
 	}
 
 	option = {
@@ -458,6 +459,10 @@ country_event = {
 	immediate = {
 		remove_country_flag = "fmerc_diplomacy_engaged"
 		set_country_flag = "fmerc_active_operation"
+		set_variable = {
+			which = "MercSuccess"
+			value = 95
+		}
 		fmerc_init_stage1 = yes
 	}
 }

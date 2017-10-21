@@ -216,7 +216,7 @@ merc.fleet.desc: "The most dangerous operation we can undertake. This puts us in
 
 # Clear Space
 merc.clearspace.name: "Clear Space"
-merc.clearspace.desc: "Pirates, Drones, Amoebas, or other random annoying hostiles lounge about inside your territories? $merc.name.colored$ can handle some of those targets for you. For a price.\n\nSelect the type of target you want us to §Rimmediately§! engage in our services menu on the right, and let us get to work. §GThere is no red tape on this one.§!\n\nCost: £minerals §GBetween 300 and 3000§!\nChance of success: §G95%§!\nDetection risk: §G0%§!"
+merc.clearspace.desc: "Are pirates, drones, amoebas, or some other annoying monstrous hostile lounging about inside your territory? $merc.name.colored$ can handle that for you. For a price!\n\nSelect the type of target you want us to §Rimmediately§! engage in our services menu on the right, and let us get to work. §GThere is no red tape on this one.§!\n\nCost: £minerals §GBetween 300 and 3000§!\nChance of success: §G95%§!\n"
 
 merc.clearspace.amoeba: "Immediately attack $space_amoeba_plural$"
 merc.clearspace.cloud: "Immediately attack $space_cloud_plural$"
