@@ -91,12 +91,11 @@ country_event = {
 
 			save_event_target_as = fmerc_buyer
 
-			# We should copy the MercInsuranceBase from this scope to the ROOT scope.
+			# Reset, just in case
 			PREV = { set_variable = { which = "MercCost" value = 0 } }
-			set_variable = { which = "MercTmp" value = "MercInsuranceBase" }
 
-			# ZZZ copy "MercTmp" to cost
-			# isn't this nice, while loops only loop 100 times, no matter what
+			# Copy MercInsuranceBase from the buyer to the insurance card holder
+			set_variable = { which = "MercTmp" value = "MercInsuranceBase" }
 			while = {
 				limit = { check_variable = { which = "MercTmp" value > 1000 } }
 				subtract_variable = { which = "MercTmp" value = 1000 }
@@ -119,7 +118,7 @@ country_event = {
 			}
 		}
 
-		# 25% discount for being a trusted customer
+		# 25% discount for being a faithful customer
 		multiply_variable = { which = "MercCost" value = 0.75 }
 
 		# Count our total minerals

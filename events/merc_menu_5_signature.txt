@@ -48,7 +48,7 @@ country_event = {
 			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
 			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier"
+			text = "merc.param.multiplier.applied"
 			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
 			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
 			text = newline
@@ -63,6 +63,10 @@ country_event = {
 	picture_event_data = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
+	}
+
+	immediate = {
+		merc_account_apply_cost_modifiers = yes
 	}
 
 	option = {
@@ -126,7 +130,7 @@ country_event = {
 			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
 			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier"
+			text = "merc.param.multiplier.applied"
 			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
 			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
 			text = newline
@@ -205,7 +209,7 @@ country_event = {
 			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
 			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier"
+			text = "merc.param.multiplier.applied"
 			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
 			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
 			text = newline
@@ -284,7 +288,7 @@ country_event = {
 			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
 			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier"
+			text = "merc.param.multiplier.applied"
 			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
 			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
 			text = newline
@@ -363,7 +367,7 @@ country_event = {
 			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
 			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier"
+			text = "merc.param.multiplier.applied"
 			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
 			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
 			text = newline

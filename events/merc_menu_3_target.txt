@@ -79,10 +79,8 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			multiply_variable = {
-				which = "MercCost"
-				value = 1.2
-			}
+			change_variable = { which = "MercMultiplier" value = 0.2 }
+			merc_account_update_multiplier = yes
 			subtract_variable = {
 				which = "MercSuccess"
 				value = 10
@@ -112,10 +110,8 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			multiply_variable = {
-				which = "MercCost"
-				value = 0.8
-			}
+			subtract_variable = { which = "MercMultiplier" value = 0.2 }
+			merc_account_update_multiplier = yes
 			subtract_variable = {
 				which = "MercSuccess"
 				value = 10
@@ -145,10 +141,8 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			multiply_variable = {
-				which = "MercCost"
-				value = 0.8
-			}
+			subtract_variable = { which = "MercMultiplier" value = 0.2 }
+			merc_account_update_multiplier = yes
 			subtract_variable = {
 				which = "MercSuccess"
 				value = 10
@@ -174,10 +168,8 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			multiply_variable = {
-				which = "MercCost"
-				value = 0.9
-			}
+			subtract_variable = { which = "MercMultiplier" value = 0.1 }
+			merc_account_update_multiplier = yes
 			subtract_variable = {
 				which = "MercSuccess"
 				value = 5
@@ -196,24 +188,16 @@ country_event = {
 	id = mercMenu.1100
 	title = fmerc_enclave.1000.name
 	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_empire_standard" }
-		text = fmerc_enclave.selected.default
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_empire_fallen" }
-		text = fmerc_enclave.selected.fallen
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_empire_swarm" }
-		text = fmerc_enclave.selected.swarm
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_empire_ed" }
-		text = fmerc_enclave.selected.ed
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_empire_ai" }
-		text = fmerc_enclave.selected.ai
+		trigger = {
+			switch = {
+				trigger = has_country_flag
+				fmerc_diplo_empire_standard = { text = "fmerc_enclave.selected.default" }
+				fmerc_diplo_empire_fallen = { text = "fmerc_enclave.selected.fallen" }
+				fmerc_diplo_empire_swarm = { text = "fmerc_enclave.selected.swarm" }
+				fmerc_diplo_empire_ed = { text = "fmerc_enclave.selected.ed" }
+				fmerc_diplo_empire_ai = { text = "fmerc_enclave.selected.ai" }
+			}
+		}
 	}
 	is_triggered_only = yes
 	diplomatic = yes

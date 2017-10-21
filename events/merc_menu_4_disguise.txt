@@ -35,6 +35,8 @@ country_event = {
 		room = enclave_trader_room
 	}
 
+	# ZZZ from this point on we can't go "back" in the menu yet, I need to
+	# ZZZ reset the multipliers and such
 	option = {
 		name = fmerc_enclave.close
 		default_hide_option = yes
@@ -48,10 +50,8 @@ country_event = {
 		name = fmerc_enclave.disguise.random
 		custom_tooltip = fmerc_enclave.disguise.random.tooltip
 		hidden_effect = {
-			multiply_variable = {
-				which = "MercCost"
-				value = 0.95
-			}
+			subtract_variable = { which = "MercMultiplier" value = 0.05 }
+			merc_account_update_multiplier = yes
 			change_variable = {
 				which = "MercDetect"
 				value = 5
@@ -68,10 +68,8 @@ country_event = {
 		name = fmerc_enclave.disguise.other
 		custom_tooltip = fmerc_enclave.disguise.other.tooltip
 		hidden_effect = {
-			multiply_variable = {
-				which = "MercCost"
-				value = 1.05
-			}
+			change_variable = { which = "MercMultiplier" value = 0.05 }
+			merc_account_update_multiplier = yes
 			subtract_variable = {
 				which = "MercDetect"
 				value = 5
@@ -108,10 +106,8 @@ country_event = {
 		name = fmerc_enclave.disguise.pirate
 		custom_tooltip = fmerc_enclave.disguise.pirate.tooltip
 		hidden_effect = {
-			multiply_variable = {
-				which = "MercCost"
-				value = 0.95
-			}
+			subtract_variable = { which = "MercMultiplier" value = 0.05 }
+			merc_account_update_multiplier = yes
 			subtract_variable = {
 				which = "MercSuccess"
 				value = 10
@@ -128,10 +124,8 @@ country_event = {
 		name = fmerc_enclave.disguise.monster
 		custom_tooltip = fmerc_enclave.disguise.monster.tooltip
 		hidden_effect = {
-			multiply_variable = {
-				which = "MercCost"
-				value = 1.15
-			}
+			change_variable = { which = "MercMultiplier" value = 0.15 }
+			merc_account_update_multiplier = yes
 			subtract_variable = {
 				which = "MercDetect"
 				value = 10

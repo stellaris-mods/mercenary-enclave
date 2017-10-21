@@ -140,7 +140,8 @@ merc.parparamameters.energy.monthly: "Monthly energy cost: £energy §G[root.Mer
 merc.param.influence.monthly: "Monthly influence cost: £influence §G[root.MercMonthlyCostInfluence]§!\n"
 merc.param.success: "Chance of success: §G[root.MercSuccess]%§!\n"
 merc.param.detection: "Detection risk: §P[root.MercDetect]%§!\n"
-merc.param.multiplier: "Price multiplier: §H[root.MercTrustMultiplierPercent]%§! (price already adjusted)\n"
+merc.param.multiplier: "Price multiplier: §H[root.MercMultiplierPercent]%§! (price not adjusted)\n"
+merc.param.multiplier.applied: "Price multiplier: §H[root.MercMultiplierPercent]%§! (price adjusted)\n"
 
 merc.param.operation.spaceport: "Operation: §YAttack Spaceport§!"
 merc.param.operation.liberation: "Operation: §YLiberate Planet§!"

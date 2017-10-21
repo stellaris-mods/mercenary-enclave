@@ -35,6 +35,10 @@ country_event = {
 		room = enclave_trader_room
 	}
 
+	immediate = {
+		merc_account_set_base_multiplier = yes
+	}
+
 	option = {
 		name = fmerc_enclave.close
 		default_hide_option = yes
@@ -101,10 +105,9 @@ country_event = {
 		room = enclave_trader_room
 	}
 	immediate = {
-		set_variable = { which = "MercCost" value = 5000 }
+		set_variable = { which = "MercCostEnergy" value = 3000 }
 		set_variable = { which = "MercSuccess" value = 80 }
 		set_variable = { which = "MercDetect" value = 20 }
-		merc_account_apply_cost_modifiers = yes
 	}
 
 	option = {
@@ -156,10 +159,10 @@ country_event = {
 	}
 
 	immediate = {
-		set_variable = { which = "MercCost" value = 15000 }
+		set_variable = { which = "MercCostEnergy" value = 7500 }
+		set_variable = { which = "MercCostInfluence" value = 50 }
 		set_variable = { which = "MercSuccess" value = 75 }
 		set_variable = { which = "MercDetect" value = 35 }
-		merc_account_apply_cost_modifiers = yes
 	}
 
 	option = {
@@ -211,10 +214,9 @@ country_event = {
 	}
 
 	immediate = {
-		set_variable = { which = "MercCost" value = 2500 }
+		set_variable = { which = "MercCostEnergy" value = 2000 }
 		set_variable = { which = "MercSuccess" value = 95 }
 		set_variable = { which = "MercDetect" value = 20 }
-		merc_account_apply_cost_modifiers = yes
 	}
 
 	option = {
@@ -267,10 +269,10 @@ country_event = {
 	}
 
 	immediate = {
-		set_variable = { which = "MercCost" value = 10000 }
+		set_variable = { which = "MercCost" value = 500 }
+		set_variable = { which = "MercCostEnergy" value = 5000 }
 		set_variable = { which = "MercSuccess" value = 80 }
 		set_variable = { which = "MercDetect" value = 25 }
-		merc_account_apply_cost_modifiers = yes
 	}
 
 	option = {
@@ -310,7 +312,6 @@ country_event = {
 
 	immediate = {
 		# XXX apply multiplier, needs to be done when mission is complete
-		#merc_account_apply_cost_modifiers = yes
 	}
 
 	option = {
