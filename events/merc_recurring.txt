@@ -20,6 +20,7 @@
 namespace = mercRecurring
 
 # on yearly pulse to deduct deposit
+# XXX add energy deposit
 event = {
 	id = mercRecurring.100
 	hide_window = yes

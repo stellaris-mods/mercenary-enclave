@@ -19,6 +19,9 @@
 
 namespace = mercMenu
 
+# XXX add deposit + withdraw for energy
+# XXX add withdraw for minerals
+
 # Mercenaries Main Menu #1
 country_event = {
 	id = mercMenu.100
@@ -89,17 +92,17 @@ country_event = {
 				NOT = { has_country_flag = "attacked_folk_mercenaries" }
 			}
 		}
+		add_minerals = -2500
+		event_target:traders = {
+			add_trust = {
+				who = ROOT
+				amount = 5
+			}
+		}
 		hidden_effect = {
-			add_minerals = -2500
 			change_variable = {
 				which = "MercDeposit"
 				value = 2500
-			}
-			event_target:traders = {
-				add_trust = {
-					who = ROOT
-					amount = 5
-				}
 			}
 			set_relation_flag = {
 				who = event_target:traders
@@ -267,17 +270,17 @@ country_event = {
 				NOT = { has_country_flag = "attacked_folk_mercenaries" }
 			}
 		}
+		add_minerals = -2500
+		event_target:traders = {
+			add_trust = {
+				who = ROOT
+				amount = 5
+			}
+		}
 		hidden_effect = {
-			add_minerals = -2500
 			change_variable = {
 				which = "MercDeposit"
 				value = 2500
-			}
-			event_target:traders = {
-				add_trust = {
-					who = ROOT
-					amount = 5
-				}
 			}
 			set_relation_flag = {
 				who = event_target:traders
