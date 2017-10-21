@@ -17,90 +17,97 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-namespace = fmercstations
 
-country_event = {
-	id = fmercstations.1
+namespace = mercStationController
+
+# XXX Add event that if the enclave has less than FOO station complexes
+# XXX in the galaxy, offer a deal with a random default country to allow
+# XXX station access.
+# XXX FOO = number of default countries - 1 ?
+# XXX And make the AI automatically accept.
+# XXX Obviously, they need to have contact with the enclave.
+
+event = {
+	id = mercStationController.1
 	hide_window = yes
-
+	is_triggered_only = yes
 	trigger = {
-		is_country_type = "fmerc_enclave"
+		any_country = { is_country_type = "fmerc_enclave" }
 	}
+	immediate = {
+		random_country = {
+			limit = { is_country_type = "fmerc_enclave" }
+			save_event_target_as = enclave
+		}
+		every_country = {
+			limit = { has_country_flag = "fmerc_allow_stations" }
+			if = {
+				limit = { NOT = { event_target:enclave = { any_owned_fleet = { is_inside_border = PREVPREV } } } }
+				# This country has allowed station access, but we dont have any
+				# stations inside their borders.
+				random_system_within_border = {
+					limit = { NOT = { any_planet = { is_colony = yes } } }
+					random_system_planet = {
+						planet_event = { id = mercStationController.2 }
+					}
+				}
+				# XXX make sure we spawned something
+				else = {
+					# We have a station inside their borders
+					# XXX make sure the system we are in is still without a colony
+					# XXX and if it isn't, make a new station somewhere else
+					# XXX (maybe dismantle old one?)
+				}
+			}
+		}
+	}
+}
 
-	mean_time_to_happen = {
-		days = 720
-	}
+planet_event = {
+	id = mercStationController.2
+	hide_window = yes
+	is_triggered_only = yes
 
 	immediate = {
-		# we dont remove stations from countries that attacked us, because we dont care if
-		# they allow us or not after that
-
-		every_country = {
-			limit = {
-				has_country_flag = "fmerc_allow_stations"
-			}
-			if = {
-				limit = {
-					NOT = {
-						PREV = {
-							any_owned_fleet = {
-								exists = solar_system
-								solar_system = {
-									exists = space_owner
-									space_owner = {
-										is_same_value = PREVPREVPREVPREV
-									}
-								}
-							}
-						}
-					}
+		create_fleet = {
+			name = "Whiteout Enterprises Outpost"
+			settings = { spawn_debris = no }
+			effect = {
+				set_owner = event_target:enclave
+				create_ship = {
+					name = " "
+					design = "Mercenary Enclave Century"
 				}
-				random_owned_planet = {
-					solar_system = { # guess we didnt need this one, oh well
-						ROOT = {
-							create_fleet = {
-								name = "Whiteout Enterprises Outpost"
-								settings = { spawn_debris = no }
-								effect = {
-									set_owner = PREV
-									create_ship = {
-										name = " "
-										design = "Mercenary Enclave Century"
-									}
-									create_ship = {
-										name = " "
-										design = "Mercenary Enclave Century"
-									}
-									create_ship = {
-										name = "Spaceport"
-										design = "Mercenary Spaceport"
-									}
-									create_ship = {
-										name = " "
-										design = "Mercenary Enclave Pioneer"
-									}
-									create_ship = {
-										name = " "
-										design = "Mercenary Enclave Pioneer"
-									}
-									set_fleet_formation = {
-										position = { x = 2.5    y = -2.5   } #4 spaceport 3
-										position = { x = -2.5   y = -2.5   } #3 spaceport 2
-										position = { x = -2.5    y = 2.5    } #2 spaceport 1
-										position = { x = 2.5    y = 2.5    } #2 spaceport
-										position = { x = 0    y = 0    } #1
-									}
-									set_formation_scale = 0.6
-									set_location = {
-										target = PREVPREVPREV
-										distance = 120
-									}
-									set_fleet_flag = "folk_mercenary_outpost"
-								}
-							}
-						}
-					}
+				create_ship = {
+					name = " "
+					design = "Mercenary Enclave Century"
 				}
+				create_ship = {
+					name = "Spaceport"
+					design = "Mercenary Spaceport"
+				}
+				create_ship = {
+					name = " "
+					design = "Mercenary Enclave Pioneer"
+				}
+				create_ship = {
+					name = " "
+					design = "Mercenary Enclave Pioneer"
+				}
+				set_fleet_formation = {
+					position = { x = 2.5    y = -2.5   } #4 spaceport 3
+					position = { x = -2.5   y = -2.5   } #3 spaceport 2
+					position = { x = -2.5    y = 2.5    } #2 spaceport 1
+					position = { x = 2.5    y = 2.5    } #2 spaceport
+					position = { x = 0    y = 0    } #1
+				}
+				set_formation_scale = 0.6
+				set_location = {
+					target = ROOT
+					distance = 80
+					angle = random
+				}
+				set_fleet_flag = "folk_mercenary_outpost"
 			}
 		}
 	}
