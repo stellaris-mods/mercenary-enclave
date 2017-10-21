@@ -23,25 +23,22 @@ namespace = mercRelations
 # But have since been modified quite heavily.
 # ZZZ Try not renaming event targets, they might be used in localisations
 
-# on_ship_destroyed_victim
+# on_fleet_destroyed_victim
 country_event = {
 	id = mercRelations.140
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = { is_country_type = "fmerc_enclave" }
 	immediate = {
-		FROMFROM = {
-			solar_system = { save_event_target_as = trader_system }
-		}
+		FROMFROM = { solar_system = { save_event_target_as = trader_system } }
 		FROM = {
 			country_event = { id = mercRelations.141 }
 			save_event_target_as = trader_destroyer
 		}
+
 		# If we have zero fleets left, we are dead, so notify customers
 		if = {
 			limit = { count_owned_ships { count = 0 } }
-			set_global_flag = "folk_mercenary_destroyed"
 			every_country = {
 				limit = {
 					has_communications = ROOT
@@ -49,13 +46,17 @@ country_event = {
 				}
 				country_event = { id = mercRelations.142 }
 			}
+
+			# Destroy any active operations and ourselves
+			every_country = {
+				limit = { is_country_type = "fmerc_operations" }
+				destroy_country = yes
+			}
+			destroy_country = yes
 		}
 	}
 }
 
-# XXX
-# ROOT attacked and killed _one_ mercenary enclave ship. Surely this must
-# be a mistake. It should be if we destroyed a FLEET maybe?
 country_event = {
 	id = mercRelations.141
 	title = "guardian.141"
@@ -64,13 +65,10 @@ country_event = {
 	location = event_target:trader_system
 	show_sound = event_ship_bridge
 	is_triggered_only = yes
-
-	immediate = { set_country_flag = "fmerc_has_destroyed_ship" }
 	option = {
 		name = EXCELLENT
 		add_minerals = 8000
 		add_energy = 8000
-		# XXX get back some of the deposit
 	}
 }
 
