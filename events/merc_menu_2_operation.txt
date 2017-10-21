@@ -35,8 +35,6 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
-
 	option = {
 		name = fmerc_enclave.close
 		default_hide_option = yes
@@ -102,7 +100,6 @@ country_event = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 	immediate = {
 		set_variable = { which = "MercCost" value = 5000 }
 		set_variable = { which = "MercSuccess" value = 80 }
@@ -157,7 +154,6 @@ country_event = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	immediate = {
 		set_variable = { which = "MercCost" value = 15000 }
@@ -213,7 +209,6 @@ country_event = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	immediate = {
 		set_variable = { which = "MercCost" value = 2500 }
@@ -270,7 +265,6 @@ country_event = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	immediate = {
 		set_variable = { which = "MercCost" value = 10000 }
@@ -313,7 +307,6 @@ country_event = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	immediate = {
 		# XXX apply multiplier, needs to be done when mission is complete

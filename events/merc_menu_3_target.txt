@@ -34,8 +34,6 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
-
 	option = {
 		name = fmerc_enclave.close
 		default_hide_option = yes
@@ -226,7 +224,6 @@ country_event = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 	immediate = {
 		# ZZZ So this mess right here is the only reason we don't provide a
 		# ZZZ "Back" button after this step, because I don't have a good way

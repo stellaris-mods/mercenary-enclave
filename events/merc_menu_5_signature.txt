@@ -65,7 +65,6 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 	option = {
 		name = fmerc_enclave.close
 		default_hide_option = yes
@@ -144,8 +143,6 @@ country_event = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
-
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
 		name = fmerc_enclave.close
@@ -226,8 +223,6 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
-
 	option = {
 		name = fmerc_enclave.close
 		default_hide_option = yes
@@ -307,8 +302,6 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
-
 	option = {
 		name = fmerc_enclave.close
 		default_hide_option = yes
@@ -387,7 +380,6 @@ country_event = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
 		name = fmerc_enclave.close

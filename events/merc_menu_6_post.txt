@@ -50,7 +50,6 @@ country_event = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
-	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	immediate = { merc_account_update = yes }
 	after = { hidden_effect = { country_event = { id = mercMenu.9001 } } }
