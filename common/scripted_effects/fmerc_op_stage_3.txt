@@ -349,8 +349,6 @@ fmerc_stage3_configure_squadrons = {
 	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
 	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
 	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
-
-	log = "Squadron requirements: BS=[this.BattleshipSquad] C=[this.CruiserSquad] D=[this.DestroyerSquad] C=[this.Corvette]"
 }
 
 # While loops only loop to 100.
@@ -362,13 +360,16 @@ fmerc_stage3_match_fleet_power = {
 		limit = { check_variable = { which = "MercSpawn" value < "Corvette" } }
 		change_variable = { which = "MercSpawn" value = "Corvette" }
 		change_variable = { which = "MercSpawn" value = "Corvette" }
+		log = "Adjusted minimum: [this.MercSpawn]."
 	}
 	while = {
 		limit = { check_variable = { which = "MercSpawn" value < "Corvette" } }
 		change_variable = { which = "MercSpawn" value = 200 }
+		log = "Adjusted absolute minimum: [this.MercSpawn]."
 	}
 
-	log = "Final adjusted military power: [this.MercSpawn]."
+	log = "Final fleet power: [this.MercSpawn]."
+	log = "Squadron requirements: B=[this.BattleshipSquad] C=[this.CruiserSquad] D=[this.DestroyerSquad] C=[this.Corvette]"
 
 	if = { limit = { check_variable = { which = "Corvette" value = 0 } }
 		# There's no valid Corvette design, as far as we can see.
@@ -532,6 +533,7 @@ fmerc_stage3_create_fleet = {
 		# what our "success chance" is.
 		change_variable = { which = "MercSpawn" value = 1500 }
 	}
+	log = "Base fleet power is [this.MercSpawn]."
 
 	# Add MercSpawn per opinion level with merc hq
 	fmerc_set_buyer = yes
@@ -562,6 +564,7 @@ fmerc_stage3_create_fleet = {
 			}}}}}}}}}}}}}}}}}}}
 		}
 	}
+	log = "Adjusted for trust level: [this.MercSpawn]."
 
 	# fmerc_target is always a planet or fleet
 	event_target:fmerc_target = {
@@ -581,14 +584,16 @@ fmerc_stage3_create_fleet = {
 					}
 				}
 				fmerc_stage3_get_fleet_power = yes
-				log = "Matched [this.GetName]'s fleet power: [root.MercSpawn]."
+				log = "Matching fleet [this.GetName]: [root.MercSpawn]."
 			}
 		}
 	}
 	set_variable = { which = "MercPercentSuccess" value = "MercSuccess" }
 	divide_variable = { which = "MercPercentSuccess" value = 100 }
 	multiply_variable = { which = "MercSpawn" value = "MercPercentSuccess" }
-	log = "Spawning [this.MercSpawn] (x[this.MercPercentSuccess]) fleet power for operation fleet."
+
+	log = "Adjusted for success (x[this.MercPercentSuccess]): [this.MercSpawn]."
+
 	fmerc_stage3_match_fleet_power = yes
 
 	# XXX This doesn't seem to be working.
