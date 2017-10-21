@@ -128,25 +128,35 @@ fmerc_enclave.200.desc: "We at §YWhiteout Enterprises§! provide several specia
 
 fmerc_enclave.target.invalid_operation: "We can not execute this type of operation against this type of empire."
 
+merc.param.minerals: "Mineral cost: £minerals §G[root.MercCost]§!\n"
+merc.param.energy: "Energy cost: £energy §G[root.MercCostEnergy]§!\n"
+merc.param.influence: "Influence cost: £influence §G[root.MercCostInfluence]§!\n"
+merc.param.minerals.monthly: "Monthly mineral cost: £minerals §G[root.MercMonthlyCost]§!\n"
+merc.parparamameters.energy.monthly: "Monthly energy cost: £energy §G[root.MercMonthlyCostEnergy]§!\n"
+merc.param.influence.monthly: "Monthly influence cost: £influence §G[root.MercMonthlyCostInfluence]§!\n"
+merc.param.success: "Chance of success: §G[root.MercSuccess]%§!\n"
+merc.param.detection: "Detection risk: §P[root.MercDetect]§!\n"
+
 # Spaceports service
 fmerc_enclave.300.name: "Attack Spaceport"
-fmerc_enclave.300.desc: "After you have selected the target country and some other operational parameters, §YWhiteout Enterprises§! will locate and destroy one or more Spaceport facilities on your behalf. If we can not locate a valid Spaceport, we will attempt to clear one entire star system of military stations.\n\nCost: £minerals §G5000§!\nChance of success: §G80%§!\nDetection risk: §G20%§!"
+fmerc_enclave.300.desc: "After you have selected the target country and some other operational parameters, §YWhiteout Enterprises§! will locate and destroy one or more Spaceport facilities on your behalf. If we can not locate a valid Spaceport, we will attempt to clear one entire star system of military stations."
 
 # Liberate Planet
 fmerc_enclave.400.name: "Liberate Planet"
-fmerc_enclave.400.desc: "Planet liberation is always risky business, and has an immense upfront cost - but the payoff is exceptional. If you select this option, §YWhiteout Enterprises§! finds a suitable target planet to invade, and does all the dirty work for you. Once liberated, the population on the planet will be \"convinced\" to follow your ethos, and then forcefully freed from - what we can only presume is - the tyranny of their empire.\n\nCost: £minerals §G15000§!\nChance of success: §G75%§!\nDetection risk: §G35%§!"
+fmerc_enclave.400.desc: "Planet liberation is always risky business, and has an immense upfront cost - but the payoff is exceptional. If you select this option, §YWhiteout Enterprises§! finds a suitable target planet to invade, and does all the dirty work for you. Once liberated, the population on the planet will be \"convinced\" to follow your ethos, and then forcefully freed from - what we can only presume is - the tyranny of their empire."
 
 # Mining/Research Raid
 fmerc_enclave.500.name: "Mining/Research Raid"
-fmerc_enclave.500.desc: "Want to stifle an adversaries economy? This option is for you. After you set up the menial operational parameters of the raid, §YWhiteout Enterprises§! will locate, engage, and destroy, between 5 and 12 mining/research stations in your adversaries space. Obviously, any loot we find is ours to keep.\n\nCost: £minerals §G2500§!\nChance of success: §G95%§!\nDetection risk: §G25%§!"
+fmerc_enclave.500.desc: "Want to stifle an adversaries economy? This option is for you. After you set up the menial operational parameters of the raid, §YWhiteout Enterprises§! will locate, engage, and destroy, between 5 and 12 mining/research stations in your adversaries space. Obviously, any loot we find is ours to keep."
 
 # Fleet Battle
 fmerc_enclave.600.name: "Fleet Raid"
-fmerc_enclave.600.desc: "The most dangerous operation we can undertake. This puts us inevitably in direct confrontation with enemy admirals and leadership, and is thus the chance of capture is extremely high. However, this is what we live for, what we work for. If you select this service, §YWhiteout Enterprises§! will locate, identify, track, and engage, a minimum of 1 (one) hostile fleet of at least size 20 or more. If we can not find a fleet this big, we will find the toughest one.\n\nCost: £minerals §G10000§!\nChance of success: §G80%§!\nDetection risk: §G25%§!"
+fmerc_enclave.600.desc: "The most dangerous operation we can undertake. This puts us inevitably in direct confrontation with enemy admirals and leadership, and is thus the chance of capture is extremely high. However, this is what we live for, what we work for. If you select this service, §YWhiteout Enterprises§! will locate, identify, track, and engage, a minimum of 1 (one) hostile fleet of at least size 20 or more. If we can not find a fleet this big, we will find the toughest one."
 
 # Clear Space
 fmerc_enclave.700.name: "Clear Space"
 fmerc_enclave.700.desc: "Pirates, Drones, Amoebas, or other random annoying hostiles lounge about inside your territories? §YWhiteout Enterprises§! can handle some of those targets for you. For a price.\n\nSelect the type of target you want us to §Rimmediately§! engage in our services menu on the right, and let us get to work. §GThere is no red tape on this one.§!\n\nCost: £minerals §GBetween 300 and 3000§!\nChance of success: §G95%§!\nDetection risk: §G0%§!"
+
 fmerc_enclave.700.amoeba: "Immediately attack $space_amoeba_plural$"
 fmerc_enclave.700.cloud: "Immediately attack $space_cloud_plural$"
 fmerc_enclave.700.crystal: "Immediately attack Crystals"

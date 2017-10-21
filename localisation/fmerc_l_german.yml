@@ -122,6 +122,15 @@ fmerc_enclave.110.close: "That is unfortunate. We will disassemble any operation
 fmerc_enclave.150.buy: "Good thinking. We will let you know if anyone orders any services against you."
 fmerc_enclave.150.sell: "That's unfortunate. Look for us on the horizon."
 
+merc.param.minerals: "Mineral cost: £minerals §G[root.MercCost]§!\n"
+merc.param.energy: "Energy cost: £energy §G[root.MercCostEnergy]§!\n"
+merc.param.influence: "Influence cost: £influence §G[root.MercCostInfluence]§!\n"
+merc.param.minerals.monthly: "Monthly mineral cost: £minerals §G[root.MercMonthlyCost]§!\n"
+merc.parparamameters.energy.monthly: "Monthly energy cost: £energy §G[root.MercMonthlyCostEnergy]§!\n"
+merc.param.influence.monthly: "Monthly influence cost: £influence §G[root.MercMonthlyCostInfluence]§!\n"
+merc.param.success: "Chance of success: §G[root.MercSuccess]%§!\n"
+merc.param.detection: "Detection risk: §P[root.MercDetect]§!\n"
+
 # Services menu
 fmerc_enclave.200.name: "Special Operations"
 fmerc_enclave.200.desc: "We at §YWhiteout Enterprises§! provide several special combat operations for our customers. Feel free to browse our brochure!\n\nPlease read the descriptions carefully, and sign on the dotted line.\n§YWhiteout Enterprise§! operations have several parameters that will remain outside any clients control, the most important of which is timing. After you sign up for a service, it might take anywhere from 3 days to 90 days before the operation starts. This allows us to plan carefully, and is not up for negotiation."

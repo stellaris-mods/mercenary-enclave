@@ -33,13 +33,20 @@ country_event = {
 		fmerc_reset_diplo_screen = yes
 		set_country_flag = "fmerc_diplomacy_engaged"
 		FROM = { save_event_target_as = traders }
+
+		# XXX Add multiplier scaling by trust level
+		if = { limit = { has_country_flag = "merc_attacked_enclave" }
+			set_variable = {
+				which = "MercMultiplier"
+				value = 1.75
+			}
+		}
+
 		if = { limit = { has_country_flag = "fmerc_active_operation" }
 			country_event = { id = mercMenu.102 }
-		else = { if = { limit = { has_country_flag = "merc_attacked_enclave" }
-			country_event = { id = mercMenu.103 }
 		else = {
 			country_event = { id = mercMenu.101 }
-		} } } }
+		} }
 	}
 }
 
@@ -230,37 +237,6 @@ country_event = {
 	immediate = {
 		fmerc_reset_diplo_screen = yes
 		set_country_flag = "fmerc_diplomacy_engaged"
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-}
-
-# Main menu if we have merc_attacked_enclave
-# XXX I want to change this so that it just applies a multiplier to all
-# XXX transactions
-country_event = {
-	id = mercMenu.103
-	title = fmerc_enclave.name
-	desc = fmerc_enclave.attacked.desc
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_trader_window"
-	custom_gui_option = "enclave_trader_option"
-	force_open = yes
-	picture_event_data = {
-		portrait = event_target:traders
-		room = enclave_trader_room
-	}
-	immediate = {
-		fmerc_reset_diplo_screen = yes
-		set_country_flag = "fmerc_diplomacy_engaged"
-		set_variable = { # XXX lets get this done
-			which = "MercMultiplier"
-			value = 1.75
-		}
 	}
 	option = {
 		name = fmerc_enclave.close

@@ -186,6 +186,15 @@ fmerc_enclave.150.buy: "Правильное решение. Мы дадим в�
 ##fmerc_enclave.150.sell: "That's unfortunate. Look for us on the horizon."
 fmerc_enclave.150.sell: "Печально. Мы будем рядом."
 
+merc.param.minerals: "Mineral cost: £minerals §G[root.MercCost]§!\n"
+merc.param.energy: "Energy cost: £energy §G[root.MercCostEnergy]§!\n"
+merc.param.influence: "Influence cost: £influence §G[root.MercCostInfluence]§!\n"
+merc.param.minerals.monthly: "Monthly mineral cost: £minerals §G[root.MercMonthlyCost]§!\n"
+merc.parparamameters.energy.monthly: "Monthly energy cost: £energy §G[root.MercMonthlyCostEnergy]§!\n"
+merc.param.influence.monthly: "Monthly influence cost: £influence §G[root.MercMonthlyCostInfluence]§!\n"
+merc.param.success: "Chance of success: §G[root.MercSuccess]%§!\n"
+merc.param.detection: "Detection risk: §P[root.MercDetect]§!\n"
+
 # Services menu
 ##fmerc_enclave.200.name: "Special Operations"
 fmerc_enclave.200.name: "Специальные операции"

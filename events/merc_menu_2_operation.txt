@@ -77,12 +77,24 @@ country_event = {
 	}
 }
 
-
 # Attack spaceport
 country_event = {
 	id = mercMenu.300
 	title = fmerc_enclave.300.name
-	desc = fmerc_enclave.300.desc
+	desc = {
+		trigger = {
+			text = fmerc_enclave.300.desc
+			text = newline
+			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
+			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
+			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
+			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
+		}
+	}
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -92,25 +104,18 @@ country_event = {
 		portrait = event_target:traders
 		room = enclave_trader_room
 	}
-
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+	immediate = {
+		set_variable = { which = "MercCost" value = 5000 }
+		set_variable = { which = "MercSuccess" value = 80 }
+		set_variable = { which = "MercDetect" value = 20 }
+		# XXX apply multiplier
+	}
 
 	option = {
 		name = fmerc_enclave.order
 		custom_tooltip = fmerc_enclave.order.tooltip
 		hidden_effect = {
-			set_variable = {
-				which = "MercCost"
-				value = 5000
-			}
-			set_variable = {
-				which = "MercSuccess"
-				value = 80
-			}
-			set_variable = {
-				which = "MercDetect"
-				value = 20
-			}
 			set_country_flag = "fmerc_diplo_spaceport"
 			country_event = { id = mercMenu.1000 }
 		}
@@ -130,7 +135,20 @@ country_event = {
 country_event = {
 	id = mercMenu.400
 	title = fmerc_enclave.400.name
-	desc = fmerc_enclave.400.desc
+	desc = {
+		trigger = {
+			text = fmerc_enclave.400.desc
+			text = newline
+			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
+			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
+			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
+			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
+		}
+	}
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -140,25 +158,19 @@ country_event = {
 		portrait = event_target:traders
 		room = enclave_trader_room
 	}
-
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	immediate = {
+		set_variable = { which = "MercCost" value = 15000 }
+		set_variable = { which = "MercSuccess" value = 75 }
+		set_variable = { which = "MercDetect" value = 35 }
+		# XXX apply multiplier
+	}
 
 	option = {
 		name = fmerc_enclave.order
 		custom_tooltip = fmerc_enclave.order.tooltip
 		hidden_effect = {
-			set_variable = {
-				which = "MercCost"
-				value = 15000
-			}
-			set_variable = {
-				which = "MercSuccess"
-				value = 75
-			}
-			set_variable = {
-				which = "MercDetect"
-				value = 35
-			}
 			set_country_flag = "fmerc_diplo_liberate"
 			country_event = { id = mercMenu.1000 }
 		}
@@ -178,7 +190,20 @@ country_event = {
 country_event = {
 	id = mercMenu.500
 	title = fmerc_enclave.500.name
-	desc = fmerc_enclave.500.desc
+	desc = {
+		trigger = {
+			text = fmerc_enclave.500.desc
+			text = newline
+			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
+			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
+			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
+			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
+		}
+	}
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -188,25 +213,19 @@ country_event = {
 		portrait = event_target:traders
 		room = enclave_trader_room
 	}
-
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	immediate = {
+		set_variable = { which = "MercCost" value = 2500 }
+		set_variable = { which = "MercSuccess" value = 95 }
+		set_variable = { which = "MercDetect" value = 20 }
+		# XXX apply multiplier
+	}
 
 	option = {
 		name = fmerc_enclave.order
 		custom_tooltip = fmerc_enclave.order.tooltip
 		hidden_effect = {
-			set_variable = {
-				which = "MercCost"
-				value = 2500
-			}
-			set_variable = {
-				which = "MercSuccess"
-				value = 95
-			}
-			set_variable = {
-				which = "MercDetect"
-				value = 20
-			}
 			set_country_flag = "fmerc_diplo_miningraid"
 			country_event = { id = mercMenu.1000 }
 		}
@@ -227,7 +246,20 @@ country_event = {
 country_event = {
 	id = mercMenu.600
 	title = fmerc_enclave.600.name
-	desc = fmerc_enclave.600.desc
+	desc = {
+		trigger = {
+			text = fmerc_enclave.600.desc
+			text = newline
+			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
+			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
+			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
+			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
+		}
+	}
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -237,25 +269,19 @@ country_event = {
 		portrait = event_target:traders
 		room = enclave_trader_room
 	}
-
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	immediate = {
+		set_variable = { which = "MercCost" value = 10000 }
+		set_variable = { which = "MercSuccess" value = 80 }
+		set_variable = { which = "MercDetect" value = 25 }
+		# XXX apply multiplier
+	}
 
 	option = {
 		name = fmerc_enclave.order
 		custom_tooltip = fmerc_enclave.order.tooltip
 		hidden_effect = {
-			set_variable = {
-				which = "MercCost"
-				value = 10000
-			}
-			set_variable = {
-				which = "MercSuccess"
-				value = 80
-			}
-			set_variable = {
-				which = "MercDetect"
-				value = 25
-			}
 			set_country_flag = "fmerc_diplo_fleetraid"
 			country_event = { id = mercMenu.1000 }
 		}
@@ -275,6 +301,7 @@ country_event = {
 country_event = {
 	id = mercMenu.700
 	title = fmerc_enclave.700.name
+	# Custom desc because variables can't represent zero
 	desc = fmerc_enclave.700.desc
 	is_triggered_only = yes
 	diplomatic = yes
@@ -285,8 +312,11 @@ country_event = {
 		portrait = event_target:traders
 		room = enclave_trader_room
 	}
-
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
+
+	immediate = {
+		# XXX apply multiplier
+	}
 
 	option = {
 		name = fmerc_enclave.700.amoeba
