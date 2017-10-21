@@ -103,10 +103,6 @@ country_event = {
 		}
 		hidden_effect = {
 			change_variable = { which = "MercDeposit" value = 2500 }
-			set_relation_flag = {
-				who = event_target:traders
-				flag = fmercenary_trade
-			}
 		}
 		is_dialog_only = yes
 		response_text = fmerc_enclave.100.minerals.reply
@@ -140,10 +136,6 @@ country_event = {
 		}
 		hidden_effect = {
 			change_variable = { which = "MercDepositEnergy" value = 2500 }
-			set_relation_flag = {
-				who = event_target:traders
-				flag = fmercenary_trade
-			}
 		}
 		is_dialog_only = yes
 		response_text = fmerc_enclave.100.energy.reply

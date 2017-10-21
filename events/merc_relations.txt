@@ -79,26 +79,7 @@ country_event = {
 country_event = {
 	id = mercRelations.142
 	title = "guardian.141"
-	desc = {
-		text = fmerc_enclave.a.desc
-		trigger = {
-			NOT = {
-				has_relation_flag = {
-					who = FROM
-					flag = fmercenary_trade
-				}
-			}
-		}
-	}
-	desc = {
-		text = fmerc_enclave.c.desc
-		trigger = {
-			has_relation_flag = {
-				who = FROM
-				flag = fmercenary_trade
-			}
-		}
-	}
+	desc = fmerc_enclave.a.desc
 	picture = GFX_evt_exploding_ship
 	location = event_target:trader_system
 	show_sound = event_ship_explosion
@@ -126,45 +107,11 @@ country_event = {
 
 	immediate = {
 		FROM = {
-			save_event_target_as = traders
 			add_trust = {
 				who = ROOT
 				amount = -100
 			}
 		}
 		set_country_flag = "merc_attacked_enclave"
-		if = {
-			limit = {
-				has_relation_flag = {
-					who = FROM
-					flag = fmercenary_trade
-				}
-			}
-			remove_relation_flag = {
-				who = FROM
-				flag = fmercenary_trade
-			}
-			country_event = { id = mercRelations.156 }
-		}
-	}
-}
-
-# Attacked Mercs - Trade Agreement Terminated
-country_event = {
-	id = mercRelations.156
-	title = fmerc_enclave.name
-	desc = fmerc_enclave.156.desc
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_trader_window"
-
-	picture_event_data = {
-		portrait = event_target:traders
-		room = enclave_trader_room
-	}
-
-	option = {
-		name = fmerc_enclave.156.a
-		custom_gui = "enclave_trader_option"
 	}
 }

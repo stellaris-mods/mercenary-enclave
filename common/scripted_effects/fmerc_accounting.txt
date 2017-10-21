@@ -236,21 +236,6 @@ merc_account_internal_grab_minerals = {
 		change_variable = { which = "MercDeposit" value = -1 }
 	}
 
-	if = {
-		limit = {
-			check_variable = { which = "MercDeposit" value < 1 }
-			check_variable = { which = "MercDepositEnergy" value < 1 }
-			has_relation_flag = {
-				who = event_target:traders
-				flag = fmercenary_trade
-			}
-		}
-		remove_relation_flag = {
-			who = event_target:traders
-			flag = fmercenary_trade
-		}
-	}
-
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 1000 }
@@ -320,21 +305,6 @@ merc_account_internal_grab_energy = {
 		}
 		change_variable = { which = "MercTmp" value = -1 }
 		change_variable = { which = "MercDepositEnergy" value = -1 }
-	}
-
-	if = {
-		limit = {
-			check_variable = { which = "MercDeposit" value < 1 }
-			check_variable = { which = "MercDepositEnergy" value < 1 }
-			has_relation_flag = {
-				who = event_target:traders
-				flag = fmercenary_trade
-			}
-		}
-		remove_relation_flag = {
-			who = event_target:traders
-			flag = fmercenary_trade
-		}
 	}
 
 	while = {
