@@ -34,14 +34,6 @@ country_event = {
 		set_country_flag = "fmerc_diplomacy_engaged"
 		FROM = { save_event_target_as = traders }
 
-		# XXX Add multiplier scaling by trust level
-		if = { limit = { has_country_flag = "merc_attacked_enclave" }
-			set_variable = {
-				which = "MercMultiplier"
-				value = 1.75
-			}
-		}
-
 		if = { limit = { has_country_flag = "fmerc_active_operation" }
 			country_event = { id = mercMenu.102 }
 		else = {

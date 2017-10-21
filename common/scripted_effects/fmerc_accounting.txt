@@ -17,6 +17,143 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
+# #!/usr/bin/lua
+# local tmpl = [[
+# else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > %d } } }
+# 	set_variable = { which = "MercTrustMultiplier" value = %s }]]
+# local steps = 39
+# local max = 100
+# local currentMod = 0.5
+# local modStep = (1.5 / steps)
+# for i = 1, steps do
+# 	local trust = max - (i * 5)
+# 	print(tmpl:format(trust, (math.floor((currentMod * 10^2) + 0.5) / (10^2))))
+# 	currentMod = currentMod + modStep
+# end
+
+
+merc_account_apply_cost_modifiers = {
+	# if = { limit = { check_variable = { which = "MercCost" value > 0 } }
+	# 	multiply_variable = { which = "MercCost" value = "MercMultiplier" }
+	# }
+	# if = { limit = { check_variable = { which = "MercCostEnergy" value > 0 } }
+	# 	multiply_variable = { which = "MercCostEnergy" value = "MercMultiplier" }
+	# }
+	# if = { limit = { check_variable = { which = "MercCostInfluence" value > 0 } }
+	# 	multiply_variable = { which = "MercCostInfluence" value = "MercMultiplier" }
+	# }
+	# if = { limit = { check_variable = { which = "MercMonthlyCost" value > 0 } }
+	# 	multiply_variable = { which = "MercMonthlyCost" value = "MercMultiplier" }
+	# }
+	# if = { limit = { check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+	# 	multiply_variable = { which = "MercMonthlyCostEnergy" value = "MercMultiplier" }
+	# }
+	# if = { limit = { check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+	# 	multiply_variable = { which = "MercMonthlyCostInfluence" value = "MercMultiplier" }
+	# }
+
+	if = { limit = { event_target:traders = { trust = { who = ROOT value > 95 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.5 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 90 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.54 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 85 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.58 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 80 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.62 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 75 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.65 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 70 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.69 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 65 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.73 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 60 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.77 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 55 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.81 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 50 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.85 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 45 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.88 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 40 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.92 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 35 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 0.96 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 30 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 25 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.04 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 20 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.08 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 15 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.12 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 10 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.15 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 5 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.19 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > 0 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.23 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -5 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.27 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -10 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.31 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -15 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.35 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -20 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.38 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -25 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.42 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -30 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.46 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -35 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.5 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -40 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.54 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -45 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.58 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -50 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.62 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -55 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.65 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -60 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.69 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -65 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.73 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -70 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.77 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -75 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.81 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -80 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.85 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -85 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.88 }
+	else = { if = { limit = { event_target:traders = { trust = { who = ROOT value > -90 } } }
+		set_variable = { which = "MercTrustMultiplier" value = 1.92 }
+	else = {
+		set_variable = { which = "MercTrustMultiplier" value = 1.96 }
+	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+	if = { limit = { check_variable = { which = "MercCost" value > 0 } }
+		multiply_variable = { which = "MercCost" value = "MercTrustMultiplier" }
+	}
+	if = { limit = { check_variable = { which = "MercCostEnergy" value > 0 } }
+		multiply_variable = { which = "MercCostEnergy" value = "MercTrustMultiplier" }
+	}
+	if = { limit = { check_variable = { which = "MercCostInfluence" value > 0 } }
+		multiply_variable = { which = "MercCostInfluence" value = "MercTrustMultiplier" }
+	}
+	if = { limit = { check_variable = { which = "MercMonthlyCost" value > 0 } }
+		multiply_variable = { which = "MercMonthlyCost" value = "MercTrustMultiplier" }
+	}
+	if = { limit = { check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+		multiply_variable = { which = "MercMonthlyCostEnergy" value = "MercTrustMultiplier" }
+	}
+	if = { limit = { check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+		multiply_variable = { which = "MercMonthlyCostInfluence" value = "MercTrustMultiplier" }
+	}
+
+	set_variable = { which = "MercTrustMultiplierPercent" value = "MercTrustMultiplier" }
+	multiply_variable = { which = "MercTrustMultiplierPercent" value = 100 }
+}
 
 merc_account_update = {
 	merc_account_internal_update_empire_minerals = yes

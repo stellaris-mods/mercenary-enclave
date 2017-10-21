@@ -112,6 +112,5 @@ country_event = {
 				amount = -100
 			}
 		}
-		set_country_flag = "merc_attacked_enclave"
 	}
 }
