@@ -28,7 +28,7 @@ country_event = {
 	title = fmerc_enclave.name
 	desc = {
 		trigger = {
-			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "merc_attacked_enclave" }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 			check_variable = {
 				which = "MercDeposit"
@@ -39,7 +39,7 @@ country_event = {
 	}
 	desc = {
 		trigger = {
-			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "merc_attacked_enclave" }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 			check_variable = {
 				which = "MercDeposit"
@@ -49,7 +49,7 @@ country_event = {
 		text = fmerc_enclave.100b.desc
 	}
 	desc = {
-		trigger = { has_country_flag = "attacked_folk_mercenaries" }
+		trigger = { has_country_flag = "merc_attacked_enclave" }
 		text = fmerc_enclave.attacked.desc
 	}
 	desc = {
@@ -89,7 +89,7 @@ country_event = {
 		allow = {
 			minerals > 2500
 			hidden_trigger = {
-				NOT = { has_country_flag = "attacked_folk_mercenaries" }
+				NOT = { has_country_flag = "merc_attacked_enclave" }
 			}
 		}
 		add_minerals = -2500
@@ -119,7 +119,7 @@ country_event = {
 		}
 		allow = {
 			hidden_trigger = {
-				NOT = { has_country_flag = "attacked_folk_mercenaries" }
+				NOT = { has_country_flag = "merc_attacked_enclave" }
 				# NOT = { event_target:traders = { has_country_flag = "fmerc_active_operation" } }
 			}
 		}
@@ -132,7 +132,7 @@ country_event = {
 		custom_tooltip = "fmerc_enclave.100.stations.tooltip"
 		trigger = {
 			NOT = { has_country_flag = "fmerc_allow_stations" }
-			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "merc_attacked_enclave" }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 		}
 		hidden_effect = {
@@ -145,7 +145,7 @@ country_event = {
 		custom_tooltip = "fmerc_enclave.100.nostations.tooltip"
 		trigger = {
 			has_country_flag = "fmerc_allow_stations"
-			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "merc_attacked_enclave" }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 		}
 		hidden_effect = {
@@ -157,7 +157,7 @@ country_event = {
 		name = fmerc_enclave.100.insurance.button
 		custom_tooltip = "fmerc_enclave.100.insurance.tooltip"
 		trigger = {
-			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "merc_attacked_enclave" }
 			NOT = { has_modifier = merc_enclave_insurance }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 		}
@@ -188,7 +188,7 @@ country_event = {
 		name = fmerc_enclave.100.insurance.sell
 		custom_tooltip = "fmerc_enclave.100.insurance.tooltip"
 		trigger = {
-			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "merc_attacked_enclave" }
 			has_modifier = merc_enclave_insurance
 			NOT = { has_country_flag = "fmerc_active_operation" }
 		}
@@ -211,7 +211,7 @@ country_event = {
 	title = fmerc_enclave.name
 	desc = {
 		trigger = {
-			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "merc_attacked_enclave" }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 			check_variable = {
 				which = "MercDeposit"
@@ -222,7 +222,7 @@ country_event = {
 	}
 	desc = {
 		trigger = {
-			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "merc_attacked_enclave" }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 			check_variable = {
 				which = "MercDeposit"
@@ -232,7 +232,7 @@ country_event = {
 		text = fmerc_enclave.100b.desc
 	}
 	desc = {
-		trigger = { has_country_flag = "attacked_folk_mercenaries" }
+		trigger = { has_country_flag = "merc_attacked_enclave" }
 		text = fmerc_enclave.attacked.desc
 	}
 	desc = {
@@ -267,7 +267,7 @@ country_event = {
 		allow = {
 			minerals > 2500
 			hidden_trigger = {
-				NOT = { has_country_flag = "attacked_folk_mercenaries" }
+				NOT = { has_country_flag = "merc_attacked_enclave" }
 			}
 		}
 		add_minerals = -2500
@@ -297,7 +297,7 @@ country_event = {
 		}
 		allow = {
 			hidden_trigger = {
-				NOT = { has_country_flag = "attacked_folk_mercenaries" }
+				NOT = { has_country_flag = "merc_attacked_enclave" }
 			}
 		}
 		hidden_effect = {
@@ -309,7 +309,7 @@ country_event = {
 		custom_tooltip = "fmerc_enclave.100.stations.tooltip"
 		trigger = {
 			NOT = { has_country_flag = "fmerc_allow_stations" }
-			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "merc_attacked_enclave" }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 		}
 		hidden_effect = {
@@ -322,7 +322,7 @@ country_event = {
 		custom_tooltip = "fmerc_enclave.100.nostations.tooltip"
 		trigger = {
 			has_country_flag = "fmerc_allow_stations"
-			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "merc_attacked_enclave" }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 		}
 		hidden_effect = {
@@ -334,7 +334,7 @@ country_event = {
 		name = fmerc_enclave.100.insurance.button
 		custom_tooltip = "fmerc_enclave.100.insurance.tooltip"
 		trigger = {
-			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "merc_attacked_enclave" }
 			NOT = { has_modifier = merc_enclave_insurance }
 			NOT = { has_country_flag = "fmerc_active_operation" }
 		}
@@ -365,7 +365,7 @@ country_event = {
 		name = fmerc_enclave.100.insurance.sell
 		custom_tooltip = "fmerc_enclave.100.insurance.tooltip"
 		trigger = {
-			NOT = { has_country_flag = "attacked_folk_mercenaries" }
+			NOT = { has_country_flag = "merc_attacked_enclave" }
 			has_modifier = merc_enclave_insurance
 			NOT = { has_country_flag = "fmerc_active_operation" }
 		}

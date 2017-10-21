@@ -45,7 +45,7 @@ special_project = {
 
 	on_success = {
 		owner = {
-			country_event = { id = mercguardian.99 }
+			country_event = { id = mercCommunications.99 }
 		}
 	}
 

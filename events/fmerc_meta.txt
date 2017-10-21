@@ -26,280 +26,6 @@ namespace = mercguardian
 
 # ZZZ Try not renaming event targets, they might be used in localisations
 
-@tier1influencecontact = 7
-@tier1influencecontactxenophile = 8
-@tier1influencecontactmin = 20
-@tier1influencecontactmax = 80
-
-@tier2influencecontact = 10
-@tier2influencecontactxenophile = 12
-@tier2influencecontactmin = 40
-@tier2influencecontactmax = 100
-
-# Special operations fleet enters a solar system that is owned by a default
-# country that does not have communications with a merc enclave
-# on_entering_system_fleet
-fleet_event = {
-	id = mercguardian.90
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		has_fleet_flag = "fmerc_count_towards_success"
-		owner = { is_country_type = "fmerc_operations" }
-		FROM = {
-			exists = space_owner
-			space_owner = {
-				is_ai = no
-				exists = capital_scope
-				any_country = {
-					is_country_type = "fmerc_enclave"
-					NOR = {
-						has_communications = PREV
-						reverse_has_relation_flag = {
-							flag = ongoing_merc_enclave_investigation
-							who = PREV
-						}
-					}
-				}
-			}
-		}
-	}
-
-	immediate = {
-		random_country = {
-			limit = { is_country_type = "fmerc_enclave" }
-			save_event_target_as = target_enclave
-			# Scope to HQ fleet and set that system as the target for the project
-			random_owned_fleet = {
-				limit = { has_fleet_flag = "folk_mercenary_station" }
-				solar_system = {
-					save_event_target_as = fmercsystem
-				}
-			}
-		}
-		FROM = {
-			space_owner = {
-				country_event = { id = mercguardian.91 }
-			}
-		}
-	}
-}
-
-# A default country fleet enters a system where the mercenary enclave
-# has a station, and they have not established communications.
-# Allow the trigger to run anywhere, to catch
-# mercenary outposts as well as the HQ
-# on_entering_system_fleet
-fleet_event = {
-	id = mercguardian.96
-	is_triggered_only = yes
-	hide_window = yes
-
-	trigger = {
-		owner = {
-			is_ai = no
-			exists = capital_scope
-		}
-		FROM = {
-			any_ship_in_system = {
-				exists = owner
-				owner = {
-					is_country_type = "fmerc_enclave"
-					NOR = {
-						has_communications = ROOT.owner
-						reverse_has_relation_flag = {
-							flag = ongoing_merc_enclave_investigation
-							who = ROOT.owner
-						}
-					}
-				}
-			}
-		}
-	}
-
-	immediate = {
-		owner = {
-			FROM = {
-				random_fleet_in_system = {
-					limit = {
-						exists = owner
-						owner = { is_country_type = "fmerc_enclave" }
-					}
-					owner = {
-						save_event_target_as = target_enclave
-						# Scope to random owned fleet in case the default
-						# country stumbled across a random merc enclave installation
-						random_owned_fleet = {
-							limit = { has_fleet_flag = "folk_mercenary_station" }
-							solar_system = {
-								save_event_target_as = fmercsystem
-							}
-						}
-					}
-				}
-			}
-			country_event = { id = mercguardian.91 }
-		}
-	}
-}
-
-# Chained from both on_entering_system_fleet events above
-country_event = {
-	id = mercguardian.91
-	title = fmerc_enclave.precom_title
-	desc = fmerc_enclave.precom_desc
-	picture = GFX_evt_star_chart
-	location = FROM # FROM is fleet
-	is_triggered_only = yes
-
-	immediate = {
-		set_relation_flag = {
-			flag = ongoing_merc_enclave_investigation
-			who = event_target:target_enclave
-		}
-		country_event = { id = mercguardian.98 days = 300 random = 600 }
-	}
-
-	option = {
-		name = INTERESTING
-		# Project needs to be created in the enclaves country scope, so that FROMFROM points
-		# to the enclave in the special project event handlers
-		event_target:target_enclave = {
-			enable_special_project = {
-				name = "INVESTIGATE_MERC_ENCLAVE"
-				location = ROOT.capital_scope
-				owner = ROOT
-			}
-		}
-	}
-}
-
-# Enclaves make contact, delayed
-country_event = {
-	id = mercguardian.98
-	title = guardian.98.name
-	desc = guardian.98.desc
-	picture = GFX_evt_throne_room
-	show_sound = event_radio_chatter
-	is_triggered_only = yes
-
-	trigger = {
-		any_country = {
-			is_country_type = "fmerc_enclave"
-			NOT = { has_communications = ROOT }
-		}
-	}
-
-	immediate = {
-		random_country = {
-			limit = {
-				is_country_type = "fmerc_enclave"
-				NOT = { has_communications = ROOT }
-			}
-			ROOT = { establish_communications_no_message = PREV }
-		}
-	}
-
-	after = {
-		if = {
-			limit = {
-				OR = {
-					has_ethic = ethic_xenophile
-					has_ethic = ethic_fanatic_xenophile
-				}
-			}
-			add_monthly_resource_mult = {
-				resource = influence
-				value = @tier1influencecontactxenophile
-				min = @tier1influencecontactmin
-				max = @tier1influencecontactmax
-			}
-			else = {
-				add_monthly_resource_mult = {
-					resource = influence
-					value = @tier1influencecontact
-					min = @tier1influencecontactmin
-					max = @tier1influencecontactmax
-				}
-			}
-		}
-		hidden_effect = {
-			FROM = { country_event = { id = mercguardian.101 } }
-		}
-	}
-
-	option = { name = "guardian.98.a" }
-}
-
-# Communication Established, triggered by special project
-country_event = {
-	id = mercguardian.99
-	title = "guardian.99.name"
-	desc = guardian.99.desc
-	picture = GFX_evt_throne_room
-	show_sound = event_radio_chatter
-	is_triggered_only = yes
-
-	immediate = { establish_communications_no_message = FROMFROM }
-
-	after = {
-		if = {
-			limit = {
-				OR = {
-					has_ethic = ethic_xenophile
-					has_ethic = ethic_fanatic_xenophile
-				}
-			}
-			add_monthly_resource_mult = {
-				resource = influence
-				value = @tier2influencecontactxenophile
-				min = @tier2influencecontactmin
-				max = @tier2influencecontactmax
-			}
-			else = {
-				add_monthly_resource_mult = {
-					resource = influence
-					value = @tier2influencecontact
-					min = @tier2influencecontactmin
-					max = @tier2influencecontactmax
-				}
-			}
-		}
-		hidden_effect = {
-			FROMFROM = { country_event = { id = mercguardian.101 } }
-		}
-	}
-
-	option = { name = "guardian.98.a" }
-}
-
-# Triggered after special project completion or forced introduction
-# This is just really so that the FROM scope in .102 can be the enclave,
-# because it's used in the vanilla l10n strings
-country_event = {
-	id = mercguardian.101
-	hide_window = yes
-	is_triggered_only = yes
-	immediate = { FROM = { country_event = { id = mercguardian.102 } } }
-}
-country_event = {
-	id = mercguardian.102
-	title = guardian.102.name
-	desc = fmerc.introduction.desc
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_trader_window"
-	custom_gui_option = "enclave_trader_option"
-
-	picture_event_data = {
-		portrait = FROM
-		room = enclave_trader_room
-	}
-
-	option = { name = guardian.502.a }
-}
-
 # on_ship_destroyed_victim
 country_event = {
 	id = mercguardian.140
@@ -397,7 +123,7 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		is_country_type = "default"
+		is_ai = no
 		FROM = { is_country_type = "fmerc_enclave" }
 	}
 
@@ -409,7 +135,7 @@ country_event = {
 				amount = -100
 			}
 		}
-		set_country_flag = "attacked_folk_mercenaries"
+		set_country_flag = "merc_attacked_enclave"
 		if = {
 			limit = {
 				has_relation_flag = {
@@ -421,7 +147,7 @@ country_event = {
 				who = FROM
 				flag = fmercenary_trade
 			}
-			country_event = { id = guardian.156 }
+			country_event = { id = mercguardian.156 }
 		}
 	}
 }

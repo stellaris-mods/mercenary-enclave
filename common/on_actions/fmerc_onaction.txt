@@ -14,8 +14,8 @@ on_yearly_pulse = {
 
 on_entering_system_fleet = {
 	events = {
-		mercguardian.90
-		mercguardian.96
+		mercCommunications.90
+		mercCommunications.96
 		mercInsurance.1
 	}
 }
