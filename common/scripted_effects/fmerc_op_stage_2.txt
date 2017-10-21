@@ -52,46 +52,46 @@ fmerc_init_stage2 = {
 
 	switch = {
 		trigger = has_country_flag
-		fmerc_spaceport = {
+		merc_op_spaceport = {
 			fmerc_stage2_init_spaceport = yes
 			fmerc_stage2_tag_ships = yes
 			country_event = { id = mercOpsFleet.1 }
 		}
-		fmerc_liberate = {
+		merc_op_liberation = {
 			fmerc_stage2_init_liberation = yes
 			country_event = { id = mercOpsLiberation.1 }
 		}
-		fmerc_raid = {
+		merc_op_raid = {
 			# Ships are tagged in this
 			fmerc_stage2_init_raid = yes
 			country_event = { id = mercOpsFleet.1 }
 		}
-		fmerc_fleet = {
+		merc_op_fleet = {
 			fmerc_stage2_init_fleet = yes
 			fmerc_stage2_tag_ships = yes
 			country_event = { id = mercOpsFleet.1 }
 		}
-		fmerc_amoeba = {
+		merc_op_amoeba = {
 			fmerc_stage2_init_clear = yes
 			fmerc_stage2_tag_ships = yes
 			country_event = { id = mercOpsFleet.1 }
 		}
-		fmerc_cloud = {
+		merc_op_cloud = {
 			fmerc_stage2_init_clear = yes
 			fmerc_stage2_tag_ships = yes
 			country_event = { id = mercOpsFleet.1 }
 		}
-		fmerc_crystal = {
+		merc_op_crystal = {
 			fmerc_stage2_init_clear = yes
 			fmerc_stage2_tag_ships = yes
 			country_event = { id = mercOpsFleet.1 }
 		}
-		fmerc_pirate = {
+		merc_op_pirate = {
 			fmerc_stage2_init_clear = yes
 			fmerc_stage2_tag_ships = yes
 			country_event = { id = mercOpsFleet.1 }
 		}
-		fmerc_drone = {
+		merc_op_drone = {
 			fmerc_stage2_init_clear = yes
 			fmerc_stage2_tag_ships = yes
 			country_event = { id = mercOpsFleet.1 }

@@ -123,7 +123,7 @@ country_event = {
 		name = merc.order
 		custom_tooltip = merc.order.tooltip
 		hidden_effect = {
-			set_country_flag = "fmerc_diplo_spaceport"
+			set_country_flag = "merc_op_spaceport"
 			country_event = { id = mercMenu.1000 }
 		}
 	}
@@ -178,7 +178,7 @@ country_event = {
 		name = merc.order
 		custom_tooltip = merc.order.tooltip
 		hidden_effect = {
-			set_country_flag = "fmerc_diplo_liberate"
+			set_country_flag = "merc_op_liberation"
 			country_event = { id = mercMenu.1000 }
 		}
 	}
@@ -232,7 +232,7 @@ country_event = {
 		name = merc.order
 		custom_tooltip = merc.order.tooltip
 		hidden_effect = {
-			set_country_flag = "fmerc_diplo_miningraid"
+			set_country_flag = "merc_op_raid"
 			country_event = { id = mercMenu.1000 }
 		}
 	}
@@ -288,7 +288,7 @@ country_event = {
 		name = merc.order
 		custom_tooltip = merc.order.tooltip
 		hidden_effect = {
-			set_country_flag = "fmerc_diplo_fleetraid"
+			set_country_flag = "merc_op_fleet"
 			country_event = { id = mercMenu.1000 }
 		}
 	}
@@ -336,7 +336,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			set_country_flag = "fmerc_target_amoeba"
+			set_country_flag = "merc_op_amoeba"
 			random_country = {
 				limit = {
 					is_country_type = "amoeba"
@@ -361,7 +361,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			set_country_flag = "fmerc_target_cloud"
+			set_country_flag = "merc_op_cloud"
 			random_country = {
 				limit = {
 					is_country_type = "cloud"
@@ -386,7 +386,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			set_country_flag = "fmerc_target_crystal"
+			set_country_flag = "merc_op_crystal"
 			random_country = {
 				limit = {
 					is_country_type = "crystal"
@@ -411,7 +411,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			set_country_flag = "fmerc_target_pirate"
+			set_country_flag = "merc_op_pirate"
 			random_country = {
 				limit = {
 					is_country_type = "pirate"
@@ -436,7 +436,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			set_country_flag = "fmerc_target_drone"
+			set_country_flag = "merc_op_drone"
 			random_country = {
 				limit = {
 					is_country_type = "drone"

@@ -157,7 +157,7 @@ country_event = {
 	# Our operations fleet has been destroyed.
 	trigger = {
 		is_country_type = "fmerc_operations"
-		NOT = { has_country_flag = "fmerc_liberate" }
+		NOT = { has_country_flag = "merc_op_liberation" }
 		NOT = { has_country_flag = "fmerc_ops_completed" }
 		FROMFROM = { has_fleet_flag = "fmerc_count_towards_success" }
 		count_owned_ships = { count = 0 }

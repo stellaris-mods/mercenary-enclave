@@ -519,7 +519,7 @@ fmerc_stage3_create_fleet = {
 		}
 	}
 	if = {
-		limit = { has_country_flag = "fmerc_liberate" }
+		limit = { has_country_flag = "merc_op_liberation" }
 		# 1.5k extra fleet power.
 		# I don't want to add more right now, because it's not going to
 		# scale well in any meaningful way. I need to do a more indepth

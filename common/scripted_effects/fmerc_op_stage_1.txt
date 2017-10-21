@@ -84,17 +84,23 @@ fmerc_stage1_copy_success = {
 fmerc_stage1_culture_random = {
 	last_created_country = {
 		random_list = {
-			14 = { set_country_flag = "arthropoid_01" }
-			14 = { set_country_flag = "avian_01" }
-			14 = { set_country_flag = "fungoid_01" }
-			16 = {
-				# Guess I didn't know back then that
-				# random_list was N-in-X, not N-in-100
-				set_country_flag = "mammalian_01"
-			}
-			14 = { set_country_flag = "molluscoid_01" }
-			14 = { set_country_flag = "plantoid_01" }
-			14 = { set_country_flag = "reptilian_01" }
+			1 = { set_country_flag = "arthropoid_01" }
+			1 = { set_country_flag = "avian_01" }
+			1 = { set_country_flag = "fungoid_01" }
+			1 = { set_country_flag = "mammalian_01" }
+			1 = { set_country_flag = "molluscoid_01" }
+			1 = { set_country_flag = "plantoid_01" }
+			1 = { set_country_flag = "reptilian_01" }
+			1 = { set_country_flag = "ai_01" }
+			1 = { set_country_flag = "extra_dimensional_01" }
+			1 = { set_country_flag = "fallen_empire_01" }
+			1 = { set_country_flag = "pirate_01" }
+			1 = { set_country_flag = "swarm_01" }
+			1 = { set_country_flag = "gfx_spacewhale" }
+			1 = { set_country_flag = "gfx_cloud" }
+			1 = { set_country_flag = "gfx_amoeba" }
+			1 = { set_country_flag = "gfx_crystal" }
+			1 = { set_country_flag = "gfx_drone" }
 		}
 	}
 }
@@ -102,122 +108,30 @@ fmerc_stage1_culture_random = {
 fmerc_stage1_culture_copy = {
 	switch = {
 		trigger = graphical_culture
-		arthropoid_01 = {
-			last_created_country = {
-				set_country_flag = "arthropoid_01"
-			}
-		}
-		avian_01 = {
-			last_created_country = {
-				set_country_flag = "avian_01"
-			}
-		}
-		fungoid_01 = {
-			last_created_country = {
-				set_country_flag = "fungoid_01"
-			}
-		}
-		mammalian_01 = {
-			last_created_country = {
-				set_country_flag = "mammalian_01"
-			}
-		}
-		molluscoid_01 = {
-			last_created_country = {
-				set_country_flag = "molluscoid_01"
-			}
-		}
-		plantoid_01 = {
-			last_created_country = {
-				set_country_flag = "plantoid_01"
-			}
-		}
-		reptilian_01 = {
-			last_created_country = {
-				set_country_flag = "reptilian_01"
-			}
-		}
-		ai_01 = {
-			last_created_country = {
-				set_country_flag = "ai_01"
-			}
-		}
-		extra_dimensional_01 = {
-			last_created_country = {
-				set_country_flag = "extra_dimensional_01"
-			}
-		}
-		extra_dimensional_02 = {
-			last_created_country = {
-				set_country_flag = "extra_dimensional_01"
-			}
-		}
-		extra_dimensional_03 = {
-			last_created_country = {
-				set_country_flag = "extra_dimensional_01"
-			}
-		}
-		fallen_empire_01 = {
-			last_created_country = {
-				set_country_flag = "fallen_empire_01"
-			}
-		}
-		fallen_empire_02 = {
-			last_created_country = {
-				set_country_flag = "fallen_empire_01"
-			}
-		}
-		fallen_empire_03 = {
-			last_created_country = {
-				set_country_flag = "fallen_empire_01"
-			}
-		}
-		fallen_empire_04 = {
-			last_created_country = {
-				set_country_flag = "fallen_empire_01"
-			}
-		}
-		fallen_machine_empire_01 = {
-			last_created_country = {
-				set_country_flag = "fallen_empire_01"
-			}
-		}
-		pirate_01 = {
-			last_created_country = {
-				set_country_flag = "pirate_01"
-			}
-		}
-		swarm_01 = {
-			last_created_country = {
-				set_country_flag = "swarm_01"
-			}
-		}
-		ancient_drone_01 = {
-			last_created_country = {
-				set_country_flag = "gfx_drone"
-			}
-		}
-		drone = {
-			last_created_country = {
-				set_country_flag = "gfx_drone"
-			}
-		}
-		ancient = {
-			last_created_country = {
-				set_country_flag = "gfx_drone"
-			}
-		}
-		techno = {
-			last_created_country = {
-				set_country_flag = "mammalian_01"
-			}
-		}
-		# default trigger doesnt work for this one
-		# default = {
-		# 	last_created_country = {
-		# 		set_graphical_culture = "mammalian_01"
-		# 	}
-		# }
+		arthropoid_01 = { last_created_country = { set_country_flag = "arthropoid_01" } }
+		avian_01 = { last_created_country = { set_country_flag = "avian_01" } }
+		fungoid_01 = { last_created_country = { set_country_flag = "fungoid_01" } }
+		mammalian_01 = { last_created_country = { set_country_flag = "mammalian_01" } }
+		molluscoid_01 = { last_created_country = { set_country_flag = "molluscoid_01" } }
+		plantoid_01 = { last_created_country = { set_country_flag = "plantoid_01" } }
+		reptilian_01 = { last_created_country = { set_country_flag = "reptilian_01" } }
+		ai_01 = { last_created_country = { set_country_flag = "ai_01" } }
+		extra_dimensional_01 = { last_created_country = { set_country_flag = "extra_dimensional_01" } }
+		extra_dimensional_02 = { last_created_country = { set_country_flag = "extra_dimensional_01" } }
+		extra_dimensional_03 = { last_created_country = { set_country_flag = "extra_dimensional_01" } }
+		fallen_empire_01 = { last_created_country = { set_country_flag = "fallen_empire_01" } }
+		fallen_empire_02 = { last_created_country = { set_country_flag = "fallen_empire_01" } }
+		fallen_empire_03 = { last_created_country = { set_country_flag = "fallen_empire_01" } }
+		fallen_empire_04 = { last_created_country = { set_country_flag = "fallen_empire_01" } }
+		fallen_machine_empire_01 = { last_created_country = { set_country_flag = "fallen_empire_01" } }
+		pirate_01 = { last_created_country = { set_country_flag = "pirate_01" } }
+		swarm_01 = { last_created_country = { set_country_flag = "swarm_01" } }
+		ancient_drone_01 = { last_created_country = { set_country_flag = "gfx_drone" } }
+		drone = { last_created_country = { set_country_flag = "gfx_drone" } }
+		ancient = { last_created_country = { set_country_flag = "gfx_drone" } }
+		techno = { last_created_country = { set_country_flag = "mammalian_01" } }
+		# default trigger doesnt work for this one, but we fall back in the
+		# has_country_flag selector anyway
 	}
 }
 
@@ -225,10 +139,10 @@ fmerc_stage1_culture_copy = {
 fmerc_stage1_setup_mission = {
 	switch = {
 		trigger = has_country_flag
-		fmerc_diplo_disguise_random = {
+		merc_disguise_random = {
 			fmerc_stage1_culture_random = yes
 		}
-		fmerc_diplo_disguise_other = {
+		merc_disguise_nonbuyer = {
 			# Anything except ROOT
 			fmerc_stage1_culture_random = yes
 			if = {
@@ -238,23 +152,23 @@ fmerc_stage1_setup_mission = {
 				set_country_flag = "gfx_drone"
 			}
 		}
-		fmerc_diplo_disguise_same = {
+		merc_disguise_buyer = {
 			# Same as ROOT
 			fmerc_stage1_culture_copy = yes
 		}
-		fmerc_diplo_disguise_pirate = {
+		merc_disguise_pirate = {
 			last_created_country = {
 				set_country_flag = "pirate_01"
 			}
 		}
-		fmerc_diplo_disguise_monster = {
+		merc_disguise_xenofauna = {
 			last_created_country = {
-				random_list = { # yaya could use 1 1 1 1 1
-					20 = { set_country_flag = "gfx_spacewhale" }
-					20 = { set_country_flag = "gfx_cloud" }
-					20 = { set_country_flag = "gfx_amoeba" }
-					20 = { set_country_flag = "gfx_crystal" }
-					20 = { set_country_flag = "gfx_drone" }
+				random_list = {
+					1 = { set_country_flag = "gfx_spacewhale" }
+					1 = { set_country_flag = "gfx_cloud" }
+					1 = { set_country_flag = "gfx_amoeba" }
+					1 = { set_country_flag = "gfx_crystal" }
+					1 = { set_country_flag = "gfx_drone" }
 				}
 			}
 		}
@@ -445,58 +359,40 @@ fmerc_init_stage1 = {
 
 	switch = {
 		trigger = has_country_flag
-		fmerc_diplo_spaceport = {
-			last_created_country = {
-				set_country_flag = "fmerc_spaceport"
-			}
+		merc_op_spaceport = {
+			last_created_country = { set_country_flag = "merc_op_spaceport" }
 			fmerc_stage1_setup_mission = yes
 		}
-		fmerc_diplo_liberate = {
-			last_created_country = {
-				set_country_flag = "fmerc_liberate"
-			}
+		merc_op_liberation = {
+			last_created_country = { set_country_flag = "merc_op_liberation" }
 			fmerc_stage1_setup_mission = yes
 		}
-		fmerc_diplo_miningraid = {
-			last_created_country = {
-				set_country_flag = "fmerc_raid"
-			}
+		merc_op_raid = {
+			last_created_country = { set_country_flag = "merc_op_raid" }
 			fmerc_stage1_setup_mission = yes
 		}
-		fmerc_diplo_fleetraid = {
-			last_created_country = {
-				set_country_flag = "fmerc_fleet"
-			}
+		merc_op_fleet = {
+			last_created_country = { set_country_flag = "merc_op_fleet" }
 			fmerc_stage1_setup_mission = yes
 		}
-		fmerc_target_amoeba = {
-			last_created_country = {
-				set_country_flag = "fmerc_amoeba"
-			}
+		merc_op_amoeba = {
+			last_created_country = { set_country_flag = "merc_op_amoeba" }
 			fmerc_stage1_setup_clear = yes
 		}
-		fmerc_target_cloud = {
-			last_created_country = {
-				set_country_flag = "fmerc_cloud"
-			}
+		merc_op_cloud = {
+			last_created_country = { set_country_flag = "merc_op_cloud" }
 			fmerc_stage1_setup_clear = yes
 		}
-		fmerc_target_crystal = {
-			last_created_country = {
-				set_country_flag = "fmerc_crystal"
-			}
+		merc_op_crystal = {
+			last_created_country = { set_country_flag = "merc_op_crystal" }
 			fmerc_stage1_setup_clear = yes
 		}
-		fmerc_target_pirate = {
-			last_created_country = {
-				set_country_flag = "fmerc_pirate"
-			}
+		merc_op_pirate = {
+			last_created_country = { set_country_flag = "merc_op_pirate" }
 			fmerc_stage1_setup_clear = yes
 		}
-		fmerc_target_drone = {
-			last_created_country = {
-				set_country_flag = "fmerc_drone"
-			}
+		merc_op_drone = {
+			last_created_country = { set_country_flag = "merc_op_drone" }
 			fmerc_stage1_setup_clear = yes
 		}
 	}
@@ -528,33 +424,33 @@ fmerc_init_stage1 = {
 
 		switch = {
 			trigger = has_country_flag
-			fmerc_amoeba = { country_event = { id = mercOpsMeta.1 } }
-			fmerc_cloud = { country_event = { id = mercOpsMeta.1 } }
-			fmerc_crystal = { country_event = { id = mercOpsMeta.1 } }
-			fmerc_pirate = { country_event = { id = mercOpsMeta.1 } }
-			fmerc_drone = { country_event = { id = mercOpsMeta.1 } }
-			fmerc_spaceport = {
+			merc_op_amoeba = { country_event = { id = mercOpsMeta.1 } }
+			merc_op_cloud = { country_event = { id = mercOpsMeta.1 } }
+			merc_op_crystal = { country_event = { id = mercOpsMeta.1 } }
+			merc_op_pirate = { country_event = { id = mercOpsMeta.1 } }
+			merc_op_drone = { country_event = { id = mercOpsMeta.1 } }
+			merc_op_spaceport = {
 				country_event = {
 					id = mercOpsMeta.1
 					days = 3
 					random = 70
 				}
 			}
-			fmerc_liberate = {
+			merc_op_liberation = {
 				country_event = {
 					id = mercOpsMeta.1
 					days = 3
 					random = 70
 				}
 			}
-			fmerc_raid = {
+			merc_op_raid = {
 				country_event = {
 					id = mercOpsMeta.1
 					days = 3
 					random = 70
 				}
 			}
-			fmerc_fleet = {
+			merc_op_fleet = {
 				country_event = {
 					id = mercOpsMeta.1
 					days = 3

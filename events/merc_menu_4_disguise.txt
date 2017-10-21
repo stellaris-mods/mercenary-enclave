@@ -56,7 +56,7 @@ country_event = {
 				which = "MercDetect"
 				value = 5
 			}
-			set_country_flag = "fmerc_diplo_disguise_random"
+			set_country_flag = "merc_disguise_random"
 			if = { limit = { has_global_flag = "debug" }
 				country_event = { id = mercMenu.9000 }
 			else = {
@@ -74,7 +74,7 @@ country_event = {
 				which = "MercDetect"
 				value = 5
 			}
-			set_country_flag = "fmerc_diplo_disguise_other"
+			set_country_flag = "merc_disguise_nonbuyer"
 			if = { limit = { has_global_flag = "debug" }
 				country_event = { id = mercMenu.9000 }
 			else = {
@@ -94,7 +94,7 @@ country_event = {
 				which = "MercDetect"
 				value = 10
 			}
-			set_country_flag = "fmerc_diplo_disguise_same"
+			set_country_flag = "merc_disguise_buyer"
 			if = { limit = { has_global_flag = "debug" }
 				country_event = { id = mercMenu.9000 }
 			else = {
@@ -112,7 +112,7 @@ country_event = {
 				which = "MercSuccess"
 				value = 10
 			}
-			set_country_flag = "fmerc_diplo_disguise_pirate"
+			set_country_flag = "merc_disguise_pirate"
 			if = { limit = { has_global_flag = "debug" }
 				country_event = { id = mercMenu.9000 }
 			else = {
@@ -130,7 +130,7 @@ country_event = {
 				which = "MercDetect"
 				value = 10
 			}
-			set_country_flag = "fmerc_diplo_disguise_monster"
+			set_country_flag = "merc_disguise_xenofauna"
 			if = { limit = { has_global_flag = "debug" }
 				country_event = { id = mercMenu.9000 }
 			else = {

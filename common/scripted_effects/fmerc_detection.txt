@@ -20,7 +20,7 @@
 merc_operation_detected = {
 	switch = {
 		trigger = has_country_flag
-		fmerc_spaceport = {
+		merc_op_spaceport = {
 			event_target:fmerc_target_country = {
 				add_opinion_modifier = {
 					modifier = fmerc_opinion_spaceport
@@ -28,7 +28,7 @@ merc_operation_detected = {
 				}
 			}
 		}
-		fmerc_liberate = {
+		merc_op_liberation = {
 			event_target:fmerc_target_country = {
 				add_opinion_modifier = {
 					modifier = fmerc_opinion_liberate
@@ -36,7 +36,7 @@ merc_operation_detected = {
 				}
 			}
 		}
-		fmerc_raid = {
+		merc_op_raid = {
 			event_target:fmerc_target_country = {
 				add_opinion_modifier = {
 					modifier = fmerc_opinion_raid
@@ -44,7 +44,7 @@ merc_operation_detected = {
 				}
 			}
 		}
-		fmerc_fleet = {
+		merc_op_fleet = {
 			event_target:fmerc_target_country = {
 				add_opinion_modifier = {
 					modifier = fmerc_opinion_fleet

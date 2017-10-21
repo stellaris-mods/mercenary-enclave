@@ -54,7 +54,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			set_country_flag = "fmerc_diplo_empire_standard"
+			set_country_flag = "merc_target_default"
 			country_event = { id = mercMenu.1100 }
 		}
 	}
@@ -74,8 +74,8 @@ country_event = {
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				NOT = { has_country_flag = "fmerc_diplo_spaceport" }
-				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
+				NOT = { has_country_flag = "merc_op_spaceport" }
+				NOT = { has_country_flag = "merc_op_raid" }
 			}
 		}
 		hidden_effect = {
@@ -89,7 +89,7 @@ country_event = {
 				which = "MercDetect"
 				value = 10
 			}
-			set_country_flag = "fmerc_diplo_empire_fallen"
+			set_country_flag = "merc_target_fallen"
 			country_event = { id = mercMenu.1100 }
 		}
 	}
@@ -105,8 +105,8 @@ country_event = {
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				NOT = { has_country_flag = "fmerc_diplo_liberate" }
-				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
+				NOT = { has_country_flag = "merc_op_liberation" }
+				NOT = { has_country_flag = "merc_op_raid" }
 			}
 		}
 		hidden_effect = {
@@ -116,7 +116,7 @@ country_event = {
 				which = "MercSuccess"
 				value = 10
 			}
-			set_country_flag = "fmerc_diplo_empire_swarm"
+			set_country_flag = "merc_target_swarm"
 			country_event = { id = mercMenu.1100 }
 		}
 	}
@@ -136,8 +136,8 @@ country_event = {
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				NOT = { has_country_flag = "fmerc_diplo_liberate" }
-				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
+				NOT = { has_country_flag = "merc_op_liberation" }
+				NOT = { has_country_flag = "merc_op_raid" }
 			}
 		}
 		hidden_effect = {
@@ -147,7 +147,7 @@ country_event = {
 				which = "MercSuccess"
 				value = 10
 			}
-			set_country_flag = "fmerc_diplo_empire_ed"
+			set_country_flag = "merc_target_exd"
 			country_event = { id = mercMenu.1100 }
 		}
 	}
@@ -163,8 +163,8 @@ country_event = {
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				NOT = { has_country_flag = "fmerc_diplo_spaceport" }
-				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
+				NOT = { has_country_flag = "merc_op_spaceport" }
+				NOT = { has_country_flag = "merc_op_raid" }
 			}
 		}
 		hidden_effect = {
@@ -178,7 +178,7 @@ country_event = {
 				which = "MercDetect"
 				value = 5
 			}
-			set_country_flag = "fmerc_diplo_empire_ai"
+			set_country_flag = "merc_target_airevolt"
 			country_event = { id = mercMenu.1100 }
 		}
 	}
@@ -191,11 +191,11 @@ country_event = {
 		trigger = {
 			switch = {
 				trigger = has_country_flag
-				fmerc_diplo_empire_standard = { text = "merc.target.selected.default" }
-				fmerc_diplo_empire_fallen = { text = "merc.target.selected.fallen" }
-				fmerc_diplo_empire_swarm = { text = "merc.target.selected.swarm" }
-				fmerc_diplo_empire_ed = { text = "merc.target.selected.ed" }
-				fmerc_diplo_empire_ai = { text = "merc.target.selected.ai" }
+				merc_target_default = { text = "merc.target.selected.default" }
+				merc_target_fallen = { text = "merc.target.selected.fallen" }
+				merc_target_swarm = { text = "merc.target.selected.swarm" }
+				merc_target_exd = { text = "merc.target.selected.ed" }
+				merc_target_airevolt = { text = "merc.target.selected.ai" }
 			}
 		}
 	}

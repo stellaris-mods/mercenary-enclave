@@ -18,31 +18,33 @@
 ###
 
 
+# This is _only_ invoked when the main diplomacy menu is opened,
+# which means that all the variables that are set are available until
+# the operation is complete (because the main diplomacy menu is not
+# available again until then.)
 fmerc_reset_diplo_screen = {
-	remove_country_flag = "fmerc_diplomacy_engaged"
+	remove_country_flag = "merc_op_spaceport"
+	remove_country_flag = "merc_op_liberation"
+	remove_country_flag = "merc_op_raid"
+	remove_country_flag = "merc_op_fleet"
 
-	remove_country_flag = "fmerc_diplo_spaceport"
-	remove_country_flag = "fmerc_diplo_liberate"
-	remove_country_flag = "fmerc_diplo_miningraid"
-	remove_country_flag = "fmerc_diplo_fleetraid"
+	remove_country_flag = "merc_op_amoeba"
+	remove_country_flag = "merc_op_cloud"
+	remove_country_flag = "merc_op_crystal"
+	remove_country_flag = "merc_op_pirate"
+	remove_country_flag = "merc_op_drone"
 
-	remove_country_flag = "fmerc_target_amoeba"
-	remove_country_flag = "fmerc_target_cloud"
-	remove_country_flag = "fmerc_target_crystal"
-	remove_country_flag = "fmerc_target_pirate"
-	remove_country_flag = "fmerc_target_drone"
+	remove_country_flag = "merc_target_default"
+	remove_country_flag = "merc_target_fallen"
+	remove_country_flag = "merc_target_swarm"
+	remove_country_flag = "merc_target_exd"
+	remove_country_flag = "merc_target_airevolt"
 
-	remove_country_flag = "fmerc_diplo_empire_standard"
-	remove_country_flag = "fmerc_diplo_empire_fallen"
-	remove_country_flag = "fmerc_diplo_empire_swarm"
-	remove_country_flag = "fmerc_diplo_empire_ed"
-	remove_country_flag = "fmerc_diplo_empire_ai"
-
-	remove_country_flag = "fmerc_diplo_disguise_random"
-	remove_country_flag = "fmerc_diplo_disguise_other"
-	remove_country_flag = "fmerc_diplo_disguise_same"
-	remove_country_flag = "fmerc_diplo_disguise_pirate"
-	remove_country_flag = "fmerc_diplo_disguise_monster"
+	remove_country_flag = "merc_disguise_random"
+	remove_country_flag = "merc_disguise_nonbuyer"
+	remove_country_flag = "merc_disguise_buyer"
+	remove_country_flag = "merc_disguise_pirate"
+	remove_country_flag = "merc_disguise_xenofauna"
 
 	# This actually "deletes" the variables. Printing them now yields " " + an error.log entry
 	set_variable = { which = "MercCost" value = 0 }

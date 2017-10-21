@@ -23,14 +23,14 @@ fmerc_is_targetted_country_type = {
 	OR = {
 		AND = {
 			ROOT = {
-				has_country_flag = "fmerc_diplo_empire_standard"
+				has_country_flag = "merc_target_default"
 			}
 			num_owned_planets > 1
 			is_country_type = "default"
 		}
 		AND = {
 			ROOT = {
-				has_country_flag = "fmerc_diplo_empire_fallen"
+				has_country_flag = "merc_target_fallen"
 			}
 			num_owned_planets > 1
 			OR = {
@@ -40,13 +40,13 @@ fmerc_is_targetted_country_type = {
 		}
 		AND = {
 			ROOT = {
-				has_country_flag = "fmerc_diplo_empire_swarm"
+				has_country_flag = "merc_target_swarm"
 			}
 			is_country_type = "swarm"
 		}
 		AND = {
 			ROOT = {
-				has_country_flag = "fmerc_diplo_empire_ed"
+				has_country_flag = "merc_target_exd"
 			}
 			OR = {
 				is_country_type = "extradimensional"
@@ -56,7 +56,7 @@ fmerc_is_targetted_country_type = {
 		}
 		AND = {
 			ROOT = {
-				has_country_flag = "fmerc_diplo_empire_ai"
+				has_country_flag = "merc_target_airevolt"
 			}
 			is_country_type = "ai_empire"
 		}
@@ -70,7 +70,7 @@ fmerc_is_valid_country = {
 	OR = {
 		AND = {
 			ROOT = {
-				has_country_flag = "fmerc_diplo_spaceport"
+				has_country_flag = "merc_op_spaceport"
 			}
 			any_owned_planet = {
 				fmerc_valid_spaceport_planet = yes
@@ -80,7 +80,7 @@ fmerc_is_valid_country = {
 		}
 		AND = {
 			ROOT = {
-				has_country_flag = "fmerc_diplo_liberate"
+				has_country_flag = "merc_op_liberation"
 			}
 			any_owned_planet = {
 				controller = { is_same_value = PREVPREV }
@@ -90,7 +90,7 @@ fmerc_is_valid_country = {
 		}
 		AND = {
 			ROOT = {
-				has_country_flag = "fmerc_diplo_miningraid"
+				has_country_flag = "merc_op_raid"
 			}
 			count_owned_ships = {
 				limit = {
@@ -104,7 +104,7 @@ fmerc_is_valid_country = {
 		}
 		AND = {
 			ROOT = {
-				has_country_flag = "fmerc_diplo_fleetraid"
+				has_country_flag = "merc_op_fleet"
 			}
 			num_fleets > 3
 			any_owned_fleet = {

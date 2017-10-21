@@ -89,11 +89,11 @@ country_event = {
 				exists = event_target:fmerc_buyer
 				NOT = { has_country_flag = "fmerc_calculated_costs" }
 				OR = {
-					has_country_flag = "fmerc_amoeba"
-					has_country_flag = "fmerc_cloud"
-					has_country_flag = "fmerc_crystal"
-					has_country_flag = "fmerc_pirate"
-					has_country_flag = "fmerc_drone"
+					has_country_flag = "merc_op_amoeba"
+					has_country_flag = "merc_op_cloud"
+					has_country_flag = "merc_op_crystal"
+					has_country_flag = "merc_op_pirate"
+					has_country_flag = "merc_op_drone"
 				}
 			}
 			set_country_flag = "fmerc_calculated_costs"

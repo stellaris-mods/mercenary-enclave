@@ -27,19 +27,19 @@ country_event = {
 		trigger = {
 			switch = {
 				trigger = has_country_flag
-				fmerc_diplo_spaceport = { text = "merc.param.operation.spaceport" }
-				fmerc_diplo_liberate = { text = "merc.param.operation.liberation" }
-				fmerc_diplo_miningraid = { text = "merc.param.operation.raid" }
-				fmerc_diplo_fleetraid = { text = "merc.param.operation.fleet" }
+				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
+				merc_op_liberation = { text = "merc.param.operation.liberation" }
+				merc_op_raid = { text = "merc.param.operation.raid" }
+				merc_op_fleet = { text = "merc.param.operation.fleet" }
 			}
 			text = "merc.param.target"
 			switch = {
 				trigger = has_country_flag
-				fmerc_diplo_disguise_random = { text = "merc.param.disguise.random" }
-				fmerc_diplo_disguise_other = { text = "merc.param.disguise.nonbuyer" }
-				fmerc_diplo_disguise_same = { text = "merc.param.disguise.buyer" }
-				fmerc_diplo_disguise_pirate = { text = "merc.param.disguise.pirate" }
-				fmerc_diplo_disguise_monster = { text = "merc.param.disguise.xenofauna" }
+				merc_disguise_random = { text = "merc.param.disguise.random" }
+				merc_disguise_nonbuyer = { text = "merc.param.disguise.nonbuyer" }
+				merc_disguise_buyer = { text = "merc.param.disguise.buyer" }
+				merc_disguise_pirate = { text = "merc.param.disguise.pirate" }
+				merc_disguise_xenofauna = { text = "merc.param.disguise.xenofauna" }
 			}
 			text = newline
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
@@ -109,19 +109,19 @@ country_event = {
 		trigger = {
 			switch = {
 				trigger = has_country_flag
-				fmerc_diplo_spaceport = { text = "merc.param.operation.spaceport" }
-				fmerc_diplo_liberate = { text = "merc.param.operation.liberation" }
-				fmerc_diplo_miningraid = { text = "merc.param.operation.raid" }
-				fmerc_diplo_fleetraid = { text = "merc.param.operation.fleet" }
+				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
+				merc_op_liberation = { text = "merc.param.operation.liberation" }
+				merc_op_raid = { text = "merc.param.operation.raid" }
+				merc_op_fleet = { text = "merc.param.operation.fleet" }
 			}
 			text = "merc.param.target"
 			switch = {
 				trigger = has_country_flag
-				fmerc_diplo_disguise_random = { text = "merc.param.disguise.random" }
-				fmerc_diplo_disguise_other = { text = "merc.param.disguise.nonbuyer" }
-				fmerc_diplo_disguise_same = { text = "merc.param.disguise.buyer" }
-				fmerc_diplo_disguise_pirate = { text = "merc.param.disguise.pirate" }
-				fmerc_diplo_disguise_monster = { text = "merc.param.disguise.xenofauna" }
+				merc_disguise_random = { text = "merc.param.disguise.random" }
+				merc_disguise_nonbuyer = { text = "merc.param.disguise.nonbuyer" }
+				merc_disguise_buyer = { text = "merc.param.disguise.buyer" }
+				merc_disguise_pirate = { text = "merc.param.disguise.pirate" }
+				merc_disguise_xenofauna = { text = "merc.param.disguise.xenofauna" }
 			}
 			text = newline
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
@@ -188,19 +188,19 @@ country_event = {
 		trigger = {
 			switch = {
 				trigger = has_country_flag
-				fmerc_diplo_spaceport = { text = "merc.param.operation.spaceport" }
-				fmerc_diplo_liberate = { text = "merc.param.operation.liberation" }
-				fmerc_diplo_miningraid = { text = "merc.param.operation.raid" }
-				fmerc_diplo_fleetraid = { text = "merc.param.operation.fleet" }
+				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
+				merc_op_liberation = { text = "merc.param.operation.liberation" }
+				merc_op_raid = { text = "merc.param.operation.raid" }
+				merc_op_fleet = { text = "merc.param.operation.fleet" }
 			}
 			text = "merc.param.target"
 			switch = {
 				trigger = has_country_flag
-				fmerc_diplo_disguise_random = { text = "merc.param.disguise.random" }
-				fmerc_diplo_disguise_other = { text = "merc.param.disguise.nonbuyer" }
-				fmerc_diplo_disguise_same = { text = "merc.param.disguise.buyer" }
-				fmerc_diplo_disguise_pirate = { text = "merc.param.disguise.pirate" }
-				fmerc_diplo_disguise_monster = { text = "merc.param.disguise.xenofauna" }
+				merc_disguise_random = { text = "merc.param.disguise.random" }
+				merc_disguise_nonbuyer = { text = "merc.param.disguise.nonbuyer" }
+				merc_disguise_buyer = { text = "merc.param.disguise.buyer" }
+				merc_disguise_pirate = { text = "merc.param.disguise.pirate" }
+				merc_disguise_xenofauna = { text = "merc.param.disguise.xenofauna" }
 			}
 			text = newline
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
@@ -267,19 +267,19 @@ country_event = {
 		trigger = {
 			switch = {
 				trigger = has_country_flag
-				fmerc_diplo_spaceport = { text = "merc.param.operation.spaceport" }
-				fmerc_diplo_liberate = { text = "merc.param.operation.liberation" }
-				fmerc_diplo_miningraid = { text = "merc.param.operation.raid" }
-				fmerc_diplo_fleetraid = { text = "merc.param.operation.fleet" }
+				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
+				merc_op_liberation = { text = "merc.param.operation.liberation" }
+				merc_op_raid = { text = "merc.param.operation.raid" }
+				merc_op_fleet = { text = "merc.param.operation.fleet" }
 			}
 			text = "merc.param.target"
 			switch = {
 				trigger = has_country_flag
-				fmerc_diplo_disguise_random = { text = "merc.param.disguise.random" }
-				fmerc_diplo_disguise_other = { text = "merc.param.disguise.nonbuyer" }
-				fmerc_diplo_disguise_same = { text = "merc.param.disguise.buyer" }
-				fmerc_diplo_disguise_pirate = { text = "merc.param.disguise.pirate" }
-				fmerc_diplo_disguise_monster = { text = "merc.param.disguise.xenofauna" }
+				merc_disguise_random = { text = "merc.param.disguise.random" }
+				merc_disguise_nonbuyer = { text = "merc.param.disguise.nonbuyer" }
+				merc_disguise_buyer = { text = "merc.param.disguise.buyer" }
+				merc_disguise_pirate = { text = "merc.param.disguise.pirate" }
+				merc_disguise_xenofauna = { text = "merc.param.disguise.xenofauna" }
 			}
 			text = newline
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
@@ -346,19 +346,19 @@ country_event = {
 		trigger = {
 			switch = {
 				trigger = has_country_flag
-				fmerc_diplo_spaceport = { text = "merc.param.operation.spaceport" }
-				fmerc_diplo_liberate = { text = "merc.param.operation.liberation" }
-				fmerc_diplo_miningraid = { text = "merc.param.operation.raid" }
-				fmerc_diplo_fleetraid = { text = "merc.param.operation.fleet" }
+				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
+				merc_op_liberation = { text = "merc.param.operation.liberation" }
+				merc_op_raid = { text = "merc.param.operation.raid" }
+				merc_op_fleet = { text = "merc.param.operation.fleet" }
 			}
 			text = "merc.param.target"
 			switch = {
 				trigger = has_country_flag
-				fmerc_diplo_disguise_random = { text = "merc.param.disguise.random" }
-				fmerc_diplo_disguise_other = { text = "merc.param.disguise.nonbuyer" }
-				fmerc_diplo_disguise_same = { text = "merc.param.disguise.buyer" }
-				fmerc_diplo_disguise_pirate = { text = "merc.param.disguise.pirate" }
-				fmerc_diplo_disguise_monster = { text = "merc.param.disguise.xenofauna" }
+				merc_disguise_random = { text = "merc.param.disguise.random" }
+				merc_disguise_nonbuyer = { text = "merc.param.disguise.nonbuyer" }
+				merc_disguise_buyer = { text = "merc.param.disguise.buyer" }
+				merc_disguise_pirate = { text = "merc.param.disguise.pirate" }
+				merc_disguise_xenofauna = { text = "merc.param.disguise.xenofauna" }
 			}
 			text = newline
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }

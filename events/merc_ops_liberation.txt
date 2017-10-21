@@ -259,7 +259,7 @@ country_event = {
 	# Our operations fleet has been destroyed.
 	trigger = {
 		is_country_type = "fmerc_operations"
-		has_country_flag = "fmerc_liberate"
+		has_country_flag = "merc_op_liberation"
 		NOT = { has_country_flag = "fmerc_ops_completed" }
 		FROMFROM = { has_fleet_flag = "fmerc_count_towards_success" }
 		count_owned_ships = { count = 0 }
@@ -473,7 +473,7 @@ country_event = {
 				type = default
 				day_zero_contact = no
 				effect = {
-					set_country_flag = "fmerc_liberated_await_clear_skies"
+					set_country_flag = "merc_op_liberationd_await_clear_skies"
 					establish_communications_no_message = event_target:fmerc_buyer
 					establish_contact = { who = event_target:fmerc_buyer location = FROM }
 					if = {
@@ -537,12 +537,12 @@ event = {
 	is_triggered_only = yes
 
 	trigger = {
-		any_country = { has_country_flag = "fmerc_liberated_await_clear_skies" }
+		any_country = { has_country_flag = "merc_op_liberationd_await_clear_skies" }
 	}
 
 	immediate = {
 		every_country = {
-			limit = { has_country_flag = "fmerc_liberated_await_clear_skies" }
+			limit = { has_country_flag = "merc_op_liberationd_await_clear_skies" }
 			country_event = { id = mercOpsLiberation.1338 }
 		}
 	}
@@ -555,7 +555,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		has_country_flag = "fmerc_liberated_await_clear_skies"
+		has_country_flag = "merc_op_liberationd_await_clear_skies"
 		exists = capital_scope
 		capital_scope = {
 			solar_system = {
@@ -573,7 +573,7 @@ country_event = {
 
 	immediate = {
 		log = "mercOpsLiberation: Solar system empty (.1337)"
-		remove_country_flag = "fmerc_liberated_await_clear_skies"
+		remove_country_flag = "merc_op_liberationd_await_clear_skies"
 		country_event = { id = game_start.9 } # Empire init - add ships
 		create_fleet_from_naval_cap = 0.5
 	}
