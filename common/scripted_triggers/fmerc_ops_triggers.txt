@@ -17,13 +17,13 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-fmerc_in_system = {
+merc_has_presence = {
 	any_ship_in_system = {
-		exists = fleet
-		fleet = {
+		exists = owner
+		owner = {
 			OR = {
-				has_fleet_flag = "folk_mercenary_station"
-				has_fleet_flag = "folk_mercenary_outpost"
+				is_country_type = "fmerc_enclave"
+				is_country_type = "fmerc_operations"
 			}
 		}
 	}

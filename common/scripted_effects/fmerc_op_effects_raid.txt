@@ -122,62 +122,156 @@ fmerc_stage2_init_fleet = {
 }
 
 fmerc_stage2_init_raid = {
-	log = "Raid: Locating and marking 5 targets for destruction."
+	log = "Raid: Locating and marking 5 civilian targets for destruction."
 	set_variable = {
 		which = "MercRaidCount"
 		value = 5
 	}
-	event_target:fmerc_target_country = {
-		every_owned_ship = {
-			limit = {
-				exists = solar_system
-				exists = fleet
-				OR = {
-					is_ship_size = mining_station
-					is_ship_size = research_station
-					is_ship_size = outpost_station
-					is_ship_size = observation_station
-				}
-				solar_system = {
-					NOT = { has_star_flag = enclave }
-					NOT = {
-						fmerc_in_system = yes
-					}
-				}
-			}
-			set_ship_flag = "fmerc_counter"
-		}
 
-		while = {
-			limit = {
-				ROOT = {
-					check_variable = {
-						which = "MercRaidCount"
-						value > 0
+	# First we try to find any targets that are "perfect".
+	# That means:
+	# 1. No military presence in system
+	# 2. No spaceports
+	# 3. No colonies in system
+	while = {
+		limit = { check_variable = { which = "MercRaidCount" value > 0 } }
+		event_target:fmerc_target_country = {
+			random_owned_fleet = {
+				limit = {
+					exists = solar_system
+					OR = {
+						is_ship_size = mining_station
+						is_ship_size = research_station
+						is_ship_size = observation_station
+					}
+					NOT = { any_owned_ship = { has_ship_flag = "fmerc_target" } }
+					solar_system = {
+						merc_has_presence = no
+						# Priority 1
+						NOT = {
+							any_ship_in_system = {
+								OR = {
+									is_ship_class = shipclass_military_station
+									is_ship_class = shipclass_military
+									is_ship_class = shipclass_orbital_station # Spaceport
+								}
+							}
+						}
+						NOT = { any_planet = { is_colony = yes } }
 					}
 				}
-			}
-			ROOT = {
-				subtract_variable = {
-					which = "MercRaidCount"
-					value = 1
+				random_owned_ship = {
+					set_ship_flag = "fmerc_target"
+					log = "Raid: - Marked [this.GetName] (P1)."
 				}
-			}
-			random_owned_ship = {
-				limit = { has_ship_flag = "fmerc_counter" }
-				remove_ship_flag = "fmerc_counter"
-				log = "Raid: - Marked [this.GetName]."
-				set_ship_flag = "fmerc_target"
+				PREVPREV = { subtract_variable = { which = "MercRaidCount" value = 1 } }
 			}
 		}
-		every_owned_ship = {
-			limit = { has_ship_flag = "fmerc_counter" }
-			remove_ship_flag = "fmerc_counter"
+	}
+
+	# As a secondary priority, if we can't find only perfect targets
+	# - Strike the "no colony" requirement
+	while = {
+		limit = { check_variable = { which = "MercRaidCount" value > 0 } }
+		event_target:fmerc_target_country = {
+			random_owned_fleet = {
+				limit = {
+					exists = solar_system
+					OR = {
+						is_ship_size = mining_station
+						is_ship_size = research_station
+						is_ship_size = observation_station
+					}
+					NOT = { any_owned_ship = { has_ship_flag = "fmerc_target" } }
+					solar_system = {
+						merc_has_presence = no
+						# Priority 2
+						NOT = {
+							any_ship_in_system = {
+								OR = {
+									is_ship_class = shipclass_military_station
+									is_ship_class = shipclass_military
+									is_ship_class = shipclass_orbital_station # Spaceport
+								}
+							}
+						}
+					}
+				}
+				random_owned_ship = {
+					set_ship_flag = "fmerc_target"
+					log = "Raid: - Marked [this.GetName] (P2)."
+				}
+				PREVPREV = { subtract_variable = { which = "MercRaidCount" value = 1 } }
+			}
 		}
+	}
+
+	# As a tertiary priority, if we need more targets
+	# - Strike the "no spaceports" requirement
+	while = {
+		limit = { check_variable = { which = "MercRaidCount" value > 0 } }
+		event_target:fmerc_target_country = {
+			random_owned_fleet = {
+				limit = {
+					exists = solar_system
+					OR = {
+						is_ship_size = mining_station
+						is_ship_size = research_station
+						is_ship_size = observation_station
+					}
+					NOT = { any_owned_ship = { has_ship_flag = "fmerc_target" } }
+					solar_system = {
+						merc_has_presence = no
+						# Priority 2
+						NOT = {
+							any_ship_in_system = {
+								OR = {
+									is_ship_class = shipclass_military_station
+									is_ship_class = shipclass_military
+								}
+							}
+						}
+					}
+				}
+				random_owned_ship = {
+					set_ship_flag = "fmerc_target"
+					log = "Raid: - Marked [this.GetName] (P3)."
+				}
+				PREVPREV = { subtract_variable = { which = "MercRaidCount" value = 1 } }
+			}
+		}
+	}
+
+	# Finally
+	# - Strike the "no military stations" requirement
+	# - Add outpost_station (frontier outpost) to the valid targets list
+	while = {
+		limit = { check_variable = { which = "MercRaidCount" value > 0 } }
+		event_target:fmerc_target_country = {
+			random_owned_fleet = {
+				limit = {
+					exists = solar_system
+					OR = {
+						is_ship_size = mining_station
+						is_ship_size = research_station
+						is_ship_size = observation_station
+						is_ship_size = outpost_station
+					}
+					NOT = { any_owned_ship = { has_ship_flag = "fmerc_target" } }
+					solar_system = { merc_has_presence = no }
+				}
+				random_owned_ship = {
+					set_ship_flag = "fmerc_target"
+					log = "Raid: - Marked [this.GetName] (P4)."
+				}
+				PREVPREV = { subtract_variable = { which = "MercRaidCount" value = 1 } }
+			}
+		}
+	}
+
+	event_target:fmerc_target_country = {
 		random_owned_ship = {
-			limit = {
-				has_ship_flag = "fmerc_target"
-			}
+			limit = { has_ship_flag = "fmerc_target" }
 			fleet = {
 				log = "Raid: First target is in fleet [this.GetName]."
 				save_event_target_as = fmerc_target
@@ -185,4 +279,3 @@ fmerc_stage2_init_raid = {
 		}
 	}
 }
-
