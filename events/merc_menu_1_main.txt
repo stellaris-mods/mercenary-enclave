@@ -182,15 +182,6 @@ country_event = {
 				text = fmerc_enclave.has_station
 				has_country_flag = "fmerc_allow_stations"
 			}
-			custom_tooltip = {
-				text = fmerc_enclave.trust
-				event_target:traders = {
-					trust = {
-						who = ROOT
-						value > 49
-					}
-				}
-			}
 		}
 		add_modifier = {
 			modifier = merc_enclave_insurance
