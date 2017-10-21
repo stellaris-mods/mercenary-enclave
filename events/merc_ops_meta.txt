@@ -17,11 +17,11 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-namespace = fmerc_ops_meta
+namespace = mercOpsMeta
 
 # Triggered from mission setup effects, after the delay
 country_event = {
-	id = fmerc_ops_meta.1
+	id = mercOpsMeta.1
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -32,7 +32,7 @@ country_event = {
 }
 
 event = {
-	id = fmerc_ops_meta.100
+	id = mercOpsMeta.100
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
@@ -46,19 +46,19 @@ event = {
 					}
 				}
 			}
-			country_event = { id = fmerc_ops_meta.911 }
+			country_event = { id = mercOpsMeta.911 }
 		}
 	}
 }
 
 # The mercenary operations are complete!
 country_event = {
-	id = fmerc_ops_meta.911
+	id = mercOpsMeta.911
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
-		log = "fmerc_ops_meta.911: Terminating mission."
+		log = "mercOpsMeta.911: Terminating mission."
 
 		fmerc_set_buyer = yes
 		fmerc_set_target_country = yes
@@ -196,7 +196,7 @@ country_event = {
 				queue_actions = {
 					repeat = {
 						while = {
-							id = fmerc_ops_fleet.911.trigger.1
+							id = mercOpsFleet.911.trigger.1
 							NOR = {
 								exists = solar_system
 								solar_system = {
@@ -210,7 +210,7 @@ country_event = {
 					move_to = event_target:fmerc_spawn_at
 					wait = 14
 					effect = {
-						id = fmerc_ops_fleet.911.effect.1
+						id = mercOpsFleet.911.effect.1
 						remove_fleet_flag = "fmerc_count_towards_success"
 						destroy_fleet = THIS
 					}
@@ -238,7 +238,7 @@ country_event = {
 # FromFrom = ship 1
 # FromFromFrom = ship 2
 country_event = {
-	id = fmerc_ops_meta.200
+	id = mercOpsMeta.200
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = { is_country_type = fmerc_operations }

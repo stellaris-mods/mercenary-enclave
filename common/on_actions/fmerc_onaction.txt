@@ -1,8 +1,8 @@
 
 on_monthly_pulse = {
 	events = {
-		fmerc_ops_meta.100
-		fmerc_ops_liberate.1337
+		mercOpsMeta.100
+		mercOpsLiberation.1337
 	}
 }
 
@@ -42,35 +42,35 @@ on_custom_diplomacy = {
 
 on_fleet_destroyed_victim = {
 	events = {
-		fmerc_ops_fleet.30
-		fmerc_ops_liberate.30
+		mercOpsFleet.30
+		mercOpsLiberation.30
 		mercRelations.140
 	}
 }
 
 on_planet_defenders_win = {
 	events = {
-		fmerc_ops_liberate.50
+		mercOpsLiberation.50
 	}
 }
 
 on_planet_defenders_lose = {
 	events = {
-		fmerc_ops_liberate.60
+		mercOpsLiberation.60
 	}
 }
 
 on_rebels_take_planet = {
 	events = {
-		fmerc_ops_liberate.70
+		mercOpsLiberation.70
 	}
 }
 
 on_rebels_take_planet_owner_switched = {
 	events = {
-		fmerc_ops_liberate.71
+		mercOpsLiberation.71
 	}
 }
 
 
-on_ship_destroyed_perp = { events = { fmerc_ops_meta.200 } }
+on_ship_destroyed_perp = { events = { mercOpsMeta.200 } }

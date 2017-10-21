@@ -1,14 +1,8 @@
 # Mercenary Enclave
 
 # Todo / Ideas
-- After enclave establishes contact with their first country, send out a scouting expedition fleet that tries to make contact with other empires
-- Change operation costs to use energy instead of minerals
-- Reduce cost of Mining/Research Raid so that it's useful earlier in the game, and make sure the enclave doesn't risk killing lots of spaceports and military fleets during the operation
-- Remove trust +1 every month, and add a +trust when you order an operation instead. This removes the benefit of the "allow station access" option, so that needs to provide something else then, or be removed
-- Reduce cost of Liberation, and check the cost of all the operations
-- Perhaps add a small influence cost to operations, to signify that you're probably going behind the back of your fellow politicians or whatever. Perhaps price it depending on country ethos
+- Add +trust when you order an operation?
 - MISSION TYPE: Guard Solar System (or Guard Colony), where the mercenaries will guard a system/colony from hostile fleets/invasions. This should probably cost influence per month, and not be usable while you're in an active conflict.
-- Make sure we dont show the enclave dead thing if there's any outposts left
 - Does Swarm have spaceports?
 - Add on monthly pulse (while operation is active) that increases operation detect chance?
 - AI Rebellion can colonize planets that we should be able to liberate

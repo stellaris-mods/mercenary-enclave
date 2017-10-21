@@ -17,7 +17,7 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-namespace = fmerc_ops_liberate
+namespace = mercOpsLiberation
 
 # STAGE 3 CONTROLLER
 # These events are used exclusively by the "Liberation" operation.
@@ -26,7 +26,7 @@ namespace = fmerc_ops_liberate
 # liberate
 # Triggered from fmerc_ops_initial_target
 country_event = {
-	id = fmerc_ops_liberate.1
+	id = mercOpsLiberation.1
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -35,7 +35,7 @@ country_event = {
 	}
 
 	immediate = {
-		log = "fmerc_ops_liberate: Start mission (.1)"
+		log = "mercOpsLiberation: Start mission (.1)"
 		if = {
 			limit = {
 				exists = event_target:fmerc_target
@@ -50,7 +50,7 @@ country_event = {
 				queue_actions = {
 					repeat = {
 						while = {
-							id = fmerc_ops_liberate.1.trigger.1
+							id = mercOpsLiberation.1.trigger.1
 							exists = event_target:fmerc_target
 							exists = owner
 							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
@@ -65,7 +65,7 @@ country_event = {
 						wait = 4
 					}
 					effect = {
-						id = fmerc_ops_liberate.1.effect.1
+						id = mercOpsLiberation.1.effect.1
 						set_fleet_stance = aggressive
 						owner = {
 							# Turn hostile when we find our first target
@@ -74,7 +74,7 @@ country_event = {
 					}
 					repeat = {
 						while = {
-							id = fmerc_ops_liberate.1.trigger.2
+							id = mercOpsLiberation.1.trigger.2
 							exists = event_target:fmerc_target
 							NOT = { exists = orbit }
 							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
@@ -83,10 +83,10 @@ country_event = {
 						wait = 4
 					}
 					effect = {
-						id = fmerc_ops_liberate.1.effect.2
+						id = mercOpsLiberation.1.effect.2
 						owner = {
 							country_event = {
-								id = fmerc_ops_liberate.10
+								id = mercOpsLiberation.10
 							}
 						}
 					}
@@ -101,12 +101,12 @@ country_event = {
 }
 
 country_event = {
-	id = fmerc_ops_liberate.2
+	id = mercOpsLiberation.2
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
-		log = "fmerc_ops_liberate: Checking if we should try again ..."
+		log = "mercOpsLiberation: Checking if we should try again ..."
 		fmerc_stage3_update_can_retry = yes
 		if = {
 			limit = {
@@ -116,7 +116,7 @@ country_event = {
 			log = "Success chance is [this.MercSuccess]%, and the RNG was in our favor."
 			fmerc_liberation_set_target_planet = yes
 			country_event = {
-				id = fmerc_ops_liberate.1
+				id = mercOpsLiberation.1
 			}
 			else = {
 				log = "Liberation mission aborted due to low success factor ([this.MercSuccess])."
@@ -131,12 +131,12 @@ country_event = {
 # If a merc fleet is destroyed after reaching orbit, and there's
 # enough MercSuccess value left, a new fleet will be sent.
 country_event = {
-	id = fmerc_ops_liberate.10
+	id = mercOpsLiberation.10
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
-		log = "fmerc_ops_liberate: queue_actions done (.10)"
+		log = "mercOpsLiberation: queue_actions done (.10)"
 		fmerc_liberation_set_target_planet = yes
 
 		if = {
@@ -252,7 +252,7 @@ country_event = {
 # FromFromFrom = fleet 2
 # on_fleet_destroyed_victim
 country_event = {
-	id = fmerc_ops_liberate.30
+	id = mercOpsLiberation.30
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -266,8 +266,8 @@ country_event = {
 	}
 
 	immediate = {
-		log = "fmerc_ops_liberate: on_fleet_destroyed_victim (.30)"
-		country_event = { id = fmerc_ops_liberate.2 }
+		log = "mercOpsLiberation: on_fleet_destroyed_victim (.30)"
+		country_event = { id = mercOpsLiberation.2 }
 	}
 }
 
@@ -296,7 +296,7 @@ country_event = {
 # From = country, attack leader (rebel)
 # FromFrom = planet
 country_event = {
-	id = fmerc_ops_liberate.50
+	id = mercOpsLiberation.50
 	is_triggered_only = yes
 	hide_window = yes
 	trigger = {
@@ -307,7 +307,7 @@ country_event = {
 		}
 	}
 	immediate = {
-		log = "fmerc_ops_liberate: on_planet_defenders_win (.50)"
+		log = "mercOpsLiberation: on_planet_defenders_win (.50)"
 		random_country = {
 			limit = {
 				is_country_type = "fmerc_operations"
@@ -316,7 +316,7 @@ country_event = {
 					who = FROM
 				}
 			}
-			country_event = { id = fmerc_ops_liberate.2 }
+			country_event = { id = mercOpsLiberation.2 }
 		}
 	}
 }
@@ -347,7 +347,7 @@ country_event = {
 # From = country, attack leader (rebel)
 # FromFrom = planet
 country_event = {
-	id = fmerc_ops_liberate.60
+	id = mercOpsLiberation.60
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
@@ -358,7 +358,7 @@ country_event = {
 		}
 	}
 	immediate = {
-		log = "fmerc_ops_liberate: on_planet_defenders_lose (.60)"
+		log = "mercOpsLiberation: on_planet_defenders_lose (.60)"
 		# In vanilla, the leader was killed.
 		# But now that there's only one governor per sector,
 		# that sounds unreasonable to me.
@@ -392,14 +392,14 @@ country_event = {
 # This = Rebel Country
 # From = Planet
 country_event = {
-	id = fmerc_ops_liberate.70
+	id = mercOpsLiberation.70
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
 		has_country_flag = "fmerc_liberation_rebels"
 	}
 	immediate = {
-		log = "fmerc_ops_liberate: on_rebels_take_planet (.70)"
+		log = "mercOpsLiberation: on_rebels_take_planet (.70)"
 		FROM.owner = {
 			# Event target used in 4211
 			save_event_target_as = rebelled_against
@@ -414,14 +414,14 @@ country_event = {
 # From = Planet
 # FromFrom = War
 country_event = {
-	id = fmerc_ops_liberate.71
+	id = mercOpsLiberation.71
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
 		has_country_flag = "fmerc_liberation_rebels"
 	}
 	immediate = {
-		log = "fmerc_ops_liberate: on_rebels_take_planet_owner_switched (.71)"
+		log = "mercOpsLiberation: on_rebels_take_planet_owner_switched (.71)"
 
 		# Find mercenary operations
 		random_country = {
@@ -532,7 +532,7 @@ country_event = {
 }
 
 event = {
-	id = fmerc_ops_liberate.1337
+	id = mercOpsLiberation.1337
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -543,14 +543,14 @@ event = {
 	immediate = {
 		every_country = {
 			limit = { has_country_flag = "fmerc_liberated_await_clear_skies" }
-			country_event = { id = fmerc_ops_liberate.1338 }
+			country_event = { id = mercOpsLiberation.1338 }
 		}
 	}
 }
 
 
 country_event = {
-	id = fmerc_ops_liberate.1338
+	id = mercOpsLiberation.1338
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -572,7 +572,7 @@ country_event = {
 	}
 
 	immediate = {
-		log = "fmerc_ops_liberate: Solar system empty (.1337)"
+		log = "mercOpsLiberation: Solar system empty (.1337)"
 		remove_country_flag = "fmerc_liberated_await_clear_skies"
 		country_event = { id = game_start.9 } # Empire init - add ships
 		create_fleet_from_naval_cap = 0.5

@@ -17,7 +17,7 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-namespace = fmerc_ops_fleet
+namespace = mercOpsFleet
 
 # STAGE 3 CONTROLLER
 # These events are used for all operation types except "Liberation".
@@ -26,7 +26,7 @@ namespace = fmerc_ops_fleet
 # Triggered from fmerc_ops_initial_target
 # In this, event_target:fmerc_target is a fleet
 country_event = {
-	id = fmerc_ops_fleet.1
+	id = mercOpsFleet.1
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -35,7 +35,7 @@ country_event = {
 	}
 
 	immediate = {
-		log = "fmerc_ops_fleet: Start mission (.1)"
+		log = "mercOpsFleet: Start mission (.1)"
 
 		if = {
 			limit = {
@@ -52,7 +52,7 @@ country_event = {
 				queue_actions = {
 					repeat = {
 						while = {
-							id = fmerc_ops_fleet.1.trigger.1
+							id = mercOpsFleet.1.trigger.1
 							exists = event_target:fmerc_target
 							exists = owner
 							NOT = {
@@ -76,7 +76,7 @@ country_event = {
 						wait = 7
 					}
 					effect = {
-						id = fmerc_ops_fleet.1.effect.1
+						id = mercOpsFleet.1.effect.1
 						set_fleet_stance = aggressive
 						owner = {
 							# Turn hostile when we find our first target
@@ -85,7 +85,7 @@ country_event = {
 					}
 					repeat = {
 						while = {
-							id = fmerc_ops_fleet.1.trigger.2
+							id = mercOpsFleet.1.trigger.2
 							exists = event_target:fmerc_target
 							exists = owner
 							NOT = {
@@ -96,9 +96,9 @@ country_event = {
 						wait = 3
 					}
 					effect = {
-						id = fmerc_ops_fleet.1.effect.2
+						id = mercOpsFleet.1.effect.2
 						owner = {
-							country_event = { id = fmerc_ops_fleet.10 }
+							country_event = { id = mercOpsFleet.10 }
 						}
 					}
 				}
@@ -114,7 +114,7 @@ country_event = {
 
 # Exclusively triggered by the fleet queue being completed
 country_event = {
-	id = fmerc_ops_fleet.10
+	id = mercOpsFleet.10
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -123,7 +123,7 @@ country_event = {
 	}
 
 	immediate = {
-		log = "fmerc_ops_fleet: queue_actions done (.10)"
+		log = "mercOpsFleet: queue_actions done (.10)"
 
 		# This sets fmerc_target to the next ship target, if needed.
 		fmerc_set_raid_target = yes
@@ -134,7 +134,7 @@ country_event = {
 			}
 			# Try again
 			country_event = {
-				id = fmerc_ops_fleet.1
+				id = mercOpsFleet.1
 			}
 			else = {
 				log = "Fleet target did not exist, aborting mission."
@@ -150,7 +150,7 @@ country_event = {
 # FromFromFrom = fleet 2
 # on_fleet_destroyed_victim
 country_event = {
-	id = fmerc_ops_fleet.30
+	id = mercOpsFleet.30
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -164,7 +164,7 @@ country_event = {
 	}
 
 	immediate = {
-		log = "fmerc_ops_fleet: on_fleet_destroyed_victim (.30)"
+		log = "mercOpsFleet: on_fleet_destroyed_victim (.30)"
 
 		# This sets fmerc_target to the next ship target, if needed.
 		fmerc_set_raid_target = yes
@@ -182,7 +182,7 @@ country_event = {
 				remove_country_flag = "fmerc_retry_mission"
 				log = "Success chance is [this.MercSuccess]%, and the RNG was in our favor."
 				country_event = {
-					id = fmerc_ops_fleet.1
+					id = mercOpsFleet.1
 				}
 				else = {
 					log = "Fleet operation cancelled due to low success factor ([this.MercSuccess])."

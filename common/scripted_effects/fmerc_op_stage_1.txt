@@ -528,42 +528,42 @@ fmerc_init_stage1 = {
 
 		switch = {
 			trigger = has_country_flag
-			fmerc_amoeba = { country_event = { id = fmerc_ops_meta.1 } }
-			fmerc_cloud = { country_event = { id = fmerc_ops_meta.1 } }
-			fmerc_crystal = { country_event = { id = fmerc_ops_meta.1 } }
-			fmerc_pirate = { country_event = { id = fmerc_ops_meta.1 } }
-			fmerc_drone = { country_event = { id = fmerc_ops_meta.1 } }
+			fmerc_amoeba = { country_event = { id = mercOpsMeta.1 } }
+			fmerc_cloud = { country_event = { id = mercOpsMeta.1 } }
+			fmerc_crystal = { country_event = { id = mercOpsMeta.1 } }
+			fmerc_pirate = { country_event = { id = mercOpsMeta.1 } }
+			fmerc_drone = { country_event = { id = mercOpsMeta.1 } }
 			fmerc_spaceport = {
 				country_event = {
-					id = fmerc_ops_meta.1
+					id = mercOpsMeta.1
 					days = 3
 					random = 70
 				}
 			}
 			fmerc_liberate = {
 				country_event = {
-					id = fmerc_ops_meta.1
+					id = mercOpsMeta.1
 					days = 3
 					random = 70
 				}
 			}
 			fmerc_raid = {
 				country_event = {
-					id = fmerc_ops_meta.1
+					id = mercOpsMeta.1
 					days = 3
 					random = 70
 				}
 			}
 			fmerc_fleet = {
 				country_event = {
-					id = fmerc_ops_meta.1
+					id = mercOpsMeta.1
 					days = 3
 					random = 70
 				}
 			}
 			default = {
 				country_event = {
-					id = fmerc_ops_meta.1
+					id = mercOpsMeta.1
 					days = 3
 					random = 70
 				}
