@@ -345,32 +345,32 @@ merc_account_internal_grab_minerals = {
 			check_variable = { which = "MercTmp" value > 1000 }
 			check_variable = { which = "MercDeposit" value > 1000 }
 		}
-		change_variable = { which = "MercTmp" value = -1000 }
-		change_variable = { which = "MercDeposit" value = -1000 }
+		subtract_variable = { which = "MercTmp" value = 1000 }
+		subtract_variable = { which = "MercDeposit" value = 1000 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 100 }
 			check_variable = { which = "MercDeposit" value > 100 }
 		}
-		change_variable = { which = "MercTmp" value = -100 }
-		change_variable = { which = "MercDeposit" value = -100 }
+		subtract_variable = { which = "MercTmp" value = 100 }
+		subtract_variable = { which = "MercDeposit" value = 100 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 10 }
 			check_variable = { which = "MercDeposit" value > 10 }
 		}
-		change_variable = { which = "MercTmp" value = -10 }
-		change_variable = { which = "MercDeposit" value = -10 }
+		subtract_variable = { which = "MercTmp" value = 10 }
+		subtract_variable = { which = "MercDeposit" value = 10 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 0 }
 			check_variable = { which = "MercDeposit" value > 0 }
 		}
-		change_variable = { which = "MercTmp" value = -1 }
-		change_variable = { which = "MercDeposit" value = -1 }
+		subtract_variable = { which = "MercTmp" value = 1 }
+		subtract_variable = { which = "MercDeposit" value = 1 }
 	}
 
 	while = {
@@ -416,32 +416,32 @@ merc_account_internal_grab_energy = {
 			check_variable = { which = "MercTmp" value > 1000 }
 			check_variable = { which = "MercDepositEnergy" value > 1000 }
 		}
-		change_variable = { which = "MercTmp" value = -1000 }
-		change_variable = { which = "MercDepositEnergy" value = -1000 }
+		subtract_variable = { which = "MercTmp" value = 1000 }
+		subtract_variable = { which = "MercDepositEnergy" value = 1000 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 100 }
 			check_variable = { which = "MercDepositEnergy" value > 100 }
 		}
-		change_variable = { which = "MercTmp" value = -100 }
-		change_variable = { which = "MercDepositEnergy" value = -100 }
+		subtract_variable = { which = "MercTmp" value = 100 }
+		subtract_variable = { which = "MercDepositEnergy" value = 100 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 10 }
 			check_variable = { which = "MercDepositEnergy" value > 10 }
 		}
-		change_variable = { which = "MercTmp" value = -10 }
-		change_variable = { which = "MercDepositEnergy" value = -10 }
+		subtract_variable = { which = "MercTmp" value = 10 }
+		subtract_variable = { which = "MercDepositEnergy" value = 10 }
 	}
 	while = {
 		limit = {
 			check_variable = { which = "MercTmp" value > 0 }
 			check_variable = { which = "MercDepositEnergy" value > 0 }
 		}
-		change_variable = { which = "MercTmp" value = -1 }
-		change_variable = { which = "MercDepositEnergy" value = -1 }
+		subtract_variable = { which = "MercTmp" value = 1 }
+		subtract_variable = { which = "MercDepositEnergy" value = 1 }
 	}
 
 	while = {
