@@ -306,7 +306,7 @@ fmerc_stage3_spawn_destroyer = {
 	last_created_fleet = {
 		create_ship = {
 			name = random
-			random_existing_design = "battleship"
+			random_existing_design = "destroyer"
 			prefix = no
 		}
 	}
@@ -315,7 +315,7 @@ fmerc_stage3_spawn_cruiser = {
 	last_created_fleet = {
 		create_ship = {
 			name = random
-			random_existing_design = "battleship"
+			random_existing_design = "cruiser"
 			prefix = no
 		}
 	}
@@ -349,6 +349,8 @@ fmerc_stage3_configure_squadrons = {
 	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
 	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
 	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
+
+	log = "Squadron requirements: BS=[this.BattleshipSquad] C=[this.CruiserSquad] D=[this.DestroyerSquad] C=[this.Corvette]"
 }
 
 # While loops only loop to 100.
@@ -365,6 +367,8 @@ fmerc_stage3_match_fleet_power = {
 		limit = { check_variable = { which = "MercSpawn" value < "Corvette" } }
 		change_variable = { which = "MercSpawn" value = 200 }
 	}
+
+	log = "Final adjusted military power: [this.MercSpawn]."
 
 	if = { limit = { check_variable = { which = "Corvette" value = 0 } }
 		# There's no valid Corvette design, as far as we can see.
@@ -587,6 +591,7 @@ fmerc_stage3_create_fleet = {
 	log = "Spawning [this.MercSpawn] (x[this.MercPercentSuccess]) fleet power for operation fleet."
 	fmerc_stage3_match_fleet_power = yes
 
+	# XXX This doesn't seem to be working.
 	last_created_fleet = {
 		add_modifier = {
 			modifier = merc_fleet_scaling
