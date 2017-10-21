@@ -448,25 +448,12 @@ merc_find_best_harbour = {
 		fmerc_set_target_country = yes
 	}
 
-	# Then try to find a location inside the targets borders
-	if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
-		event_target:fmerc_target_country = {
-			random_system_within_border = {
-				limit = { merc_has_station = yes }
-				random_fleet_in_system = {
-					limit = { merc_is_station = yes }
-					save_event_target_as = fmerc_spawn_at
-				}
-			}
-		}
-	}
-	# If we still found nothing, find one of our targets and get
-	# the closest location to the target
-	if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
-		event_target:fmerc_target_country = {
-			random_owned_ship = {
-				limit = { has_ship_flag = "fmerc_target" }
-				closest_system = {
+	# The target country might not always exist; we might have destroyed it
+	if = { limit = { exists = event_target:fmerc_target_country }
+		# Then try to find a location inside the targets borders
+		if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
+			event_target:fmerc_target_country = {
+				random_system_within_border = {
 					limit = { merc_has_station = yes }
 					random_fleet_in_system = {
 						limit = { merc_is_station = yes }
@@ -475,7 +462,24 @@ merc_find_best_harbour = {
 				}
 			}
 		}
+		# If we still found nothing, find one of our targets and get
+		# the closest location to the target
+		if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
+			event_target:fmerc_target_country = {
+				random_owned_ship = {
+					limit = { has_ship_flag = "fmerc_target" }
+					closest_system = {
+						limit = { merc_has_station = yes }
+						random_fleet_in_system = {
+							limit = { merc_is_station = yes }
+							save_event_target_as = fmerc_spawn_at
+						}
+					}
+				}
+			}
+		}
 	}
+
 	# Fall back to any station owned by an enclave
 	if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
 		random_country = {
