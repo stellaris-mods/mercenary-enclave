@@ -29,14 +29,7 @@ fleet_event = {
 		exists = owner
 		exists = FROM
 		has_fleet_flag = "fmerc_count_towards_success"
-		owner = {
-			is_country_type = "fmerc_operations"
-			NOT = {
-				# Set if the target country declines the insurance policy first
-				# XXX this needs to be a relation flag
-				has_country_flag = "fmerc_insurance_ignored"
-			}
-		}
+		owner = { is_country_type = "fmerc_operations" }
 		FROM = {
 			exists = space_owner
 			space_owner = { has_modifier = merc_enclave_insurance }
@@ -47,6 +40,12 @@ fleet_event = {
 			has_relation_flag = {
 				who = FROM.space_owner
 				flag = merc_operations_target
+			}
+			NOT = {
+				has_relation_flag = {
+					who = FROM.space_owner
+					flag = merc_insurance_ignored
+				}
 			}
 		}
 	}
@@ -92,98 +91,36 @@ country_event = {
 
 			save_event_target_as = fmerc_buyer
 
-			# We should copy the MercPreviousOperationCost from this scope to the ROOT scope.
-			PREV = {
-				set_variable = {
-					which = "MercCost"
-					value = 0
-				}
-			}
-			set_variable = {
-				which = temp_counter
-				value = "MercPreviousOperationCost"
-			}
-			# ZZZ copy temp_counter to cost
+			# We should copy the MercInsuranceBase from this scope to the ROOT scope.
+			PREV = { set_variable = { which = "MercCost" value = 0 } }
+			set_variable = { which = "MercTmp" value = "MercInsuranceBase" }
+
+			# ZZZ copy "MercTmp" to cost
 			# isn't this nice, while loops only loop 100 times, no matter what
 			while = {
-				limit = {
-					check_variable = {
-						which = temp_counter
-						value > 1000
-					}
-				}
-				subtract_variable = {
-					which = temp_counter
-					value = 1000
-				}
-				PREV = {
-					change_variable = {
-						which = "MercCost"
-						value = 1000
-					}
-				}
+				limit = { check_variable = { which = "MercTmp" value > 1000 } }
+				subtract_variable = { which = "MercTmp" value = 1000 }
+				PREV = { change_variable = { which = "MercCost" value = 1000 } }
 			}
 			while = {
-				limit = {
-					check_variable = {
-						which = temp_counter
-						value > 100
-					}
-				}
-				subtract_variable = {
-					which = temp_counter
-					value = 100
-				}
-				PREV = {
-					change_variable = {
-						which = "MercCost"
-						value = 100
-					}
-				}
+				limit = { check_variable = { which = "MercTmp" value > 100 } }
+				subtract_variable = { which = "MercTmp" value = 100 }
+				PREV = { change_variable = { which = "MercCost" value = 100 } }
 			}
 			while = {
-				limit = {
-					check_variable = {
-						which = temp_counter
-						value > 10
-					}
-				}
-				subtract_variable = {
-					which = temp_counter
-					value = 10
-				}
-				PREV = {
-					change_variable = {
-						which = "MercCost"
-						value = 10
-					}
-				}
+				limit = { check_variable = { which = "MercTmp" value > 10 } }
+				subtract_variable = { which = "MercTmp" value = 10 }
+				PREV = { change_variable = { which = "MercCost" value = 10 } }
 			}
 			while = {
-				limit = {
-					check_variable = {
-						which = temp_counter
-						value > 0
-					}
-				}
-				subtract_variable = {
-					which = temp_counter
-					value = 1
-				}
-				PREV = {
-					change_variable = {
-						which = "MercCost"
-						value = 1
-					}
-				}
+				limit = { check_variable = { which = "MercTmp" value > 0 } }
+				subtract_variable = { which = "MercTmp" value = 1 }
+				PREV = { change_variable = { which = "MercCost" value = 1 } }
 			}
 		}
 
 		# 25% discount for being a trusted customer
-		multiply_variable = {
-			which = "MercCost"
-			value = 0.75
-		}
+		multiply_variable = { which = "MercCost" value = 0.75 }
 
 		# Count our total minerals
 		merc_account_update = yes
@@ -196,7 +133,7 @@ country_event = {
 				text = fmerc_enclave.cantafford.title
 				check_variable = {
 					which = "MercMinerals"
-					value > MercCost
+					value > "MercCost"
 				}
 			}
 		}
@@ -220,7 +157,10 @@ country_event = {
 		name = fmerc_enclave.insurance.decline
 		hidden_effect = {
 			event_target:fmerc_ops_country = {
-				set_country_flag = "fmerc_insurance_ignored"
+				set_relation_flag = {
+					who = ROOT
+					flag = merc_insurance_ignored
+				}
 			}
 		}
 	}

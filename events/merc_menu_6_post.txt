@@ -71,10 +71,9 @@ country_event = {
 				}
 				set_country_flag = "fmerc_active_operation"
 				# For insurance purposes
-				set_variable = {
-					which = "MercPreviousOperationCost"
-					value = "MercCost"
-				}
+				set_variable = { which = "MercInsuranceBase" value = "MercCost" }
+				change_variable = { which = "MercInsuranceBase" value = "MercCostEnergy" }
+				change_variable = { which = "MercInsuranceBase" value = "MercCostInfluence" }
 				merc_account_grabdatcash = yes
 				fmerc_init_stage1 = yes
 			}
