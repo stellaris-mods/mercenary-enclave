@@ -365,6 +365,7 @@ country_event = {
 				set_location = event_target:spawn
 				set_leader = last_created_leader
 				set_fleet_flag = "merc_exploration_fleet"
+				set_fleet_stance = passive
 			}
 		}
 		last_created_fleet = { fleet_event = { id = mercCommunications.1010 } }
@@ -391,7 +392,6 @@ fleet_event = {
 						id = mercScience.1
 						exists = space_owner
 						NOT = { is_same_value = ROOT.solar_system }
-						NOT = { space_owner = { is_hostile = ROOT.owner } }
 						space_owner = { NOT = { has_communications = ROOT.owner } }
 					}
 					found_system = { move_to = this }
@@ -418,13 +418,13 @@ fleet_event = {
 			move_to = event_target:home
 			repeat = {
 				while = {
-					id = mercScience.5
+					id = mercScience.4
 					NOT = { is_fleet_idle = yes }
 				}
 				wait = 14
 			}
 			effect = {
-				id = mercScience.6
+				id = mercScience.5
 				delete_fleet = ROOT
 			}
 		}
