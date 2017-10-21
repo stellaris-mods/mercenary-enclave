@@ -24,22 +24,37 @@ country_event = {
 	id = mercMenu.2100
 	title = fmerc_enclave.9000.signatures
 	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
-		text = fmerc_enclave.300.conclusion
+		trigger = {
+			switch = {
+				trigger = has_country_flag
+				fmerc_diplo_spaceport = { text = "merc.param.operation.spaceport" }
+				fmerc_diplo_liberate = { text = "merc.param.operation.liberation" }
+				fmerc_diplo_miningraid = { text = "merc.param.operation.raid" }
+				fmerc_diplo_fleetraid = { text = "merc.param.operation.fleet" }
+			}
+			text = "merc.param.target"
+			switch = {
+				trigger = has_country_flag
+				fmerc_diplo_disguise_random = { text = "merc.param.disguise.random" }
+				fmerc_diplo_disguise_other = { text = "merc.param.disguise.nonbuyer" }
+				fmerc_diplo_disguise_same = { text = "merc.param.disguise.buyer" }
+				fmerc_diplo_disguise_pirate = { text = "merc.param.disguise.pirate" }
+				fmerc_diplo_disguise_monster = { text = "merc.param.disguise.xenofauna" }
+			}
+			text = newline
+			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
+			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
+			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+			text = "merc.param.multiplier"
+			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
+			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
+			text = newline
+			text = "fmerc_enclave.conclusion.postfix"
+		}
 	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_liberate" }
-		text = fmerc_enclave.400.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
-		text = fmerc_enclave.500.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
-		text = fmerc_enclave.600.conclusion
-	}
-
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -51,60 +66,15 @@ country_event = {
 	}
 
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
-
-	immediate = {
-		event_target:traders = {
-			create_leader = {
-				name = random
-				species = ROOT
-				type = random
-				skill = random
-			}
-			last_created_leader = {
-				save_event_target_as = trader_leader
-				ROOT = {
-					switch = {
-						trigger = has_country_flag
-						fmerc_diplo_disguise_random = {
-							event_target:trader_leader = {
-								set_name = "Random"
-							}
-						}
-						fmerc_diplo_disguise_other = {
-							event_target:trader_leader = {
-								set_name = "Anything but your ships"
-							}
-						}
-						fmerc_diplo_disguise_same = {
-							event_target:trader_leader = {
-								set_name = "Your ships"
-							}
-						}
-						fmerc_diplo_disguise_pirate = {
-							event_target:trader_leader = {
-								set_name = "Pirate"
-							}
-						}
-						fmerc_diplo_disguise_monster = {
-							event_target:trader_leader = {
-								set_name = "Xenofauna"
-							}
-						}
-					}
-				}
-			}
-		}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
-	after = {
-		hidden_effect = {
-			event_target:trader_leader = {
-				kill_leader = {
-					show_notification = no
-				}
-			}
-		}
-	}
-
+	# option = {
+	# 	name = fmerc_enclave.back
+	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
+	# }
 	option = {
 		name = fmerc_enclave.accept.responsibility
 		hidden_effect = {
@@ -113,32 +83,19 @@ country_event = {
 	}
 	option = {
 		name = fmerc_enclave.accept.terms
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.nda
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.treaty
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.signature
-		allow = {
-			hidden_trigger = { always = no }
-		}
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+		allow = { hidden_trigger = { always = no } }
 	}
 }
 
@@ -146,20 +103,36 @@ country_event = {
 	id = mercMenu.2101
 	title = fmerc_enclave.9000.signatures
 	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
-		text = fmerc_enclave.300.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_liberate" }
-		text = fmerc_enclave.400.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
-		text = fmerc_enclave.500.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
-		text = fmerc_enclave.600.conclusion
+		trigger = {
+			switch = {
+				trigger = has_country_flag
+				fmerc_diplo_spaceport = { text = "merc.param.operation.spaceport" }
+				fmerc_diplo_liberate = { text = "merc.param.operation.liberation" }
+				fmerc_diplo_miningraid = { text = "merc.param.operation.raid" }
+				fmerc_diplo_fleetraid = { text = "merc.param.operation.fleet" }
+			}
+			text = "merc.param.target"
+			switch = {
+				trigger = has_country_flag
+				fmerc_diplo_disguise_random = { text = "merc.param.disguise.random" }
+				fmerc_diplo_disguise_other = { text = "merc.param.disguise.nonbuyer" }
+				fmerc_diplo_disguise_same = { text = "merc.param.disguise.buyer" }
+				fmerc_diplo_disguise_pirate = { text = "merc.param.disguise.pirate" }
+				fmerc_diplo_disguise_monster = { text = "merc.param.disguise.xenofauna" }
+			}
+			text = newline
+			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
+			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
+			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+			text = "merc.param.multiplier"
+			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
+			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
+			text = newline
+			text = "fmerc_enclave.conclusion.postfix"
+		}
 	}
 
 	is_triggered_only = yes
@@ -175,10 +148,17 @@ country_event = {
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+	# option = {
+	# 	name = fmerc_enclave.back
+	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
+	# }
+	option = {
 		name = fmerc_enclave.accept.responsibility
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.terms
@@ -188,26 +168,15 @@ country_event = {
 	}
 	option = {
 		name = fmerc_enclave.accept.nda
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.treaty
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.signature
-		allow = {
-			hidden_trigger = { always = no }
-		}
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+		allow = { hidden_trigger = { always = no } }
 	}
 }
 
@@ -215,20 +184,36 @@ country_event = {
 	id = mercMenu.2102
 	title = fmerc_enclave.9000.signatures
 	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
-		text = fmerc_enclave.300.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_liberate" }
-		text = fmerc_enclave.400.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
-		text = fmerc_enclave.500.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
-		text = fmerc_enclave.600.conclusion
+		trigger = {
+			switch = {
+				trigger = has_country_flag
+				fmerc_diplo_spaceport = { text = "merc.param.operation.spaceport" }
+				fmerc_diplo_liberate = { text = "merc.param.operation.liberation" }
+				fmerc_diplo_miningraid = { text = "merc.param.operation.raid" }
+				fmerc_diplo_fleetraid = { text = "merc.param.operation.fleet" }
+			}
+			text = "merc.param.target"
+			switch = {
+				trigger = has_country_flag
+				fmerc_diplo_disguise_random = { text = "merc.param.disguise.random" }
+				fmerc_diplo_disguise_other = { text = "merc.param.disguise.nonbuyer" }
+				fmerc_diplo_disguise_same = { text = "merc.param.disguise.buyer" }
+				fmerc_diplo_disguise_pirate = { text = "merc.param.disguise.pirate" }
+				fmerc_diplo_disguise_monster = { text = "merc.param.disguise.xenofauna" }
+			}
+			text = newline
+			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
+			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
+			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+			text = "merc.param.multiplier"
+			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
+			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
+			text = newline
+			text = "fmerc_enclave.conclusion.postfix"
+		}
 	}
 
 	is_triggered_only = yes
@@ -244,16 +229,21 @@ country_event = {
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+	# option = {
+	# 	name = fmerc_enclave.back
+	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
+	# }
+	option = {
 		name = fmerc_enclave.accept.responsibility
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.terms
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.nda
@@ -263,20 +253,11 @@ country_event = {
 	}
 	option = {
 		name = fmerc_enclave.accept.treaty
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.signature
-		allow = {
-			hidden_trigger = { always = no }
-		}
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+		allow = { hidden_trigger = { always = no } }
 	}
 }
 
@@ -284,20 +265,36 @@ country_event = {
 	id = mercMenu.2103
 	title = fmerc_enclave.9000.signatures
 	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
-		text = fmerc_enclave.300.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_liberate" }
-		text = fmerc_enclave.400.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
-		text = fmerc_enclave.500.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
-		text = fmerc_enclave.600.conclusion
+		trigger = {
+			switch = {
+				trigger = has_country_flag
+				fmerc_diplo_spaceport = { text = "merc.param.operation.spaceport" }
+				fmerc_diplo_liberate = { text = "merc.param.operation.liberation" }
+				fmerc_diplo_miningraid = { text = "merc.param.operation.raid" }
+				fmerc_diplo_fleetraid = { text = "merc.param.operation.fleet" }
+			}
+			text = "merc.param.target"
+			switch = {
+				trigger = has_country_flag
+				fmerc_diplo_disguise_random = { text = "merc.param.disguise.random" }
+				fmerc_diplo_disguise_other = { text = "merc.param.disguise.nonbuyer" }
+				fmerc_diplo_disguise_same = { text = "merc.param.disguise.buyer" }
+				fmerc_diplo_disguise_pirate = { text = "merc.param.disguise.pirate" }
+				fmerc_diplo_disguise_monster = { text = "merc.param.disguise.xenofauna" }
+			}
+			text = newline
+			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
+			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
+			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+			text = "merc.param.multiplier"
+			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
+			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
+			text = newline
+			text = "fmerc_enclave.conclusion.postfix"
+		}
 	}
 
 	is_triggered_only = yes
@@ -313,22 +310,25 @@ country_event = {
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+	# option = {
+	# 	name = fmerc_enclave.back
+	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
+	# }
+	option = {
 		name = fmerc_enclave.accept.responsibility
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.terms
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.nda
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.treaty
@@ -338,14 +338,7 @@ country_event = {
 	}
 	option = {
 		name = fmerc_enclave.accept.signature
-		allow = {
-			hidden_trigger = { always = no }
-		}
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+		allow = { hidden_trigger = { always = no } }
 	}
 }
 
@@ -353,20 +346,36 @@ country_event = {
 	id = mercMenu.2104
 	title = fmerc_enclave.9000.signatures
 	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_spaceport" }
-		text = fmerc_enclave.300.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_liberate" }
-		text = fmerc_enclave.400.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_miningraid" }
-		text = fmerc_enclave.500.conclusion
-	}
-	desc = {
-		trigger = { has_country_flag = "fmerc_diplo_fleetraid" }
-		text = fmerc_enclave.600.conclusion
+		trigger = {
+			switch = {
+				trigger = has_country_flag
+				fmerc_diplo_spaceport = { text = "merc.param.operation.spaceport" }
+				fmerc_diplo_liberate = { text = "merc.param.operation.liberation" }
+				fmerc_diplo_miningraid = { text = "merc.param.operation.raid" }
+				fmerc_diplo_fleetraid = { text = "merc.param.operation.fleet" }
+			}
+			text = "merc.param.target"
+			switch = {
+				trigger = has_country_flag
+				fmerc_diplo_disguise_random = { text = "merc.param.disguise.random" }
+				fmerc_diplo_disguise_other = { text = "merc.param.disguise.nonbuyer" }
+				fmerc_diplo_disguise_same = { text = "merc.param.disguise.buyer" }
+				fmerc_diplo_disguise_pirate = { text = "merc.param.disguise.pirate" }
+				fmerc_diplo_disguise_monster = { text = "merc.param.disguise.xenofauna" }
+			}
+			text = newline
+			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
+			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
+			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+			text = "merc.param.multiplier"
+			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
+			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
+			text = newline
+			text = "fmerc_enclave.conclusion.postfix"
+		}
 	}
 
 	is_triggered_only = yes
@@ -378,42 +387,37 @@ country_event = {
 		portrait = event_target:traders
 		room = enclave_trader_room
 	}
-
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+	# option = {
+	# 	name = fmerc_enclave.back
+	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
+	# }
+	option = {
 		name = fmerc_enclave.accept.responsibility
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.terms
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.nda
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.treaty
-		allow = {
-			hidden_trigger = { always = no }
-		}
+		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
 		name = fmerc_enclave.accept.signature
 		hidden_effect = {
 			country_event = { id = mercMenu.9000 }
 		}
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 }

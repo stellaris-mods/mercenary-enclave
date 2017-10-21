@@ -74,7 +74,6 @@ country_event = {
 
 	immediate = {
 		remove_country_flag = "fmerc_diplomacy_engaged"
-		fmerc_reset_diplo_screen = yes
 		if = {
 			limit = {
 				check_variable = { which = "MercMinerals" value > "MercCost" }

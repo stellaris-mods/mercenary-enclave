@@ -71,15 +71,12 @@ fmerc_enclave.report: "We're being hailed by the head of our interior ministry: 
 
 fmerc_enclave.name: "Whiteout Enterprises"
 fmerc_enclave.attacked.desc: "Ha ha ha! You think you can beat us? That is most hilarious. Have a good day, you filthy scum. We will meet again."
-fmerc_enclave.close: "§PEnd communications§!"
-fmerc_enclave.back: "Back to previous menu"
+fmerc_enclave.close: "§YEnd communications§!"
+fmerc_enclave.back: "§Y<<< Back§!"
 fmerc_enclave.order: "Order this service"
 fmerc_enclave.order.tooltip: "When you order this service you will be brought to a new screen where you will have to answer a series of questions regarding the operational parameters specific to the selected service.\n\nPlease be patient.\n\nPayment details and signature will be required before we proceed with the actual operation."
-fmerc_enclave.trust30: "Requires this §YMercenary Enclave§! to have:\n£opinion  Opinion +30\n"
-fmerc_enclave.trust: "Requires this §YMercenary Enclave§! to have:\n£opinion  Opinion +50\n"
-fmerc_enclave.has_station: "We need to allow them access to construct military facilities in our territory."
-fmerc_enclave.has_insurance: "We are already insured."
-fmerc_enclave.execute.desc: "Thank you for doing business with §YWhiteout Enterprises§!.\n\nThe operation will commence within 3-90 days. There will be no further communication regarding this operation.\n\nFunds will be withdrawn from your account and treasury immediately. If there is not sufficient funds, the operation will cease and you will be notified.\n\nMay our names never be mentioned."
+fmerc_enclave.has_station: "We need to allow them access to construct operations facilities in our territory."
+fmerc_enclave.execute.desc: "Thank you for doing business with §YWhiteout Enterprises§!.\n\nThe operation will commence within 3-90 days. There will be no further communication regarding this operation.\n\nFunds will be withdrawn from your account and treasury immediately.\n\nMay our names never be mentioned."
 fmerc_enclave.needsdeposit: "You need at least £minerals §G2500§! deposited with §YWhiteout Enterprises§!."
 
 # Initial diplomacy window
@@ -128,6 +125,13 @@ fmerc_enclave.200.desc: "We at §YWhiteout Enterprises§! provide several specia
 
 fmerc_enclave.target.invalid_operation: "We can not execute this type of operation against this type of empire."
 
+merc.param.disguise.random: "Disguise: §YRandom§!\n"
+merc.param.disguise.nonbuyer: "Disguise: §YRandom except your ships§!\n"
+merc.param.disguise.buyer: "Disguise: §YYour ships§!\n"
+merc.param.disguise.pirate: "Disguise: §YPirate§!\n"
+merc.param.disguise.xenofauna: "Disguise: §YXenofauna§!\n"
+
+merc.param.target: "Target: §Y[fmerc_target_country.GetName]§!\n"
 merc.param.minerals: "Mineral cost: £minerals §G[root.MercCost]§!\n"
 merc.param.energy: "Energy cost: £energy §G[root.MercCostEnergy]§!\n"
 merc.param.influence: "Influence cost: £influence §G[root.MercCostInfluence]§!\n"
@@ -135,8 +139,13 @@ merc.param.minerals.monthly: "Monthly mineral cost: £minerals §G[root.MercMont
 merc.parparamameters.energy.monthly: "Monthly energy cost: £energy §G[root.MercMonthlyCostEnergy]§!\n"
 merc.param.influence.monthly: "Monthly influence cost: £influence §G[root.MercMonthlyCostInfluence]§!\n"
 merc.param.success: "Chance of success: §G[root.MercSuccess]%§!\n"
-merc.param.detection: "Detection risk: §P[root.MercDetect]§!\n"
+merc.param.detection: "Detection risk: §P[root.MercDetect]%§!\n"
 merc.param.multiplier: "Price multiplier: §H[root.MercTrustMultiplierPercent]%§! (price already adjusted)\n"
+
+merc.param.operation.spaceport: "Operation: §YAttack Spaceport§!"
+merc.param.operation.liberation: "Operation: §YLiberate Planet§!"
+merc.param.operation.raid: "Operation: §YMining/Research Raid§!"
+merc.param.operation.fleet: "Operation: §YFleet Raid§!"
 
 # Spaceports service
 fmerc_enclave.300.name: "Attack Spaceport"
@@ -201,16 +210,9 @@ fmerc_enclave.disguise.pirate.tooltip: "Deconstruct random pieces of the ship hu
 fmerc_enclave.disguise.monster: "Xenofauna"
 fmerc_enclave.disguise.monster.tooltip: "Disguise the mercenary fleet as some type of fauna found naturally in the galaxy. For example the Space Whales, Amoebas, Clouds, and Drones.\n\nPrice: £minerals §G+15%§!\nDetection risk: §G-10%§!"
 
-
-
 # Conclusion
-fmerc_enclave.conclusion.parameters: "Target: §Y[fmerc_target_country.GetName]§!\nDisguise: §Y[trader_leader.GetName]§!\nPrice: £minerals  §R[Root.MercCost]§!\nChance of success: §G[Root.MercSuccess]%§!\nDetection risk: §H[Root.MercDetect]%§!\n"
-fmerc_enclave.conclusion.postfix: "Please accept responsibility for the outcome of this operation, agree to our terms and conditions, sign the non-disclosure agreement, sign for our limited access to your empires treasury, and finally, sign on the executive order."
 
-fmerc_enclave.300.conclusion: "Operation: §YAttack Spaceport§!\n$fmerc_enclave.conclusion.parameters$\n$fmerc_enclave.conclusion.postfix$"
-fmerc_enclave.400.conclusion: "Operation: §YLiberate Planet§!\n$fmerc_enclave.conclusion.parameters$\n$fmerc_enclave.conclusion.postfix$"
-fmerc_enclave.500.conclusion: "Operation: §YMining/Research Raid§!\n$fmerc_enclave.conclusion.parameters$\n$fmerc_enclave.conclusion.postfix$"
-fmerc_enclave.600.conclusion: "Operation: §YFleet Raid§!\n$fmerc_enclave.conclusion.parameters$\n$fmerc_enclave.conclusion.postfix$"
+fmerc_enclave.conclusion.postfix: "Please accept responsibility for the outcome of this operation, agree to our terms and conditions, sign the non-disclosure agreement, sign for our limited access to your empires treasury, and finally, sign on the executive order."
 
 fmerc_enclave.accept.responsibility: "Accept responsibility"
 fmerc_enclave.accept.terms: "Sign terms and conditions"

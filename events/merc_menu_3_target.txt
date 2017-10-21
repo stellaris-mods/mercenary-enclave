@@ -37,6 +37,15 @@ country_event = {
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+	option = {
+		name = fmerc_enclave.back
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
+	option = {
 		name = fmerc_enclave.1000.default
 		trigger = {
 			any_country = {
@@ -183,17 +192,6 @@ country_event = {
 			country_event = { id = mercMenu.1100 }
 		}
 	}
-	option = {
-		name = fmerc_enclave.back
-		hidden_effect = {
-			country_event = { id = mercMenu.101 }
-		}
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
 }
 
 country_event = {
@@ -230,116 +228,113 @@ country_event = {
 	}
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 	immediate = {
+		# ZZZ So this mess right here is the only reason we don't provide a
+		# ZZZ "Back" button after this step, because I don't have a good way
+		# ZZZ of invalidating/unsetting event targets. I can do it, of course,
+		# ZZZ with some extra country flags and such. Maybe I will.
 		every_country = {
-			limit = {
-				fmerc_is_targetted_country_type = yes
-			}
+			limit = { fmerc_is_targetted_country_type = yes }
 			set_country_flag = "fmerc_temp_country"
 		}
 		set_variable = {
-			which = FMercCountry
+			which = "FMercCountry"
 			value = 1
 		}
 		while = {
 			limit = {
-				any_country = {
-					has_country_flag = "fmerc_temp_country"
-				}
+				any_country = { has_country_flag = "fmerc_temp_country" }
 				check_variable = {
-					which = FMercCountry
+					which = "FMercCountry"
 					value < 20
 				}
 			}
 			random_country = {
 				limit = { has_country_flag = "fmerc_temp_country" }
-				# We should have done an if-else below, but that results in too many {} all over the place
-				# it just looks untidy.
-				# Or I could have used a flag, with a switch instead.
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 1 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 1 } } }
 					save_event_target_as = fmerc_temp_country_1
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 2 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 2 } } }
 					save_event_target_as = fmerc_temp_country_2
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 3 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 3 } } }
 					save_event_target_as = fmerc_temp_country_3
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 4 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 4 } } }
 					save_event_target_as = fmerc_temp_country_4
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 5 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 5 } } }
 					save_event_target_as = fmerc_temp_country_5
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 6 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 6 } } }
 					save_event_target_as = fmerc_temp_country_6
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 7 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 7 } } }
 					save_event_target_as = fmerc_temp_country_7
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 8 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 8 } } }
 					save_event_target_as = fmerc_temp_country_8
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 9 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 9 } } }
 					save_event_target_as = fmerc_temp_country_9
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 10 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 10 } } }
 					save_event_target_as = fmerc_temp_country_10
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 11 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 11 } } }
 					save_event_target_as = fmerc_temp_country_11
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 12 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 12 } } }
 					save_event_target_as = fmerc_temp_country_12
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 13 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 13 } } }
 					save_event_target_as = fmerc_temp_country_13
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 14 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 14 } } }
 					save_event_target_as = fmerc_temp_country_14
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 15 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 15 } } }
 					save_event_target_as = fmerc_temp_country_15
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 16 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 16 } } }
 					save_event_target_as = fmerc_temp_country_16
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 17 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 17 } } }
 					save_event_target_as = fmerc_temp_country_17
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 18 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 18 } } }
 					save_event_target_as = fmerc_temp_country_18
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 19 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 19 } } }
 					save_event_target_as = fmerc_temp_country_19
 				}
 				if = {
-					limit = { PREV = { check_variable = { which = FMercCountry value = 20 } } }
+					limit = { PREV = { check_variable = { which = "FMercCountry" value = 20 } } }
 					save_event_target_as = fmerc_temp_country_20
 				}
 				remove_country_flag = "fmerc_temp_country"
 			}
 			change_variable = {
-				which = FMercCountry
-				value = 1 # +1
+				which = "FMercCountry"
+				value = 1
 			}
 		}
 		every_country = {
@@ -347,6 +342,15 @@ country_event = {
 			remove_country_flag = "fmerc_temp_country"
 		}
 	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+	# option = {
+	# 	name = fmerc_enclave.back
+	# 	hidden_effect = { country_event = { id = mercMenu.1000 } }
+	# }
 	option = {
 		name = "[fmerc_temp_country_1.GetName]"
 		trigger = { exists = event_target:fmerc_temp_country_1 }
@@ -706,10 +710,5 @@ country_event = {
 			}
 			country_event = { id = mercMenu.2000 }
 		}
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 }

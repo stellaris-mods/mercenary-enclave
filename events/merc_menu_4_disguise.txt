@@ -38,6 +38,15 @@ country_event = {
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+	# option = {
+	# 	name = fmerc_enclave.back
+	# 	hidden_effect = { country_event = { id = mercMenu.1000 } }
+	# }
+	option = {
 		name = fmerc_enclave.disguise.random
 		custom_tooltip = fmerc_enclave.disguise.random.tooltip
 		hidden_effect = {
@@ -136,10 +145,5 @@ country_event = {
 				country_event = { id = mercMenu.2100 }
 			} }
 		}
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 }

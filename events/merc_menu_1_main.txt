@@ -30,8 +30,6 @@ country_event = {
 		FROM = { is_country_type = "fmerc_enclave" }
 	}
 	immediate = {
-		fmerc_reset_diplo_screen = yes
-		set_country_flag = "fmerc_diplomacy_engaged"
 		FROM = { save_event_target_as = traders }
 
 		if = { limit = { has_country_flag = "fmerc_active_operation" }
@@ -43,7 +41,6 @@ country_event = {
 }
 
 # Main menu
-# We always invoke fmerc_reset_diplo_screen before this screen
 country_event = {
 	id = mercMenu.101
 	title = fmerc_enclave.name
@@ -85,6 +82,11 @@ country_event = {
 		set_country_flag = "fmerc_diplomacy_engaged"
 	}
 
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
 	option = {
 		name = fmerc_enclave.100.operations.button
 		hidden_effect = { country_event = { id = mercMenu.200 } }
@@ -202,11 +204,6 @@ country_event = {
 		remove_modifier = merc_enclave_insurance
 		hidden_effect = { country_event = { id = mercMenu.150 } }
 	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
 }
 
 # main menu if we have fmerc_active_operation
@@ -223,10 +220,7 @@ country_event = {
 		portrait = event_target:traders
 		room = enclave_trader_room
 	}
-	immediate = {
-		fmerc_reset_diplo_screen = yes
-		set_country_flag = "fmerc_diplomacy_engaged"
-	}
+	immediate = { set_country_flag = "fmerc_diplomacy_engaged" }
 	option = {
 		name = fmerc_enclave.close
 		default_hide_option = yes
@@ -264,15 +258,15 @@ country_event = {
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+	option = {
 		name = fmerc_enclave.back
 		hidden_effect = {
 			country_event = { id = mercMenu.101 }
 		}
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 }
 
@@ -306,14 +300,14 @@ country_event = {
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+	option = {
 		name = fmerc_enclave.back
 		hidden_effect = {
 			country_event = { id = mercMenu.101 }
 		}
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 }

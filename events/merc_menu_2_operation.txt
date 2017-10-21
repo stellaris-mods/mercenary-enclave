@@ -38,6 +38,15 @@ country_event = {
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+	option = {
+		name = fmerc_enclave.back
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
+	option = {
 		name = fmerc_enclave.300.name
 		hidden_effect = { country_event = { id = mercMenu.300 } }
 	}
@@ -62,18 +71,6 @@ country_event = {
 			}
 		}
 		hidden_effect = { country_event = { id = mercMenu.700 } }
-	}
-	option = {
-		name = fmerc_enclave.back
-		hidden_effect = {
-			country_event = { id = mercMenu.101 }
-		}
-	}
-
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 }
 
@@ -114,21 +111,21 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.order
-		custom_tooltip = fmerc_enclave.order.tooltip
-		hidden_effect = {
-			set_country_flag = "fmerc_diplo_spaceport"
-			country_event = { id = mercMenu.1000 }
-		}
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
 		name = fmerc_enclave.back
 		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+		name = fmerc_enclave.order
+		custom_tooltip = fmerc_enclave.order.tooltip
+		hidden_effect = {
+			set_country_flag = "fmerc_diplo_spaceport"
+			country_event = { id = mercMenu.1000 }
+		}
 	}
 }
 
@@ -170,21 +167,21 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.order
-		custom_tooltip = fmerc_enclave.order.tooltip
-		hidden_effect = {
-			set_country_flag = "fmerc_diplo_liberate"
-			country_event = { id = mercMenu.1000 }
-		}
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
 		name = fmerc_enclave.back
 		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+		name = fmerc_enclave.order
+		custom_tooltip = fmerc_enclave.order.tooltip
+		hidden_effect = {
+			set_country_flag = "fmerc_diplo_liberate"
+			country_event = { id = mercMenu.1000 }
+		}
 	}
 }
 
@@ -226,21 +223,21 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.order
-		custom_tooltip = fmerc_enclave.order.tooltip
-		hidden_effect = {
-			set_country_flag = "fmerc_diplo_miningraid"
-			country_event = { id = mercMenu.1000 }
-		}
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
 		name = fmerc_enclave.back
 		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+		name = fmerc_enclave.order
+		custom_tooltip = fmerc_enclave.order.tooltip
+		hidden_effect = {
+			set_country_flag = "fmerc_diplo_miningraid"
+			country_event = { id = mercMenu.1000 }
+		}
 	}
 }
 
@@ -283,21 +280,21 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.order
-		custom_tooltip = fmerc_enclave.order.tooltip
-		hidden_effect = {
-			set_country_flag = "fmerc_diplo_fleetraid"
-			country_event = { id = mercMenu.1000 }
-		}
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
 		name = fmerc_enclave.back
 		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+		name = fmerc_enclave.order
+		custom_tooltip = fmerc_enclave.order.tooltip
+		hidden_effect = {
+			set_country_flag = "fmerc_diplo_fleetraid"
+			country_event = { id = mercMenu.1000 }
+		}
 	}
 }
 
@@ -323,6 +320,15 @@ country_event = {
 		#merc_account_apply_cost_modifiers = yes
 	}
 
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+	option = {
+		name = fmerc_enclave.back
+		hidden_effect = { country_event = { id = mercMenu.200 } }
+	}
 	option = {
 		name = fmerc_enclave.700.amoeba
 		custom_tooltip = fmerc_enclave.700.tooltip
@@ -447,15 +453,6 @@ country_event = {
 			}
 			country_event = { id = mercMenu.701 }
 		}
-	}
-	option = {
-		name = fmerc_enclave.back
-		hidden_effect = { country_event = { id = mercMenu.200 } }
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 }
 
