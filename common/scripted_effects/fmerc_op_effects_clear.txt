@@ -26,37 +26,21 @@ fmerc_stage2_init_clear = {
 		which = "MercRaidCount"
 		value = 5
 	}
-	event_target:fmerc_target_country = {
-		every_owned_ship = { set_ship_flag = "fmerc_counter" }
-		while = {
-			limit = {
-				ROOT = {
-					check_variable = {
-						which = "MercRaidCount"
-						value > 0
-					}
-				}
-			}
-			ROOT = {
-				subtract_variable = {
-					which = "MercRaidCount"
-					value = 1
-				}
-			}
+	while = {
+		limit = { check_variable = { which = "MercRaidCount" value > 0 } }
+		event_target:fmerc_target_country = {
 			random_owned_ship = {
 				limit = {
+					NOT = { has_ship_flag = "fmerc_target" }
 					is_inside_border = event_target:fmerc_buyer
-					has_ship_flag = "fmerc_counter"
 				}
-				remove_ship_flag = "fmerc_counter"
 				log = "Clear: - Marked [this.GetName]."
 				set_ship_flag = "fmerc_target"
+				PREVPREV = { subtract_variable = { which = "MercRaidCount" value = 1 } }
 			}
 		}
-		every_owned_ship = {
-			limit = { has_ship_flag = "fmerc_counter" }
-			remove_ship_flag = "fmerc_counter"
-		}
+	}
+	event_target:fmerc_target_country = {
 		random_owned_ship = {
 			limit = { has_ship_flag = "fmerc_target" }
 			fleet = {
