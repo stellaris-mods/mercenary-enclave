@@ -35,7 +35,21 @@ event = {
 		every_country = {
 			limit = { has_country_flag = "fmerc_allow_stations" }
 			if = {
-				limit = { NOT = { event_target:enclave = { any_owned_fleet = { is_inside_border = PREVPREV } } } }
+				limit = {
+					NOT = {
+						event_target:enclave = {
+							any_owned_fleet = {
+								NOT = { is_ship_size = science }
+								# Dont count the HQ
+								NOT = { has_fleet_flag = "folk_mercenary_station" }
+								is_inside_border = PREVPREV
+								# Ignore any of our fleets if there is a colony
+								# in the same system.
+								NOT = { solar_system = { any_planet = { is_colony = yes } } }
+							}
+						}
+					}
+				}
 				# This country has allowed station access, but we dont have any
 				# stations inside their borders.
 				random_system_within_border = {
@@ -45,12 +59,6 @@ event = {
 					}
 				}
 				# XXX make sure we spawned something
-				else = {
-					# We have a station inside their borders
-					# XXX make sure the system we are in is still without a colony
-					# XXX and if it isn't, make a new station somewhere else
-					# XXX (maybe dismantle old one?)
-				}
 			}
 		}
 	}
@@ -132,7 +140,7 @@ country_event = {
 		set_variable = { which = "MercContacts" value = 0 }
 
 		every_owned_fleet = {
-			limit = { is_ship_class = shipclass_military_station }
+			limit = { NOT = { is_ship_size = science } }
 			PREV = { change_variable = { which = "MercStations" value = 1 } }
 		}
 		subtract_variable = { which = "MercStations" value = 1 } # Dont count HQ
