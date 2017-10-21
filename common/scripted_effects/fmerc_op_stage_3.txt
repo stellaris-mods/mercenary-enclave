@@ -606,7 +606,6 @@ fmerc_stage3_create_fleet = {
 
 	fmerc_stage3_match_fleet_power = yes
 
-	# XXX This doesn't seem to be working.
 	last_created_fleet = {
 		add_modifier = {
 			modifier = merc_fleet_scaling

@@ -50,23 +50,73 @@ event = {
 						}
 					}
 				}
-				# This country has allowed station access, but we dont have any
-				# stations inside their borders.
-				random_system_within_border = {
-					limit = { NOT = { any_planet = { is_colony = yes } } }
-					random_system_planet = {
-						planet_event = { id = mercStations.2 }
-					}
-				}
-				# XXX prioritize spawning in systems without any presence
-				# XXX make sure we spawned something
+				country_event = { id = mercStations.2 }
 			}
 		}
 	}
 }
 
-planet_event = {
+# We chain to a new root event so that event targets are not shared
+# with another country in the loop above.
+country_event = {
 	id = mercStations.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# This country has allowed station access, but we dont have any
+		# stations inside their borders. At least not any good ones.
+
+		# First, try to find a completely empty system
+		random_system_within_border = {
+			limit = { has_presence = no }
+			random_system_planet = { save_event_target_as = spawn }
+		}
+
+		# Priority two is finding a system without any colonies and hostiles
+		if = { limit = { NOT = { exists = event_target:spawn } }
+			random_system_within_border = {
+				limit = {
+					NOT = { any_planet = { is_colony = yes } }
+					NOT = {
+						any_ship_in_system = {
+							OR = {
+								is_in_combat = yes
+								AND = {
+									exists = owner
+									owner = {
+										OR = {
+											is_hostile = event_target:enclave
+											is_hostile = ROOT
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				random_system_planet = { save_event_target_as = spawn }
+			}
+		}
+
+		# Lower our standards, simply find a system without colonies
+		if = { limit = { NOT = { exists = event_target:spawn } }
+			random_system_within_border = {
+				limit = { NOT = { any_planet = { is_colony = yes } } }
+				random_system_planet = { save_event_target_as = spawn }
+			}
+		}
+		# If we can't find that, we don't care to spawn anything.
+
+		# Spawn, if we found a target.
+		if = { limit = { exists = event_target:spawn }
+			event_target:spawn = { planet_event = { id = mercStations.3 } }
+		}
+	}
+}
+
+planet_event = {
+	id = mercStations.3
 	hide_window = yes
 	is_triggered_only = yes
 
