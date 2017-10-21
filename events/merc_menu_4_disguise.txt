@@ -31,7 +31,7 @@ country_event = {
 	custom_gui_option = "enclave_trader_option"
 	force_open = yes
 	picture_event_data = {
-		portrait = event_target:traders
+		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
 

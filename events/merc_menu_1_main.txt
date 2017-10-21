@@ -30,7 +30,7 @@ country_event = {
 		FROM = { is_country_type = "fmerc_enclave" }
 	}
 	immediate = {
-		FROM = { save_event_target_as = traders }
+		FROM = { save_event_target_as = mercenaries }
 
 		if = { limit = { has_country_flag = "fmerc_active_operation" }
 			country_event = { id = mercMenu.102 }
@@ -73,7 +73,7 @@ country_event = {
 	force_open = yes
 
 	picture_event_data = {
-		portrait = event_target:traders
+		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
 
@@ -96,7 +96,7 @@ country_event = {
 		custom_tooltip = fmerc_enclave.100.minerals.tooltip
 		allow = { minerals > 2500 }
 		add_minerals = -2500
-		event_target:traders = {
+		event_target:mercenaries = {
 			add_trust = {
 				who = ROOT
 				amount = 5
@@ -129,7 +129,7 @@ country_event = {
 		custom_tooltip = fmerc_enclave.100.energy.tooltip
 		allow = { energy > 2500 }
 		add_energy = -2500
-		event_target:traders = {
+		event_target:mercenaries = {
 			add_trust = {
 				who = ROOT
 				amount = 5
@@ -217,7 +217,7 @@ country_event = {
 	custom_gui_option = "enclave_trader_option"
 	force_open = yes
 	picture_event_data = {
-		portrait = event_target:traders
+		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
 	immediate = { set_country_flag = "fmerc_diplomacy_engaged" }
@@ -251,7 +251,7 @@ country_event = {
 	custom_gui_option = "enclave_trader_option"
 	force_open = yes
 	picture_event_data = {
-		portrait = event_target:traders
+		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
 
@@ -293,7 +293,7 @@ country_event = {
 	custom_gui_option = "enclave_trader_option"
 	force_open = yes
 	picture_event_data = {
-		portrait = event_target:traders
+		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
 

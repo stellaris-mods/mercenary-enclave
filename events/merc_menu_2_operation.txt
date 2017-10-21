@@ -31,7 +31,7 @@ country_event = {
 	custom_gui_option = "enclave_trader_option"
 	force_open = yes
 	picture_event_data = {
-		portrait = event_target:traders
+		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
 
@@ -99,7 +99,7 @@ country_event = {
 	custom_gui_option = "enclave_trader_option"
 	force_open = yes
 	picture_event_data = {
-		portrait = event_target:traders
+		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
@@ -154,7 +154,7 @@ country_event = {
 	custom_gui_option = "enclave_trader_option"
 	force_open = yes
 	picture_event_data = {
-		portrait = event_target:traders
+		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
@@ -210,7 +210,7 @@ country_event = {
 	custom_gui_option = "enclave_trader_option"
 	force_open = yes
 	picture_event_data = {
-		portrait = event_target:traders
+		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
@@ -267,7 +267,7 @@ country_event = {
 	custom_gui_option = "enclave_trader_option"
 	force_open = yes
 	picture_event_data = {
-		portrait = event_target:traders
+		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }
@@ -310,7 +310,7 @@ country_event = {
 	custom_gui_option = "enclave_trader_option"
 	force_open = yes
 	picture_event_data = {
-		portrait = event_target:traders
+		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
 	trigger = { has_country_flag = "fmerc_diplomacy_engaged" }

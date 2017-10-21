@@ -267,7 +267,7 @@ fmerc_stage1_setup_clear = {
 }
 
 # THIS is the operations country
-# event_target:traders is the enclave
+# event_target:mercenaries is the enclave
 fmerc_stage1_determine_ship_powers = {
 	# So, every time we create a new fmerc_operations country, their ship
 	# designs are different, because of the DESIGNER_WEAPON_STACKING_DIV
@@ -279,10 +279,10 @@ fmerc_stage1_determine_ship_powers = {
 
 	# Get a location to spawn in. This doesn't need to be safe, because our
 	# fleets will be created and destroyed instantly, and never show ingame.
-	event_target:traders = {
+	event_target:mercenaries = {
 		random_owned_fleet = { save_event_target_as = spawn }
 	}
-	# FROM here should be the merc enclave itself, and event_target:traders
+	# FROM here should be the merc enclave itself, and event_target:mercenaries
 
 	# CORVETTE
 	create_fleet = {
@@ -382,14 +382,14 @@ fmerc_stage1_create_mercenaries = {
 	last_created_country = {
 		establish_communications_no_message = ROOT
 		establish_contact = { who = ROOT }
-		establish_communications_no_message = event_target:traders
-		establish_contact = { who = event_target:traders }
+		establish_communications_no_message = event_target:mercenaries
+		establish_contact = { who = event_target:mercenaries }
 
 		# this makes it show in the contact list,
 		# but at the same time it prevents the operations squad from engaging
 		# the enclave
 		set_subject_of = {
-			who = event_target:traders
+			who = event_target:mercenaries
 			subject_type = mercsquad
 		}
 
