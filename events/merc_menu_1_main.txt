@@ -99,7 +99,7 @@ country_event = {
 		event_target:mercenaries = {
 			add_trust = {
 				who = ROOT
-				amount = 5
+				amount = 2
 			}
 		}
 		hidden_effect = {
@@ -132,7 +132,7 @@ country_event = {
 		event_target:mercenaries = {
 			add_trust = {
 				who = ROOT
-				amount = 5
+				amount = 2
 			}
 		}
 		hidden_effect = {
