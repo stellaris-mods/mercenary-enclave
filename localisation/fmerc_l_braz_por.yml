@@ -262,3 +262,8 @@ fmerc_enclave.156.a: "End communications."
 
 fmerc_enclave.precom_title: "Encounter in [From.From.GetName]"
 fmerc_enclave.precom_desc: "We have encountered some form of alien vessels in the §Y[From.From.GetName]§! System! The vessels have been flagged as §Y[fmercsystem.GetName]§! until we can learn more about them.\n\nPlease visit the §MSpecial Projects§! department to initiate an investigation into the nature of these vessels immediately."
+
+# Asks for station access
+merc.stationoffer.title: "Allow station access?"
+merc.stationoffer.desc: "Greetings, [root.GetRulerName]! We here at §YWhiteout Enterprises§! would like to offer you an exciting business opportunity!\n\nIt would be to our mutual benefit if you were to §Gallow us access§! to construct an operations outpost inside your borders.\n\nWe realise that this might seem intimidating, or sneaky, so we are prepared to offer you some compensation to grease the wheels of bureaucracy, so to speak:\n\n£energy §G2500§!\n£minerals §G500§!\n\nThis deal only comes once in a lifetime, so weigh your decision accordingly."
+merc.stationoffer.cooldown: "You have recently accepted a monetary offer to allow station access, and as such won't be able to restrict it yet."

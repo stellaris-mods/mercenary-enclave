@@ -168,6 +168,12 @@ country_event = {
 		name = fmerc_enclave.100.nostations.button
 		custom_tooltip = "fmerc_enclave.100.nostations.tooltip"
 		trigger = { has_country_flag = "fmerc_allow_stations" }
+		allow = {
+			custom_tooltip_fail = {
+				text = "merc.stationoffer.cooldown"
+				NOT = { has_country_flag = "merc_cant_restrict_access" }
+			}
+		}
 		hidden_effect = {
 			remove_country_flag = "fmerc_allow_stations"
 			country_event = { id = mercMenu.110 }

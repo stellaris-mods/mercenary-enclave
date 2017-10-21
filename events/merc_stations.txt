@@ -20,13 +20,6 @@
 
 namespace = mercStations
 
-# XXX Add event that if the enclave has less than FOO station complexes
-# XXX in the galaxy, offer a deal with a random default country to allow
-# XXX station access.
-# XXX FOO = number of default countries - 1 ?
-# XXX And make the AI automatically accept.
-# XXX Obviously, they need to have contact with the enclave.
-
 event = {
 	id = mercStations.1
 	hide_window = yes
@@ -109,6 +102,115 @@ planet_event = {
 				}
 				set_fleet_flag = "folk_mercenary_outpost"
 			}
+		}
+	}
+}
+
+###############################################################################
+# Station access offer
+#
+
+event = {
+	id = mercStations.100
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		random_country = {
+			limit = { is_country_type = "fmerc_enclave" }
+			country_event = { id = mercStations.101 }
+		}
+	}
+}
+country_event = {
+	id = mercStations.101
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { num_communications > 0 }
+
+	immediate = {
+		set_variable = { which = "MercStations" value = 0 }
+		set_variable = { which = "MercContacts" value = 0 }
+
+		every_owned_fleet = {
+			limit = { is_ship_class = shipclass_military_station }
+			PREV = { change_variable = { which = "MercStations" value = 1 } }
+		}
+		subtract_variable = { which = "MercStations" value = 1 } # Dont count HQ
+
+		# Remember that has_communications is true towards yourself,
+		# and that we don't want to count the operations countries
+		every_country = {
+			limit = {
+				has_communications = ROOT
+				OR = {
+					is_ai = no
+					is_country_type = "default"
+					is_country_type = "ascended_empire"
+					is_country_type = "lost_empire"
+					is_country_type = "ascended_hive_mind"
+				}
+			}
+			PREV = { change_variable = { which = "MercContacts" value = 1 } }
+		}
+
+		if = {
+			limit = {
+				check_variable = { which = "MercStations" value < "MercContacts" }
+			}
+			random_country = {
+				limit = {
+					NOT = { has_country_flag = "fmerc_allow_stations" }
+					NOT = { has_country_flag = "merc_had_station_offer" }
+					OR = {
+						is_ai = no
+						is_country_type = "default"
+						is_country_type = "ascended_empire"
+						is_country_type = "lost_empire"
+						is_country_type = "ascended_hive_mind"
+					}
+					has_communications = ROOT
+				}
+				country_event = { id = mercStations.102 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = mercStations.102
+	title = "merc.stationoffer.title"
+	desc = "merc.stationoffer.desc"
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = FROM
+		room = enclave_trader_room
+	}
+	immediate = { set_country_flag = "merc_had_station_offer" }
+	option = {
+		name = ACCEPT
+		add_energy = 2500
+		add_minerals = 500
+		hidden_effect = {
+			set_country_flag = "fmerc_allow_stations"
+			log = "[this.GetName] accepted station offer"
+			set_timed_country_flag = {
+				flag = "merc_cant_restrict_access"
+				days = 1800
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = DIALOG_DECLINE
+		default_hide_option = yes
+		ai_chance = {
+			factor = 0
 		}
 	}
 }
