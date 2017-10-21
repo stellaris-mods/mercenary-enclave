@@ -22,7 +22,7 @@ namespace = mercMenu
 
 country_event = {
 	id = mercMenu.2100
-	title = fmerc_enclave.9000.signatures
+	title = merc.signature.title
 	desc = {
 		trigger = {
 			switch = {
@@ -52,7 +52,7 @@ country_event = {
 			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
 			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
 			text = newline
-			text = "fmerc_enclave.conclusion.postfix"
+			text = "merc.signature.desc"
 		}
 	}
 	is_triggered_only = yes
@@ -70,41 +70,41 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = fmerc_enclave.back
+	# 	name = merc.back
 	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
 	# }
 	option = {
-		name = fmerc_enclave.accept.responsibility
+		name = merc.signature.accept
 		hidden_effect = {
 			country_event = { id = mercMenu.2101 }
 		}
 	}
 	option = {
-		name = fmerc_enclave.accept.terms
+		name = merc.signature.terms
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.nda
+		name = merc.signature.nda
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.treaty
+		name = merc.signature.treaty
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.signature
+		name = merc.signature.executive
 		allow = { hidden_trigger = { always = no } }
 	}
 }
 
 country_event = {
 	id = mercMenu.2101
-	title = fmerc_enclave.9000.signatures
+	title = merc.signature.title
 	desc = {
 		trigger = {
 			switch = {
@@ -134,7 +134,7 @@ country_event = {
 			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
 			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
 			text = newline
-			text = "fmerc_enclave.conclusion.postfix"
+			text = "merc.signature.desc"
 		}
 	}
 
@@ -149,41 +149,41 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = fmerc_enclave.back
+	# 	name = merc.back
 	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
 	# }
 	option = {
-		name = fmerc_enclave.accept.responsibility
+		name = merc.signature.accept
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.terms
+		name = merc.signature.terms
 		hidden_effect = {
 			country_event = { id = mercMenu.2102 }
 		}
 	}
 	option = {
-		name = fmerc_enclave.accept.nda
+		name = merc.signature.nda
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.treaty
+		name = merc.signature.treaty
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.signature
+		name = merc.signature.executive
 		allow = { hidden_trigger = { always = no } }
 	}
 }
 
 country_event = {
 	id = mercMenu.2102
-	title = fmerc_enclave.9000.signatures
+	title = merc.signature.title
 	desc = {
 		trigger = {
 			switch = {
@@ -213,7 +213,7 @@ country_event = {
 			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
 			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
 			text = newline
-			text = "fmerc_enclave.conclusion.postfix"
+			text = "merc.signature.desc"
 		}
 	}
 
@@ -228,41 +228,41 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = fmerc_enclave.back
+	# 	name = merc.back
 	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
 	# }
 	option = {
-		name = fmerc_enclave.accept.responsibility
+		name = merc.signature.accept
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.terms
+		name = merc.signature.terms
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.nda
+		name = merc.signature.nda
 		hidden_effect = {
 			country_event = { id = mercMenu.2103 }
 		}
 	}
 	option = {
-		name = fmerc_enclave.accept.treaty
+		name = merc.signature.treaty
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.signature
+		name = merc.signature.executive
 		allow = { hidden_trigger = { always = no } }
 	}
 }
 
 country_event = {
 	id = mercMenu.2103
-	title = fmerc_enclave.9000.signatures
+	title = merc.signature.title
 	desc = {
 		trigger = {
 			switch = {
@@ -292,7 +292,7 @@ country_event = {
 			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
 			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
 			text = newline
-			text = "fmerc_enclave.conclusion.postfix"
+			text = "merc.signature.desc"
 		}
 	}
 
@@ -307,41 +307,41 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = fmerc_enclave.back
+	# 	name = merc.back
 	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
 	# }
 	option = {
-		name = fmerc_enclave.accept.responsibility
+		name = merc.signature.accept
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.terms
+		name = merc.signature.terms
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.nda
+		name = merc.signature.nda
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.treaty
+		name = merc.signature.treaty
 		hidden_effect = {
 			country_event = { id = mercMenu.2104 }
 		}
 	}
 	option = {
-		name = fmerc_enclave.accept.signature
+		name = merc.signature.executive
 		allow = { hidden_trigger = { always = no } }
 	}
 }
 
 country_event = {
 	id = mercMenu.2104
-	title = fmerc_enclave.9000.signatures
+	title = merc.signature.title
 	desc = {
 		trigger = {
 			switch = {
@@ -371,7 +371,7 @@ country_event = {
 			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
 			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
 			text = newline
-			text = "fmerc_enclave.conclusion.postfix"
+			text = "merc.signature.desc"
 		}
 	}
 
@@ -386,32 +386,32 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = fmerc_enclave.back
+	# 	name = merc.back
 	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
 	# }
 	option = {
-		name = fmerc_enclave.accept.responsibility
+		name = merc.signature.accept
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.terms
+		name = merc.signature.terms
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.nda
+		name = merc.signature.nda
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.treaty
+		name = merc.signature.treaty
 		allow = { hidden_trigger = { always = no } }
 	}
 	option = {
-		name = fmerc_enclave.accept.signature
+		name = merc.signature.executive
 		hidden_effect = {
 			country_event = { id = mercMenu.9000 }
 		}

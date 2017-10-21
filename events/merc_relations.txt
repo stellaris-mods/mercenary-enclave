@@ -81,7 +81,7 @@ country_event = {
 country_event = {
 	id = mercRelations.142
 	title = "guardian.141"
-	desc = fmerc_enclave.a.desc
+	desc = merc.destroyed.desc
 	picture = GFX_evt_exploding_ship
 	location = event_target:trader_system
 	show_sound = event_ship_explosion
@@ -94,7 +94,7 @@ country_event = {
 		}
 	}
 
-	option = { name = "fmerc_enclave.a" }
+	option = { name = "merc.destroyed.button" }
 }
 
 # on_entering_battle

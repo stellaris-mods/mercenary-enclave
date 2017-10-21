@@ -23,8 +23,8 @@ namespace = mercMenu
 # Target selected, next agenda is the disguise
 country_event = {
 	id = mercMenu.2000
-	title = fmerc_enclave.2000.name
-	desc = fmerc_enclave.2000.desc
+	title = merc.disguise.name
+	desc = merc.disguise.desc
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -38,17 +38,17 @@ country_event = {
 	# ZZZ from this point on we can't go "back" in the menu yet, I need to
 	# ZZZ reset the multipliers and such
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = fmerc_enclave.back
+	# 	name = merc.back
 	# 	hidden_effect = { country_event = { id = mercMenu.1000 } }
 	# }
 	option = {
-		name = fmerc_enclave.disguise.random
-		custom_tooltip = fmerc_enclave.disguise.random.tooltip
+		name = merc.disguise.random
+		custom_tooltip = merc.disguise.random.tooltip
 		hidden_effect = {
 			subtract_variable = { which = "MercMultiplier" value = 0.05 }
 			merc_account_update_multiplier = yes
@@ -65,8 +65,8 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.disguise.other
-		custom_tooltip = fmerc_enclave.disguise.other.tooltip
+		name = merc.disguise.other
+		custom_tooltip = merc.disguise.other.tooltip
 		hidden_effect = {
 			change_variable = { which = "MercMultiplier" value = 0.05 }
 			merc_account_update_multiplier = yes
@@ -83,8 +83,8 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.disguise.same
-		custom_tooltip = fmerc_enclave.disguise.same.tooltip
+		name = merc.disguise.same
+		custom_tooltip = merc.disguise.same.tooltip
 		hidden_effect = {
 			change_variable = {
 				which = "MercSuccess"
@@ -103,8 +103,8 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.disguise.pirate
-		custom_tooltip = fmerc_enclave.disguise.pirate.tooltip
+		name = merc.disguise.pirate
+		custom_tooltip = merc.disguise.pirate.tooltip
 		hidden_effect = {
 			subtract_variable = { which = "MercMultiplier" value = 0.05 }
 			merc_account_update_multiplier = yes
@@ -121,8 +121,8 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.disguise.monster
-		custom_tooltip = fmerc_enclave.disguise.monster.tooltip
+		name = merc.disguise.monster
+		custom_tooltip = merc.disguise.monster.tooltip
 		hidden_effect = {
 			change_variable = { which = "MercMultiplier" value = 0.15 }
 			merc_account_update_multiplier = yes

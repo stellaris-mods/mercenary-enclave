@@ -23,8 +23,8 @@ namespace = mercDetection
 # our operation has been detected
 country_event = {
 	id = mercDetection.1
-	title = fmerc_enclave.name
-	desc = fmerc_enclave.report
+	title = merc.name
+	desc = merc.buyer.detected.desc
 	picture = GFX_evt_galactic_senate
 	is_triggered_only = yes
 	option = {

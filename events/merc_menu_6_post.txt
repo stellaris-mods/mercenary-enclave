@@ -22,9 +22,9 @@ namespace = mercMenu
 
 country_event = {
 	id = mercMenu.9000
-	title = fmerc_enclave.9000.go
+	title = merc.signature.go
 	desc = {
-		text = fmerc_enclave.execute.desc
+		text = merc.conclusion.mission.go
 		trigger = {
 			check_variable = { which = "MercMinerals" value > "MercCost" }
 			check_variable = { which = "MercEnergy" value > "MercCostEnergy" }
@@ -32,7 +32,7 @@ country_event = {
 		}
 	}
 	desc = {
-		text = fmerc_enclave.cantafford.desc
+		text = merc.conclusion.mission.abort
 		trigger = {
 			NOT = {
 				check_variable = { which = "MercMinerals" value > "MercCost" }
@@ -55,7 +55,7 @@ country_event = {
 	after = { hidden_effect = { country_event = { id = mercMenu.9001 } } }
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 	}
 }
@@ -94,53 +94,53 @@ country_event = {
 # FROM is the mercenary operations country
 country_event = {
 	id = mercMenu.9004
-	title = fmerc_enclave.completed.title
+	title = merc.completed.title
 	desc = {
 		trigger = {
-			text = fmerc_enclave.completed.desc
+			text = merc.completed.desc
 			text = newline
 			success_text = {
-				text = "fmerc.completed.pretext"
+				text = "merc.completed.pretext"
 				FROM = { check_variable = { which = "MercKillsTotal" value > 0 } }
 			}
 			success_text = {
-				text = "fmerc.completed.frontier"
+				text = "merc.completed.frontier"
 				FROM = { check_variable = { which = "MercKillsFrontier" value > 0 } }
 			}
 			success_text = {
-				text = "fmerc.completed.obspost"
+				text = "merc.completed.obspost"
 				FROM = { check_variable = { which = "MercKillsObs" value > 0 } }
 			}
 			success_text = {
-				text = "fmerc.completed.wormhole"
+				text = "merc.completed.wormhole"
 				FROM = { check_variable = { which = "MercKillsWormhole" value > 0 } }
 			}
 			success_text = {
-				text = "fmerc.completed.research"
+				text = "merc.completed.research"
 				FROM = { check_variable = { which = "MercKillsResearch" value > 0 } }
 			}
 			success_text = {
-				text = "fmerc.completed.mining"
+				text = "merc.completed.mining"
 				FROM = { check_variable = { which = "MercKillsMining" value > 0 } }
 			}
 			success_text = {
-				text = "fmerc.completed.spaceport"
+				text = "merc.completed.spaceport"
 				FROM = { check_variable = { which = "MercKillsSpaceport" value > 0 } }
 			}
 			success_text = {
-				text = "fmerc.completed.stations"
+				text = "merc.completed.stations"
 				FROM = { check_variable = { which = "MercKillsStations" value > 0 } }
 			}
 			success_text = {
-				text = "fmerc.completed.ships"
+				text = "merc.completed.ships"
 				FROM = { check_variable = { which = "MercKillsShips" value > 0 } }
 			}
 			success_text = {
-				text = "fmerc.completed.total"
+				text = "merc.completed.total"
 				FROM = { check_variable = { which = "MercKillsTotal" value > 0 } }
 			}
 			success_text = {
-				text = "fmerc.completed.nothing"
+				text = "merc.completed.nothing"
 				FROM = { check_variable = { which = "MercKillsTotal" value = 0 } }
 			}
 		}

@@ -23,8 +23,8 @@ namespace = mercMenu
 # Special Operations menu
 country_event = {
 	id = mercMenu.200
-	title = fmerc_enclave.200.name
-	desc = fmerc_enclave.200.desc
+	title = merc.operations.name
+	desc = merc.operations.desc
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -40,35 +40,35 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
-		name = fmerc_enclave.back
+		name = merc.back
 		hidden_effect = { country_event = { id = mercMenu.101 } }
 	}
 	option = {
-		name = fmerc_enclave.300.name
+		name = merc.spaceport.name
 		hidden_effect = { country_event = { id = mercMenu.300 } }
 	}
 	option = {
-		name = fmerc_enclave.400.name
+		name = merc.liberation.name
 		hidden_effect = { country_event = { id = mercMenu.400 } }
 	}
 	option = {
-		name = fmerc_enclave.500.name
+		name = merc.raid.name
 		hidden_effect = { country_event = { id = mercMenu.500 } }
 	}
 	option = {
-		name = fmerc_enclave.600.name
+		name = merc.fleet.name
 		hidden_effect = { country_event = { id = mercMenu.600 } }
 	}
 	option = {
-		name = fmerc_enclave.700.name
+		name = merc.clearspace.name
 		allow = {
 			custom_tooltip_fail = {
-				text = "fmerc_enclave.100.minerals.withdraw.fail"
+				text = "merc.condition.clearspace.fail"
 				check_variable = { which = "MercDeposit" value > 4500 }
 			}
 		}
@@ -79,10 +79,10 @@ country_event = {
 # Attack spaceport
 country_event = {
 	id = mercMenu.300
-	title = fmerc_enclave.300.name
+	title = merc.spaceport.name
 	desc = {
 		trigger = {
-			text = fmerc_enclave.300.desc
+			text = merc.spaceport.desc
 			text = newline
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
@@ -111,17 +111,17 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
-		name = fmerc_enclave.back
+		name = merc.back
 		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
-		name = fmerc_enclave.order
-		custom_tooltip = fmerc_enclave.order.tooltip
+		name = merc.order
+		custom_tooltip = merc.order.tooltip
 		hidden_effect = {
 			set_country_flag = "fmerc_diplo_spaceport"
 			country_event = { id = mercMenu.1000 }
@@ -132,10 +132,10 @@ country_event = {
 # Liberate Planet
 country_event = {
 	id = mercMenu.400
-	title = fmerc_enclave.400.name
+	title = merc.liberation.name
 	desc = {
 		trigger = {
-			text = fmerc_enclave.400.desc
+			text = merc.liberation.desc
 			text = newline
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
@@ -166,17 +166,17 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
-		name = fmerc_enclave.back
+		name = merc.back
 		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
-		name = fmerc_enclave.order
-		custom_tooltip = fmerc_enclave.order.tooltip
+		name = merc.order
+		custom_tooltip = merc.order.tooltip
 		hidden_effect = {
 			set_country_flag = "fmerc_diplo_liberate"
 			country_event = { id = mercMenu.1000 }
@@ -187,10 +187,10 @@ country_event = {
 # Mining/Research Raid
 country_event = {
 	id = mercMenu.500
-	title = fmerc_enclave.500.name
+	title = merc.raid.name
 	desc = {
 		trigger = {
-			text = fmerc_enclave.500.desc
+			text = merc.raid.desc
 			text = newline
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
@@ -220,17 +220,17 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
-		name = fmerc_enclave.back
+		name = merc.back
 		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
-		name = fmerc_enclave.order
-		custom_tooltip = fmerc_enclave.order.tooltip
+		name = merc.order
+		custom_tooltip = merc.order.tooltip
 		hidden_effect = {
 			set_country_flag = "fmerc_diplo_miningraid"
 			country_event = { id = mercMenu.1000 }
@@ -242,7 +242,7 @@ country_event = {
 # Fleet Battle
 country_event = {
 	id = mercMenu.600
-	title = fmerc_enclave.600.name
+	title = merc.fleet.name
 	desc = {
 		trigger = {
 			text = fmerc_enclave.600.desc
@@ -276,17 +276,17 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
-		name = fmerc_enclave.back
+		name = merc.back
 		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
-		name = fmerc_enclave.order
-		custom_tooltip = fmerc_enclave.order.tooltip
+		name = merc.order
+		custom_tooltip = merc.order.tooltip
 		hidden_effect = {
 			set_country_flag = "fmerc_diplo_fleetraid"
 			country_event = { id = mercMenu.1000 }
@@ -297,9 +297,9 @@ country_event = {
 # Clear space
 country_event = {
 	id = mercMenu.700
-	title = fmerc_enclave.700.name
+	title = merc.clearspace.name
 	# Custom desc because variables can't represent zero
-	desc = fmerc_enclave.700.desc
+	desc = merc.clearspace.desc
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -315,20 +315,20 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
-		name = fmerc_enclave.back
+		name = merc.back
 		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
-		name = fmerc_enclave.700.amoeba
-		custom_tooltip = fmerc_enclave.700.tooltip
+		name = merc.clearspace.amoeba
+		custom_tooltip = merc.clearspace.tooltip
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.needsdeposit
+				text = merc.condition.deposit
 				check_variable = {
 					which = "MercDeposit"
 					value > 2500
@@ -349,11 +349,11 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.700.cloud
-		custom_tooltip = fmerc_enclave.700.tooltip
+		name = merc.clearspace.cloud
+		custom_tooltip = merc.clearspace.tooltip
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.needsdeposit
+				text = merc.condition.deposit
 				check_variable = {
 					which = "MercDeposit"
 					value > 2500
@@ -374,11 +374,11 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.700.crystal
-		custom_tooltip = fmerc_enclave.700.tooltip
+		name = merc.clearspace.crystal
+		custom_tooltip = merc.clearspace.tooltip
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.needsdeposit
+				text = merc.condition.deposit
 				check_variable = {
 					which = "MercDeposit"
 					value > 2500
@@ -399,11 +399,11 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.700.pirates
-		custom_tooltip = fmerc_enclave.700.tooltip
+		name = merc.clearspace.pirates
+		custom_tooltip = merc.clearspace.tooltip
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.needsdeposit
+				text = merc.condition.deposit
 				check_variable = {
 					which = "MercDeposit"
 					value > 2500
@@ -424,11 +424,11 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.700.drones
-		custom_tooltip = fmerc_enclave.700.tooltip
+		name = merc.clearspace.drones
+		custom_tooltip = merc.clearspace.tooltip
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.needsdeposit
+				text = merc.condition.deposit
 				check_variable = {
 					which = "MercDeposit"
 					value > 2500

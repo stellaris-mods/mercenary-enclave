@@ -22,8 +22,8 @@ namespace = mercMenu
 
 country_event = {
 	id = mercMenu.1000
-	title = fmerc_enclave.1000.name
-	desc = fmerc_enclave.1000.desc
+	title = merc.target.name
+	desc = merc.target.desc
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -35,16 +35,16 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
-		name = fmerc_enclave.back
+		name = merc.back
 		hidden_effect = { country_event = { id = mercMenu.101 } }
 	}
 	option = {
-		name = fmerc_enclave.1000.default
+		name = merc.target.default
 		trigger = {
 			any_country = {
 				is_country_type = "default"
@@ -59,7 +59,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.1000.fallen
+		name = merc.target.fallen
 		trigger = {
 			any_country = {
 				OR = {
@@ -73,7 +73,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target.invalid_operation
+				text = merc.condition.invalid.target
 				NOT = { has_country_flag = "fmerc_diplo_spaceport" }
 				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
 			}
@@ -94,7 +94,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.1000.swarm
+		name = merc.target.swarm
 		trigger = {
 			any_country = {
 				is_country_type = "swarm"
@@ -104,7 +104,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target.invalid_operation
+				text = merc.condition.invalid.target
 				NOT = { has_country_flag = "fmerc_diplo_liberate" }
 				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
 			}
@@ -121,7 +121,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.1000.ed
+		name = merc.target.ed
 		trigger = {
 			any_country = {
 				OR = {
@@ -135,7 +135,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target.invalid_operation
+				text = merc.condition.invalid.target
 				NOT = { has_country_flag = "fmerc_diplo_liberate" }
 				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
 			}
@@ -152,7 +152,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.1000.ai
+		name = merc.target.ai
 		trigger = {
 			any_country = {
 				is_country_type = "ai_empire"
@@ -162,7 +162,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target.invalid_operation
+				text = merc.condition.invalid.target
 				NOT = { has_country_flag = "fmerc_diplo_spaceport" }
 				NOT = { has_country_flag = "fmerc_diplo_miningraid" }
 			}
@@ -186,16 +186,16 @@ country_event = {
 
 country_event = {
 	id = mercMenu.1100
-	title = fmerc_enclave.1000.name
+	title = merc.target.name
 	desc = {
 		trigger = {
 			switch = {
 				trigger = has_country_flag
-				fmerc_diplo_empire_standard = { text = "fmerc_enclave.selected.default" }
-				fmerc_diplo_empire_fallen = { text = "fmerc_enclave.selected.fallen" }
-				fmerc_diplo_empire_swarm = { text = "fmerc_enclave.selected.swarm" }
-				fmerc_diplo_empire_ed = { text = "fmerc_enclave.selected.ed" }
-				fmerc_diplo_empire_ai = { text = "fmerc_enclave.selected.ai" }
+				fmerc_diplo_empire_standard = { text = "merc.target.selected.default" }
+				fmerc_diplo_empire_fallen = { text = "merc.target.selected.fallen" }
+				fmerc_diplo_empire_swarm = { text = "merc.target.selected.swarm" }
+				fmerc_diplo_empire_ed = { text = "merc.target.selected.ed" }
+				fmerc_diplo_empire_ai = { text = "merc.target.selected.ai" }
 			}
 		}
 	}
@@ -324,12 +324,12 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.close
+		name = merc.close
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = fmerc_enclave.back
+	# 	name = merc.back
 	# 	hidden_effect = { country_event = { id = mercMenu.1000 } }
 	# }
 	option = {
@@ -337,7 +337,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_1 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_1 = {
 					fmerc_is_valid_country = yes
 				}
@@ -355,7 +355,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_2 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_2 = {
 					fmerc_is_valid_country = yes
 				}
@@ -373,7 +373,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_3 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_3 = {
 					fmerc_is_valid_country = yes
 				}
@@ -391,7 +391,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_4 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_4 = {
 					fmerc_is_valid_country = yes
 				}
@@ -409,7 +409,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_5 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_5 = {
 					fmerc_is_valid_country = yes
 				}
@@ -427,7 +427,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_6 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_6 = {
 					fmerc_is_valid_country = yes
 				}
@@ -445,7 +445,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_7 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_7 = {
 					fmerc_is_valid_country = yes
 				}
@@ -463,7 +463,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_8 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_8 = {
 					fmerc_is_valid_country = yes
 				}
@@ -481,7 +481,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_9 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_9 = {
 					fmerc_is_valid_country = yes
 				}
@@ -499,7 +499,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_10 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_10 = {
 					fmerc_is_valid_country = yes
 				}
@@ -517,7 +517,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_11 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_11 = {
 					fmerc_is_valid_country = yes
 				}
@@ -535,7 +535,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_12 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_12 = {
 					fmerc_is_valid_country = yes
 				}
@@ -553,7 +553,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_13 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_13 = {
 					fmerc_is_valid_country = yes
 				}
@@ -571,7 +571,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_14 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_14 = {
 					fmerc_is_valid_country = yes
 				}
@@ -589,7 +589,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_15 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_15 = {
 					fmerc_is_valid_country = yes
 				}
@@ -607,7 +607,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_16 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_16 = {
 					fmerc_is_valid_country = yes
 				}
@@ -625,7 +625,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_17 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_17 = {
 					fmerc_is_valid_country = yes
 				}
@@ -643,7 +643,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_18 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_18 = {
 					fmerc_is_valid_country = yes
 				}
@@ -661,7 +661,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_19 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_19 = {
 					fmerc_is_valid_country = yes
 				}
@@ -679,7 +679,7 @@ country_event = {
 		trigger = { exists = event_target:fmerc_temp_country_20 }
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.target_not_valid
+				text = merc.condition.invalid.target
 				event_target:fmerc_temp_country_20 = {
 					fmerc_is_valid_country = yes
 				}

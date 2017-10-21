@@ -64,8 +64,8 @@ fleet_event = {
 country_event = {
 	id = mercInsurance.912
 	is_triggered_only = yes
-	title = fmerc_enclave.insurance.title
-	desc = fmerc_enclave.insurance.desc
+	title = merc.insurance.title
+	desc = merc.insurance.desc
 	picture = GFX_evt_smugglers_in_bar
 
 	immediate = {
@@ -126,10 +126,10 @@ country_event = {
 	}
 
 	option = {
-		name = fmerc_enclave.insurance.offer
+		name = merc.insurance.offer
 		allow = {
 			custom_tooltip_fail = {
-				text = fmerc_enclave.cantafford.title
+				text = merc.condition.funds
 				check_variable = {
 					which = "MercMinerals"
 					value > "MercCost"
@@ -153,7 +153,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = fmerc_enclave.insurance.decline
+		name = merc.insurance.decline
 		hidden_effect = {
 			event_target:fmerc_ops_country = {
 				set_relation_flag = {
@@ -169,10 +169,10 @@ country_event = {
 country_event = {
 	id = mercInsurance.914
 	is_triggered_only = yes
-	title = fmerc_enclave.insurance.title
-	desc = fmerc_enclave.insurance.prevented
+	title = merc.insurance.title
+	desc = merc.insurance.prevented
 	picture = GFX_evt_smugglers_in_bar
 	option = {
-		name = fmerc_enclave.insurance.decline
+		name = merc.insurance.decline
 	}
 }
