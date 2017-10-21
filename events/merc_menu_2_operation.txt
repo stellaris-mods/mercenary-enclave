@@ -56,14 +56,9 @@ country_event = {
 	option = {
 		name = fmerc_enclave.700.name
 		allow = {
-			custom_tooltip = {
-				text = fmerc_enclave.trust30
-				event_target:traders = {
-					trust = {
-						who = ROOT
-						value > 29
-					}
-				}
+			custom_tooltip_fail = {
+				text = "fmerc_enclave.100.minerals.withdraw.fail"
+				check_variable = { which = "MercDeposit" value > 4500 }
 			}
 		}
 		hidden_effect = { country_event = { id = mercMenu.700 } }
