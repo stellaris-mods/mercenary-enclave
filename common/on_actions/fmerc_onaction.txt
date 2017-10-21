@@ -22,13 +22,13 @@ on_entering_system_fleet = {
 
 on_ship_destroyed_victim = {
 	events = {
-		mercguardian.140
+		mercRelations.140
 	}
 }
 
 on_entering_battle = {
 	events = {
-		mercguardian.155
+		mercRelations.155
 	}
 }
 

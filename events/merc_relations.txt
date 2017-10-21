@@ -17,18 +17,15 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-namespace = mercguardian
+namespace = mercRelations
 
-# The events in this file are copied mostly from vanilla.
-# The idea was to use the vanilla communication system for this enclave, but of course
-# they coded it in such a way that's not possible
-# So I copied it instead.
-
+# The events in this file were initially copied from guardian_events.txt.
+# But have since been modified quite heavily.
 # ZZZ Try not renaming event targets, they might be used in localisations
 
 # on_ship_destroyed_victim
 country_event = {
-	id = mercguardian.140
+	id = mercRelations.140
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -38,7 +35,7 @@ country_event = {
 			solar_system = { save_event_target_as = trader_system }
 		}
 		FROM = {
-			country_event = { id = mercguardian.141 }
+			country_event = { id = mercRelations.141 }
 			save_event_target_as = trader_destroyer
 		}
 		# If we have zero fleets left, we are dead, so notify customers
@@ -50,7 +47,7 @@ country_event = {
 					has_communications = ROOT
 					NOT = { is_country = event_target:trader_destroyer }
 				}
-				country_event = { id = mercguardian.142 }
+				country_event = { id = mercRelations.142 }
 			}
 		}
 	}
@@ -60,7 +57,7 @@ country_event = {
 # ROOT attacked and killed _one_ mercenary enclave ship. Surely this must
 # be a mistake. It should be if we destroyed a FLEET maybe?
 country_event = {
-	id = mercguardian.141
+	id = mercRelations.141
 	title = "guardian.141"
 	desc = "guardian.141.desc"
 	picture = GFX_evt_space_debris
@@ -80,7 +77,7 @@ country_event = {
 # Mercenary Destroyed
 # Notification for everyone who had contact with the enclave except attacker
 country_event = {
-	id = mercguardian.142
+	id = mercRelations.142
 	title = "guardian.141"
 	desc = {
 		text = fmerc_enclave.a.desc
@@ -119,7 +116,7 @@ country_event = {
 
 # on_entering_battle
 country_event = {
-	id = mercguardian.155
+	id = mercRelations.155
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
@@ -147,14 +144,14 @@ country_event = {
 				who = FROM
 				flag = fmercenary_trade
 			}
-			country_event = { id = mercguardian.156 }
+			country_event = { id = mercRelations.156 }
 		}
 	}
 }
 
 # Attacked Mercs - Trade Agreement Terminated
 country_event = {
-	id = mercguardian.156
+	id = mercRelations.156
 	title = fmerc_enclave.name
 	desc = fmerc_enclave.156.desc
 	is_triggered_only = yes
@@ -171,4 +168,3 @@ country_event = {
 		custom_gui = "enclave_trader_option"
 	}
 }
-
