@@ -84,6 +84,7 @@ fmerc_enclave.needsdeposit: "You need at least £minerals §G2500§! deposited w
 
 # Initial diplomacy window
 fmerc_enclave.100a.desc: "Got a problem we can handle for you?"
+# XXX need to fix this for energy deposit
 fmerc_enclave.100b.desc: "Greetings, customer! If there's any service we can render, please browse our selection on the right-hand screen.\n\nCurrent deposit:  £minerals §G[Root.MercDeposit]§!\nAdministrative fee: §R5% / year§!"
 fmerc_enclave.100c.desc: "§YWhiteout Enterprises§! is currently engaged in special operations activity on behalf of someone in your government. Please check back at a later date.\n\nNote that all our special operations are be terminated immediately after 5 years, regardless of progress."
 fmerc_enclave.100.insurance.button: "Buy insurance plan"
@@ -91,8 +92,21 @@ fmerc_enclave.100.insurance.sell: "Cancel insurance plan"
 fmerc_enclave.100.insurance.tooltip: "§YWhiteout Enterprises§! offers an insurance policy, which in simple terms means that if any other empire orders a §YWhiteout Enterprises§! service targetting you, you will be given an option to outbid them."
 
 fmerc_enclave.100.minerals.button: "Deposit £minerals §G2500§!"
-fmerc_enclave.100.minerals.tooltip: "Deposits another 2500 minerals in the §YWhiteout Enterprise§! emergency account. Any funds in this account will be spent first if you order any combat maneuvers or other services at a later date.\n\nAdministrative fee: §R5% / year§!\n$OPINION$: £opinion  §G+5§!"
+fmerc_enclave.100.minerals.tooltip: "Deposits another 2500 minerals in the §YWhiteout Enterprise§! emergency account. Any funds in this account will be spent first if you order any combat maneuvers or other services at a later date.\n\nAdministrative fee: §R5% / year§!\n"
 fmerc_enclave.100.minerals.reply: "Excellent, I'm sure those funds will come in handy for you one day.\n\nTotal deposit:  £minerals §G[Root.MercDeposit] +2500§!\nAdministrative fee: §R5% / year§!"
+fmerc_enclave.100.minerals.withdraw: "Withdraw £minerals §G2500§!"
+fmerc_enclave.100.minerals.withdraw.tooltip: "Withdraws 2500 minerals from your account."
+fmerc_enclave.100.minerals.withdraw.fail: "Not enough minerals in account."
+fmerc_enclave.100.minerals.withdraw.reply: "We appreciate our continued business relationship.\n\nTotal deposit:  £minerals §G[Root.MercDeposit] -2500§!\nAdministrative fee: §R5% / year§!"
+
+fmerc_enclave.100.energy.button: "Deposit £energy §G2500§!"
+fmerc_enclave.100.energy.tooltip: "Deposits another 2500 energy credits in the §YWhiteout Enterprise§! emergency account. Any funds in this account will be spent first if you order any combat maneuvers or other services at a later date.\n\nAdministrative fee: §R5% / year§!\n"
+fmerc_enclave.100.energy.reply: "Excellent, I'm sure those funds will come in handy for you one day.\n\nTotal deposit:  £energy §G[Root.MercDepositEnergy] +2500§!\nAdministrative fee: §R5% / year§!"
+fmerc_enclave.100.energy.withdraw: "Withdraw £energy §G2500§!"
+fmerc_enclave.100.energy.withdraw.tooltip: "Withdraws 2500 energy credits from your account."
+fmerc_enclave.100.energy.withdraw.fail: "Not enough energy credits in account."
+fmerc_enclave.100.energy.withdraw.reply: "We appreciate our continued business relationship.\n\nTotal deposit:  £energy §G[Root.MercDepositEnergy] -2500§!\nAdministrative fee: §R5% / year§!"
+
 fmerc_enclave.100.operations.button: "Let me see your services"
 fmerc_enclave.100.stations.button: "Allow border access"
 fmerc_enclave.100.stations.tooltip: "This allows §YWhiteout Enterprises§! access to your territories. It's hard to speculate why they might want this, but they assure us it will be to our mutual benefit.\n\nHowever, rest assured it will also increase their effectiveness against you should someone else contract their services towards you."

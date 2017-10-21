@@ -29,13 +29,17 @@ event = {
 	immediate = {
 		every_country = {
 			limit = {
-				check_variable = {
-					which = "MercDeposit"
-					value > 0
+				OR = {
+					check_variable = { which = "MercDeposit" value > 0 }
+					check_variable = { which = "MercDepositEnergy" value > 0 }
 				}
 			}
 			multiply_variable = {
 				which = "MercDeposit"
+				value = 0.95
+			}
+			multiply_variable = {
+				which = "MercDepositEnergy"
 				value = 0.95
 			}
 		}

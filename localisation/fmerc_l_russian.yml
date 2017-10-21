@@ -148,6 +148,21 @@ fmerc_enclave.100.minerals.button: "Положить на счет £minerals §
 fmerc_enclave.100.minerals.tooltip: "Кладет на счет еще 2500 минералов на счет §YWhiteout Enterprise§!. При заказе услуг оплата сперва снимается с этого счета.\n\nПроцент удержания: §R5% / год§! \n$OPINION$: £opinion  §G+5§!"
 ##fmerc_enclave.100.minerals.reply: "Excellent, I'm sure those funds will come in handy for you one day.\n\nTotal deposit:  £minerals §G[Root.MercDeposit] +2500§!\nAdministrative fee: §R5% / year§!"
 fmerc_enclave.100.minerals.reply: "Прекрасно, уверен, этот депозит когда-нибудь будет полезен.\n\nИтого:  £minerals §G[Root.MercDeposit] +2500§!\nПроцент удержания: §R5% / год§!"
+fmerc_enclave.100.minerals.withdraw: "Withdraw £minerals §G2500§!"
+fmerc_enclave.100.minerals.withdraw.tooltip: "Withdraws 2500 minerals from your account."
+fmerc_enclave.100.minerals.withdraw.fail: "Not enough minerals in account."
+fmerc_enclave.100.minerals.withdraw.reply: "We appreciate our continued business relationship.\n\nTotal deposit:  £minerals §G[Root.MercDeposit] -2500§!\nAdministrative fee: §R5% / year§!"
+
+fmerc_enclave.100.energy.button: "Deposit £energy §G2500§!"
+fmerc_enclave.100.energy.tooltip: "Deposits another 2500 energy credits in the §YWhiteout Enterprise§! emergency account. Any funds in this account will be spent first if you order any combat maneuvers or other services at a later date.\n\nAdministrative fee: §R5% / year§!\n"
+fmerc_enclave.100.energy.reply: "Excellent, I'm sure those funds will come in handy for you one day.\n\nTotal deposit:  £energy §G[Root.MercDepositEnergy] +2500§!\nAdministrative fee: §R5% / year§!"
+fmerc_enclave.100.energy.withdraw: "Withdraw £energy §G2500§!"
+fmerc_enclave.100.energy.withdraw.tooltip: "Withdraws 2500 energy credits from your account."
+fmerc_enclave.100.energy.withdraw.fail: "Not enough energy credits in account."
+fmerc_enclave.100.energy.withdraw.reply: "We appreciate our continued business relationship.\n\nTotal deposit:  £energy §G[Root.MercDepositEnergy] -2500§!\nAdministrative fee: §R5% / year§!"
+
+
+
 ##fmerc_enclave.100.operations.button: "Let me see your services"
 fmerc_enclave.100.operations.button: "Дайте список ваших услуг"
 ##fmerc_enclave.100.stations.button: "Allow border access"

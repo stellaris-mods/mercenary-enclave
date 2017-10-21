@@ -19,229 +19,51 @@
 
 namespace = mercMenu
 
-# XXX add deposit + withdraw for energy
-# XXX add withdraw for minerals
-
-# Mercenaries Main Menu #1
+# on_custom_diplomacy
+# Initial event, mainly to save the event target we use throughout
 country_event = {
 	id = mercMenu.100
-	title = fmerc_enclave.name
-	desc = {
-		trigger = {
-			NOT = { has_country_flag = "merc_attacked_enclave" }
-			NOT = { has_country_flag = "fmerc_active_operation" }
-			check_variable = {
-				which = "MercDeposit"
-				value = 0
-			}
-		}
-		text = fmerc_enclave.100a.desc
-	}
-	desc = {
-		trigger = {
-			NOT = { has_country_flag = "merc_attacked_enclave" }
-			NOT = { has_country_flag = "fmerc_active_operation" }
-			check_variable = {
-				which = "MercDeposit"
-				value > 0
-			}
-		}
-		text = fmerc_enclave.100b.desc
-	}
-	desc = {
-		trigger = { has_country_flag = "merc_attacked_enclave" }
-		text = fmerc_enclave.attacked.desc
-	}
-	desc = {
-		trigger = {
-			has_country_flag = "fmerc_active_operation"
-		}
-		text = fmerc_enclave.100c.desc
-	}
-
+	hide_window = yes
 	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_trader_window"
-	custom_gui_option = "enclave_trader_option"
-
-	picture_event_data = {
-		portrait = event_target:traders
-		room = enclave_trader_room
-	}
 	trigger = {
 		NOT = { has_country_flag = "fmerc_diplomacy_engaged" }
-		FROM = {
-			is_country_type = "fmerc_enclave"
-		}
+		FROM = { is_country_type = "fmerc_enclave" }
 	}
 	immediate = {
 		fmerc_reset_diplo_screen = yes
 		set_country_flag = "fmerc_diplomacy_engaged"
 		FROM = { save_event_target_as = traders }
-	}
-
-	option = { # Deposit Minerals
-		name = fmerc_enclave.100.minerals.button
-		custom_tooltip = fmerc_enclave.100.minerals.tooltip
-		trigger = {
-			NOT = { has_country_flag = "fmerc_active_operation" }
-		}
-		allow = {
-			minerals > 2500
-			hidden_trigger = {
-				NOT = { has_country_flag = "merc_attacked_enclave" }
-			}
-		}
-		add_minerals = -2500
-		event_target:traders = {
-			add_trust = {
-				who = ROOT
-				amount = 5
-			}
-		}
-		hidden_effect = {
-			change_variable = {
-				which = "MercDeposit"
-				value = 2500
-			}
-			set_relation_flag = {
-				who = event_target:traders
-				flag = fmercenary_trade
-			}
-		}
-		is_dialog_only = yes
-		response_text = fmerc_enclave.100.minerals.reply
-	}
-	option = {
-		name = fmerc_enclave.100.operations.button
-		trigger = {
-			NOT = { has_country_flag = "fmerc_active_operation" }
-		}
-		allow = {
-			hidden_trigger = {
-				NOT = { has_country_flag = "merc_attacked_enclave" }
-				# NOT = { event_target:traders = { has_country_flag = "fmerc_active_operation" } }
-			}
-		}
-		hidden_effect = {
-			country_event = { id = mercMenu.200 }
-		}
-	}
-	option = {
-		name = fmerc_enclave.100.stations.button
-		custom_tooltip = "fmerc_enclave.100.stations.tooltip"
-		trigger = {
-			NOT = { has_country_flag = "fmerc_allow_stations" }
-			NOT = { has_country_flag = "merc_attacked_enclave" }
-			NOT = { has_country_flag = "fmerc_active_operation" }
-		}
-		hidden_effect = {
-			set_country_flag = "fmerc_allow_stations"
-			country_event = { id = mercMenu.110 }
-		}
-	}
-	option = {
-		name = fmerc_enclave.100.nostations.button
-		custom_tooltip = "fmerc_enclave.100.nostations.tooltip"
-		trigger = {
-			has_country_flag = "fmerc_allow_stations"
-			NOT = { has_country_flag = "merc_attacked_enclave" }
-			NOT = { has_country_flag = "fmerc_active_operation" }
-		}
-		hidden_effect = {
-			remove_country_flag = "fmerc_allow_stations"
-			country_event = { id = mercMenu.110 }
-		}
-	}
-	option = {
-		name = fmerc_enclave.100.insurance.button
-		custom_tooltip = "fmerc_enclave.100.insurance.tooltip"
-		trigger = {
-			NOT = { has_country_flag = "merc_attacked_enclave" }
-			NOT = { has_modifier = merc_enclave_insurance }
-			NOT = { has_country_flag = "fmerc_active_operation" }
-		}
-		allow = {
-			custom_tooltip_fail = {
-				text = fmerc_enclave.has_station
-				has_country_flag = "fmerc_allow_stations"
-			}
-			custom_tooltip = {
-				text = fmerc_enclave.trust
-				event_target:traders = {
-					trust = {
-						who = ROOT
-						value > 49
-					}
-				}
-			}
-		}
-		add_modifier = {
-			modifier = merc_enclave_insurance
-			days = -1
-		}
-		hidden_effect = {
-			country_event = { id = mercMenu.150 }
-		}
-	}
-	option = {
-		name = fmerc_enclave.100.insurance.sell
-		custom_tooltip = "fmerc_enclave.100.insurance.tooltip"
-		trigger = {
-			NOT = { has_country_flag = "merc_attacked_enclave" }
-			has_modifier = merc_enclave_insurance
-			NOT = { has_country_flag = "fmerc_active_operation" }
-		}
-		remove_modifier = merc_enclave_insurance
-		hidden_effect = {
-			country_event = { id = mercMenu.150 }
-		}
-	}
-	option = {
-		name = fmerc_enclave.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+		if = { limit = { has_country_flag = "fmerc_active_operation" }
+			country_event = { id = mercMenu.102 }
+		else = { if = { limit = { has_country_flag = "merc_attacked_enclave" }
+			country_event = { id = mercMenu.103 }
+		else = {
+			country_event = { id = mercMenu.101 }
+		} } }
 	}
 }
 
-# Main menu, non-initial
+# Main menu
 # We always invoke fmerc_reset_diplo_screen before this screen
 country_event = {
 	id = mercMenu.101
 	title = fmerc_enclave.name
 	desc = {
 		trigger = {
-			NOT = { has_country_flag = "merc_attacked_enclave" }
-			NOT = { has_country_flag = "fmerc_active_operation" }
-			check_variable = {
-				which = "MercDeposit"
-				value = 0
-			}
+			check_variable = { which = "MercDeposit" value = 0 }
+			check_variable = { which = "MercDepositEnergy" value = 0 }
 		}
 		text = fmerc_enclave.100a.desc
 	}
 	desc = {
 		trigger = {
-			NOT = { has_country_flag = "merc_attacked_enclave" }
-			NOT = { has_country_flag = "fmerc_active_operation" }
-			check_variable = {
-				which = "MercDeposit"
-				value > 0
+			OR = {
+				check_variable = { which = "MercDeposit" value > 0 }
+				check_variable = { which = "MercDepositEnergy" value > 0 }
 			}
 		}
 		text = fmerc_enclave.100b.desc
 	}
-	desc = {
-		trigger = { has_country_flag = "merc_attacked_enclave" }
-		text = fmerc_enclave.attacked.desc
-	}
-	desc = {
-		trigger = {
-			has_country_flag = "fmerc_active_operation"
-		}
-		text = fmerc_enclave.100c.desc
-	}
-
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -258,18 +80,14 @@ country_event = {
 		set_country_flag = "fmerc_diplomacy_engaged"
 	}
 
+	option = {
+		name = fmerc_enclave.100.operations.button
+		hidden_effect = { country_event = { id = mercMenu.200 } }
+	}
 	option = { # Deposit Minerals
 		name = fmerc_enclave.100.minerals.button
 		custom_tooltip = fmerc_enclave.100.minerals.tooltip
-		trigger = {
-			NOT = { has_country_flag = "fmerc_active_operation" }
-		}
-		allow = {
-			minerals > 2500
-			hidden_trigger = {
-				NOT = { has_country_flag = "merc_attacked_enclave" }
-			}
-		}
+		allow = { minerals > 2500 }
 		add_minerals = -2500
 		event_target:traders = {
 			add_trust = {
@@ -278,10 +96,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			change_variable = {
-				which = "MercDeposit"
-				value = 2500
-			}
+			change_variable = { which = "MercDeposit" value = 2500 }
 			set_relation_flag = {
 				who = event_target:traders
 				flag = fmercenary_trade
@@ -290,28 +105,63 @@ country_event = {
 		is_dialog_only = yes
 		response_text = fmerc_enclave.100.minerals.reply
 	}
-	option = {
-		name = fmerc_enclave.100.operations.button
-		trigger = {
-			NOT = { has_country_flag = "fmerc_active_operation" }
-		}
+	option = { # Withdraw Minerals
+		name = fmerc_enclave.100.minerals.withdraw
+		custom_tooltip = fmerc_enclave.100.minerals.withdraw.tooltip
 		allow = {
-			hidden_trigger = {
-				NOT = { has_country_flag = "merc_attacked_enclave" }
+			custom_tooltip_fail = {
+				text = "fmerc_enclave.100.minerals.withdraw.fail"
+				check_variable = { which = "MercDeposit" value > 2500 }
+			}
+		}
+		add_minerals = 2500
+		hidden_effect = {
+			subtract_variable = { which = "MercDeposit" value = 2500 }
+		}
+		is_dialog_only = yes
+		response_text = fmerc_enclave.100.minerals.withdraw.reply
+	}
+	option = { # Deposit Energy
+		name = fmerc_enclave.100.energy.button
+		custom_tooltip = fmerc_enclave.100.energy.tooltip
+		allow = { energy > 2500 }
+		add_energy = -2500
+		event_target:traders = {
+			add_trust = {
+				who = ROOT
+				amount = 5
 			}
 		}
 		hidden_effect = {
-			country_event = { id = mercMenu.200 }
+			change_variable = { which = "MercDepositEnergy" value = 2500 }
+			set_relation_flag = {
+				who = event_target:traders
+				flag = fmercenary_trade
+			}
 		}
+		is_dialog_only = yes
+		response_text = fmerc_enclave.100.energy.reply
+	}
+	option = { # Withdraw Energy
+		name = fmerc_enclave.100.energy.withdraw
+		custom_tooltip = fmerc_enclave.100.energy.withdraw.tooltip
+		allow = {
+			custom_tooltip_fail = {
+				text = "fmerc_enclave.100.energy.withdraw.fail"
+				check_variable = { which = "MercDepositEnergy" value > 2500 }
+			}
+		}
+		add_energy = 2500
+		hidden_effect = {
+			subtract_variable = { which = "MercDepositEnergy" value = 2500 }
+		}
+		is_dialog_only = yes
+		response_text = fmerc_enclave.100.energy.withdraw.reply
 	}
 	option = {
 		name = fmerc_enclave.100.stations.button
 		custom_tooltip = "fmerc_enclave.100.stations.tooltip"
-		trigger = {
-			NOT = { has_country_flag = "fmerc_allow_stations" }
-			NOT = { has_country_flag = "merc_attacked_enclave" }
-			NOT = { has_country_flag = "fmerc_active_operation" }
-		}
+		trigger = { NOT = { has_country_flag = "fmerc_allow_stations" } }
 		hidden_effect = {
 			set_country_flag = "fmerc_allow_stations"
 			country_event = { id = mercMenu.110 }
@@ -320,11 +170,7 @@ country_event = {
 	option = {
 		name = fmerc_enclave.100.nostations.button
 		custom_tooltip = "fmerc_enclave.100.nostations.tooltip"
-		trigger = {
-			has_country_flag = "fmerc_allow_stations"
-			NOT = { has_country_flag = "merc_attacked_enclave" }
-			NOT = { has_country_flag = "fmerc_active_operation" }
-		}
+		trigger = { has_country_flag = "fmerc_allow_stations" }
 		hidden_effect = {
 			remove_country_flag = "fmerc_allow_stations"
 			country_event = { id = mercMenu.110 }
@@ -333,11 +179,7 @@ country_event = {
 	option = {
 		name = fmerc_enclave.100.insurance.button
 		custom_tooltip = "fmerc_enclave.100.insurance.tooltip"
-		trigger = {
-			NOT = { has_country_flag = "merc_attacked_enclave" }
-			NOT = { has_modifier = merc_enclave_insurance }
-			NOT = { has_country_flag = "fmerc_active_operation" }
-		}
+		trigger = { NOT = { has_modifier = merc_enclave_insurance } }
 		allow = {
 			custom_tooltip_fail = {
 				text = fmerc_enclave.has_station
@@ -357,21 +199,69 @@ country_event = {
 			modifier = merc_enclave_insurance
 			days = -1
 		}
-		hidden_effect = {
-			country_event = { id = mercMenu.150 }
-		}
+		hidden_effect = { country_event = { id = mercMenu.150 } }
 	}
 	option = {
 		name = fmerc_enclave.100.insurance.sell
 		custom_tooltip = "fmerc_enclave.100.insurance.tooltip"
-		trigger = {
-			NOT = { has_country_flag = "merc_attacked_enclave" }
-			has_modifier = merc_enclave_insurance
-			NOT = { has_country_flag = "fmerc_active_operation" }
-		}
+		trigger = { has_modifier = merc_enclave_insurance }
 		remove_modifier = merc_enclave_insurance
-		hidden_effect = {
-			country_event = { id = mercMenu.150 }
+		hidden_effect = { country_event = { id = mercMenu.150 } }
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+# main menu if we have fmerc_active_operation
+country_event = {
+	id = mercMenu.102
+	title = fmerc_enclave.name
+	desc = fmerc_enclave.100c.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+	immediate = {
+		fmerc_reset_diplo_screen = yes
+		set_country_flag = "fmerc_diplomacy_engaged"
+	}
+	option = {
+		name = fmerc_enclave.close
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+# Main menu if we have merc_attacked_enclave
+# XXX I want to change this so that it just applies a multiplier to all
+# XXX transactions
+country_event = {
+	id = mercMenu.103
+	title = fmerc_enclave.name
+	desc = fmerc_enclave.attacked.desc
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:traders
+		room = enclave_trader_room
+	}
+	immediate = {
+		fmerc_reset_diplo_screen = yes
+		set_country_flag = "fmerc_diplomacy_engaged"
+		set_variable = { # XXX lets get this done
+			which = "MercMultiplier"
+			value = 1.75
 		}
 	}
 	option = {
