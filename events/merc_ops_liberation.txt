@@ -215,6 +215,7 @@ country_event = {
 							authority = event_target:fmerc_buyer
 							civics = random
 							species = event_target:fmerc_target_country
+							name_list = event_target:fmerc_target_country
 							flag = random
 							effect = {
 								set_country_flag = "fmerc_liberation_rebels"
@@ -231,12 +232,6 @@ country_event = {
 								save_event_target_as = tmp_army_country
 								establish_communications_no_message = ROOT # merc operations
 								establish_communications_no_message = event_target:fmerc_target_country
-								#establish_communications_no_message = event_target:fmerc_buyer
-								#event_target:fmerc_target_country = {
-								#	every_relation = {
-								#		establish_communications_no_message = PREVPREV
-								#	}
-								#}
 								set_relation_flag = {
 									flag = fmerc_liberation_rebels
 									who = ROOT
@@ -280,25 +275,6 @@ country_event = {
 	}
 }
 
-# 17. ------------------------------
-# 18. - Printing the current scopes (trigger) -
-# 19. - This: Klaggian Conclave
-# 20. - Root: Klaggian Conclave
-# 21. - Prev: Klaggian Conclave
-# 22. - PrevPrev: Klaggian Conclave
-# 23. - PrevPrevPrev: Klaggian Conclave
-# 24. - PrevPrevPrevPrev: Klaggian Conclave
-# 25. - From: Sacrosanct Klaggian Council
-# 26. - FromFrom: Cranodeth
-# 27. - FromFromFrom: Cranodeth
-# 28. - FromFromFromFrom: Cranodeth
-# 29. - This's Solar System:
-# 30. - This's Planet: Klaggian Conclave
-# 31. - This's Sector: Klaggian Conclave
-# 32. - Root's Solar System:
-# 33. - Root's Owner's Name: Klaggian Conclave
-# 34. - Root's Owner's Capital's Name: Lyrogg
-# 35. ------------------------------
 # on_planet_defenders_win
 # Triggers country_event for the defender upon victory
 # Root = country, planet owner (merc target)
@@ -309,7 +285,6 @@ country_event = {
 	is_triggered_only = yes
 	hide_window = yes
 	trigger = {
-		is_country_type = "default"
 		FROMFROM = {
 			has_planet_flag = "fmerc_target"
 			controller = { is_same_value = ROOT }
@@ -330,26 +305,6 @@ country_event = {
 	}
 }
 
-
-# [16:58:56] 17. ------------------------------
-# [16:58:56] 18. - Printing the current scopes (trigger) -
-# [16:58:56] 19. - This: Klaggian Conclave
-# [16:58:56] 20. - Root: Klaggian Conclave
-# [16:58:56] 21. - Prev: Klaggian Conclave
-# [16:58:56] 22. - PrevPrev: Klaggian Conclave
-# [16:58:56] 23. - PrevPrevPrev: Klaggian Conclave
-# [16:58:56] 24. - PrevPrevPrevPrev: Klaggian Conclave
-# [16:58:56] 25. - From: Klaggian Assembly of Suns
-# [16:58:56] 26. - FromFrom: Cranodeth
-# [16:58:56] 27. - FromFromFrom: Cranodeth
-# [16:58:56] 28. - FromFromFromFrom: Cranodeth
-# [16:58:56] 29. - This's Solar System:
-# [16:58:56] 30. - This's Planet: Klaggian Conclave
-# [16:58:56] 31. - This's Sector: Klaggian Conclave
-# [16:58:56] 32. - Root's Solar System:
-# [16:58:56] 33. - Root's Owner's Name: Klaggian Conclave
-# [16:58:56] 34. - Root's Owner's Capital's Name: Lyrogg
-# [16:58:56] 35. ------------------------------
 # on_planet_defenders_lose
 # Triggers country_event for the defender upon defeat
 # This = country, planet owner (merc target)
@@ -377,25 +332,6 @@ country_event = {
 	}
 }
 
-# [16:58:56]17. ------------------------------
-# [16:58:56]18. - Printing the current scopes (trigger) -
-# [16:58:56]19. - This: Klaggian Assembly of Suns
-# [16:58:56]20. - Root: Klaggian Assembly of Suns
-# [16:58:56]21. - Prev: Klaggian Assembly of Suns
-# [16:58:56]22. - PrevPrev: Klaggian Assembly of Suns
-# [16:58:56]23. - PrevPrevPrev: Klaggian Assembly of Suns
-# [16:58:56]24. - PrevPrevPrevPrev: Klaggian Assembly of Suns
-# [16:58:56]25. - From: Cranodeth
-# [16:58:56]26. - FromFrom: Cranodeth
-# [16:58:56]27. - FromFromFrom: Cranodeth
-# [16:58:56]28. - FromFromFromFrom: Cranodeth
-# [16:58:56]29. - This's Solar System:
-# [16:58:56]30. - This's Planet: Klaggian Assembly of Suns
-# [16:58:56]31. - This's Sector: Klaggian Assembly of Suns
-# [16:58:56]32. - Root's Solar System:
-# [16:58:56]33. - Root's Owner's Name: Klaggian Assembly of Suns
-# [16:58:56]34. - Root's Owner's Capital's Name: Cranodeth
-# [16:58:56]35. ------------------------------
 # on_rebels_take_planet
 # Initial rebels manage to take control of the planet, happens before the new owner is set, after the war is created.
 # This = Rebel Country
@@ -441,10 +377,8 @@ country_event = {
 					who = ROOT
 				}
 			}
-			log = "Liberation mission is complete!"
+			log = "Liberation mission complete!"
 			set_country_flag = "fmerc_ops_completed"
-
-			# Find the target country
 			random_country = {
 				limit = {
 					reverse_has_relation_flag = {
@@ -452,136 +386,246 @@ country_event = {
 						flag = merc_operations_target
 					}
 				}
-				log = "Found target country."
 				save_event_target_as = fmerc_target_country
 			}
 		}
 		random_country = {
 			limit = {
-				is_country_type = "default"
 				reverse_has_relation_flag = {
 					flag = fmerc_liberation_rebels
 					who = ROOT
 				}
 			}
-			log = "Found buyer."
 			save_event_target_as = fmerc_buyer
 		}
 
-		FROM = {
-			# Planet scope
-			if = {
-				limit = {
-					exists = event_target:fmerc_target_country
-					event_target:fmerc_target_country = { NOT = { is_country_type = default } }
-				}
-				create_country = {
-					name = random
-					ethos = event_target:fmerc_buyer
-					authority = event_target:fmerc_buyer
-					civics = random
-					released_by_country = event_target:fmerc_buyer
-					#released_from_country = event_target:fmerc_target_country # This copies techs
-					species = ROOT.owner_species
-					flag = random
-					type = default
-					day_zero_contact = no
-				}
-				log = "This liberated country was not released from a default empire, so copy techs from buyer."
-				copy_techs_from = {
-					target = event_target:fmerc_buyer
-					except = { # error.log whines if we dont exclude something
-						tech_akx_worm_1
-						tech_akx_worm_2
-						tech_akx_worm_3
-					}
-				}
-				else = {
-					# Target country is a default empire, so hopefully their
-					# tech level is acceptable
-					create_country = {
-						name = random
-						ethos = event_target:fmerc_buyer
-						authority = event_target:fmerc_buyer
-						civics = random
-						released_by_country = event_target:fmerc_buyer
-						released_from_country = event_target:fmerc_target_country # This copies techs
-						species = ROOT.owner_species
-						flag = random
-						type = default
-						day_zero_contact = no
-					}
-				}
-			}
-			last_created_country = {
-				# lulz liberationD, no point in fixing that
-				set_country_flag = "merc_op_liberationd_await_clear_skies"
-				establish_communications_no_message = event_target:fmerc_buyer
-				establish_contact = { who = event_target:fmerc_buyer location = PREV }
-				if = {
-					limit = { exists = event_target:fmerc_target_country }
-					establish_communications_no_message = event_target:fmerc_target_country
-					establish_contact = { who = event_target:fmerc_target_country location = PREV }
-				}
-				add_modifier = {
-					modifier = "recently_liberated"
-					days = 3600
-				}
-				save_event_target_as = merc_newcountry
-			}
-
-			set_owner = event_target:merc_newcountry
-			set_controller = event_target:merc_newcountry
-			set_capital = yes
-		}
-
+		# Clean the slate as much as possible
+		FROM = { destroy_colony = { keep_buildings = yes } }
 		destroy_country = yes
 
-		event_target:merc_newcountry = {
-			if = {
-				limit = {
-					has_opinion_modifier = {
-						who = event_target:fmerc_buyer
-						modifier = opinion_new_contact
+		# And re-start colony
+		FROM = { planet_event = { id = mercOpsLiberation.1335 } }
+	}
+}
+
+# No matter what I do, it seems I am unable to prevent the spam of errors like
+# [21:02:22][trigger.cpp:466]: Script Error, Checking trigger against an unsupported scope!
+# Event: mercOpsLiberation.1335
+# Location:  file: common/species_rights/species_rights.txt line: 2202
+# Trigger Type: has_citizenship_type
+
+# I've tried everything I can think of;
+# - NOT creating a new country, but simply set_country_type = default on the
+#   rebel country, but this does not change all the "Rebels from XYZ" strings
+#   that show ingame to instead show "Independent" (or whatever the normal one)
+# - Never creating a rebel country and simply using a default for invasion.
+#   This presents a whole slew of problems on its own.
+# - Copying the species from the rebel country
+# - Copying the species from the target country
+# - Copying the species from any country
+# - create_country in country or planet scope
+# - create_species in an existing species scope:
+#   random_owned_pop = { owner_species = { create_species = { } } }
+# - create_species in a pop scope
+# - create_species in a planet scope, country scope
+#
+# If anyone reads this and thinks of something I haven't tried, please tell me.
+# The above list, plus some other tests I did, is the main reason this
+# shitshow is separated into three events now (.71 + 1335 + 1336).
+# It could really all be one event, or scripted effect.
+
+planet_event = {
+	id = mercOpsLiberation.1335
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# Notice how we don't use the released_by_country and
+		# released_from_country properties. That's because they do two things
+		# (probably among other things) that we want to prevent:
+		# - Prevents the standard diplomacy screen that comes with a new
+		#   contact. We especially want this on the buyer end.
+		#   I could have faked this, of course.
+		# - Copies the techs from released_from_country. We don't want to do
+		#   this unless the new country was released from a default country
+		#   type. And I am considering testing tech_unlocked_ratio to perhaps
+		#   adjust the new countries tech level in more detail.
+
+		if = { limit = { exists = event_target:fmerc_target_country }
+			event_target:fmerc_target_country = {
+				random_owned_pop = {
+					limit = { is_same_species = event_target:fmerc_target_country }
+					log = "Creating copy of target countries main species."
+					species = {
+						create_species = {
+							name = this
+							plural = this
+							class = this
+							portrait = this
+							traits = this
+							homeworld = ROOT
+						}
 					}
 				}
-				remove_opinion_modifier = {
-					who = event_target:fmerc_buyer
-					modifier = opinion_new_contact
-				}
 			}
-			add_minerals = 3000
-			add_energy = 5000
-			add_influence = 500
-			add_food = 50
-			add_100_unity_per_year_passed = yes
-			create_leader = {
-				type = ruler
-				species = owner_main_species
+		else = {
+			log = "Creating random new species."
+			create_species = {
 				name = random
-				skill = 200
-				traits = {}
+				class = random_non_machine
+				portrait = random
+				traits = random
+				allow_negative_traits = no
+				extra_trait_points = 3
+				homeworld = ROOT
 			}
-			assign_leader = last_created_leader
-			ruler = {
-				add_random_leader_trait = yes
-			}
-			create_leader = {
-				type = governor
-				species = owner_main_species
-				name = random
-				skill = 200
-				traits = {
-					trait = random_trait
-					trait = random_trait
+		} }
+
+		create_country = {
+			name = random
+			type = default
+			species = last_created_species
+			ethos = event_target:fmerc_buyer
+			authority = random
+			civics = random
+			flag = random
+			day_zero_contact = no
+			effect = {
+				modify_species = {
+					species = this
+					ideal_planet_class = ROOT
 				}
+				change_dominant_species = { species = last_created }
 			}
 		}
-		FROM = {
+		set_owner = last_created_country
+		set_controller = last_created_country
+		create_colony = {
+			owner = last_created_country
+			species = owner_main_species
+			ethos = owner
+		}
+		set_capital = yes
+		last_created_country = { country_event = { id = mercOpsLiberation.1336 } }
+	}
+}
+
+# Just so we get our own root scope here, it's just more clean.
+country_event = {
+	id = mercOpsLiberation.1336
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = "day_0"
+		# lulz liberationD, no point in fixing that
+		set_country_flag = "merc_op_liberationd_await_clear_skies"
+		add_modifier = {
+			modifier = "recently_liberated"
+			days = 3600
+		}
+
+		if = {
+			limit = {
+				OR = {
+					NOT = { exists = event_target:fmerc_target_country }
+					NOT = { event_target:fmerc_target_country = { is_country_type = default } }
+				}
+			}
+			log = "Copying techs from operation buyer."
+			copy_techs_from = { # error.log whines if we dont exclude something
+				target = event_target:fmerc_buyer
+				except = { tech_akx_worm_1 tech_akx_worm_2 tech_akx_worm_3 }
+			}
+		else = {
+			log = "Copying techs from operation target."
+			copy_techs_from = {
+				target = event_target:fmerc_target_country
+				except = { tech_akx_worm_1 tech_akx_worm_2 tech_akx_worm_3 }
+			}
+		} }
+
+		add_minerals = 3000
+		add_energy = 5000
+		add_influence = 500
+		add_food = 50
+		add_100_unity_per_year_passed = yes
+
+		create_leader = {
+			type = ruler
+			species = ROOT
+			name = random
+			skill = 200
+		}
+		assign_leader = last_created_leader
+		create_leader = {
+			type = governor
+			species = ROOT
+			name = random
+			skill = 200
+			traits = {
+				trait = random_trait
+				trait = random_trait
+			}
+		}
+
+		establish_contact = { who = event_target:fmerc_buyer location = capital_scope }
+		if = {
+			limit = { exists = event_target:fmerc_target_country }
+			establish_contact = { who = event_target:fmerc_target_country location = capital_scope }
+		}
+		# Setting and removing this flag before and after `establish_contact`,
+		# respectively, prevents the action.10 event from showing ('we have encountered')
+		# yet still allows the introduction diplomatic screen.
+		# Doing it in any other order seems to either produce or prevent both.
+		remove_country_flag = "day_0"
+
+		establish_communications = event_target:fmerc_buyer
+		if = {
+			limit = { exists = event_target:fmerc_target_country }
+			establish_communications = event_target:fmerc_target_country
+			add_opinion_modifier = {
+				who = event_target:fmerc_target_country
+				modifier = opinion_broke_away_from
+			}
+			event_target:fmerc_target_country = {
+				add_opinion_modifier = {
+					who = ROOT
+					modifier = opinion_broke_away
+				}
+			}
+			if = {
+				limit = { ROOT = { has_opinion_modifier = { who = event_target:fmerc_target_country modifier = opinion_new_contact } } }
+				ROOT = { remove_opinion_modifier = { who = event_target:fmerc_target_country modifier = opinion_new_contact } }
+			}
+		}
+		add_opinion_modifier = {
+			who = event_target:fmerc_buyer
+			modifier = opinion_liberated_us
+		}
+		event_target:fmerc_buyer = {
+			add_opinion_modifier = {
+				who = ROOT
+				modifier = opinion_we_liberated
+			}
+		}
+		if = {
+			limit = { has_opinion_modifier = { who = event_target:fmerc_buyer modifier = opinion_new_contact } }
+			remove_opinion_modifier = { who = event_target:fmerc_buyer modifier = opinion_new_contact }
+		}
+
+		capital_scope = {
 			planet_event = { id = game_start.13 } # replace some buildings for special empires
 			planet_event = { id = game_start.21 } # upgrade colony shelter
 			planet_event = { id = game_start.22 } # set up additional buildings (mines, farms, power plants)
 			planet_event = { id = game_start.14 } # replace some tile blockers for special empires
+
+			# destroy_colony removed all the pops, probably.
+			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
+			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
+			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
+			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
+			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
 		}
 	}
 }
