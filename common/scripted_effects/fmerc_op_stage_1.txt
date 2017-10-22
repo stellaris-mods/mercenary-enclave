@@ -204,7 +204,6 @@ fmerc_stage1_determine_ship_powers = {
 			set_owner = PREV
 			set_location = event_target:spawn
 			create_ship = { name = random random_existing_design = "corvette" }
-			add_modifier = { modifier = merc_fleet_scaling days = -1 }
 		}
 	}
 	last_created_fleet = { merc_get_fleet_power = yes }
@@ -218,7 +217,6 @@ fmerc_stage1_determine_ship_powers = {
 			set_owner = PREV
 			set_location = event_target:spawn
 			create_ship = { name = random random_existing_design = "destroyer" }
-			add_modifier = { modifier = merc_fleet_scaling days = -1 }
 		}
 	}
 	last_created_fleet = { merc_get_fleet_power = yes }
@@ -232,7 +230,6 @@ fmerc_stage1_determine_ship_powers = {
 			set_owner = PREV
 			set_location = event_target:spawn
 			create_ship = { name = random random_existing_design = "cruiser" }
-			add_modifier = { modifier = merc_fleet_scaling days = -1 }
 		}
 	}
 	last_created_fleet = { merc_get_fleet_power = yes }
@@ -246,7 +243,6 @@ fmerc_stage1_determine_ship_powers = {
 			set_owner = PREV
 			set_location = event_target:spawn
 			create_ship = { name = random random_existing_design = "battleship" }
-			add_modifier = { modifier = merc_fleet_scaling days = -1 }
 		}
 	}
 	last_created_fleet = { merc_get_fleet_power = yes }
@@ -306,8 +302,6 @@ fmerc_stage1_create_mercenaries = {
 			who = event_target:mercenaries
 			subject_type = mercsquad
 		}
-
-		fmerc_stage1_determine_ship_powers = yes
 	}
 }
 
@@ -320,6 +314,30 @@ fmerc_init_stage1 = {
 	fmerc_stage1_create_mercenaries = yes
 
 	last_created_country = {
+		copy_techs_from = {
+			target = ROOT
+			except = { tech_akx_worm_1 } # Errors without any
+		}
+		if = {
+			limit = {
+				exists = event_target:fmerc_target_country
+				event_target:fmerc_target_country = { is_country_type = "default" }
+			}
+			copy_techs_from = {
+				target = event_target:fmerc_target_country
+				except = { tech_akx_worm_1 } # Errors without any
+			}
+		}
+		# Just make sure we have access to all 4 vanilla ship types
+		give_technology = { tech = tech_spaceport_1 message = no }
+		give_technology = { tech = tech_spaceport_2 message = no }
+		give_technology = { tech = tech_spaceport_3 message = no }
+		give_technology = { tech = tech_spaceport_4 message = no }
+		give_technology = { tech = tech_spaceport_5 message = no }
+		give_technology = { tech = tech_spaceport_6 message = no }
+
+		fmerc_stage1_determine_ship_powers = yes
+
 		# ZZZ Does not apply to created fleets for some reason
 		set_policy = {
 			policy = orbital_bombardment

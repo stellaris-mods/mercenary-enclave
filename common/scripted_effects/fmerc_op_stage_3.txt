@@ -605,11 +605,4 @@ fmerc_stage3_create_fleet = {
 	log = "Adjusted for success (x[this.MercPercentSuccess]): [this.MercSpawn]."
 
 	fmerc_stage3_match_fleet_power = yes
-
-	last_created_fleet = {
-		add_modifier = {
-			modifier = merc_fleet_scaling
-			days = -1
-		}
-	}
 }
