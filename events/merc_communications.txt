@@ -319,7 +319,7 @@ event = {
 	immediate = {
 		random_country = {
 			limit = { is_country_type = "fmerc_enclave" }
-			country_event = { id = mercCommunications.1001 }
+			country_event = { id = mercCommunications.1001 days = 14 random = 150 }
 		}
 	}
 }

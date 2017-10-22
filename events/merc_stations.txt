@@ -176,7 +176,7 @@ event = {
 	immediate = {
 		random_country = {
 			limit = { is_country_type = "fmerc_enclave" }
-			country_event = { id = mercStations.101 }
+			country_event = { id = mercStations.101 days = 14 random = 270 }
 		}
 	}
 }
@@ -286,7 +286,7 @@ event = {
 	immediate = {
 		random_country = {
 			limit = { is_country_type = "fmerc_enclave" }
-			country_event = { id = mercStations.201 }
+			country_event = { id = mercStations.201 days = 14 random = 600 }
 		}
 	}
 }
@@ -306,7 +306,7 @@ country_event = {
 			limit = { merc_is_station = yes }
 			save_event_target_as = spawn
 		}
-		if = { limit = { NOT = { exists = event_target:spawn }}
+		if = { limit = { NOT = { exists = event_target:spawn } }
 			break = yes
 		}
 		create_fleet = {
