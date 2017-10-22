@@ -470,33 +470,66 @@ country_event = {
 
 		FROM = {
 			# Planet scope
-			create_country = {
-				name = random
-				ethos = event_target:fmerc_buyer
-				authority = event_target:fmerc_buyer
-				civics = random
-				released_by_country = event_target:fmerc_buyer
-				released_from_country = event_target:fmerc_target_country
-				species = ROOT.owner_species
-				flag = random
-				type = default
-				day_zero_contact = no
-				effect = {
-					set_country_flag = "merc_op_liberationd_await_clear_skies"
-					establish_communications_no_message = event_target:fmerc_buyer
-					establish_contact = { who = event_target:fmerc_buyer location = FROM }
-					if = {
-						limit = { exists = event_target:fmerc_target_country }
-						establish_communications_no_message = event_target:fmerc_target_country
-						establish_contact = { who = event_target:fmerc_target_country location = FROM }
+			if = {
+				limit = {
+					exists = event_target:fmerc_target_country
+					event_target:fmerc_target_country = { NOT = { is_country_type = default } }
+				}
+				create_country = {
+					name = random
+					ethos = event_target:fmerc_buyer
+					authority = event_target:fmerc_buyer
+					civics = random
+					released_by_country = event_target:fmerc_buyer
+					#released_from_country = event_target:fmerc_target_country # This copies techs
+					species = ROOT.owner_species
+					flag = random
+					type = default
+					day_zero_contact = no
+				}
+				log = "This liberated country was not released from a default empire, so copy techs from buyer."
+				copy_techs_from = {
+					target = event_target:fmerc_buyer
+					except = { # error.log whines if we dont exclude something
+						tech_akx_worm_1
+						tech_akx_worm_2
+						tech_akx_worm_3
 					}
-					add_modifier = {
-						modifier = "recently_liberated"
-						days = 3600
+				}
+				else = {
+					# Target country is a default empire, so hopefully their
+					# tech level is acceptable
+					create_country = {
+						name = random
+						ethos = event_target:fmerc_buyer
+						authority = event_target:fmerc_buyer
+						civics = random
+						released_by_country = event_target:fmerc_buyer
+						released_from_country = event_target:fmerc_target_country # This copies techs
+						species = ROOT.owner_species
+						flag = random
+						type = default
+						day_zero_contact = no
 					}
-					save_event_target_as = merc_newcountry
 				}
 			}
+			last_created_country = {
+				# lulz liberationD, no point in fixing that
+				set_country_flag = "merc_op_liberationd_await_clear_skies"
+				establish_communications_no_message = event_target:fmerc_buyer
+				establish_contact = { who = event_target:fmerc_buyer location = PREV }
+				if = {
+					limit = { exists = event_target:fmerc_target_country }
+					establish_communications_no_message = event_target:fmerc_target_country
+					establish_contact = { who = event_target:fmerc_target_country location = PREV }
+				}
+				add_modifier = {
+					modifier = "recently_liberated"
+					days = 3600
+				}
+				save_event_target_as = merc_newcountry
+			}
+
 			set_owner = event_target:merc_newcountry
 			set_controller = event_target:merc_newcountry
 			set_capital = yes
@@ -505,10 +538,23 @@ country_event = {
 		destroy_country = yes
 
 		event_target:merc_newcountry = {
-			add_minerals = 2000
-			add_energy = 2000
-			add_influence = 250
+			if = {
+				limit = {
+					has_opinion_modifier = {
+						who = event_target:fmerc_buyer
+						modifier = opinion_new_contact
+					}
+				}
+				remove_opinion_modifier = {
+					who = event_target:fmerc_buyer
+					modifier = opinion_new_contact
+				}
+			}
+			add_minerals = 3000
+			add_energy = 5000
+			add_influence = 500
 			add_food = 50
+			add_100_unity_per_year_passed = yes
 			create_leader = {
 				type = ruler
 				species = owner_main_species
