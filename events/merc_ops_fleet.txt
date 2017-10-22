@@ -50,12 +50,9 @@ country_event = {
 
 			every_owned_fleet = {
 				queue_actions = {
-					move_to = event_target:fmerc_target.solar_system
-					wait = 14
 					repeat = {
 						while = {
 							id = mercOpsFleet.1.trigger.1
-							NOT = { is_fleet_idle = yes }
 							exists = event_target:fmerc_target
 							exists = owner
 							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
@@ -66,6 +63,7 @@ country_event = {
 								}
 							}
 						}
+						move_to = event_target:fmerc_target.solar_system
 						wait = 14
 					}
 					effect = {

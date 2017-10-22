@@ -48,12 +48,9 @@ country_event = {
 
 			every_owned_fleet = {
 				queue_actions = {
-					move_to = event_target:fmerc_target.solar_system
-					wait = 14
 					repeat = {
 						while = {
 							id = mercOpsLiberation.1.trigger.1
-							NOT = { is_fleet_idle = yes }
 							exists = event_target:fmerc_target
 							exists = owner
 							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
@@ -64,6 +61,7 @@ country_event = {
 								}
 							}
 						}
+						move_to = event_target:fmerc_target.solar_system
 						wait = 14
 					}
 					effect = {
@@ -505,28 +503,44 @@ planet_event = {
 					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
 					save_event_target_as = ethosTemplate
 				}
+				create_country = {
+					name = random
+					type = default
+					species = last_created_species
+					ethos = event_target:ethosTemplate
+					authority = random
+					civics = random
+					flag = random
+					day_zero_contact = no
+					effect = {
+						modify_species = {
+							species = this
+							ideal_planet_class = ROOT
+						}
+						change_dominant_species = { species = last_created }
+					}
+				}
 			else = {
-				event_target:fmerc_buyer = { save_event_target_as = ethosTemplate }
+				create_country = {
+					name = random
+					type = default
+					species = last_created_species
+					ethos = event_target:fmerc_buyer
+					authority = random
+					civics = random
+					flag = random
+					day_zero_contact = no
+					effect = {
+						modify_species = {
+							species = this
+							ideal_planet_class = ROOT
+						}
+						change_dominant_species = { species = last_created }
+					}
+				}
 			}
 		}
 
-		create_country = {
-			name = random
-			type = default
-			species = last_created_species
-			ethos = event_target:ethosTemplate
-			authority = random
-			civics = random
-			flag = random
-			day_zero_contact = no
-			effect = {
-				modify_species = {
-					species = this
-					ideal_planet_class = ROOT
-				}
-				change_dominant_species = { species = last_created }
-			}
-		}
 		set_owner = last_created_country
 		set_controller = last_created_country
 		create_colony = {
