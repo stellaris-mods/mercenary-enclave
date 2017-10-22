@@ -218,6 +218,7 @@ country_event = {
 			}
 			random_country = {
 				limit = {
+					NOT = { has_country_flag = "fmerc_diplomacy_engaged" }
 					NOT = { has_country_flag = "fmerc_allow_stations" }
 					NOT = { has_country_flag = "merc_had_station_offer" }
 					OR = {
