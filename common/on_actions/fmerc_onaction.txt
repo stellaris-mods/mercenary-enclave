@@ -15,6 +15,7 @@ on_monthly_pulse = {
 on_yearly_pulse = {
 	events = {
 		mercRecurring.100
+		mercRecurring.200
 		mercCommunications.1000
 		mercStations.100
 	}

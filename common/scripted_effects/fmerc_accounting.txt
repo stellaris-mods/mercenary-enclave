@@ -17,20 +17,6 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-# #!/usr/bin/lua
-# local tmpl = [[
-# else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > %d } } }
-# 	set_variable = { which = "MercMultiplier" value = %s }]]
-# local steps = 39
-# local max = 100
-# local currentMod = 0.5
-# local modStep = (1.5 / steps)
-# for i = 1, steps do
-# 	local trust = max - (i * 5)
-# 	print(tmpl:format(trust, (math.floor((currentMod * 10^2) + 0.5) / (10^2))))
-# 	currentMod = currentMod + modStep
-# end
-
 merc_account_update_multiplier = {
 	set_variable = { which = "MercMultiplierPercent" value = "MercMultiplier" }
 	multiply_variable = { which = "MercMultiplierPercent" value = 100 }
@@ -84,6 +70,20 @@ merc_account_grabdatcash = {
 # be able to ignore safely and never use outside this file.
 #
 
+# #!/usr/bin/lua
+# local tmpl = [[
+# else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > %d } } }
+# 	set_variable = { which = "MercMultiplier" value = %s }]]
+# local steps = 39
+# local max = 100
+# local currentMod = 0.5
+# local modStep = (1.5 / steps)
+# for i = 1, steps do
+# 	local trust = max - (i * 5)
+# 	print(tmpl:format(trust, (math.floor((currentMod * 10^2) + 0.5) / (10^2))))
+# 	currentMod = currentMod + modStep
+# end
+
 merc_account_set_trust_multiplier = {
 	if = { limit = { event_target:mercenaries = { trust = { who = PREV value > 95 } } }
 		set_variable = { which = "MercMultiplier" value = 0.5 }
@@ -123,47 +123,20 @@ merc_account_set_trust_multiplier = {
 		set_variable = { which = "MercMultiplier" value = 1.15 }
 	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > 5 } } }
 		set_variable = { which = "MercMultiplier" value = 1.19 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > 0 } } }
-		set_variable = { which = "MercMultiplier" value = 1.23 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -5 } } }
-		set_variable = { which = "MercMultiplier" value = 1.27 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -10 } } }
-		set_variable = { which = "MercMultiplier" value = 1.31 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -15 } } }
-		set_variable = { which = "MercMultiplier" value = 1.35 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -20 } } }
-		set_variable = { which = "MercMultiplier" value = 1.38 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -25 } } }
-		set_variable = { which = "MercMultiplier" value = 1.42 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -30 } } }
-		set_variable = { which = "MercMultiplier" value = 1.46 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -35 } } }
-		set_variable = { which = "MercMultiplier" value = 1.5 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -40 } } }
-		set_variable = { which = "MercMultiplier" value = 1.54 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -45 } } }
-		set_variable = { which = "MercMultiplier" value = 1.58 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -50 } } }
-		set_variable = { which = "MercMultiplier" value = 1.62 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -55 } } }
-		set_variable = { which = "MercMultiplier" value = 1.65 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -60 } } }
-		set_variable = { which = "MercMultiplier" value = 1.69 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -65 } } }
-		set_variable = { which = "MercMultiplier" value = 1.73 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -70 } } }
-		set_variable = { which = "MercMultiplier" value = 1.77 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -75 } } }
-		set_variable = { which = "MercMultiplier" value = 1.81 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -80 } } }
-		set_variable = { which = "MercMultiplier" value = 1.85 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -85 } } }
-		set_variable = { which = "MercMultiplier" value = 1.88 }
-	else = { if = { limit = { event_target:mercenaries = { trust = { who = PREV value > -90 } } }
-		set_variable = { which = "MercMultiplier" value = 1.92 }
 	else = {
-		set_variable = { which = "MercMultiplier" value = 2 }
-	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+		set_variable = { which = "MercMultiplier" value = 1.2 }
+	}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+
+	if = {
+		limit = { check_variable = { which = "MercCustomOpinion" value > 0 } }
+		set_variable = { which = "MercOpinionStep" value = 0.03846 }
+		set_variable = { which = "MercTmp" value = "MercCustomOpinion" }
+		while = {
+			limit = { check_variable = { which = "MercTmp" value > 0 } }
+			change_variable = { which = "MercMultiplier" value = "MercOpinionStep" }
+			subtract_variable = { which = "MercTmp" value = 5 }
+		}
+	}
 }
 
 merc_account_internal_update_empire_minerals = {

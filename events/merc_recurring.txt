@@ -44,3 +44,19 @@ event = {
 		}
 	}
 }
+
+event = {
+	mercRecurring.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = { check_variable = { which = "MercCustomOpinion" value > 0 } }
+			subtract_variable = {
+				which = "MercCustomOpinion"
+				value = 1
+			}
+		}
+	}
+}

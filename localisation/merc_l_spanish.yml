@@ -51,7 +51,6 @@ INVESTIGATE_MERC_ENCLAVE: "Investigate [fmercsystem.GetName]"
 INVESTIGATE_MERC_ENCLAVE_DESC: "We need to learn more about the mysterious aliens residing in the §Y[fmercsystem.GetName] System§!. If they possess a language, we must decipher it and establish communications.\n\nReward: £influence  §GInfluence§! or §SSpecial Project§!"
 
 opinion_destroyed_mercenary: "Destroyed Mercenary Enclave"
-merc_opinion_attacker: "Attacked our station"
 fmerc_opinion_liberate: "Mercenary Operation"
 fmerc_opinion_raid: "Mercenary Operation"
 fmerc_opinion_fleet: "Mercenary Operation"
@@ -165,6 +164,7 @@ merc.condition.not.insured: "You can't restrict border access while you subscrib
 
 # Initial diplomacy window
 merc.initial.desc: "Greetings! If there's any service we can render, please browse our selection on the right-hand screen."
+merc.initial.opinion.custom: "§PGiven that you have attacked our installations, we are quite annoyed (-[this.MercCustomOpinion]), and will increase the price multiplier accordingly.§!\n"
 merc.initial.active.operation: "$merc.name.colored$ is currently engaged in special operations activity on behalf of someone in your government. Please check back at a later date.\n\nNote that all our special operations are be terminated immediately after 5 years, regardless of progress."
 merc.initial.deposit.minerals: "Minerals deposited:  £minerals §G[Root.MercDeposit]§!\n"
 merc.initial.deposit.energy: "Energy deposited:  £energy §G[Root.MercDepositEnergy]§!\n"

@@ -49,6 +49,10 @@ country_event = {
 			text = merc.initial.desc
 			text = newline
 			success_text = {
+				text = "merc.initial.opinion.custom"
+				NOT = { check_variable = { which = "MercCustomOpinion" value = 0 } }
+			}
+			success_text = {
 				text = "merc.initial.deposit.minerals"
 				check_variable = { which = "MercDeposit" value > 0 }
 			}

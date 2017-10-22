@@ -68,7 +68,6 @@ INVESTIGATE_MERC_ENCLAVE_DESC: "Мы должны узнать побольше 
 
 ##opinion_destroyed_mercenary: "Destroyed Mercenary Enclave"
 opinion_destroyed_mercenary: "Уничтоженная Станция Наемников"
-merc_opinion_attacker: "Attacked our station"
 ##fmerc_opinion_liberate: "Mercenary Operation"
 fmerc_opinion_liberate: "Операция Наемников"
 ##fmerc_opinion_raid: "Mercenary Operation"
@@ -128,6 +127,7 @@ merc.condition.deposit: "Вам необходимо иметь как мини�
 # Initial diplomacy window
 
 merc.initial.desc: "Greetings! If there's any service we can render, please browse our selection on the right-hand screen."
+merc.initial.opinion.custom: "§PGiven that you have attacked our installations, we are quite annoyed (-[this.MercCustomOpinion]), and will increase the price multiplier accordingly.§!\n"
 merc.initial.deposit.minerals: "Minerals deposited:  £minerals §G[Root.MercDeposit]§!\n"
 merc.initial.deposit.energy: "Energy deposited:  £energy §G[Root.MercDepositEnergy]§!\n"
 merc.initial.deposit.fee: "Administrative fee: §R5% / year§!"
