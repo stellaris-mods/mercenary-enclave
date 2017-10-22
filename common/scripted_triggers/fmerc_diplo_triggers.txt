@@ -82,6 +82,7 @@ fmerc_is_valid_country = {
 			ROOT = {
 				has_country_flag = "merc_op_liberation"
 			}
+			NOT = { has_ethic = ethic_gestalt_consciousness }
 			any_owned_planet = {
 				controller = { is_same_value = PREVPREV }
 				fmerc_valid_liberation_planet = yes
