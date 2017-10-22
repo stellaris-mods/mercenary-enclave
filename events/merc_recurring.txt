@@ -46,7 +46,7 @@ event = {
 }
 
 event = {
-	mercRecurring.200
+	id = mercRecurring.200
 	hide_window = yes
 	is_triggered_only = yes
 
