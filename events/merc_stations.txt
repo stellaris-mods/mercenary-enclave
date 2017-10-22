@@ -39,7 +39,7 @@ event = {
 					NOT = {
 						event_target:enclave = {
 							any_owned_fleet = {
-								NOT = { is_ship_size = science }
+								NOT = { merc_is_station = yes }
 								# Dont count the HQ
 								NOT = { has_fleet_flag = "folk_mercenary_station" }
 								is_inside_border = PREVPREV
@@ -191,7 +191,7 @@ country_event = {
 		set_variable = { which = "MercContacts" value = 0 }
 
 		every_owned_fleet = {
-			limit = { NOT = { is_ship_size = science } }
+			limit = { merc_is_station = yes }
 			PREV = { change_variable = { which = "MercStations" value = 1 } }
 		}
 		subtract_variable = { which = "MercStations" value = 1 } # Dont count HQ
@@ -270,6 +270,200 @@ country_event = {
 		default_hide_option = yes
 		ai_chance = {
 			factor = 0
+		}
+	}
+}
+
+###############################################################################
+# Station "spreading" into uncharted territory
+#
+
+event = {
+	id = mercStations.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_country = {
+			limit = { is_country_type = "fmerc_enclave" }
+			country_event = { id = mercStations.201 }
+		}
+	}
+}
+
+country_event = {
+	id = mercStations.201
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		num_communications > 0
+		NOT = { any_owned_fleet = { has_fleet_flag = "merc_expansion_fleet" } }
+	}
+
+	immediate = {
+		log = "Mercenary Enclave spawning expansion fleet."
+		random_owned_fleet = {
+			limit = { merc_is_station = yes }
+			save_event_target_as = spawn
+		}
+		if = { limit = { NOT = { exists = event_target:spawn }}
+			break = yes
+		}
+		create_fleet = {
+			name = "Mercenary Expansion"
+			effect = {
+				set_owner = ROOT
+				create_ship = {
+					name = "Enclave"
+					design = "Mercenary Expansion"
+					graphical_culture = "mammalian_01"
+					prefix = no
+				}
+				set_location = event_target:spawn
+				set_fleet_flag = "merc_expansion_fleet"
+				set_fleet_stance = passive
+				# TODO scale expansion attempts up/down depending on number of owned stations?
+				set_variable = { which = "MercExpansionAttempts" value = 5 }
+			}
+		}
+		last_created_fleet = { fleet_event = { id = mercStations.210 } }
+	}
+}
+
+fleet_event = {
+	id = mercStations.210
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		subtract_variable = { which = "MercExpansionAttempts" value = 1 }
+		if = { limit = { check_variable = { which = "MercExpansionAttempts" value = 0 } }
+			# Go home
+			owner = {
+				random_owned_fleet = {
+					limit = { merc_is_station = yes }
+					save_event_target_as = home
+				}
+			}
+			if = { limit = { NOT = { exists = event_target:home } }
+				delete_fleet = this
+				break = yes
+			}
+			queue_actions = {
+				move_to = event_target:home
+				repeat = {
+					while = {
+						id = mercConstructor.5
+						NOT = { is_fleet_idle = yes }
+					}
+					wait = 14
+				}
+				effect = {
+					id = mercConstructor.5
+					delete_fleet = ROOT
+				}
+			}
+		else = {
+			# Mission is a go!
+			queue_actions = {
+				find_random_system = {
+					trigger = {
+						id = mercConstructor.1
+						has_presence = no
+						NOT = { exists = space_owner }
+						NOT = { is_same_value = ROOT.solar_system }
+					}
+					found_system = { move_to = this }
+				}
+				repeat = {
+					while = {
+						id = mercConstructor.2
+						NOT = { is_fleet_idle = yes }
+					}
+					wait = 14
+				}
+				find_random_planet = { found_planet = { orbit_planet = this } }
+				repeat = {
+					while = {
+						id = mercConstructor.3
+						NOT = { is_fleet_idle = yes }
+					}
+					wait = 14
+				}
+				effect = {
+					id = mercConstructor.4
+					fleet_event = { id = mercStations.211 }
+				}
+			}
+		} }
+	}
+}
+
+fleet_event = {
+	id = mercStations.211
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				# Is this system empty?
+				solar_system = {
+					NOT = { exists = space_owner }
+					NOT = { any_planet = { exists = owner } }
+					NOT = { any_planet = { exists = controller } }
+					NOT = {
+						# Anyone but us here?
+						any_ship_in_system = {
+							exists = fleet
+							NOT = { fleet = { is_same_value = ROOT } }
+						}
+					}
+				}
+				# Do we have any stations within 80 distance?
+				owner = {
+					NOT = {
+						any_owned_fleet = {
+							merc_is_station = yes
+							distance = {
+								source = ROOT
+								max_distance = 80
+							}
+						}
+					}
+				}
+			}
+			# This seems like a great place to build
+			queue_actions = {
+				find_closest_planet = { found_planet = { orbit_planet = this } }
+				wait = 90 # Pretend to build
+				repeat = {
+					while = {
+						id = mercConstructorBuild.1
+						NOT = { is_fleet_idle = yes }
+					}
+					wait = 14
+				}
+				effect = {
+					id = mercConstructorBuild.2
+					if = {
+						limit = {
+							exists = orbit
+							is_in_combat = no
+						}
+						owner = { save_event_target_as = enclave }
+						orbit = { planet_event = { id = mercStations.3 } }
+						if = { limit = { last_created_fleet = { has_fleet_flag = "folk_mercenary_outpost" } }
+							last_created_fleet = { set_location = ROOT } # Move it to us instead
+						}
+					}
+					fleet_event = { id = mercStations.210 }
+				}
+			}
+			else = {
+				# Try again!
+				fleet_event = { id = mercStations.210 }
+			}
 		}
 	}
 }

@@ -48,3 +48,33 @@ ship_design = {
 	required_component = "SHIP_THRUSTER_2"
 	required_component = "SHIP_SENSOR_2"
 }
+
+ship_design = {
+	name = "Mercenary Expansion"
+	ship_size = constructor
+
+	section = {
+		template = "DEFAULT_CONSTRUCTION_SECTION"
+		slot = "mid"
+		component = {
+			slot = "SMALL_UTILITY_1"
+			template = "SMALL_ANTIMATTER_REACTOR"
+		}
+		component = {
+			slot = "SMALL_UTILITY_2"
+			template = "SMALL_ANTIMATTER_REACTOR"
+		}
+		component = {
+			slot = "SMALL_UTILITY_3"
+			template = "SMALL_ANTIMATTER_REACTOR"
+		}
+		component = {
+			slot = "SMALL_UTILITY_4"
+			template = "SMALL_SHIELD_3"
+		}
+	}
+
+	required_component = "WARP_DRIVE_3"
+	required_component = "SHIP_THRUSTER_2"
+	required_component = "SHIP_SENSOR_2"
+}

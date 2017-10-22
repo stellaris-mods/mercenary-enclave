@@ -48,7 +48,10 @@ fleet_event = {
 				owner = { is_country_type = "fmerc_operations" }
 			}
 			AND = {
-				has_fleet_flag = "merc_exploration_fleet"
+				OR = {
+					has_fleet_flag = "merc_exploration_fleet"
+					has_fleet_flag = "merc_expansion_fleet"
+				}
 				owner = { is_country_type = "fmerc_enclave"}
 			}
 		}
@@ -348,7 +351,13 @@ country_event = {
 
 	immediate = {
 		log = "Mercenary Enclave spawning exploration fleet."
-		random_owned_fleet = { save_event_target_as = spawn }
+		random_owned_fleet = {
+			limit = { merc_is_station = yes }
+			save_event_target_as = spawn
+		}
+		if = { limit = { NOT = { exists = event_target:spawn } }
+			break = yes
+		}
 		create_leader = {
 			type = scientist
 			sub_type = survey
@@ -383,7 +392,7 @@ fleet_event = {
 	immediate = {
 		owner = {
 			random_owned_fleet = {
-				limit = { NOT = { is_ship_size = science } }
+				limit = { merc_is_station = yes }
 				save_event_target_as = home
 			}
 		}
