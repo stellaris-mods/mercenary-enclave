@@ -46,6 +46,27 @@ merc_is_station = {
 	NOT = { is_ship_size = constructor }
 }
 
+merc_has_contact = {
+	any_country = {
+		is_country_type = "fmerc_enclave"
+		OR = {
+			has_communications = PREV
+			reverse_has_relation_flag = {
+				flag = ongoing_merc_enclave_investigation
+				who = PREV
+			}
+		}
+	}
+}
+
+merc_needs_contact = {
+	exists = capital_scope
+	NOT = { is_country_type = "fmerc_operations" }
+	NOT = { is_country_type = "fmerc_enclave" }
+	num_owned_planets > 0
+	merc_has_contact = no
+}
+
 fmerc_enclave_exists = {
 	any_country = {
 		is_country_type = "fmerc_enclave"

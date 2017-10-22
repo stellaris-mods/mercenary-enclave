@@ -33,62 +33,70 @@ namespace = mercCommunications
 @tier2influencecontactmin = 40
 @tier2influencecontactmax = 100
 
-# Special operations fleet enters a solar system that is owned by a default
-# country that does not have communications with a merc enclave
+# Any enclave fleet or operations fleet enters a system
 # on_entering_system_fleet
 fleet_event = {
 	id = mercCommunications.90
 	hide_window = yes
 	is_triggered_only = yes
-
 	trigger = {
-		OR = {
-			AND = {
-				has_fleet_flag = "fmerc_count_towards_success"
-				owner = { is_country_type = "fmerc_operations" }
-			}
-			AND = {
-				OR = {
-					has_fleet_flag = "merc_exploration_fleet"
-					has_fleet_flag = "merc_expansion_fleet"
-				}
-				owner = { is_country_type = "fmerc_enclave"}
+		exists = owner
+		owner = {
+			OR = {
+				is_country_type = "fmerc_operations"
+				is_country_type = "fmerc_enclave"
 			}
 		}
+		OR = {
+			has_fleet_flag = "fmerc_count_towards_success"
+			has_fleet_flag = "merc_exploration_fleet"
+			has_fleet_flag = "merc_expansion_fleet"
+		}
 		FROM = {
-			exists = space_owner
-			space_owner = {
-				exists = capital_scope
-				any_country = {
-					is_country_type = "fmerc_enclave"
-					NOR = {
-						has_communications = PREV
-						reverse_has_relation_flag = {
-							flag = ongoing_merc_enclave_investigation
-							who = PREV
-						}
-					}
+			OR = {
+				AND = {
+					exists = space_owner
+					space_owner = { merc_needs_contact = yes }
+				}
+				# Make sure we trigger on random exploring fleets
+				any_ship_in_system = {
+					exists = owner
+					owner = { merc_needs_contact = yes }
 				}
 			}
 		}
 	}
-
 	immediate = {
 		random_country = {
 			limit = { is_country_type = "fmerc_enclave" }
 			save_event_target_as = target_enclave
-			# Scope to HQ fleet and set that system as the target for the project
 			random_owned_fleet = {
-				limit = { has_fleet_flag = "folk_mercenary_station" }
-				solar_system = {
-					save_event_target_as = fmercsystem
-				}
+				limit = { merc_is_station = yes }
+				solar_system = { save_event_target_as = fmercsystem }
 			}
 		}
 		FROM = {
-			space_owner = {
-				country_event = { id = mercCommunications.98 days = 300 random = 600 }
-				country_event = { id = mercCommunications.91 }
+			if = {
+				limit = {
+					exists = space_owner
+					space_owner = { merc_needs_contact = yes }
+				}
+				space_owner = {
+					country_event = { id = mercCommunications.98 days = 300 random = 600 }
+					country_event = { id = mercCommunications.91 }
+				}
+				else = {
+					random_fleet_in_system = {
+						limit = {
+							exists = owner
+							owner = { merc_needs_contact = yes }
+						}
+						owner = {
+							country_event = { id = mercCommunications.98 days = 300 random = 600 }
+							country_event = { id = mercCommunications.91 }
+						}
+					}
+				}
 			}
 		}
 	}
@@ -105,45 +113,20 @@ fleet_event = {
 	hide_window = yes
 
 	trigger = {
-		owner = { exists = capital_scope }
-		FROM = {
-			any_ship_in_system = {
-				exists = owner
-				owner = {
-					is_country_type = "fmerc_enclave"
-					NOR = {
-						has_communications = ROOT.owner
-						reverse_has_relation_flag = {
-							flag = ongoing_merc_enclave_investigation
-							who = ROOT.owner
-						}
-					}
-				}
-			}
-		}
+		owner = { merc_needs_contact = yes }
+		FROM = { merc_has_presence = yes }
 	}
 
 	immediate = {
-		owner = {
-			FROM = {
-				random_fleet_in_system = {
-					limit = {
-						exists = owner
-						owner = { is_country_type = "fmerc_enclave" }
-					}
-					owner = {
-						save_event_target_as = target_enclave
-						# Scope to random owned fleet in case the default
-						# country stumbled across a random merc enclave installation
-						random_owned_fleet = {
-							limit = { has_fleet_flag = "folk_mercenary_station" }
-							solar_system = {
-								save_event_target_as = fmercsystem
-							}
-						}
-					}
-				}
+		random_country = {
+			limit = { is_country_type = "fmerc_enclave" }
+			save_event_target_as = target_enclave
+			random_owned_fleet = {
+				limit = { merc_is_station = yes }
+				solar_system = { save_event_target_as = fmercsystem }
 			}
+		}
+		owner = {
 			country_event = { id = mercCommunications.98 days = 300 random = 600 }
 			country_event = { id = mercCommunications.91 }
 		}
