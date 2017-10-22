@@ -51,6 +51,7 @@ country_event = {
 			every_owned_fleet = {
 				queue_actions = {
 					move_to = event_target:fmerc_target.solar_system
+					wait = 14
 					repeat = {
 						while = {
 							id = mercOpsFleet.1.trigger.1
@@ -65,7 +66,7 @@ country_event = {
 								}
 							}
 						}
-						wait = 7
+						wait = 14
 					}
 					effect = {
 						id = mercOpsFleet.1.effect.1

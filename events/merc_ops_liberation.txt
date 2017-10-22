@@ -49,6 +49,7 @@ country_event = {
 			every_owned_fleet = {
 				queue_actions = {
 					move_to = event_target:fmerc_target.solar_system
+					wait = 14
 					repeat = {
 						while = {
 							id = mercOpsLiberation.1.trigger.1
@@ -63,7 +64,7 @@ country_event = {
 								}
 							}
 						}
-						wait = 4
+						wait = 14
 					}
 					effect = {
 						id = mercOpsLiberation.1.effect.1
@@ -451,12 +452,26 @@ planet_event = {
 		#   type. And I am considering testing tech_unlocked_ratio to perhaps
 		#   adjust the new countries tech level in more detail.
 
-		if = { limit = { exists = event_target:fmerc_target_country }
+		if = {
+			limit = {
+				exists = event_target:fmerc_target_country
+				event_target:fmerc_target_country = {
+					NOT = { has_authority = auth_hive_mind }
+				}
+			}
 			event_target:fmerc_target_country = {
 				random_owned_pop = {
-					limit = { is_same_species = event_target:fmerc_target_country }
+					limit = {
+						is_same_species = event_target:fmerc_target_country
+						is_robot_pop = no
+						NOT = { has_trait = trait_cybernetic }
+						NOT = { has_trait = trait_latent_psionic }
+						NOT = { has_trait = trait_psionic }
+						NOT = { has_trait = trait_self_modified }
+					}
 					log = "Creating copy of target countries main species."
 					species = {
+						ROOT = { set_planet_flag = "merc_got_species" }
 						create_species = {
 							name = this
 							plural = this
@@ -468,7 +483,8 @@ planet_event = {
 					}
 				}
 			}
-		else = {
+		}
+		if = { limit = { NOT = { has_planet_flag = "merc_got_species" } }
 			log = "Creating random new species."
 			create_species = {
 				name = random
@@ -479,13 +495,26 @@ planet_event = {
 				extra_trait_points = 3
 				homeworld = ROOT
 			}
-		} }
+		}
+		remove_planet_flag = "merc_got_species"
+
+		# Determine ethos template
+		if = {
+			limit = { event_target:fmerc_buyer = { has_ethic = ethic_gestalt_consciousness } }
+				random_country = {
+					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+					save_event_target_as = ethosTemplate
+				}
+			else = {
+				event_target:fmerc_buyer = { save_event_target_as = ethosTemplate }
+			}
+		}
 
 		create_country = {
 			name = random
 			type = default
 			species = last_created_species
-			ethos = event_target:fmerc_buyer
+			ethos = event_target:ethosTemplate
 			authority = random
 			civics = random
 			flag = random
