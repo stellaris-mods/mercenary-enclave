@@ -51,6 +51,7 @@ INVESTIGATE_MERC_ENCLAVE: "Investigate [fmercsystem.GetName]"
 INVESTIGATE_MERC_ENCLAVE_DESC: "We need to learn more about the mysterious aliens residing in the §Y[fmercsystem.GetName] System§!. If they possess a language, we must decipher it and establish communications.\n\nReward: £influence  §GInfluence§! or §SSpecial Project§!"
 
 opinion_destroyed_mercenary: "Destroyed Mercenary Enclave"
+merc_opinion_attacker: "Attacked our station"
 fmerc_opinion_liberate: "Mercenary Operation"
 fmerc_opinion_raid: "Mercenary Operation"
 fmerc_opinion_fleet: "Mercenary Operation"
@@ -99,6 +100,11 @@ merc.param.operation.fleet: "Operation: §YFleet Raid§!"
 merc.precommunications.title: "Encounter in [From.From.GetName]"
 merc.precommunications.desc: "We have encountered some form of alien vessels in the §Y[From.From.GetName]§! System! The vessels have been flagged as §Y[fmercsystem.GetName]§! until we can learn more about them.\n\nPlease visit the §MSpecial Projects§! department to initiate an investigation into the nature of these vessels immediately."
 
+# Comms established
+merc.communications.title: "Communications Established"
+merc.communications.delayed.desc: "We are receiving a transmission from the independent space station of the §Y[target_enclave.GetName]§!! They appear to have successfully translated our language."
+merc.communications.project.desc: "After successfully translating their language, we have established communications with the independent space station of the §Y[From.From.GetName]§!."
+
 # Introduction, after special project or timer
 merc.introduction.desc: "Greetings! Let us just get right to it: the use of mercenaries in warfare has a long history. Much longer, in fact, than the deployment of national militaries to wage wars.\n\n$merc.name.colored$ is a business just like any other. We can be contracted to perform a wide array of combat maneuvers, logistics, armed security, and ground combat training.\n\nFor a price."
 
@@ -108,6 +114,10 @@ merc.buyer.detected.desc: "We're being hailed by the head of our interior minist
 # Asks for station access
 merc.stationoffer.title: "Allow station access?"
 merc.stationoffer.desc: "Greetings, [root.GetRulerName]! We here at $merc.name.colored$ would like to offer you an exciting business opportunity!\n\nIt would be to our mutual benefit if you were to §Gallow us access§! to construct an operations outpost inside your borders.\n\nWe realise that this might seem intimidating, or sneaky, so we are prepared to offer you some compensation to grease the wheels of bureaucracy, so to speak:\n\n£energy §G2500§!\n£minerals §G500§!\n\nThis deal only comes once in a lifetime, so weigh your decision accordingly."
+
+# You have destroyed one of the enclaves stations
+merc.attacker.title: "Destroyed a [From.GetName] station"
+merc.attacker.desc: "Our fleet has destroyed a station complex belonging to $merc.name.colored$, and efforts to recover as many valuables as possible from the shattered remnants of their station are well under way. We have gained a large amount of resources."
 
 # insurance
 merc.insurance.title: "Friendly alert"

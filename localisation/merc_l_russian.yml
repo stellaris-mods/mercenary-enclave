@@ -68,6 +68,7 @@ INVESTIGATE_MERC_ENCLAVE_DESC: "Мы должны узнать побольше 
 
 ##opinion_destroyed_mercenary: "Destroyed Mercenary Enclave"
 opinion_destroyed_mercenary: "Уничтоженная Станция Наемников"
+merc_opinion_attacker: "Attacked our station"
 ##fmerc_opinion_liberate: "Mercenary Operation"
 fmerc_opinion_liberate: "Операция Наемников"
 ##fmerc_opinion_raid: "Mercenary Operation"
@@ -389,6 +390,10 @@ merc.destroyed.button: "A blow to free trade."
 merc.precommunications.title: "Встреча в [From.From.GetName]"
 ##merc.precommunications.desc: "We have encountered some form of alien vessels in the §Y[From.From.GetName]§! System! The vessels have been flagged as §Y[fmercsystem.GetName]§! until we can learn more about them.\n\nPlease visit the §MSpecial Projects§! department to initiate an investigation into the nature of these vessels immediately."
 merc.precommunications.desc: "Мы встретили неизвестные корабли в системе §Y[From.From.GetName]§!! Мы отметили эти корабли как §Y[fmercsystem.GetName]§! до тех пор пока мы не выясним о них попбольше информации.\n\nПроверьте доступные §MОсобенные проекты§! чтобы начать исследование этих кораблей."
+# Comms established
+merc.communications.title: "Communications Established"
+merc.communications.delayed.desc: "We are receiving a transmission from the independent space station of the §Y[target_enclave.GetName]§!! They appear to have successfully translated our language."
+merc.communications.project.desc: "After successfully translating their language, we have established communications with the independent space station of the §Y[From.From.GetName]§!."
 
 
 # Asks for station access
@@ -396,3 +401,7 @@ merc.stationoffer.title: "Allow station access?"
 merc.stationoffer.desc: "Greetings, [root.GetRulerName]! We here at §YWhiteout Enterprises§! would like to offer you an exciting business opportunity!\n\nIt would be to our mutual benefit if you were to §Gallow us access§! to construct an operations outpost inside your borders.\n\nWe realise that this might seem intimidating, or sneaky, so we are prepared to offer you some compensation to grease the wheels of bureaucracy, so to speak:\n\n£energy §G2500§!\n£minerals §G500§!\n\nThis deal only comes once in a lifetime, so weigh your decision accordingly."
 merc.condition.station.access.cooldown: "You have recently accepted a monetary offer to allow station access, and as such won't be able to restrict it yet."
 merc.condition.not.insured: "You can't restrict border access while you subscribe to their insurance policy."
+
+# You have destroyed one of the enclaves stations
+merc.attacker.title: "Destroyed a [From.GetName] station"
+merc.attacker.desc: "Our fleet has destroyed a station complex belonging to $merc.name.colored$, and efforts to recover as many valuables as possible from the shattered remnants of their station are well under way. We have gained a large amount of resources."

@@ -84,6 +84,7 @@ fleet_event = {
 		}
 		FROM = {
 			space_owner = {
+				country_event = { id = mercCommunications.98 days = 300 random = 600 }
 				country_event = { id = mercCommunications.91 }
 			}
 		}
@@ -140,6 +141,7 @@ fleet_event = {
 					}
 				}
 			}
+			country_event = { id = mercCommunications.98 days = 300 random = 600 }
 			country_event = { id = mercCommunications.91 }
 		}
 	}
@@ -159,7 +161,6 @@ country_event = {
 			flag = ongoing_merc_enclave_investigation
 			who = event_target:target_enclave
 		}
-		country_event = { id = mercCommunications.98 days = 300 random = 600 }
 	}
 
 	option = {
@@ -179,8 +180,8 @@ country_event = {
 # Enclaves make contact, delayed
 country_event = {
 	id = mercCommunications.98
-	title = guardian.98.name
-	desc = guardian.98.desc
+	title = merc.communications.title
+	desc = merc.communications.delayed.desc
 	picture = GFX_evt_throne_room
 	show_sound = event_radio_chatter
 	is_triggered_only = yes
@@ -226,23 +227,25 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			FROM = { country_event = { id = mercCommunications.101 } }
+			event_target:target_enclave = { country_event = { id = mercCommunications.101 } }
 		}
 	}
 
-	option = { name = "guardian.98.a" }
+	option = { name = "INTERESTING" }
 }
 
 # Communication Established, triggered by special project
 country_event = {
 	id = mercCommunications.99
-	title = "guardian.99.name"
-	desc = guardian.99.desc
+	title = "merc.communications.title"
+	desc = merc.communications.project.desc
 	picture = GFX_evt_throne_room
 	show_sound = event_radio_chatter
 	is_triggered_only = yes
 
-	immediate = { establish_communications_no_message = FROMFROM }
+	immediate = {
+		establish_communications_no_message = FROMFROM
+	}
 
 	after = {
 		if = {
@@ -272,7 +275,7 @@ country_event = {
 		}
 	}
 
-	option = { name = "guardian.98.a" }
+	option = { name = "INTERESTING" }
 }
 
 # Triggered after special project completion or forced introduction
@@ -286,7 +289,7 @@ country_event = {
 }
 country_event = {
 	id = mercCommunications.102
-	title = guardian.102.name
+	title = merc.communications.title
 	desc = merc.introduction.desc
 	is_triggered_only = yes
 	diplomatic = yes
@@ -298,7 +301,7 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	option = { name = guardian.502.a }
+	option = { name = "guardian.502.a" } # Well Met
 }
 
 
