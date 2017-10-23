@@ -62,19 +62,15 @@ country_event = {
 
 	immediate = { merc_menu_4_disguise_init = yes }
 
-	# ZZZ from this point on we can't go "back" in the menu yet, I need to
-	# ZZZ reset the multipliers and such
-	# ZZZ We can't even reopen the main menu, because event targets wont be
-	# ZZZ invalidated/removed.
 	option = {
 		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
-	# option = {
-	# 	name = "merc.back"
-	# 	hidden_effect = { country_event = { id = mercMenu.1000 } }
-	# }
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.1100 } }
+	}
 	option = {
 		name = "merc.disguise.random.button"
 		custom_tooltip = "merc.disguise.random.tooltip"

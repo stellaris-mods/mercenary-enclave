@@ -77,10 +77,10 @@ country_event = {
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
-	# option = {
-	# 	name = "merc.back"
-	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
-	# }
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
 	option = {
 		name = merc.signature.accept
 		hidden_effect = {
@@ -155,10 +155,10 @@ country_event = {
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
-	# option = {
-	# 	name = "merc.back"
-	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
-	# }
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
 	option = {
 		name = merc.signature.accept
 		allow = { hidden_trigger = { always = no } }
@@ -233,10 +233,10 @@ country_event = {
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
-	# option = {
-	# 	name = "merc.back"
-	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
-	# }
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
 	option = {
 		name = merc.signature.accept
 		allow = { hidden_trigger = { always = no } }
@@ -311,10 +311,10 @@ country_event = {
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
-	# option = {
-	# 	name = "merc.back"
-	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
-	# }
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
 	option = {
 		name = merc.signature.accept
 		allow = { hidden_trigger = { always = no } }
@@ -389,10 +389,10 @@ country_event = {
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
-	# option = {
-	# 	name = "merc.back"
-	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
-	# }
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
 	option = {
 		name = merc.signature.accept
 		allow = { hidden_trigger = { always = no } }

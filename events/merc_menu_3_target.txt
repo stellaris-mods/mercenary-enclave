@@ -191,10 +191,10 @@ country_event = {
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
-	# option = {
-	# 	name = "merc.back"
-	# 	hidden_effect = { country_event = { id = mercMenu.1000 } }
-	# }
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.1000 } }
+	}
 	option = {
 		name = "merc.country.1.button"
 		trigger = {
