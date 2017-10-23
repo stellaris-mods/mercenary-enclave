@@ -122,10 +122,10 @@ country_event = {
 					limit = { is_country_type = "fmerc_enclave" }
 					save_event_target_as = mercenaries
 				}
-				merc_account_set_base_multiplier = yes
-				merc_account_apply_cost_modifiers = yes
+				merc_account_set_trust_multiplier = yes
+				merc_account_apply_all_modifiers = yes
 				log = "Clear: Modified cost is [this.MercCost]."
-				log = "Clear: Multiplier is [this.MercMultiplierPercent]%."
+				log = "Clear: Multiplier is [this.MercTrustMultiplier]%."
 				merc_account_grabdatcash = yes
 			}
 		}

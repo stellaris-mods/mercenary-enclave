@@ -22,17 +22,11 @@ namespace = mercMenu
 
 country_event = {
 	id = mercMenu.2100
-	title = merc.signature.title
+	title = merc.conclusion.title
 	desc = {
 		trigger = {
-			switch = {
-				trigger = has_country_flag
-				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
-				merc_op_liberation = { text = "merc.param.operation.liberation" }
-				merc_op_raid = { text = "merc.param.operation.raid" }
-				merc_op_fleet = { text = "merc.param.operation.fleet" }
-			}
-			text = "merc.param.target"
+			text = "merc.signature.desc"
+			text = newline
 			switch = {
 				trigger = has_country_flag
 				merc_disguise_random = { text = "merc.param.disguise.random" }
@@ -41,18 +35,27 @@ country_event = {
 				merc_disguise_pirate = { text = "merc.param.disguise.pirate" }
 				merc_disguise_xenofauna = { text = "merc.param.disguise.xenofauna" }
 			}
-			text = newline
+			text = "merc.param.target"
+			switch = {
+				trigger = has_country_flag
+				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
+				merc_op_liberation = { text = "merc.param.operation.liberate" }
+				merc_op_raid = { text = "merc.param.operation.raid" }
+				merc_op_fleet = { text = "merc.param.operation.fleet" }
+			}
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
 			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
 			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier.applied"
-			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
-			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
+			text = "merc.param.success"
+			text = "merc.param.detection"
 			text = newline
-			text = "merc.signature.desc"
+			text = "merc.param.multiplier.applied"
+			text = "merc.param.multiplier.trust"
+			text = "merc.param.multiplier.target"
+			text = "merc.param.multiplier.disguise"
 		}
 	}
 	is_triggered_only = yes
@@ -66,16 +69,16 @@ country_event = {
 	}
 
 	immediate = {
-		merc_account_apply_cost_modifiers = yes
+		merc_account_apply_all_modifiers = yes
 	}
 
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = merc.back
+	# 	name = "merc.back"
 	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
 	# }
 	option = {
@@ -104,17 +107,11 @@ country_event = {
 
 country_event = {
 	id = mercMenu.2101
-	title = merc.signature.title
+	title = merc.conclusion.title
 	desc = {
 		trigger = {
-			switch = {
-				trigger = has_country_flag
-				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
-				merc_op_liberation = { text = "merc.param.operation.liberation" }
-				merc_op_raid = { text = "merc.param.operation.raid" }
-				merc_op_fleet = { text = "merc.param.operation.fleet" }
-			}
-			text = "merc.param.target"
+			text = "merc.signature.desc"
+			text = newline
 			switch = {
 				trigger = has_country_flag
 				merc_disguise_random = { text = "merc.param.disguise.random" }
@@ -123,18 +120,23 @@ country_event = {
 				merc_disguise_pirate = { text = "merc.param.disguise.pirate" }
 				merc_disguise_xenofauna = { text = "merc.param.disguise.xenofauna" }
 			}
-			text = newline
+			text = "merc.param.target"
+			switch = {
+				trigger = has_country_flag
+				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
+				merc_op_liberation = { text = "merc.param.operation.liberate" }
+				merc_op_raid = { text = "merc.param.operation.raid" }
+				merc_op_fleet = { text = "merc.param.operation.fleet" }
+			}
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
 			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
 			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier.applied"
-			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
-			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
-			text = newline
-			text = "merc.signature.desc"
+			text = "merc.param.multiplier.trust.applied"
+			text = "merc.param.success"
+			text = "merc.param.detection"
 		}
 	}
 
@@ -149,12 +151,12 @@ country_event = {
 	}
 
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = merc.back
+	# 	name = "merc.back"
 	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
 	# }
 	option = {
@@ -183,17 +185,11 @@ country_event = {
 
 country_event = {
 	id = mercMenu.2102
-	title = merc.signature.title
+	title = merc.conclusion.title
 	desc = {
 		trigger = {
-			switch = {
-				trigger = has_country_flag
-				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
-				merc_op_liberation = { text = "merc.param.operation.liberation" }
-				merc_op_raid = { text = "merc.param.operation.raid" }
-				merc_op_fleet = { text = "merc.param.operation.fleet" }
-			}
-			text = "merc.param.target"
+			text = "merc.signature.desc"
+			text = newline
 			switch = {
 				trigger = has_country_flag
 				merc_disguise_random = { text = "merc.param.disguise.random" }
@@ -202,18 +198,23 @@ country_event = {
 				merc_disguise_pirate = { text = "merc.param.disguise.pirate" }
 				merc_disguise_xenofauna = { text = "merc.param.disguise.xenofauna" }
 			}
-			text = newline
+			text = "merc.param.target"
+			switch = {
+				trigger = has_country_flag
+				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
+				merc_op_liberation = { text = "merc.param.operation.liberate" }
+				merc_op_raid = { text = "merc.param.operation.raid" }
+				merc_op_fleet = { text = "merc.param.operation.fleet" }
+			}
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
 			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
 			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier.applied"
-			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
-			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
-			text = newline
-			text = "merc.signature.desc"
+			text = "merc.param.multiplier.trust.applied"
+			text = "merc.param.success"
+			text = "merc.param.detection"
 		}
 	}
 
@@ -228,12 +229,12 @@ country_event = {
 	}
 
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = merc.back
+	# 	name = "merc.back"
 	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
 	# }
 	option = {
@@ -262,17 +263,11 @@ country_event = {
 
 country_event = {
 	id = mercMenu.2103
-	title = merc.signature.title
+	title = merc.conclusion.title
 	desc = {
 		trigger = {
-			switch = {
-				trigger = has_country_flag
-				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
-				merc_op_liberation = { text = "merc.param.operation.liberation" }
-				merc_op_raid = { text = "merc.param.operation.raid" }
-				merc_op_fleet = { text = "merc.param.operation.fleet" }
-			}
-			text = "merc.param.target"
+			text = "merc.signature.desc"
+			text = newline
 			switch = {
 				trigger = has_country_flag
 				merc_disguise_random = { text = "merc.param.disguise.random" }
@@ -281,18 +276,23 @@ country_event = {
 				merc_disguise_pirate = { text = "merc.param.disguise.pirate" }
 				merc_disguise_xenofauna = { text = "merc.param.disguise.xenofauna" }
 			}
-			text = newline
+			text = "merc.param.target"
+			switch = {
+				trigger = has_country_flag
+				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
+				merc_op_liberation = { text = "merc.param.operation.liberate" }
+				merc_op_raid = { text = "merc.param.operation.raid" }
+				merc_op_fleet = { text = "merc.param.operation.fleet" }
+			}
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
 			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
 			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier.applied"
-			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
-			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
-			text = newline
-			text = "merc.signature.desc"
+			text = "merc.param.multiplier.trust.applied"
+			text = "merc.param.success"
+			text = "merc.param.detection"
 		}
 	}
 
@@ -307,12 +307,12 @@ country_event = {
 	}
 
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = merc.back
+	# 	name = "merc.back"
 	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
 	# }
 	option = {
@@ -341,17 +341,11 @@ country_event = {
 
 country_event = {
 	id = mercMenu.2104
-	title = merc.signature.title
+	title = merc.conclusion.title
 	desc = {
 		trigger = {
-			switch = {
-				trigger = has_country_flag
-				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
-				merc_op_liberation = { text = "merc.param.operation.liberation" }
-				merc_op_raid = { text = "merc.param.operation.raid" }
-				merc_op_fleet = { text = "merc.param.operation.fleet" }
-			}
-			text = "merc.param.target"
+			text = "merc.signature.desc"
+			text = newline
 			switch = {
 				trigger = has_country_flag
 				merc_disguise_random = { text = "merc.param.disguise.random" }
@@ -360,18 +354,23 @@ country_event = {
 				merc_disguise_pirate = { text = "merc.param.disguise.pirate" }
 				merc_disguise_xenofauna = { text = "merc.param.disguise.xenofauna" }
 			}
-			text = newline
+			text = "merc.param.target"
+			switch = {
+				trigger = has_country_flag
+				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
+				merc_op_liberation = { text = "merc.param.operation.liberate" }
+				merc_op_raid = { text = "merc.param.operation.raid" }
+				merc_op_fleet = { text = "merc.param.operation.fleet" }
+			}
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
 			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
 			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
 			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier.applied"
-			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
-			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
-			text = newline
-			text = "merc.signature.desc"
+			text = "merc.param.multiplier.trust.applied"
+			text = "merc.param.success"
+			text = "merc.param.detection"
 		}
 	}
 
@@ -386,12 +385,12 @@ country_event = {
 	}
 
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = merc.back
+	# 	name = "merc.back"
 	# 	hidden_effect = { country_event = { id = mercMenu.2000 } }
 	# }
 	option = {

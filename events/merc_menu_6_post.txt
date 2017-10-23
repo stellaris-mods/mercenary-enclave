@@ -57,7 +57,7 @@ country_event = {
 	after = { hidden_effect = { country_event = { id = mercMenu.9001 } } }
 
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 	}
 }

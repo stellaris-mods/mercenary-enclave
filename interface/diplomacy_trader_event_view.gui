@@ -17,31 +17,32 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-guiTypes = {
-	### ENCLAVE TRADER EVENT OPTION ###
 
+# All comments from vanilla have been removed, and only comments relevant
+# to the mercenary enclave are present.
+
+guiTypes = {
 	containerWindowType = {
 		name = "enclave_trader_option"
-		position = { x=0 y=0 }
+		position = { x = 0 y = 0 }
 		size = { width = 388 height = 30 }
 		moveable = no
 
 		buttonType = {
 			name = "option_button"
 			quadTextureSprite = "GFX_event_button_452_trader"
-			position = { x=0 y=8 }
+			position = { x = 0 y = 0 }
 			font = "cg_16b"
 			text = "OPTION_TEXT"
+			oversound = menu_over_01
 		}
 
 		OverlappingElementsBoxType = {
 			name = "trigger_icons"
-			position = { x = 0  y = 10 }
-			size = { x=65 y= 28 }
+			position = { x = 0 y = 10 }
+			size = { x = 65 y = 28 }
 		}
 	}
-
-	### ENCLAVE TRADER EVENT WINDOW ###
 
 	containerWindowType = {
 		name = "enclave_trader_window"
@@ -106,12 +107,13 @@ guiTypes = {
 			alwaysTransparent = yes
 		}
 
+		# Actual description text
 		instantTextBoxType = {
 			name = "alien_message"
 			font = "cg_16b"
-			position = { x = 20 y = 440 }
-			maxWidth = 465
-			maxHeight = 220
+			position = { x = 18 y = 434 }
+			maxWidth = 466
+			maxHeight = 230
 			format = left
 			scrollbartype = "standardtext_slider"
 		}
@@ -125,8 +127,6 @@ guiTypes = {
 			text = "MESSAGE_OK"
 			clicksound = "confirmation"
 		}
-
-		### PORTRAIT ###
 
 		containerWindowType = {
 			name = "portrait_background"
@@ -179,8 +179,6 @@ guiTypes = {
 				alwaysTransparent = yes
 			}
 		}
-
-		### EMPIRE INFO ###
 
 		iconType = {
 			name = "empire_info_bg"
@@ -298,13 +296,11 @@ guiTypes = {
 			}
 		}
 
-		### OPINION
 		containerWindowType = {
 			name = "opinion_window"
 			position = { x = 27 y = 110 }
 			size = { width = 94 height = 30 }
 
-			# Use this for tooltip area, picture comes from somewhere else
 			background = {
 				name = "opinion_bg"
 				spriteType = "GFX_tiled_window_transparent"
@@ -328,22 +324,23 @@ guiTypes = {
 			}
 		}
 
-		### EVENT DIPLO ###
-
 		containerWindowType = {
 			name = "EVENT_DIPLO"
 			position = { x = 0 y = 400 }
 			size = { width=563 height=220 }
 			moveable = no
 
+			# Heading above the description text
 			instantTextBoxType={
 				name = "action_title"
 				font = "malgun_goth_24"
-				position = { x = 20 y = 0 }
-				maxWidth = 520
+				position = { x = 12 y = 0 }
+				maxWidth = 480
+				format = left
 				alwaysTransparent = yes
 			}
 
+			# "How should we respond?" above buttons
 			instantTextBoxType={
 				name = "action_desc"
 				font = "malgun_goth_24"
@@ -358,11 +355,12 @@ guiTypes = {
 
 			listboxType = {
 				name = "option_list"
-				position = { x = 498 y = 19 }
+				position = { x = 498 y = 28 }
 				backGround=""
 
 				# ZZZ Changing the y-parameter here is the only reason we overwrite this whole fucking file.
 				# I tried only overwriting this containerWindowType (EVENT_DIPLO), but it didnt work
+				# I've changed a few other things since then, but this is the only important thing.
 				size = { x = 450 y = 250 }
 				scrollbartype = "standardlistbox_slider"
 				borderSize = { x = 0 y = 0 }

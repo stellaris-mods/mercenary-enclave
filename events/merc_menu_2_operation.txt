@@ -35,37 +35,40 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	immediate = {
-		merc_account_set_base_multiplier = yes
-	}
+	immediate = { merc_menu_2_operation_init = yes }
 
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
-		name = merc.back
+		name = "merc.back"
 		hidden_effect = { country_event = { id = mercMenu.101 } }
 	}
 	option = {
-		name = merc.spaceport.name
-		hidden_effect = { country_event = { id = mercMenu.300 } }
+		name = "merc.operation.spaceport.button"
+		custom_tooltip = "merc.operation.spaceport.desc"
+		hidden_effect = { merc_menu_2_operation_spaceport = yes }
 	}
 	option = {
-		name = merc.liberation.name
-		hidden_effect = { country_event = { id = mercMenu.400 } }
+		name = "merc.operation.liberate.button"
+		custom_tooltip = "merc.operation.liberate.desc"
+		hidden_effect = { merc_menu_2_operation_liberate = yes }
 	}
 	option = {
-		name = merc.raid.name
-		hidden_effect = { country_event = { id = mercMenu.500 } }
+		name = "merc.operation.raid.button"
+		custom_tooltip = "merc.operation.raid.desc"
+		hidden_effect = { merc_menu_2_operation_raid = yes }
 	}
 	option = {
-		name = merc.fleet.name
-		hidden_effect = { country_event = { id = mercMenu.600 } }
+		name = "merc.operation.fleet.button"
+		custom_tooltip = "merc.operation.fleet.desc"
+		hidden_effect = { merc_menu_2_operation_fleet = yes }
 	}
 	option = {
-		name = merc.clearspace.name
+		name = "merc.operation.clearspace.button"
+		custom_tooltip = "merc.operation.clearspace.desc"
 		allow = {
 			custom_tooltip_fail = {
 				text = "merc.condition.clearspace"
@@ -76,233 +79,15 @@ country_event = {
 	}
 }
 
-# Attack spaceport
-country_event = {
-	id = mercMenu.300
-	title = merc.spaceport.name
-	desc = {
-		trigger = {
-			text = merc.spaceport.desc
-			text = newline
-			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
-			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
-			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
-			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
-			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
-			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier"
-			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
-			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
-		}
-	}
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_trader_window"
-	custom_gui_option = "enclave_trader_option"
-	force_open = yes
-	picture_event_data = {
-		portrait = event_target:mercenaries
-		room = enclave_trader_room
-	}
-	immediate = {
-		set_variable = { which = "MercCostEnergy" value = 3000 }
-		set_variable = { which = "MercSuccess" value = 80 }
-		set_variable = { which = "MercDetect" value = 20 }
-	}
-
-	option = {
-		name = merc.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = merc.back
-		hidden_effect = { country_event = { id = mercMenu.200 } }
-	}
-	option = {
-		name = merc.order
-		custom_tooltip = merc.order.tooltip
-		hidden_effect = {
-			set_country_flag = "merc_op_spaceport"
-			country_event = { id = mercMenu.1000 }
-		}
-	}
-}
-
-# Liberate Planet
-country_event = {
-	id = mercMenu.400
-	title = merc.liberation.name
-	desc = {
-		trigger = {
-			text = merc.liberation.desc
-			text = newline
-			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
-			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
-			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
-			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
-			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
-			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier"
-			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
-			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
-		}
-	}
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_trader_window"
-	custom_gui_option = "enclave_trader_option"
-	force_open = yes
-	picture_event_data = {
-		portrait = event_target:mercenaries
-		room = enclave_trader_room
-	}
-
-	immediate = {
-		set_variable = { which = "MercCostEnergy" value = 7500 }
-		set_variable = { which = "MercCostInfluence" value = 50 }
-		set_variable = { which = "MercSuccess" value = 75 }
-		set_variable = { which = "MercDetect" value = 35 }
-	}
-
-	option = {
-		name = merc.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = merc.back
-		hidden_effect = { country_event = { id = mercMenu.200 } }
-	}
-	option = {
-		name = merc.order
-		custom_tooltip = merc.order.tooltip
-		hidden_effect = {
-			set_country_flag = "merc_op_liberation"
-			country_event = { id = mercMenu.1000 }
-		}
-	}
-}
-
-# Mining/Research Raid
-country_event = {
-	id = mercMenu.500
-	title = merc.raid.name
-	desc = {
-		trigger = {
-			text = merc.raid.desc
-			text = newline
-			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
-			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
-			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
-			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
-			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
-			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier"
-			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
-			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
-		}
-	}
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_trader_window"
-	custom_gui_option = "enclave_trader_option"
-	force_open = yes
-	picture_event_data = {
-		portrait = event_target:mercenaries
-		room = enclave_trader_room
-	}
-
-	immediate = {
-		set_variable = { which = "MercCostEnergy" value = 2000 }
-		set_variable = { which = "MercSuccess" value = 95 }
-		set_variable = { which = "MercDetect" value = 20 }
-	}
-
-	option = {
-		name = merc.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = merc.back
-		hidden_effect = { country_event = { id = mercMenu.200 } }
-	}
-	option = {
-		name = merc.order
-		custom_tooltip = merc.order.tooltip
-		hidden_effect = {
-			set_country_flag = "merc_op_raid"
-			country_event = { id = mercMenu.1000 }
-		}
-	}
-}
-
-
-# Fleet Battle
-country_event = {
-	id = mercMenu.600
-	title = merc.fleet.name
-	desc = {
-		trigger = {
-			text = fmerc_enclave.600.desc
-			text = newline
-			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
-			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
-			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
-			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
-			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
-			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
-			text = "merc.param.multiplier"
-			success_text = { text = "merc.param.success" check_variable = { which = "MercSuccess" value > 0 } }
-			success_text = { text = "merc.param.detection" check_variable = { which = "MercDetect" value > 0 } }
-		}
-	}
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_trader_window"
-	custom_gui_option = "enclave_trader_option"
-	force_open = yes
-	picture_event_data = {
-		portrait = event_target:mercenaries
-		room = enclave_trader_room
-	}
-
-	immediate = {
-		set_variable = { which = "MercCost" value = 500 }
-		set_variable = { which = "MercCostEnergy" value = 5000 }
-		set_variable = { which = "MercSuccess" value = 80 }
-		set_variable = { which = "MercDetect" value = 25 }
-	}
-
-	option = {
-		name = merc.close
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = merc.back
-		hidden_effect = { country_event = { id = mercMenu.200 } }
-	}
-	option = {
-		name = merc.order
-		custom_tooltip = merc.order.tooltip
-		hidden_effect = {
-			set_country_flag = "merc_op_fleet"
-			country_event = { id = mercMenu.1000 }
-		}
-	}
-}
-
 # Clear space
 country_event = {
 	id = mercMenu.700
-	title = merc.clearspace.name
+	title = merc.operation.clearspace
 	# Custom desc because variables can't represent zero
 	desc = {
 		trigger = {
-			text = "merc.clearspace.desc"
-			text = "merc.param.multiplier"
+			text = "merc.operation.clearspace.desc"
+			text = "merc.param.multiplier.trust"
 		}
 	}
 	is_triggered_only = yes
@@ -315,27 +100,20 @@ country_event = {
 		room = enclave_trader_room
 	}
 
+	immediate = { merc_menu_2_operation_clear = yes }
+
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
-		name = merc.back
+		name = "merc.back"
 		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
 		name = merc.clearspace.amoeba
 		custom_tooltip = merc.clearspace.tooltip
-		allow = {
-			custom_tooltip_fail = {
-				text = merc.condition.deposit
-				check_variable = {
-					which = "MercDeposit"
-					value > 2500
-				}
-			}
-		}
 		hidden_effect = {
 			set_country_flag = "merc_op_amoeba"
 			random_country = {
@@ -352,15 +130,6 @@ country_event = {
 	option = {
 		name = merc.clearspace.cloud
 		custom_tooltip = merc.clearspace.tooltip
-		allow = {
-			custom_tooltip_fail = {
-				text = merc.condition.deposit
-				check_variable = {
-					which = "MercDeposit"
-					value > 2500
-				}
-			}
-		}
 		hidden_effect = {
 			set_country_flag = "merc_op_cloud"
 			random_country = {
@@ -377,15 +146,6 @@ country_event = {
 	option = {
 		name = merc.clearspace.crystal
 		custom_tooltip = merc.clearspace.tooltip
-		allow = {
-			custom_tooltip_fail = {
-				text = merc.condition.deposit
-				check_variable = {
-					which = "MercDeposit"
-					value > 2500
-				}
-			}
-		}
 		hidden_effect = {
 			set_country_flag = "merc_op_crystal"
 			random_country = {
@@ -402,15 +162,6 @@ country_event = {
 	option = {
 		name = merc.clearspace.pirates
 		custom_tooltip = merc.clearspace.tooltip
-		allow = {
-			custom_tooltip_fail = {
-				text = merc.condition.deposit
-				check_variable = {
-					which = "MercDeposit"
-					value > 2500
-				}
-			}
-		}
 		hidden_effect = {
 			set_country_flag = "merc_op_pirate"
 			random_country = {
@@ -427,15 +178,6 @@ country_event = {
 	option = {
 		name = merc.clearspace.drones
 		custom_tooltip = merc.clearspace.tooltip
-		allow = {
-			custom_tooltip_fail = {
-				text = merc.condition.deposit
-				check_variable = {
-					which = "MercDeposit"
-					value > 2500
-				}
-			}
-		}
 		hidden_effect = {
 			set_country_flag = "merc_op_drone"
 			random_country = {

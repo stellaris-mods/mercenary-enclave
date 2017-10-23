@@ -23,7 +23,43 @@ namespace = mercMenu
 country_event = {
 	id = mercMenu.1000
 	title = merc.target.name
-	desc = merc.target.desc
+	desc = {
+		trigger = {
+			text = merc.target.desc
+			text = newline
+			switch = {
+				trigger = has_country_flag
+				merc_op_spaceport = {
+					text = "merc.param.operation.spaceport"
+					text = "merc.operation.spaceport.desc"
+				}
+				merc_op_liberation = {
+					text = "merc.param.operation.liberate"
+					text = "merc.operation.liberate.desc"
+				}
+				merc_op_raid = {
+					text = "merc.param.operation.raid"
+					text = "merc.operation.raid.desc"
+				}
+				merc_op_fleet = {
+					text = "merc.param.operation.fleet"
+					text = "merc.operation.fleet.desc"
+				}
+			}
+			text = newline
+			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
+			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
+			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+			text = "merc.param.success"
+			text = "merc.param.detection"
+			text = newline
+			text = "merc.param.multiplier.notyet"
+			text = "merc.param.multiplier.trust"
+		}
+	}
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -34,153 +70,73 @@ country_event = {
 		room = enclave_trader_room
 	}
 
+	immediate = { merc_menu_3_target_init = yes }
+
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
-		name = merc.back
-		hidden_effect = { country_event = { id = mercMenu.101 } }
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = {
 		name = merc.target.default
-		trigger = {
-			any_country = {
-				is_country_type = "default"
-				has_communications = ROOT
-				NOT = { is_same_value = ROOT }
-				num_owned_planets > 1
-			}
-		}
-		hidden_effect = {
-			set_country_flag = "merc_target_default"
-			country_event = { id = mercMenu.1100 }
-		}
-	}
-	option = {
-		name = merc.target.fallen
-		trigger = {
-			any_country = {
-				OR = {
-					is_country_type = "fallen_empire"
-					is_country_type = "awakened_fallen_empire"
-				}
-				NOT = { is_same_value = ROOT }
-				has_communications = ROOT
-				num_owned_planets > 1
-			}
-		}
+		trigger = { any_country = { merc_menu_3_is_known_target_default = yes } }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				NOT = { has_country_flag = "merc_op_spaceport" }
-				NOT = { has_country_flag = "merc_op_raid" }
+				merc_menu_3_has_valid_operation_default = yes
 			}
 		}
-		hidden_effect = {
-			change_variable = { which = "MercMultiplier" value = 0.2 }
-			merc_account_update_multiplier = yes
-			subtract_variable = {
-				which = "MercSuccess"
-				value = 10
+		hidden_effect = { merc_menu_3_target_default = yes }
+	}
+	option = {
+		name = merc.target.fallen
+		trigger = { any_country = { merc_menu_3_is_known_target_fallen = yes } }
+		allow = {
+			custom_tooltip_fail = {
+				text = merc.condition.invalid.target
+				merc_menu_3_has_valid_operation_fallen = yes
 			}
-			subtract_variable = {
-				which = "MercDetect"
-				value = 10
-			}
-			set_country_flag = "merc_target_fallen"
-			country_event = { id = mercMenu.1100 }
 		}
+		hidden_effect = { merc_menu_3_target_fallen = yes }
 	}
 	option = {
 		name = merc.target.swarm
 		trigger = {
-			any_country = {
-				is_country_type = "swarm"
-				has_communications = ROOT
-				NOT = { is_same_value = ROOT }
-			}
+			any_country = { merc_menu_3_is_known_target_swarm = yes }
 		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				NOT = { has_country_flag = "merc_op_liberation" }
-				NOT = { has_country_flag = "merc_op_raid" }
+				merc_menu_3_has_valid_operation_swarm = yes
 			}
 		}
-		hidden_effect = {
-			subtract_variable = { which = "MercMultiplier" value = 0.2 }
-			merc_account_update_multiplier = yes
-			subtract_variable = {
-				which = "MercSuccess"
-				value = 10
-			}
-			set_country_flag = "merc_target_swarm"
-			country_event = { id = mercMenu.1100 }
-		}
+		hidden_effect = { merc_menu_3_target_swarm = yes }
 	}
 	option = {
 		name = merc.target.ed
-		trigger = {
-			any_country = {
-				OR = {
-					is_country_type = "extradimensional"
-					is_country_type = "extradimensional_2"
-					is_country_type = "extradimensional_3"
-				}
-				NOT = { is_same_value = ROOT }
-				has_communications = ROOT
-			}
-		}
+		trigger = { any_country = { merc_menu_3_is_known_target_exd = yes } }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				NOT = { has_country_flag = "merc_op_liberation" }
-				NOT = { has_country_flag = "merc_op_raid" }
+				merc_menu_3_has_valid_operation_exd = yes
 			}
 		}
-		hidden_effect = {
-			subtract_variable = { which = "MercMultiplier" value = 0.2 }
-			merc_account_update_multiplier = yes
-			subtract_variable = {
-				which = "MercSuccess"
-				value = 10
-			}
-			set_country_flag = "merc_target_exd"
-			country_event = { id = mercMenu.1100 }
-		}
+		hidden_effect = { merc_menu_3_target_exd = yes }
 	}
 	option = {
 		name = merc.target.ai
-		trigger = {
-			any_country = {
-				is_country_type = "ai_empire"
-				NOT = { is_same_value = ROOT }
-				has_communications = ROOT
-			}
-		}
+		trigger = { any_country = { merc_menu_3_is_known_target_airevolt = yes } }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				NOT = { has_country_flag = "merc_op_spaceport" }
-				NOT = { has_country_flag = "merc_op_raid" }
+				merc_menu_3_has_valid_operation_airevolt = yes
 			}
 		}
-		hidden_effect = {
-			subtract_variable = { which = "MercMultiplier" value = 0.1 }
-			merc_account_update_multiplier = yes
-			subtract_variable = {
-				which = "MercSuccess"
-				value = 5
-			}
-			subtract_variable = {
-				which = "MercDetect"
-				value = 5
-			}
-			set_country_flag = "merc_target_airevolt"
-			country_event = { id = mercMenu.1100 }
-		}
+		hidden_effect = { merc_menu_3_target_airevolt = yes }
 	}
 }
 
@@ -194,9 +150,29 @@ country_event = {
 				merc_target_default = { text = "merc.target.selected.default" }
 				merc_target_fallen = { text = "merc.target.selected.fallen" }
 				merc_target_swarm = { text = "merc.target.selected.swarm" }
-				merc_target_exd = { text = "merc.target.selected.ed" }
-				merc_target_airevolt = { text = "merc.target.selected.ai" }
+				merc_target_exd = { text = "merc.target.selected.exd" }
+				merc_target_airevolt = { text = "merc.target.selected.airevolt" }
 			}
+			text = newline
+			switch = {
+				trigger = has_country_flag
+				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
+				merc_op_liberation = { text = "merc.param.operation.liberate" }
+				merc_op_raid = { text = "merc.param.operation.raid" }
+				merc_op_fleet = { text = "merc.param.operation.fleet" }
+			}
+			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
+			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
+			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+			text = "merc.param.success"
+			text = "merc.param.detection"
+			text = newline
+			text = "merc.param.multiplier.notyet"
+			text = "merc.param.multiplier.trust"
+			text = "merc.param.multiplier.target"
 		}
 	}
 	is_triggered_only = yes
@@ -214,7 +190,7 @@ country_event = {
 		# ZZZ of invalidating/unsetting event targets. I can do it, of course,
 		# ZZZ with some extra country flags and such. Maybe I will.
 		every_country = {
-			limit = { fmerc_is_targetted_country_type = yes }
+			limit = { merc_menu_3_is_targetted_type = yes }
 			set_country_flag = "fmerc_temp_country"
 		}
 		set_variable = {
@@ -226,90 +202,70 @@ country_event = {
 				any_country = { has_country_flag = "fmerc_temp_country" }
 				check_variable = {
 					which = "FMercCountry"
-					value < 20
+					value < 21
 				}
 			}
 			random_country = {
 				limit = { has_country_flag = "fmerc_temp_country" }
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 1 } } }
-					save_event_target_as = fmerc_temp_country_1
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 1 } } }
+					save_event_target_as = merc_tmp_1
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 2 } } }
-					save_event_target_as = fmerc_temp_country_2
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 2 } } }
+					save_event_target_as = merc_tmp_2
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 3 } } }
-					save_event_target_as = fmerc_temp_country_3
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 3 } } }
+					save_event_target_as = merc_tmp_3
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 4 } } }
-					save_event_target_as = fmerc_temp_country_4
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 4 } } }
+					save_event_target_as = merc_tmp_4
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 5 } } }
-					save_event_target_as = fmerc_temp_country_5
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 5 } } }
+					save_event_target_as = merc_tmp_5
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 6 } } }
-					save_event_target_as = fmerc_temp_country_6
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 6 } } }
+					save_event_target_as = merc_tmp_6
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 7 } } }
-					save_event_target_as = fmerc_temp_country_7
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 7 } } }
+					save_event_target_as = merc_tmp_7
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 8 } } }
-					save_event_target_as = fmerc_temp_country_8
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 8 } } }
+					save_event_target_as = merc_tmp_8
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 9 } } }
-					save_event_target_as = fmerc_temp_country_9
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 9 } } }
+					save_event_target_as = merc_tmp_9
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 10 } } }
-					save_event_target_as = fmerc_temp_country_10
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 10 } } }
+					save_event_target_as = merc_tmp_10
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 11 } } }
-					save_event_target_as = fmerc_temp_country_11
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 11 } } }
+					save_event_target_as = merc_tmp_11
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 12 } } }
-					save_event_target_as = fmerc_temp_country_12
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 12 } } }
+					save_event_target_as = merc_tmp_12
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 13 } } }
-					save_event_target_as = fmerc_temp_country_13
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 13 } } }
+					save_event_target_as = merc_tmp_13
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 14 } } }
-					save_event_target_as = fmerc_temp_country_14
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 14 } } }
+					save_event_target_as = merc_tmp_14
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 15 } } }
-					save_event_target_as = fmerc_temp_country_15
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 15 } } }
+					save_event_target_as = merc_tmp_15
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 16 } } }
-					save_event_target_as = fmerc_temp_country_16
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 16 } } }
+					save_event_target_as = merc_tmp_16
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 17 } } }
-					save_event_target_as = fmerc_temp_country_17
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 17 } } }
+					save_event_target_as = merc_tmp_17
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 18 } } }
-					save_event_target_as = fmerc_temp_country_18
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 18 } } }
+					save_event_target_as = merc_tmp_18
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 19 } } }
-					save_event_target_as = fmerc_temp_country_19
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 19 } } }
+					save_event_target_as = merc_tmp_19
 				}
-				if = {
-					limit = { PREV = { check_variable = { which = "FMercCountry" value = 20 } } }
-					save_event_target_as = fmerc_temp_country_20
+				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 20 } } }
+					save_event_target_as = merc_tmp_20
 				}
 				remove_country_flag = "fmerc_temp_country"
 			}
@@ -324,371 +280,291 @@ country_event = {
 		}
 	}
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = merc.back
+	# 	name = "merc.back"
 	# 	hidden_effect = { country_event = { id = mercMenu.1000 } }
 	# }
 	option = {
-		name = "[fmerc_temp_country_1.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_1 }
+		name = "merc.country.1.button"
+		trigger = { exists = event_target:merc_tmp_1 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_1 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_1 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_1 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_1 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_2.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_2 }
+		name = "merc.country.2.button"
+		trigger = { exists = event_target:merc_tmp_2 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_2 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_2 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_2 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_2 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_3.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_3 }
+		name = "merc.country.3.button"
+		trigger = { exists = event_target:merc_tmp_3 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_3 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_3 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_3 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_3 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_4.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_4 }
+		name = "merc.country.4.button"
+		trigger = { exists = event_target:merc_tmp_4 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_4 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_4 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_4 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_4 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_5.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_5 }
+		name = "merc.country.5.button"
+		trigger = { exists = event_target:merc_tmp_5 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_5 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_5 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_5 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_5 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_6.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_6 }
+		name = "merc.country.6.button"
+		trigger = { exists = event_target:merc_tmp_6 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_6 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_6 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_6 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_6 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_7.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_7 }
+		name = "merc.country.7.button"
+		trigger = { exists = event_target:merc_tmp_7 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_7 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_7 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_7 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_7 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_8.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_8 }
+		name = "merc.country.8.button"
+		trigger = { exists = event_target:merc_tmp_8 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_8 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_8 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_8 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_8 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_9.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_9 }
+		name = "merc.country.9.button"
+		trigger = { exists = event_target:merc_tmp_9 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_9 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_9 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_9 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_9 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_10.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_10 }
+		name = "merc.country.10.button"
+		trigger = { exists = event_target:merc_tmp_10 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_10 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_10 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_10 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_10 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_11.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_11 }
+		name = "merc.country.11.button"
+		trigger = { exists = event_target:merc_tmp_11 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_11 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_11 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_11 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_11 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_12.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_12 }
+		name = "merc.country.12.button"
+		trigger = { exists = event_target:merc_tmp_12 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_12 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_12 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_12 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_12 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_13.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_13 }
+		name = "merc.country.13.button"
+		trigger = { exists = event_target:merc_tmp_13 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_13 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_13 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_13 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_13 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_14.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_14 }
+		name = "merc.country.14.button"
+		trigger = { exists = event_target:merc_tmp_14 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_14 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_14 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_14 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_14 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_15.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_15 }
+		name = "merc.country.15.button"
+		trigger = { exists = event_target:merc_tmp_15 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_15 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_15 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_15 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_15 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_16.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_16 }
+		name = "merc.country.16.button"
+		trigger = { exists = event_target:merc_tmp_16 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_16 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_16 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_16 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_16 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_17.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_17 }
+		name = "merc.country.17.button"
+		trigger = { exists = event_target:merc_tmp_17 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_17 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_17 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_17 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_17 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_18.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_18 }
+		name = "merc.country.18.button"
+		trigger = { exists = event_target:merc_tmp_18 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_18 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_18 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_18 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_18 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_19.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_19 }
+		name = "merc.country.19.button"
+		trigger = { exists = event_target:merc_tmp_19 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_19 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_19 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_19 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_19 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
 	option = {
-		name = "[fmerc_temp_country_20.GetName]"
-		trigger = { exists = event_target:fmerc_temp_country_20 }
+		name = "merc.country.20.button"
+		trigger = { exists = event_target:merc_tmp_20 }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				event_target:fmerc_temp_country_20 = {
-					fmerc_is_valid_country = yes
-				}
+				event_target:merc_tmp_20 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
 		hidden_effect = {
-			event_target:fmerc_temp_country_20 = {
-				save_event_target_as = fmerc_target_country
-			}
+			event_target:merc_tmp_20 = { save_event_target_as = fmerc_target_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}

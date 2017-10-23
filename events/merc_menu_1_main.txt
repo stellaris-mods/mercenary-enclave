@@ -69,7 +69,6 @@ country_event = {
 			}
 		}
 	}
-
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -81,13 +80,10 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	immediate = {
-		fmerc_reset_diplo_screen = yes
-		set_country_flag = "fmerc_diplomacy_engaged"
-	}
+	immediate = { set_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
@@ -230,7 +226,7 @@ country_event = {
 	}
 	immediate = { set_country_flag = "fmerc_diplomacy_engaged" }
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
@@ -239,20 +235,14 @@ country_event = {
 country_event = {
 	id = mercMenu.110
 	title = merc.name
-
 	desc = {
-		trigger = {
-			has_country_flag = "fmerc_allow_stations"
-		}
+		trigger = { has_country_flag = "fmerc_allow_stations" }
 		text = merc.stationaccess.open
 	}
 	desc = {
-		trigger = {
-			NOT = { has_country_flag = "fmerc_allow_stations" }
-		}
+		trigger = { NOT = { has_country_flag = "fmerc_allow_stations" } }
 		text = merc.stationaccess.close
 	}
-
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -279,20 +269,14 @@ country_event = {
 country_event = {
 	id = mercMenu.150
 	title = merc.name
-
 	desc = {
-		trigger = {
-			has_modifier = merc_enclave_insurance
-		}
+		trigger = { has_modifier = merc_enclave_insurance }
 		text = merc.insurance.buy
 	}
 	desc = {
-		trigger = {
-			NOT = { has_modifier = merc_enclave_insurance }
-		}
+		trigger = { NOT = { has_modifier = merc_enclave_insurance } }
 		text = merc.insurance.cancel
 	}
-
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -304,12 +288,12 @@ country_event = {
 	}
 
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	option = {
-		name = merc.back
+		name = "merc.back"
 		hidden_effect = {
 			country_event = { id = mercMenu.101 }
 		}

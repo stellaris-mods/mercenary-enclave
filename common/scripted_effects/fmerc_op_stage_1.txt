@@ -306,6 +306,7 @@ fmerc_stage1_create_mercenaries = {
 }
 
 # event_target:fmerc_target_country should be set before this
+# but it might not be, in which case we just abort operation immediately
 # Scope is the buyer country
 fmerc_init_stage1 = {
 	log = "Stage 1: Init Mercenary Operations"
@@ -445,6 +446,7 @@ fmerc_init_stage1 = {
 			plantoid_01 = { set_graphical_culture = plantoid_01 }
 			reptilian_01 = { set_graphical_culture = reptilian_01 }
 			default = {
+				# XXX set a random one
 				set_graphical_culture = mammalian_01
 			}
 		}

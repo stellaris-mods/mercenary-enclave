@@ -24,7 +24,32 @@ namespace = mercMenu
 country_event = {
 	id = mercMenu.2000
 	title = merc.disguise.name
-	desc = merc.disguise.desc
+	desc = {
+		trigger = {
+			text = "merc.disguise.desc"
+			text = newline
+			text = "merc.param.target"
+			switch = {
+				trigger = has_country_flag
+				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
+				merc_op_liberation = { text = "merc.param.operation.liberate" }
+				merc_op_raid = { text = "merc.param.operation.raid" }
+				merc_op_fleet = { text = "merc.param.operation.fleet" }
+			}
+			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
+			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence" check_variable = { which = "MercCostInfluence" value > 0 } }
+			success_text = { text = "merc.param.minerals.monthly" check_variable = { which = "MercMonthlyCost" value > 0 } }
+			success_text = { text = "merc.param.energy.monthly" check_variable = { which = "MercMonthlyCostEnergy" value > 0 } }
+			success_text = { text = "merc.param.influence.monthly" check_variable = { which = "MercMonthlyCostInfluence" value > 0 } }
+			text = "merc.param.success"
+			text = "merc.param.detection"
+			text = newline
+			text = "merc.param.multiplier.notyet"
+			text = "merc.param.multiplier.trust"
+			text = "merc.param.multiplier.target"
+		}
+	}
 	is_triggered_only = yes
 	diplomatic = yes
 	custom_gui = "enclave_trader_window"
@@ -35,107 +60,44 @@ country_event = {
 		room = enclave_trader_room
 	}
 
+	immediate = { merc_menu_4_disguise_init = yes }
+
 	# ZZZ from this point on we can't go "back" in the menu yet, I need to
 	# ZZZ reset the multipliers and such
+	# ZZZ We can't even reopen the main menu, because event targets wont be
+	# ZZZ invalidated/removed.
 	option = {
-		name = merc.close
+		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 	# option = {
-	# 	name = merc.back
+	# 	name = "merc.back"
 	# 	hidden_effect = { country_event = { id = mercMenu.1000 } }
 	# }
 	option = {
-		name = merc.disguise.random
-		custom_tooltip = merc.disguise.random.tooltip
-		hidden_effect = {
-			subtract_variable = { which = "MercMultiplier" value = 0.05 }
-			merc_account_update_multiplier = yes
-			change_variable = {
-				which = "MercDetect"
-				value = 5
-			}
-			set_country_flag = "merc_disguise_random"
-			if = { limit = { has_global_flag = "debug" }
-				country_event = { id = mercMenu.9000 }
-			else = {
-				country_event = { id = mercMenu.2100 }
-			} }
-		}
+		name = "merc.disguise.random.button"
+		custom_tooltip = "merc.disguise.random.tooltip"
+		hidden_effect = { merc_menu_4_disguise_random = yes }
 	}
 	option = {
-		name = merc.disguise.other
-		custom_tooltip = merc.disguise.other.tooltip
-		hidden_effect = {
-			change_variable = { which = "MercMultiplier" value = 0.05 }
-			merc_account_update_multiplier = yes
-			subtract_variable = {
-				which = "MercDetect"
-				value = 5
-			}
-			set_country_flag = "merc_disguise_nonbuyer"
-			if = { limit = { has_global_flag = "debug" }
-				country_event = { id = mercMenu.9000 }
-			else = {
-				country_event = { id = mercMenu.2100 }
-			} }
-		}
+		name = "merc.disguise.nonbuyer.button"
+		custom_tooltip = "merc.disguise.nonbuyer.tooltip"
+		hidden_effect = { merc_menu_4_disguise_nonbuyer = yes }
 	}
 	option = {
-		name = merc.disguise.same
-		custom_tooltip = merc.disguise.same.tooltip
-		hidden_effect = {
-			change_variable = {
-				which = "MercSuccess"
-				value = 15
-			}
-			change_variable = {
-				which = "MercDetect"
-				value = 10
-			}
-			set_country_flag = "merc_disguise_buyer"
-			if = { limit = { has_global_flag = "debug" }
-				country_event = { id = mercMenu.9000 }
-			else = {
-				country_event = { id = mercMenu.2100 }
-			} }
-		}
+		name = "merc.disguise.buyer.button"
+		custom_tooltip = "merc.disguise.buyer.tooltip"
+		hidden_effect = { merc_menu_4_disguise_buyer = yes }
 	}
 	option = {
-		name = merc.disguise.pirate
-		custom_tooltip = merc.disguise.pirate.tooltip
-		hidden_effect = {
-			subtract_variable = { which = "MercMultiplier" value = 0.05 }
-			merc_account_update_multiplier = yes
-			subtract_variable = {
-				which = "MercSuccess"
-				value = 10
-			}
-			set_country_flag = "merc_disguise_pirate"
-			if = { limit = { has_global_flag = "debug" }
-				country_event = { id = mercMenu.9000 }
-			else = {
-				country_event = { id = mercMenu.2100 }
-			} }
-		}
+		name = "merc.disguise.pirate.button"
+		custom_tooltip = "merc.disguise.pirate.tooltip"
+		hidden_effect = { merc_menu_4_disguise_pirate = yes }
 	}
 	option = {
-		name = merc.disguise.monster
-		custom_tooltip = merc.disguise.monster.tooltip
-		hidden_effect = {
-			change_variable = { which = "MercMultiplier" value = 0.15 }
-			merc_account_update_multiplier = yes
-			subtract_variable = {
-				which = "MercDetect"
-				value = 10
-			}
-			set_country_flag = "merc_disguise_xenofauna"
-			if = { limit = { has_global_flag = "debug" }
-				country_event = { id = mercMenu.9000 }
-			else = {
-				country_event = { id = mercMenu.2100 }
-			} }
-		}
+		name = "merc.disguise.xenofauna.button"
+		custom_tooltip = "merc.disguise.xenofauna.tooltip"
+		hidden_effect = { merc_menu_4_disguise_xenofauna = yes }
 	}
 }

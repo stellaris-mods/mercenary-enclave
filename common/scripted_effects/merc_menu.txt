@@ -1,0 +1,243 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+#
+# I moved most of the "meat" from the menu event files here, because the rest
+# of the code in the events file is just filler, and only serves to distract
+# the brain.
+#
+# Most of the triggers are also in scripted_triggers/merc_menu_triggers.txt
+#
+# Hopefully this allows me to keep the editing of the actual menu event files
+# to a minimum.
+#
+# _init effects are invoked when a menu opens
+# _apply effects are invoked when one of the selections are picked
+#
+
+
+###############################################################################
+# Operations menu
+#
+# The operation type sets the base cost/success/detect values for all missions,
+# and the target type + disguise type modify on top of the base values.
+#
+
+# Reset all variables used in any text/tooltips
+merc_menu_2_operation_init = {
+	remove_country_flag = "merc_op_spaceport"
+	remove_country_flag = "merc_op_raid"
+	remove_country_flag = "merc_op_liberation"
+	remove_country_flag = "merc_op_fleet"
+
+	remove_country_flag = "merc_op_amoeba"
+	remove_country_flag = "merc_op_cloud"
+	remove_country_flag = "merc_op_crystal"
+	remove_country_flag = "merc_op_pirate"
+	remove_country_flag = "merc_op_drone"
+
+	merc_account_set_trust_multiplier = yes
+
+	set_variable = { which = "MercCost" value = 0 }
+	set_variable = { which = "MercCostEnergy" value = 0 }
+	set_variable = { which = "MercCostInfluence" value = 0 }
+	set_variable = { which = "MercMonthlyCost" value = 0 }
+	set_variable = { which = "MercMonthlyCostEnergy" value = 0 }
+	set_variable = { which = "MercMonthlyCostInfluence" value = 0 }
+
+	set_variable = { which = "MercSuccess" value = 0 }
+	set_variable = { which = "MercDetect" value = 0 }
+}
+
+merc_menu_2_operation_apply = {
+	country_event = { id = mercMenu.1000 }
+}
+
+# These operation-specific effects are invoked
+merc_menu_2_operation_spaceport = {
+	set_variable = { which = "MercCostEnergy" value = 3000 }
+	set_variable = { which = "MercSuccess" value = 80 }
+	set_variable = { which = "MercDetect" value = 35 }
+	set_country_flag = "merc_op_spaceport"
+	merc_menu_2_operation_apply = yes
+}
+
+merc_menu_2_operation_liberate = {
+	set_variable = { which = "MercCostEnergy" value = 7000 }
+	set_variable = { which = "MercCostInfluence" value = 75 }
+	set_variable = { which = "MercSuccess" value = 75 }
+	set_variable = { which = "MercDetect" value = 50 }
+	set_country_flag = "merc_op_liberation"
+	merc_menu_2_operation_apply = yes
+}
+
+merc_menu_2_operation_raid = {
+	set_variable = { which = "MercCostEnergy" value = 2000 }
+	set_variable = { which = "MercSuccess" value = 95 }
+	set_variable = { which = "MercDetect" value = 15 }
+	set_country_flag = "merc_op_raid"
+	merc_menu_2_operation_apply = yes
+}
+
+merc_menu_2_operation_fleet = {
+	set_variable = { which = "MercCost" value = 500 }
+	set_variable = { which = "MercCostEnergy" value = 5000 }
+	set_variable = { which = "MercSuccess" value = 80 }
+	set_variable = { which = "MercDetect" value = 25 }
+	set_country_flag = "merc_op_fleet"
+	merc_menu_2_operation_apply = yes
+}
+
+merc_menu_2_operation_clear = {
+	# noop
+}
+
+###############################################################################
+# Target selection menu
+#
+
+merc_menu_3_target_init = {
+	remove_country_flag = "merc_target_default"
+	remove_country_flag = "merc_target_fallen"
+	remove_country_flag = "merc_target_swarm"
+	remove_country_flag = "merc_target_exd"
+	remove_country_flag = "merc_target_airevolt"
+
+	set_variable = { which = "MercTargetCostMultiplier" value = 0 }
+	set_variable = { which = "MercTargetSuccessMultiplier" value = 0 }
+	set_variable = { which = "MercTargetDetectMultiplier" value = 0 }
+}
+
+merc_menu_3_target_apply = {
+	country_event = { id = mercMenu.1100 }
+}
+
+merc_menu_3_target_default = {
+	set_variable = { which = "MercTargetCostMultiplier" value = -5 }
+	set_variable = { which = "MercTargetSuccessMultiplier" value = 5 }
+	set_variable = { which = "MercTargetDetectMultiplier" value = 5 }
+	set_country_flag = "merc_target_default"
+	merc_menu_3_target_apply = yes
+}
+
+merc_menu_3_target_fallen = {
+	set_variable = { which = "MercTargetCostMultiplier" value = 35 }
+	set_variable = { which = "MercTargetSuccessMultiplier" value = -5 }
+	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
+	set_country_flag = "merc_target_fallen"
+	merc_menu_3_target_apply = yes
+}
+
+merc_menu_3_target_swarm = {
+	set_variable = { which = "MercTargetCostMultiplier" value = 20 }
+	set_variable = { which = "MercTargetSuccessMultiplier" value = -10 }
+	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
+	set_country_flag = "merc_target_swarm"
+	cmerc_menu_3_target_apply = yes
+}
+
+merc_menu_3_target_exd = {
+	set_variable = { which = "MercTargetCostMultiplier" value = 30 }
+	set_variable = { which = "MercTargetSuccessMultiplier" value = -10 }
+	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
+	set_country_flag = "merc_target_exd"
+	merc_menu_3_target_apply = yes
+}
+
+merc_menu_3_target_airevolt = {
+	set_variable = { which = "MercTargetCostMultiplier" value = 10 }
+	set_variable = { which = "MercTargetSuccessMultiplier" value = -5 }
+	set_variable = { which = "MercTargetDetectMultiplier" value = -10 }
+	set_country_flag = "merc_target_airevolt"
+	merc_menu_3_target_apply = yes
+}
+
+###############################################################################
+# The disguise menu.
+#
+# Every disguise applies different modifiers to the operation. We need to
+# keep track of, and set, these variables accordingly. The reason we use
+# differently named variables for every disguise type and such, is so that
+# it's easier to keep the localisation tooltips/texts updated.
+#
+
+merc_menu_4_disguise_init = {
+	remove_country_flag = "merc_disguise_random"
+	remove_country_flag = "merc_disguise_nonbuyer"
+	remove_country_flag = "merc_disguise_buyer"
+	remove_country_flag = "merc_disguise_pirate"
+	remove_country_flag = "merc_disguise_xenofauna"
+
+	set_variable = { which = "MercDisguiseCostMultiplier" value = 0 }
+	set_variable = { which = "MercDisguiseSuccessMultiplier" value = 0 }
+	set_variable = { which = "MercDisguiseDetectMultiplier" value = 0 }
+}
+
+merc_menu_4_disguise_apply = {
+	if = { limit = { has_global_flag = "debug" }
+		country_event = { id = mercMenu.9000 }
+	else = {
+		country_event = { id = mercMenu.2100 }
+	} }
+}
+
+# Negative: Cost + / Success - / Detect +
+# Positive: Cost - / Success + / Detect -
+# Make sure they all have one positive + one negative at least
+# And that they total to a positive +5 difference
+
+merc_menu_4_disguise_random = {
+	set_variable = { which = "MercDisguiseCostMultiplier" value = 5 }     # Negative
+	set_variable = { which = "MercDisguiseSuccessMultiplier" value = -5 } # Negative
+	set_variable = { which = "MercDisguiseDetectMultiplier" value = -15 } # Positive
+	set_country_flag = "merc_disguise_random"
+	merc_menu_4_disguise_apply = yes
+}
+
+merc_menu_4_disguise_nonbuyer = {
+	set_variable = { which = "MercDisguiseCostMultiplier" value = 10 }    # Negative
+	set_variable = { which = "MercDisguiseSuccessMultiplier" value = -5 } # Negative
+	set_variable = { which = "MercDisguiseDetectMultiplier" value = -20 } # Positive
+	set_country_flag = "merc_disguise_nonbuyer"
+	merc_menu_4_disguise_apply = yes
+}
+
+merc_menu_4_disguise_buyer = {
+	set_variable = { which = "MercDisguiseCostMultiplier" value = -5 }    # Positive
+	set_variable = { which = "MercDisguiseSuccessMultiplier" value = 15 } # Positive
+	set_variable = { which = "MercDisguiseDetectMultiplier" value = 15 }  # Negative
+	set_country_flag = "merc_disguise_buyer"
+	merc_menu_4_disguise_apply = yes
+}
+
+merc_menu_4_disguise_pirate = {
+	set_variable = { which = "MercDisguiseCostMultiplier" value = -10 }    # Positive
+	set_variable = { which = "MercDisguiseSuccessMultiplier" value = -10 } # Negative
+	set_variable = { which = "MercDisguiseDetectMultiplier" value = -5 }   # Positive
+	set_country_flag = "merc_disguise_pirate"
+	merc_menu_4_disguise_apply = yes
+}
+
+merc_menu_4_disguise_xenofauna = {
+	set_variable = { which = "MercDisguiseCostMultiplier" value = 15 }    # Negative
+	set_variable = { which = "MercDisguiseSuccessMultiplier" value = 10 } # Positive
+	set_variable = { which = "MercDisguiseDetectMultiplier" value = -10 } # Positive
+	set_country_flag = "merc_disguise_xenofauna"
+	merc_menu_4_disguise_apply = yes
+}
