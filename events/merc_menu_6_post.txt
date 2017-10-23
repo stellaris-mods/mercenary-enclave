@@ -94,6 +94,8 @@ country_event = {
 
 # Buyer is notified that operation has been completed
 # FROM is the mercenary operations country
+# XXX make this diplomatic perhaps? but at least do some basic math and check
+# XXX if the operation country destroyed a ton of stuff then demand more pay
 country_event = {
 	id = mercMenu.9004
 	title = merc.completed.title
