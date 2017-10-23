@@ -26,16 +26,6 @@ merc_account_set_trust_multiplier = {
 	merc_account_internal_apply_custom_trust = yes
 }
 
-set_variable = { which = "MercTrustMultiplier" value = 120 }
-
-	set_variable = { which = "MercTargetCostMultiplier" value = 35 }
-	set_variable = { which = "MercTargetSuccessMultiplier" value = -5 }
-	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
-
-	set_variable = { which = "MercDisguiseCostMultiplier" value = 10 }    # Negative
-	set_variable = { which = "MercDisguiseSuccessMultiplier" value = -5 } # Negative
-	set_variable = { which = "MercDisguiseDetectMultiplier" value = -20 } # Positive
-
 merc_account_apply_all_modifiers = {
 	# Success
 	change_variable = { which = "MercSuccess" value = "MercTargetSuccessMultiplier" }

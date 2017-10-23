@@ -187,7 +187,7 @@ merc_menu_3_target_swarm = {
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -10 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
 	set_country_flag = "merc_target_swarm"
-	cmerc_menu_3_target_apply = yes
+	merc_menu_3_target_apply = yes
 }
 
 merc_menu_3_target_exd = {
