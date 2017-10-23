@@ -32,7 +32,6 @@ fmerc_stage2_init_liberation = {
 					any_planet = {
 						exists = owner
 						is_owned_by = event_target:fmerc_target_country
-						is_controlled_by = event_target:fmerc_target_country
 						fmerc_valid_liberation_planet = yes
 					}
 				}
@@ -40,7 +39,6 @@ fmerc_stage2_init_liberation = {
 					limit = {
 						exists = owner
 						is_owned_by = event_target:fmerc_target_country
-						is_controlled_by = event_target:fmerc_target_country
 						fmerc_valid_liberation_planet = yes
 					}
 					log = "Liberation: Target planet is [this.GetName] in [This.GetStarName]."

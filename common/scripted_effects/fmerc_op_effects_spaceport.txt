@@ -31,7 +31,6 @@ fmerc_stage2_init_spaceport = {
 					any_planet = {
 						exists = owner
 						owner = { is_same_value = event_target:fmerc_target_country }
-						controller = { is_same_value = event_target:fmerc_target_country }
 						fmerc_valid_spaceport_planet = yes
 					}
 				}
@@ -39,7 +38,6 @@ fmerc_stage2_init_spaceport = {
 					limit = {
 						exists = owner
 						owner = { is_same_value = event_target:fmerc_target_country }
-						controller = { is_same_value = event_target:fmerc_target_country }
 						fmerc_valid_spaceport_planet = yes
 					}
 					spaceport = {

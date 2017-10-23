@@ -74,7 +74,6 @@ fmerc_is_valid_country = {
 			}
 			any_owned_planet = {
 				fmerc_valid_spaceport_planet = yes
-				controller = { is_same_value = PREVPREV }
 			}
 			num_owned_planets > 2
 		}
@@ -84,7 +83,6 @@ fmerc_is_valid_country = {
 			}
 			NOT = { has_ethic = ethic_gestalt_consciousness }
 			any_owned_planet = {
-				controller = { is_same_value = PREVPREV }
 				fmerc_valid_liberation_planet = yes
 			}
 			num_owned_planets > 2
