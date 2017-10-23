@@ -40,19 +40,15 @@ merc_account_apply_all_modifiers = {
 	# Success
 	change_variable = { which = "MercSuccess" value = "MercTargetSuccessMultiplier" }
 	change_variable = { which = "MercSuccess" value = "MercDisguiseSuccessMultiplier" }
-
 	# Detection
 	change_variable = { which = "MercDetect" value = "MercTargetDetectMultiplier" }
 	change_variable = { which = "MercDetect" value = "MercDisguiseDetectMultiplier" }
-
 	# Sum up all cost modifiers
 	set_variable = { which = "MercCostMult" value = "MercTrustMultiplier" }
 	change_variable = { which = "MercCostMult" value = "MercTargetCostMultiplier" }
 	change_variable = { which = "MercCostMult" value = "MercDisguiseCostMultiplier" }
-	log = "Mult: [this.MercCostMult]"
 	# Make it usable
 	divide_variable = { which = "MercCostMult" value = 100 }
-	log = "Mult: [this.MercCostMult]"
 
 	if = { limit = { check_variable = { which = "MercCost" value > 0 } }
 		multiply_variable = { which = "MercCost" value = "MercCostMult" }

@@ -31,6 +31,41 @@
 # _apply effects are invoked when one of the selections are picked
 #
 
+# This script simply prints out all the possible permutations, so that I can
+# easily see whether any operation results in a success or detect chance of
+# either more than 95 or lower than 5.
+#
+# local base = {
+# 	["spaceport "] = { success = 75, detect = 50 },
+# 	["liberation"] = { success = 70, detect = 55 },
+# 	["raid      "] = { success = 75, detect = 45 },
+# 	["fleet     "] = { success = 75, detect = 45 },
+# }
+# local target = {
+# 	["default "] = { success = 5, detect = 5 },
+# 	["fallen  "] = { success = -5, detect = -20 },
+# 	["swarm   "] = { success = -10, detect = -20 },
+# 	["exd     "] = { success = -10, detect = -20 },
+# 	["airevolt"] = { success = -5, detect = -10 },
+# }
+# local disguise = {
+# 	["random   "] = { success = -5, detect = -15 },
+# 	["nonbuyer "] = { success = -5, detect = -20 },
+# 	["buyer    "] = { success = 15, detect = 15 },
+# 	["pirate   "] = { success = -10, detect = -5 },
+# 	["xenofauna"] = { success = 10, detect = -10 }
+# }
+# for operation, chances in pairs(base) do
+# 	for country, typeMods in pairs(target) do
+# 		for outfit, disguiseMods in pairs(disguise) do
+# 			local totalSuccess = chances.success + typeMods.success + disguiseMods.success
+# 			local totalDetect = chances.detect + typeMods.detect + disguiseMods.detect
+# 			local p = {operation, country, outfit, totalSuccess, totalDetect}
+# 			print(table.concat(p, "\t"))
+# 		end
+# 	end
+# end
+
 
 ###############################################################################
 # Operations menu
@@ -72,8 +107,8 @@ merc_menu_2_operation_apply = {
 # These operation-specific effects are invoked
 merc_menu_2_operation_spaceport = {
 	set_variable = { which = "MercCostEnergy" value = 3000 }
-	set_variable = { which = "MercSuccess" value = 80 }
-	set_variable = { which = "MercDetect" value = 35 }
+	set_variable = { which = "MercSuccess" value = 75 }
+	set_variable = { which = "MercDetect" value = 50 }
 	set_country_flag = "merc_op_spaceport"
 	merc_menu_2_operation_apply = yes
 }
@@ -81,16 +116,16 @@ merc_menu_2_operation_spaceport = {
 merc_menu_2_operation_liberate = {
 	set_variable = { which = "MercCostEnergy" value = 7000 }
 	set_variable = { which = "MercCostInfluence" value = 75 }
-	set_variable = { which = "MercSuccess" value = 75 }
-	set_variable = { which = "MercDetect" value = 50 }
+	set_variable = { which = "MercSuccess" value = 70 }
+	set_variable = { which = "MercDetect" value = 55 }
 	set_country_flag = "merc_op_liberation"
 	merc_menu_2_operation_apply = yes
 }
 
 merc_menu_2_operation_raid = {
 	set_variable = { which = "MercCostEnergy" value = 2000 }
-	set_variable = { which = "MercSuccess" value = 95 }
-	set_variable = { which = "MercDetect" value = 15 }
+	set_variable = { which = "MercSuccess" value = 75 }
+	set_variable = { which = "MercDetect" value = 45 }
 	set_country_flag = "merc_op_raid"
 	merc_menu_2_operation_apply = yes
 }
@@ -98,8 +133,8 @@ merc_menu_2_operation_raid = {
 merc_menu_2_operation_fleet = {
 	set_variable = { which = "MercCost" value = 500 }
 	set_variable = { which = "MercCostEnergy" value = 5000 }
-	set_variable = { which = "MercSuccess" value = 80 }
-	set_variable = { which = "MercDetect" value = 25 }
+	set_variable = { which = "MercSuccess" value = 75 }
+	set_variable = { which = "MercDetect" value = 45 }
 	set_country_flag = "merc_op_fleet"
 	merc_menu_2_operation_apply = yes
 }
@@ -129,6 +164,7 @@ merc_menu_3_target_apply = {
 }
 
 merc_menu_3_target_default = {
+	# If you change these, please modify both the l10n string and the script above
 	set_variable = { which = "MercTargetCostMultiplier" value = -5 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = 5 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = 5 }
@@ -137,6 +173,7 @@ merc_menu_3_target_default = {
 }
 
 merc_menu_3_target_fallen = {
+	# If you change these, please modify both the l10n string and the script above
 	set_variable = { which = "MercTargetCostMultiplier" value = 35 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -5 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
@@ -145,6 +182,7 @@ merc_menu_3_target_fallen = {
 }
 
 merc_menu_3_target_swarm = {
+	# If you change these, please modify both the l10n string and the script above
 	set_variable = { which = "MercTargetCostMultiplier" value = 20 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -10 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
@@ -153,6 +191,7 @@ merc_menu_3_target_swarm = {
 }
 
 merc_menu_3_target_exd = {
+	# If you change these, please modify both the l10n string and the script above
 	set_variable = { which = "MercTargetCostMultiplier" value = 30 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -10 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
@@ -161,11 +200,44 @@ merc_menu_3_target_exd = {
 }
 
 merc_menu_3_target_airevolt = {
+	# If you change these, please modify both the l10n string and the script above
 	set_variable = { which = "MercTargetCostMultiplier" value = 10 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -5 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -10 }
 	set_country_flag = "merc_target_airevolt"
 	merc_menu_3_target_apply = yes
+}
+
+merc_menu_3_mark_and_update_targets = {
+	# This mess right here... I really wish I had a cleaner way of doing it.
+
+	# Mark all previous event targets as invalid
+	merc_shameful_invalidate_targets = yes
+
+	every_country = {
+		limit = { merc_menu_3_is_targetted_type = yes }
+		set_country_flag = "merc_tmp"
+	}
+	set_variable = { which = "MercTmp" value = 1 }
+	while = {
+		limit = {
+			any_country = { has_country_flag = "merc_tmp" }
+			check_variable = { which = "MercTmp" value < 21 }
+		}
+		random_country = {
+			limit = { has_country_flag = "merc_tmp" }
+			remove_country_flag = "merc_tmp"
+			remove_country_flag = "merc_invalid" # Make sure this country can be seen.
+			merc_shameful_save_target = yes
+		}
+		change_variable = { which = "MercTmp" value = 1 }
+	}
+
+	# Clean up
+	every_country = {
+		limit = { has_country_flag = "merc_tmp" }
+		remove_country_flag = "merc_tmp"
+	}
 }
 
 ###############################################################################
@@ -203,6 +275,7 @@ merc_menu_4_disguise_apply = {
 # And that they total to a positive +5 difference
 
 merc_menu_4_disguise_random = {
+	# If you change these, please modify both the l10n string and the script above
 	set_variable = { which = "MercDisguiseCostMultiplier" value = 5 }     # Negative
 	set_variable = { which = "MercDisguiseSuccessMultiplier" value = -5 } # Negative
 	set_variable = { which = "MercDisguiseDetectMultiplier" value = -15 } # Positive
@@ -211,6 +284,7 @@ merc_menu_4_disguise_random = {
 }
 
 merc_menu_4_disguise_nonbuyer = {
+	# If you change these, please modify both the l10n string and the script above
 	set_variable = { which = "MercDisguiseCostMultiplier" value = 10 }    # Negative
 	set_variable = { which = "MercDisguiseSuccessMultiplier" value = -5 } # Negative
 	set_variable = { which = "MercDisguiseDetectMultiplier" value = -20 } # Positive
@@ -219,6 +293,7 @@ merc_menu_4_disguise_nonbuyer = {
 }
 
 merc_menu_4_disguise_buyer = {
+	# If you change these, please modify both the l10n string and the script above
 	set_variable = { which = "MercDisguiseCostMultiplier" value = -5 }    # Positive
 	set_variable = { which = "MercDisguiseSuccessMultiplier" value = 15 } # Positive
 	set_variable = { which = "MercDisguiseDetectMultiplier" value = 15 }  # Negative
@@ -227,6 +302,7 @@ merc_menu_4_disguise_buyer = {
 }
 
 merc_menu_4_disguise_pirate = {
+	# If you change these, please modify both the l10n string and the script above
 	set_variable = { which = "MercDisguiseCostMultiplier" value = -10 }    # Positive
 	set_variable = { which = "MercDisguiseSuccessMultiplier" value = -10 } # Negative
 	set_variable = { which = "MercDisguiseDetectMultiplier" value = -5 }   # Positive
@@ -235,6 +311,7 @@ merc_menu_4_disguise_pirate = {
 }
 
 merc_menu_4_disguise_xenofauna = {
+	# If you change these, please modify both the l10n string and the script above
 	set_variable = { which = "MercDisguiseCostMultiplier" value = 15 }    # Negative
 	set_variable = { which = "MercDisguiseSuccessMultiplier" value = 10 } # Positive
 	set_variable = { which = "MercDisguiseDetectMultiplier" value = -10 } # Positive

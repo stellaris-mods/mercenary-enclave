@@ -1,0 +1,76 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+# This code is shameful. I want to hide it. I can't for the life of me think
+# of a better, cleaner way of doing any of this.
+# I hate it. I want it to go away.
+
+merc_shameful_invalidate_targets = {
+	if = { limit = { exists = event_target:merc_tmp_1 } event_target:merc_tmp_1 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_2 } event_target:merc_tmp_2 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_3 } event_target:merc_tmp_3 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_4 } event_target:merc_tmp_4 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_5 } event_target:merc_tmp_5 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_6 } event_target:merc_tmp_6 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_7 } event_target:merc_tmp_7 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_8 } event_target:merc_tmp_8 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_9 } event_target:merc_tmp_9 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_10 } event_target:merc_tmp_10 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_11 } event_target:merc_tmp_11 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_12 } event_target:merc_tmp_12 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_13 } event_target:merc_tmp_13 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_14 } event_target:merc_tmp_14 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_15 } event_target:merc_tmp_15 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_16 } event_target:merc_tmp_16 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_17 } event_target:merc_tmp_17 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_18 } event_target:merc_tmp_18 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_19 } event_target:merc_tmp_19 = { set_country_flag = "merc_invalid" } }
+	if = { limit = { exists = event_target:merc_tmp_20 } event_target:merc_tmp_20 = { set_country_flag = "merc_invalid" } }
+}
+
+merc_shameful_validate_all_targets = {
+	every_country = {
+		limit = { has_country_flag = "merc_invalid" }
+		remove_country_flag = "merc_invalid"
+	}
+}
+
+merc_shameful_save_target = {
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 1 } } } save_event_target_as = merc_tmp_1 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 2 } } } save_event_target_as = merc_tmp_2 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 3 } } } save_event_target_as = merc_tmp_3 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 4 } } } save_event_target_as = merc_tmp_4 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 5 } } } save_event_target_as = merc_tmp_5 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 6 } } } save_event_target_as = merc_tmp_6 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 7 } } } save_event_target_as = merc_tmp_7 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 8 } } } save_event_target_as = merc_tmp_8 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 9 } } } save_event_target_as = merc_tmp_9 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 10 } } } save_event_target_as = merc_tmp_10 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 11 } } } save_event_target_as = merc_tmp_11 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 12 } } } save_event_target_as = merc_tmp_12 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 13 } } } save_event_target_as = merc_tmp_13 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 14 } } } save_event_target_as = merc_tmp_14 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 15 } } } save_event_target_as = merc_tmp_15 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 16 } } } save_event_target_as = merc_tmp_16 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 17 } } } save_event_target_as = merc_tmp_17 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 18 } } } save_event_target_as = merc_tmp_18 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 19 } } } save_event_target_as = merc_tmp_19 }
+	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 20 } } } save_event_target_as = merc_tmp_20 }
+}

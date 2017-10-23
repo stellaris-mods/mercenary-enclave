@@ -184,101 +184,8 @@ country_event = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
-	immediate = {
-		# ZZZ So this mess right here is the only reason we don't provide a
-		# ZZZ "Back" button after this step, because I don't have a good way
-		# ZZZ of invalidating/unsetting event targets. I can do it, of course,
-		# ZZZ with some extra country flags and such. Maybe I will.
-		every_country = {
-			limit = { merc_menu_3_is_targetted_type = yes }
-			set_country_flag = "fmerc_temp_country"
-		}
-		set_variable = {
-			which = "FMercCountry"
-			value = 1
-		}
-		while = {
-			limit = {
-				any_country = { has_country_flag = "fmerc_temp_country" }
-				check_variable = {
-					which = "FMercCountry"
-					value < 21
-				}
-			}
-			random_country = {
-				limit = { has_country_flag = "fmerc_temp_country" }
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 1 } } }
-					save_event_target_as = merc_tmp_1
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 2 } } }
-					save_event_target_as = merc_tmp_2
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 3 } } }
-					save_event_target_as = merc_tmp_3
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 4 } } }
-					save_event_target_as = merc_tmp_4
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 5 } } }
-					save_event_target_as = merc_tmp_5
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 6 } } }
-					save_event_target_as = merc_tmp_6
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 7 } } }
-					save_event_target_as = merc_tmp_7
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 8 } } }
-					save_event_target_as = merc_tmp_8
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 9 } } }
-					save_event_target_as = merc_tmp_9
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 10 } } }
-					save_event_target_as = merc_tmp_10
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 11 } } }
-					save_event_target_as = merc_tmp_11
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 12 } } }
-					save_event_target_as = merc_tmp_12
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 13 } } }
-					save_event_target_as = merc_tmp_13
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 14 } } }
-					save_event_target_as = merc_tmp_14
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 15 } } }
-					save_event_target_as = merc_tmp_15
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 16 } } }
-					save_event_target_as = merc_tmp_16
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 17 } } }
-					save_event_target_as = merc_tmp_17
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 18 } } }
-					save_event_target_as = merc_tmp_18
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 19 } } }
-					save_event_target_as = merc_tmp_19
-				}
-				if = { limit = { PREV = { check_variable = { which = "FMercCountry" value = 20 } } }
-					save_event_target_as = merc_tmp_20
-				}
-				remove_country_flag = "fmerc_temp_country"
-			}
-			change_variable = {
-				which = "FMercCountry"
-				value = 1
-			}
-		}
-		every_country = {
-			limit = { has_country_flag = "fmerc_temp_country" }
-			remove_country_flag = "fmerc_temp_country"
-		}
-	}
+	immediate = { merc_menu_3_mark_and_update_targets = yes }
+	after = { hidden_effect = { merc_shameful_validate_all_targets = yes } }
 	option = {
 		name = "merc.close"
 		default_hide_option = yes
@@ -290,7 +197,10 @@ country_event = {
 	# }
 	option = {
 		name = "merc.country.1.button"
-		trigger = { exists = event_target:merc_tmp_1 }
+		trigger = {
+			exists = event_target:merc_tmp_1
+			event_target:merc_tmp_1 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -304,7 +214,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.2.button"
-		trigger = { exists = event_target:merc_tmp_2 }
+		trigger = {
+			exists = event_target:merc_tmp_2
+			event_target:merc_tmp_2 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -318,7 +231,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.3.button"
-		trigger = { exists = event_target:merc_tmp_3 }
+		trigger = {
+			exists = event_target:merc_tmp_3
+			event_target:merc_tmp_3 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -332,7 +248,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.4.button"
-		trigger = { exists = event_target:merc_tmp_4 }
+		trigger = {
+			exists = event_target:merc_tmp_4
+			event_target:merc_tmp_4 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -346,7 +265,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.5.button"
-		trigger = { exists = event_target:merc_tmp_5 }
+		trigger = {
+			exists = event_target:merc_tmp_5
+			event_target:merc_tmp_5 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -360,7 +282,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.6.button"
-		trigger = { exists = event_target:merc_tmp_6 }
+		trigger = {
+			exists = event_target:merc_tmp_6
+			event_target:merc_tmp_6 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -374,7 +299,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.7.button"
-		trigger = { exists = event_target:merc_tmp_7 }
+		trigger = {
+			exists = event_target:merc_tmp_7
+			event_target:merc_tmp_7 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -388,7 +316,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.8.button"
-		trigger = { exists = event_target:merc_tmp_8 }
+		trigger = {
+			exists = event_target:merc_tmp_8
+			event_target:merc_tmp_8 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -402,7 +333,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.9.button"
-		trigger = { exists = event_target:merc_tmp_9 }
+		trigger = {
+			exists = event_target:merc_tmp_9
+			event_target:merc_tmp_9 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -416,7 +350,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.10.button"
-		trigger = { exists = event_target:merc_tmp_10 }
+		trigger = {
+			exists = event_target:merc_tmp_10
+			event_target:merc_tmp_10 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -430,7 +367,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.11.button"
-		trigger = { exists = event_target:merc_tmp_11 }
+		trigger = {
+			exists = event_target:merc_tmp_11
+			event_target:merc_tmp_11 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -444,7 +384,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.12.button"
-		trigger = { exists = event_target:merc_tmp_12 }
+		trigger = {
+			exists = event_target:merc_tmp_12
+			event_target:merc_tmp_12 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -458,7 +401,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.13.button"
-		trigger = { exists = event_target:merc_tmp_13 }
+		trigger = {
+			exists = event_target:merc_tmp_13
+			event_target:merc_tmp_13 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -472,7 +418,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.14.button"
-		trigger = { exists = event_target:merc_tmp_14 }
+		trigger = {
+			exists = event_target:merc_tmp_14
+			event_target:merc_tmp_14 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -486,7 +435,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.15.button"
-		trigger = { exists = event_target:merc_tmp_15 }
+		trigger = {
+			exists = event_target:merc_tmp_15
+			event_target:merc_tmp_15 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -500,7 +452,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.16.button"
-		trigger = { exists = event_target:merc_tmp_16 }
+		trigger = {
+			exists = event_target:merc_tmp_16
+			event_target:merc_tmp_16 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -514,7 +469,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.17.button"
-		trigger = { exists = event_target:merc_tmp_17 }
+		trigger = {
+			exists = event_target:merc_tmp_17
+			event_target:merc_tmp_17 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -528,7 +486,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.18.button"
-		trigger = { exists = event_target:merc_tmp_18 }
+		trigger = {
+			exists = event_target:merc_tmp_18
+			event_target:merc_tmp_18 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -542,7 +503,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.19.button"
-		trigger = { exists = event_target:merc_tmp_19 }
+		trigger = {
+			exists = event_target:merc_tmp_19
+			event_target:merc_tmp_19 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -556,7 +520,10 @@ country_event = {
 	}
 	option = {
 		name = "merc.country.20.button"
-		trigger = { exists = event_target:merc_tmp_20 }
+		trigger = {
+			exists = event_target:merc_tmp_20
+			event_target:merc_tmp_20 = { NOT = { has_country_flag = "merc_invalid" } }
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
