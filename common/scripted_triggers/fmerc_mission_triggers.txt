@@ -138,6 +138,7 @@ fmerc_stage1_same_culture = {
 
 # Note that this trigger is used both in the diplomacy screen, and during the mission
 fmerc_valid_liberation_planet = {
+	NOT = { has_planet_flag = "merc_error" }
 	is_occupied_flag = no
 	is_colony = yes
 	has_ground_combat = no
@@ -145,9 +146,7 @@ fmerc_valid_liberation_planet = {
 	is_homeworld = no
 	num_pops > 0
 	is_terraforming = no
-	NOT = {
-		has_planet_flag = "fmerc_target"
-	}
+	NOT = { has_planet_flag = "fmerc_target" }
 }
 
 # Note that this trigger is used both in the diplomacy screen, and during the mission

@@ -21,29 +21,21 @@
 # These effects are only used by the liberation mission type
 
 fmerc_stage2_init_liberation = {
-	log = "Liberation: Locating target planet."
+	# We can't simply check exists=event_target because it might still be set
+	# from the last invokation, and we might need to pick a _new_ target.
+	remove_country_flag = "merc_found_target"
 	event_target:fmerc_buyer = {
 		# Capital of buyer
 		capital_scope = {
 			closest_system = {
 				limit = {
-					NOT = { has_star_flag = enclave }
 					any_planet = {
 						exists = owner
 						is_owned_by = event_target:fmerc_target_country
 						is_controlled_by = event_target:fmerc_target_country
 						fmerc_valid_liberation_planet = yes
 					}
-					# In some rare cases you end up with two empires
-					# with colonized planets in the same system. These
-					# can not be targetted. I'm not sure why I made it this way.
-					NOT = {
-						any_planet = {
-							is_owned_by = event_target:fmerc_buyer
-						}
-					}
 				}
-				#min_steps = 1
 				random_system_planet = {
 					limit = {
 						exists = owner
@@ -53,11 +45,18 @@ fmerc_stage2_init_liberation = {
 					}
 					log = "Liberation: Target planet is [this.GetName] in [This.GetStarName]."
 					set_planet_flag = "fmerc_target"
+					PREVPREVPREVPREV = { set_country_flag = "merc_found_target" }
 					save_event_target_as = fmerc_target
 				}
 			}
 		}
 	}
+	if = { limit = { NOT = { has_country_flag = "merc_found_target" } }
+		# This is a problem, probably.
+		log = "Liberation could not find a valid target for invasion."
+		set_country_flag = "fmerc_ops_completed"
+	}
+	remove_country_flag = "merc_found_target"
 }
 
 # THIS is the operations country

@@ -336,6 +336,15 @@ fmerc_init_stage1 = {
 		give_technology = { tech = tech_spaceport_5 message = no }
 		give_technology = { tech = tech_spaceport_6 message = no }
 
+		# We need this so that we have any drive with a higher priority
+		# than WORMHOLE_DRIVE.
+		give_technology = { tech = tech_warp_drive_1 message = no }
+		give_technology = { tech = tech_warp_drive_2 message = no }
+
+		# Hopefully this will force the ship designs to update, if they
+		# haven't already.
+		give_technology = { tech = tech_mercenary_enclave }
+
 		fmerc_stage1_determine_ship_powers = yes
 
 		# ZZZ Does not apply to created fleets for some reason

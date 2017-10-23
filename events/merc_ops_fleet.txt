@@ -36,7 +36,6 @@ country_event = {
 
 	immediate = {
 		log = "mercOpsFleet: Start mission (.1)"
-
 		if = {
 			limit = {
 				exists = event_target:fmerc_target
@@ -44,7 +43,6 @@ country_event = {
 
 			if = {
 				limit = { count_owned_ships { count = 0 } }
-				log = "Attempting to spawn new fleet."
 				fmerc_stage3_create_fleet = yes
 			}
 

@@ -24,7 +24,17 @@ namespace = mercOpsLiberation
 #
 
 # liberate
-# Triggered from fmerc_init_stage2
+# Chained from:
+# 1. fmerc_init_stage2
+# 2. mercOpsLiberation.2
+#
+# THIS is the operations country
+#
+# If any of the event targets don't exist, we abort immediately
+# fmerc_target is a planet
+# fmerc_buyer is the buyer
+# fmerc_target_country is the target country
+#
 country_event = {
 	id = mercOpsLiberation.1
 	hide_window = yes
@@ -36,73 +46,97 @@ country_event = {
 
 	immediate = {
 		log = "mercOpsLiberation: Start mission (.1)"
+
 		if = {
 			limit = {
-				exists = event_target:fmerc_target
+				OR = {
+					NOT = { exists = event_target:fmerc_target }
+					NOT = { exists = event_target:fmerc_buyer }
+					NOT = { exists = event_target:fmerc_target_country }
+				}
 			}
+			log = "mercOpsLiberation: Missing required event target for mission."
+			set_country_flag = "fmerc_ops_completed"
+			break = yes
+		}
 
-			if = {
-				limit = { count_owned_ships { count = 0 } }
-				fmerc_stage3_create_fleet = yes
-			}
+		if = {
+			limit = { count_owned_ships { count = 0 } }
+			fmerc_stage3_create_fleet = yes
+		}
 
-			every_owned_fleet = {
-				queue_actions = {
-					repeat = {
-						while = {
-							id = mercOpsLiberation.1.trigger.1
+		every_owned_fleet = {
+			queue_actions = {
+				move_to = event_target:fmerc_target.solar_system
+				effect = {
+					id = mercOpsLiberation.1.effect.5
+					if = { limit = { is_fleet_idle = yes }
+						# We wanted to move, but we are idle immediately
+						# This is very strange, but it might mean that we have
+						# no valid path to target for example.
+						log = "Resetting mission because we were idle after move_to."
+						event_target:fmerc_target = {
+							remove_planet_flag = "fmerc_target"
+							set_timed_planet_flag = {
+								flag = "merc_error"
+								days = 20
+							}
+						}
+						clear_fleet_actions = THIS
+						owner = { fmerc_init_stage2 = yes }
+					}
+				}
+				repeat = {
+					while = {
+						id = mercOpsLiberation.1.trigger.1
+						is_fleet_idle = no
+						exists = event_target:fmerc_target
+						exists = owner
+						NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
+						OR = {
+							NOT = { exists = solar_system }
+							solar_system = {
+								is_same_value = event_target:fmerc_target.solar_system
+							}
+						}
+					}
+					move_to = event_target:fmerc_target.solar_system
+					wait = 14
+				}
+				effect = {
+					id = mercOpsLiberation.1.effect.1
+					set_fleet_stance = aggressive
+					if = {
+						limit = {
 							exists = event_target:fmerc_target
-							exists = owner
-							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
-							NOR = {
-								exists = solar_system
-								solar_system = {
-									is_same_value = event_target:fmerc_target.solar_system
-								}
-							}
+							event_target:fmerc_target = { owner = { NOT = { is_hostile = ROOT } } }
 						}
-						move_to = event_target:fmerc_target.solar_system
-						wait = 14
-					}
-					effect = {
-						id = mercOpsLiberation.1.effect.1
-						set_fleet_stance = aggressive
-						if = {
-							limit = {
-								exists = event_target:fmerc_target
-								event_target:fmerc_target = { owner = { NOT = { is_hostile = ROOT } } }
-							}
-							owner = {
-								# Turn hostile when we find our first target,
-								# unless they are already hostile towards us.
-								set_faction_hostility = { set_hostile = yes }
-							}
-						}
-					}
-					orbit_planet = event_target:fmerc_target
-					repeat = {
-						while = {
-							id = mercOpsLiberation.1.trigger.2
-							exists = event_target:fmerc_target
-							exists = owner
-							NOT = { exists = orbit }
-							NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
-						}
-						wait = 4
-					}
-					effect = {
-						id = mercOpsLiberation.1.effect.2
 						owner = {
-							country_event = {
-								id = mercOpsLiberation.10
-							}
+							# Turn hostile when we find our first target,
+							# unless they are already hostile towards us.
+							set_faction_hostility = { set_hostile = yes }
 						}
 					}
 				}
-			}
-			else = {
-				log = "Liberation target did not exist, aborting mission."
-				set_country_flag = "fmerc_ops_completed"
+				orbit_planet = event_target:fmerc_target
+				repeat = {
+					while = {
+						id = mercOpsLiberation.1.trigger.2
+						exists = event_target:fmerc_target
+						exists = owner
+						NOT = { exists = orbit }
+						NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
+					}
+					wait = 4
+				}
+				effect = {
+					id = mercOpsLiberation.1.effect.2
+					owner = {
+						country_event = {
+							id = mercOpsLiberation.10
+						}
+					}
+				}
 			}
 		}
 	}
