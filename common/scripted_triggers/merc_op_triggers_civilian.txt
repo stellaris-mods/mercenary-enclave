@@ -17,3 +17,25 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
+
+# Most of the triggers for this operation are shared by all other raid-type
+# operations, like spaceport/military fleet raids, etc. They should be in
+# merc_op_triggers_raid.
+
+# Note that this trigger is used both in the diplomacy screen, and during the mission
+merc_valid_civilian_raid_target = {
+	OR = {
+		# Default
+		is_ship_size = mining_station
+		is_ship_size = research_station
+		is_ship_size = observation_station
+		is_ship_size = outpost_station
+		# Swarm
+		is_ship_size = construction_ship_swarm
+		is_ship_size = colony_ship_swarm
+		is_ship_size = transport_ship_swarm
+		# EXD
+		is_ship_size = construction_ship_ed
+		is_ship_size = anchor_station
+	}
+}

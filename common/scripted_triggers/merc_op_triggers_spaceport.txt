@@ -1,0 +1,35 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+# Note that this trigger is used both in the diplomacy screen, and during the mission
+fmerc_valid_spaceport_planet = {
+	exists = owner
+	exists = controller
+	is_colony = yes
+	is_under_colonization = no
+	is_occupied_flag = no
+	has_ground_combat = no
+	under_bombardment = no
+	is_capital = no
+	is_homeworld = no
+	is_terraforming = no
+	is_controlled_by = owner
+	has_spaceport = yes
+}

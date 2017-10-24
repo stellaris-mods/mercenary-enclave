@@ -1,0 +1,72 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+# Triggers usable for/towards the actual enclave, primarily.
+# Not the operations.
+
+merc_has_presence = {
+	any_ship_in_system = {
+		exists = owner
+		owner = {
+			OR = {
+				is_country_type = "fmerc_enclave"
+				is_country_type = "fmerc_operations"
+			}
+		}
+	}
+}
+
+merc_has_station = {
+	any_ship_in_system = {
+		exists = owner
+		owner = { is_country_type = "fmerc_enclave" }
+		NOT = { is_ship_size = science }
+		NOT = { is_ship_size = constructor }
+		is_in_combat = no
+	}
+}
+
+merc_is_station = {
+	exists = owner
+	owner = { is_country_type = "fmerc_enclave" }
+	NOT = { is_ship_size = science }
+	NOT = { is_ship_size = constructor }
+}
+
+merc_has_contact = {
+	any_country = {
+		is_country_type = "fmerc_enclave"
+		OR = {
+			has_communications = PREV
+			reverse_has_relation_flag = {
+				flag = ongoing_merc_enclave_investigation
+				who = PREV
+			}
+		}
+	}
+}
+
+merc_needs_contact = {
+	exists = capital_scope
+	NOT = { is_country_type = "fmerc_operations" }
+	NOT = { is_country_type = "fmerc_enclave" }
+	num_owned_planets > 0
+	merc_has_contact = no
+}

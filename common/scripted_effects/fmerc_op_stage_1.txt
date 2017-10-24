@@ -147,7 +147,85 @@ fmerc_stage1_setup_mission = {
 			fmerc_stage1_culture_random = yes
 			if = {
 				limit = {
-					fmerc_stage1_same_culture = yes
+					# XXX change this to a switch
+					OR = {
+						AND = {
+							graphical_culture = "arthropoid_01"
+							last_created_country = { has_country_flag = "arthropoid_01" }
+						}
+						AND = {
+							graphical_culture = "avian_01"
+							last_created_country = { has_country_flag = "avian_01" }
+						}
+						AND = {
+							graphical_culture = "fungoid_01"
+							last_created_country = { has_country_flag = "fungoid_01" }
+						}
+						AND = {
+							graphical_culture = "mammalian_01"
+							last_created_country = { has_country_flag = "mammalian_01" }
+						}
+						AND = {
+							graphical_culture = "molluscoid_01"
+							last_created_country = { has_country_flag = "molluscoid_01" }
+						}
+						AND = {
+							graphical_culture = "plantoid_01"
+							last_created_country = { has_country_flag = "plantoid_01" }
+						}
+						AND = {
+							graphical_culture = "reptilian_01"
+							last_created_country = { has_country_flag = "reptilian_01" }
+						}
+						AND = {
+							graphical_culture = "ai_01"
+							last_created_country = { has_country_flag = "ai_01" }
+						}
+						AND = {
+							graphical_culture = "extra_dimensional_01"
+							last_created_country = { has_country_flag = "extra_dimensional_01" }
+						}
+						AND = {
+							graphical_culture = "extra_dimensional_02"
+							last_created_country = { has_country_flag = "extra_dimensional_01" }
+						}
+						AND = {
+							graphical_culture = "extra_dimensional_03"
+							last_created_country = { has_country_flag = "extra_dimensional_01" }
+						}
+						AND = {
+							graphical_culture = "pirate_01"
+							last_created_country = { has_country_flag = "pirate_01" }
+						}
+						AND = {
+							graphical_culture = "fallen_empire_01"
+							last_created_country = { has_country_flag = "fallen_empire_01" }
+						}
+						AND = {
+							graphical_culture = "fallen_empire_02"
+							last_created_country = { has_country_flag = "fallen_empire_01" }
+						}
+						AND = {
+							graphical_culture = "fallen_empire_03"
+							last_created_country = { has_country_flag = "fallen_empire_01" }
+						}
+						AND = {
+							graphical_culture = "fallen_empire_04"
+							last_created_country = { has_country_flag = "fallen_empire_01" }
+						}
+						AND = {
+							graphical_culture = "fallen_machine_empire_01"
+							last_created_country = { has_country_flag = "fallen_empire_01" }
+						}
+						AND = {
+							graphical_culture = "swarm_01"
+							last_created_country = { has_country_flag = "swarm_01" }
+						}
+						AND = {
+							graphical_culture = "ancient_drone_01"
+							last_created_country = { has_country_flag = "gfx_drone" }
+						}
+					}
 				}
 				set_country_flag = "gfx_drone"
 			}

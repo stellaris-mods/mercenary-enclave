@@ -17,66 +17,14 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-merc_has_presence = {
-	any_ship_in_system = {
-		exists = owner
-		owner = {
-			OR = {
-				is_country_type = "fmerc_enclave"
-				is_country_type = "fmerc_operations"
-			}
-		}
-	}
-}
-
-merc_has_station = {
-	any_ship_in_system = {
-		exists = owner
-		owner = { is_country_type = "fmerc_enclave" }
-		NOT = { is_ship_size = science }
-		NOT = { is_ship_size = constructor }
-		is_in_combat = no
-	}
-}
-
-merc_is_station = {
-	exists = owner
-	owner = { is_country_type = "fmerc_enclave" }
-	NOT = { is_ship_size = science }
-	NOT = { is_ship_size = constructor }
-}
-
-merc_has_contact = {
-	any_country = {
-		is_country_type = "fmerc_enclave"
-		OR = {
-			has_communications = PREV
-			reverse_has_relation_flag = {
-				flag = ongoing_merc_enclave_investigation
-				who = PREV
-			}
-		}
-	}
-}
-
-merc_needs_contact = {
-	exists = capital_scope
-	NOT = { is_country_type = "fmerc_operations" }
-	NOT = { is_country_type = "fmerc_enclave" }
-	num_owned_planets > 0
-	merc_has_contact = no
-}
-
-fmerc_enclave_exists = {
-	any_country = {
-		is_country_type = "fmerc_enclave"
-		num_ships > 0
-	}
-}
 
 ###############################################################################
 # Civilian raid triggers
 # All these triggers are limiting a random_owned_fleet scope.
+#
+# XXX should probably use these same ones for the other raid type operations
+# XXX as well, because the mercenaries dont actually want to fight more than
+# XXX they have to.
 #
 
 merc_raid_priority_1 = {
