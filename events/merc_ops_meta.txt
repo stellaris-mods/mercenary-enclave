@@ -203,6 +203,9 @@ country_event = {
 				shipclass_orbital_station = { ROOT = { change_variable = { which = "MercKillsSpaceport" value = 1 } } }
 				shipclass_military_station = { ROOT = { change_variable = { which = "MercKillsStations" value = 1 } } }
 				shipclass_military = { ROOT = { change_variable = { which = "MercKillsShips" value = 1 } } }
+				shipclass_constructor = { ROOT = { change_variable = { which = "MercKillsCivilian" value = 1 } } }
+				shipclass_colonizer = { ROOT = { change_variable = { which = "MercKillsCivilian" value = 1 } } }
+				shipclass_transport = { ROOT = { change_variable = { which = "MercKillsTransport" value = 1 } } }
 				default = {
 					ROOT = { change_variable = { which = "MercKillsShips" value = 1 } }
 				}

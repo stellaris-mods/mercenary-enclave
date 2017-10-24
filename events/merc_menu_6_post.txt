@@ -136,6 +136,14 @@ country_event = {
 				FROM = { check_variable = { which = "MercKillsStations" value > 0 } }
 			}
 			success_text = {
+				text = "merc.completed.civilian"
+				FROM = { check_variable = { which = "MercKillsCivilian" value > 0 } }
+			}
+			success_text = {
+				text = "merc.completed.transport"
+				FROM = { check_variable = { which = "MercKillsTransport" value > 0 } }
+			}
+			success_text = {
 				text = "merc.completed.ships"
 				FROM = { check_variable = { which = "MercKillsShips" value > 0 } }
 			}

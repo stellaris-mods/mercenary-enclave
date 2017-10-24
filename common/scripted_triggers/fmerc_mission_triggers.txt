@@ -149,7 +149,6 @@ fmerc_valid_liberation_planet = {
 	under_bombardment = no
 	is_capital = no
 	is_homeworld = no
-	num_pops > 1
 	is_terraforming = no
 	is_controlled_by = owner
 }
@@ -165,8 +164,24 @@ fmerc_valid_spaceport_planet = {
 	under_bombardment = no
 	is_capital = no
 	is_homeworld = no
-	num_pops > 1
 	is_terraforming = no
 	is_controlled_by = owner
 	has_spaceport = yes
+}
+
+merc_valid_civilian_raid_target = {
+	OR = {
+		# Default
+		is_ship_size = mining_station
+		is_ship_size = research_station
+		is_ship_size = observation_station
+		is_ship_size = outpost_station
+		# Swarm
+		is_ship_size = construction_ship_swarm
+		is_ship_size = colony_ship_swarm
+		is_ship_size = transport_ship_swarm
+		# EXD
+		is_ship_size = construction_ship_ed
+		is_ship_size = anchor_station
+	}
 }

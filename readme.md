@@ -4,7 +4,6 @@
 - Perhaps make the AI use the enclave now that operations cost energy. For example during forced truce periods where they cant attack someone they want to attack, or if they simply have too much energy laying around, and a negative opinion of someone, just launch a mining station raid randomly. Can't be too often though, or it will get annoying.
 - Add +trust when you order an operation?
 - MISSION TYPE: Guard Solar System (or Guard Colony), where the mercenaries will guard a system/colony from hostile fleets/invasions. This should probably cost influence per month, and not be usable while you're in an active conflict.
-- Does Swarm have spaceports?
 - Add on monthly pulse (while operation is active) that increases operation detect chance?
 - AI Rebellion can colonize planets that we should be able to liberate
 - ED and Swarm annihilate planets completely, I think? This means we never need to "liberate" them.

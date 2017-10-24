@@ -67,15 +67,16 @@ merc_menu_3_is_known_target_fallen = {
 }
 
 merc_menu_3_is_known_target_swarm = {
-	is_country_type = "§YSwarm§!"
+	is_country_type = "swarm"
 	merc_menu_3_is_known_target = yes
 }
 
 merc_menu_3_is_known_target_exd = {
 	OR = {
-		is_country_type = "§YExtradimensional§!"
+		is_country_type = "extradimensional"
 		is_country_type = "extradimensional_2"
 		is_country_type = "extradimensional_3"
+		is_country_type = "tfw_ed"
 	}
 	merc_menu_3_is_known_target = yes
 }
@@ -101,13 +102,14 @@ merc_menu_3_has_valid_operation_fallen = {
 }
 
 merc_menu_3_has_valid_operation_swarm = {
-	NOT = { has_country_flag = "merc_op_liberation" }
-	NOT = { has_country_flag = "merc_op_raid" }
+	NOT = { has_country_flag = "merc_op_liberation" } # XXX add bombardment obliteration mission
+	#NOT = { has_country_flag = "merc_op_raid" }
 }
 
 merc_menu_3_has_valid_operation_exd = {
+	NOT = { has_country_flag = "merc_op_spaceport" }
 	NOT = { has_country_flag = "merc_op_liberation" }
-	NOT = { has_country_flag = "merc_op_raid" }
+	#NOT = { has_country_flag = "merc_op_raid" }
 }
 
 merc_menu_3_has_valid_operation_airevolt = {
@@ -136,12 +138,7 @@ merc_menu_3_is_valid_target_liberate = {
 
 merc_menu_3_is_valid_target_raid = {
 	count_owned_ships = {
-		limit = {
-			OR = {
-				is_ship_size = mining_station
-				is_ship_size = research_station
-			}
-		}
+		limit = { merc_valid_civilian_raid_target = yes }
 		count > 5
 	}
 }

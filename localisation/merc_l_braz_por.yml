@@ -137,6 +137,8 @@ merc.completed.stations: "   - §G[from.MercKillsStations]x§! $shipclass_milita
 merc.completed.ships: "   - §G[from.MercKillsShips]x§! $shipclass_military$"
 merc.completed.total: "   - §G[from.MercKillsTotal]§! total signatures lost"
 merc.completed.nothing: "   - No discrepancies. All transactions are final."
+merc.completed.transport: "   - §G[from.MercKillsTransport]x§! $shipclass_transport$"
+merc.completed.civilian: "   - §G[from.MercKillsCivilian]x§! $OUTLINER_CIVILIAN_FLEETS$"
 
 # Merc Enclave destroyed
 merc.destroyed.desc: "The headquarters of $merc.name.colored$ in the [trader_system.GetName] system was recently destroyed by an attack force belonging to the [trader_destroyer.GetName]! The few surviving employees have fled the scene, and the corporation's remaining assets are being liquidated."
