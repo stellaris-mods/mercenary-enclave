@@ -395,8 +395,8 @@ fmerc_init_stage1 = {
 			last_created_country = { set_country_flag = "merc_op_liberation" }
 			fmerc_stage1_setup_mission = yes
 		}
-		merc_op_raid = {
-			last_created_country = { set_country_flag = "merc_op_raid" }
+		merc_op_civilian_raid = {
+			last_created_country = { set_country_flag = "merc_op_civilian_raid" }
 			fmerc_stage1_setup_mission = yes
 		}
 		merc_op_fleet = {
@@ -472,7 +472,7 @@ fmerc_init_stage1 = {
 					random = 70
 				}
 			}
-			merc_op_raid = {
+			merc_op_civilian_raid = {
 				country_event = {
 					id = mercOpsMeta.1
 					days = 3
