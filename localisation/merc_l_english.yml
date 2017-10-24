@@ -208,7 +208,7 @@ merc.insurance.cancel: "That's unfortunate. Look for us on the horizon."
 merc.operations.name: "Services"
 merc.operations.desc: "We provide several services for our customers. Feel free to browse our brochure!\n\nPlease read the descriptions carefully, and sign on the dotted line.\n§YWhiteout Enterprise§! operations have several parameters that will remain outside any clients control, the most important of which is timing. After you sign up for a service, it will take some time before we can deliver."
 
-merc.operation.spaceport: "Attack Spaceport"
+merc.operation.spaceport: "Spaceport Raid"
 merc.operation.spaceport.button: "§Y$merc.operation.spaceport$ ...§!"
 merc.operation.spaceport.desc: "Locate and destroy one or more Spaceport facilities on your behalf."
 merc.operation.liberate: "Liberate Planet"

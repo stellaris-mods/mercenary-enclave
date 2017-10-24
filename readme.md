@@ -54,7 +54,7 @@ We probably need to tune/adjust the costs of some operations\. I really need som
 ## Services
 Whiteout Enterprises offers a wide range of services, depending on several factors, including trust towards your empire and the target you select\.
 
-1. Attack Spaceport
+1. Spaceport Raid
 1. Military Ships Raid
 1. Civilian Raid
 1. Liberate Planet
@@ -64,7 +64,7 @@ Whiteout Enterprises offers a wide range of services, depending on several facto
 
 Not all operations can be conducted against all empires\. Swarm/ED/Fallen are also valid targets, but not for all types\.
 
-## 1\. Attack Spaceport
+## 1\. Spaceport Raid
 Base cost: 5000 minerals
 Success chance: 80%
 Detection risk: 20%

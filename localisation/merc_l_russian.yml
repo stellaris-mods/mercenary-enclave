@@ -201,7 +201,7 @@ merc.operations.desc: "Мы в §YWhiteout Enterprises§! предлагаем �
 ##merc.condition.invalid.target: "We can not execute this type of operation against this type of empire."
 merc.condition.invalid.target: "Мы не можем выполнить эту операцию против этой империи."
 
-merc.operation.spaceport: "Attack Spaceport"
+merc.operation.spaceport: "Spaceport Raid"
 merc.operation.spaceport.desc: "Locate and destroy one or more Spaceport facilities on your behalf."
 merc.operation.liberate: "Liberate Planet"
 merc.operation.liberate.desc: "Planet liberation is always risky business, and has an immense upfront cost - but the payoff is exceptional. We find a suitable target to invade, and do all the dirty work for you. Once liberated, the population on the planet will be \"convinced\" to follow your ethos, and freed from what we can only presume is the tyranny of their former oppressors."
@@ -298,8 +298,8 @@ merc.disguise.xenofauna.tooltip: "Маскироваться под космич
 merc.signature.desc: "Подписывая этот контракт, вы принимаете всю ответственность за результат этой операции, соглашаетесь с нашими условиями, принимаете соглашение о неразглашении, даете доступ к казначейству вашей империи, и, наконец, даете добро на начало."
 
 
-##merc.spaceport.conclusion: "Operation: §YAttack Spaceport§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
-merc.spaceport.conclusion: "Операция: §YAttack Spaceport§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
+##merc.spaceport.conclusion: "Operation: §YSpaceport Raid§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
+merc.spaceport.conclusion: "Операция: §YSpaceport Raid§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
 ##merc.liberation.conclusion: "Operation: §YLiberate Planet§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
 merc.liberation.conclusion: "Операция: §YLiberate Planet§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
 ##merc.civilian.conclusion: "Operation: §YCivilian Raid§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
@@ -389,7 +389,7 @@ merc.param.operation.fleet: "Operation: §YMilitary Ships Raid§!"
 merc.param.disguise.pirate: "Disguise: §YPirate§!\n"
 merc.param.disguise.nonbuyer: "Disguise: §YRandom except your ships§!\n"
 merc.name.colored: "§YWhiteout Enterprises§!"
-merc.param.operation.spaceport: "Operation: §YAttack Spaceport§!"
+merc.param.operation.spaceport: "Operation: §YSpaceport Raid§!"
 civic_mercenary_operations_desc: ""
 civic_mercenary_operations: "Mercenary Operations"
 merc.param.disguise.buyer: "Disguise: §YYour ships§!\n"
