@@ -67,36 +67,16 @@ country_event = {
 
 		every_owned_fleet = {
 			queue_actions = {
-				move_to = event_target:fmerc_target.solar_system
-				effect = {
-					id = mercOpsLiberation.1.effect.5
-					if = { limit = { is_fleet_idle = yes }
-						# We wanted to move, but we are idle immediately
-						# This is very strange, but it might mean that we have
-						# no valid path to target for example.
-						log = "Resetting mission because we were idle after move_to."
-						event_target:fmerc_target = {
-							remove_planet_flag = "fmerc_target"
-							set_timed_planet_flag = {
-								flag = "merc_error"
-								days = 20
-							}
-						}
-						clear_fleet_actions = THIS
-						owner = { fmerc_init_stage2 = yes }
-					}
-				}
 				repeat = {
 					while = {
 						id = mercOpsLiberation.1.trigger.1
-						is_fleet_idle = no
 						exists = event_target:fmerc_target
 						exists = owner
 						NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
 						OR = {
 							NOT = { exists = solar_system }
 							solar_system = {
-								is_same_value = event_target:fmerc_target.solar_system
+								NOT = { is_same_value = event_target:fmerc_target.solar_system }
 							}
 						}
 					}
@@ -108,7 +88,9 @@ country_event = {
 					set_fleet_stance = aggressive
 					if = {
 						limit = {
+							exists = solar_system
 							exists = event_target:fmerc_target
+							solar_system = { is_same_value = event_target:fmerc_target.solar_system }
 							event_target:fmerc_target = { owner = { NOT = { is_hostile = ROOT } } }
 						}
 						owner = {

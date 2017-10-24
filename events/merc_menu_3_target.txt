@@ -117,7 +117,7 @@ country_event = {
 		hidden_effect = { merc_menu_3_target_swarm = yes }
 	}
 	option = {
-		name = merc.target.ed
+		name = merc.target.unbidden
 		trigger = { any_country = { merc_menu_3_is_known_target_exd = yes } }
 		allow = {
 			custom_tooltip_fail = {
@@ -128,7 +128,7 @@ country_event = {
 		hidden_effect = { merc_menu_3_target_exd = yes }
 	}
 	option = {
-		name = merc.target.ai
+		name = merc.target.contingency
 		trigger = { any_country = { merc_menu_3_is_known_target_airevolt = yes } }
 		allow = {
 			custom_tooltip_fail = {

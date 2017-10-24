@@ -106,6 +106,13 @@ merc_menu_3_has_valid_operation_exd = {
 }
 
 merc_menu_3_has_valid_operation_airevolt = {
+	# XXX AI revolt takes over your planets and plant "custodian" pops
+	# the problem is that when the operation finishes, none of these trigger:
+	# on_planet_defenders_lose
+	# on_rebels_take_planet
+	# on_rebels_take_planet_owner_switched
+	# So I probably have to use on_planet_ownerless or something
+	NOT = { has_country_flag = "merc_op_liberation" }
 	NOT = { has_country_flag = "merc_op_spaceport" }
 	#NOT = { has_country_flag = "merc_op_civilian" }
 }
@@ -124,7 +131,11 @@ merc_menu_3_is_valid_target_spaceport = {
 }
 
 merc_menu_3_is_valid_target_liberate = {
-	NOT = { has_ethic = ethic_gestalt_consciousness }
+	OR = {
+		NOT = { has_ethic = ethic_gestalt_consciousness }
+		#has_authority = auth_ancient_machine_intelligence
+		is_country_type = "ai_empire"
+	}
 	num_owned_planets > 2
 	any_owned_planet = { fmerc_valid_liberation_planet = yes }
 }

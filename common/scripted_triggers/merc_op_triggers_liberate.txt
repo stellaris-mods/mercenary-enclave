@@ -31,6 +31,7 @@ fmerc_valid_liberation_planet = {
 	under_bombardment = no
 	is_capital = no
 	is_homeworld = no
+	num_pops > 1
 	is_terraforming = no
 	is_controlled_by = owner
 }
