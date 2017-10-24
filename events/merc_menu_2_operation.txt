@@ -47,11 +47,6 @@ country_event = {
 		hidden_effect = { country_event = { id = mercMenu.101 } }
 	}
 	option = {
-		name = "merc.operation.spaceport.button"
-		custom_tooltip = "merc.operation.spaceport.desc"
-		hidden_effect = { merc_menu_2_operation_spaceport = yes }
-	}
-	option = {
 		name = "merc.operation.liberate.button"
 		custom_tooltip = "merc.operation.liberate.desc"
 		hidden_effect = { merc_menu_2_operation_liberate = yes }
@@ -60,6 +55,11 @@ country_event = {
 		name = "merc.operation.civilian.button"
 		custom_tooltip = "merc.operation.civilian.desc"
 		hidden_effect = { merc_menu_2_operation_raid = yes }
+	}
+	option = {
+		name = "merc.operation.spaceport.button"
+		custom_tooltip = "merc.operation.spaceport.desc"
+		hidden_effect = { merc_menu_2_operation_spaceport = yes }
 	}
 	option = {
 		name = "merc.operation.fleet.button"
