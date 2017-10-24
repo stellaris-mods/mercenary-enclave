@@ -174,7 +174,7 @@ merc_menu_3_target_default = {
 
 merc_menu_3_target_fallen = {
 	# If you change these, please modify both the l10n string and the script above
-	set_variable = { which = "MercTargetCostMultiplier" value = 35 }
+	set_variable = { which = "MercTargetCostMultiplier" value = 70 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -5 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
 	set_country_flag = "merc_target_fallen"
@@ -183,7 +183,7 @@ merc_menu_3_target_fallen = {
 
 merc_menu_3_target_swarm = {
 	# If you change these, please modify both the l10n string and the script above
-	set_variable = { which = "MercTargetCostMultiplier" value = 20 }
+	set_variable = { which = "MercTargetCostMultiplier" value = 35 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -10 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
 	set_country_flag = "merc_target_swarm"
@@ -192,7 +192,7 @@ merc_menu_3_target_swarm = {
 
 merc_menu_3_target_exd = {
 	# If you change these, please modify both the l10n string and the script above
-	set_variable = { which = "MercTargetCostMultiplier" value = 30 }
+	set_variable = { which = "MercTargetCostMultiplier" value = 50 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -10 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
 	set_country_flag = "merc_target_exd"
@@ -201,7 +201,7 @@ merc_menu_3_target_exd = {
 
 merc_menu_3_target_airevolt = {
 	# If you change these, please modify both the l10n string and the script above
-	set_variable = { which = "MercTargetCostMultiplier" value = 10 }
+	set_variable = { which = "MercTargetCostMultiplier" value = 25 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -5 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -10 }
 	set_country_flag = "merc_target_airevolt"
