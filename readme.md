@@ -56,7 +56,7 @@ Whiteout Enterprises offers a wide range of services, depending on several facto
 
 1. Attack Spaceport
 1. Fleet Raid
-1. Mining/Research Raid
+1. Civilian Raid
 1. Liberate Planet
 1. Clear Space
 
@@ -76,7 +76,7 @@ Success chance: 80%
 Detection risk: 25%
 The enclave selects a valid military fleet target in the target empire, and attempts to kill it and all ships within\. Will track ships that are split from the original fleet, and even if the fleet is entirely gone it will still hunt down the ships that were part of the original fleet\.
 
-## 3\. Mining/Research Raid
+## 3\. Civilian Raid
 Base cost: 2500
 Success chance: 95%
 Detection risk: 25%

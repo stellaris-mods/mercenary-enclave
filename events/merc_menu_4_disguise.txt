@@ -33,7 +33,7 @@ country_event = {
 				trigger = has_country_flag
 				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
 				merc_op_liberation = { text = "merc.param.operation.liberate" }
-				merc_op_civilian_raid = { text = "merc.param.operation.raid" }
+				merc_op_civilian_raid = { text = "merc.param.operation.civilian" }
 				merc_op_fleet = { text = "merc.param.operation.fleet" }
 			}
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
