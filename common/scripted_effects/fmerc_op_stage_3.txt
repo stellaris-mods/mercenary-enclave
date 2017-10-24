@@ -354,20 +354,6 @@ fmerc_stage3_configure_squadrons = {
 # While loops only loop to 100.
 fmerc_stage3_match_fleet_power = {
 	fmerc_stage3_configure_squadrons = yes
-
-	# We need to spawn _something_ no matter what. The player bought a service.
-	if = {
-		limit = { check_variable = { which = "MercSpawn" value < "Corvette" } }
-		change_variable = { which = "MercSpawn" value = "Corvette" }
-		change_variable = { which = "MercSpawn" value = "Corvette" }
-		log = "Adjusted minimum: [this.MercSpawn]."
-	}
-	while = {
-		limit = { check_variable = { which = "MercSpawn" value < "Corvette" } }
-		change_variable = { which = "MercSpawn" value = 200 }
-		log = "Adjusted absolute minimum: [this.MercSpawn]."
-	}
-
 	log = "Final fleet power: [this.MercSpawn]."
 	log = "Squadron requirements: B=[this.BattleshipSquad] C=[this.CruiserSquad] D=[this.DestroyerSquad] C=[this.Corvette]"
 
@@ -576,6 +562,26 @@ fmerc_stage3_create_fleet = {
 	}
 	log = "Adjusted for trust level: [this.MercSpawn]."
 
+	# Adjust for success chance before we match target fleets
+	# So we only adjust the "base" + trust values.
+	set_variable = { which = "MercPercentSuccess" value = "MercSuccess" }
+	divide_variable = { which = "MercPercentSuccess" value = 100 }
+	multiply_variable = { which = "MercSpawn" value = "MercPercentSuccess" }
+	log = "Base adjusted for success (x[this.MercPercentSuccess]): [this.MercSpawn]."
+
+	# We need to spawn _something_ no matter what. The player bought a service.
+	if = {
+		limit = { check_variable = { which = "MercSpawn" value < "Corvette" } }
+		change_variable = { which = "MercSpawn" value = "Corvette" }
+		change_variable = { which = "MercSpawn" value = "Corvette" }
+		log = "Adjusted minimum: [this.MercSpawn]."
+	}
+	while = {
+		limit = { check_variable = { which = "MercSpawn" value < "Corvette" } }
+		change_variable = { which = "MercSpawn" value = 200 }
+		log = "Adjusted absolute minimum: [this.MercSpawn]."
+	}
+
 	# fmerc_target is always a planet or fleet
 	event_target:fmerc_target = {
 		solar_system = {
@@ -598,11 +604,6 @@ fmerc_stage3_create_fleet = {
 			}
 		}
 	}
-	set_variable = { which = "MercPercentSuccess" value = "MercSuccess" }
-	divide_variable = { which = "MercPercentSuccess" value = 100 }
-	multiply_variable = { which = "MercSpawn" value = "MercPercentSuccess" }
-
-	log = "Adjusted for success (x[this.MercPercentSuccess]): [this.MercSpawn]."
 
 	fmerc_stage3_match_fleet_power = yes
 }
