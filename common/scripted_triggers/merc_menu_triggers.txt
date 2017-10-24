@@ -19,26 +19,14 @@
 
 
 merc_menu_3_is_targetted_type = {
-	OR = {
-		AND = {
-			ROOT = { has_country_flag = "merc_target_default" }
-			merc_menu_3_is_known_target_default = yes
-		}
-		AND = {
-			ROOT = { has_country_flag = "merc_target_fallen" }
-			merc_menu_3_is_known_target_fallen = yes
-		}
-		AND = {
-			ROOT = { has_country_flag = "merc_target_swarm" }
-			merc_menu_3_is_known_target_swarm = yes
-		}
-		AND = {
-			ROOT = { has_country_flag = "merc_target_exd" }
-			merc_menu_3_is_known_target_exd = yes
-		}
-		AND = {
-			ROOT = { has_country_flag = "merc_target_airevolt" }
-			merc_menu_3_is_known_target_airevolt = yes
+	ROOT = {
+		switch = {
+			trigger = has_country_flag
+			merc_target_default = { PREV = { merc_menu_3_is_known_target_default = yes } }
+			merc_target_fallen = { PREV = { merc_menu_3_is_known_target_fallen = yes } }
+			merc_target_swarm = { PREV = { merc_menu_3_is_known_target_swarm = yes } }
+			merc_target_exd = { PREV = { merc_menu_3_is_known_target_exd = yes } }
+			merc_target_airevolt = { PREV = { merc_menu_3_is_known_target_airevolt = yes } }
 		}
 	}
 }

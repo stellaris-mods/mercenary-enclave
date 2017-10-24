@@ -146,87 +146,38 @@ fmerc_stage1_setup_mission = {
 		# XXX a long time ago jeez
 		merc_disguise_nonbuyer = {
 			# Anything except ROOT
+			# Set a random first
 			fmerc_stage1_culture_random = yes
+
+			# And then just verify that it's not the same
+			# The reason we can't use a while loop is because repeated invokes
+			# to random/random_list produces the same result.
 			if = {
 				limit = {
-					# XXX change this to a switch
-					OR = {
-						AND = {
-							graphical_culture = "arthropoid_01"
-							last_created_country = { has_country_flag = "arthropoid_01" }
-						}
-						AND = {
-							graphical_culture = "avian_01"
-							last_created_country = { has_country_flag = "avian_01" }
-						}
-						AND = {
-							graphical_culture = "fungoid_01"
-							last_created_country = { has_country_flag = "fungoid_01" }
-						}
-						AND = {
-							graphical_culture = "mammalian_01"
-							last_created_country = { has_country_flag = "mammalian_01" }
-						}
-						AND = {
-							graphical_culture = "molluscoid_01"
-							last_created_country = { has_country_flag = "molluscoid_01" }
-						}
-						AND = {
-							graphical_culture = "plantoid_01"
-							last_created_country = { has_country_flag = "plantoid_01" }
-						}
-						AND = {
-							graphical_culture = "reptilian_01"
-							last_created_country = { has_country_flag = "reptilian_01" }
-						}
-						AND = {
-							graphical_culture = "ai_01"
-							last_created_country = { has_country_flag = "ai_01" }
-						}
-						AND = {
-							graphical_culture = "extra_dimensional_01"
-							last_created_country = { has_country_flag = "extra_dimensional_01" }
-						}
-						AND = {
-							graphical_culture = "extra_dimensional_02"
-							last_created_country = { has_country_flag = "extra_dimensional_01" }
-						}
-						AND = {
-							graphical_culture = "extra_dimensional_03"
-							last_created_country = { has_country_flag = "extra_dimensional_01" }
-						}
-						AND = {
-							graphical_culture = "pirate_01"
-							last_created_country = { has_country_flag = "pirate_01" }
-						}
-						AND = {
-							graphical_culture = "fallen_empire_01"
-							last_created_country = { has_country_flag = "fallen_empire_01" }
-						}
-						AND = {
-							graphical_culture = "fallen_empire_02"
-							last_created_country = { has_country_flag = "fallen_empire_01" }
-						}
-						AND = {
-							graphical_culture = "fallen_empire_03"
-							last_created_country = { has_country_flag = "fallen_empire_01" }
-						}
-						AND = {
-							graphical_culture = "fallen_empire_04"
-							last_created_country = { has_country_flag = "fallen_empire_01" }
-						}
-						AND = {
-							graphical_culture = "fallen_machine_empire_01"
-							last_created_country = { has_country_flag = "fallen_empire_01" }
-						}
-						AND = {
-							graphical_culture = "swarm_01"
-							last_created_country = { has_country_flag = "swarm_01" }
-						}
-						AND = {
-							graphical_culture = "ancient_drone_01"
-							last_created_country = { has_country_flag = "gfx_drone" }
-						}
+					switch = {
+						trigger = graphical_culture
+						arthropoid_01 = { last_created_country = { has_country_flag = "arthropoid_01" } }
+						avian_01 = { last_created_country = { has_country_flag = "avian_01" } }
+						fungoid_01 = { last_created_country = { has_country_flag = "fungoid_01" } }
+						mammalian_01 = { last_created_country = { has_country_flag = "mammalian_01" } }
+						molluscoid_01 = { last_created_country = { has_country_flag = "molluscoid_01" } }
+						plantoid_01 = { last_created_country = { has_country_flag = "plantoid_01" } }
+						reptilian_01 = { last_created_country = { has_country_flag = "reptilian_01" } }
+						ai_01 = { last_created_country = { has_country_flag = "ai_01" } }
+						extra_dimensional_01 = { last_created_country = { has_country_flag = "extra_dimensional_01" } }
+						extra_dimensional_02 = { last_created_country = { has_country_flag = "extra_dimensional_01" } }
+						extra_dimensional_03 = { last_created_country = { has_country_flag = "extra_dimensional_01" } }
+						fallen_empire_01 = { last_created_country = { has_country_flag = "fallen_empire_01" } }
+						fallen_empire_02 = { last_created_country = { has_country_flag = "fallen_empire_01" } }
+						fallen_empire_03 = { last_created_country = { has_country_flag = "fallen_empire_01" } }
+						fallen_empire_04 = { last_created_country = { has_country_flag = "fallen_empire_01" } }
+						fallen_machine_empire_01 = { last_created_country = { has_country_flag = "fallen_empire_01" } }
+						pirate_01 = { last_created_country = { has_country_flag = "pirate_01" } }
+						swarm_01 = { last_created_country = { has_country_flag = "swarm_01" } }
+						ancient_drone_01 = { last_created_country = { has_country_flag = "gfx_drone" } }
+						drone = { last_created_country = { has_country_flag = "gfx_drone" } }
+						ancient = { last_created_country = { has_country_flag = "gfx_drone" } }
+						techno = { last_created_country = { has_country_flag = "mammalian_01" } }
 					}
 				}
 				set_country_flag = "gfx_drone"
@@ -341,18 +292,18 @@ fmerc_stage1_create_mercenaries = {
 		name_list = "FMercenaries"
 		type = fmerc_operations
 		species = ROOT.owner_species
-		flag = { # Pirate flag copy
+		flag = { # Pirate flag copy from pirate_events
 			icon = {
-				category = "zoological"
-				file = "flag_zoological_1.dds"
+				category = "pirate"
+				file = "flag_pirate_7.dds"
 			}
 			background = {
 				category = "backgrounds"
 				file = "00_solid.dds"
 			}
-			colors = {
-				"black"
-				"black"
+			colors ={
+				"red"
+				"red"
 				"null"
 				"null"
 			}
