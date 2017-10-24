@@ -72,12 +72,7 @@ merc_menu_3_is_known_target_swarm = {
 }
 
 merc_menu_3_is_known_target_exd = {
-	OR = {
-		is_country_type = "extradimensional"
-		is_country_type = "extradimensional_2"
-		is_country_type = "extradimensional_3"
-		is_country_type = "tfw_ed"
-	}
+	merc_is_exd = yes
 	merc_menu_3_is_known_target = yes
 }
 
@@ -137,9 +132,16 @@ merc_menu_3_is_valid_target_liberate = {
 }
 
 merc_menu_3_is_valid_target_raid = {
-	count_owned_ships = {
-		limit = { merc_valid_civilian_raid_target = yes }
-		count > 5
+	OR = {
+		count_owned_ships = {
+			limit = { merc_valid_civilian_raid_target = yes }
+			count > 4
+		}
+		AND = {
+			merc_is_exd = yes
+			# EXD only has 1-4 constructors, usually 3.
+			any_owned_fleet = { merc_valid_civilian_raid_target = yes }
+		}
 	}
 }
 

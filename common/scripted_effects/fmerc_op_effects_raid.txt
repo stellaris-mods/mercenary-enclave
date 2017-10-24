@@ -124,9 +124,19 @@ fmerc_stage2_init_fleet = {
 
 fmerc_stage2_init_raid = {
 	log = "Raid: Locating and marking 5 civilian targets for destruction."
-	set_variable = {
-		which = "MercRaidCount"
-		value = 5
+
+	# This allows us to support any arbitrary number, from 0 to 5.
+	# EXD for example usually only have 0-4 constructors, and even
+	# more usually, they have 3.
+	set_variable = { which = "MercRaidCount" value = 0 }
+	event_target:fmerc_target_country = {
+		every_owned_fleet = {
+			limit = { merc_valid_civilian_raid_target = yes }
+			PREVPREV = { change_variable = { which = "MercRaidCount" value = 1 } }
+		}
+	}
+	if = { limit = { check_variable = { which = "MercRaidCount" value > 5 } }
+		set_variable = { which = "MercRaidCount" value = 5 }
 	}
 
 	# First we try to find any targets that are "perfect".
@@ -198,11 +208,18 @@ fmerc_stage2_init_raid = {
 	}
 
 	event_target:fmerc_target_country = {
-		random_owned_ship = {
-			limit = { has_ship_flag = "fmerc_target" }
-			fleet = {
-				log = "Raid: First target is in fleet [this.GetName]."
-				save_event_target_as = fmerc_target
+		if = {
+			limit = { any_owned_ship = { has_ship_flag = "fmerc_target" } }
+			random_owned_ship = {
+				limit = { has_ship_flag = "fmerc_target" }
+				fleet = {
+					log = "Raid: First target is in fleet [this.GetName]."
+					save_event_target_as = fmerc_target
+				}
+			}
+			else = {
+				PREV = { set_country_flag = "fmerc_ops_completed" }
+				log = "[this.GetName]: No valid raid targets found. That's weird."
 			}
 		}
 	}

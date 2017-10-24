@@ -29,3 +29,12 @@ fmerc_enclave_exists = {
 		num_ships > 0
 	}
 }
+
+merc_is_exd = {
+	OR = {
+		is_country_type = "extradimensional"
+		is_country_type = "extradimensional_2"
+		is_country_type = "extradimensional_3"
+		is_country_type = "tfw_ed"
+	}
+}
