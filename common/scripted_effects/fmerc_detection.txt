@@ -36,7 +36,7 @@ merc_operation_detected = {
 				}
 			}
 		}
-		merc_op_civilian_raid = {
+		merc_op_civilian = {
 			event_target:fmerc_target_country = {
 				add_opinion_modifier = {
 					modifier = fmerc_opinion_raid

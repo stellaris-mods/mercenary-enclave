@@ -77,7 +77,7 @@
 # Reset all variables used in any text/tooltips
 merc_menu_2_operation_init = {
 	remove_country_flag = "merc_op_spaceport"
-	remove_country_flag = "merc_op_civilian_raid"
+	remove_country_flag = "merc_op_civilian"
 	remove_country_flag = "merc_op_liberation"
 	remove_country_flag = "merc_op_fleet"
 
@@ -126,7 +126,7 @@ merc_menu_2_operation_raid = {
 	set_variable = { which = "MercCostEnergy" value = 2000 }
 	set_variable = { which = "MercSuccess" value = 75 }
 	set_variable = { which = "MercDetect" value = 45 }
-	set_country_flag = "merc_op_civilian_raid"
+	set_country_flag = "merc_op_civilian"
 	merc_menu_2_operation_apply = yes
 }
 

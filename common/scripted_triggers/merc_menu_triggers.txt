@@ -98,23 +98,23 @@ merc_menu_3_has_valid_operation_default = {
 
 merc_menu_3_has_valid_operation_fallen = {
 	NOT = { has_country_flag = "merc_op_spaceport" }
-	NOT = { has_country_flag = "merc_op_civilian_raid" }
+	NOT = { has_country_flag = "merc_op_civilian" }
 }
 
 merc_menu_3_has_valid_operation_swarm = {
 	NOT = { has_country_flag = "merc_op_liberation" } # XXX add bombardment obliteration mission
-	#NOT = { has_country_flag = "merc_op_civilian_raid" }
+	#NOT = { has_country_flag = "merc_op_civilian" }
 }
 
 merc_menu_3_has_valid_operation_exd = {
 	NOT = { has_country_flag = "merc_op_spaceport" }
 	NOT = { has_country_flag = "merc_op_liberation" }
-	#NOT = { has_country_flag = "merc_op_civilian_raid" }
+	#NOT = { has_country_flag = "merc_op_civilian" }
 }
 
 merc_menu_3_has_valid_operation_airevolt = {
 	NOT = { has_country_flag = "merc_op_spaceport" }
-	NOT = { has_country_flag = "merc_op_civilian_raid" }
+	NOT = { has_country_flag = "merc_op_civilian" }
 }
 
 ###############################################################################
@@ -158,7 +158,7 @@ merc_menu_3_is_valid_target = {
 			trigger = has_country_flag
 			merc_op_spaceport = { PREV = { merc_menu_3_is_valid_target_spaceport = yes } }
 			merc_op_liberation = { PREV = { merc_menu_3_is_valid_target_liberate = yes } }
-			merc_op_civilian_raid = { PREV = { merc_menu_3_is_valid_target_raid = yes } }
+			merc_op_civilian = { PREV = { merc_menu_3_is_valid_target_raid = yes } }
 			merc_op_fleet = { PREV = { merc_menu_3_is_valid_target_fleet = yes } }
 		}
 	}

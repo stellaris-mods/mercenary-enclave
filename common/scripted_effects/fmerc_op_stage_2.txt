@@ -61,7 +61,7 @@ fmerc_init_stage2 = {
 			fmerc_stage2_init_liberation = yes
 			country_event = { id = mercOpsLiberation.1 }
 		}
-		merc_op_civilian_raid = {
+		merc_op_civilian = {
 			# Ships are tagged in this
 			fmerc_stage2_init_raid = yes
 			country_event = { id = mercOpsFleet.1 }
