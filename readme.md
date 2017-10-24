@@ -44,7 +44,7 @@ There's a few features I can add, but someone needs to tell me if they want them
 * YOUR IDEA HERE
 
 
-Does the AI Revolt empire, Prethoryn Scourge, or ED colonize planets? Should they be valid targets for the "liberate planet" option? Why can noone answer this in the comments?
+Does the AI Revolt empire, Swarm, or EXD colonize planets? Should they be valid targets for the "liberate planet" option? Why can noone answer this in the comments?
 
 Bug\-wise, there are probably quite a few\. I never play multiplayer, so I need some help testing that\. I rarely, like once per 3\-4 months, play a few years of singleplayer Stellaris, so I need help testing that as well\.
 
@@ -62,7 +62,7 @@ Whiteout Enterprises offers a wide range of services, depending on several facto
 
 
 
-Not all operations can be conducted against all empires\. Prethoryn Scourge/ED/Fallen are also valid targets, but not for all types\.
+Not all operations can be conducted against all empires\. Swarm/ED/Fallen are also valid targets, but not for all types\.
 
 ## 1\. Spaceport Raid
 Base cost: 5000 minerals
