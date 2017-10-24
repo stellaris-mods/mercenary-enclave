@@ -30,22 +30,21 @@ event = {
 	immediate = {
 		random_country = {
 			limit = { is_country_type = "fmerc_enclave" }
-			save_event_target_as = enclave
+			save_event_target_as = mercenaries
 		}
 		every_country = {
 			limit = { has_country_flag = "fmerc_allow_stations" }
 			if = {
 				limit = {
-					NOT = {
-						event_target:enclave = {
+					event_target:mercenaries = {
+						NOT = {
 							any_owned_fleet = {
-								NOT = { merc_is_station = yes }
-								# Dont count the HQ
-								NOT = { has_fleet_flag = "folk_mercenary_station" }
-								is_inside_border = PREVPREV
-								# Ignore any of our fleets if there is a colony
-								# in the same system.
-								NOT = { solar_system = { any_planet = { is_colony = yes } } }
+								# Only count outposts
+								has_fleet_flag = "folk_mercenary_outpost"
+								solar_system = {
+									is_within_borders_of = PREVPREVPREV
+									NOT = { any_planet = { is_colony = yes } }
+								}
 							}
 						}
 					}
@@ -78,6 +77,7 @@ country_event = {
 			random_system_within_border = {
 				limit = {
 					NOT = { any_planet = { is_colony = yes } }
+					merc_has_presence = no
 					NOT = {
 						any_ship_in_system = {
 							OR = {
@@ -86,7 +86,7 @@ country_event = {
 									exists = owner
 									owner = {
 										OR = {
-											is_hostile = event_target:enclave
+											is_hostile = event_target:mercenaries
 											is_hostile = ROOT
 										}
 									}
@@ -102,7 +102,10 @@ country_event = {
 		# Lower our standards, simply find a system without colonies
 		if = { limit = { NOT = { exists = event_target:spawn } }
 			random_system_within_border = {
-				limit = { NOT = { any_planet = { is_colony = yes } } }
+				limit = {
+					NOT = { any_planet = { is_colony = yes } }
+					merc_has_presence = no
+				}
 				random_system_planet = { save_event_target_as = spawn }
 			}
 		}
@@ -125,7 +128,7 @@ planet_event = {
 			name = "Whiteout Enterprises Outpost"
 			settings = { spawn_debris = no }
 			effect = {
-				set_owner = event_target:enclave
+				set_owner = event_target:mercenaries
 				create_ship = {
 					name = " "
 					design = "Mercenary Enclave Century"
@@ -301,7 +304,6 @@ country_event = {
 	}
 
 	immediate = {
-		log = "Mercenary Enclave spawning expansion fleet."
 		random_owned_fleet = {
 			limit = { merc_is_station = yes }
 			save_event_target_as = spawn
@@ -451,7 +453,7 @@ fleet_event = {
 							exists = orbit
 							is_in_combat = no
 						}
-						owner = { save_event_target_as = enclave }
+						owner = { save_event_target_as = mercenaries }
 						orbit = { planet_event = { id = mercStations.3 } }
 						if = { limit = { last_created_fleet = { has_fleet_flag = "folk_mercenary_outpost" } }
 							last_created_fleet = { set_location = ROOT } # Move it to us instead
