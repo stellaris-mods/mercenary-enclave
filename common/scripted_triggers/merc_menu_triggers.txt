@@ -98,18 +98,16 @@ merc_menu_3_has_valid_operation_fallen = {
 
 merc_menu_3_has_valid_operation_swarm = {
 	NOT = { has_country_flag = "merc_op_liberation" } # XXX add bombardment obliteration mission
-	#NOT = { has_country_flag = "merc_op_civilian" }
 }
 
 merc_menu_3_has_valid_operation_exd = {
 	NOT = { has_country_flag = "merc_op_spaceport" }
 	NOT = { has_country_flag = "merc_op_liberation" }
-	#NOT = { has_country_flag = "merc_op_civilian" }
 }
 
 merc_menu_3_has_valid_operation_airevolt = {
 	NOT = { has_country_flag = "merc_op_spaceport" }
-	NOT = { has_country_flag = "merc_op_civilian" }
+	#NOT = { has_country_flag = "merc_op_civilian" }
 }
 
 ###############################################################################

@@ -142,6 +142,8 @@ fmerc_stage1_setup_mission = {
 		merc_disguise_random = {
 			fmerc_stage1_culture_random = yes
 		}
+		# XXX add option to disguise as target. I should have thought of that
+		# XXX a long time ago jeez
 		merc_disguise_nonbuyer = {
 			# Anything except ROOT
 			fmerc_stage1_culture_random = yes
