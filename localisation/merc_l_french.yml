@@ -217,7 +217,7 @@ merc.operation.liberate.desc: "Planet liberation is always risky business, and h
 merc.operation.civilian: "Civilian Raid"
 merc.operation.civilian.button: "§Y$merc.operation.civilian$ ...§!"
 merc.operation.civilian.desc: "Stifles your opponents economy. We locate, engage, and destroy, between 5 and 12 civilian targets, including transports, in your adversaries space. Of course, any loot we find is ours to keep."
-merc.operation.fleet: "Fleet Raid"
+merc.operation.fleet: "Military Ships Raid"
 merc.operation.fleet.button: "§Y$merc.operation.fleet$ ...§!"
 merc.operation.fleet.desc: "The most dangerous service we provide. This puts us inevitably in direct confrontation with military opponents, and as such comes with a premium. However, this is what we live for, and the part of our job we enjoy the most. We locate, identify, track, and engage, a minimum of 1 (one) military fleet of relative significance."
 

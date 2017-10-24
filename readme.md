@@ -10,7 +10,7 @@
 - Make sure the enclave can spawn their operations fleet if the enclave HQ is inside the borders of an empire that has given them access, AND they are the target.
 - Make a copy of unrest.4235 and run that on the target if a planet liberation attempt fails? We would have to make a copy, because the vanilla event uses FROM/FROMFROM in the localisation strings
 - Probably want to ignore systems/planets with `has_any_megastructure = yes` for various operation types
-- Military fleet raid target selection probably needs tweaking
+- Military Military Ships Raid target selection probably needs tweaking
 - What are the `shroud` and `shroud_spirits` country types? Should they be valid targets for any operations?
 - MISSION TYPE: Assist Fleet/Admiral, where the Mercenary Enclave will rush in to assist you in combat for the next 5-10-20-50 or whatever years (cheaper per year, if the contract is longer). Perhaps tie it to a specific Admiral, and if that admiral dies somehow open a window to let the player select the next admiral the ME should follow
 - During a Liberation mission, if the target planet suddenly is NOT a valid liberation target, either find a new target, or abort, depending on how far along we are
@@ -34,7 +34,7 @@ _Mercenary Operations fleets, once they reach the solar system where their prima
 ## Beta
 There's a few features I can add, but someone needs to tell me if they want them or not:
 
-* Civilian fleet raid \- kill 2\-4 science/construction vessels, usable against crisis as well
+* Civilian Military Ships Raid \- kill 2\-4 science/construction vessels, usable against crisis as well
 * Enclave respawns after 5\-10 years if destroyed
 * Military Station System Raid, clears all military stations from selected solar system
 * Guard System, the enclave parks a military fleet in your preferred controlled solar system, attacking any hostile fleets that enter
@@ -55,7 +55,7 @@ We probably need to tune/adjust the costs of some operations\. I really need som
 Whiteout Enterprises offers a wide range of services, depending on several factors, including trust towards your empire and the target you select\.
 
 1. Attack Spaceport
-1. Fleet Raid
+1. Military Ships Raid
 1. Civilian Raid
 1. Liberate Planet
 1. Clear Space
@@ -70,7 +70,7 @@ Success chance: 80%
 Detection risk: 20%
 The enclave selects a spaceport in the target empire, and sends a dedicated operations fleet to destroy it\.
 
-## 2\. Fleet Raid
+## 2\. Military Ships Raid
 Base cost: 10000 minerals
 Success chance: 80%
 Detection risk: 25%
