@@ -36,6 +36,5 @@ merc_valid_civilian_raid_target = {
 		is_ship_size = transport_ship_swarm
 		# EXD
 		is_ship_size = construction_ship_ed
-		is_ship_size = anchor_station
 	}
 }
