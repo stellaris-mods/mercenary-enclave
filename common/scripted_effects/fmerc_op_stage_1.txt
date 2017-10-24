@@ -237,9 +237,9 @@ fmerc_stage1_determine_ship_powers = {
 			create_ship = { name = random random_existing_design = "corvette" }
 		}
 	}
-	last_created_fleet = { merc_get_fleet_power = yes }
-	set_variable = { which = "Corvette" value = "FleetPower" }
-	set_variable = { which = "FleetPower" value = 0 }
+	last_created_fleet = { merc_shameful_get_design_power = yes }
+	set_variable = { which = "CorvettePower" value = "MercDesignPower" }
+	set_variable = { which = "MercDesignPower" value = 0 }
 	last_created_fleet = { delete_fleet = THIS }
 
 	# DESTROYER
@@ -250,9 +250,9 @@ fmerc_stage1_determine_ship_powers = {
 			create_ship = { name = random random_existing_design = "destroyer" }
 		}
 	}
-	last_created_fleet = { merc_get_fleet_power = yes }
-	set_variable = { which = "Destroyer" value = "FleetPower" }
-	set_variable = { which = "FleetPower" value = 0 }
+	last_created_fleet = { merc_shameful_get_design_power = yes }
+	set_variable = { which = "DestroyerPower" value = "MercDesignPower" }
+	set_variable = { which = "MercDesignPower" value = 0 }
 	last_created_fleet = { delete_fleet = THIS }
 
 	# CRUISER
@@ -263,9 +263,9 @@ fmerc_stage1_determine_ship_powers = {
 			create_ship = { name = random random_existing_design = "cruiser" }
 		}
 	}
-	last_created_fleet = { merc_get_fleet_power = yes }
-	set_variable = { which = "Cruiser" value = "FleetPower" }
-	set_variable = { which = "FleetPower" value = 0 }
+	last_created_fleet = { merc_shameful_get_design_power = yes }
+	set_variable = { which = "CruiserPower" value = "MercDesignPower" }
+	set_variable = { which = "MercDesignPower" value = 0 }
 	last_created_fleet = { delete_fleet = THIS }
 
 	# BATTLESHIP
@@ -276,9 +276,9 @@ fmerc_stage1_determine_ship_powers = {
 			create_ship = { name = random random_existing_design = "battleship" }
 		}
 	}
-	last_created_fleet = { merc_get_fleet_power = yes }
-	set_variable = { which = "Battleship" value = "FleetPower" }
-	set_variable = { which = "FleetPower" value = 0 }
+	last_created_fleet = { merc_shameful_get_design_power = yes }
+	set_variable = { which = "BattleshipPower" value = "MercDesignPower" }
+	set_variable = { which = "MercDesignPower" value = 0 }
 	last_created_fleet = { delete_fleet = THIS }
 
 	# Some of these might be zero, if there was no valid design.

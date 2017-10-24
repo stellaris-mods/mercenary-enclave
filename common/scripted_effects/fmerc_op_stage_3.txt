@@ -51,239 +51,6 @@ fmerc_stage3_update_can_retry = {
 	} } } } } } } } } } } } } } } } }
 }
 
-# local tmpl = [[%d > { ROOT = { change_variable = { which = "MercSpawn" value = %d } } }]]
-# local fp = 460
-# for i = 497, 1, -1 do
-#         print(tmpl:format(i*fp, i))
-# end
-
-# The main reason we match on fleet power instead of size, is because the
-# fleet power of our global ship designs is fixed, while the power of everyone else
-# varies throughout the game, with tech etc.
-fmerc_stage3_get_fleet_power = {
-	switch = {
-		trigger = fleet_power
-99820 > { ROOT = { change_variable = { which = "MercSpawn" value = 99820 } } }
-99360 > { ROOT = { change_variable = { which = "MercSpawn" value = 99360 } } }
-98900 > { ROOT = { change_variable = { which = "MercSpawn" value = 98900 } } }
-98440 > { ROOT = { change_variable = { which = "MercSpawn" value = 98440 } } }
-97980 > { ROOT = { change_variable = { which = "MercSpawn" value = 97980 } } }
-97520 > { ROOT = { change_variable = { which = "MercSpawn" value = 97520 } } }
-97060 > { ROOT = { change_variable = { which = "MercSpawn" value = 97060 } } }
-96600 > { ROOT = { change_variable = { which = "MercSpawn" value = 96600 } } }
-96140 > { ROOT = { change_variable = { which = "MercSpawn" value = 96140 } } }
-95680 > { ROOT = { change_variable = { which = "MercSpawn" value = 95680 } } }
-95220 > { ROOT = { change_variable = { which = "MercSpawn" value = 95220 } } }
-94760 > { ROOT = { change_variable = { which = "MercSpawn" value = 94760 } } }
-94300 > { ROOT = { change_variable = { which = "MercSpawn" value = 94300 } } }
-93840 > { ROOT = { change_variable = { which = "MercSpawn" value = 93840 } } }
-93380 > { ROOT = { change_variable = { which = "MercSpawn" value = 93380 } } }
-92920 > { ROOT = { change_variable = { which = "MercSpawn" value = 92920 } } }
-92460 > { ROOT = { change_variable = { which = "MercSpawn" value = 92460 } } }
-92000 > { ROOT = { change_variable = { which = "MercSpawn" value = 92000 } } }
-91540 > { ROOT = { change_variable = { which = "MercSpawn" value = 91540 } } }
-91080 > { ROOT = { change_variable = { which = "MercSpawn" value = 91080 } } }
-90620 > { ROOT = { change_variable = { which = "MercSpawn" value = 90620 } } }
-90160 > { ROOT = { change_variable = { which = "MercSpawn" value = 90160 } } }
-89700 > { ROOT = { change_variable = { which = "MercSpawn" value = 89700 } } }
-89240 > { ROOT = { change_variable = { which = "MercSpawn" value = 89240 } } }
-88780 > { ROOT = { change_variable = { which = "MercSpawn" value = 88780 } } }
-88320 > { ROOT = { change_variable = { which = "MercSpawn" value = 88320 } } }
-87860 > { ROOT = { change_variable = { which = "MercSpawn" value = 87860 } } }
-87400 > { ROOT = { change_variable = { which = "MercSpawn" value = 87400 } } }
-86940 > { ROOT = { change_variable = { which = "MercSpawn" value = 86940 } } }
-86480 > { ROOT = { change_variable = { which = "MercSpawn" value = 86480 } } }
-86020 > { ROOT = { change_variable = { which = "MercSpawn" value = 86020 } } }
-85560 > { ROOT = { change_variable = { which = "MercSpawn" value = 85560 } } }
-85100 > { ROOT = { change_variable = { which = "MercSpawn" value = 85100 } } }
-84640 > { ROOT = { change_variable = { which = "MercSpawn" value = 84640 } } }
-84180 > { ROOT = { change_variable = { which = "MercSpawn" value = 84180 } } }
-83720 > { ROOT = { change_variable = { which = "MercSpawn" value = 83720 } } }
-83260 > { ROOT = { change_variable = { which = "MercSpawn" value = 83260 } } }
-82800 > { ROOT = { change_variable = { which = "MercSpawn" value = 82800 } } }
-82340 > { ROOT = { change_variable = { which = "MercSpawn" value = 82340 } } }
-81880 > { ROOT = { change_variable = { which = "MercSpawn" value = 81880 } } }
-81420 > { ROOT = { change_variable = { which = "MercSpawn" value = 81420 } } }
-80960 > { ROOT = { change_variable = { which = "MercSpawn" value = 80960 } } }
-80500 > { ROOT = { change_variable = { which = "MercSpawn" value = 80500 } } }
-80040 > { ROOT = { change_variable = { which = "MercSpawn" value = 80040 } } }
-79580 > { ROOT = { change_variable = { which = "MercSpawn" value = 79580 } } }
-79120 > { ROOT = { change_variable = { which = "MercSpawn" value = 79120 } } }
-78660 > { ROOT = { change_variable = { which = "MercSpawn" value = 78660 } } }
-78200 > { ROOT = { change_variable = { which = "MercSpawn" value = 78200 } } }
-77740 > { ROOT = { change_variable = { which = "MercSpawn" value = 77740 } } }
-77280 > { ROOT = { change_variable = { which = "MercSpawn" value = 77280 } } }
-76820 > { ROOT = { change_variable = { which = "MercSpawn" value = 76820 } } }
-76360 > { ROOT = { change_variable = { which = "MercSpawn" value = 76360 } } }
-75900 > { ROOT = { change_variable = { which = "MercSpawn" value = 75900 } } }
-75440 > { ROOT = { change_variable = { which = "MercSpawn" value = 75440 } } }
-74980 > { ROOT = { change_variable = { which = "MercSpawn" value = 74980 } } }
-74520 > { ROOT = { change_variable = { which = "MercSpawn" value = 74520 } } }
-74060 > { ROOT = { change_variable = { which = "MercSpawn" value = 74060 } } }
-73600 > { ROOT = { change_variable = { which = "MercSpawn" value = 73600 } } }
-73140 > { ROOT = { change_variable = { which = "MercSpawn" value = 73140 } } }
-72680 > { ROOT = { change_variable = { which = "MercSpawn" value = 72680 } } }
-72220 > { ROOT = { change_variable = { which = "MercSpawn" value = 72220 } } }
-71760 > { ROOT = { change_variable = { which = "MercSpawn" value = 71760 } } }
-71300 > { ROOT = { change_variable = { which = "MercSpawn" value = 71300 } } }
-70840 > { ROOT = { change_variable = { which = "MercSpawn" value = 70840 } } }
-70380 > { ROOT = { change_variable = { which = "MercSpawn" value = 70380 } } }
-69920 > { ROOT = { change_variable = { which = "MercSpawn" value = 69920 } } }
-69460 > { ROOT = { change_variable = { which = "MercSpawn" value = 69460 } } }
-69000 > { ROOT = { change_variable = { which = "MercSpawn" value = 69000 } } }
-68540 > { ROOT = { change_variable = { which = "MercSpawn" value = 68540 } } }
-68080 > { ROOT = { change_variable = { which = "MercSpawn" value = 68080 } } }
-67620 > { ROOT = { change_variable = { which = "MercSpawn" value = 67620 } } }
-67160 > { ROOT = { change_variable = { which = "MercSpawn" value = 67160 } } }
-66700 > { ROOT = { change_variable = { which = "MercSpawn" value = 66700 } } }
-66240 > { ROOT = { change_variable = { which = "MercSpawn" value = 66240 } } }
-65780 > { ROOT = { change_variable = { which = "MercSpawn" value = 65780 } } }
-65320 > { ROOT = { change_variable = { which = "MercSpawn" value = 65320 } } }
-64860 > { ROOT = { change_variable = { which = "MercSpawn" value = 64860 } } }
-64400 > { ROOT = { change_variable = { which = "MercSpawn" value = 64400 } } }
-63940 > { ROOT = { change_variable = { which = "MercSpawn" value = 63940 } } }
-63480 > { ROOT = { change_variable = { which = "MercSpawn" value = 63480 } } }
-63020 > { ROOT = { change_variable = { which = "MercSpawn" value = 63020 } } }
-62560 > { ROOT = { change_variable = { which = "MercSpawn" value = 62560 } } }
-62100 > { ROOT = { change_variable = { which = "MercSpawn" value = 62100 } } }
-61640 > { ROOT = { change_variable = { which = "MercSpawn" value = 61640 } } }
-61180 > { ROOT = { change_variable = { which = "MercSpawn" value = 61180 } } }
-60720 > { ROOT = { change_variable = { which = "MercSpawn" value = 60720 } } }
-60260 > { ROOT = { change_variable = { which = "MercSpawn" value = 60260 } } }
-59800 > { ROOT = { change_variable = { which = "MercSpawn" value = 59800 } } }
-59340 > { ROOT = { change_variable = { which = "MercSpawn" value = 59340 } } }
-58880 > { ROOT = { change_variable = { which = "MercSpawn" value = 58880 } } }
-58420 > { ROOT = { change_variable = { which = "MercSpawn" value = 58420 } } }
-57960 > { ROOT = { change_variable = { which = "MercSpawn" value = 57960 } } }
-57500 > { ROOT = { change_variable = { which = "MercSpawn" value = 57500 } } }
-57040 > { ROOT = { change_variable = { which = "MercSpawn" value = 57040 } } }
-56580 > { ROOT = { change_variable = { which = "MercSpawn" value = 56580 } } }
-56120 > { ROOT = { change_variable = { which = "MercSpawn" value = 56120 } } }
-55660 > { ROOT = { change_variable = { which = "MercSpawn" value = 55660 } } }
-55200 > { ROOT = { change_variable = { which = "MercSpawn" value = 55200 } } }
-54740 > { ROOT = { change_variable = { which = "MercSpawn" value = 54740 } } }
-54280 > { ROOT = { change_variable = { which = "MercSpawn" value = 54280 } } }
-53820 > { ROOT = { change_variable = { which = "MercSpawn" value = 53820 } } }
-53360 > { ROOT = { change_variable = { which = "MercSpawn" value = 53360 } } }
-52900 > { ROOT = { change_variable = { which = "MercSpawn" value = 52900 } } }
-52440 > { ROOT = { change_variable = { which = "MercSpawn" value = 52440 } } }
-51980 > { ROOT = { change_variable = { which = "MercSpawn" value = 51980 } } }
-51520 > { ROOT = { change_variable = { which = "MercSpawn" value = 51520 } } }
-51060 > { ROOT = { change_variable = { which = "MercSpawn" value = 51060 } } }
-50600 > { ROOT = { change_variable = { which = "MercSpawn" value = 50600 } } }
-50140 > { ROOT = { change_variable = { which = "MercSpawn" value = 50140 } } }
-49680 > { ROOT = { change_variable = { which = "MercSpawn" value = 49680 } } }
-49220 > { ROOT = { change_variable = { which = "MercSpawn" value = 49220 } } }
-48760 > { ROOT = { change_variable = { which = "MercSpawn" value = 48760 } } }
-48300 > { ROOT = { change_variable = { which = "MercSpawn" value = 48300 } } }
-47840 > { ROOT = { change_variable = { which = "MercSpawn" value = 47840 } } }
-47380 > { ROOT = { change_variable = { which = "MercSpawn" value = 47380 } } }
-46920 > { ROOT = { change_variable = { which = "MercSpawn" value = 46920 } } }
-46460 > { ROOT = { change_variable = { which = "MercSpawn" value = 46460 } } }
-46000 > { ROOT = { change_variable = { which = "MercSpawn" value = 46000 } } }
-45540 > { ROOT = { change_variable = { which = "MercSpawn" value = 45540 } } }
-45080 > { ROOT = { change_variable = { which = "MercSpawn" value = 45080 } } }
-44620 > { ROOT = { change_variable = { which = "MercSpawn" value = 44620 } } }
-44160 > { ROOT = { change_variable = { which = "MercSpawn" value = 44160 } } }
-43700 > { ROOT = { change_variable = { which = "MercSpawn" value = 43700 } } }
-43240 > { ROOT = { change_variable = { which = "MercSpawn" value = 43240 } } }
-42780 > { ROOT = { change_variable = { which = "MercSpawn" value = 42780 } } }
-42320 > { ROOT = { change_variable = { which = "MercSpawn" value = 42320 } } }
-41860 > { ROOT = { change_variable = { which = "MercSpawn" value = 41860 } } }
-41400 > { ROOT = { change_variable = { which = "MercSpawn" value = 41400 } } }
-40940 > { ROOT = { change_variable = { which = "MercSpawn" value = 40940 } } }
-40480 > { ROOT = { change_variable = { which = "MercSpawn" value = 40480 } } }
-40020 > { ROOT = { change_variable = { which = "MercSpawn" value = 40020 } } }
-39560 > { ROOT = { change_variable = { which = "MercSpawn" value = 39560 } } }
-39100 > { ROOT = { change_variable = { which = "MercSpawn" value = 39100 } } }
-38640 > { ROOT = { change_variable = { which = "MercSpawn" value = 38640 } } }
-38180 > { ROOT = { change_variable = { which = "MercSpawn" value = 38180 } } }
-37720 > { ROOT = { change_variable = { which = "MercSpawn" value = 37720 } } }
-37260 > { ROOT = { change_variable = { which = "MercSpawn" value = 37260 } } }
-36800 > { ROOT = { change_variable = { which = "MercSpawn" value = 36800 } } }
-36340 > { ROOT = { change_variable = { which = "MercSpawn" value = 36340 } } }
-35880 > { ROOT = { change_variable = { which = "MercSpawn" value = 35880 } } }
-35420 > { ROOT = { change_variable = { which = "MercSpawn" value = 35420 } } }
-34960 > { ROOT = { change_variable = { which = "MercSpawn" value = 34960 } } }
-34500 > { ROOT = { change_variable = { which = "MercSpawn" value = 34500 } } }
-34040 > { ROOT = { change_variable = { which = "MercSpawn" value = 34040 } } }
-33580 > { ROOT = { change_variable = { which = "MercSpawn" value = 33580 } } }
-33120 > { ROOT = { change_variable = { which = "MercSpawn" value = 33120 } } }
-32660 > { ROOT = { change_variable = { which = "MercSpawn" value = 32660 } } }
-32200 > { ROOT = { change_variable = { which = "MercSpawn" value = 32200 } } }
-31740 > { ROOT = { change_variable = { which = "MercSpawn" value = 31740 } } }
-31280 > { ROOT = { change_variable = { which = "MercSpawn" value = 31280 } } }
-30820 > { ROOT = { change_variable = { which = "MercSpawn" value = 30820 } } }
-30360 > { ROOT = { change_variable = { which = "MercSpawn" value = 30360 } } }
-29900 > { ROOT = { change_variable = { which = "MercSpawn" value = 29900 } } }
-29440 > { ROOT = { change_variable = { which = "MercSpawn" value = 29440 } } }
-28980 > { ROOT = { change_variable = { which = "MercSpawn" value = 28980 } } }
-28520 > { ROOT = { change_variable = { which = "MercSpawn" value = 28520 } } }
-28060 > { ROOT = { change_variable = { which = "MercSpawn" value = 28060 } } }
-27600 > { ROOT = { change_variable = { which = "MercSpawn" value = 27600 } } }
-27140 > { ROOT = { change_variable = { which = "MercSpawn" value = 27140 } } }
-26680 > { ROOT = { change_variable = { which = "MercSpawn" value = 26680 } } }
-26220 > { ROOT = { change_variable = { which = "MercSpawn" value = 26220 } } }
-25760 > { ROOT = { change_variable = { which = "MercSpawn" value = 25760 } } }
-25300 > { ROOT = { change_variable = { which = "MercSpawn" value = 25300 } } }
-24840 > { ROOT = { change_variable = { which = "MercSpawn" value = 24840 } } }
-24380 > { ROOT = { change_variable = { which = "MercSpawn" value = 24380 } } }
-23920 > { ROOT = { change_variable = { which = "MercSpawn" value = 23920 } } }
-23460 > { ROOT = { change_variable = { which = "MercSpawn" value = 23460 } } }
-23000 > { ROOT = { change_variable = { which = "MercSpawn" value = 23000 } } }
-22540 > { ROOT = { change_variable = { which = "MercSpawn" value = 22540 } } }
-22080 > { ROOT = { change_variable = { which = "MercSpawn" value = 22080 } } }
-21620 > { ROOT = { change_variable = { which = "MercSpawn" value = 21620 } } }
-21160 > { ROOT = { change_variable = { which = "MercSpawn" value = 21160 } } }
-20700 > { ROOT = { change_variable = { which = "MercSpawn" value = 20700 } } }
-20240 > { ROOT = { change_variable = { which = "MercSpawn" value = 20240 } } }
-19780 > { ROOT = { change_variable = { which = "MercSpawn" value = 19780 } } }
-19320 > { ROOT = { change_variable = { which = "MercSpawn" value = 19320 } } }
-18860 > { ROOT = { change_variable = { which = "MercSpawn" value = 18860 } } }
-18400 > { ROOT = { change_variable = { which = "MercSpawn" value = 18400 } } }
-17940 > { ROOT = { change_variable = { which = "MercSpawn" value = 17940 } } }
-17480 > { ROOT = { change_variable = { which = "MercSpawn" value = 17480 } } }
-17020 > { ROOT = { change_variable = { which = "MercSpawn" value = 17020 } } }
-16560 > { ROOT = { change_variable = { which = "MercSpawn" value = 16560 } } }
-16100 > { ROOT = { change_variable = { which = "MercSpawn" value = 16100 } } }
-15640 > { ROOT = { change_variable = { which = "MercSpawn" value = 15640 } } }
-15180 > { ROOT = { change_variable = { which = "MercSpawn" value = 15180 } } }
-14720 > { ROOT = { change_variable = { which = "MercSpawn" value = 14720 } } }
-14260 > { ROOT = { change_variable = { which = "MercSpawn" value = 14260 } } }
-13800 > { ROOT = { change_variable = { which = "MercSpawn" value = 13800 } } }
-13340 > { ROOT = { change_variable = { which = "MercSpawn" value = 13340 } } }
-12880 > { ROOT = { change_variable = { which = "MercSpawn" value = 12880 } } }
-12420 > { ROOT = { change_variable = { which = "MercSpawn" value = 12420 } } }
-11960 > { ROOT = { change_variable = { which = "MercSpawn" value = 11960 } } }
-11500 > { ROOT = { change_variable = { which = "MercSpawn" value = 11500 } } }
-11040 > { ROOT = { change_variable = { which = "MercSpawn" value = 11040 } } }
-10580 > { ROOT = { change_variable = { which = "MercSpawn" value = 10580 } } }
-10120 > { ROOT = { change_variable = { which = "MercSpawn" value = 10120 } } }
-9660 > { ROOT = { change_variable = { which = "MercSpawn" value = 9660 } } }
-9200 > { ROOT = { change_variable = { which = "MercSpawn" value = 9200 } } }
-8740 > { ROOT = { change_variable = { which = "MercSpawn" value = 8740 } } }
-8280 > { ROOT = { change_variable = { which = "MercSpawn" value = 8280 } } }
-7820 > { ROOT = { change_variable = { which = "MercSpawn" value = 7820 } } }
-7360 > { ROOT = { change_variable = { which = "MercSpawn" value = 7360 } } }
-6900 > { ROOT = { change_variable = { which = "MercSpawn" value = 6900 } } }
-6440 > { ROOT = { change_variable = { which = "MercSpawn" value = 6440 } } }
-5980 > { ROOT = { change_variable = { which = "MercSpawn" value = 5980 } } }
-5520 > { ROOT = { change_variable = { which = "MercSpawn" value = 5520 } } }
-5060 > { ROOT = { change_variable = { which = "MercSpawn" value = 5060 } } }
-4600 > { ROOT = { change_variable = { which = "MercSpawn" value = 4600 } } }
-4140 > { ROOT = { change_variable = { which = "MercSpawn" value = 4140 } } }
-3680 > { ROOT = { change_variable = { which = "MercSpawn" value = 3680 } } }
-3220 > { ROOT = { change_variable = { which = "MercSpawn" value = 3220 } } }
-2760 > { ROOT = { change_variable = { which = "MercSpawn" value = 2760 } } }
-2300 > { ROOT = { change_variable = { which = "MercSpawn" value = 2300 } } }
-1840 > { ROOT = { change_variable = { which = "MercSpawn" value = 1840 } } }
-1380 > { ROOT = { change_variable = { which = "MercSpawn" value = 1380 } } }
-920 > { ROOT = { change_variable = { which = "MercSpawn" value = 920 } } }
-460 > { ROOT = { change_variable = { which = "MercSpawn" value = 460 } } }
-default = { ROOT = { change_variable = { which = "MercSpawn" value = 400 } } }
-	}
-}
-
 fmerc_stage3_spawn_fixed_corvette = {
 	last_created_fleet = {
 		create_ship = {
@@ -332,23 +99,79 @@ fmerc_stage3_spawn_battleship = {
 
 fmerc_stage3_configure_squadrons = {
 	# 4 corvettes to every destroyer
-	set_variable = { which = "DestroyerSquad" value = "Destroyer" }
-	change_variable = { which = "DestroyerSquad" value = "Corvette" }
-	change_variable = { which = "DestroyerSquad" value = "Corvette" }
-	change_variable = { which = "DestroyerSquad" value = "Corvette" }
-	change_variable = { which = "DestroyerSquad" value = "Corvette" }
+	set_variable = { which = "DestroyerSquad" value = "DestroyerPower" }
+	change_variable = { which = "DestroyerSquad" value = "CorvettePower" }
+	change_variable = { which = "DestroyerSquad" value = "CorvettePower" }
+	change_variable = { which = "DestroyerSquad" value = "CorvettePower" }
+	change_variable = { which = "DestroyerSquad" value = "CorvettePower" }
 
 	# 2 destroyers to every cruiser
-	set_variable = { which = "CruiserSquad" value = "Cruiser" }
+	set_variable = { which = "CruiserSquad" value = "CruiserPower" }
 	change_variable = { which = "CruiserSquad" value = "DestroyerSquad" }
 	change_variable = { which = "CruiserSquad" value = "DestroyerSquad" }
 
 	# 4 cruisers to every battleship
-	set_variable = { which = "BattleshipSquad" value = "Battleship" }
+	set_variable = { which = "BattleshipSquad" value = "BattleshipPower" }
 	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
 	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
 	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
 	change_variable = { which = "BattleshipSquad" value = "CruiserSquad" }
+}
+
+merc_stage3_spawn_random_design_fleet = {
+	# There is probably a valid Corvette design available, which means we
+	# almost assume that all designs are valid. Still, we don't spawn a
+	# squadron whose total is zero and fall back to corvettes.
+	while = {
+		# Spawn if value is greater than zero, so that we never create
+		# a _smaller_ fleet than the one we wanted, but maybe slightly bigger.
+		limit = { check_variable = { which = "MercSpawn" value > 0 } }
+		if = { limit = {
+				check_variable = { which = "MercSpawn" value > "BattleshipSquad" }
+				# Make sure there is a valid battleship design
+				check_variable = { which = "BattleshipPower" value > 0 }
+			}
+			while = { count = 32 fmerc_stage3_spawn_corvette = yes }
+			while = { count = 8 fmerc_stage3_spawn_destroyer = yes }
+			while = { count = 4 fmerc_stage3_spawn_cruiser = yes }
+			fmerc_stage3_spawn_battleship = yes
+			subtract_variable = { which = "MercSpawn" value = "BattleshipSquad" }
+		else = { if = { limit = {
+				check_variable = { which = "MercSpawn" value > "CruiserSquad" }
+				# Make sure there is a valid cruiser design
+				check_variable = { which = "CruiserPower" value > 0 }
+			}
+			while = { count = 8 fmerc_stage3_spawn_corvette = yes }
+			while = { count = 2 fmerc_stage3_spawn_destroyer = yes }
+			fmerc_stage3_spawn_cruiser = yes
+			subtract_variable = { which = "MercSpawn" value = "CruiserSquad" }
+		else = { if = { limit = {
+				check_variable = { which = "MercSpawn" value > "DestroyerSquad" }
+				# Make sure there is a valid Destroyer design
+				check_variable = { which = "DestroyerPower" value > 0 }
+			}
+			while = { count = 4 fmerc_stage3_spawn_corvette = yes }
+			fmerc_stage3_spawn_destroyer = yes
+			subtract_variable = { which = "MercSpawn" value = "DestroyerSquad" }
+		else = {
+			fmerc_stage3_spawn_corvette = yes
+			subtract_variable = { which = "MercSpawn" value = "CorvettePower" }
+		} } } } } }
+	}
+}
+
+# There's no valid Corvette design, as far as we can see.
+# This means the user has addons installed that monkeywrench the
+# Stellaris autodesigner. This is exceptionally easy to do. They
+# should really fix that piece of shit autodesigner to properly
+# regard size/class restrictions on all components.
+merc_stage3_spawn_predesigned_fleet = {
+
+	while = {
+		limit = { check_variable = { which = "MercSpawn" value > 0 } }
+		fmerc_stage3_spawn_fixed_corvette = yes
+		subtract_variable = { which = "MercSpawn" value = 50 }
+	}
 }
 
 # While loops only loop to 100.
@@ -357,58 +180,11 @@ fmerc_stage3_match_fleet_power = {
 	log = "Final fleet power: [this.MercSpawn]."
 	log = "Squadron requirements: B=[this.BattleshipSquad] C=[this.CruiserSquad] D=[this.DestroyerSquad] C=[this.Corvette]"
 
-	if = { limit = { check_variable = { which = "Corvette" value = 0 } }
-		# There's no valid Corvette design, as far as we can see.
-		# This means the user has addons installed that monkeywrench the
-		# Stellaris autodesigner. This is exceptionally easy to do. They
-		# should really fix that piece of shit autodesigner to properly
-		# regard size/class restrictions on all components.
+	if = { limit = { check_variable = { which = "CorvettePower" value = 0 } }
 		log = "MERCOPS ERROR: No valid Corvette design in operations country."
-		while = {
-			limit = { check_variable = { which = "MercSpawn" value > 0 } }
-			fmerc_stage3_spawn_fixed_corvette = yes
-			subtract_variable = { which = "MercSpawn" value = 50 }
-		}
+		merc_stage3_spawn_predesigned_fleet = yes
 	else = {
-		# There is probably a valid Corvette design available, which means we
-		# almost assume that all designs are valid. Still, we don't spawn a
-		# squadron whose total is zero and fall back to corvettes.
-		while = {
-			# Spawn if value is greater than zero, so that we never create
-			# a _smaller_ fleet than the one we wanted, but maybe slightly bigger.
-			limit = { check_variable = { which = "MercSpawn" value > 0 } }
-			if = { limit = {
-					check_variable = { which = "MercSpawn" value > "BattleshipSquad" }
-					# Make sure there is a valid battleship design
-					check_variable = { which = "Battleship" value > 0 }
-				}
-				while = { count = 32 fmerc_stage3_spawn_corvette = yes }
-				while = { count = 8 fmerc_stage3_spawn_destroyer = yes }
-				while = { count = 4 fmerc_stage3_spawn_cruiser = yes }
-				fmerc_stage3_spawn_battleship = yes
-				subtract_variable = { which = "MercSpawn" value = "BattleshipSquad" }
-			else = { if = { limit = {
-					check_variable = { which = "MercSpawn" value > "CruiserSquad" }
-					# Make sure there is a valid cruiser design
-					check_variable = { which = "Cruiser" value > 0 }
-				}
-				while = { count = 8 fmerc_stage3_spawn_corvette = yes }
-				while = { count = 2 fmerc_stage3_spawn_destroyer = yes }
-				fmerc_stage3_spawn_cruiser = yes
-				subtract_variable = { which = "MercSpawn" value = "CruiserSquad" }
-			else = { if = { limit = {
-					check_variable = { which = "MercSpawn" value > "DestroyerSquad" }
-					# Make sure there is a valid Destroyer design
-					check_variable = { which = "Destroyer" value > 0 }
-				}
-				while = { count = 4 fmerc_stage3_spawn_corvette = yes }
-				fmerc_stage3_spawn_destroyer = yes
-				subtract_variable = { which = "MercSpawn" value = "DestroyerSquad" }
-			else = {
-				fmerc_stage3_spawn_corvette = yes
-				subtract_variable = { which = "MercSpawn" value = "Corvette" }
-			} } } } } }
-		}
+		merc_stage3_spawn_random_design_fleet = yes
 	} }
 }
 
@@ -571,13 +347,13 @@ fmerc_stage3_create_fleet = {
 
 	# We need to spawn _something_ no matter what. The player bought a service.
 	if = {
-		limit = { check_variable = { which = "MercSpawn" value < "Corvette" } }
-		change_variable = { which = "MercSpawn" value = "Corvette" }
-		change_variable = { which = "MercSpawn" value = "Corvette" }
+		limit = { check_variable = { which = "MercSpawn" value < "CorvettePower" } }
+		change_variable = { which = "MercSpawn" value = "CorvettePower" }
+		change_variable = { which = "MercSpawn" value = "CorvettePower" }
 		log = "Adjusted minimum: [this.MercSpawn]."
 	}
 	while = {
-		limit = { check_variable = { which = "MercSpawn" value < "Corvette" } }
+		limit = { check_variable = { which = "MercSpawn" value < "CorvettePower" } }
 		change_variable = { which = "MercSpawn" value = 200 }
 		log = "Adjusted absolute minimum: [this.MercSpawn]."
 	}
@@ -599,7 +375,7 @@ fmerc_stage3_create_fleet = {
 						}
 					}
 				}
-				fmerc_stage3_get_fleet_power = yes
+				merc_shameful_get_fleet_power = yes
 				log = "Matching fleet [this.GetName]: [root.MercSpawn]."
 			}
 		}
