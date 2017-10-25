@@ -26,58 +26,22 @@
 # - fmerc_target_country is NOT guaranteed to exist
 
 fmerc_stage1_copy_detection = {
-	last_created_country = {
-		set_variable = {
-			which = "MercDetect"
-			value = 0
-		}
-	}
+	last_created_country = { set_variable = { which = "MercDetect" value = 0 } }
 	# ZZZ works because mercdetect is never above 100
 	while = {
-		limit = {
-			check_variable = {
-				which = "MercDetect"
-				value > 0
-			}
-		}
-		subtract_variable = {
-			which = "MercDetect"
-			value = 1
-		}
-		last_created_country = {
-			change_variable = {
-				which = "MercDetect"
-				value = 1
-			}
-		}
+		limit = { check_variable = { which = "MercDetect" value > 0 } }
+		subtract_variable = { which = "MercDetect" value = 1 }
+		last_created_country = { change_variable = { which = "MercDetect" value = 1 } }
 	}
 }
 
 fmerc_stage1_copy_success = {
-	last_created_country = {
-		set_variable = {
-			which = "MercSuccess"
-			value = 0
-		}
-	}
+	last_created_country = { set_variable = { which = "MercSuccess" value = 0 } }
 	# ZZZ works because MercSuccess is never above 100
 	while = {
-		limit = {
-			check_variable = {
-				which = "MercSuccess"
-				value > 0
-			}
-		}
-		subtract_variable = {
-			which = "MercSuccess"
-			value = 1
-		}
-		last_created_country = {
-			change_variable = {
-				which = "MercSuccess"
-				value = 1
-			}
-		}
+		limit = { check_variable = { which = "MercSuccess" value > 0 } }
+		subtract_variable = { which = "MercSuccess" value = 1 }
+		last_created_country = { change_variable = { which = "MercSuccess" value = 1 } }
 	}
 }
 
