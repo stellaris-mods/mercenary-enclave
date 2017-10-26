@@ -21,39 +21,39 @@ merc_operation_detected = {
 	switch = {
 		trigger = has_country_flag
 		merc_op_spaceport = {
-			event_target:fmerc_target_country = {
+			event_target:merc_country = {
 				add_opinion_modifier = {
 					modifier = fmerc_opinion_spaceport
-					who = event_target:fmerc_buyer
+					who = event_target:merc_buyer
 				}
 			}
 		}
-		merc_op_liberation = {
-			event_target:fmerc_target_country = {
+		merc_op_liberate = {
+			event_target:merc_country = {
 				add_opinion_modifier = {
 					modifier = fmerc_opinion_liberate
-					who = event_target:fmerc_buyer
+					who = event_target:merc_buyer
 				}
 			}
 		}
 		merc_op_civilian = {
-			event_target:fmerc_target_country = {
+			event_target:merc_country = {
 				add_opinion_modifier = {
 					modifier = fmerc_opinion_raid
-					who = event_target:fmerc_buyer
+					who = event_target:merc_buyer
 				}
 			}
 		}
 		merc_op_fleet = {
-			event_target:fmerc_target_country = {
+			event_target:merc_country = {
 				add_opinion_modifier = {
 					modifier = fmerc_opinion_fleet
-					who = event_target:fmerc_buyer
+					who = event_target:merc_buyer
 				}
 			}
 		}
 	}
-	event_target:fmerc_target_country = {
+	event_target:merc_country = {
 		country_event = {
 			id = mercDetection.1
 		}

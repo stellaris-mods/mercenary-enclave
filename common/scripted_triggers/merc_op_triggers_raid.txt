@@ -78,7 +78,6 @@ merc_raid_priority_3 = {
 merc_raid_priority_minimum = {
 	# Lowest denominator
 	exists = solar_system
-	NOT = { any_owned_ship = { has_ship_flag = "fmerc_target" } }
 	merc_valid_civilian_raid_target = yes
-	solar_system = { merc_has_presence = no }
+	solar_system = { merc_has_station = no }
 }

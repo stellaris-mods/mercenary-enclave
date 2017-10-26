@@ -1,0 +1,93 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+namespace = mercControllerFleet
+
+fleet_event = {
+	id = mercControllerFleet.100
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		log = "mercControllerFleet.100"
+		if = { limit = { NOT = { exists = event_target:merc_current_target } }
+			owner = { merc_stage4_abort_operation = yes }
+			break = yes
+		}
+
+		if = { limit = { event_target:merc_current_target = { exists = solar_system } }
+			owner = {
+				switch = {
+					trigger = has_country_flag
+					merc_op_dock = { ROOT = { merc_stage3_init_fleet = yes } }
+					merc_op_liberate = { ROOT = { merc_stage3_init_fleet_liberate = yes } }
+					merc_op_spaceport = { ROOT = { merc_stage3_init_fleet = yes } }
+					merc_op_civilian = { ROOT = { merc_stage3_init_fleet = yes } }
+					merc_op_fleet = { ROOT = { merc_stage3_init_fleet = yes } }
+					merc_op_clear = { ROOT = { merc_stage3_init_fleet = yes } }
+				}
+			}
+		else = {
+			log = "Target is not in any solar system, trying again in 30 days."
+			fleet_event = { id = mercControllerFleet.100 days = 30 }
+		} }
+	}
+}
+
+fleet_event = {
+	id = mercControllerFleet.200
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_fleet_flag = "merc_operations"
+		owner = { NOT = { has_country_flag = "merc_op_dock" } }
+	}
+	immediate = {
+		log = "mercControllerFleet.200 on_entering_system_fleet"
+		owner = {
+			switch = {
+				trigger = has_country_flag
+				merc_op_liberate = { ROOT = { merc_stage3_check_planet_target = yes } }
+				merc_op_spaceport = { ROOT = { merc_stage3_check_generic_target = yes } }
+				merc_op_civilian = { ROOT = { merc_stage3_check_generic_target = yes } }
+				merc_op_fleet = { ROOT = { merc_stage3_check_generic_target = yes } }
+				merc_op_clear = { ROOT = { merc_stage3_check_generic_target = yes } }
+			}
+		}
+	}
+}
+
+# on_fleet_destroyed_victim
+country_event = {
+	id = mercControllerFleet.300
+	hide_window = yes
+	is_triggered_only = yes
+
+	# Our operations fleet has been destroyed.
+	trigger = {
+		is_country_type = "fmerc_operations"
+		count_owned_ships = { count = 0 }
+	}
+
+	immediate = {
+		log = "mercOps: on_fleet_destroyed_victim (.300)"
+		merc_stage4_abort_operation = yes
+	}
+}

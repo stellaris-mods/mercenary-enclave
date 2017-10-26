@@ -37,7 +37,7 @@
 #
 # local base = {
 # 	["spaceport "] = { success = 75, detect = 50 },
-# 	["liberation"] = { success = 70, detect = 55 },
+# 	["liberate  "] = { success = 70, detect = 55 },
 # 	["raid      "] = { success = 75, detect = 45 },
 # 	["fleet     "] = { success = 75, detect = 45 },
 # }
@@ -70,7 +70,7 @@
 ###############################################################################
 # Operations menu
 #
-# The operation type sets the base cost/success/detect values for all missions,
+# The operation type sets the base cost/success/detect values for all operations,
 # and the target type + disguise type modify on top of the base values.
 #
 
@@ -78,14 +78,9 @@
 merc_menu_2_operation_init = {
 	remove_country_flag = "merc_op_spaceport"
 	remove_country_flag = "merc_op_civilian"
-	remove_country_flag = "merc_op_liberation"
+	remove_country_flag = "merc_op_liberate"
 	remove_country_flag = "merc_op_fleet"
-
-	remove_country_flag = "merc_op_amoeba"
-	remove_country_flag = "merc_op_cloud"
-	remove_country_flag = "merc_op_crystal"
-	remove_country_flag = "merc_op_pirate"
-	remove_country_flag = "merc_op_drone"
+	remove_country_flag = "merc_op_clear"
 
 	merc_account_set_trust_multiplier = yes
 
@@ -118,7 +113,7 @@ merc_menu_2_operation_liberate = {
 	set_variable = { which = "MercCostInfluence" value = 75 }
 	set_variable = { which = "MercSuccess" value = 70 }
 	set_variable = { which = "MercDetect" value = 55 }
-	set_country_flag = "merc_op_liberation"
+	set_country_flag = "merc_op_liberate"
 	merc_menu_2_operation_apply = yes
 }
 
@@ -148,11 +143,11 @@ merc_menu_2_operation_clear = {
 #
 
 merc_menu_3_target_init = {
-	remove_country_flag = "merc_target_default"
-	remove_country_flag = "merc_target_fallen"
-	remove_country_flag = "merc_target_swarm"
-	remove_country_flag = "merc_target_exd"
-	remove_country_flag = "merc_target_airevolt"
+	remove_country_flag = "merc_country_type_default"
+	remove_country_flag = "merc_country_type_fallen"
+	remove_country_flag = "merc_country_type_swarm"
+	remove_country_flag = "merc_country_type_exd"
+	remove_country_flag = "merc_country_type_airevolt"
 
 	set_variable = { which = "MercTargetCostMultiplier" value = 0 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = 0 }
@@ -168,7 +163,7 @@ merc_menu_3_target_default = {
 	set_variable = { which = "MercTargetCostMultiplier" value = -5 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = 5 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = 5 }
-	set_country_flag = "merc_target_default"
+	set_country_flag = "merc_country_type_default"
 	merc_menu_3_target_apply = yes
 }
 
@@ -177,7 +172,7 @@ merc_menu_3_target_fallen = {
 	set_variable = { which = "MercTargetCostMultiplier" value = 70 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -5 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
-	set_country_flag = "merc_target_fallen"
+	set_country_flag = "merc_country_type_fallen"
 	merc_menu_3_target_apply = yes
 }
 
@@ -186,7 +181,7 @@ merc_menu_3_target_swarm = {
 	set_variable = { which = "MercTargetCostMultiplier" value = 35 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -10 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
-	set_country_flag = "merc_target_swarm"
+	set_country_flag = "merc_country_type_swarm"
 	merc_menu_3_target_apply = yes
 }
 
@@ -195,7 +190,7 @@ merc_menu_3_target_exd = {
 	set_variable = { which = "MercTargetCostMultiplier" value = 50 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -10 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
-	set_country_flag = "merc_target_exd"
+	set_country_flag = "merc_country_type_exd"
 	merc_menu_3_target_apply = yes
 }
 
@@ -204,7 +199,7 @@ merc_menu_3_target_airevolt = {
 	set_variable = { which = "MercTargetCostMultiplier" value = 25 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -5 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -10 }
-	set_country_flag = "merc_target_airevolt"
+	set_country_flag = "merc_country_type_airevolt"
 	merc_menu_3_target_apply = yes
 }
 

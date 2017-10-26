@@ -1,0 +1,140 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+# Stage 4 = operation is complete, or abort
+
+merc_stage4_operation_complete = {
+	log = "merc_stage4_operation_complete"
+
+	set_faction_hostility = { set_hostile = no }
+
+	merc_set_buyer = yes
+	merc_set_country = yes
+
+	if = {
+		limit = {
+			exists = event_target:merc_country
+			event_target:merc_country = { has_country_flag = "fmerc_operations_target" }
+		}
+		log = "Clearing merc_target flags from [merc_country.GetName]'s ships and/or planets, if any."
+		event_target:merc_country = {
+			remove_country_flag = "fmerc_operations_target"
+			every_owned_ship = {
+				limit = { has_ship_flag = "merc_target" }
+				remove_ship_flag = "merc_target"
+			}
+			every_owned_planet = {
+				limit = { has_planet_flag = "merc_target" }
+				remove_planet_flag = "merc_target"
+			}
+		}
+	}
+
+	merc_find_best_harbour = yes
+
+	if = {
+		limit = {
+			count_owned_ships { count > 0 }
+			exists = event_target:fmerc_spawn_at
+		}
+		event_target:fmerc_spawn_at = { save_event_target_as = merc_current_target }
+		log = "Returning mercenary operations fleet to enclave."
+
+		set_country_flag = "merc_op_dock"
+		every_owned_fleet = {
+			clear_fleet_actions = this
+			fleet_event = { id = mercControllerFleet.100 }
+		}
+
+		else = { merc_stage4_destroy = yes }
+	}
+
+	merc_stage5_additional_costs_clear = yes
+}
+
+merc_stage4_destroy = {
+	log = "Mercenary operation complete, destroying operation country and resetting buyer."
+	event_target:merc_buyer = {
+		remove_country_flag = "fmerc_active_operation"
+		remove_country_flag = "fmerc_calculated_costs"
+		country_event = {
+			id = mercMenu.9004
+		}
+	}
+
+	merc_check_detection = yes
+	destroy_country = yes
+}
+
+merc_stage4_abort_operation = {
+	# XXX also check if there are any marked targets left?
+	log = "Checking if we should try mission again ..."
+
+	subtract_variable = {
+		which = "MercSuccess"
+		value = 25
+	}
+	remove_country_flag = "fmerc_retry_operation"
+	if = { limit = { check_variable = { which = "MercSuccess" value > 90 } }
+		random = { chance = 95 set_country_flag = "fmerc_retry_operation" }
+	else = { if = { limit = { check_variable = { which = "MercSuccess" value > 80 } }
+		random = { chance = 85 set_country_flag = "fmerc_retry_operation" }
+	else = { if = { limit = { check_variable = { which = "MercSuccess" value > 70 } }
+		random = { chance = 75 set_country_flag = "fmerc_retry_operation" }
+	else = { if = { limit = { check_variable = { which = "MercSuccess" value > 60 } }
+		random = { chance = 65 set_country_flag = "fmerc_retry_operation" }
+	else = { if = { limit = { check_variable = { which = "MercSuccess" value > 50 } }
+		random = { chance = 55 set_country_flag = "fmerc_retry_operation" }
+	else = { if = { limit = { check_variable = { which = "MercSuccess" value > 40 } }
+		random = { chance = 45 set_country_flag = "fmerc_retry_operation" }
+	else = { if = { limit = { check_variable = { which = "MercSuccess" value > 30 } }
+		random = { chance = 35 set_country_flag = "fmerc_retry_operation" }
+	else = { if = { limit = { check_variable = { which = "MercSuccess" value > 20 } }
+		random = { chance = 25 set_country_flag = "fmerc_retry_operation" }
+	else = { if = { limit = { check_variable = { which = "MercSuccess" value > 10 } }
+		random = { chance = 15 set_country_flag = "fmerc_retry_operation" }
+	} } } } } } } } } } } } } } } } }
+
+	if = {
+		limit = { has_country_flag = "fmerc_retry_operation" }
+		remove_country_flag = "fmerc_retry_operation"
+		log = "Success chance is [this.MercSuccess]%, and the RNG was in our favor."
+		fmerc_init_stage2 = yes
+		else = {
+			log = "Operation cancelled due to low success factor ([this.MercSuccess])."
+			merc_stage4_operation_complete = yes
+		}
+	}
+}
+
+# This is invoked by fleets when they think their operation might be complete
+merc_stage4_maybe_operation_complete = {
+	# XXX this needs to check with each mission type, so that we can
+	# XXX subtract some of the kill variables from targetcount
+	log = "merc_stage4_maybe_operation_complete"
+	if = { limit = { check_variable = { which = "MercTargetCount" value > 0 } }
+		# We are not done, so find next target and get to it
+		merc_set_next_target = yes
+		merc_stage2_operation_start = yes
+	else = {
+		merc_stage4_operation_complete = yes
+	} }
+}
+

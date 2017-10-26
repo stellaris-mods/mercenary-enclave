@@ -20,206 +20,105 @@
 
 # These effects are only used by the raid operation types
 
-# THIS is the operations country
-fmerc_set_raid_target = {
-	fmerc_set_target_country = yes
-	if = {
-		limit = {
-			exists = event_target:fmerc_target_country
-			NOT = { exists = event_target:fmerc_target }
-			event_target:fmerc_target_country = {
-				any_owned_ship = {
-					exists = fleet
-					has_ship_flag = "fmerc_target"
-				}
-			}
-		}
-		# If our fleet exists, we first try to find a target within the system it's in.
-		if = {
-			limit = { count_owned_ships { count > 0 } }
-			event_target:fmerc_target_country = {
-				random_owned_ship = {
-					limit = {
-						exists = fleet
-						has_ship_flag = "fmerc_target"
-						fleet = { # There is probably some neater way to get at this that I can't think of
-							exists = solar_system
-							solar_system = {
-								any_ship_in_system = {
-									exists = owner
-									owner = { is_country_type = "fmerc_operations" }
-								}
-							}
-						}
-					}
-					fleet = {
-						save_event_target_as = fmerc_target
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				NOT = {
-					exists = event_target:fmerc_target
-				}
-			}
-			event_target:fmerc_target_country = {
-				random_owned_ship = {
-					limit = {
-						exists = fleet
-						has_ship_flag = "fmerc_target"
-					}
-					fleet = {
-						save_event_target_as = fmerc_target
-					}
-				}
-			}
-		}
-	}
-}
+merc_set_target_military = {
+	log = "Raid: Marking military target."
 
-fmerc_stage2_init_fleet = {
-	log = "Fleet: Locating military fleet target."
-	event_target:fmerc_target_country = {
-		if = { limit = { NOT = { exists = event_target:fmerc_target } }
-			random_owned_fleet = {
-				limit = {
-					fleet_size > 8
-					fleet_size < 30
-					is_ship_class = shipclass_military
-					exists = solar_system
-				}
-				save_event_target_as = fmerc_target
+	event_target:merc_country = {
+		random_owned_fleet = {
+			limit = {
+				fleet_size > 8
+				fleet_size < 30
+				is_ship_class = shipclass_military
+				exists = solar_system
 			}
+			random_owned_ship = {
+				log = "Raid: - Marked [this.GetName] (P1)."
+				save_event_target_as = merc_current_target
+			}
+			merc_found_target = yes
 		}
-		if = { limit = { NOT = { exists = event_target:fmerc_target } }
+		if = { limit = { PREV = { NOT = { has_country_flag = "merc_found_target" } } }
 			random_owned_fleet = {
 				limit = {
 					is_ship_class = shipclass_military
 					fleet_size < 100
 					exists = solar_system
 				}
-				save_event_target_as = fmerc_target
+				random_owned_ship = {
+					log = "Raid: - Marked [this.GetName] (P2)."
+					save_event_target_as = merc_current_target
+				}
+				merc_found_target = yes
 			}
 		}
-		if = { limit = { NOT = { exists = event_target:fmerc_target } }
+		# XXX add more stages maybe?
+		if = { limit = { PREV = { NOT = { has_country_flag = "merc_found_target" } } }
 			random_owned_fleet = {
 				limit = { is_ship_class = shipclass_military }
-				save_event_target_as = fmerc_target
+				random_owned_ship = {
+					log = "Raid: - Marked [this.GetName] (P3)."
+					save_event_target_as = merc_current_target
+				}
+				merc_found_target = yes
 			}
 		}
-		if = { limit = { NOT = { exists = event_target:fmerc_target } }
-			random_owned_fleet = {
-				save_event_target_as = fmerc_target
-			}
-		}
-	}
-	if = {
-		limit = { exists = event_target:fmerc_target }
-		event_target:fmerc_target = { log = "Fleet: Targetting [this.GetName]." }
-		else = { log = "Fleet: Did not find a valid fleet target." }
 	}
 }
 
-fmerc_stage2_init_raid = {
-	log = "Raid: Locating and marking 5 civilian targets for destruction."
+merc_set_target_civilian = {
+	log = "Raid: Marking civilian target."
 
-	# This allows us to support any arbitrary number, from 0 to 5.
-	# EXD for example usually only have 0-4 constructors, and even
-	# more usually, they have 3.
-	set_variable = { which = "MercRaidCount" value = 0 }
-	event_target:fmerc_target_country = {
-		every_owned_fleet = {
-			limit = { merc_valid_civilian_raid_target = yes }
-			PREVPREV = { change_variable = { which = "MercRaidCount" value = 1 } }
-		}
-	}
-	if = { limit = { check_variable = { which = "MercRaidCount" value > 5 } }
-		set_variable = { which = "MercRaidCount" value = 5 }
-	}
-
-	# First we try to find any targets that are "perfect".
-	# That means:
-	# 1. No military presence in system
-	# 2. No spaceports
-	# 3. No colonies in system
-	while = {
-		limit = { check_variable = { which = "MercRaidCount" value > 0 } }
-		event_target:fmerc_target_country = {
-			random_owned_fleet = {
-				limit = { merc_raid_priority_1 = yes }
-				random_owned_ship = {
-					set_ship_flag = "fmerc_target"
-					log = "Raid: - Marked [this.GetName] (P1)."
-				}
-				PREVPREV = { subtract_variable = { which = "MercRaidCount" value = 1 } }
+	event_target:merc_country = {
+		# First we try to find any targets that are "perfect".
+		# That means:
+		# 1. No military presence in system
+		# 2. No spaceports
+		# 3. No colonies in system
+		random_owned_fleet = {
+			limit = { merc_raid_priority_1 = yes }
+			random_owned_ship = {
+				log = "Raid: - Marked [this.GetName] (P1)."
+				save_event_target_as = merc_current_target
 			}
+			merc_found_target = yes
 		}
-	}
 
-	# As a secondary priority, if we can't find only perfect targets
-	# - Strike the "no colony" requirement
-	while = {
-		limit = { check_variable = { which = "MercRaidCount" value > 0 } }
-		event_target:fmerc_target_country = {
+		if = { limit = { PREV = { NOT = { has_country_flag = "merc_found_target" } } }
+			# As a secondary priority, if we can't find only perfect targets
+			# - Strike the "no colony" requirement
 			random_owned_fleet = {
 				limit = { merc_raid_priority_2 = yes }
 				random_owned_ship = {
-					set_ship_flag = "fmerc_target"
 					log = "Raid: - Marked [this.GetName] (P2)."
+					save_event_target_as = merc_current_target
 				}
-				PREVPREV = { subtract_variable = { which = "MercRaidCount" value = 1 } }
+				merc_found_target = yes
 			}
 		}
-	}
 
-	# As a tertiary priority, if we need more targets
-	# - Strike the "no spaceports" requirement
-	while = {
-		limit = { check_variable = { which = "MercRaidCount" value > 0 } }
-		event_target:fmerc_target_country = {
+		if = { limit = { PREV = { NOT = { has_country_flag = "merc_found_target" } } }
+			# Tertiary priority
+			# - Strike the "no spaceports" requirement
 			random_owned_fleet = {
 				limit = { merc_raid_priority_3 = yes }
 				random_owned_ship = {
-					set_ship_flag = "fmerc_target"
 					log = "Raid: - Marked [this.GetName] (P3)."
+					save_event_target_as = merc_current_target
 				}
-				PREVPREV = { subtract_variable = { which = "MercRaidCount" value = 1 } }
+				merc_found_target = yes
 			}
 		}
-	}
 
-	# Finally
-	# - Strike the "no military stations" requirement
-	# - Add outpost_station (frontier outpost) to the valid targets list
-	while = {
-		limit = { check_variable = { which = "MercRaidCount" value > 0 } }
-		event_target:fmerc_target_country = {
+		if = { limit = { PREV = { NOT = { has_country_flag = "merc_found_target" } } }
+			# Finally
+			# - Strike the "no military stations" requirement
 			random_owned_fleet = {
 				limit = { merc_raid_priority_minimum = yes }
 				random_owned_ship = {
-					set_ship_flag = "fmerc_target"
+					save_event_target_as = merc_current_target
 					log = "Raid: - Marked [this.GetName] (P4)."
 				}
-				PREVPREV = { subtract_variable = { which = "MercRaidCount" value = 1 } }
-			}
-		}
-	}
-
-	event_target:fmerc_target_country = {
-		if = {
-			limit = { any_owned_ship = { has_ship_flag = "fmerc_target" } }
-			random_owned_ship = {
-				limit = { has_ship_flag = "fmerc_target" }
-				fleet = {
-					log = "Raid: First target is in fleet [this.GetName]."
-					save_event_target_as = fmerc_target
-				}
-			}
-			else = {
-				PREV = { set_country_flag = "fmerc_ops_completed" }
-				log = "[this.GetName]: No valid raid targets found. That's weird."
+				merc_found_target = yes
 			}
 		}
 	}

@@ -19,14 +19,14 @@
 
 namespace = mercOpsMeta
 
-# Triggered from mission setup effects, after the delay
+# Triggered from operation setup effects, after the delay
 # THIS is the operations country
 country_event = {
 	id = mercOpsMeta.1
 	hide_window = yes
 	is_triggered_only = yes
 
-	# We should start the mission immediately, the delay has passed.
+	# We should start the operation immediately, the delay has passed.
 	immediate = {
 		fmerc_init_stage2 = yes
 	}
@@ -40,142 +40,9 @@ event = {
 		every_country = {
 			limit = {
 				is_country_type = "fmerc_operations"
-				OR = {
-					has_country_flag = "fmerc_ops_completed"
-					NOT = {
-						has_country_flag = "fmerc_ops_timeout"
-					}
-				}
+				NOT = { has_country_flag = "fmerc_ops_timeout" }
 			}
-			country_event = { id = mercOpsMeta.911 }
-		}
-	}
-}
-
-# The mercenary operations are complete!
-country_event = {
-	id = mercOpsMeta.911
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		log = "mercOpsMeta.911: Terminating mission."
-
-		fmerc_set_buyer = yes
-		fmerc_set_target_country = yes
-		if = {
-			limit = {
-				exists = event_target:fmerc_target_country
-				event_target:fmerc_target_country = {
-					has_country_flag = "fmerc_operations_target"
-				}
-			}
-			log = "Clearing fmerc_target flags from [fmerc_target_country.GetName]'s ships and/or planets, if any."
-			event_target:fmerc_target_country = {
-				remove_country_flag = "fmerc_operations_target"
-				every_owned_ship = {
-					limit = { has_ship_flag = "fmerc_target" }
-					remove_ship_flag = "fmerc_target"
-				}
-				every_owned_planet = {
-					limit = { has_planet_flag = "fmerc_target" }
-					remove_planet_flag = "fmerc_target"
-				}
-			}
-		}
-
-		# If we were doing a clear operation, calculate the cost
-		if = {
-			limit = {
-				exists = event_target:fmerc_buyer
-				NOT = { has_country_flag = "fmerc_calculated_costs" }
-				OR = {
-					has_country_flag = "merc_op_amoeba"
-					has_country_flag = "merc_op_cloud"
-					has_country_flag = "merc_op_crystal"
-					has_country_flag = "merc_op_pirate"
-					has_country_flag = "merc_op_drone"
-				}
-			}
-			set_country_flag = "fmerc_calculated_costs"
-			event_target:fmerc_buyer = { set_variable = { which = "MercCost" value = 300 } }
-
-			if = { limit = { exists = event_target:fmerc_target_country }
-				if = { limit = { num_killed_ships = { target = event_target:fmerc_target_country value > 4 } }
-					event_target:fmerc_buyer = { set_variable = { which = "MercCost" value = 3000 } }
-				else = { if = { limit = { num_killed_ships = { target = event_target:fmerc_target_country value > 3 } }
-					event_target:fmerc_buyer = { set_variable = { which = "MercCost" value = 2400 } }
-				else = { if = { limit = { num_killed_ships = { target = event_target:fmerc_target_country value > 2 } }
-					event_target:fmerc_buyer = { set_variable = { which = "MercCost" value = 1800 } }
-				else = { if = { limit = { num_killed_ships = { target = event_target:fmerc_target_country value > 1 } }
-					event_target:fmerc_buyer = { set_variable = { which = "MercCost" value = 1200 } }
-				else = { if = { limit = { num_killed_ships = { target = event_target:fmerc_target_country value > 0 } }
-					event_target:fmerc_buyer = { set_variable = { which = "MercCost" value = 600 } }
-				} } } } } } } } }
-			}
-
-			event_target:fmerc_buyer = {
-				log = "Clear: Base cost is [this.MercCost]."
-				merc_account_update = yes
-				# Need this for the multiplier
-				random_country = {
-					limit = { is_country_type = "fmerc_enclave" }
-					save_event_target_as = mercenaries
-				}
-				merc_account_set_trust_multiplier = yes
-				merc_account_apply_all_modifiers = yes
-				log = "Clear: Modified cost is [this.MercCost]."
-				log = "Clear: Multiplier is [this.MercTrustMultiplier]%."
-				merc_account_grabdatcash = yes
-			}
-		}
-
-		merc_find_best_harbour = yes
-
-		if = {
-			limit = {
-				count_owned_ships { count > 0 }
-				exists = event_target:fmerc_spawn_at
-			}
-			log = "Returning mercenary operations fleet to enclave."
-			set_faction_hostility = { set_hostile = no }
-			every_owned_fleet = {
-				queue_actions = {
-					repeat = {
-						while = {
-							id = mercOpsFleet.911.trigger.1
-							NOR = {
-								exists = solar_system
-								solar_system = {
-									is_same_value = event_target:fmerc_spawn_at.solar_system
-								}
-							}
-						}
-						move_to = event_target:fmerc_spawn_at.solar_system
-						wait = 7
-					}
-					move_to = event_target:fmerc_spawn_at
-					wait = 14
-					effect = {
-						id = mercOpsFleet.911.effect.1
-						remove_fleet_flag = "fmerc_count_towards_success"
-						destroy_fleet = THIS
-					}
-				}
-			}
-			else = {
-				log = "Mercenary operation complete, destroying operation country and resetting buyer."
-				event_target:fmerc_buyer = {
-					remove_country_flag = "fmerc_active_operation"
-					remove_country_flag = "fmerc_calculated_costs"
-					country_event = {
-						id = mercMenu.9004
-					}
-				}
-
-				merc_check_detection = yes
-				destroy_country = yes
-			}
+			merc_stage4_abort_operation = yes
 		}
 	}
 }
@@ -209,6 +76,9 @@ country_event = {
 				default = {
 					ROOT = { change_variable = { which = "MercKillsShips" value = 1 } }
 				}
+			}
+			if = { limit = { has_ship_flag = "merc_target" }
+				ROOT = { subtract_variable = { which = "MercTargetCount" value = 1 } }
 			}
 		}
 	}

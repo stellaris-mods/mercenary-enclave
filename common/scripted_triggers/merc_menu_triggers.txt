@@ -22,11 +22,11 @@ merc_menu_3_is_targetted_type = {
 	ROOT = {
 		switch = {
 			trigger = has_country_flag
-			merc_target_default = { PREV = { merc_menu_3_is_known_target_default = yes } }
-			merc_target_fallen = { PREV = { merc_menu_3_is_known_target_fallen = yes } }
-			merc_target_swarm = { PREV = { merc_menu_3_is_known_target_swarm = yes } }
-			merc_target_exd = { PREV = { merc_menu_3_is_known_target_exd = yes } }
-			merc_target_airevolt = { PREV = { merc_menu_3_is_known_target_airevolt = yes } }
+			merc_country_type_default = { PREV = { merc_menu_3_is_known_target_default = yes } }
+			merc_country_type_fallen = { PREV = { merc_menu_3_is_known_target_fallen = yes } }
+			merc_country_type_swarm = { PREV = { merc_menu_3_is_known_target_swarm = yes } }
+			merc_country_type_exd = { PREV = { merc_menu_3_is_known_target_exd = yes } }
+			merc_country_type_airevolt = { PREV = { merc_menu_3_is_known_target_airevolt = yes } }
 		}
 	}
 }
@@ -85,12 +85,12 @@ merc_menu_3_has_valid_operation_fallen = {
 }
 
 merc_menu_3_has_valid_operation_swarm = {
-	NOT = { has_country_flag = "merc_op_liberation" } # XXX add bombardment obliteration mission
+	NOT = { has_country_flag = "merc_op_liberate" } # XXX add bombardment obliteration operation
 }
 
 merc_menu_3_has_valid_operation_exd = {
 	NOT = { has_country_flag = "merc_op_spaceport" }
-	NOT = { has_country_flag = "merc_op_liberation" }
+	NOT = { has_country_flag = "merc_op_liberate" }
 }
 
 merc_menu_3_has_valid_operation_airevolt = {
@@ -100,7 +100,7 @@ merc_menu_3_has_valid_operation_airevolt = {
 	# on_rebels_take_planet
 	# on_rebels_take_planet_owner_switched
 	# So I probably have to use on_planet_ownerless or something
-	NOT = { has_country_flag = "merc_op_liberation" }
+	NOT = { has_country_flag = "merc_op_liberate" }
 	NOT = { has_country_flag = "merc_op_spaceport" }
 	#NOT = { has_country_flag = "merc_op_civilian" }
 }
@@ -125,7 +125,7 @@ merc_menu_3_is_valid_target_liberate = {
 		is_country_type = "ai_empire"
 	}
 	num_owned_planets > 2
-	any_owned_planet = { fmerc_valid_liberation_planet = yes }
+	any_owned_planet = { fmerc_valid_liberate_planet = yes }
 }
 
 merc_menu_3_is_valid_target_raid = {
@@ -156,7 +156,7 @@ merc_menu_3_is_valid_target = {
 		switch = {
 			trigger = has_country_flag
 			merc_op_spaceport = { PREV = { merc_menu_3_is_valid_target_spaceport = yes } }
-			merc_op_liberation = { PREV = { merc_menu_3_is_valid_target_liberate = yes } }
+			merc_op_liberate = { PREV = { merc_menu_3_is_valid_target_liberate = yes } }
 			merc_op_civilian = { PREV = { merc_menu_3_is_valid_target_raid = yes } }
 			merc_op_fleet = { PREV = { merc_menu_3_is_valid_target_fleet = yes } }
 		}

@@ -90,8 +90,8 @@ MASS_ACCELERATOR_MERC_DESC: "Компоненты кинетического о�
 ##merc.introduction.desc: "Greetings! Let us just get right to it: the use of mercenaries in warfare has a long history. Much longer, in fact, than the deployment of national militaries to wage wars.\n\n§YWhiteout Enterprises§! is a business just like any other. We can be contracted to perform a wide array of combat maneuvers, logistics, armed security, and ground combat training.\n\nFor a price."
 merc.introduction.desc: "Приветствую! Давайте сразу перейдем к делу: у использования наемной силы в военном деле очень древняя история. Намного древнее чем у регулярной армии различных Империй. \n\n§YWhiteout Enterprises§! просто ведет бизнес, как и все остальные. С нами можно заключить контракты на выполнение широкого спектра услуг, такие как боевые операции, логистика, обеспечение безопасности и ведение наземных боев.\n\nЗа отдельную цену, конечно."
 
-##merc.buyer.detected.desc: "We're being hailed by the head of our interior ministry: §H\"[Root.GetRulerTitle], we can confidently report that §!§Y[fmerc_buyer.GetName]§!§H has recently conducted a covert operation against us through §!§YWhiteout Enterprises§!§H. Noone has taken responsibility for the mission officially, but we are certain in our assessment.\"§!\n\nPerhaps it would be wise to order a counter-operation."
-merc.buyer.detected.desc: "На связи глава нашего Министерства Внутренних Дел: §H\"[Root.GetRulerTitle], мы можем утверждать, что §!§Y[fmerc_buyer.GetName]§!§H недавно провела скрытную операцию с помощью §!§YWhiteout Enterprises§!§H. Официально еще никто не взял на себя ответственность, но мы уверены в наших оценках.\"§!\n\nВполне вероятно, что заказ контроперации будет верным решением."
+##merc.buyer.detected.desc: "We're being hailed by the head of our interior ministry: §H\"[Root.GetRulerTitle], we can confidently report that §!§Y[merc_buyer.GetName]§!§H has recently conducted a covert operation against us through §!§YWhiteout Enterprises§!§H. Noone has taken responsibility for the mission officially, but we are certain in our assessment.\"§!\n\nPerhaps it would be wise to order a counter-operation."
+merc.buyer.detected.desc: "На связи глава нашего Министерства Внутренних Дел: §H\"[Root.GetRulerTitle], мы можем утверждать, что §!§Y[merc_buyer.GetName]§!§H недавно провела скрытную операцию с помощью §!§YWhiteout Enterprises§!§H. Официально еще никто не взял на себя ответственность, но мы уверены в наших оценках.\"§!\n\nВполне вероятно, что заказ контроперации будет верным решением."
 
 
 # =============================================
@@ -113,8 +113,8 @@ fmerc_enclave.trust: "Требуется отношение §YMercenary Enclave
 merc.condition.station.access: "Мы должны разрешить им постройку военных баз на нашей территории."
 ##fmerc_enclave.has_insurance: "We are already insured."
 fmerc_enclave.has_insurance: "У нас уже есть страховка."
-##merc.conclusion.mission.go: "Thank you for doing business with §YWhiteout Enterprises§!.\n\nThe operation will commence within 3-90 days. There will be no further communication regarding this operation.\n\nFunds will be withdrawn from your account and treasury immediately. If there is not sufficient funds, the operation will cease and you will be notified.\n\nMay our names never be mentioned."
-merc.conclusion.mission.go: "Спасибо, что выбрали §YWhiteout Enterprises§!.\n\nОперация будет проведена в течении 3-90 дней. Ради безопасности, мы прекращаем любую коммуникацию по поводу данной операции.\n\nСредства будут сняты с вашего счета. Если на вашем счету будет недостаточно средств, операция будет приостановлена и вас известят.\n\nИ пускай наши имена останутся в тайне."
+##merc.conclusion.operation.go: "Thank you for doing business with §YWhiteout Enterprises§!.\n\nThe operation will commence within 3-90 days. There will be no further communication regarding this operation.\n\nFunds will be withdrawn from your account and treasury immediately. If there is not sufficient funds, the operation will cease and you will be notified.\n\nMay our names never be mentioned."
+merc.conclusion.operation.go: "Спасибо, что выбрали §YWhiteout Enterprises§!.\n\nОперация будет проведена в течении 3-90 дней. Ради безопасности, мы прекращаем любую коммуникацию по поводу данной операции.\n\nСредства будут сняты с вашего счета. Если на вашем счету будет недостаточно средств, операция будет приостановлена и вас известят.\n\nИ пускай наши имена останутся в тайне."
 ##merc.condition.deposit: "You need at least £minerals §G2500§! deposited with §YWhiteout Enterprises§!."
 merc.condition.deposit: "Вам необходимо иметь как минимиум £minerals §G2500§! на счету §YWhiteout Enterprises§!."
 
@@ -269,8 +269,8 @@ merc.target.selected.airevolt: "Вы выбрали: §G$ai_crisis_chain_title$ 
 # Question 2, disguise
 ##merc.disguise.name: "Disguise Selection"
 merc.disguise.name: "Выбор маскировки"
-##merc.disguise.desc: "§Y[fmerc_target_country.GetName]§! will never know what hit them.\n\nThe next operational parameter you need to decide is what kind of disguise we should apply on our fleet. The available choices all have bonuses and penalties, so please choose carefully."
-merc.disguise.desc: "§Y[fmerc_target_country.GetName]§! никогда не узнает, с кем имеет дело.\n\nСледующий параметр определит тип маскировки нашего флота. Все возможные опции имеют свои плюсы и минусы, поэтому выбирайте мудро!"
+##merc.disguise.desc: "§Y[merc_country.GetName]§! will never know what hit them.\n\nThe next operational parameter you need to decide is what kind of disguise we should apply on our fleet. The available choices all have bonuses and penalties, so please choose carefully."
+merc.disguise.desc: "§Y[merc_country.GetName]§! никогда не узнает, с кем имеет дело.\n\nСледующий параметр определит тип маскировки нашего флота. Все возможные опции имеют свои плюсы и минусы, поэтому выбирайте мудро!"
 
 ##merc.disguise.random: "Random"
 merc.disguise.random: "Случайно"
@@ -300,8 +300,8 @@ merc.signature.desc: "Подписывая этот контракт, вы пр�
 
 ##merc.spaceport.conclusion: "Operation: §YSpaceport Raid§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
 merc.spaceport.conclusion: "Операция: §YSpaceport Raid§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
-##merc.liberation.conclusion: "Operation: §YLiberate Planet§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
-merc.liberation.conclusion: "Операция: §YLiberate Planet§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
+##merc.liberate.conclusion: "Operation: §YLiberate Planet§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
+merc.liberate.conclusion: "Операция: §YLiberate Planet§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
 ##merc.civilian.conclusion: "Operation: §YCivilian Raid§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
 merc.civilian.conclusion: "Операция: §YCivilian Raid§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
 
@@ -320,8 +320,8 @@ merc.conclusion.title: "Mercenary Operation Conclusion"
 
 ##merc.condition.funds: "Not enough minerals"
 merc.condition.funds: "Недостаточно минералов"
-##merc.conclusion.mission.abort: "§YWhiteout Enterprises§! was unable to withdraw the required funds from our treasury department.\n\n§RAs a result, the order has been cancelled.§!"
-merc.conclusion.mission.abort: "§YWhiteout Enterprises§! не смогли снять нужное количество средств.\n\n§RВ следствии этого, заказ был отменен.§!"
+##merc.conclusion.operation.abort: "§YWhiteout Enterprises§! was unable to withdraw the required funds from our treasury department.\n\n§RAs a result, the order has been cancelled.§!"
+merc.conclusion.operation.abort: "§YWhiteout Enterprises§! не смогли снять нужное количество средств.\n\n§RВ следствии этого, заказ был отменен.§!"
 
 # insurance
 
@@ -338,26 +338,27 @@ merc.insurance.decline: "Спасибо за предупреждение"
 ##merc.insurance.prevented: "We regret to inform you that the target you selected for your last order has invoked their insurance policy with §YWhiteout Enterprises§!, and as such, if we had an ongoing operation against them on your behalf - which we're not saying we do, or did - then it would be terminated immediately.\n\nHave a nice day."
 merc.insurance.prevented: "Нам жаль, но ваша цель в прошлом заключила с §YWhiteout Enterprises§! страховой договор, и поэтому, если у нас есть проводящиеся от вашего имени против них операции, мы должны остановить их немедля.\n\nПриятного дня."
 
-# mission completed
+# operation completed
 
 
 ##merc.completed.title: "Friendly \"Hello\""
 merc.completed.title: "Дружеское \"Привет\""
 ##merc.completed.desc: "§YWhiteout Enterprises§! is pleased to inform you that our services menu is now open for business. We hope you are happy with any services we might have rendered in the past.\n\nHave a nice day."
 merc.completed.desc: "§YWhiteout Enterprises§! рада уведомить, что наши услуги открыты для всех желающих. Надеемся, вы рады оказанным вам в прошлом услугами.\n\nПриятного дня."
-merc.completed.pretext: "Signatures picked up by our long range scanners reveal the following discrepancies before and after:"
-merc.completed.frontier: "   - §G[from.MercKillsFrontier]x§! $outpost_station_plural$"
-merc.completed.obspost: "   - §G[from.MercKillsObs]x§! $observation_station_plural$"
-merc.completed.wormhole: "   - §G[from.MercKillsWormhole]x§! $wormhole_station_plural$"
-merc.completed.research: "   - §G[from.MercKillsResearch]x§! $research_station_plural$"
-merc.completed.mining: "   - §G[from.MercKillsMining]x§! $mining_station_plural$"
-merc.completed.spaceport: "   - §G[from.MercKillsSpaceport]x§! $orbital_station_plural$"
-merc.completed.stations: "   - §G[from.MercKillsStations]x§! $shipclass_military_station$"
-merc.completed.ships: "   - §G[from.MercKillsShips]x§! $shipclass_military$"
-merc.completed.total: "   - §G[from.MercKillsTotal]§! total signatures lost"
-merc.completed.nothing: "   - No discrepancies. All transactions are final."
-merc.completed.transport: "   - §G[from.MercKillsTransport]x§! $shipclass_transport$"
-merc.completed.civilian: "   - §G[from.MercKillsCivilian]x§! $OUTLINER_CIVILIAN_FLEETS$"
+merc.completed.nothing: "Unfortunately, our operations did not manage to do much of anything before being beaten back by strong opposition. All transactions are final. Have a nice day."
+merc.completed.pretext: "After carefully studying the long range scanner data, and reading the reports from our officers who returned, the data reveal the following discrepancies before and after the operation:"
+merc.completed.posttext: "We hope you are happy with services rendered. Have a nice day."
+merc.completed.frontier: "   - §G[from.Owner.MercKillsFrontier]x§! $outpost_station_plural$"
+merc.completed.obspost: "   - §G[from.Owner.MercKillsObs]x§! $observation_station_plural$"
+merc.completed.wormhole: "   - §G[from.Owner.MercKillsWormhole]x§! $wormhole_station_plural$"
+merc.completed.research: "   - §G[from.Owner.MercKillsResearch]x§! $research_station_plural$"
+merc.completed.mining: "   - §G[from.Owner.MercKillsMining]x§! $mining_station_plural$"
+merc.completed.spaceport: "   - §G[from.Owner.MercKillsSpaceport]x§! $orbital_station_plural$"
+merc.completed.stations: "   - §G[from.Owner.MercKillsStations]x§! $shipclass_military_station$"
+merc.completed.ships: "   - §G[from.Owner.MercKillsShips]x§! $shipclass_military$"
+merc.completed.total: "   - §G[from.Owner.MercKillsTotal]§! total signatures lost"
+merc.completed.transport: "   - §G[from.Owner.MercKillsTransport]x§! $shipclass_transport$"
+merc.completed.civilian: "   - §G[from.Owner.MercKillsCivilian]x§! $OUTLINER_CIVILIAN_FLEETS$"
 
 # Merc Enclave destroyed
 merc.destroyed.desc: "The headquarters of $merc.name.colored$ in the [trader_system.GetName] system was recently destroyed by an attack force belonging to the [trader_destroyer.GetName]! The few surviving employees have fled the scene, and the corporation's remaining assets are being liquidated."
@@ -393,7 +394,7 @@ merc.param.operation.spaceport: "Operation: §YSpaceport Raid§!"
 civic_mercenary_operations_desc: ""
 civic_mercenary_operations: "Mercenary Operations"
 merc.param.disguise.buyer: "Disguise: §YYour ships§!\n"
-merc.param.target: "Target: §Y[fmerc_target_country.GetName]§!\n"
+merc.param.target: "Target: §Y[merc_country.GetName]§!\n"
 merc.operation.fleet: "Military Ships Raid"
 merc.param.operation.civilian: "Operation: §YCivilian Raid§!"
 merc.param.operation.liberate: "Operation: §YLiberate Planet§!"

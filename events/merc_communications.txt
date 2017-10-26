@@ -48,7 +48,7 @@ fleet_event = {
 			}
 		}
 		OR = {
-			has_fleet_flag = "fmerc_count_towards_success"
+			has_fleet_flag = "merc_operations"
 			has_fleet_flag = "merc_exploration_fleet"
 			has_fleet_flag = "merc_expansion_fleet"
 		}

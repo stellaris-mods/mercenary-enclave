@@ -33,7 +33,7 @@ country_event = {
 					text = "merc.param.operation.spaceport"
 					text = "merc.operation.spaceport.desc"
 				}
-				merc_op_liberation = {
+				merc_op_liberate = {
 					text = "merc.param.operation.liberate"
 					text = "merc.operation.liberate.desc"
 				}
@@ -147,17 +147,17 @@ country_event = {
 		trigger = {
 			switch = {
 				trigger = has_country_flag
-				merc_target_default = { text = "merc.target.selected.default" }
-				merc_target_fallen = { text = "merc.target.selected.fallen" }
-				merc_target_swarm = { text = "merc.target.selected.swarm" }
-				merc_target_exd = { text = "merc.target.selected.exd" }
-				merc_target_airevolt = { text = "merc.target.selected.airevolt" }
+				merc_country_type_default = { text = "merc.target.selected.default" }
+				merc_country_type_fallen = { text = "merc.target.selected.fallen" }
+				merc_country_type_swarm = { text = "merc.target.selected.swarm" }
+				merc_country_type_exd = { text = "merc.target.selected.exd" }
+				merc_country_type_airevolt = { text = "merc.target.selected.airevolt" }
 			}
 			text = newline
 			switch = {
 				trigger = has_country_flag
 				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
-				merc_op_liberation = { text = "merc.param.operation.liberate" }
+				merc_op_liberate = { text = "merc.param.operation.liberate" }
 				merc_op_civilian = { text = "merc.param.operation.civilian" }
 				merc_op_fleet = { text = "merc.param.operation.fleet" }
 			}
@@ -208,7 +208,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_1 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_1 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -225,7 +225,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_2 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_2 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -242,7 +242,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_3 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_3 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -259,7 +259,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_4 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_4 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -276,7 +276,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_5 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_5 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -293,7 +293,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_6 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_6 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -310,7 +310,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_7 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_7 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -327,7 +327,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_8 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_8 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -344,7 +344,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_9 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_9 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -361,7 +361,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_10 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_10 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -378,7 +378,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_11 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_11 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -395,7 +395,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_12 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_12 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -412,7 +412,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_13 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_13 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -429,7 +429,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_14 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_14 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -446,7 +446,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_15 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_15 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -463,7 +463,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_16 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_16 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -480,7 +480,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_17 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_17 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -497,7 +497,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_18 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_18 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -514,7 +514,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_19 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_19 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}
@@ -531,7 +531,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			event_target:merc_tmp_20 = { save_event_target_as = fmerc_target_country }
+			event_target:merc_tmp_20 = { save_event_target_as = merc_country }
 			country_event = { id = mercMenu.2000 }
 		}
 	}

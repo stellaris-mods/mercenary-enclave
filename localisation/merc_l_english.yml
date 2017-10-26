@@ -74,7 +74,7 @@ merc.param.operation.spaceport: "Operation: §Y$merc.operation.spaceport$§!"
 merc.param.operation.liberate: "Operation: §Y$merc.operation.liberate$§!"
 merc.param.operation.civilian: "Operation: §Y$merc.operation.civilian$§!"
 merc.param.operation.fleet: "Operation: §Y$merc.operation.fleet$§!"
-merc.param.target: "Target: §M[fmerc_target_country.GetName]§!"
+merc.param.target: "Target: §M[merc_country.GetName]§!"
 merc.param.minerals: "Mineral cost: £minerals §G[root.MercCost]§!"
 merc.param.energy: "Energy cost: £energy §G[root.MercCostEnergy]§!"
 merc.param.influence: "Influence cost: £influence §G[root.MercCostInfluence]§!"
@@ -106,7 +106,7 @@ merc.communications.project.desc: "After successfully translating their language
 merc.introduction.desc: "Greetings! Let us just get right to it: the use of mercenaries in warfare has a long history. Much longer, in fact, than the deployment of national militaries to wage wars.\n\n$merc.name.colored$ is a business just like any other. We can be contracted to perform a wide array of combat maneuvers, logistics, armed security, and ground combat training.\n\nFor a price."
 
 # The target detected who sent the mercenaries
-merc.buyer.detected.desc: "We're being hailed by the head of our interior ministry: §H\"[Root.GetRulerTitle], we can confidently report that §!§Y[fmerc_buyer.GetName]§!§H has recently conducted a covert operation against us through §!$merc.name.colored$§H. Noone has taken responsibility for the mission officially, but we are certain in our assessment.\"§!\n\nPerhaps it would be wise to order a counter-operation."
+merc.buyer.detected.desc: "We're being hailed by the head of our interior ministry: §H\"[Root.GetRulerTitle], we can confidently report that §!§Y[merc_buyer.GetName]§!§H has recently conducted a covert operation against us through §!$merc.name.colored$§H. Noone has taken responsibility for the mission officially, but we are certain in our assessment.\"§!\n\nPerhaps it would be wise to order a counter-operation."
 
 # Asks for station access
 merc.stationoffer.title: "Allow station access?"
@@ -123,22 +123,23 @@ merc.insurance.offer: "Pay £minerals §R[Root.MercCost]§!"
 merc.insurance.decline: "Thank you for the heads up"
 merc.insurance.prevented: "We regret to inform you that the target you selected for your last order has invoked their insurance policy with $merc.name.colored$, and as such, if we had an ongoing operation against them on your behalf - which we're not saying we do, or did - then it would be terminated immediately.\n\nHave a nice day."
 
-# mission completed
-merc.completed.title: "Friendly \"Hello\""
-merc.completed.desc: "$merc.name.colored$ is pleased to inform you that our services menu is now open for business. We hope you are happy with any services we might have rendered in the past.\n\nHave a nice day."
-merc.completed.pretext: "Signatures picked up by our long range scanners reveal the following discrepancies before and after:"
-merc.completed.frontier: "   - §G[from.MercKillsFrontier]x§! $outpost_station_plural$"
-merc.completed.obspost: "   - §G[from.MercKillsObs]x§! $observation_station_plural$"
-merc.completed.wormhole: "   - §G[from.MercKillsWormhole]x§! $wormhole_station_plural$"
-merc.completed.research: "   - §G[from.MercKillsResearch]x§! $research_station_plural$"
-merc.completed.mining: "   - §G[from.MercKillsMining]x§! $mining_station_plural$"
-merc.completed.spaceport: "   - §G[from.MercKillsSpaceport]x§! $orbital_station_plural$"
-merc.completed.stations: "   - §G[from.MercKillsStations]x§! $shipclass_military_station$"
-merc.completed.ships: "   - §G[from.MercKillsShips]x§! $shipclass_military$"
-merc.completed.total: "   - §G[from.MercKillsTotal]§! total signatures lost"
-merc.completed.nothing: "   - No discrepancies. All transactions are final."
-merc.completed.transport: "   - §G[from.MercKillsTransport]x§! $shipclass_transport$"
-merc.completed.civilian: "   - §G[from.MercKillsCivilian]x§! $OUTLINER_CIVILIAN_FLEETS$"
+# operation completed
+merc.completed.title: "Open for business"
+merc.completed.desc: "$merc.name.colored$ is pleased to inform you that our services menu is now open for business."
+merc.completed.nothing: "Unfortunately, our operations did not manage to do much of anything before being beaten back by strong opposition. All transactions are final. Have a nice day."
+merc.completed.pretext: "After carefully studying the long range scanner data, and reading the reports from our officers who returned, the data reveal the following discrepancies before and after the operation:"
+merc.completed.posttext: "We hope you are happy with services rendered. Have a nice day."
+merc.completed.frontier: "   - §G[from.Owner.MercKillsFrontier]x§! $outpost_station_plural$"
+merc.completed.obspost: "   - §G[from.Owner.MercKillsObs]x§! $observation_station_plural$"
+merc.completed.wormhole: "   - §G[from.Owner.MercKillsWormhole]x§! $wormhole_station_plural$"
+merc.completed.research: "   - §G[from.Owner.MercKillsResearch]x§! $research_station_plural$"
+merc.completed.mining: "   - §G[from.Owner.MercKillsMining]x§! $mining_station_plural$"
+merc.completed.spaceport: "   - §G[from.Owner.MercKillsSpaceport]x§! $orbital_station_plural$"
+merc.completed.stations: "   - §G[from.Owner.MercKillsStations]x§! $shipclass_military_station$"
+merc.completed.ships: "   - §G[from.Owner.MercKillsShips]x§! $shipclass_military$"
+merc.completed.total: "   - §G[from.Owner.MercKillsTotal]§! total signatures lost"
+merc.completed.transport: "   - §G[from.Owner.MercKillsTransport]x§! $shipclass_transport$"
+merc.completed.civilian: "   - §G[from.Owner.MercKillsCivilian]x§! $OUTLINER_CIVILIAN_FLEETS$"
 
 # Merc Enclave destroyed
 merc.destroyed.desc: "The headquarters of $merc.name.colored$ in the [trader_system.GetName] system was recently destroyed by an attack force belonging to the [trader_destroyer.GetName]! The few surviving employees have fled the scene, and the corporation's remaining assets are being liquidated."
@@ -253,7 +254,7 @@ merc.target.selected.airevolt: "These heartless robots are here to consume us al
 
 # Question 2, disguise
 merc.disguise.name: "Disguise Selection"
-merc.disguise.desc: "§Y[fmerc_target_country.GetName]§! will never know what hit them.\n\nThe next operational parameter you need to decide is what kind of disguise we should apply on our fleet. The available choices all have bonuses and penalties, so please choose carefully."
+merc.disguise.desc: "§Y[merc_country.GetName]§! will never know what hit them.\n\nThe next operational parameter you need to decide is what kind of disguise we should apply on our fleet. The available choices all have bonuses and penalties, so please choose carefully."
 
 merc.disguise.random: "Random"
 merc.disguise.random.button: "§Y$merc.disguise.random$ ...§!"
@@ -282,8 +283,8 @@ merc.signature.executive: "§YSign executive order§!"
 merc.conclusion.title: "Mercenary Operation Conclusion"
 
 # Conclusion
-merc.conclusion.mission.go: "Thank you for doing business with $merc.name.colored$.\n\nThe operation will commence within 3-90 days. There will be no further communication regarding this operation.\n\nFunds will be withdrawn from your account and treasury immediately.\n\nMay our names never be mentioned."
-merc.conclusion.mission.abort: "$merc.name.colored$ was unable to withdraw the required funds from our treasury department.\n\n§RAs a result, the order has been cancelled.§!"
+merc.conclusion.operation.go: "Thank you for doing business with $merc.name.colored$.\n\nThe operation will commence within 3-90 days. There will be no further communication regarding this operation.\n\nFunds will be withdrawn from your account and treasury immediately.\n\nMay our names never be mentioned."
+merc.conclusion.operation.abort: "$merc.name.colored$ was unable to withdraw the required funds from our treasury department.\n\n§RAs a result, the order has been cancelled.§!"
 
 # Country buttons
 merc.country.1.button: "§Y[merc_tmp_1.GetName] ...§!"

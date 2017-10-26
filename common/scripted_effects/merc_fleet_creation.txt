@@ -1,0 +1,429 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+
+fmerc_stage3_spawn_fixed_corvette = {
+	last_created_fleet = {
+		create_ship = {
+			name = random
+			design = "Mercenary Corvette"
+			prefix = no
+		}
+	}
+}
+fmerc_stage3_spawn_fixed_destroyer = {
+	last_created_fleet = {
+		create_ship = {
+			name = random
+			design = "Mercenary Destroyer"
+			prefix = no
+		}
+	}
+}
+fmerc_stage3_spawn_fixed_cruiser = {
+	last_created_fleet = {
+		create_ship = {
+			name = random
+			design = "Mercenary Cruiser"
+			prefix = no
+		}
+	}
+}
+fmerc_stage3_spawn_fixed_battleship = {
+	last_created_fleet = {
+		create_ship = {
+			name = random
+			design = "Mercenary Battleship"
+			prefix = no
+		}
+	}
+}
+fmerc_stage3_spawn_corvette = {
+	last_created_fleet = {
+		create_ship = {
+			name = random
+			random_existing_design = "corvette"
+			prefix = no
+		}
+	}
+}
+fmerc_stage3_spawn_destroyer = {
+	last_created_fleet = {
+		create_ship = {
+			name = random
+			random_existing_design = "destroyer"
+			prefix = no
+		}
+	}
+}
+fmerc_stage3_spawn_cruiser = {
+	last_created_fleet = {
+		create_ship = {
+			name = random
+			random_existing_design = "cruiser"
+			prefix = no
+		}
+	}
+}
+fmerc_stage3_spawn_battleship = {
+	last_created_fleet = {
+		create_ship = {
+			name = random
+			random_existing_design = "battleship"
+			prefix = no
+		}
+	}
+}
+
+merc_stage3_spawn_random_design_fleet = {
+	while = { limit = { check_variable = { which = "MercSpawnCorvette" value > 10 } }
+		while = { count = 10 fmerc_stage3_spawn_corvette = yes }
+		subtract_variable = { which = "MercSpawnCorvette" value = 10 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnCorvette" value > 0 } }
+		fmerc_stage3_spawn_corvette = yes
+		subtract_variable = { which = "MercSpawnCorvette" value = 1 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnDestroyer" value > 10 } }
+		while = { count = 10 fmerc_stage3_spawn_destroyer = yes }
+		subtract_variable = { which = "MercSpawnDestroyer" value = 10 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnDestroyer" value > 0 } }
+		fmerc_stage3_spawn_destroyer = yes
+		subtract_variable = { which = "MercSpawnDestroyer" value = 1 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnCruiser" value > 10 } }
+		while = { count = 10 fmerc_stage3_spawn_cruiser = yes }
+		subtract_variable = { which = "MercSpawnCruiser" value = 10 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnCruiser" value > 0 } }
+		fmerc_stage3_spawn_cruiser = yes
+		subtract_variable = { which = "MercSpawnCruiser" value = 1 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnBattleship" value > 10 } }
+		while = { count = 10 fmerc_stage3_spawn_battleship = yes }
+		subtract_variable = { which = "MercSpawnBattleship" value = 10 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnBattleship" value > 0 } }
+		fmerc_stage3_spawn_battleship = yes
+		subtract_variable = { which = "MercSpawnBattleship" value = 1 }
+	}
+}
+
+merc_stage3_spawn_predesigned_fleet = {
+	while = { limit = { check_variable = { which = "MercSpawnCorvette" value > 10 } }
+		while = { count = 10 fmerc_stage3_spawn_fixed_corvette = yes }
+		subtract_variable = { which = "MercSpawnCorvette" value = 10 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnCorvette" value > 0 } }
+		fmerc_stage3_spawn_fixed_corvette = yes
+		subtract_variable = { which = "MercSpawnCorvette" value = 1 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnDestroyer" value > 10 } }
+		while = { count = 10 fmerc_stage3_spawn_fixed_destroyer = yes }
+		subtract_variable = { which = "MercSpawnDestroyer" value = 10 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnDestroyer" value > 0 } }
+		fmerc_stage3_spawn_fixed_destroyer = yes
+		subtract_variable = { which = "MercSpawnDestroyer" value = 1 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnCruiser" value > 10 } }
+		while = { count = 10 fmerc_stage3_spawn_fixed_cruiser = yes }
+		subtract_variable = { which = "MercSpawnCruiser" value = 10 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnCruiser" value > 0 } }
+		fmerc_stage3_spawn_fixed_cruiser = yes
+		subtract_variable = { which = "MercSpawnCruiser" value = 1 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnBattleship" value > 10 } }
+		while = { count = 10 fmerc_stage3_spawn_fixed_battleship = yes }
+		subtract_variable = { which = "MercSpawnBattleship" value = 10 }
+	}
+	while = { limit = { check_variable = { which = "MercSpawnBattleship" value > 0 } }
+		fmerc_stage3_spawn_fixed_battleship = yes
+		subtract_variable = { which = "MercSpawnBattleship" value = 1 }
+	}
+}
+
+# While loops only loop to 100.
+fmerc_stage3_match_fleet_power = {
+	log = "Final fleet power: [this.MercSpawn]."
+
+	set_variable = { which = "MercSpawnCorvette" value = 0 }
+	set_variable = { which = "MercSpawnDestroyer" value = 0 }
+	set_variable = { which = "MercSpawnCruiser" value = 0 }
+	set_variable = { which = "MercSpawnBattleship" value = 0 }
+
+	# Because fleets can not contain more than 500 ships, we need to convert
+	# from fleet power to ship numbers.
+	# merc_use_global_designs is set or not in stage 1
+	while = {
+		limit = { check_variable = { which = "MercSpawn" value > 0 } }
+		if = { limit = { check_variable = { which = "MercSpawn" value > "BattleshipSquad" } }
+			change_variable = { which = "MercSpawnCorvette" value = 32 }
+			change_variable = { which = "MercSpawnDestroyer" value = 8 }
+			change_variable = { which = "MercSpawnCruiser" value = 4 }
+			change_variable = { which = "MercSpawnBattleship" value = 1 }
+			subtract_variable = { which = "MercSpawn" value = "BattleshipSquad" }
+		else = { if = { limit = { check_variable = { which = "MercSpawn" value > "CruiserSquad" } }
+			change_variable = { which = "MercSpawnCorvette" value = 8 }
+			change_variable = { which = "MercSpawnDestroyer" value = 2 }
+			change_variable = { which = "MercSpawnCruiser" value = 1 }
+			subtract_variable = { which = "MercSpawn" value = "CruiserSquad" }
+		else = { if = { limit = { check_variable = { which = "MercSpawn" value > "DestroyerSquad" } }
+			change_variable = { which = "MercSpawnCorvette" value = 4 }
+			change_variable = { which = "MercSpawnDestroyer" value = 1 }
+			subtract_variable = { which = "MercSpawn" value = "DestroyerSquad" }
+		else = {
+			change_variable = { which = "MercSpawnCorvette" value = 1 }
+			subtract_variable = { which = "MercSpawn" value = "CorvettePower" }
+		} } } } } }
+	}
+
+	# Now add up all the ship numbers
+	set_variable = { which = "MercSpawnTotal" value = "MercSpawnCorvette" }
+	change_variable = { which = "MercSpawnTotal" value = "MercSpawnDestroyer" }
+	change_variable = { which = "MercSpawnTotal" value = "MercSpawnCruiser" }
+	change_variable = { which = "MercSpawnTotal" value = "MercSpawnBattleship" }
+
+	# This doesn't actually take into account relative fleet powers between
+	# the ship sizes. I don't care at this point.
+	while = {
+		limit = {
+			check_variable = { which = "MercSpawnTotal" value > 490 }
+			check_variable = { which = "MercSpawnCorvette" value > 7 }
+		}
+		subtract_variable = { which = "MercSpawnCorvette" value = 8 }
+		change_variable = { which = "MercSpawnDestroyer" value = 2 }
+		subtract_variable = { which = "MercSpawnTotal" value = 6 }
+	}
+	while = {
+		limit = {
+			check_variable = { which = "MercSpawnTotal" value > 490 }
+			check_variable = { which = "MercSpawnDestroyer" value > 7 }
+		}
+		subtract_variable = { which = "MercSpawnDestroyer" value = 8 }
+		change_variable = { which = "MercSpawnCruiser" value = 4 }
+		subtract_variable = { which = "MercSpawnTotal" value = 4 }
+	}
+
+	if = { limit = { has_country_flag = "merc_use_global_designs" }
+		merc_stage3_spawn_predesigned_fleet = yes
+	else = {
+		merc_stage3_spawn_random_design_fleet = yes
+	} }
+
+}
+
+# THIS is the operations country
+# requires event_target:merc_country
+merc_find_best_harbour = {
+	# First try to find something close to any existing operations fleet
+	if = { limit = { count_owned_ships { count > 0 } }
+		# ZZZ so apparently, at least for countries without a capital,
+		# ZZZ random_owned_fleet actually scopes to something even if
+		# ZZZ no actual fleets exist ingame
+		random_owned_fleet = {
+			closest_system = {
+				limit = { merc_has_station = yes }
+				random_fleet_in_system = {
+					limit = { merc_is_station = yes }
+					save_event_target_as = fmerc_spawn_at
+				}
+			}
+		}
+	}
+	if = { limit = { NOT = { exists = event_target:merc_country } }
+		merc_set_country = yes
+	}
+
+	# The target country might not always exist; we might have destroyed it
+	if = { limit = { exists = event_target:merc_country }
+		# Then try to find a location inside the targets borders
+		if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
+			event_target:merc_country = {
+				random_system_within_border = {
+					limit = { merc_has_station = yes }
+					random_fleet_in_system = {
+						limit = { merc_is_station = yes }
+						save_event_target_as = fmerc_spawn_at
+					}
+				}
+			}
+		}
+		# If we still found nothing, find one of our targets and get
+		# the closest location to the target
+		if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
+			event_target:merc_country = {
+				random_owned_ship = {
+					limit = { has_ship_flag = "merc_target" }
+					closest_system = {
+						limit = { merc_has_station = yes }
+						random_fleet_in_system = {
+							limit = { merc_is_station = yes }
+							save_event_target_as = fmerc_spawn_at
+						}
+					}
+				}
+			}
+		}
+	}
+
+	# Fall back to any station owned by an enclave
+	if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
+		random_country = {
+			limit = { is_country_type = "fmerc_enclave" }
+			random_owned_fleet = {
+				limit = { merc_is_station = yes }
+				save_event_target_as = fmerc_spawn_at
+			}
+		}
+	}
+	if = {
+		limit = { NOT = { exists = event_target:fmerc_spawn_at } }
+		log = "Stage 3: Unable to find spawn location, aborting operation."
+		merc_stage4_abort_operation = yes
+		break = yes
+	}
+}
+
+merc_spawn_fleet = {
+	# Make sure we have somewhere to spawn
+	merc_find_best_harbour = yes
+
+	log = "Creating new fleet in [fmerc_spawn_at.GetStarName]."
+
+	# For when we recreate the fleet
+	set_faction_hostility = { set_hostile = no }
+	create_fleet = {
+		effect = {
+			set_owner = ROOT
+			set_location = {
+				target = event_target:fmerc_spawn_at
+				distance = 40
+				angle = random
+			}
+			set_fleet_stance = passive
+			set_aggro_range_measure_from = self
+			set_aggro_range = 80
+			set_fleet_flag = "merc_operations"
+		}
+	}
+
+	if = {
+		limit = {
+			exists = event_target:merc_country
+			NOT = { event_target:merc_country = { is_country_type = "default" } }
+		}
+		# Be much more aggressive towards non-default countries.
+		# ZZZ I have no idea why I did this.
+		set_variable = { which = "MercSpawn" value = 4500 }
+		else = {
+			set_variable = { which = "MercSpawn" value = 1500 }
+		}
+	}
+	if = {
+		limit = { has_country_flag = "merc_op_liberate" }
+		# 1.5k extra fleet power.
+		# I don't want to add more right now, because it's not going to
+		# scale well in any meaningful way. I need to do a more indepth
+		# examination of the target country, see how many military fleets
+		# and how large they are before I can more easily determine
+		# what our "success chance" is.
+		change_variable = { which = "MercSpawn" value = 1500 }
+	}
+	log = "Base fleet power is [this.MercSpawn]."
+
+	# Add MercSpawn per opinion level with merc hq
+	merc_set_buyer = yes
+	if = {
+		limit = { exists = event_target:merc_buyer }
+		random_country = {
+			limit = { is_country_type = "fmerc_enclave" }
+			if = { limit = { trust = { who = event_target:merc_buyer value = 100 } }
+				PREV = { change_variable = { which = "MercSpawn" value = 1000 } }
+			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 90 } }
+				PREV = { change_variable = { which = "MercSpawn" value = 900 } }
+			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 80 } }
+				PREV = { change_variable = { which = "MercSpawn" value = 800 } }
+			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 70 } }
+				PREV = { change_variable = { which = "MercSpawn" value = 700 } }
+			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 60 } }
+				PREV = { change_variable = { which = "MercSpawn" value = 600 } }
+			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 50 } }
+				PREV = { change_variable = { which = "MercSpawn" value = 500 } }
+			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 40 } }
+				PREV = { change_variable = { which = "MercSpawn" value = 400 } }
+			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 30 } }
+				PREV = { change_variable = { which = "MercSpawn" value = 300 } }
+			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 20 } }
+				PREV = { change_variable = { which = "MercSpawn" value = 200 } }
+			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 10 } }
+				PREV = { change_variable = { which = "MercSpawn" value = 100 } }
+			}}}}}}}}}}}}}}}}}}}
+		}
+	}
+	log = "Adjusted for trust level: [this.MercSpawn]."
+
+	# Adjust for success chance before we match target fleets
+	# So we only adjust the "base" + trust values.
+	set_variable = { which = "MercPercentSuccess" value = "MercSuccess" }
+	divide_variable = { which = "MercPercentSuccess" value = 100 }
+	multiply_variable = { which = "MercSpawn" value = "MercPercentSuccess" }
+	log = "Base adjusted for success (x[this.MercPercentSuccess]): [this.MercSpawn]."
+
+	# We need to spawn _something_ no matter what. The player bought a service.
+	if = {
+		limit = { check_variable = { which = "MercSpawn" value < "CorvettePower" } }
+		change_variable = { which = "MercSpawn" value = "CorvettePower" }
+		change_variable = { which = "MercSpawn" value = "CorvettePower" }
+		log = "Adjusted minimum: [this.MercSpawn]."
+	}
+	while = {
+		limit = { check_variable = { which = "MercSpawn" value < "CorvettePower" } }
+		change_variable = { which = "MercSpawn" value = 200 }
+		log = "Adjusted absolute minimum: [this.MercSpawn]."
+	}
+
+	# merc_current_target is always a planet or fleet
+	event_target:merc_current_target = {
+		solar_system = {
+			every_fleet_in_system = {
+				limit = {
+					exists = owner
+					owner = {
+						OR = {
+							is_overlord_to = event_target:merc_country
+							is_same_value = event_target:merc_country
+							AND = {
+								has_federation = yes
+								is_in_federation_with = event_target:merc_country
+							}
+						}
+					}
+				}
+				merc_shameful_get_fleet_power = yes
+				log = "Matching fleet [this.GetName]: [root.MercSpawn]."
+			}
+		}
+	}
+
+	fmerc_stage3_match_fleet_power = yes
+}

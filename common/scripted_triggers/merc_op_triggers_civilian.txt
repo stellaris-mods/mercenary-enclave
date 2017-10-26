@@ -22,7 +22,7 @@
 # operations, like spaceport/military fleet raids, etc. They should be in
 # merc_op_triggers_raid.
 
-# Note that this trigger is used both in the diplomacy screen, and during the mission
+# Note that this trigger is used both in the diplomacy screen, and during the operation
 merc_valid_civilian_raid_target = {
 	OR = {
 		# Default

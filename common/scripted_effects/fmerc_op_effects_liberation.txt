@@ -18,57 +18,142 @@
 ###
 
 
-# These effects are only used by the liberation mission type
+# These effects are only used by the liberate operation type
 
-fmerc_stage2_init_liberation = {
-	# We can't simply check exists=event_target because it might still be set
-	# from the last invokation, and we might need to pick a _new_ target.
-	remove_country_flag = "merc_found_target"
-	event_target:fmerc_buyer = {
+merc_liberate_verify_target_status = {
+	if = { limit = { event_target:merc_current_target = { fmerc_valid_liberate_planet = no } }
+		log = "ERROR: [merc_current_target.GetName] is no longer valid for liberate. Aborting."
+		merc_stage4_abort_operation = yes
+		break = yes
+	}
+}
+
+merc_liberate_verify_orbit = {
+	if = { limit = { NOT = { exists = orbit } }
+		log = "ERROR: [this.GetName] is not in orbit of anything."
+		merc_stage4_abort_operation = yes
+		break = yes
+	}
+}
+
+# THIS and ROOT is the fleet
+# PREV is owner
+merc_stage3_init_fleet_liberate = {
+	# 1. Verify target status
+	merc_verify_current_target = yes
+
+	# 2. Check if we are in the same solar system as our target
+	#    and if we are, turn hostile.
+	merc_maybe_go_hostile = yes
+
+	# 3. Verify target is still valid for liberate
+	merc_liberate_verify_target_status = yes
+
+	event_target:merc_current_target = { merc_fleet_move_planet = yes }
+}
+
+merc_stage3_fleet_arrived_liberate = {
+	owner = { merc_set_country = yes }
+	owner = { merc_set_buyer = yes }
+	merc_set_target_planet = yes
+
+	# Verify solar system
+	merc_verify_same_system = yes
+	# verify target status
+	merc_liberate_verify_target_status = yes
+	# check distance to target
+	merc_liberate_verify_orbit = yes
+
+	log = "merc_stage3_fleet_arrived_liberate"
+
+	# The rebel country does NOT exist, so create a new one
+	event_target:merc_current_target = {
+		create_rebels = {
+			name = random
+			ethos = event_target:merc_buyer
+			authority = event_target:merc_buyer
+			civics = random
+			species = event_target:merc_country
+			name_list = event_target:merc_country
+			flag = random
+			# auto_delete = no # much easier if the country is just destroyed every time they lose
+			effect = {
+				set_country_flag = "fmerc_liberate_rebels"
+				# This is weird; it seems that when the rebels win,
+				# this country is immediately turned into a "default" one,
+				# and so anyone that had contact with them is notified by
+				# vanilla event action.61. Try to prevent that.
+				set_country_flag = "silence_destroy_event"
+				# ZZZ
+				# event target only for create_army below.
+				# I don't know if last_created_country works with
+				# create_rebels, and I don't want to run it even once
+				# to find out.
+				save_event_target_as = tmp_army_country
+				establish_communications_no_message = PREVPREV.owner # merc operations
+				establish_communications_no_message = event_target:merc_country
+				set_relation_flag = {
+					flag = fmerc_liberate_rebels
+					who = PREVPREV.owner
+				}
+			}
+		}
+		fmerc_liberate_create_armies = yes
+	}
+}
+
+merc_set_target_liberate = {
+	event_target:merc_buyer = {
 		# Capital of buyer
 		capital_scope = {
 			closest_system = {
 				limit = {
 					any_planet = {
 						exists = owner
-						is_owned_by = event_target:fmerc_target_country
-						fmerc_valid_liberation_planet = yes
+						is_owned_by = event_target:merc_country
+						fmerc_valid_liberate_planet = yes
 					}
 				}
 				random_system_planet = {
 					limit = {
 						exists = owner
-						is_owned_by = event_target:fmerc_target_country
-						fmerc_valid_liberation_planet = yes
+						is_owned_by = event_target:merc_country
+						fmerc_valid_liberate_planet = yes
 					}
-					log = "Liberation: Target planet is [this.GetName] in [This.GetStarName]."
-					set_planet_flag = "fmerc_target"
+					log = "liberate: Target planet is [this.GetName] in [This.GetStarName]."
+					set_planet_flag = "merc_target"
 					PREVPREVPREVPREV = { set_country_flag = "merc_found_target" }
-					save_event_target_as = fmerc_target
+					save_event_target_as = merc_current_target
 				}
 			}
 		}
 	}
-	if = { limit = { NOT = { has_country_flag = "merc_found_target" } }
-		# This is a problem, probably.
-		log = "Liberation could not find a valid target for invasion."
-		set_country_flag = "fmerc_ops_completed"
-	}
-	remove_country_flag = "merc_found_target"
 }
 
-# THIS is the operations country
-fmerc_liberation_set_target_planet = {
-	if = {
-		limit = { NOT = { exists = event_target:fmerc_target } }
-		fmerc_set_target_country = yes
-		event_target:fmerc_target_country = {
-			random_owned_planet = {
-				limit = { has_planet_flag = "fmerc_target" }
-				save_event_target_as = fmerc_target
-			}
+merc_liberate_fix_species = {
+	if = { limit = { last_created_species = { has_trait = trait_cybernetic } }
+		modify_species = {
+			species = this
+			remove_trait = trait_cybernetic
 		}
 	}
+	if = { limit = { last_created_species = { has_trait = trait_latent_psionic } }
+		modify_species = {
+			species = this
+			remove_trait = trait_latent_psionic
+		}
+	}
+	if = { limit = { last_created_species = { has_trait = trait_psionic } }
+		modify_species = {
+			species = this
+			remove_trait = trait_psionic
+		}
+	}
+	modify_species = {
+		species = this
+		ideal_planet_class = ROOT
+	}
+	change_dominant_species = { species = last_created }
 }
 
 #GARRISON_SIZE_BASE					= 2			# Planet always spawns this number of garrisons
@@ -77,12 +162,12 @@ fmerc_liberation_set_target_planet = {
 # Scope should be planet
 # event_target:tmp_army_country gets the new armies
 # ROOT needs to be the mercenary country
-# event_target:fmerc_buyer must be set
+# event_target:merc_buyer must be set
 
-fmerc_liberation_create_armies = {
+fmerc_liberate_create_armies = {
 	ROOT = {
 		set_variable = {
-			which = "MercLiberationArmyCount"
+			which = "MercliberateArmyCount"
 			value = 3 #GARRISON_SIZE_BASE + 1
 		}
 	}
@@ -92,7 +177,7 @@ fmerc_liberation_create_armies = {
 			# There is also a chance it should be multiply_variable by ( 1 + ( num_pops * 0.4 ) )
 			# But it probably isn't, it's probably 0.4 armies per pop.
 			change_variable = {
-				which = "MercLiberationArmyCount"
+				which = "MercliberateArmyCount"
 				value = 0.4 # GARRISON_SIZE_MULT
 			}
 		}
@@ -124,7 +209,7 @@ fmerc_liberation_create_armies = {
 		else = {
 			ROOT = {
 				change_variable = {
-					which = "MercLiberationArmyCount"
+					which = "MercliberateArmyCount"
 					value = 1
 				}
 			}
@@ -133,30 +218,30 @@ fmerc_liberation_create_armies = {
 	# Now we invade with the same number of armies that we found.
 	ROOT = {
 		set_variable = {
-			which = "MercLiberationArmyAdditional"
+			which = "MercliberateArmyAdditional"
 			value = "MercSuccess"
 		}
 		while = { # ye I could use divide_variable. I wasn't thinking straight
 			limit = {
 				check_variable = {
-					which = "MercLiberationArmyAdditional"
+					which = "MercliberateArmyAdditional"
 					value > 20
 				}
 			}
 			change_variable = {
-				which = "MercLiberationArmyCount"
+				which = "MercliberateArmyCount"
 				value = 1
 			}
 			subtract_variable = {
-				which = "MercLiberationArmyAdditional"
+				which = "MercliberateArmyAdditional"
 				value = 20
 			}
 		}
-		log = "Spawning [Root.MercLiberationArmyCount] armies."
+		log = "Spawning [Root.MercliberateArmyCount] armies."
 		while = {
 			limit = {
 				check_variable = {
-					which = "MercLiberationArmyCount"
+					which = "MercliberateArmyCount"
 					value > 0.9
 				}
 			}
@@ -164,12 +249,12 @@ fmerc_liberation_create_armies = {
 				create_army = {
 					name = "Hired Rebels"
 					owner = event_target:tmp_army_country
-					species = event_target:fmerc_buyer
+					species = event_target:merc_buyer
 					type = "defense_army"
 				}
 			}
 			subtract_variable = {
-				which = "MercLiberationArmyCount"
+				which = "MercliberateArmyCount"
 				value = 1
 			}
 		}
@@ -181,7 +266,7 @@ fmerc_assault_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "assault_army"
 		}
 	}
@@ -191,7 +276,7 @@ fmerc_slave_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "slave_army"
 		}
 	}
@@ -201,7 +286,7 @@ fmerc_clone_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "clone_army"
 		}
 	}
@@ -211,7 +296,7 @@ fmerc_robotic_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "robotic_army"
 		}
 	}
@@ -221,7 +306,7 @@ fmerc_robotic_defense_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "robotic_defense_army"
 		}
 	}
@@ -231,7 +316,7 @@ fmerc_android_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "android_army"
 		}
 	}
@@ -241,7 +326,7 @@ fmerc_android_defense_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "android_defense_army"
 		}
 	}
@@ -251,7 +336,7 @@ fmerc_psionic_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "psionic_army"
 		}
 	}
@@ -261,7 +346,7 @@ fmerc_xenomorph_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "xenomorph_army"
 		}
 	}
@@ -271,7 +356,7 @@ fmerc_gene_warrior_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "gene_warrior_army"
 		}
 	}
@@ -281,7 +366,7 @@ fmerc_swarm_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "swarm_army"
 		}
 	}
@@ -291,7 +376,7 @@ fmerc_elite_guard_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "elite_guard_army"
 		}
 	}
@@ -301,7 +386,7 @@ fmerc_shroud_army = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "shroud_army"
 		}
 	}
@@ -311,7 +396,7 @@ fmerc_machine_assault_1 = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "machine_assault_1"
 		}
 	}
@@ -321,7 +406,7 @@ fmerc_machine_defense_1 = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "machine_defense_1"
 		}
 	}
@@ -331,7 +416,7 @@ fmerc_machine_assault_2 = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "machine_assault_2"
 		}
 	}
@@ -341,7 +426,7 @@ fmerc_machine_defense_2 = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "machine_defense_2"
 		}
 	}
@@ -351,7 +436,7 @@ fmerc_machine_assault_3 = {
 		create_army = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
-			species = event_target:fmerc_buyer
+			species = event_target:merc_buyer
 			type = "machine_assault_3"
 		}
 	}

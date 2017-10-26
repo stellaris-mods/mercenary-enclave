@@ -38,3 +38,12 @@ merc_is_exd = {
 		is_country_type = "tfw_ed"
 	}
 }
+
+# THIS = fleet
+merc_is_target_system = {
+	exists = solar_system # Doesn't exist if we're in FTL
+	solar_system = {
+		merc_has_station = no
+		is_same_value = event_target:merc_current_target.solar_system
+	}
+}

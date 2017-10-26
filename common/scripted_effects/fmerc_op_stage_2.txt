@@ -20,110 +20,55 @@
 
 
 # STAGE 2
-# - Initialization starts after a random delay.
+# - Operation actually begins, this is after a random delay
+#   from when the buyer actually pays. Depending on operation.
 # - ROOT/THIS is always the mercenary operations country
-# - event_targets fmerc_buyer and fmerc_target_country always exist
+# - event_targets merc_buyer and merc_country always exist
 # - Must chain to the specific operation types init event
 
 fmerc_init_stage2 = {
-	fmerc_set_buyer = yes
-	fmerc_set_target_country = yes
+	merc_set_buyer = yes
+	merc_set_country = yes
 
 	log = "Stage 2: Launch Mercenary Operations"
 
 	if = { limit = { fmerc_enclave_exists = no }
-		log = "Mercenary Enclave no longer exists, aborting mission."
-		set_country_flag = "fmerc_ops_completed"
+		log = "Mercenary Enclave no longer exists, aborting operation."
+		merc_stage4_abort_operation = yes
 		break = yes
 	}
-	if = { limit = { NOT = { exists = event_target:fmerc_buyer } }
-		log = "The country who ordered this operation no longer exists, aborting mission."
-		set_country_flag = "fmerc_ops_completed"
+	if = { limit = { NOT = { exists = event_target:merc_buyer } }
+		log = "The country who ordered this operation no longer exists, aborting operation."
+		merc_stage4_abort_operation = yes
 		break = yes
 	}
-	if = { limit = { NOT = { exists = event_target:fmerc_target_country } }
-		log = "The target country of this operation could not be found, aborting mission."
-		set_country_flag = "fmerc_ops_completed"
+	if = { limit = { NOT = { exists = event_target:merc_country } }
+		log = "The target country of this operation could not be found, aborting operation."
+		merc_stage4_abort_operation = yes
 		break = yes
 	}
 
-	log = "Buyer is [fmerc_buyer.GetName]."
-	log = "Target is [fmerc_target_country.GetName]."
+	log = "Buyer is [merc_buyer.GetName]."
+	log = "Target is [merc_country.GetName]."
 
-	switch = {
-		trigger = has_country_flag
-		merc_op_spaceport = {
-			fmerc_stage2_init_spaceport = yes
-			fmerc_stage2_tag_ships = yes
-			country_event = { id = mercOpsFleet.1 }
-		}
-		merc_op_liberation = {
-			fmerc_stage2_init_liberation = yes
-			country_event = { id = mercOpsLiberation.1 }
-		}
-		merc_op_civilian = {
-			# Ships are tagged in this
-			fmerc_stage2_init_raid = yes
-			country_event = { id = mercOpsFleet.1 }
-		}
-		merc_op_fleet = {
-			fmerc_stage2_init_fleet = yes
-			fmerc_stage2_tag_ships = yes
-			country_event = { id = mercOpsFleet.1 }
-		}
-		merc_op_amoeba = {
-			fmerc_stage2_init_clear = yes
-			fmerc_stage2_tag_ships = yes
-			country_event = { id = mercOpsFleet.1 }
-		}
-		merc_op_cloud = {
-			fmerc_stage2_init_clear = yes
-			fmerc_stage2_tag_ships = yes
-			country_event = { id = mercOpsFleet.1 }
-		}
-		merc_op_crystal = {
-			fmerc_stage2_init_clear = yes
-			fmerc_stage2_tag_ships = yes
-			country_event = { id = mercOpsFleet.1 }
-		}
-		merc_op_pirate = {
-			fmerc_stage2_init_clear = yes
-			fmerc_stage2_tag_ships = yes
-			country_event = { id = mercOpsFleet.1 }
-		}
-		merc_op_drone = {
-			fmerc_stage2_init_clear = yes
-			fmerc_stage2_tag_ships = yes
-			country_event = { id = mercOpsFleet.1 }
-		}
-	}
+	merc_set_next_target = yes
+	merc_stage2_operation_start = yes
 }
 
-# The AI has a habit of splitting and merging fleets 24/7.
-# At least they did in 1.4.x and earlier. That's mainly why we mark targets like this.
-fmerc_stage2_tag_ships = {
-	log = "Tag: Tagging target ships for destruction, in case fleets split up."
+merc_stage2_operation_start = {
+	if = { limit = { NOT = { exists = event_target:merc_current_target } }
+		log = "Missing required event target for operation."
+		merc_stage4_abort_operation = yes
+		break = yes
+	}
+
 	if = {
-		limit = {
-			# ZZZ
-			# fmerc_target doesnt exist if we're doing a space clear event,
-			# and there are zero creatures to attack
-			exists = event_target:fmerc_target
-		}
-		event_target:fmerc_target_country = {
-			every_owned_ship = {
-				limit = {
-					exists = fleet
-					fleet = {
-						is_same_value = event_target:fmerc_target
-					}
-				}
-				set_ship_flag = "fmerc_target"
-			}
-		}
-		else = { # No target exists, so simply GTFO
-			log = "Tag: fmerc_target doesn't exist, aborting mission."
-			set_country_flag = "fmerc_ops_completed"
-		}
+		limit = { count_owned_ships { count = 0 } }
+		merc_spawn_fleet = yes
+	}
+
+	every_owned_fleet = {
+		clear_fleet_actions = this
+		fleet_event = { id = mercControllerFleet.100 }
 	}
 }

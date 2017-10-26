@@ -24,7 +24,7 @@ country_event = {
 	id = mercMenu.9000
 	title = merc.conclusion.title
 	desc = {
-		text = merc.conclusion.mission.go
+		text = merc.conclusion.operation.go
 		trigger = {
 			AND = {
 				check_variable = { which = "MercMinerals" value > "MercCost" }
@@ -34,7 +34,7 @@ country_event = {
 		}
 	}
 	desc = {
-		text = merc.conclusion.mission.abort
+		text = merc.conclusion.operation.abort
 		trigger = {
 			NAND = { # Make sure we check all, dont bail on the first positive
 				check_variable = { which = "MercMinerals" value > "MercCost" }
@@ -102,64 +102,66 @@ country_event = {
 	desc = {
 		trigger = {
 			text = merc.completed.desc
-			text = newline
 			success_text = {
 				text = "merc.completed.pretext"
-				FROM = { check_variable = { which = "MercKillsTotal" value > 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsTotal" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.frontier"
-				FROM = { check_variable = { which = "MercKillsFrontier" value > 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsFrontier" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.obspost"
-				FROM = { check_variable = { which = "MercKillsObs" value > 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsObs" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.wormhole"
-				FROM = { check_variable = { which = "MercKillsWormhole" value > 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsWormhole" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.research"
-				FROM = { check_variable = { which = "MercKillsResearch" value > 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsResearch" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.mining"
-				FROM = { check_variable = { which = "MercKillsMining" value > 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsMining" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.spaceport"
-				FROM = { check_variable = { which = "MercKillsSpaceport" value > 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsSpaceport" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.stations"
-				FROM = { check_variable = { which = "MercKillsStations" value > 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsStations" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.civilian"
-				FROM = { check_variable = { which = "MercKillsCivilian" value > 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsCivilian" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.transport"
-				FROM = { check_variable = { which = "MercKillsTransport" value > 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsTransport" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.ships"
-				FROM = { check_variable = { which = "MercKillsShips" value > 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsShips" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.total"
-				FROM = { check_variable = { which = "MercKillsTotal" value > 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsTotal" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.nothing"
-				FROM = { check_variable = { which = "MercKillsTotal" value = 0 } }
+				FROM.owner = { check_variable = { which = "MercKillsTotal" value = 0 } }
+			}
+			success_text = {
+				text = "merc.completed.posttext"
+				FROM.owner = { check_variable = { which = "MercKillsTotal" value > 0 } }
 			}
 		}
 	}
+
 	picture = GFX_evt_smugglers_in_bar
 	is_triggered_only = yes
-	option = {
-		name = EXCELLENT
-	}
+	option = { name = EXCELLENT }
 }

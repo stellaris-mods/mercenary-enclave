@@ -20,33 +20,58 @@
 
 # Effects for space clearing operations
 
-fmerc_stage2_init_clear = {
-	log = "Clear: Locating and marking 5 targets for destruction inside buyers borders."
-	set_variable = {
-		which = "MercRaidCount"
-		value = 5
-	}
-	while = {
-		limit = { check_variable = { which = "MercRaidCount" value > 0 } }
-		event_target:fmerc_target_country = {
+merc_set_target_clear = {
+	log = "Clear: Locating and marking xenofauna target."
+	event_target:merc_country = {
+		random_owned_fleet = {
+			limit = { is_inside_border = event_target:merc_buyer }
 			random_owned_ship = {
-				limit = {
-					NOT = { has_ship_flag = "fmerc_target" }
-					is_inside_border = event_target:fmerc_buyer
-				}
 				log = "Clear: - Marked [this.GetName]."
-				set_ship_flag = "fmerc_target"
-				PREVPREV = { subtract_variable = { which = "MercRaidCount" value = 1 } }
+				save_event_target_as = merc_current_target
 			}
+			merc_found_target = yes
 		}
 	}
-	event_target:fmerc_target_country = {
-		random_owned_ship = {
-			limit = { has_ship_flag = "fmerc_target" }
-			fleet = {
-				log = "Clear: First target is in fleet [this.GetName]."
-				save_event_target_as = fmerc_target
+}
+
+merc_stage5_additional_costs_clear = {
+	# If we were doing a clear operation, calculate the cost
+	if = {
+		limit = {
+			exists = event_target:merc_buyer
+			NOT = { has_country_flag = "fmerc_calculated_costs" }
+			has_country_flag = "merc_op_clear"
+		}
+		set_country_flag = "fmerc_calculated_costs"
+		event_target:merc_buyer = { set_variable = { which = "MercCost" value = 300 } }
+
+		if = { limit = { exists = event_target:merc_country }
+			if = { limit = { num_killed_ships = { target = event_target:merc_country value > 4 } }
+				event_target:merc_buyer = { set_variable = { which = "MercCost" value = 3000 } }
+			else = { if = { limit = { num_killed_ships = { target = event_target:merc_country value > 3 } }
+				event_target:merc_buyer = { set_variable = { which = "MercCost" value = 2400 } }
+			else = { if = { limit = { num_killed_ships = { target = event_target:merc_country value > 2 } }
+				event_target:merc_buyer = { set_variable = { which = "MercCost" value = 1800 } }
+			else = { if = { limit = { num_killed_ships = { target = event_target:merc_country value > 1 } }
+				event_target:merc_buyer = { set_variable = { which = "MercCost" value = 1200 } }
+			else = { if = { limit = { num_killed_ships = { target = event_target:merc_country value > 0 } }
+				event_target:merc_buyer = { set_variable = { which = "MercCost" value = 600 } }
+			} } } } } } } } }
+		}
+
+		event_target:merc_buyer = {
+			log = "Clear: Base cost is [this.MercCost]."
+			merc_account_update = yes
+			# Need this for the multiplier
+			random_country = {
+				limit = { is_country_type = "fmerc_enclave" }
+				save_event_target_as = mercenaries
 			}
+			merc_account_set_trust_multiplier = yes
+			merc_account_apply_all_modifiers = yes
+			log = "Clear: Modified cost is [this.MercCost]."
+			log = "Clear: Multiplier is [this.MercTrustMultiplier]%."
+			merc_account_grabdatcash = yes
 		}
 	}
 }

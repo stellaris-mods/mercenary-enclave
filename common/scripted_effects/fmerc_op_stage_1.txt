@@ -23,7 +23,7 @@
 # - ROOT/THIS must be the buyer country for all stage1 effects
 # - last_created_country is always the new mercenary operations country
 #   created immediately in stage 1 init
-# - fmerc_target_country is NOT guaranteed to exist
+# - merc_country is NOT guaranteed to exist
 
 fmerc_stage1_copy_detection = {
 	last_created_country = { set_variable = { which = "MercDetect" value = 0 } }
@@ -74,9 +74,8 @@ fmerc_stage1_culture_copy = {
 }
 
 # scope is the buyer country
-fmerc_stage1_setup_mission = {
+merc_stage_1_apply_disguise = {
 	# Culture is already set to a random one.
-
 	switch = {
 		trigger = has_country_flag
 		# XXX add option to disguise as target. I should have thought of that
@@ -138,7 +137,7 @@ fmerc_stage1_setup_mission = {
 }
 
 fmerc_stage1_setup_clear = {
-	# The "clear space" missions do not set relation flag until stage 2.
+	# The "clear space" operations do not set relation flag until stage 2.
 	# Culture is already set to a random one.
 }
 
@@ -306,7 +305,7 @@ fmerc_stage1_create_mercenaries = {
 	}
 }
 
-# event_target:fmerc_target_country should be set before this
+# event_target:merc_country should be set before this
 # but it might not be, in which case we just abort operation immediately
 # Scope is the buyer country
 fmerc_init_stage1 = {
@@ -322,11 +321,11 @@ fmerc_init_stage1 = {
 		}
 		if = {
 			limit = {
-				exists = event_target:fmerc_target_country
-				event_target:fmerc_target_country = { is_country_type = "default" }
+				exists = event_target:merc_country
+				event_target:merc_country = { is_country_type = "default" }
 			}
 			copy_techs_from = {
-				target = event_target:fmerc_target_country
+				target = event_target:merc_country
 				except = { tech_akx_worm_1 } # Errors without any
 			}
 		}
@@ -372,12 +371,12 @@ fmerc_init_stage1 = {
 			# If it isn't, that means there are no countries of the selected
 			# type with ships inside the buyers borders. Simply break,
 			# and do nothing.
-			limit = { exists = event_target:fmerc_target_country }
+			limit = { exists = event_target:merc_country }
 			set_relation_flag = {
-				who = event_target:fmerc_target_country
+				who = event_target:merc_country
 				flag = merc_operations_target
 			}
-			event_target:fmerc_target_country = {
+			event_target:merc_country = {
 				set_country_flag = "fmerc_operations_target"
 			}
 		}
@@ -401,6 +400,10 @@ fmerc_init_stage1 = {
 			1 = { set_graphical_culture = "merc_crystal" }
 			1 = { set_graphical_culture = "merc_drone" }
 		}
+
+		# Default 3 targets
+		# XXX maybe adjust this by trust
+		set_variable = { which = "MercTargetCount" value = 3 }
 	}
 
 	fmerc_stage1_copy_success = yes
@@ -409,85 +412,41 @@ fmerc_init_stage1 = {
 	switch = {
 		trigger = has_country_flag
 		merc_op_spaceport = {
-			last_created_country = { set_country_flag = "merc_op_spaceport" }
-			fmerc_stage1_setup_mission = yes
+			merc_stage_1_apply_disguise = yes
+			last_created_country = {
+				set_country_flag = "merc_op_spaceport"
+				subtract_variable = { which = "MercTargetCount" value = 2 }
+				country_event = { id = mercOpsMeta.1 days = 3 random = 70 }
+			}
 		}
-		merc_op_liberation = {
-			last_created_country = { set_country_flag = "merc_op_liberation" }
-			fmerc_stage1_setup_mission = yes
+		merc_op_liberate = {
+			merc_stage_1_apply_disguise = yes
+			last_created_country = {
+				set_country_flag = "merc_op_liberate"
+				subtract_variable = { which = "MercTargetCount" value = 2 }
+				country_event = { id = mercOpsMeta.1 days = 3 random = 70 }
+			}
 		}
 		merc_op_civilian = {
-			last_created_country = { set_country_flag = "merc_op_civilian" }
-			fmerc_stage1_setup_mission = yes
+			merc_stage_1_apply_disguise = yes
+			last_created_country = {
+				set_country_flag = "merc_op_civilian"
+				change_variable = { which = "MercTargetCount" value = 2 }
+				country_event = { id = mercOpsMeta.1 days = 3 random = 70 }
+			}
 		}
 		merc_op_fleet = {
-			last_created_country = { set_country_flag = "merc_op_fleet" }
-			fmerc_stage1_setup_mission = yes
-		}
-		merc_op_amoeba = {
-			last_created_country = { set_country_flag = "merc_op_amoeba" }
-			fmerc_stage1_setup_clear = yes
-		}
-		merc_op_cloud = {
-			last_created_country = { set_country_flag = "merc_op_cloud" }
-			fmerc_stage1_setup_clear = yes
-		}
-		merc_op_crystal = {
-			last_created_country = { set_country_flag = "merc_op_crystal" }
-			fmerc_stage1_setup_clear = yes
-		}
-		merc_op_pirate = {
-			last_created_country = { set_country_flag = "merc_op_pirate" }
-			fmerc_stage1_setup_clear = yes
-		}
-		merc_op_drone = {
-			last_created_country = { set_country_flag = "merc_op_drone" }
-			fmerc_stage1_setup_clear = yes
-		}
-	}
-
-	last_created_country = {
-		switch = {
-			trigger = has_country_flag
-			merc_op_amoeba = { country_event = { id = mercOpsMeta.1 } }
-			merc_op_cloud = { country_event = { id = mercOpsMeta.1 } }
-			merc_op_crystal = { country_event = { id = mercOpsMeta.1 } }
-			merc_op_pirate = { country_event = { id = mercOpsMeta.1 } }
-			merc_op_drone = { country_event = { id = mercOpsMeta.1 } }
-			merc_op_spaceport = {
-				country_event = {
-					id = mercOpsMeta.1
-					days = 3
-					random = 70
-				}
+			merc_stage_1_apply_disguise = yes
+			last_created_country = {
+				set_country_flag = "merc_op_fleet"
+				subtract_variable = { which = "MercTargetCount" value = 2 }
+				country_event = { id = mercOpsMeta.1 days = 3 random = 70 }
 			}
-			merc_op_liberation = {
-				country_event = {
-					id = mercOpsMeta.1
-					days = 3
-					random = 70
-				}
-			}
-			merc_op_civilian = {
-				country_event = {
-					id = mercOpsMeta.1
-					days = 3
-					random = 70
-				}
-			}
-			merc_op_fleet = {
-				country_event = {
-					id = mercOpsMeta.1
-					days = 3
-					random = 70
-				}
-			}
-			default = {
-				country_event = {
-					id = mercOpsMeta.1
-					days = 3
-					random = 70
-				}
+		}
+		merc_op_clear = {
+			last_created_country = {
+				set_country_flag = "merc_op_clear"
+				country_event = { id = mercOpsMeta.1 }
 			}
 		}
 	}

@@ -19,7 +19,7 @@
 
 
 # THIS must be an fmerc_operations_country
-fmerc_set_buyer = {
+merc_set_buyer = {
 	random_country = {
 		limit = {
 			reverse_has_relation_flag = {
@@ -27,12 +27,12 @@ fmerc_set_buyer = {
 				flag = merc_operations_squad
 			}
 		}
-		save_event_target_as = fmerc_buyer
+		save_event_target_as = merc_buyer
 	}
 }
 
 # THIS must be an fmerc_operations country
-fmerc_set_target_country = {
+merc_set_country = {
 	random_country = {
 		limit = {
 			reverse_has_relation_flag = {
@@ -40,6 +40,40 @@ fmerc_set_target_country = {
 				flag = merc_operations_target
 			}
 		}
-		save_event_target_as = fmerc_target_country
+		log = "Setting target country: [this.GetName]"
+		save_event_target_as = merc_country
 	}
+}
+
+merc_set_target_generic = {
+	if = {
+		limit = {
+			exists = event_target:merc_country
+			event_target:merc_country = { any_owned_ship = { has_ship_flag = "merc_target" } }
+		}
+		event_target:merc_country = {
+			random_owned_ship = {
+				limit = { has_ship_flag = "merc_target" }
+				save_event_target_as = merc_current_target
+			}
+		}
+		else = { merc_stage4_abort_operation = yes }
+	}
+}
+
+merc_set_target_planet = {
+	if = {
+		limit = {
+			exists = event_target:merc_country
+			event_target:merc_country = { any_owned_planet = { has_planet_flag = "merc_target" } }
+		}
+		event_target:merc_country = {
+			random_owned_planet = {
+				limit = { has_planet_flag = "merc_target" }
+				save_event_target_as = merc_current_target
+			}
+		}
+		else = { merc_stage4_abort_operation = yes }
+	}
+
 }

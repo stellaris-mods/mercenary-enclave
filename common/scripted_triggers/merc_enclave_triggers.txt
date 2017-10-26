@@ -21,6 +21,13 @@
 # Triggers usable for/towards the actual enclave, primarily.
 # Not the operations.
 
+merc_has_target = {
+	OR = {
+		any_ship_in_system = { has_ship_flag = "merc_target" }
+		any_planet = { has_planet_flag = "merc_target" }
+	}
+}
+
 merc_has_presence = {
 	any_ship_in_system = {
 		exists = owner

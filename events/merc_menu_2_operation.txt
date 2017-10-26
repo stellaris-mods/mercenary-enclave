@@ -115,14 +115,13 @@ country_event = {
 		name = merc.clearspace.amoeba
 		custom_tooltip = merc.clearspace.tooltip
 		hidden_effect = {
-			set_country_flag = "merc_op_amoeba"
 			random_country = {
 				limit = {
 					is_country_type = "amoeba"
 					any_owned_ship = { is_inside_border = ROOT }
 					NOT = { has_country_flag = "fmerc_operations_target" }
 				}
-				save_event_target_as = fmerc_target_country
+				save_event_target_as = merc_country
 			}
 			country_event = { id = mercMenu.701 }
 		}
@@ -131,14 +130,13 @@ country_event = {
 		name = merc.clearspace.cloud
 		custom_tooltip = merc.clearspace.tooltip
 		hidden_effect = {
-			set_country_flag = "merc_op_cloud"
 			random_country = {
 				limit = {
 					is_country_type = "cloud"
 					any_owned_ship = { is_inside_border = ROOT }
 					NOT = { has_country_flag = "fmerc_operations_target" }
 				}
-				save_event_target_as = fmerc_target_country
+				save_event_target_as = merc_country
 			}
 			country_event = { id = mercMenu.701 }
 		}
@@ -147,14 +145,13 @@ country_event = {
 		name = merc.clearspace.crystal
 		custom_tooltip = merc.clearspace.tooltip
 		hidden_effect = {
-			set_country_flag = "merc_op_crystal"
 			random_country = {
 				limit = {
 					is_country_type = "crystal"
 					any_owned_ship = { is_inside_border = ROOT }
 					NOT = { has_country_flag = "fmerc_operations_target" }
 				}
-				save_event_target_as = fmerc_target_country
+				save_event_target_as = merc_country
 			}
 			country_event = { id = mercMenu.701 }
 		}
@@ -163,14 +160,13 @@ country_event = {
 		name = merc.clearspace.pirates
 		custom_tooltip = merc.clearspace.tooltip
 		hidden_effect = {
-			set_country_flag = "merc_op_pirate"
 			random_country = {
 				limit = {
 					is_country_type = "pirate"
 					any_owned_ship = { is_inside_border = ROOT }
 					NOT = { has_country_flag = "fmerc_operations_target" }
 				}
-				save_event_target_as = fmerc_target_country
+				save_event_target_as = merc_country
 			}
 			country_event = { id = mercMenu.701 }
 		}
@@ -179,14 +175,13 @@ country_event = {
 		name = merc.clearspace.drones
 		custom_tooltip = merc.clearspace.tooltip
 		hidden_effect = {
-			set_country_flag = "merc_op_drone"
 			random_country = {
 				limit = {
 					is_country_type = "drone"
 					any_owned_ship = { is_inside_border = ROOT }
 					NOT = { has_country_flag = "fmerc_operations_target" }
 				}
-				save_event_target_as = fmerc_target_country
+				save_event_target_as = merc_country
 			}
 			country_event = { id = mercMenu.701 }
 		}
@@ -199,6 +194,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		set_country_flag = "merc_op_clear"
 		remove_country_flag = "fmerc_diplomacy_engaged"
 		set_country_flag = "fmerc_active_operation"
 		set_variable = {

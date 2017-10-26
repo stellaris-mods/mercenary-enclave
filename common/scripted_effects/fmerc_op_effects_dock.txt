@@ -18,19 +18,12 @@
 ###
 
 
-# Note that this trigger is used both in the diplomacy screen, and during the operation
-fmerc_valid_spaceport_planet = {
-	exists = owner
-	exists = controller
-	is_colony = yes
-	is_under_colonization = no
-	is_occupied_flag = no
-	has_ground_combat = no
-	under_bombardment = no
-	is_capital = no
-	is_homeworld = no
-	is_terraforming = no
-	is_controlled_by = owner
-	has_spaceport = yes
-	solar_system = { merc_has_station = no }
+merc_stage3_fleet_arrived_dock = {
+	owner = {
+		PREV = { delete_fleet = THIS }
+		if = {
+			limit = { count_owned_ships { count = 0 } }
+			merc_stage4_destroy = yes
+		}
+	}
 }

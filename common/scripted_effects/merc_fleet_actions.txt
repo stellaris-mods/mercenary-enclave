@@ -1,0 +1,92 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+# XXX fix aborting operations
+
+merc_maybe_go_hostile = {
+	if = {
+		limit = {
+			exists = event_target:merc_current_target
+			event_target:merc_current_target = { owner = { NOT = { is_hostile = PREVPREV.owner } } }
+			event_target:merc_current_target = {
+				solar_system = { is_same_value = PREVPREV.solar_system }
+			}
+		}
+		owner = {
+			set_fleet_stance = aggressive
+			# Turn hostile when we find our first target,
+			# unless they are already hostile towards us.
+			set_faction_hostility = { set_hostile = yes }
+		}
+	}
+}
+
+merc_fleet_arrived = {
+	log = "merc_fleet_arrived"
+	owner = {
+		switch = {
+			trigger = has_country_flag
+			merc_op_dock = { ROOT = { merc_stage3_fleet_arrived_dock = yes } }
+			merc_op_liberate = { ROOT = { merc_stage3_fleet_arrived_liberate = yes } }
+			merc_op_spaceport = { ROOT = { merc_stage3_fleet_arrived_generic = yes } }
+			merc_op_civilian = { ROOT = { merc_stage3_fleet_arrived_generic = yes } }
+			merc_op_fleet = { ROOT = { merc_stage3_fleet_arrived_generic = yes } }
+			merc_op_clear = { ROOT = { merc_stage3_fleet_arrived_generic = yes } }
+		}
+	}
+}
+
+merc_fleet_move_generic = {
+	ROOT = {
+		queue_actions = {
+			move_to = PREV
+			repeat = {
+				while = {
+					id = mercMoveGeneric.1
+					NOT = { is_fleet_idle = yes }
+				}
+				wait = 7
+			}
+			effect = {
+				id = mercMoveGeneric.2
+				merc_fleet_arrived = yes
+			}
+		}
+	}
+}
+
+merc_fleet_move_planet = {
+	ROOT = {
+		queue_actions = {
+			orbit_planet = PREV
+			repeat = {
+				while = {
+					id = mercMovePlanet.1
+					NOT = { is_fleet_idle = yes }
+				}
+				wait = 7
+			}
+			effect = {
+				id = mercMovePlanet.2
+				merc_fleet_arrived = yes
+			}
+		}
+	}
+}
