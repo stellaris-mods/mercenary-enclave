@@ -150,6 +150,52 @@ merc_menu_3_is_valid_target_fleet = {
 	}
 }
 
+merc_menu_3_is_valid_target_clear = {
+	any_system_within_border = {
+		# If I use any_ship_in_system, I get weird errors like
+		# "invalid scope for trigger. got [country], expected {galactic_object}."
+		# which means that any_system_within_border has scoped to a country
+		# somehow. This shit is really weird. And you don't get 1 error either,
+		# you get hundreds, because it's validated every tick per button.
+		#
+		# So, we work around that by first scoping to a system, then to
+		# _any_ ship, which includes the whole god damn game, and then check
+		# if that ship has owner and solar_system that are simply the same
+		# exact values as the scopes we want to verify.
+		# (it might be worth noting that any_ship doesn't always scope
+		# to the whole game, it depends where you invoke it from)
+		#
+		# There is no is_same_system, but if there was, and we used that,
+		# it would also error. And probably if we used is_same_empire, that
+		# would error as well.
+		# Jeez.
+		any_ship = {
+			exists = owner
+			owner = { is_same_value = PREVPREVPREVPREV }
+			OR = {
+				is_ship_class = shipclass_military_station
+				is_ship_class = shipclass_military
+			}
+			exists = solar_system
+			solar_system = { is_same_value = PREVPREV }
+		}
+	}
+	# This spews errors like there's no tomorrow. I can't for the life of me
+	# understand why it would. is_scope_valid just seems to do nothing, and
+	# checking |exists = solar_system| before scoping to it does not prevent
+	# errors like "Script Error: Invalid context switch[solar_system]""
+	#
+	# any_owned_fleet = {
+	# 	is_scope_valid = yes
+	# 	is_ship_class = shipclass_military
+	# 	exists = solar_system
+	# 	solar_system = {
+	# 		is_within_borders_of = ROOT
+	# 	}
+	# 	#is_inside_border = ROOT # this errors as well
+	# }
+}
+
 merc_menu_3_is_valid_target = {
 	NOT = { has_country_flag = "fmerc_operations_target" }
 	ROOT = {
@@ -159,6 +205,7 @@ merc_menu_3_is_valid_target = {
 			merc_op_liberate = { PREV = { merc_menu_3_is_valid_target_liberate = yes } }
 			merc_op_civilian = { PREV = { merc_menu_3_is_valid_target_raid = yes } }
 			merc_op_fleet = { PREV = { merc_menu_3_is_valid_target_fleet = yes } }
+			merc_op_clear = { merc_menu_3_is_valid_target_clear = yes }
 		}
 	}
 }

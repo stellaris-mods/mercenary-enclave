@@ -20,18 +20,18 @@
 
 # These effects are only used by the liberate operation type
 
-merc_liberate_verify_target_status = {
-	if = { limit = { event_target:merc_current_target = { fmerc_valid_liberate_planet = no } }
+merc_verify_fleet_liberate_target_status = {
+	if = { limit = { event_target:merc_current_target = { merc_valid_liberate_minimum = no } }
 		log = "ERROR: [merc_current_target.GetName] is no longer valid for liberate. Aborting."
-		merc_stage4_abort_operation = yes
+		owner = { merc_stage4_abort_operation = yes }
 		break = yes
 	}
 }
 
-merc_liberate_verify_orbit = {
+merc_verify_fleet_orbit = {
 	if = { limit = { NOT = { exists = orbit } }
 		log = "ERROR: [this.GetName] is not in orbit of anything."
-		merc_stage4_abort_operation = yes
+		owner = { merc_stage4_abort_operation = yes }
 		break = yes
 	}
 }
@@ -39,30 +39,25 @@ merc_liberate_verify_orbit = {
 # THIS and ROOT is the fleet
 # PREV is owner
 merc_stage3_init_fleet_liberate = {
-	# 1. Verify target status
-	merc_verify_current_target = yes
-
-	# 2. Check if we are in the same solar system as our target
-	#    and if we are, turn hostile.
-	merc_maybe_go_hostile = yes
-
-	# 3. Verify target is still valid for liberate
-	merc_liberate_verify_target_status = yes
-
+	# In case we are in the same system as our target
+	merc_fleet_maybe_go_hostile = yes
+	merc_verify_fleet_liberate_target_status = yes
 	event_target:merc_current_target = { merc_fleet_move_planet = yes }
 }
 
 merc_stage3_fleet_arrived_liberate = {
 	owner = { merc_set_country = yes }
 	owner = { merc_set_buyer = yes }
-	merc_set_target_planet = yes
+	owner = { merc_get_target_planet = yes }
 
 	# Verify solar system
-	merc_verify_same_system = yes
-	# verify target status
-	merc_liberate_verify_target_status = yes
+	merc_verify_fleet_same_system = yes
+
 	# check distance to target
-	merc_liberate_verify_orbit = yes
+	merc_verify_fleet_orbit = yes
+
+	# verify target status
+	merc_verify_fleet_liberate_target_status = yes
 
 	log = "merc_stage3_fleet_arrived_liberate"
 
@@ -102,6 +97,7 @@ merc_stage3_fleet_arrived_liberate = {
 	}
 }
 
+# THIS is op country
 merc_set_target_liberate = {
 	event_target:merc_buyer = {
 		# Capital of buyer
@@ -120,7 +116,7 @@ merc_set_target_liberate = {
 						is_owned_by = event_target:merc_country
 						fmerc_valid_liberate_planet = yes
 					}
-					log = "liberate: Target planet is [this.GetName] in [This.GetStarName]."
+					log = "Target planet is [this.GetName] in [This.GetStarName]."
 					set_planet_flag = "merc_target"
 					PREVPREVPREVPREV = { set_country_flag = "merc_found_target" }
 					save_event_target_as = merc_current_target
@@ -167,7 +163,7 @@ merc_liberate_fix_species = {
 fmerc_liberate_create_armies = {
 	ROOT = {
 		set_variable = {
-			which = "MercliberateArmyCount"
+			which = "MercLiberateArmyCount"
 			value = 3 #GARRISON_SIZE_BASE + 1
 		}
 	}
@@ -177,7 +173,7 @@ fmerc_liberate_create_armies = {
 			# There is also a chance it should be multiply_variable by ( 1 + ( num_pops * 0.4 ) )
 			# But it probably isn't, it's probably 0.4 armies per pop.
 			change_variable = {
-				which = "MercliberateArmyCount"
+				which = "MercLiberateArmyCount"
 				value = 0.4 # GARRISON_SIZE_MULT
 			}
 		}
@@ -209,7 +205,7 @@ fmerc_liberate_create_armies = {
 		else = {
 			ROOT = {
 				change_variable = {
-					which = "MercliberateArmyCount"
+					which = "MercLiberateArmyCount"
 					value = 1
 				}
 			}
@@ -218,30 +214,30 @@ fmerc_liberate_create_armies = {
 	# Now we invade with the same number of armies that we found.
 	ROOT = {
 		set_variable = {
-			which = "MercliberateArmyAdditional"
+			which = "MercLiberateArmyAdditional"
 			value = "MercSuccess"
 		}
 		while = { # ye I could use divide_variable. I wasn't thinking straight
 			limit = {
 				check_variable = {
-					which = "MercliberateArmyAdditional"
+					which = "MercLiberateArmyAdditional"
 					value > 20
 				}
 			}
 			change_variable = {
-				which = "MercliberateArmyCount"
+				which = "MercLiberateArmyCount"
 				value = 1
 			}
 			subtract_variable = {
-				which = "MercliberateArmyAdditional"
+				which = "MercLiberateArmyAdditional"
 				value = 20
 			}
 		}
-		log = "Spawning [Root.MercliberateArmyCount] armies."
+		log = "Spawning [Root.MercLiberateArmyCount] armies."
 		while = {
 			limit = {
 				check_variable = {
-					which = "MercliberateArmyCount"
+					which = "MercLiberateArmyCount"
 					value > 0.9
 				}
 			}
@@ -254,7 +250,7 @@ fmerc_liberate_create_armies = {
 				}
 			}
 			subtract_variable = {
-				which = "MercliberateArmyCount"
+				which = "MercLiberateArmyCount"
 				value = 1
 			}
 		}

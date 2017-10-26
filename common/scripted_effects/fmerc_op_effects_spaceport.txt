@@ -21,8 +21,9 @@
 # Effects for the spaceport operation type
 # Will probably get merged to _raid.txt.
 
+# THIS is op country
 merc_set_target_spaceport = {
-	log = "Spaceport: Locating target spaceport."
+	log = "Locating target spaceport."
 	event_target:merc_buyer = {
 		# Capital of buyer
 		capital_scope = {
@@ -40,11 +41,13 @@ merc_set_target_spaceport = {
 						owner = { is_same_value = event_target:merc_country }
 						fmerc_valid_spaceport_planet = yes
 					}
-					PREVPREVPREVPREV = { set_country_flag = "merc_found_target" }
 					spaceport = {
-						log = "Spaceport: Target spaceport is [this.GetName] in [This.GetStarName]."
-						random_owned_ship = { save_event_target_as = merc_current_target }
+						random_owned_ship = {
+							log = "Target spaceport is [prev.GetName] in [prev.GetStarName]."
+							save_event_target_as = merc_current_target
+						}
 					}
+					PREVPREVPREVPREV = { set_country_flag = "merc_found_target" }
 				}
 			}
 		}

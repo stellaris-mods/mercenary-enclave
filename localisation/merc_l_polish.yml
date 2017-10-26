@@ -28,8 +28,7 @@ l_polish:
 
 format.mercenary.1: "<fmerc_names>"
 
-SUBJECT_mercsquad: "Mercenary Squadron"
-SUBJECT_DESC_mercsquad: "Mercenary operations squadron en route to target."
+MERCENARY_SQUADRON: "Mercenary Squadron"
 
 tech_mercenary_enclave: "Mercenary Enclave Hidden Tech"
 tech_mercenary_enclave_desc: "This technology is only for the Mercenary Enclave. You're cheating!"

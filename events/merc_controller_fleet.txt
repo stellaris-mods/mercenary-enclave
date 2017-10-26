@@ -26,11 +26,8 @@ fleet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		log = "mercControllerFleet.100"
-		if = { limit = { NOT = { exists = event_target:merc_current_target } }
-			owner = { merc_stage4_abort_operation = yes }
-			break = yes
-		}
+		log = "mercControllerFleet.100: [this.GetName]."
+		merc_verify_current_target = yes
 
 		if = { limit = { event_target:merc_current_target = { exists = solar_system } }
 			owner = {
@@ -64,11 +61,11 @@ fleet_event = {
 		owner = {
 			switch = {
 				trigger = has_country_flag
-				merc_op_liberate = { ROOT = { merc_stage3_check_planet_target = yes } }
-				merc_op_spaceport = { ROOT = { merc_stage3_check_generic_target = yes } }
-				merc_op_civilian = { ROOT = { merc_stage3_check_generic_target = yes } }
-				merc_op_fleet = { ROOT = { merc_stage3_check_generic_target = yes } }
-				merc_op_clear = { ROOT = { merc_stage3_check_generic_target = yes } }
+				merc_op_liberate = { ROOT = { merc_stage3_fleet_check_target_planet = yes } }
+				merc_op_spaceport = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
+				merc_op_civilian = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
+				merc_op_fleet = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
+				merc_op_clear = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
 			}
 		}
 	}

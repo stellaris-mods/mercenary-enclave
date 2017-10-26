@@ -233,8 +233,10 @@ fmerc_stage3_match_fleet_power = {
 }
 
 # THIS is the operations country
-# requires event_target:merc_country
-merc_find_best_harbour = {
+# XXX make sure we _always_ return a fmerc_spawn_at, regardless of anything
+merc_ensure_best_harbour = {
+	# ZZZ Can't use any verify effects here, because this is used in stage 4
+
 	# First try to find something close to any existing operations fleet
 	if = { limit = { count_owned_ships { count > 0 } }
 		# ZZZ so apparently, at least for countries without a capital,
@@ -250,12 +252,9 @@ merc_find_best_harbour = {
 			}
 		}
 	}
-	if = { limit = { NOT = { exists = event_target:merc_country } }
-		merc_set_country = yes
-	}
 
 	# The target country might not always exist; we might have destroyed it
-	if = { limit = { exists = event_target:merc_country }
+	if = { limit = { merc_is_country_target_valid = yes }
 		# Then try to find a location inside the targets borders
 		if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
 			event_target:merc_country = {
@@ -296,17 +295,14 @@ merc_find_best_harbour = {
 			}
 		}
 	}
-	if = {
-		limit = { NOT = { exists = event_target:fmerc_spawn_at } }
-		log = "Stage 3: Unable to find spawn location, aborting operation."
-		merc_stage4_abort_operation = yes
-		break = yes
-	}
+
+	# XXX This can't fail, add more
 }
 
+# Depends on merc_buyer and merc_country
 merc_spawn_fleet = {
 	# Make sure we have somewhere to spawn
-	merc_find_best_harbour = yes
+	merc_ensure_best_harbour = yes
 
 	log = "Creating new fleet in [fmerc_spawn_at.GetStarName]."
 
@@ -328,16 +324,11 @@ merc_spawn_fleet = {
 	}
 
 	if = {
-		limit = {
-			exists = event_target:merc_country
-			NOT = { event_target:merc_country = { is_country_type = "default" } }
-		}
+		limit = { NOT = { event_target:merc_country = { is_country_type = "default" } } }
 		# Be much more aggressive towards non-default countries.
 		# ZZZ I have no idea why I did this.
 		set_variable = { which = "MercSpawn" value = 4500 }
-		else = {
-			set_variable = { which = "MercSpawn" value = 1500 }
-		}
+		else = { set_variable = { which = "MercSpawn" value = 1500 } }
 	}
 	if = {
 		limit = { has_country_flag = "merc_op_liberate" }
@@ -352,33 +343,29 @@ merc_spawn_fleet = {
 	log = "Base fleet power is [this.MercSpawn]."
 
 	# Add MercSpawn per opinion level with merc hq
-	merc_set_buyer = yes
-	if = {
-		limit = { exists = event_target:merc_buyer }
-		random_country = {
-			limit = { is_country_type = "fmerc_enclave" }
-			if = { limit = { trust = { who = event_target:merc_buyer value = 100 } }
-				PREV = { change_variable = { which = "MercSpawn" value = 1000 } }
-			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 90 } }
-				PREV = { change_variable = { which = "MercSpawn" value = 900 } }
-			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 80 } }
-				PREV = { change_variable = { which = "MercSpawn" value = 800 } }
-			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 70 } }
-				PREV = { change_variable = { which = "MercSpawn" value = 700 } }
-			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 60 } }
-				PREV = { change_variable = { which = "MercSpawn" value = 600 } }
-			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 50 } }
-				PREV = { change_variable = { which = "MercSpawn" value = 500 } }
-			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 40 } }
-				PREV = { change_variable = { which = "MercSpawn" value = 400 } }
-			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 30 } }
-				PREV = { change_variable = { which = "MercSpawn" value = 300 } }
-			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 20 } }
-				PREV = { change_variable = { which = "MercSpawn" value = 200 } }
-			else = { if = { limit = { trust = { who = event_target:merc_buyer value > 10 } }
-				PREV = { change_variable = { which = "MercSpawn" value = 100 } }
-			}}}}}}}}}}}}}}}}}}}
-		}
+	random_country = {
+		limit = { is_country_type = "fmerc_enclave" }
+		if = { limit = { trust = { who = event_target:merc_buyer value = 100 } }
+			PREV = { change_variable = { which = "MercSpawn" value = 1000 } }
+		else = { if = { limit = { trust = { who = event_target:merc_buyer value > 90 } }
+			PREV = { change_variable = { which = "MercSpawn" value = 900 } }
+		else = { if = { limit = { trust = { who = event_target:merc_buyer value > 80 } }
+			PREV = { change_variable = { which = "MercSpawn" value = 800 } }
+		else = { if = { limit = { trust = { who = event_target:merc_buyer value > 70 } }
+			PREV = { change_variable = { which = "MercSpawn" value = 700 } }
+		else = { if = { limit = { trust = { who = event_target:merc_buyer value > 60 } }
+			PREV = { change_variable = { which = "MercSpawn" value = 600 } }
+		else = { if = { limit = { trust = { who = event_target:merc_buyer value > 50 } }
+			PREV = { change_variable = { which = "MercSpawn" value = 500 } }
+		else = { if = { limit = { trust = { who = event_target:merc_buyer value > 40 } }
+			PREV = { change_variable = { which = "MercSpawn" value = 400 } }
+		else = { if = { limit = { trust = { who = event_target:merc_buyer value > 30 } }
+			PREV = { change_variable = { which = "MercSpawn" value = 300 } }
+		else = { if = { limit = { trust = { who = event_target:merc_buyer value > 20 } }
+			PREV = { change_variable = { which = "MercSpawn" value = 200 } }
+		else = { if = { limit = { trust = { who = event_target:merc_buyer value > 10 } }
+			PREV = { change_variable = { which = "MercSpawn" value = 100 } }
+		}}}}}}}}}}}}}}}}}}}
 	}
 	log = "Adjusted for trust level: [this.MercSpawn]."
 

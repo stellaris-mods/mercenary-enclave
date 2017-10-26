@@ -96,6 +96,7 @@ country_event = {
 # FROM is the mercenary operations country
 # XXX make this diplomatic perhaps? but at least do some basic math and check
 # XXX if the operation country destroyed a ton of stuff then demand more pay
+# XXX add planet liberation count
 country_event = {
 	id = mercMenu.9004
 	title = merc.completed.title

@@ -68,10 +68,10 @@ country_event = {
 						any_neighbor_system = { any_planet = { is_capital = yes } }
 					}
 				}
-				save_event_target_as = mercspawnlocation
+				save_event_target_as = spawn
 			}
 			if = {
-				limit = { NOT = { exists = event_target:mercspawnlocation } }
+				limit = { NOT = { exists = event_target:spawn } }
 				random_system = {
 					limit = {
 						NOR = {
@@ -80,28 +80,28 @@ country_event = {
 							any_neighbor_system = { any_planet = { is_capital = yes } }
 						}
 					}
-					save_event_target_as = mercspawnlocation
+					save_event_target_as = spawn
 				}
 				if = {
-					limit = { NOT = { exists = event_target:mercspawnlocation } }
+					limit = { NOT = { exists = event_target:spawn } }
 					random_rim_system = {
 						limit = {
 							NOT = {
 								exists = space_owner
 							}
 						}
-						save_event_target_as = mercspawnlocation
+						save_event_target_as = spawn
 					}
 					if = {
-						limit = { NOT = { exists = event_target:mercspawnlocation } }
+						limit = { NOT = { exists = event_target:spawn } }
 						random_rim_system = {
-							save_event_target_as = mercspawnlocation
+							save_event_target_as = spawn
 						}
 					}
 				}
 			}
 
-			event_target:mercspawnlocation = {
+			event_target:spawn = {
 				spawn_system = {
 					min_distance = 20
 					max_distance = 50

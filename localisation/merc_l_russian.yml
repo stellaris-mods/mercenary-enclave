@@ -30,10 +30,8 @@ format.mercenary.1: "<fmerc_names>"
 
 ##Translated by FireBurn256, Steam Profile: http://steamcommunity.com/id/29910011/ Feel free to contact me if there is something you want to discuss.
 
-##SUBJECT_mercsquad: "Mercenary Squadron"
-SUBJECT_mercsquad: "Эскадрон Наемников"
-##SUBJECT_DESC_mercsquad: "Mercenary operations squadron en route to target."
-SUBJECT_DESC_mercsquad: "Эскадрон наемников на пути к заданной цели."
+##MERCENARY_SQUADRON: "Mercenary Squadron"
+MERCENARY_SQUADRON: "Эскадрон Наемников"
 
 ##tech_mercenary_enclave: "Mercenary Enclave Hidden Tech"
 tech_mercenary_enclave: "Скрытая Технология для Анклавов Наемников"

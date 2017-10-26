@@ -22,17 +22,41 @@
 
 merc_stage4_operation_complete = {
 	log = "merc_stage4_operation_complete"
-
 	set_faction_hostility = { set_hostile = no }
 
 	merc_set_buyer = yes
 	merc_set_country = yes
+	merc_ensure_best_harbour = yes
 
 	if = {
-		limit = {
-			exists = event_target:merc_country
-			event_target:merc_country = { has_country_flag = "fmerc_operations_target" }
+		limit = { count_owned_ships { count > 0 } }
+		event_target:fmerc_spawn_at = { save_event_target_as = merc_current_target }
+		log = "Returning mercenary fleets to dock."
+		set_country_flag = "merc_op_dock"
+		every_owned_fleet = {
+			clear_fleet_actions = this
+			fleet_event = { id = mercControllerFleet.100 }
 		}
+
+		else = {
+			merc_stage4_additional_costs = yes
+			merc_stage4_destroy = yes
+		}
+	}
+}
+
+merc_stage4_additional_costs = {
+	switch = {
+		trigger = has_country_flag
+		merc_op_clear = { merc_stage4_additional_costs_clear = yes }
+	}
+}
+
+merc_stage4_destroy = {
+	log = "Mercenary operation complete, destroying operation country and resetting buyer."
+
+	if = {
+		limit = { merc_is_country_target_valid = yes }
 		log = "Clearing merc_target flags from [merc_country.GetName]'s ships and/or planets, if any."
 		event_target:merc_country = {
 			remove_country_flag = "fmerc_operations_target"
@@ -47,30 +71,6 @@ merc_stage4_operation_complete = {
 		}
 	}
 
-	merc_find_best_harbour = yes
-
-	if = {
-		limit = {
-			count_owned_ships { count > 0 }
-			exists = event_target:fmerc_spawn_at
-		}
-		event_target:fmerc_spawn_at = { save_event_target_as = merc_current_target }
-		log = "Returning mercenary operations fleet to enclave."
-
-		set_country_flag = "merc_op_dock"
-		every_owned_fleet = {
-			clear_fleet_actions = this
-			fleet_event = { id = mercControllerFleet.100 }
-		}
-
-		else = { merc_stage4_destroy = yes }
-	}
-
-	merc_stage5_additional_costs_clear = yes
-}
-
-merc_stage4_destroy = {
-	log = "Mercenary operation complete, destroying operation country and resetting buyer."
 	event_target:merc_buyer = {
 		remove_country_flag = "fmerc_active_operation"
 		remove_country_flag = "fmerc_calculated_costs"
@@ -126,11 +126,11 @@ merc_stage4_abort_operation = {
 
 # This is invoked by fleets when they think their operation might be complete
 merc_stage4_maybe_operation_complete = {
-	# XXX this needs to check with each mission type, so that we can
-	# XXX subtract some of the kill variables from targetcount
 	log = "merc_stage4_maybe_operation_complete"
-	if = { limit = { check_variable = { which = "MercTargetCount" value > 0 } }
+	if = { limit = { check_variable = { which = "MercTargetCount" value > 0.9 } }
 		# We are not done, so find next target and get to it
+		merc_set_country = yes
+		merc_set_buyer = yes
 		merc_set_next_target = yes
 		merc_stage2_operation_start = yes
 	else = {

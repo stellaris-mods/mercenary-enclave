@@ -42,11 +42,8 @@ fmerc_init_stage2 = {
 		merc_stage4_abort_operation = yes
 		break = yes
 	}
-	if = { limit = { NOT = { exists = event_target:merc_country } }
-		log = "The target country of this operation could not be found, aborting operation."
-		merc_stage4_abort_operation = yes
-		break = yes
-	}
+
+	merc_verify_country = yes
 
 	log = "Buyer is [merc_buyer.GetName]."
 	log = "Target is [merc_country.GetName]."
@@ -56,11 +53,7 @@ fmerc_init_stage2 = {
 }
 
 merc_stage2_operation_start = {
-	if = { limit = { NOT = { exists = event_target:merc_current_target } }
-		log = "Missing required event target for operation."
-		merc_stage4_abort_operation = yes
-		break = yes
-	}
+	merc_verify_current_target = yes
 
 	if = {
 		limit = { count_owned_ships { count = 0 } }

@@ -47,3 +47,8 @@ merc_is_target_system = {
 		is_same_value = event_target:merc_current_target.solar_system
 	}
 }
+
+merc_is_country_target_valid = {
+	exists = event_target:merc_country
+	# XXX check more triggers here plz
+}

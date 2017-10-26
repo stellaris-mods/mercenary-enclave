@@ -183,7 +183,7 @@ planet_event = {
 
 		if = {
 			limit = {
-				exists = event_target:merc_country
+				merc_is_country_target_valid = yes
 				event_target:merc_country = {
 					NOT = { has_authority = auth_hive_mind }
 				}
@@ -291,7 +291,7 @@ country_event = {
 		if = {
 			limit = {
 				OR = {
-					NOT = { exists = event_target:merc_country }
+					merc_is_country_target_valid = no
 					NOT = { event_target:merc_country = { is_country_type = default } }
 				}
 			}
@@ -334,7 +334,7 @@ country_event = {
 
 		establish_contact = { who = event_target:merc_buyer location = capital_scope }
 		if = {
-			limit = { exists = event_target:merc_country }
+			limit = { merc_is_country_target_valid = yes }
 			establish_contact = { who = event_target:merc_country location = capital_scope }
 		}
 		# Setting and removing this flag before and after `establish_contact`,
@@ -345,7 +345,7 @@ country_event = {
 
 		establish_communications = event_target:merc_buyer
 		if = {
-			limit = { exists = event_target:merc_country }
+			limit = { merc_is_country_target_valid = yes }
 			establish_communications = event_target:merc_country
 			add_opinion_modifier = {
 				who = event_target:merc_country

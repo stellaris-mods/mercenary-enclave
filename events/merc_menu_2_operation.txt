@@ -72,6 +72,7 @@ country_event = {
 		allow = {
 			custom_tooltip_fail = {
 				text = "merc.condition.clearspace"
+				NOT = { check_variable = { which = "MercDeposit" value = 0 } } # Get an error.log entry without this
 				check_variable = { which = "MercDeposit" value > 4500 }
 			}
 		}
@@ -115,14 +116,7 @@ country_event = {
 		name = merc.clearspace.amoeba
 		custom_tooltip = merc.clearspace.tooltip
 		hidden_effect = {
-			random_country = {
-				limit = {
-					is_country_type = "amoeba"
-					any_owned_ship = { is_inside_border = ROOT }
-					NOT = { has_country_flag = "fmerc_operations_target" }
-				}
-				save_event_target_as = merc_country
-			}
+			set_country_flag = "merc_tmp_amoeba"
 			country_event = { id = mercMenu.701 }
 		}
 	}
@@ -130,14 +124,7 @@ country_event = {
 		name = merc.clearspace.cloud
 		custom_tooltip = merc.clearspace.tooltip
 		hidden_effect = {
-			random_country = {
-				limit = {
-					is_country_type = "cloud"
-					any_owned_ship = { is_inside_border = ROOT }
-					NOT = { has_country_flag = "fmerc_operations_target" }
-				}
-				save_event_target_as = merc_country
-			}
+			set_country_flag = "merc_tmp_cloud"
 			country_event = { id = mercMenu.701 }
 		}
 	}
@@ -145,14 +132,7 @@ country_event = {
 		name = merc.clearspace.crystal
 		custom_tooltip = merc.clearspace.tooltip
 		hidden_effect = {
-			random_country = {
-				limit = {
-					is_country_type = "crystal"
-					any_owned_ship = { is_inside_border = ROOT }
-					NOT = { has_country_flag = "fmerc_operations_target" }
-				}
-				save_event_target_as = merc_country
-			}
+			set_country_flag = "merc_tmp_crystal"
 			country_event = { id = mercMenu.701 }
 		}
 	}
@@ -160,14 +140,7 @@ country_event = {
 		name = merc.clearspace.pirates
 		custom_tooltip = merc.clearspace.tooltip
 		hidden_effect = {
-			random_country = {
-				limit = {
-					is_country_type = "pirate"
-					any_owned_ship = { is_inside_border = ROOT }
-					NOT = { has_country_flag = "fmerc_operations_target" }
-				}
-				save_event_target_as = merc_country
-			}
+			set_country_flag = "merc_tmp_pirate"
 			country_event = { id = mercMenu.701 }
 		}
 	}
@@ -175,18 +148,12 @@ country_event = {
 		name = merc.clearspace.drones
 		custom_tooltip = merc.clearspace.tooltip
 		hidden_effect = {
-			random_country = {
-				limit = {
-					is_country_type = "drone"
-					any_owned_ship = { is_inside_border = ROOT }
-					NOT = { has_country_flag = "fmerc_operations_target" }
-				}
-				save_event_target_as = merc_country
-			}
+			set_country_flag = "merc_tmp_drone"
 			country_event = { id = mercMenu.701 }
 		}
 	}
 }
+
 
 country_event = {
 	id = mercMenu.701
@@ -194,6 +161,24 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		# The reason we do this crazy switch here instead of verifying it in
+		# the buttons (and also preventing the buttons from being usable if no
+		# valid targets exist), is because the merc_menu_3_is_valid_target is
+		# insanely expensive, and will lag out the game with the menu open if
+		# applied to the buttons.
+		#
+		# This is because I had to use |any_ship| in the trigger, for reasons
+		# I explain in detail there.
+		#
+		switch = {
+			trigger = has_country_flag
+			merc_tmp_amoeba = { random_country = { limit = { is_country_type = "amoeba" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } }
+			merc_tmp_cloud = { random_country = { limit = { is_country_type = "cloud" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } }
+			merc_tmp_crystal = { random_country = { limit = { is_country_type = "crystal" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } }
+			merc_tmp_drone = { random_country = { limit = { is_country_type = "drone" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } }
+			merc_tmp_pirate = { random_country = { limit = { is_country_type = "pirate" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } }
+		}
+
 		set_country_flag = "merc_op_clear"
 		remove_country_flag = "fmerc_diplomacy_engaged"
 		set_country_flag = "fmerc_active_operation"

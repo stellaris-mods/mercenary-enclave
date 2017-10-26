@@ -78,4 +78,6 @@ fmerc_operations = {
 			contact_rule = always
 		}
 	}
+
+	pre_communications_fleet_name = "MERCENARY_SQUADRON"
 }

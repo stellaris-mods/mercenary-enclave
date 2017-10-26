@@ -23,7 +23,6 @@
 # - ROOT/THIS must be the buyer country for all stage1 effects
 # - last_created_country is always the new mercenary operations country
 #   created immediately in stage 1 init
-# - merc_country is NOT guaranteed to exist
 
 fmerc_stage1_copy_detection = {
 	last_created_country = { set_variable = { which = "MercDetect" value = 0 } }
@@ -270,7 +269,7 @@ fmerc_stage1_create_mercenaries = {
 				category = "backgrounds"
 				file = "00_solid.dds"
 			}
-			colors ={
+			colors = {
 				"red"
 				"red"
 				"null"
@@ -294,23 +293,30 @@ fmerc_stage1_create_mercenaries = {
 		establish_contact = { who = ROOT }
 		establish_communications_no_message = event_target:mercenaries
 		establish_contact = { who = event_target:mercenaries }
-
-		# this makes it show in the contact list,
-		# but at the same time it prevents the operations squad from engaging
-		# the enclave
-		set_subject_of = {
-			who = event_target:mercenaries
-			subject_type = mercsquad
-		}
 	}
+
+	# ZZZ Orbital bombardment clusterfuck
+	# This would be nice, but it stops orbital bombardment from working at all
+	# Surely there must be a way without declaring actual war of having
+	# orbital bombardment working.
+	#if = {
+	#	limit = { event_target:merc_country = { has_communications = event_target:mercenaries } }
+	#	last_created_country = { establish_communications_no_message = event_target:merc_country }
+	#}
 }
 
 # event_target:merc_country should be set before this
 # but it might not be, in which case we just abort operation immediately
 # Scope is the buyer country
 fmerc_init_stage1 = {
-	log = "Stage 1: Init Mercenary Operations"
-	log = "Buyer is [Root.GetName]."
+	log = "Stage 1 init."
+
+	# If we're doing a clear operation, the country target doesn't necessarily
+	# exist. This effect then aborts the operation immediately.
+	merc_verify_country = yes
+
+	event_target:merc_country = { set_country_flag = "fmerc_operations_target" }
+	log = "Buyer = [Root.GetName], target country = [merc_country.GetName]."
 
 	fmerc_stage1_create_mercenaries = yes
 
@@ -321,7 +327,6 @@ fmerc_init_stage1 = {
 		}
 		if = {
 			limit = {
-				exists = event_target:merc_country
 				event_target:merc_country = { is_country_type = "default" }
 			}
 			copy_techs_from = {
@@ -366,19 +371,9 @@ fmerc_init_stage1 = {
 			flag = merc_operations_squad
 		}
 
-		if = {
-			# If this is a "clear space" operation, this might not be set
-			# If it isn't, that means there are no countries of the selected
-			# type with ships inside the buyers borders. Simply break,
-			# and do nothing.
-			limit = { exists = event_target:merc_country }
-			set_relation_flag = {
-				who = event_target:merc_country
-				flag = merc_operations_target
-			}
-			event_target:merc_country = {
-				set_country_flag = "fmerc_operations_target"
-			}
+		set_relation_flag = {
+			who = event_target:merc_country
+			flag = merc_operations_target
 		}
 
 		random_list = {
@@ -409,6 +404,9 @@ fmerc_init_stage1 = {
 	fmerc_stage1_copy_success = yes
 	fmerc_stage1_copy_detection = yes
 
+	# ZZZ Remember to keep a 2 day delay, minimum, so that the fake fleets
+	# ZZZ are deleted before the mission begins. Not that it should be
+	# ZZZ problematic, but there's no reason for it either.
 	switch = {
 		trigger = has_country_flag
 		merc_op_spaceport = {
@@ -446,7 +444,11 @@ fmerc_init_stage1 = {
 		merc_op_clear = {
 			last_created_country = {
 				set_country_flag = "merc_op_clear"
-				country_event = { id = mercOpsMeta.1 }
+				# We delay by 3 days so that we don't invoke the controller
+				# or other events/effects on the fleet-power calculation
+				# fake fleets.
+				# I've tried setting it to 1 day, but they still exist then.
+				country_event = { id = mercOpsMeta.1 days = 3 }
 			}
 		}
 	}

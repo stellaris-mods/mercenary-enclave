@@ -18,22 +18,29 @@
 ###
 
 
-# XXX fix aborting operations
+# THIS must be an op fleet
+merc_fleet_maybe_go_hostile = {
+	merc_verify_current_target = yes
+	merc_verify_target_has_system = yes
 
-merc_maybe_go_hostile = {
 	if = {
 		limit = {
-			exists = event_target:merc_current_target
-			event_target:merc_current_target = { owner = { NOT = { is_hostile = PREVPREV.owner } } }
 			event_target:merc_current_target = {
 				solar_system = { is_same_value = PREVPREV.solar_system }
 			}
 		}
-		owner = {
-			set_fleet_stance = aggressive
-			# Turn hostile when we find our first target,
-			# unless they are already hostile towards us.
-			set_faction_hostility = { set_hostile = yes }
+		# We are in the same solar system, so make sure we turn aggressive
+		set_fleet_stance = aggressive
+
+		# Check if the owner is hostile to us
+		if = { limit = { event_target:merc_current_target = { owner = { NOT = { is_hostile = PREVPREV.owner } } } }
+			# We need to turn hostile vs them
+			log = "Going hostile."
+			owner = {
+				# Turn hostile when we find our first target,
+				# unless they are already hostile towards us.
+				set_faction_hostility = { set_hostile = yes }
+			}
 		}
 	}
 }

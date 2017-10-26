@@ -135,7 +135,7 @@ merc_menu_2_operation_fleet = {
 }
 
 merc_menu_2_operation_clear = {
-	# noop
+	set_country_flag = "merc_op_clear"
 }
 
 ###############################################################################
