@@ -51,7 +51,7 @@ merc_shameful_validate_all_targets = {
 		remove_country_flag = "merc_invalid"
 	}
 }
-
+# XXX dont save if event target already exists
 merc_shameful_save_target = {
 	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 1 } } } save_event_target_as = merc_tmp_1 }
 	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 2 } } } save_event_target_as = merc_tmp_2 }

@@ -18,28 +18,6 @@
 ###
 
 
-# Note that this trigger is used both in the diplomacy screen, and during the operation
-fmerc_valid_spaceport_planet = {
-	exists = owner
-	exists = controller
-	is_colony = yes
-	is_under_colonization = no
-	is_occupied_flag = no
-	has_ground_combat = no
-	under_bombardment = no
-	is_capital = no
-	is_homeworld = no
-	is_terraforming = no
-	is_controlled_by = owner
-	has_spaceport = yes # This is true even if it's under construction
-	exists = spaceport
-	spaceport = { has_hp_percentage > 0.9 } # 90%
-	exists = solar_system
-	solar_system = { merc_has_station = no }
-}
-
-
-
 merc_spaceport_ideal = {
 	merc_spaceport_minimum = yes
 	solar_system = {
@@ -60,51 +38,65 @@ merc_spaceport_good = {
 }
 
 merc_spaceport_minimum = {
-	fmerc_valid_spaceport_planet = yes
+	exists = owner
+	exists = controller
+	is_colony = yes
+	is_under_colonization = no
+	is_occupied_flag = no
+	has_ground_combat = no
+	under_bombardment = no
+	is_capital = no
+	is_homeworld = no
+	is_terraforming = no
+	is_controlled_by = owner
+	has_spaceport = yes # This is true even if it's under construction
+	exists = spaceport
+	spaceport = { has_hp_percentage > 0.9 } # 90%
+	exists = solar_system
+	solar_system = { merc_has_station = no }
 }
 
 merc_spaceport_p1 = {
-	merc_raid_p1 = yes
+	merc_p1 = yes
 	merc_spaceport_ideal = yes
 }
 
 merc_spaceport_p2 = {
-	merc_raid_p2 = yes
+	merc_p2 = yes
 	merc_spaceport_ideal = yes
 }
 
 merc_spaceport_p3 = {
-	merc_raid_minimum = yes
+	merc_minimum = yes
 	merc_spaceport_ideal = yes
 }
 
 merc_spaceport_p4 = {
-	merc_raid_p1 = yes
+	merc_p1 = yes
 	merc_spaceport_good = yes
 }
 
 merc_spaceport_p5 = {
-	merc_raid_p2 = yes
+	merc_p2 = yes
 	merc_spaceport_good = yes
 }
 
 merc_spaceport_p6 = {
-	merc_raid_minimum = yes
+	merc_minimum = yes
 	merc_spaceport_good = yes
 }
 
 merc_spaceport_p7 = {
-	merc_raid_p1 = yes
+	merc_p1 = yes
 	merc_spaceport_minimum = yes
 }
 
 merc_spaceport_p8 = {
-	merc_raid_p2 = yes
+	merc_p2 = yes
 	merc_spaceport_minimum = yes
 }
 
 merc_spaceport_p9 = {
-	merc_raid_minimum = yes
+	merc_minimum = yes
 	merc_spaceport_minimum = yes
 }
-

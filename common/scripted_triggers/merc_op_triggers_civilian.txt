@@ -76,46 +76,46 @@ merc_civilian_minimum = {
 
 
 merc_civilian_p1 = {
-	merc_raid_p1 = yes
+	merc_p1 = yes
 	merc_civilian_ideal = yes
 }
 
 merc_civilian_p2 = {
-	merc_raid_p2 = yes
+	merc_p2 = yes
 	merc_civilian_ideal = yes
 }
 
 merc_civilian_p3 = {
-	merc_raid_minimum = yes
+	merc_minimum = yes
 	merc_civilian_ideal = yes
 }
 
 merc_civilian_p4 = {
-	merc_raid_p1 = yes
+	merc_p1 = yes
 	merc_civilian_good = yes
 }
 
 merc_civilian_p5 = {
-	merc_raid_p2 = yes
+	merc_p2 = yes
 	merc_civilian_good = yes
 }
 
 merc_civilian_p6 = {
-	merc_raid_minimum = yes
+	merc_minimum = yes
 	merc_civilian_good = yes
 }
 
 merc_civilian_p7 = {
-	merc_raid_p1 = yes
+	merc_p1 = yes
 	merc_civilian_minimum = yes
 }
 
 merc_civilian_p8 = {
-	merc_raid_p2 = yes
+	merc_p2 = yes
 	merc_civilian_minimum = yes
 }
 
 merc_civilian_p9 = {
-	merc_raid_minimum = yes
+	merc_minimum = yes
 	merc_civilian_minimum = yes
 }

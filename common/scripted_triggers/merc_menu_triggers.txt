@@ -26,7 +26,7 @@ merc_menu_3_is_targetted_type = {
 			merc_country_type_fallen = { PREV = { merc_menu_3_is_known_target_fallen = yes } }
 			merc_country_type_hivemind = { PREV = { merc_menu_3_is_known_target_hivemind = yes } }
 			merc_country_type_exd = { PREV = { merc_menu_3_is_known_target_exd = yes } }
-			merc_country_type_synthetic = { PREV = { merc_menu_3_has_valid_operation_synthetic = yes } }
+			merc_country_type_synthetic = { PREV = { merc_menu_3_is_known_target_synthetic = yes } }
 		}
 	}
 }
@@ -61,7 +61,7 @@ merc_menu_3_is_known_target_exd = {
 	merc_menu_3_is_known_target = yes
 }
 
-merc_menu_3_has_valid_operation_synthetic = {
+merc_menu_3_is_known_target_synthetic = {
 	merc_is_synthetic = yes
 	merc_menu_3_is_known_target = yes
 }
@@ -112,7 +112,7 @@ merc_menu_3_has_valid_operation_synthetic = {
 
 merc_menu_3_is_valid_target_spaceport = {
 	num_owned_planets > 2
-	any_owned_planet = { fmerc_valid_spaceport_planet = yes }
+	any_owned_planet = { merc_spaceport_p9 = yes }
 }
 
 merc_menu_3_is_valid_target_liberate = {
@@ -122,26 +122,26 @@ merc_menu_3_is_valid_target_liberate = {
 		is_country_type = "ai_empire"
 	}
 	num_owned_planets > 2
-	any_owned_planet = { fmerc_valid_liberate_planet = yes }
+	any_owned_planet = { merc_liberate_p9 = yes }
 }
 
-merc_menu_3_is_valid_target_raid = {
+merc_menu_3_is_valid_target_civilian = {
 	OR = {
 		count_owned_ships = {
-			limit = { merc_valid_civilian_raid_target = yes }
+			limit = { merc_civilian_p9 = yes }
 			count > 4
 		}
 		AND = {
 			merc_is_exd = yes
 			# EXD only has 1-4 constructors, usually 3.
-			any_owned_fleet = { merc_valid_civilian_raid_target = yes }
+			any_owned_fleet = { merc_civilian_p9 = yes }
 		}
 	}
 }
 
-merc_menu_3_is_valid_target_fleet = {
+merc_menu_3_is_valid_target_military = {
 	num_fleets > 3 # Includes civilian ships as well
-	any_owned_fleet = { merc_valid_military_raid_target = yes }
+	any_owned_fleet = { merc_military_p9 = yes }
 }
 
 merc_menu_3_is_valid_target_clear = {
@@ -197,8 +197,8 @@ merc_menu_3_is_valid_target = {
 			trigger = has_country_flag
 			merc_op_spaceport = { PREV = { merc_menu_3_is_valid_target_spaceport = yes } }
 			merc_op_liberate = { PREV = { merc_menu_3_is_valid_target_liberate = yes } }
-			merc_op_civilian = { PREV = { merc_menu_3_is_valid_target_raid = yes } }
-			merc_op_fleet = { PREV = { merc_menu_3_is_valid_target_fleet = yes } }
+			merc_op_civilian = { PREV = { merc_menu_3_is_valid_target_civilian = yes } }
+			merc_op_military = { PREV = { merc_menu_3_is_valid_target_military = yes } }
 			merc_op_clear = { merc_menu_3_is_valid_target_clear = yes }
 		}
 	}

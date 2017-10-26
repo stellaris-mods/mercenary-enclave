@@ -79,7 +79,7 @@ merc_menu_2_operation_init = {
 	remove_country_flag = "merc_op_spaceport"
 	remove_country_flag = "merc_op_civilian"
 	remove_country_flag = "merc_op_liberate"
-	remove_country_flag = "merc_op_fleet"
+	remove_country_flag = "merc_op_military"
 	remove_country_flag = "merc_op_clear"
 
 	merc_account_set_trust_multiplier = yes
@@ -130,7 +130,7 @@ merc_menu_2_operation_fleet = {
 	set_variable = { which = "MercCostEnergy" value = 5000 }
 	set_variable = { which = "MercSuccess" value = 75 }
 	set_variable = { which = "MercDetect" value = 45 }
-	set_country_flag = "merc_op_fleet"
+	set_country_flag = "merc_op_military"
 	merc_menu_2_operation_apply = yes
 }
 

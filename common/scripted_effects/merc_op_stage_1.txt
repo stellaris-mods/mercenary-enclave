@@ -44,6 +44,17 @@ fmerc_stage1_copy_success = {
 	}
 }
 
+merc_stage1_copy_country_type = {
+	switch = {
+		trigger = has_country_flag
+		merc_country_type_generic = { last_created_country = { set_country_flag = "merc_country_type_generic" } }
+		merc_country_type_fallen = { last_created_country = { set_country_flag = "merc_country_type_fallen" } }
+		merc_country_type_hivemind = { last_created_country = { set_country_flag = "merc_country_type_hivemind" } }
+		merc_country_type_exd = { last_created_country = { set_country_flag = "merc_country_type_exd" } }
+		merc_country_type_synthetic = { last_created_country = { set_country_flag = "merc_country_type_synthetic" } }
+	}
+}
+
 fmerc_stage1_culture_copy = {
 	switch = {
 		trigger = graphical_culture
@@ -401,6 +412,7 @@ fmerc_init_stage1 = {
 
 	fmerc_stage1_copy_success = yes
 	fmerc_stage1_copy_detection = yes
+	merc_stage1_copy_country_type = yes
 
 	# ZZZ Remember to keep a 2 day delay, minimum, so that the fake fleets
 	# ZZZ are deleted before the mission begins. Not that it should be
@@ -431,10 +443,10 @@ fmerc_init_stage1 = {
 				country_event = { id = mercOpsMeta.1 days = 3 random = 70 }
 			}
 		}
-		merc_op_fleet = {
+		merc_op_military = {
 			merc_stage_1_apply_disguise = yes
 			last_created_country = {
-				set_country_flag = "merc_op_fleet"
+				set_country_flag = "merc_op_military"
 				subtract_variable = { which = "MercTargetCount" value = 2 }
 				country_event = { id = mercOpsMeta.1 days = 3 random = 70 }
 			}

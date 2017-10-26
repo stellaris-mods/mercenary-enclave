@@ -53,7 +53,7 @@ merc_fleet_arrived = {
 			merc_op_liberate = { ROOT = { merc_stage3_fleet_arrived_liberate = yes } }
 			merc_op_spaceport = { ROOT = { merc_stage3_fleet_arrived_generic = yes } }
 			merc_op_civilian = { ROOT = { merc_stage3_fleet_arrived_generic = yes } }
-			merc_op_fleet = { ROOT = { merc_stage3_fleet_arrived_generic = yes } }
+			merc_op_military = { ROOT = { merc_stage3_fleet_arrived_generic = yes } }
 			merc_op_clear = { ROOT = { merc_stage3_fleet_arrived_generic = yes } }
 		}
 	}

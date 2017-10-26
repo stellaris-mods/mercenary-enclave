@@ -72,7 +72,7 @@ merc_stage2_mark_initial_targets = {
 		merc_op_spaceport  = { merc_set_target_spaceport = yes }
 		merc_op_liberate   = { merc_set_target_liberate = yes }
 		merc_op_civilian   = { merc_set_target_civilian = yes }
-		merc_op_fleet      = { merc_set_target_military = yes }
+		merc_op_military   = { merc_set_target_military = yes }
 		merc_op_clear      = { merc_set_target_clear = yes }
 	}
 

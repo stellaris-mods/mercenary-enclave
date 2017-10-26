@@ -51,46 +51,46 @@ merc_military_minimum = {
 
 
 merc_military_p1 = {
-	merc_raid_p1 = yes
+	merc_p1 = yes
 	merc_military_ideal = yes
 }
 
 merc_military_p2 = {
-	merc_raid_p2 = yes
+	merc_p2 = yes
 	merc_military_ideal = yes
 }
 
 merc_military_p3 = {
-	merc_raid_minimum = yes
+	merc_minimum = yes
 	merc_military_ideal = yes
 }
 
 merc_military_p4 = {
-	merc_raid_p1 = yes
+	merc_p1 = yes
 	merc_military_good = yes
 }
 
 merc_military_p5 = {
-	merc_raid_p2 = yes
+	merc_p2 = yes
 	merc_military_good = yes
 }
 
 merc_military_p6 = {
-	merc_raid_minimum = yes
+	merc_minimum = yes
 	merc_military_good = yes
 }
 
 merc_military_p7 = {
-	merc_raid_p1 = yes
+	merc_p1 = yes
 	merc_military_minimum = yes
 }
 
 merc_military_p8 = {
-	merc_raid_p2 = yes
+	merc_p2 = yes
 	merc_military_minimum = yes
 }
 
 merc_military_p9 = {
-	merc_raid_minimum = yes
+	merc_minimum = yes
 	merc_military_minimum = yes
 }

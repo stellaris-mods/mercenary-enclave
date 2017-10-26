@@ -41,7 +41,7 @@ country_event = {
 				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
 				merc_op_liberate = { text = "merc.param.operation.liberate" }
 				merc_op_civilian = { text = "merc.param.operation.civilian" }
-				merc_op_fleet = { text = "merc.param.operation.fleet" }
+				merc_op_military = { text = "merc.param.operation.fleet" }
 			}
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
@@ -126,7 +126,7 @@ country_event = {
 				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
 				merc_op_liberate = { text = "merc.param.operation.liberate" }
 				merc_op_civilian = { text = "merc.param.operation.civilian" }
-				merc_op_fleet = { text = "merc.param.operation.fleet" }
+				merc_op_military = { text = "merc.param.operation.fleet" }
 			}
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
@@ -208,7 +208,7 @@ country_event = {
 				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
 				merc_op_liberate = { text = "merc.param.operation.liberate" }
 				merc_op_civilian = { text = "merc.param.operation.civilian" }
-				merc_op_fleet = { text = "merc.param.operation.fleet" }
+				merc_op_military = { text = "merc.param.operation.fleet" }
 			}
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
@@ -290,7 +290,7 @@ country_event = {
 				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
 				merc_op_liberate = { text = "merc.param.operation.liberate" }
 				merc_op_civilian = { text = "merc.param.operation.civilian" }
-				merc_op_fleet = { text = "merc.param.operation.fleet" }
+				merc_op_military = { text = "merc.param.operation.fleet" }
 			}
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
@@ -372,7 +372,7 @@ country_event = {
 				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
 				merc_op_liberate = { text = "merc.param.operation.liberate" }
 				merc_op_civilian = { text = "merc.param.operation.civilian" }
-				merc_op_fleet = { text = "merc.param.operation.fleet" }
+				merc_op_military = { text = "merc.param.operation.fleet" }
 			}
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }

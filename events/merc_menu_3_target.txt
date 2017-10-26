@@ -41,7 +41,7 @@ country_event = {
 					text = "merc.param.operation.civilian"
 					text = "merc.operation.civilian.desc"
 				}
-				merc_op_fleet = {
+				merc_op_military = {
 					text = "merc.param.operation.fleet"
 					text = "merc.operation.fleet.desc"
 				}
@@ -129,7 +129,7 @@ country_event = {
 	}
 	option = {
 		name = merc.target.contingency
-		trigger = { any_country = { merc_menu_3_has_valid_operation_synthetic = yes } }
+		trigger = { any_country = { merc_menu_3_is_known_target_synthetic = yes } }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
@@ -159,7 +159,7 @@ country_event = {
 				merc_op_spaceport = { text = "merc.param.operation.spaceport" }
 				merc_op_liberate = { text = "merc.param.operation.liberate" }
 				merc_op_civilian = { text = "merc.param.operation.civilian" }
-				merc_op_fleet = { text = "merc.param.operation.fleet" }
+				merc_op_military = { text = "merc.param.operation.fleet" }
 			}
 			success_text = { text = "merc.param.minerals" check_variable = { which = "MercCost" value > 0 } }
 			success_text = { text = "merc.param.energy" check_variable = { which = "MercCostEnergy" value > 0 } }
@@ -203,7 +203,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_1 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -220,7 +220,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_2 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -237,7 +237,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_3 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -254,7 +254,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_4 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -271,7 +271,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_5 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -288,7 +288,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_6 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -305,7 +305,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_7 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -322,7 +322,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_8 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -339,7 +339,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_9 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -356,7 +356,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_10 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -373,7 +373,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_11 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -390,7 +390,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_12 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -407,7 +407,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_13 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -424,7 +424,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_14 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -441,7 +441,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_15 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -458,7 +458,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_16 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -475,7 +475,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_17 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -492,7 +492,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_18 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -509,7 +509,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_19 = { merc_menu_3_is_valid_target = yes }
 			}
 		}
@@ -526,7 +526,7 @@ country_event = {
 		}
 		allow = {
 			custom_tooltip_fail = {
-				text = merc.condition.invalid.target
+				text = merc.condition.invalid.target.now
 				event_target:merc_tmp_20 = { merc_menu_3_is_valid_target = yes }
 			}
 		}

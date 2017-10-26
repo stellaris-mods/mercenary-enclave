@@ -37,7 +37,7 @@ fleet_event = {
 					merc_op_liberate = { ROOT = { merc_stage3_init_fleet_liberate = yes } }
 					merc_op_spaceport = { ROOT = { merc_stage3_init_fleet = yes } }
 					merc_op_civilian = { ROOT = { merc_stage3_init_fleet = yes } }
-					merc_op_fleet = { ROOT = { merc_stage3_init_fleet = yes } }
+					merc_op_military = { ROOT = { merc_stage3_init_fleet = yes } }
 					merc_op_clear = { ROOT = { merc_stage3_init_fleet = yes } }
 				}
 			}
@@ -63,7 +63,7 @@ fleet_event = {
 				merc_op_liberate = { ROOT = { merc_stage3_fleet_check_target_planet = yes } }
 				merc_op_spaceport = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
 				merc_op_civilian = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
-				merc_op_fleet = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
+				merc_op_military = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
 				merc_op_clear = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
 			}
 		}

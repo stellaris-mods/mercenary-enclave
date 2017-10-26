@@ -18,15 +18,8 @@
 ###
 
 
-# Note that this trigger is used both in the diplomacy screen, and during the operation
-fmerc_valid_liberate_planet = {
-	merc_valid_liberate_minimum = yes
-	has_ground_combat = no
-	under_bombardment = no
-}
-
 # We check this once we arrive in orbit
-merc_valid_liberate_minimum = {
+merc_is_still_valid_for_liberate = {
 	exists = owner
 	exists = controller
 	is_colony = yes
@@ -37,5 +30,75 @@ merc_valid_liberate_minimum = {
 	num_pops > 1
 	is_terraforming = no
 	is_controlled_by = owner
-	solar_system = { merc_has_station = no }
+}
+
+
+merc_liberate_ideal = {
+	merc_liberate_minimum = yes
+	solar_system = {
+		NOT = {
+			any_ship_in_system = {
+				OR = {
+					is_ship_class = shipclass_military_station
+					is_ship_class = shipclass_military
+				}
+			}
+		}
+	}
+}
+
+merc_liberate_good = {
+	merc_liberate_minimum = yes
+	solar_system = { NOT = { any_ship_in_system = { is_ship_class = shipclass_military } } }
+}
+
+merc_liberate_minimum = {
+	merc_is_still_valid_for_liberate = yes
+	has_ground_combat = no
+	under_bombardment = no
+}
+
+merc_liberate_p1 = {
+	merc_p1 = yes
+	merc_liberate_ideal = yes
+}
+
+merc_liberate_p2 = {
+	merc_p2 = yes
+	merc_liberate_ideal = yes
+}
+
+merc_liberate_p3 = {
+	merc_minimum = yes
+	merc_liberate_ideal = yes
+}
+
+merc_liberate_p4 = {
+	merc_p1 = yes
+	merc_liberate_good = yes
+}
+
+merc_liberate_p5 = {
+	merc_p2 = yes
+	merc_liberate_good = yes
+}
+
+merc_liberate_p6 = {
+	merc_minimum = yes
+	merc_liberate_good = yes
+}
+
+merc_liberate_p7 = {
+	merc_p1 = yes
+	merc_liberate_minimum = yes
+}
+
+merc_liberate_p8 = {
+	merc_p2 = yes
+	merc_liberate_minimum = yes
+}
+
+merc_liberate_p9 = {
+	merc_minimum = yes
+	merc_liberate_minimum = yes
 }

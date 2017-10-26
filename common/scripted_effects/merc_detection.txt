@@ -44,7 +44,7 @@ merc_operation_detected = {
 				}
 			}
 		}
-		merc_op_fleet = {
+		merc_op_military = {
 			event_target:merc_country = {
 				add_opinion_modifier = {
 					modifier = fmerc_opinion_fleet

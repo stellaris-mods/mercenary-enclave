@@ -20,7 +20,7 @@
 
 # These effects are only used by the raid operation types
 
-merc_set_target_raid = {
+merc_set_target_military = {
 	event_target:merc_country = {
 		random_owned_fleet = { limit = { merc_military_p1 = yes }
 			log = "Military target [this.GetName] (P1)"
