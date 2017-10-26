@@ -78,3 +78,24 @@ merc_is_hivemind = {
 merc_is_synthetic = {
 	is_country_type = "ai_empire"
 }
+
+# XXX dont allow raids vs the capital system of an FE
+
+###############################################################################
+# These triggers are the bare minimum for any raid operation
+#
+
+merc_raid_p1 = {
+	merc_raid_minimum = yes
+	solar_system = { NOT = { any_planet = { is_colony = yes } } }
+}
+
+merc_raid_p2 = {
+	merc_raid_minimum = yes
+	solar_system = { NOT = { any_planet = { is_capital = yes } } }
+}
+
+merc_raid_minimum = {
+	exists = solar_system
+	solar_system = { merc_has_station = no }
+}
