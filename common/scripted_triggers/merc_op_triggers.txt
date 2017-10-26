@@ -30,6 +30,10 @@ fmerc_enclave_exists = {
 	}
 }
 
+merc_needs_target = {
+	PREV = { NOT = { has_country_flag = "merc_found_target" } }
+}
+
 # THIS = fleet
 merc_is_target_system = {
 	exists = solar_system # Doesn't exist if we're in FTL

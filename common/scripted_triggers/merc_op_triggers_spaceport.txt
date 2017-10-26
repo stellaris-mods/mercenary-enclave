@@ -37,3 +37,74 @@ fmerc_valid_spaceport_planet = {
 	exists = solar_system
 	solar_system = { merc_has_station = no }
 }
+
+
+
+merc_spaceport_ideal = {
+	merc_spaceport_minimum = yes
+	solar_system = {
+		NOT = {
+			any_ship_in_system = {
+				OR = {
+					is_ship_class = shipclass_military_station
+					is_ship_class = shipclass_military
+				}
+			}
+		}
+	}
+}
+
+merc_spaceport_good = {
+	merc_spaceport_minimum = yes
+	solar_system = { NOT = { any_ship_in_system = { is_ship_class = shipclass_military } } }
+}
+
+merc_spaceport_minimum = {
+	fmerc_valid_spaceport_planet = yes
+}
+
+merc_spaceport_p1 = {
+	merc_raid_p1 = yes
+	merc_spaceport_ideal = yes
+}
+
+merc_spaceport_p2 = {
+	merc_raid_p2 = yes
+	merc_spaceport_ideal = yes
+}
+
+merc_spaceport_p3 = {
+	merc_raid_minimum = yes
+	merc_spaceport_ideal = yes
+}
+
+merc_spaceport_p4 = {
+	merc_raid_p1 = yes
+	merc_spaceport_good = yes
+}
+
+merc_spaceport_p5 = {
+	merc_raid_p2 = yes
+	merc_spaceport_good = yes
+}
+
+merc_spaceport_p6 = {
+	merc_raid_minimum = yes
+	merc_spaceport_good = yes
+}
+
+merc_spaceport_p7 = {
+	merc_raid_p1 = yes
+	merc_spaceport_minimum = yes
+}
+
+merc_spaceport_p8 = {
+	merc_raid_p2 = yes
+	merc_spaceport_minimum = yes
+}
+
+merc_spaceport_p9 = {
+	merc_raid_minimum = yes
+	merc_spaceport_minimum = yes
+}
+

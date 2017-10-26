@@ -1,0 +1,96 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+merc_valid_military_raid_target = {
+	is_ship_class = shipclass_military
+	fleet_power < 90000
+	fleet_power > 1200
+	exists = solar_system
+}
+
+merc_military_ideal = {
+	merc_military_minimum = yes
+	solar_system = {
+		NOT = {
+			any_ship_in_system = {
+				OR = {
+					is_ship_class = shipclass_military_station
+					is_ship_class = shipclass_orbital_station
+				}
+			}
+		}
+	}
+}
+
+merc_military_good = {
+	merc_military_minimum = yes
+	solar_system = { NOT = { any_ship_in_system = { is_ship_class = shipclass_military_station } } }
+}
+
+merc_military_minimum = {
+	merc_valid_military_raid_target = yes
+}
+
+
+
+merc_military_p1 = {
+	merc_raid_p1 = yes
+	merc_military_ideal = yes
+}
+
+merc_military_p2 = {
+	merc_raid_p2 = yes
+	merc_military_ideal = yes
+}
+
+merc_military_p3 = {
+	merc_raid_minimum = yes
+	merc_military_ideal = yes
+}
+
+merc_military_p4 = {
+	merc_raid_p1 = yes
+	merc_military_good = yes
+}
+
+merc_military_p5 = {
+	merc_raid_p2 = yes
+	merc_military_good = yes
+}
+
+merc_military_p6 = {
+	merc_raid_minimum = yes
+	merc_military_good = yes
+}
+
+merc_military_p7 = {
+	merc_raid_p1 = yes
+	merc_military_minimum = yes
+}
+
+merc_military_p8 = {
+	merc_raid_p2 = yes
+	merc_military_minimum = yes
+}
+
+merc_military_p9 = {
+	merc_raid_minimum = yes
+	merc_military_minimum = yes
+}

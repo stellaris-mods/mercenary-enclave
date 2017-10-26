@@ -140,11 +140,8 @@ merc_menu_3_is_valid_target_raid = {
 }
 
 merc_menu_3_is_valid_target_fleet = {
-	num_fleets > 3
-	any_owned_fleet = {
-		is_ship_class = shipclass_military
-		fleet_size > 8
-	}
+	num_fleets > 3 # Includes civilian ships as well
+	any_owned_fleet = { merc_valid_military_raid_target = yes }
 }
 
 merc_menu_3_is_valid_target_clear = {

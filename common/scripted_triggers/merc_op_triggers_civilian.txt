@@ -38,3 +38,84 @@ merc_valid_civilian_raid_target = {
 		is_ship_size = construction_ship_ed
 	}
 }
+
+merc_civilian_ideal = {
+	merc_civilian_minimum = yes
+	solar_system = {
+		NOT = {
+			any_ship_in_system = {
+				OR = {
+					is_ship_class = shipclass_military_station
+					is_ship_class = shipclass_military
+					is_ship_class = shipclass_orbital_station # Spaceport
+				}
+			}
+		}
+	}
+}
+
+merc_civilian_good = {
+	merc_civilian_minimum = yes
+	solar_system = {
+		NOT = {
+			any_ship_in_system = {
+				OR = {
+					is_ship_class = shipclass_military_station
+					is_ship_class = shipclass_military
+				}
+			}
+		}
+	}
+}
+
+merc_civilian_minimum = {
+	merc_valid_civilian_raid_target = yes
+}
+
+
+
+
+merc_civilian_p1 = {
+	merc_raid_p1 = yes
+	merc_civilian_ideal = yes
+}
+
+merc_civilian_p2 = {
+	merc_raid_p2 = yes
+	merc_civilian_ideal = yes
+}
+
+merc_civilian_p3 = {
+	merc_raid_minimum = yes
+	merc_civilian_ideal = yes
+}
+
+merc_civilian_p4 = {
+	merc_raid_p1 = yes
+	merc_civilian_good = yes
+}
+
+merc_civilian_p5 = {
+	merc_raid_p2 = yes
+	merc_civilian_good = yes
+}
+
+merc_civilian_p6 = {
+	merc_raid_minimum = yes
+	merc_civilian_good = yes
+}
+
+merc_civilian_p7 = {
+	merc_raid_p1 = yes
+	merc_civilian_minimum = yes
+}
+
+merc_civilian_p8 = {
+	merc_raid_p2 = yes
+	merc_civilian_minimum = yes
+}
+
+merc_civilian_p9 = {
+	merc_raid_minimum = yes
+	merc_civilian_minimum = yes
+}

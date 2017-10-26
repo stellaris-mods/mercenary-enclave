@@ -18,59 +18,58 @@
 ###
 
 
-# These effects are only used by the raid operation types
-
-merc_set_target_raid = {
+# THIS is op country
+merc_set_target_civilian = {
 	event_target:merc_country = {
-		random_owned_fleet = { limit = { merc_military_p1 = yes }
-			log = "Military target [this.GetName] (P1)"
+		random_owned_fleet = { limit = { merc_civilian_p1 = yes }
+			log = "Civilian target [this.GetName] (P1)"
 			random_owned_ship = { merc_set_found_target = yes }
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_fleet = { limit = { merc_military_p2 = yes }
-				log = "Military target [this.GetName] (P2)"
+			random_owned_fleet = { limit = { merc_civilian_p2 = yes }
+				log = "Civilian target [this.GetName] (P2)"
 				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_fleet = { limit = { merc_military_p3 = yes }
-				log = "Military target [this.GetName] (P3)"
+			random_owned_fleet = { limit = { merc_civilian_p3 = yes }
+				log = "Civilian target [this.GetName] (P3)"
 				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_fleet = { limit = { merc_military_p4 = yes }
-				log = "Military target [this.GetName] (P4)"
+			random_owned_fleet = { limit = { merc_civilian_p4 = yes }
+				log = "Civilian target [this.GetName] (P4)"
 				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_fleet = { limit = { merc_military_p5 = yes }
-				log = "Military target [this.GetName] (P5)"
+			random_owned_fleet = { limit = { merc_civilian_p5 = yes }
+				log = "Civilian target [this.GetName] (P5)"
 				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_fleet = { limit = { merc_military_p6 = yes }
-				log = "Military target [this.GetName] (P6)"
+			random_owned_fleet = { limit = { merc_civilian_p6 = yes }
+				log = "Civilian target [this.GetName] (P6)"
 				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_fleet = { limit = { merc_military_p7 = yes }
-				log = "Military target [this.GetName] (P7)"
+			random_owned_fleet = { limit = { merc_civilian_p7 = yes }
+				log = "Civilian target [this.GetName] (P7)"
 				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_fleet = { limit = { merc_military_p8 = yes }
-				log = "Military target [this.GetName] (P8)"
+			random_owned_fleet = { limit = { merc_civilian_p8 = yes }
+				log = "Civilian target [this.GetName] (P8)"
 				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_fleet = { limit = { merc_military_p9 = yes }
-				log = "Military target [this.GetName] (P9)"
+			random_owned_fleet = { limit = { merc_civilian_p9 = yes }
+				log = "Civilian target [this.GetName] (P9)"
 				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
