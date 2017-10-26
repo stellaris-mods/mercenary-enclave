@@ -22,11 +22,11 @@ merc_menu_3_is_targetted_type = {
 	ROOT = {
 		switch = {
 			trigger = has_country_flag
-			merc_country_type_default = { PREV = { merc_menu_3_is_known_target_default = yes } }
+			merc_country_type_generic = { PREV = { merc_menu_3_is_known_target_generic = yes } }
 			merc_country_type_fallen = { PREV = { merc_menu_3_is_known_target_fallen = yes } }
-			merc_country_type_swarm = { PREV = { merc_menu_3_is_known_target_swarm = yes } }
+			merc_country_type_hivemind = { PREV = { merc_menu_3_is_known_target_hivemind = yes } }
 			merc_country_type_exd = { PREV = { merc_menu_3_is_known_target_exd = yes } }
-			merc_country_type_airevolt = { PREV = { merc_menu_3_is_known_target_airevolt = yes } }
+			merc_country_type_synthetic = { PREV = { merc_menu_3_has_valid_operation_synthetic = yes } }
 		}
 	}
 }
@@ -41,21 +41,18 @@ merc_menu_3_is_known_target = {
 	NOT = { is_same_value = ROOT }
 }
 
-merc_menu_3_is_known_target_default = {
-	is_country_type = "default"
+merc_menu_3_is_known_target_generic = {
+	merc_is_generic = yes
 	merc_menu_3_is_known_target = yes
 }
 
 merc_menu_3_is_known_target_fallen = {
-	OR = {
-		is_country_type = "fallen_empire"
-		is_country_type = "awakened_fallen_empire"
-	}
+	merc_is_fallen = yes
 	merc_menu_3_is_known_target = yes
 }
 
-merc_menu_3_is_known_target_swarm = {
-	is_country_type = "swarm"
+merc_menu_3_is_known_target_hivemind = {
+	merc_is_hivemind = yes
 	merc_menu_3_is_known_target = yes
 }
 
@@ -64,8 +61,8 @@ merc_menu_3_is_known_target_exd = {
 	merc_menu_3_is_known_target = yes
 }
 
-merc_menu_3_is_known_target_airevolt = {
-	is_country_type = "ai_empire"
+merc_menu_3_has_valid_operation_synthetic = {
+	merc_is_synthetic = yes
 	merc_menu_3_is_known_target = yes
 }
 
@@ -75,7 +72,7 @@ merc_menu_3_is_known_target_airevolt = {
 # Only ROOT/THIS, which are the player.
 #
 
-merc_menu_3_has_valid_operation_default = {
+merc_menu_3_has_valid_operation_generic = {
 	always = yes
 }
 
@@ -84,7 +81,7 @@ merc_menu_3_has_valid_operation_fallen = {
 	NOT = { has_country_flag = "merc_op_civilian" }
 }
 
-merc_menu_3_has_valid_operation_swarm = {
+merc_menu_3_has_valid_operation_hivemind = {
 	NOT = { has_country_flag = "merc_op_liberate" } # XXX add bombardment obliteration operation
 }
 
@@ -93,7 +90,7 @@ merc_menu_3_has_valid_operation_exd = {
 	NOT = { has_country_flag = "merc_op_liberate" }
 }
 
-merc_menu_3_has_valid_operation_airevolt = {
+merc_menu_3_has_valid_operation_synthetic = {
 	# XXX AI revolt takes over your planets and plant "custodian" pops
 	# the problem is that when the operation finishes, none of these trigger:
 	# on_planet_defenders_lose

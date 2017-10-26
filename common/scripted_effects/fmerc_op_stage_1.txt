@@ -325,7 +325,7 @@ fmerc_init_stage1 = {
 		}
 		if = {
 			limit = {
-				event_target:merc_country = { is_country_type = "default" }
+				event_target:merc_country = { merc_is_generic = yes }
 			}
 			copy_techs_from = {
 				target = event_target:merc_country

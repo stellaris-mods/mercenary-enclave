@@ -22,7 +22,6 @@
 
 # THIS is op country
 merc_set_target_military = {
-
 	event_target:merc_country = {
 		random_owned_fleet = {
 			limit = {

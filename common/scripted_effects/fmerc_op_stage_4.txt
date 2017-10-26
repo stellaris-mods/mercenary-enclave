@@ -147,6 +147,8 @@ merc_stage4_abort = {
 	merc_stage4_verify_operation_ongoing = yes
 	log = "Forcefully aborting operations."
 
+	# XXX actually, stop marking targets entirely and just use the kill
+	# XXX counter + valid-triggers to find suitable targets.
 	# XXX also check if there are any marked targets left?
 	merc_stage4_complete = yes
 }

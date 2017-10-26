@@ -81,3 +81,5 @@ merc_raid_priority_minimum = {
 	merc_valid_civilian_raid_target = yes
 	solar_system = { merc_has_station = no }
 }
+
+# XXX dont allow raids vs the capital system of an FE

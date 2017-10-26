@@ -83,11 +83,11 @@ country_event = {
 	}
 	option = {
 		name = merc.target.default
-		trigger = { any_country = { merc_menu_3_is_known_target_default = yes } }
+		trigger = { any_country = { merc_menu_3_is_known_target_generic = yes } }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				merc_menu_3_has_valid_operation_default = yes
+				merc_menu_3_has_valid_operation_generic = yes
 			}
 		}
 		hidden_effect = { merc_menu_3_target_default = yes }
@@ -106,15 +106,15 @@ country_event = {
 	option = {
 		name = merc.target.swarm
 		trigger = {
-			any_country = { merc_menu_3_is_known_target_swarm = yes }
+			any_country = { merc_menu_3_is_known_target_hivemind = yes }
 		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				merc_menu_3_has_valid_operation_swarm = yes
+				merc_menu_3_has_valid_operation_hivemind = yes
 			}
 		}
-		hidden_effect = { merc_menu_3_target_swarm = yes }
+		hidden_effect = { merc_menu_3_target_hivemind = yes }
 	}
 	option = {
 		name = merc.target.unbidden
@@ -129,14 +129,14 @@ country_event = {
 	}
 	option = {
 		name = merc.target.contingency
-		trigger = { any_country = { merc_menu_3_is_known_target_airevolt = yes } }
+		trigger = { any_country = { merc_menu_3_has_valid_operation_synthetic = yes } }
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.invalid.target
-				merc_menu_3_has_valid_operation_airevolt = yes
+				merc_menu_3_has_valid_operation_synthetic = yes
 			}
 		}
-		hidden_effect = { merc_menu_3_target_airevolt = yes }
+		hidden_effect = { merc_menu_3_target_synthetic = yes }
 	}
 }
 
@@ -147,11 +147,11 @@ country_event = {
 		trigger = {
 			switch = {
 				trigger = has_country_flag
-				merc_country_type_default = { text = "merc.target.selected.default" }
+				merc_country_type_generic = { text = "merc.target.selected.generic" }
 				merc_country_type_fallen = { text = "merc.target.selected.fallen" }
-				merc_country_type_swarm = { text = "merc.target.selected.swarm" }
+				merc_country_type_hivemind = { text = "merc.target.selected.hivemind" }
 				merc_country_type_exd = { text = "merc.target.selected.exd" }
-				merc_country_type_airevolt = { text = "merc.target.selected.airevolt" }
+				merc_country_type_synthetic = { text = "merc.target.selected.synthetic" }
 			}
 			text = newline
 			switch = {

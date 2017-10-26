@@ -324,9 +324,8 @@ merc_spawn_fleet = {
 	}
 
 	if = {
-		limit = { NOT = { event_target:merc_country = { is_country_type = "default" } } }
-		# Be much more aggressive towards non-default countries.
-		# ZZZ I have no idea why I did this.
+		limit = { event_target:merc_country = { merc_is_generic = no } }
+		# Be much more aggressive towards non-generic countries
 		set_variable = { which = "MercSpawn" value = 4500 }
 		else = { set_variable = { which = "MercSpawn" value = 1500 } }
 	}

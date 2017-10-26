@@ -30,15 +30,6 @@ fmerc_enclave_exists = {
 	}
 }
 
-merc_is_exd = {
-	OR = {
-		is_country_type = "extradimensional"
-		is_country_type = "extradimensional_2"
-		is_country_type = "extradimensional_3"
-		is_country_type = "tfw_ed"
-	}
-}
-
 # THIS = fleet
 merc_is_target_system = {
 	exists = solar_system # Doesn't exist if we're in FTL
@@ -51,4 +42,35 @@ merc_is_target_system = {
 merc_is_country_target_valid = {
 	exists = event_target:merc_country
 	# XXX check more triggers here plz
+}
+
+merc_is_generic = {
+	is_country_type = "default"
+	# is_ai = no
+}
+
+merc_is_exd = {
+	OR = {
+		is_country_type = "extradimensional"
+		is_country_type = "extradimensional_2"
+		is_country_type = "extradimensional_3"
+		is_country_type = "tfw_ed"
+	}
+}
+
+merc_is_fallen = {
+	OR = {
+		is_country_type = "fallen_empire"
+		is_country_type = "awakened_fallen_empire"
+	}
+}
+
+# ZZZ eventually this should cover all auth_hive_mind types
+merc_is_hivemind = {
+	is_country_type = "swarm"
+}
+
+# ZZZ eventually this should cover all is_synthetic_empire
+merc_is_synthetic = {
+	is_country_type = "ai_empire"
 }
