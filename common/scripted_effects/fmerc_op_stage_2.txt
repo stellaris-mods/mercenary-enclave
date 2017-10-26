@@ -30,26 +30,57 @@ fmerc_init_stage2 = {
 	merc_set_buyer = yes
 	merc_set_country = yes
 
-	log = "Stage 2: Launch Mercenary Operations"
+	log = "Stage 2: Launching operation"
 
 	if = { limit = { fmerc_enclave_exists = no }
 		log = "Mercenary Enclave no longer exists, aborting operation."
-		merc_stage4_abort_operation = yes
+		merc_stage4_abort = yes
 		break = yes
 	}
 	if = { limit = { NOT = { exists = event_target:merc_buyer } }
 		log = "The country who ordered this operation no longer exists, aborting operation."
-		merc_stage4_abort_operation = yes
+		merc_stage4_abort = yes
 		break = yes
 	}
 
 	merc_verify_country = yes
+	merc_stage2_mark_initial_targets = yes
 
-	log = "Buyer is [merc_buyer.GetName]."
-	log = "Target is [merc_country.GetName]."
+	# The AI has a habit of splitting and merging fleets 24/7.
+	# At least they did in 1.4.x and earlier. That's mainly why we mark targets like this.
+	event_target:merc_current_target = {
+		if = { limit = { exists = fleet } # Dont tag planets
+			fleet = { # every_owned_ship doesnt' work in fleet scope, this tags max 100x
+				while = { limit = { any_owned_ship = { NOT = { has_ship_flag = "merc_target" } } }
+					random_owned_ship = {
+						limit = { NOT = { has_ship_flag = "merc_target" } }
+						PREVPREVPREV = { change_variable = { which = "MercTargetCount" value = 0.7 } }
+						set_ship_flag = "merc_target"
+					}
+				}
+			}
+		}
+	}
+	log = "Target count is [this.MercTargetCount]."
 
-	merc_set_next_target = yes
 	merc_stage2_operation_start = yes
+}
+
+merc_stage2_mark_initial_targets = {
+	switch = {
+		trigger = has_country_flag
+		merc_op_spaceport  = { merc_set_target_spaceport = yes }
+		merc_op_liberate   = { merc_set_target_liberate = yes }
+		merc_op_civilian   = { merc_set_target_civilian = yes }
+		merc_op_fleet      = { merc_set_target_military = yes }
+		merc_op_clear      = { merc_set_target_clear = yes }
+	}
+
+	if = { limit = { NOT = { has_country_flag = "merc_found_target" } }
+		log = "Could not find a valid target for operation, aborting."
+		merc_stage4_abort = yes
+		break = yes
+	}
 }
 
 merc_stage2_operation_start = {

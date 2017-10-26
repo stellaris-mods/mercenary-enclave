@@ -23,7 +23,6 @@
 
 # THIS is op country
 merc_set_target_spaceport = {
-	log = "Locating target spaceport."
 	event_target:merc_buyer = {
 		# Capital of buyer
 		capital_scope = {
@@ -44,6 +43,7 @@ merc_set_target_spaceport = {
 					spaceport = {
 						random_owned_ship = {
 							log = "Target spaceport is [prev.GetName] in [prev.GetStarName]."
+							set_ship_flag = "merc_target"
 							save_event_target_as = merc_current_target
 						}
 					}

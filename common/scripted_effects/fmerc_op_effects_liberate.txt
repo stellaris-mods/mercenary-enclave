@@ -22,8 +22,8 @@
 
 merc_verify_fleet_liberate_target_status = {
 	if = { limit = { event_target:merc_current_target = { merc_valid_liberate_minimum = no } }
-		log = "ERROR: [merc_current_target.GetName] is no longer valid for liberate. Aborting."
-		owner = { merc_stage4_abort_operation = yes }
+		log = "FAILED: [merc_current_target.GetName] is no longer valid for liberate."
+		owner = { merc_stage4_failed = yes }
 		break = yes
 	}
 }
@@ -31,7 +31,7 @@ merc_verify_fleet_liberate_target_status = {
 merc_verify_fleet_orbit = {
 	if = { limit = { NOT = { exists = orbit } }
 		log = "ERROR: [this.GetName] is not in orbit of anything."
-		owner = { merc_stage4_abort_operation = yes }
+		owner = { merc_stage4_failed = yes }
 		break = yes
 	}
 }
@@ -58,8 +58,6 @@ merc_stage3_fleet_arrived_liberate = {
 
 	# verify target status
 	merc_verify_fleet_liberate_target_status = yes
-
-	log = "merc_stage3_fleet_arrived_liberate"
 
 	# The rebel country does NOT exist, so create a new one
 	event_target:merc_current_target = {

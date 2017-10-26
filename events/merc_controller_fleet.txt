@@ -26,7 +26,7 @@ fleet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		log = "mercControllerFleet.100: [this.GetName]."
+		#log = "Moving operations fleet [this.GetName]."
 		merc_verify_current_target = yes
 
 		if = { limit = { event_target:merc_current_target = { exists = solar_system } }
@@ -57,7 +57,6 @@ fleet_event = {
 		owner = { NOT = { has_country_flag = "merc_op_dock" } }
 	}
 	immediate = {
-		log = "mercControllerFleet.200 on_entering_system_fleet"
 		owner = {
 			switch = {
 				trigger = has_country_flag
@@ -82,9 +81,5 @@ country_event = {
 		is_country_type = "fmerc_operations"
 		count_owned_ships = { count = 0 }
 	}
-
-	immediate = {
-		log = "mercOps: on_fleet_destroyed_victim (.300)"
-		merc_stage4_abort_operation = yes
-	}
+	immediate = { merc_stage4_failed = yes }
 }

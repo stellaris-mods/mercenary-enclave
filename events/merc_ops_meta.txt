@@ -42,7 +42,7 @@ event = {
 				is_country_type = "fmerc_operations"
 				NOT = { has_country_flag = "fmerc_ops_timeout" }
 			}
-			merc_stage4_abort_operation = yes
+			merc_stage4_abort = yes
 		}
 	}
 }

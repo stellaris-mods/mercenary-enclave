@@ -22,7 +22,6 @@
 
 # THIS is op country
 merc_set_target_clear = {
-	log = "Locating xenofauna target in [merc_buyer.GetName]s territories."
 	event_target:merc_country = {
 		random_owned_fleet = {
 			limit = {
@@ -31,9 +30,8 @@ merc_set_target_clear = {
 				#is_inside_border = event_target:merc_buyer
 			}
 			random_owned_ship = {
-				log = "Marked fleet [prev.GetName]."
+				log = "Marked xenofauna [prev.GetName]."
 				merc_set_found_target = yes
-				save_event_target_as = merc_current_target
 			}
 		}
 	}

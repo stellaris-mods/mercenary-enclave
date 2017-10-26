@@ -46,7 +46,6 @@ merc_fleet_maybe_go_hostile = {
 }
 
 merc_fleet_arrived = {
-	log = "merc_fleet_arrived"
 	owner = {
 		switch = {
 			trigger = has_country_flag

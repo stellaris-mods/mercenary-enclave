@@ -17,10 +17,11 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
+
 merc_verify_target_has_system = {
 	if = { limit = { event_target:merc_current_target = { NOT = { exists = solar_system } } }
 		log = "ERROR: Current target [merc_current_target.GetName] has no solar system."
-		merc_stage4_abort_operation = yes
+		merc_stage4_failed = yes
 		break = yes
 	}
 }
@@ -28,7 +29,7 @@ merc_verify_target_has_system = {
 merc_verify_current_target = {
 	if = { limit = { NOT = { exists = event_target:merc_current_target } }
 		log = "ERROR: merc_current_target doesn't exist."
-		merc_stage4_abort_operation = yes
+		merc_stage4_failed = yes
 		break = yes
 	}
 }
@@ -36,14 +37,14 @@ merc_verify_current_target = {
 merc_verify_fleet_same_system = {
 	if = { limit = { NOT = { exists = solar_system } }
 		log = "ERROR: Operations fleet has no solar system scope."
-		merc_stage4_abort_operation = yes
+		merc_stage4_failed = yes
 		break = yes
 	}
 	merc_verify_target_has_system = yes
 
 	if = { limit = { solar_system = { NOT = { is_same_value = event_target:merc_current_target.solar_system } } }
 		log = "ERROR: We are not in [merc_current_target.Solar_System.GetName] with [merc_current_target.GetName]."
-		merc_stage4_abort_operation = yes
+		merc_stage4_failed = yes
 		break = yes
 	}
 }
@@ -51,13 +52,13 @@ merc_verify_fleet_same_system = {
 merc_verify_country = {
 	if = { limit = { NOT = { exists = event_target:merc_country } }
 		log = "ERROR: Target country doesn't exist, aborting."
-		merc_stage4_abort_operation = yes
+		merc_stage4_abort = yes
 		break = yes
 	}
 
 	if = { limit = { event_target:merc_country = { is_scope_valid = no } }
 		log = "ERROR: Target country scope is invalid, aborting."
-		merc_stage4_abort_operation = yes
+		merc_stage4_abort = yes
 		break = yes
 	}
 }

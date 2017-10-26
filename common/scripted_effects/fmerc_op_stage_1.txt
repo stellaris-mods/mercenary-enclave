@@ -250,8 +250,8 @@ fmerc_stage1_determine_ship_powers = {
 
 	# Some of these might be zero, if there was no valid design.
 	# In which case we won't use that type later.
-	log = "OP Fleet Powers: B=[this.BattleshipPower] C=[this.CruiserPower] D=[this.DestroyerPower] C=[this.CorvettePower]."
-	log = "Squadrons: B=[this.BattleshipSquad] C=[this.CruiserSquad] D=[this.DestroyerSquad] C=[this.CorvettePower]."
+	log = "Ship Pwr: B=[this.BattleshipPower]  C=[this.CruiserPower]  D=[this.DestroyerPower] C=[this.CorvettePower]."
+	log = "Squadron: B=[this.BattleshipSquad] C=[this.CruiserSquad] D=[this.DestroyerSquad] C=[this.CorvettePower]."
 }
 
 fmerc_stage1_create_mercenaries = {
@@ -309,14 +309,12 @@ fmerc_stage1_create_mercenaries = {
 # but it might not be, in which case we just abort operation immediately
 # Scope is the buyer country
 fmerc_init_stage1 = {
-	log = "Stage 1 init."
-
 	# If we're doing a clear operation, the country target doesn't necessarily
 	# exist. This effect then aborts the operation immediately.
 	merc_verify_country = yes
 
 	event_target:merc_country = { set_country_flag = "fmerc_operations_target" }
-	log = "Buyer = [Root.GetName], target country = [merc_country.GetName]."
+	log = "Stage 1: Buyer = [Root.GetName], target country = [merc_country.GetName]."
 
 	fmerc_stage1_create_mercenaries = yes
 

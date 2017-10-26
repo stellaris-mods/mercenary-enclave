@@ -46,7 +46,7 @@ country_event = {
 					who = FROM
 				}
 			}
-			merc_stage4_abort_operation = yes
+			merc_stage4_failed = yes
 		}
 	}
 }
@@ -67,7 +67,6 @@ country_event = {
 		}
 	}
 	immediate = {
-		log = "mercOpsLiberate: on_planet_defenders_lose (.60)"
 		# In vanilla, the leader was killed.
 		# But now that there's only one governor per sector,
 		# that sounds unreasonable to me.
@@ -126,7 +125,7 @@ country_event = {
 			merc_set_buyer = yes
 
 			log = "liberate operation complete!"
-			merc_stage4_operation_complete = yes
+			merc_stage4_complete = yes
 		}
 
 		# Clean the slate as much as possible

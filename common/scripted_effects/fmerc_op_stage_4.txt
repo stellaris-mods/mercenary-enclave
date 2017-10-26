@@ -20,31 +20,6 @@
 
 # Stage 4 = operation is complete, or abort
 
-merc_stage4_operation_complete = {
-	log = "merc_stage4_operation_complete"
-	set_faction_hostility = { set_hostile = no }
-
-	merc_set_buyer = yes
-	merc_set_country = yes
-	merc_ensure_best_harbour = yes
-
-	if = {
-		limit = { count_owned_ships { count > 0 } }
-		event_target:fmerc_spawn_at = { save_event_target_as = merc_current_target }
-		log = "Returning mercenary fleets to dock."
-		set_country_flag = "merc_op_dock"
-		every_owned_fleet = {
-			clear_fleet_actions = this
-			fleet_event = { id = mercControllerFleet.100 }
-		}
-
-		else = {
-			merc_stage4_additional_costs = yes
-			merc_stage4_destroy = yes
-		}
-	}
-}
-
 merc_stage4_additional_costs = {
 	switch = {
 		trigger = has_country_flag
@@ -53,11 +28,13 @@ merc_stage4_additional_costs = {
 }
 
 merc_stage4_destroy = {
-	log = "Mercenary operation complete, destroying operation country and resetting buyer."
+	log = "Shutting down."
+	merc_stage4_additional_costs = yes
+	merc_set_buyer = yes
+	merc_set_country = yes
 
 	if = {
 		limit = { merc_is_country_target_valid = yes }
-		log = "Clearing merc_target flags from [merc_country.GetName]'s ships and/or planets, if any."
 		event_target:merc_country = {
 			remove_country_flag = "fmerc_operations_target"
 			every_owned_ship = {
@@ -69,6 +46,11 @@ merc_stage4_destroy = {
 				remove_planet_flag = "merc_target"
 			}
 		}
+	}
+
+	every_owned_fleet = {
+		clear_fleet_actions = this
+		delete_fleet = this
 	}
 
 	event_target:merc_buyer = {
@@ -83,9 +65,44 @@ merc_stage4_destroy = {
 	destroy_country = yes
 }
 
-merc_stage4_abort_operation = {
-	# XXX also check if there are any marked targets left?
-	log = "Checking if we should try mission again ..."
+
+# All effects below check this first
+merc_stage4_verify_operation_ongoing = {
+	if = { limit = { has_country_flag = "merc_op_dock" }
+		merc_stage4_destroy = yes
+		break = yes
+	}
+}
+
+merc_stage4_complete = {
+	merc_stage4_verify_operation_ongoing = yes
+	log = "Operation complete."
+
+	set_faction_hostility = { set_hostile = no }
+
+	merc_set_buyer = yes
+	merc_set_country = yes
+	merc_ensure_best_harbour = yes
+
+	if = {
+		limit = { count_owned_ships { count > 0 } }
+		event_target:fmerc_spawn_at = { save_event_target_as = merc_current_target }
+		log = "Returning mercenary fleets to dock ..."
+		set_country_flag = "merc_op_dock"
+		every_owned_fleet = {
+			clear_fleet_actions = this
+			fleet_event = { id = mercControllerFleet.100 }
+		}
+
+		else = {
+			merc_stage4_destroy = yes
+		}
+	}
+}
+
+# Subtract success chance and see if we should try again.
+merc_stage4_failed = {
+	merc_stage4_verify_operation_ongoing = yes
 
 	subtract_variable = {
 		which = "MercSuccess"
@@ -115,26 +132,67 @@ merc_stage4_abort_operation = {
 	if = {
 		limit = { has_country_flag = "fmerc_retry_operation" }
 		remove_country_flag = "fmerc_retry_operation"
-		log = "Success chance is [this.MercSuccess]%, and the RNG was in our favor."
-		fmerc_init_stage2 = yes
+		log = "Operation failed: Success chance was [this.MercSuccess]%, and the RNG was in our favor."
+		merc_stage4_restart = yes
+
 		else = {
-			log = "Operation cancelled due to low success factor ([this.MercSuccess])."
-			merc_stage4_operation_complete = yes
+			log = "Operation failed: Aborting due to low success factor ([this.MercSuccess])."
+			merc_stage4_abort = yes
 		}
 	}
 }
 
+# Abruptly abort operation, regardless.
+merc_stage4_abort = {
+	merc_stage4_verify_operation_ongoing = yes
+	log = "Forcefully aborting operations."
+
+	# XXX also check if there are any marked targets left?
+	merc_stage4_complete = yes
+}
+
 # This is invoked by fleets when they think their operation might be complete
-merc_stage4_maybe_operation_complete = {
-	log = "merc_stage4_maybe_operation_complete"
+merc_stage4_maybe_complete = {
+	merc_stage4_verify_operation_ongoing = yes
+
 	if = { limit = { check_variable = { which = "MercTargetCount" value > 0.9 } }
 		# We are not done, so find next target and get to it
-		merc_set_country = yes
-		merc_set_buyer = yes
-		merc_set_next_target = yes
-		merc_stage2_operation_start = yes
+		merc_stage4_restart = yes
 	else = {
-		merc_stage4_operation_complete = yes
+		merc_stage4_complete = yes
 	} }
 }
 
+merc_stage4_restart = {
+	merc_stage4_verify_operation_ongoing = yes
+	log = "Restarting operations."
+
+	merc_set_country = yes
+	merc_set_buyer = yes
+
+	remove_country_flag = "merc_found_target"
+	event_target:merc_country = {
+		if = { limit = { any_owned_planet = { has_planet_flag = "merc_target" } }
+			random_owned_planet = {
+				limit = { has_planet_flag = "merc_target" }
+				PREVPREV = { set_country_flag = "merc_found_target" }
+				save_event_target_as = merc_current_target
+			}
+			else = {
+				if = { limit = { any_owned_ship = { has_ship_flag = "merc_target" } }
+					random_owned_ship = {
+						limit = { has_ship_flag = "merc_target" }
+						PREVPREV = { set_country_flag = "merc_found_target" }
+						save_event_target_as = merc_current_target
+					}
+				}
+			}
+		}
+	}
+
+	if = { limit = { NOT = { has_country_flag = "merc_found_target" } }
+		merc_stage2_mark_initial_targets = yes
+	}
+
+	merc_stage2_operation_start = yes
+}

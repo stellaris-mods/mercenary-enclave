@@ -29,7 +29,6 @@
 # event_target:merc_country is the target country
 # on_entering_system_fleet
 merc_stage3_fleet_check_target_generic = {
-	log = "merc_stage3_fleet_check_target_generic"
 	owner = { merc_set_country = yes }
 	owner = { merc_get_target_generic = yes }
 	# Check if we are a system where we need to turn hostile
@@ -39,7 +38,6 @@ merc_stage3_fleet_check_target_generic = {
 }
 
 merc_stage3_fleet_check_target_planet = {
-	log = "merc_stage3_fleet_check_target_planet"
 	owner = { merc_set_country = yes }
 	owner = { merc_get_target_planet = yes }
 	# Check if we are a system where we need to turn hostile
@@ -49,8 +47,7 @@ merc_stage3_fleet_check_target_planet = {
 }
 
 merc_stage3_fleet_arrived_generic = {
-	log = "merc_stage3_fleet_arrived_generic"
-	owner = { merc_stage4_maybe_operation_complete = yes }
+	owner = { merc_stage4_maybe_complete = yes }
 }
 
 # THIS and ROOT is the fleet

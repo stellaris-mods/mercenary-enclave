@@ -22,7 +22,6 @@
 
 # THIS is op country
 merc_set_target_military = {
-	log = "Locating military target."
 
 	event_target:merc_country = {
 		random_owned_fleet = {
@@ -33,9 +32,8 @@ merc_set_target_military = {
 				exists = solar_system
 			}
 			random_owned_ship = {
-				log = "Marked fleet [prev.GetName] (P1)."
+				log = "Military target [prev.GetName] (P1)."
 				merc_set_found_target = yes
-				save_event_target_as = merc_current_target
 			}
 		}
 		if = { limit = { PREV = { NOT = { has_country_flag = "merc_found_target" } } }
@@ -46,9 +44,8 @@ merc_set_target_military = {
 					exists = solar_system
 				}
 				random_owned_ship = {
-					log = "Marked fleet [prev.GetName] (P2)."
+					log = "Military target [prev.GetName] (P2)."
 					merc_set_found_target = yes
-					save_event_target_as = merc_current_target
 				}
 			}
 		}
@@ -57,9 +54,8 @@ merc_set_target_military = {
 			random_owned_fleet = {
 				limit = { is_ship_class = shipclass_military }
 				random_owned_ship = {
-					log = "Marked fleet [prev.GetName] (P3)."
+					log = "Military target [prev.GetName] (P3)."
 					merc_set_found_target = yes
-					save_event_target_as = merc_current_target
 				}
 			}
 		}
@@ -68,8 +64,6 @@ merc_set_target_military = {
 
 # THIS is op country
 merc_set_target_civilian = {
-	log = "Raid: Marking civilian target."
-
 	event_target:merc_country = {
 		# First we try to find any targets that are "perfect".
 		# That means:
@@ -79,9 +73,8 @@ merc_set_target_civilian = {
 		random_owned_fleet = {
 			limit = { merc_raid_priority_1 = yes }
 			random_owned_ship = {
-				log = "Marked fleet [prev.GetName] (P1)."
+				log = "Civilian target [prev.GetName] (P1)."
 				merc_set_found_target = yes
-				save_event_target_as = merc_current_target
 			}
 		}
 
@@ -91,9 +84,8 @@ merc_set_target_civilian = {
 			random_owned_fleet = {
 				limit = { merc_raid_priority_2 = yes }
 				random_owned_ship = {
-					log = "Marked fleet [prev.GetName] (P2)."
+					log = "Civilian target [prev.GetName] (P2)."
 					merc_set_found_target = yes
-					save_event_target_as = merc_current_target
 				}
 			}
 		}
@@ -104,9 +96,8 @@ merc_set_target_civilian = {
 			random_owned_fleet = {
 				limit = { merc_raid_priority_3 = yes }
 				random_owned_ship = {
-					log = "Marked fleet [prev.GetName] (P3)."
+					log = "Civilian target [prev.GetName] (P3)."
 					merc_set_found_target = yes
-					save_event_target_as = merc_current_target
 				}
 			}
 		}
@@ -117,9 +108,8 @@ merc_set_target_civilian = {
 			random_owned_fleet = {
 				limit = { merc_raid_priority_minimum = yes }
 				random_owned_ship = {
-					log = "Marked fleet [prev.GetName] (P4)."
+					log = "Civilian target [prev.GetName] (P4)."
 					merc_set_found_target = yes
-					save_event_target_as = merc_current_target
 				}
 			}
 		}

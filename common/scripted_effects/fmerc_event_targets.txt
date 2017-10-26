@@ -40,7 +40,6 @@ merc_set_country = {
 				flag = merc_operations_target
 			}
 		}
-		log = "Setting target country: [this.GetName]"
 		save_event_target_as = merc_country
 	}
 }
