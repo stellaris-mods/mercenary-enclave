@@ -178,6 +178,11 @@ country_event = {
 			merc_tmp_drone = { random_country = { limit = { is_country_type = "drone" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } }
 			merc_tmp_pirate = { random_country = { limit = { is_country_type = "pirate" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } }
 		}
+		remove_country_flag = "merc_tmp_amoeba"
+		remove_country_flag = "merc_tmp_cloud"
+		remove_country_flag = "merc_tmp_crystal"
+		remove_country_flag = "merc_tmp_drone"
+		remove_country_flag = "merc_tmp_pirate"
 
 		set_country_flag = "merc_op_clear"
 		remove_country_flag = "fmerc_diplomacy_engaged"
