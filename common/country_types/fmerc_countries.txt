@@ -55,7 +55,7 @@ fmerc_operations = {
 	diplomatic_wars = no
 	relations = no
 	orbital_bombardment = yes
-	debris = no
+	debris = yes
 
 	ai = {
 		enabled = no

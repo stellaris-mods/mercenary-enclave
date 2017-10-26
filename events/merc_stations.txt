@@ -127,7 +127,6 @@ planet_event = {
 	immediate = {
 		create_fleet = {
 			name = "Whiteout Enterprises Outpost"
-			settings = { spawn_debris = no }
 			effect = {
 				set_owner = event_target:mercenaries
 				create_ship = {

@@ -125,7 +125,6 @@ folk_merc_init = {
 				set_graphical_culture = fungoid_01
 				create_fleet = {
 					name = "Whiteout Enterprises HQ"
-					settings = { spawn_debris = no }
 					effect = {
 						set_owner = PREV
 						create_ship = {
