@@ -237,18 +237,24 @@ merc.clearspace.tooltip: "$merc.name.colored$ will §Rimmediately§! go to work 
 # Question 1, which country should we attack
 merc.target.name: "Target Selection"
 merc.target.desc: "Due to our non-disclosure agreement, you will only be able to select targets with which you have active communications. If you see no relevant target categories, that means we are unable to fulfill your request."
-merc.target.default: "§YStandard Empires ...§!"
+merc.target.generic: "§YStandard Empires ...§!"
 merc.target.fallen: "§Y$COUNTRY_FALLEN_EMPIRE$s ...§!"
-merc.target.swarm: "§YPrethoryn Scourge ...§!"
+merc.target.hivemind: "§YPrethoryn Scourge ...§!"
 merc.target.unbidden: "§Y$crisis.1007.name$ ...§!"
-merc.target.contingency: "§Y$ai_crisis_chain_title$ ...§!"
+merc.target.synthetic: "§Y$ai_crisis_chain_title$ ...§!"
+
+merc.target.modifiers.generic: "Cost: §G-5%§!\nChance of success: §G5%§!\nDetection risk: §R5%§!"
+merc.target.modifiers.fallen: "Cost: §R70%§!\nChance of success: §R-5%§!\nDetection risk: §G-20%§!"
+merc.target.modifiers.hivemind: "Cost: §R35%§!\nChance of success: §R-10%§!\nDetection risk: §G-20%§!"
+merc.target.modifiers.unbidden: "Cost: §R50%§!\nChance of success: §R-10%§!\nDetection risk: §G-20%§!"
+merc.target.modifiers.synthetic: "Cost: §R10%§!\nChance of success: §R-5%§!\nDetection risk: §G-10%§!"
 
 merc.target.selected.postfix: "§RIf an empire is disabled for selection, that means they are not a valid target right now - but may be at a later date. The criteria for this is a trade secret.§!"
-merc.target.selected.generic: "Standard empires are normal, independent empires found throughout the galaxy. Some of them should be available for selection on the right-hand side. Please do so now.\n$merc.target.selected.postfix$"
-merc.target.selected.fallen: "$COUNTRY_FALLEN_EMPIRE$s are stagnant or awakened ancient empires that have been present in the galaxy as long as time itself. These kinds of targets are exceptionally hard to engage, and will require a substantial added investment. However, since they look down their nose at all us regular folk, the detection risk is a lot lower.\n\nCost: §G35%§!\nChance of success: §G-5%§!\nDetection risk: §G-20%§!\n$merc.target.selected.postfix$"
-merc.target.selected.hivemind: "The Prethoryn Scourge is filthy, and we - like all sane, sentient beings - hate it. Therefore, we drop our price significantly. Because of their strength, however, the chances of success drop dramatically. As an added bonus, there is zero chance they will see through our guise. If they did, they probably wouldn't care.\n\nCost: §G20%§!\nChance of success: §G-10%§!\nDetection risk: §G-20%§!\n$merc.target.selected.postfix$"
-merc.target.selected.exd: "These beings are here to consume us all. We are honored to fight them in your name. Therefore, our prices are lowered for this target. Because of their strength, however, the chances of success drop dramatically. As an added bonus, there is zero chance they will see through our guise. If they did, they probably wouldn't care.\n\nCost: §G30%§!\nChance of success: §G-10%§!\nDetection risk: §G-20%§!\n$merc.target.selected.postfix$"
-merc.target.selected.synthetic: "These heartless robots are here to consume us all. We are honored to fight them in your name. Therefore, our prices are lowered for this target.\n\nCost: §G10%§!\nChance of success: §G-5%§!\nDetection risk: §G-10%§!\n$merc.target.selected.postfix$"
+merc.target.selected.generic: "Standard empires are normal, independent empires found throughout the galaxy. Some of them should be available for selection on the right-hand side. Please do so now.\n\n$merc.target.modifiers.generic$\n$merc.target.selected.postfix$"
+merc.target.selected.fallen: "$COUNTRY_FALLEN_EMPIRE$s are stagnant or awakened ancient empires that have been present in the galaxy as long as time itself. These kinds of targets are exceptionally hard to engage, and will require a substantial added investment. However, since they look down their nose at all us regular folk, the detection risk is a lot lower.\n\n$merc.target.modifiers.fallen$\n$merc.target.selected.postfix$"
+merc.target.selected.hivemind: "The Prethoryn Scourge is filthy, and we - like all sane, sentient beings - hate it. Therefore, we drop our price significantly. Because of their strength, however, the chances of success drop dramatically. As an added bonus, there is zero chance they will see through our guise. If they did, they probably wouldn't care.\n\n$merc.target.modifiers.hivemind$\n$merc.target.selected.postfix$"
+merc.target.selected.unbidden: "These beings are here to consume us all. We are honored to fight them in your name. Therefore, our prices are lowered for this target. Because of their strength, however, the chances of success drop dramatically. As an added bonus, there is zero chance they will see through our guise. If they did, they probably wouldn't care.\n\n$merc.target.modifiers.unbidden$\n$merc.target.selected.postfix$"
+merc.target.selected.synthetic: "These heartless robots are here to consume us all. We are honored to fight them in your name. Therefore, our prices are lowered for this target.\n\n$merc.target.modifiers.synthetic$\n$merc.target.selected.postfix$"
 
 # Question 2, disguise
 merc.disguise.name: "Disguise Selection"
