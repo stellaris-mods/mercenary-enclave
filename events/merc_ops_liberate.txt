@@ -18,7 +18,7 @@
 ###
 
 
-namespace = mercOpsliberate
+namespace = mercOpsLiberate
 
 # STAGE 3 CONTROLLER
 # These events are used exclusively by the "liberate" operation.
@@ -27,7 +27,7 @@ namespace = mercOpsliberate
 # Root = country, planet owner (merc target)
 # From = country, attack leader (rebel)
 country_event = {
-	id = mercOpsliberate.50
+	id = mercOpsLiberate.50
 	is_triggered_only = yes
 	hide_window = yes
 	trigger = {
@@ -37,7 +37,7 @@ country_event = {
 		}
 	}
 	immediate = {
-		log = "mercOpsliberate: on_planet_defenders_win (.50)"
+		log = "mercOpsLiberate: on_planet_defenders_win (.50)"
 		random_country = {
 			limit = {
 				is_country_type = "fmerc_operations"
@@ -56,7 +56,7 @@ country_event = {
 # From = country, attack leader (rebel)
 # FromFrom = planet
 country_event = {
-	id = mercOpsliberate.60
+	id = mercOpsLiberate.60
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
@@ -67,7 +67,7 @@ country_event = {
 		}
 	}
 	immediate = {
-		log = "mercOpsliberate: on_planet_defenders_lose (.60)"
+		log = "mercOpsLiberate: on_planet_defenders_lose (.60)"
 		# In vanilla, the leader was killed.
 		# But now that there's only one governor per sector,
 		# that sounds unreasonable to me.
@@ -82,14 +82,14 @@ country_event = {
 # This = Rebel Country
 # From = Planet
 country_event = {
-	id = mercOpsliberate.70
+	id = mercOpsLiberate.70
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
 		has_country_flag = "fmerc_liberate_rebels"
 	}
 	immediate = {
-		log = "mercOpsliberate: on_rebels_take_planet (.70)"
+		log = "mercOpsLiberate: on_rebels_take_planet (.70)"
 		FROM.owner = {
 			# Event target used in 4211
 			save_event_target_as = rebelled_against
@@ -104,14 +104,14 @@ country_event = {
 # From = Planet
 # FromFrom = War
 country_event = {
-	id = mercOpsliberate.71
+	id = mercOpsLiberate.71
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
 		has_country_flag = "fmerc_liberate_rebels"
 	}
 	immediate = {
-		log = "mercOpsliberate: on_rebels_take_planet_owner_switched (.71)"
+		log = "mercOpsLiberate: on_rebels_take_planet_owner_switched (.71)"
 
 		# Find mercenary operations
 		random_country = {
@@ -134,13 +134,13 @@ country_event = {
 		destroy_country = yes
 
 		# And re-start colony
-		FROM = { planet_event = { id = mercOpsliberate.1335 } }
+		FROM = { planet_event = { id = mercOpsLiberate.1335 } }
 	}
 }
 
 # No matter what I do, it seems I am unable to prevent the spam of errors like
 # [21:02:22][trigger.cpp:466]: Script Error, Checking trigger against an unsupported scope!
-# Event: mercOpsliberate.1335
+# Event: mercOpsLiberate.1335
 # Location:  file: common/species_rights/species_rights.txt line: 2202
 # Trigger Type: has_citizenship_type
 
@@ -165,7 +165,7 @@ country_event = {
 # It could really all be one event, or scripted effect.
 
 planet_event = {
-	id = mercOpsliberate.1335
+	id = mercOpsLiberate.1335
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -269,13 +269,13 @@ planet_event = {
 			ethos = owner
 		}
 		set_capital = yes
-		last_created_country = { country_event = { id = mercOpsliberate.1336 } }
+		last_created_country = { country_event = { id = mercOpsLiberate.1336 } }
 	}
 }
 
 # Just so we get our own root scope here, it's just more clean.
 country_event = {
-	id = mercOpsliberate.1336
+	id = mercOpsLiberate.1336
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -394,7 +394,7 @@ country_event = {
 }
 
 event = {
-	id = mercOpsliberate.1337
+	id = mercOpsLiberate.1337
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -405,14 +405,14 @@ event = {
 	immediate = {
 		every_country = {
 			limit = { has_country_flag = "merc_op_liberated_await_clear_skies" }
-			country_event = { id = mercOpsliberate.1338 }
+			country_event = { id = mercOpsLiberate.1338 }
 		}
 	}
 }
 
 
 country_event = {
-	id = mercOpsliberate.1338
+	id = mercOpsLiberate.1338
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -434,7 +434,7 @@ country_event = {
 	}
 
 	immediate = {
-		log = "mercOpsliberate: Solar system empty (.1337)"
+		log = "mercOpsLiberate: Solar system empty (.1337)"
 		remove_country_flag = "merc_op_liberated_await_clear_skies"
 		country_event = { id = game_start.9 } # Empire init - add ships
 		create_fleet_from_naval_cap = 0.5
