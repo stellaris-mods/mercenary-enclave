@@ -20,20 +20,12 @@
 
 # THIS must be an op fleet
 merc_fleet_maybe_go_hostile = {
-	merc_verify_current_target = yes
-	merc_verify_target_has_system = yes
-
-	if = {
-		limit = {
-			event_target:merc_current_target = {
-				solar_system = { is_same_value = PREVPREV.solar_system }
-			}
-		}
+	if = { limit = { merc_any_system_target = yes }
 		# We are in the same solar system, so make sure we turn aggressive
 		set_fleet_stance = aggressive
 
 		# Check if the owner is hostile to us
-		if = { limit = { event_target:merc_current_target = { owner = { NOT = { is_hostile = PREVPREV.owner } } } }
+		if = { limit = { event_target:merc_country = { NOT = { is_hostile = PREV.owner } } }
 			# We need to turn hostile vs them
 			log = "Going hostile."
 			owner = {
@@ -62,17 +54,19 @@ merc_fleet_arrived = {
 merc_fleet_move_generic = {
 	ROOT = {
 		queue_actions = {
-			move_to = PREV
 			repeat = {
 				while = {
 					id = mercMoveGeneric.1
 					NOT = { is_fleet_idle = yes }
 				}
-				wait = 14
 				# We need to update the move_to periodically, because the
 				# initial move_to command moves to a fixed system point, and
 				# does not update to reflect the current location of the target
+				# ZZZ Actually, I'm not sure this works.
+				# I think PREV might be a copy of the scope as it was when
+				# merc_fleet_move_generic was invoked.
 				move_to = PREV
+				wait = 14
 			}
 			effect = {
 				id = mercMoveGeneric.2

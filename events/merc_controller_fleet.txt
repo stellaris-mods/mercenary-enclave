@@ -31,6 +31,7 @@ fleet_event = {
 
 		if = { limit = { merc_is_target_valid = yes }
 			owner = {
+				merc_set_country = yes
 				switch = {
 					trigger = has_country_flag
 					merc_op_dock = { ROOT = { merc_stage3_init_fleet = yes } }
@@ -57,16 +58,8 @@ fleet_event = {
 		owner = { NOT = { has_country_flag = "merc_op_dock" } }
 	}
 	immediate = {
-		owner = {
-			switch = {
-				trigger = has_country_flag
-				merc_op_liberate = { ROOT = { merc_stage3_fleet_check_target_planet = yes } }
-				merc_op_spaceport = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
-				merc_op_civilian = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
-				merc_op_military = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
-				merc_op_clear = { ROOT = { merc_stage3_fleet_check_target_generic = yes } }
-			}
-		}
+		owner = { merc_set_country = yes }
+		merc_fleet_maybe_go_hostile = yes
 	}
 }
 

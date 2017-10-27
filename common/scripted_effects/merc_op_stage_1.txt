@@ -88,8 +88,7 @@ merc_stage_1_apply_disguise = {
 	# Culture is already set to a random one.
 	switch = {
 		trigger = has_country_flag
-		# XXX add option to disguise as target. I should have thought of that
-		# XXX a long time ago jeez
+		# XXX Add option to disguise as target.
 		merc_disguise_nonbuyer = {
 			# And then just verify that it's not the same
 			# The reason we can't use a while loop is because repeated invokes
@@ -406,7 +405,6 @@ fmerc_init_stage1 = {
 		}
 
 		# Default 3 targets
-		# XXX maybe adjust this by trust
 		set_variable = { which = "MercTargetCount" value = 3 }
 	}
 
@@ -439,6 +437,7 @@ fmerc_init_stage1 = {
 			merc_stage_1_apply_disguise = yes
 			last_created_country = {
 				set_country_flag = "merc_op_civilian"
+				# XXX Randomly adjust MercTargetCount slightly.
 				change_variable = { which = "MercTargetCount" value = 2 }
 				country_event = { id = mercOpsMeta.1 days = 3 random = 70 }
 			}

@@ -240,13 +240,12 @@ merc_ensure_harbor = {
 	# ZZZ random_owned_fleet actually scopes to something even if
 	# ZZZ no actual fleets exist ingame
 	random_owned_fleet = {
-		limit = { num_ships > 1 }
-		log = "random owned fleet harbour [this.GetName]"
+		limit = { num_ships > 0 }
 		closest_system = {
 			limit = { merc_has_station = yes }
 			random_fleet_in_system = {
 				limit = { merc_is_station = yes }
-				log = "Harbor: Using existing fleet."
+				log = "Harbor: Existing fleet."
 				PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 				save_event_target_as = merc_harbor
 			}
@@ -258,7 +257,7 @@ merc_ensure_harbor = {
 		if = { limit = { merc_has_station = yes }
 			random_fleet_in_system = {
 				limit = { merc_is_station = yes }
-				log = "Harbor: Respawning in death zone."
+				log = "Harbor: In death zone."
 				PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 				save_event_target_as = merc_harbor
 			}
@@ -267,7 +266,7 @@ merc_ensure_harbor = {
 				limit = { merc_has_station = yes }
 				random_fleet_in_system = {
 					limit = { merc_is_station = yes }
-					log = "Harbor: Respawning close to death zone."
+					log = "Harbor: Close to death zone."
 					PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 					save_event_target_as = merc_harbor
 				}
@@ -291,7 +290,7 @@ merc_ensure_harbor = {
 							limit = { merc_has_station = yes }
 							random_fleet_in_system = {
 								limit = { merc_is_station = yes }
-								log = "Harbor: Found station close to current target ship/planet."
+								log = "Harbor: Close to current target ship/planet."
 								PREVPREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 								save_event_target_as = merc_harbor
 							}
@@ -307,7 +306,7 @@ merc_ensure_harbor = {
 						limit = { merc_has_station = yes }
 						random_fleet_in_system = {
 							limit = { merc_is_station = yes }
-							log = "Harbor: Found station inside targets borders."
+							log = "Harbor: Inside targets borders."
 							PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 							save_event_target_as = merc_harbor
 						}
@@ -326,7 +325,7 @@ merc_ensure_harbor = {
 							limit = { merc_has_station = yes }
 							random_fleet_in_system = {
 								limit = { merc_is_station = yes }
-								log = "Harbor: Found station close to target ship."
+								log = "Harbor: Close to target ship."
 								PREVPREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 								save_event_target_as = merc_harbor
 							}
@@ -343,7 +342,7 @@ merc_ensure_harbor = {
 							limit = { merc_has_station = yes }
 							random_fleet_in_system = {
 								limit = { merc_is_station = yes }
-								log = "Harbor: Found station close to target planet."
+								log = "Harbor: Close to target planet."
 								PREVPREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 								save_event_target_as = merc_harbor
 							}
@@ -360,7 +359,7 @@ merc_ensure_harbor = {
 			limit = { is_country_type = "fmerc_enclave" }
 			random_owned_fleet = {
 				limit = { merc_is_station = yes }
-				log = "Harbor: Using random enclave station."
+				log = "Harbor: Random enclave station."
 				PREVPREV = { set_country_flag = "merc_found_harbor" }
 				save_event_target_as = merc_harbor
 			}
@@ -376,7 +375,7 @@ merc_ensure_harbor = {
 				}
 			}
 			random_system_planet = {
-				log = "Harbor: Using clean rim system."
+				log = "Harbor: Clean rim system."
 				PREVPREV = { set_country_flag = "merc_found_harbor" }
 				save_event_target_as = merc_harbor
 			}
@@ -387,7 +386,7 @@ merc_ensure_harbor = {
 	if = { limit = { NOT = { has_country_flag = "merc_found_harbor" } }
 		random_rim_system = {
 			random_system_planet = {
-				log = "Harbor: Using any rim system."
+				log = "Harbor: Random rim system."
 				save_event_target_as = merc_harbor
 			}
 		}
@@ -443,7 +442,7 @@ merc_spawn_fleet = {
 			set_owner = ROOT
 			set_location = {
 				target = event_target:merc_harbor
-				distance = 40
+				distance = 20
 				angle = random
 			}
 			set_fleet_stance = passive

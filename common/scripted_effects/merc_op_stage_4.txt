@@ -48,9 +48,12 @@ merc_stage4_destroy = {
 		}
 	}
 
-	every_owned_fleet = {
-		clear_fleet_actions = this
-		delete_fleet = this
+	if = {
+		limit = { count_owned_ships { count > 0 } }
+		every_owned_fleet = {
+			clear_fleet_actions = this
+			delete_fleet = this
+		}
 	}
 
 	event_target:merc_buyer = {
@@ -74,6 +77,13 @@ merc_stage4_verify_operation_ongoing = {
 	}
 }
 
+# Abruptly abort operation, regardless.
+merc_stage4_abort = {
+	merc_stage4_verify_operation_ongoing = yes
+	log = "Forcefully aborting operations."
+	merc_stage4_complete = yes
+}
+
 merc_stage4_complete = {
 	merc_stage4_verify_operation_ongoing = yes
 	log = "Operation complete."
@@ -82,10 +92,11 @@ merc_stage4_complete = {
 
 	merc_set_buyer = yes
 	merc_set_country = yes
-	merc_ensure_harbor = yes
 
 	if = {
 		limit = { count_owned_ships { count > 0 } }
+		merc_ensure_harbor = yes
+
 		event_target:merc_harbor = { save_event_target_as = merc_current_target }
 		log = "Returning mercenary fleets to dock ..."
 		set_country_flag = "merc_op_dock"
@@ -138,17 +149,6 @@ merc_stage4_failed = {
 	}
 }
 
-# Abruptly abort operation, regardless.
-merc_stage4_abort = {
-	merc_stage4_verify_operation_ongoing = yes
-	log = "Forcefully aborting operations."
-
-	# XXX actually, stop marking targets entirely and just use the kill
-	# XXX counter + valid-triggers to find suitable targets.
-	# XXX also check if there are any marked targets left?
-	merc_stage4_complete = yes
-}
-
 # This is invoked by fleets when they think their operation might be complete
 merc_stage4_maybe_complete = {
 	merc_stage4_verify_operation_ongoing = yes
@@ -163,35 +163,17 @@ merc_stage4_maybe_complete = {
 
 merc_stage4_restart = {
 	merc_stage4_verify_operation_ongoing = yes
-	log = "Restarting operations."
+	log = "Restarting operations, target count is [this.MercTargetCount]."
 
 	merc_set_country = yes
 	merc_set_buyer = yes
-
-	remove_country_flag = "merc_found_target"
-	event_target:merc_country = {
-		if = { limit = { any_owned_planet = { has_planet_flag = "merc_target" } }
-			random_owned_planet = {
-				limit = { has_planet_flag = "merc_target" }
-				PREVPREV = { set_country_flag = "merc_found_target" }
-				save_event_target_as = merc_current_target
-			}
-			else = {
-				if = { limit = { any_owned_ship = { exists = solar_system has_ship_flag = "merc_target" } }
-					random_owned_ship = {
-						limit = { has_ship_flag = "merc_target" }
-						log = "Restart target: [this.GetName]"
-						PREVPREV = { set_country_flag = "merc_found_target" }
-						save_event_target_as = merc_current_target
-					}
-				}
-			}
-		}
-	}
+	merc_get_target = yes
 
 	if = { limit = { NOT = { has_country_flag = "merc_found_target" } }
-		merc_stage2_mark_initial_targets = yes
+		log = "Restart: Did not find any existing targets, so forced to mark new ones."
+		merc_set_new_targets = yes
 	}
 
+	merc_verify_current_target = yes
 	merc_stage2_operation_start = yes
 }

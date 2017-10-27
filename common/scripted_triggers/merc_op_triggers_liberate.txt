@@ -53,6 +53,7 @@ merc_liberate_good = {
 }
 
 merc_liberate_minimum = {
+	NOT = { has_planet_flag = "merc_target" }
 	merc_is_still_valid_for_liberate = yes
 	has_ground_combat = no
 	under_bombardment = no

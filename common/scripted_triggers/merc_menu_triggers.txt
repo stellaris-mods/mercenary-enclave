@@ -81,8 +81,9 @@ merc_menu_3_has_valid_operation_fallen = {
 	NOT = { has_country_flag = "merc_op_civilian" }
 }
 
+# XXX Add bombardment obliteration operation.
 merc_menu_3_has_valid_operation_hivemind = {
-	NOT = { has_country_flag = "merc_op_liberate" } # XXX add bombardment obliteration operation
+	NOT = { has_country_flag = "merc_op_liberate" }
 }
 
 merc_menu_3_has_valid_operation_unbidden = {
@@ -128,7 +129,10 @@ merc_menu_3_is_valid_target_liberate = {
 merc_menu_3_is_valid_target_civilian = {
 	OR = {
 		count_owned_ships = {
-			limit = { merc_civilian_p9 = yes }
+			limit = {
+				merc_valid_civilian_raid_target = yes
+				merc_minimum = yes
+			}
 			count > 4
 		}
 		AND = {

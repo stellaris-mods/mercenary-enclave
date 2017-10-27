@@ -44,10 +44,15 @@ fmerc_init_stage2 = {
 	}
 
 	merc_verify_country = yes
-	merc_stage2_mark_initial_targets = yes
 
-	# The AI has a habit of splitting and merging fleets 24/7.
-	# At least they did in 1.4.x and earlier. That's mainly why we mark targets like this.
+	merc_set_new_targets = yes
+	merc_verify_current_target = yes
+
+	# ZZZ I'm not sure if the AI still does this in 1.8+
+	# The AI has/had a habit of splitting and merging fleets 24/7.
+	# At least they did in 1.4.x and earlier. That's mainly why we mark
+	# targets like this. We only do this for the initial targets. Later
+	# when we restart operations, a single event_target will suffice.
 	event_target:merc_current_target = {
 		if = { limit = { exists = fleet } # Dont tag planets
 			fleet = { # every_owned_ship doesnt' work in fleet scope, this tags max 100x
@@ -61,31 +66,12 @@ fmerc_init_stage2 = {
 			}
 		}
 	}
-	log = "Target count is [this.MercTargetCount]."
 
+	log = "#[this.MercTargetCount] targets, first target is [merc_current_target.GetName]."
 	merc_stage2_operation_start = yes
 }
 
-merc_stage2_mark_initial_targets = {
-	switch = {
-		trigger = has_country_flag
-		merc_op_spaceport  = { merc_set_target_spaceport = yes }
-		merc_op_liberate   = { merc_set_target_liberate = yes }
-		merc_op_civilian   = { merc_set_target_civilian = yes }
-		merc_op_military   = { merc_set_target_military = yes }
-		merc_op_clear      = { merc_set_target_clear = yes }
-	}
-
-	if = { limit = { NOT = { has_country_flag = "merc_found_target" } }
-		log = "Could not find a valid target for operation, aborting."
-		merc_stage4_abort = yes
-		break = yes
-	}
-}
-
 merc_stage2_operation_start = {
-	merc_verify_current_target = yes
-
 	if = {
 		limit = { count_owned_ships { count = 0 } }
 		merc_spawn_fleet = yes

@@ -77,7 +77,7 @@ country_event = {
 					ROOT = { change_variable = { which = "MercKillsShips" value = 1 } }
 				}
 			}
-			if = { limit = { has_ship_flag = "merc_target" }
+			if = { limit = { merc_counts_for_operation = yes }
 				ROOT = { subtract_variable = { which = "MercTargetCount" value = 1 } }
 			}
 		}

@@ -28,6 +28,7 @@ merc_set_target_clear = {
 				exists = solar_system
 				solar_system = { is_within_borders_of = event_target:merc_buyer }
 				#is_inside_border = event_target:merc_buyer
+				NOT = { any_owned_ship = { has_ship_flag = "merc_target" } }
 			}
 			random_owned_ship = {
 				log = "Marked xenofauna [prev.GetName]."

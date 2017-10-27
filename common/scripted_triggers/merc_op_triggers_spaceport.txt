@@ -51,7 +51,10 @@ merc_spaceport_minimum = {
 	is_controlled_by = owner
 	has_spaceport = yes # This is true even if it's under construction
 	exists = spaceport
-	spaceport = { has_hp_percentage > 0.9 } # 90%
+	spaceport = {
+		has_hp_percentage > 0.9 # 90%
+		NOT = { any_owned_ship = { has_ship_flag = "merc_target" } }
+	}
 	exists = solar_system
 	solar_system = { merc_has_station = no }
 }

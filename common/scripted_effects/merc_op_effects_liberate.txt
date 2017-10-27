@@ -23,7 +23,6 @@
 
 merc_set_found_target_liberate = {
 	set_planet_flag = "merc_target"
-	save_event_target_as = merc_current_target
 	PREVPREV = { set_country_flag = "merc_found_target" }
 }
 
@@ -113,13 +112,14 @@ merc_stage3_init_fleet_liberate = {
 merc_stage3_fleet_arrived_liberate = {
 	owner = { merc_set_country = yes }
 	owner = { merc_set_buyer = yes }
-	owner = { merc_get_target_planet = yes }
-
-	# Verify solar system
-	merc_verify_fleet_same_system = yes
 
 	# check distance to target
 	merc_verify_fleet_orbit = yes
+
+	orbit = { save_event_target_as = merc_current_target }
+
+	# Verify solar system
+	merc_verify_fleet_same_system = yes
 
 	# verify target status
 	merc_verify_fleet_liberate_target_status = yes

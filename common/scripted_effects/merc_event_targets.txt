@@ -44,26 +44,23 @@ merc_set_country = {
 	}
 }
 
-# THIS must be op country
-merc_get_target_generic = {
-	merc_verify_country = yes
+merc_get_target = {
+	remove_country_flag = "merc_found_target"
 	event_target:merc_country = {
-		random_owned_ship = {
-			limit = { has_ship_flag = "merc_target" }
-			save_event_target_as = merc_current_target
-		}
+		if = { limit = { any_owned_planet = { has_planet_flag = "merc_target" } }
+			random_owned_planet = {
+				limit = { has_planet_flag = "merc_target" }
+				PREVPREV = { set_country_flag = "merc_found_target" }
+				save_event_target_as = merc_current_target
+			}
+		else = {
+			if = { limit = { any_owned_ship = { has_ship_flag = "merc_target" } }
+				random_owned_ship = {
+					limit = { has_ship_flag = "merc_target" }
+					PREVPREV = { set_country_flag = "merc_found_target" }
+					save_event_target_as = merc_current_target
+				}
+			}
+		} }
 	}
-	merc_verify_current_target = yes
-}
-
-# THIS must be op country
-merc_get_target_planet = {
-	merc_verify_country = yes
-	event_target:merc_country = {
-		random_owned_planet = {
-			limit = { has_planet_flag = "merc_target" }
-			save_event_target_as = merc_current_target
-		}
-	}
-	merc_verify_current_target = yes
 }

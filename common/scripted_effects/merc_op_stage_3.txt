@@ -24,28 +24,6 @@
 # - ROOT/THIS can be anything, depending on the effect
 # - Effects can be used by any operation
 
-# THIS/ROOT is the fleet
-# FROM is solar system
-# event_target:merc_country is the target country
-# on_entering_system_fleet
-merc_stage3_fleet_check_target_generic = {
-	owner = { merc_set_country = yes }
-	owner = { merc_get_target_generic = yes }
-	# Check if we are a system where we need to turn hostile
-	if = { limit = { merc_is_target_system = yes }
-		merc_fleet_maybe_go_hostile = yes
-	}
-}
-
-merc_stage3_fleet_check_target_planet = {
-	owner = { merc_set_country = yes }
-	owner = { merc_get_target_planet = yes }
-	# Check if we are a system where we need to turn hostile
-	if = { limit = { merc_is_target_system = yes }
-		merc_fleet_maybe_go_hostile = yes
-	}
-}
-
 merc_stage3_fleet_arrived_generic = {
 	owner = { merc_stage4_maybe_complete = yes }
 }
@@ -53,10 +31,6 @@ merc_stage3_fleet_arrived_generic = {
 # THIS and ROOT is the fleet
 # PREV is owner
 merc_stage3_init_fleet = {
-
-	# 2. Check if we are in the same solar system as our target
-	#    and if we are, turn hostile.
 	merc_fleet_maybe_go_hostile = yes
-
 	event_target:merc_current_target = { merc_fleet_move_generic = yes }
 }

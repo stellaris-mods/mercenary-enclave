@@ -46,7 +46,6 @@ merc_has_station = {
 		owner = { is_country_type = "fmerc_enclave" }
 		NOT = { is_ship_size = science }
 		NOT = { is_ship_size = constructor }
-		# XXX if this is where we died, maybe dont care?
 		is_in_combat = no
 	}
 }

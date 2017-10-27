@@ -20,6 +20,43 @@
 
 merc_set_found_target = {
 	set_ship_flag = "merc_target"
-	save_event_target_as = merc_current_target
 	PREVPREVPREV = { set_country_flag = "merc_found_target" }
+}
+
+merc_set_new_targets = {
+	set_variable = { which = "MercTmp" value = "MercTargetCount" }
+	set_country_flag = "merc_found_target"
+	set_variable = { which = "MercTargetsFound" value = 0 }
+
+	while = {
+		limit = {
+			check_variable = { which = "MercTmp" value > 0 }
+			has_country_flag = "merc_found_target"
+		}
+		subtract_variable = { which = "MercTmp" value = 1 }
+		remove_country_flag = "merc_found_target"
+		switch = {
+			trigger = has_country_flag
+			merc_op_spaceport  = { merc_set_target_spaceport = yes }
+			merc_op_liberate   = { merc_set_target_liberate = yes }
+			merc_op_civilian   = { merc_set_target_civilian = yes }
+			merc_op_military   = { merc_set_target_military = yes }
+			merc_op_clear      = { merc_set_target_clear = yes }
+		}
+		if = { limit = { has_country_flag = "merc_found_target" }
+			change_variable = { which = "MercTargetsFound" value = 1 }
+		}
+	}
+	if = { limit = { NOT = { check_variable = { which = "MercTargetsFound" value > 0 } } }
+		log = "We did not find ANY valid targets, so abort immediately."
+		merc_stage4_abort = yes
+		break = yes
+	}
+	if = {
+		limit = { NOT = { has_country_flag = "merc_found_target" } }
+		log = "We did not find enough ([this.MercTargetCount]) valid targets, but we found [this.MercTargetsFound]."
+		remove_country_flag = "merc_found_target"
+	}
+
+	merc_get_target = yes
 }

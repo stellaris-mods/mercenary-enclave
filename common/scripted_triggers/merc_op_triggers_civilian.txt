@@ -69,6 +69,7 @@ merc_civilian_good = {
 }
 
 merc_civilian_minimum = {
+	NOT = { any_owned_ship = { has_ship_flag = "merc_target" } }
 	merc_valid_civilian_raid_target = yes
 }
 

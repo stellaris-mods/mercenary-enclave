@@ -23,10 +23,7 @@
 
 
 merc_set_found_spaceport = {
-	random_owned_ship = {
-		set_ship_flag = "merc_target"
-		save_event_target_as = merc_current_target
-	}
+	random_owned_ship = { set_ship_flag = "merc_target" }
 	PREVPREVPREV = { set_country_flag = "merc_found_target" }
 }
 

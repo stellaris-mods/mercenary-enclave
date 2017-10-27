@@ -123,9 +123,10 @@ country_event = {
 			}
 			merc_set_country = yes
 			merc_set_buyer = yes
+			subtract_variable = { which = "MercTargetCount" value = 1 }
 
-			log = "liberate operation complete!"
-			merc_stage4_complete = yes
+			log = "Liberation complete!"
+			merc_stage4_maybe_complete = yes
 		}
 
 		# Clean the slate as much as possible
@@ -388,7 +389,7 @@ country_event = {
 			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
 			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
 			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
-			# XXX create project to contact merc
+			# XXX Create project to contact merc
 		}
 	}
 }

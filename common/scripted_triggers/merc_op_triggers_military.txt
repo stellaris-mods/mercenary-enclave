@@ -45,6 +45,7 @@ merc_military_good = {
 }
 
 merc_military_minimum = {
+	NOT = { any_owned_ship = { has_ship_flag = "merc_target" } }
 	merc_valid_military_raid_target = yes
 }
 
