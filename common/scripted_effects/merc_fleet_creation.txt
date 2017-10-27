@@ -233,58 +233,119 @@ fmerc_stage3_match_fleet_power = {
 }
 
 # THIS is the operations country
-# XXX make sure we _always_ return a fmerc_spawn_at, regardless of anything
 merc_ensure_harbor = {
 	# ZZZ Can't use any verify effects here, because this is used in stage 4
 
-	# XXX Use a flag instead of exists = event_target
-	remove_country_flag = "merc_found_harbor"
-
-	# First try to find something close to any existing operations fleet
-	if = { limit = { count_owned_ships { count > 0 } }
-		# ZZZ so apparently, at least for countries without a capital,
-		# ZZZ random_owned_fleet actually scopes to something even if
-		# ZZZ no actual fleets exist ingame
-		random_owned_fleet = {
-			closest_system = {
-				limit = { merc_has_station = yes }
-				random_fleet_in_system = {
-					limit = { merc_is_station = yes }
-					save_event_target_as = fmerc_spawn_at
-				}
+	# ZZZ so apparently, at least for countries without a capital,
+	# ZZZ random_owned_fleet actually scopes to something even if
+	# ZZZ no actual fleets exist ingame
+	random_owned_fleet = {
+		limit = { num_ships > 1 }
+		log = "random owned fleet harbour [this.GetName]"
+		closest_system = {
+			limit = { merc_has_station = yes }
+			random_fleet_in_system = {
+				limit = { merc_is_station = yes }
+				log = "Harbor: Using existing fleet."
+				PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
+				save_event_target_as = merc_harbor
 			}
 		}
 	}
 
-	# The target country might not always exist; we might have destroyed it
-	if = { limit = { merc_is_country_target_valid = yes }
-		# Then try to find a location inside the targets borders
-		if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
-			event_target:merc_country = {
-				random_system_within_border = {
-					limit = { merc_has_station = yes }
-					random_fleet_in_system = {
-						limit = { merc_is_station = yes }
-						save_event_target_as = fmerc_spawn_at
-					}
+	random_system = {
+		limit = { has_star_flag = "merc_deathzone" }
+		if = { limit = { merc_has_station = yes }
+			random_fleet_in_system = {
+				limit = { merc_is_station = yes }
+				log = "Harbor: Respawning in death zone."
+				PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
+				save_event_target_as = merc_harbor
+			}
+		else = {
+			closest_system = {
+				limit = { merc_has_station = yes }
+				random_fleet_in_system = {
+					limit = { merc_is_station = yes }
+					log = "Harbor: Respawning close to death zone."
+					PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
+					save_event_target_as = merc_harbor
 				}
 			}
+		} }
+	}
+
+	if = {
+		limit = {
+			# We use this effect for the actual enclave as well, but we dont
+			# want to use these particular selectors unless we're an op
+			is_country_type = "fmerc_operations"
+			NOT = { has_country_flag = "merc_found_harbor" }
 		}
-		# If we still found nothing, find one of our targets and get
-		# the closest location to the target
-		if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
-			event_target:merc_country = {
-				random_owned_ship = {
-					limit = {
-						has_ship_flag = "merc_target"
-						exists = fleet
-					}
-					fleet = {
+		# The target country might not always exist; we might have destroyed it
+		if = { limit = { merc_is_country_target_valid = yes }
+			if = { limit = { merc_is_target_valid = yes }
+				event_target:merc_current_target = {
+					solar_system = {
 						closest_system = {
 							limit = { merc_has_station = yes }
 							random_fleet_in_system = {
 								limit = { merc_is_station = yes }
-								save_event_target_as = fmerc_spawn_at
+								log = "Harbor: Found station close to current target ship/planet."
+								PREVPREVPREVPREV = { set_country_flag = "merc_found_harbor" }
+								save_event_target_as = merc_harbor
+							}
+						}
+					}
+				}
+			}
+
+			if = { limit = { NOT = { has_country_flag = "merc_found_harbor" } }
+				# Find a location inside the targets borders
+				event_target:merc_country = {
+					random_system_within_border = {
+						limit = { merc_has_station = yes }
+						random_fleet_in_system = {
+							limit = { merc_is_station = yes }
+							log = "Harbor: Found station inside targets borders."
+							PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
+							save_event_target_as = merc_harbor
+						}
+					}
+				}
+			}
+			# Find one of our targets, and find the closest station to it.
+			if = { limit = { NOT = { has_country_flag = "merc_found_harbor" } }
+				event_target:merc_country = {
+					random_owned_fleet = {
+						limit = {
+							any_owned_ship = { has_ship_flag = "merc_target" }
+							exists = solar_system
+						}
+						closest_system = {
+							limit = { merc_has_station = yes }
+							random_fleet_in_system = {
+								limit = { merc_is_station = yes }
+								log = "Harbor: Found station close to target ship."
+								PREVPREVPREVPREV = { set_country_flag = "merc_found_harbor" }
+								save_event_target_as = merc_harbor
+							}
+						}
+					}
+				}
+			}
+			# See if the target has any marked planets and spawn close to that
+			if = { limit = { NOT = { has_country_flag = "merc_found_harbor" } }
+				event_target:merc_country = {
+					random_owned_planet = {
+						limit = { has_planet_flag = "merc_target" }
+						closest_system = {
+							limit = { merc_has_station = yes }
+							random_fleet_in_system = {
+								limit = { merc_is_station = yes }
+								log = "Harbor: Found station close to target planet."
+								PREVPREVPREVPREV = { set_country_flag = "merc_found_harbor" }
+								save_event_target_as = merc_harbor
 							}
 						}
 					}
@@ -294,17 +355,78 @@ merc_ensure_harbor = {
 	}
 
 	# Fall back to any station owned by an enclave
-	if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
+	if = { limit = { NOT = { has_country_flag = "merc_found_harbor" } }
 		random_country = {
 			limit = { is_country_type = "fmerc_enclave" }
 			random_owned_fleet = {
 				limit = { merc_is_station = yes }
-				save_event_target_as = fmerc_spawn_at
+				log = "Harbor: Using random enclave station."
+				PREVPREV = { set_country_flag = "merc_found_harbor" }
+				save_event_target_as = merc_harbor
 			}
 		}
 	}
 
-	# XXX This can't fail, add more
+	if = { limit = { NOT = { has_country_flag = "merc_found_harbor" } }
+		random_rim_system = {
+			limit = {
+				NOT = {
+					any_neighbor_system = { exists = space_owner }
+					exists = space_owner
+				}
+			}
+			random_system_planet = {
+				log = "Harbor: Using clean rim system."
+				PREVPREV = { set_country_flag = "merc_found_harbor" }
+				save_event_target_as = merc_harbor
+			}
+		}
+	}
+
+	# If this fails, this game is fucked.
+	if = { limit = { NOT = { has_country_flag = "merc_found_harbor" } }
+		random_rim_system = {
+			random_system_planet = {
+				log = "Harbor: Using any rim system."
+				save_event_target_as = merc_harbor
+			}
+		}
+	}
+
+	remove_country_flag = "merc_found_harbor"
+}
+
+fmerc_stage3_match_solar_system = {
+	if = {
+		limit = {
+			exists = solar_system
+			solar_system = { NOT = { has_star_flag = "merc_dont_match" } }
+		}
+		solar_system = {
+			set_star_flag = "merc_dont_match"
+			every_fleet_in_system = {
+				limit = {
+					exists = owner
+					owner = {
+						OR = {
+							is_hostile = PREVPREVPREVPREV
+							is_overlord_to = event_target:merc_country
+							is_same_value = event_target:merc_country
+							AND = {
+								has_federation = yes
+								is_in_federation_with = event_target:merc_country
+							}
+						}
+					}
+				}
+				merc_shameful_get_fleet_power = yes
+				log = "Matching fleet [this.GetName]: [root.MercSpawn]."
+			}
+		}
+		else = {
+			log = "Not matching towards system."
+		}
+	}
 }
 
 # Depends on merc_buyer and merc_country
@@ -312,7 +434,7 @@ merc_spawn_fleet = {
 	# Make sure we have somewhere to spawn
 	merc_ensure_harbor = yes
 
-	log = "Creating new fleet in [fmerc_spawn_at.GetStarName]."
+	log = "Creating new fleet in [merc_harbor.GetStarName]."
 
 	# For when we recreate the fleet
 	set_faction_hostility = { set_hostile = no }
@@ -320,7 +442,7 @@ merc_spawn_fleet = {
 		effect = {
 			set_owner = ROOT
 			set_location = {
-				target = event_target:fmerc_spawn_at
+				target = event_target:merc_harbor
 				distance = 40
 				angle = random
 			}
@@ -396,28 +518,12 @@ merc_spawn_fleet = {
 		log = "Adjusted absolute minimum: [this.MercSpawn]."
 	}
 
-	# merc_current_target is always a planet or fleet
-	event_target:merc_current_target = {
-		solar_system = {
-			every_fleet_in_system = {
-				limit = {
-					exists = owner
-					owner = {
-						OR = {
-							is_overlord_to = event_target:merc_country
-							is_same_value = event_target:merc_country
-							AND = {
-								has_federation = yes
-								is_in_federation_with = event_target:merc_country
-							}
-						}
-					}
-				}
-				merc_shameful_get_fleet_power = yes
-				log = "Matching fleet [this.GetName]: [root.MercSpawn]."
-			}
-		}
+	# merc_current_target is always a planet or ship
+	if = { limit = { merc_is_target_valid = yes }
+		event_target:merc_current_target = { fmerc_stage3_match_solar_system = yes }
 	}
+	event_target:merc_harbor = { fmerc_stage3_match_solar_system = yes }
+	while = { limit = { any_system = { has_star_flag = "merc_dont_match" } } random_system = { limit = { has_star_flag = "merc_dont_match" } remove_star_flag = "merc_dont_match" } }
 
 	fmerc_stage3_match_fleet_power = yes
 }

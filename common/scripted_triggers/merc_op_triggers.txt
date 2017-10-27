@@ -79,6 +79,11 @@ merc_is_synthetic = {
 	is_country_type = "ai_empire"
 }
 
+merc_is_target_valid = {
+	exists = event_target:merc_current_target
+	event_target:merc_current_target = { exists = solar_system }
+}
+
 ###############################################################################
 # These triggers are the bare minimum for raid operation
 # THIS is either a planet, fleet, or ship

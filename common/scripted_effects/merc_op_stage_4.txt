@@ -86,7 +86,7 @@ merc_stage4_complete = {
 
 	if = {
 		limit = { count_owned_ships { count > 0 } }
-		event_target:fmerc_spawn_at = { save_event_target_as = merc_current_target }
+		event_target:merc_harbor = { save_event_target_as = merc_current_target }
 		log = "Returning mercenary fleets to dock ..."
 		set_country_flag = "merc_op_dock"
 		every_owned_fleet = {
@@ -177,9 +177,10 @@ merc_stage4_restart = {
 				save_event_target_as = merc_current_target
 			}
 			else = {
-				if = { limit = { any_owned_ship = { has_ship_flag = "merc_target" } }
+				if = { limit = { any_owned_ship = { exists = solar_system has_ship_flag = "merc_target" } }
 					random_owned_ship = {
 						limit = { has_ship_flag = "merc_target" }
+						log = "Restart target: [this.GetName]"
 						PREVPREV = { set_country_flag = "merc_found_target" }
 						save_event_target_as = merc_current_target
 					}

@@ -29,7 +29,7 @@ fleet_event = {
 		#log = "Moving operations fleet [this.GetName]."
 		merc_verify_current_target = yes
 
-		if = { limit = { event_target:merc_current_target = { exists = solar_system } }
+		if = { limit = { merc_is_target_valid = yes }
 			owner = {
 				switch = {
 					trigger = has_country_flag
@@ -87,7 +87,15 @@ country_event = {
 		count_owned_ships = { count = 0 }
 	}
 	immediate = {
-		FROMFROM = { set_fleet_flag = "merc_op_ignore" }
+		FROMFROM = {
+			set_fleet_flag = "merc_op_ignore"
+			solar_system = {
+				set_timed_star_flag = {
+					flag = "merc_deathzone"
+					days = 3
+				}
+			}
+		}
 		log = "on_fleet_destroyed_victim"
 		merc_stage4_failed = yes
 	}
