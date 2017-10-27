@@ -102,12 +102,12 @@ country_event = {
 		trigger = {
 			text = merc.completed.desc
 			success_text = {
-				text = "merc.completed.liberated"
-				FROM.owner = { check_variable = { which = "MercLiberatedPlanets" value > 0 } }
-			}
-			success_text = {
 				text = "merc.completed.pretext"
 				FROM.owner = { check_variable = { which = "MercKillsTotal" value > 0 } }
+			}
+			success_text = {
+				text = "merc.completed.liberated"
+				FROM.owner = { check_variable = { which = "MercLiberatedPlanets" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.frontier"

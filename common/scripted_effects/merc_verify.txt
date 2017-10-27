@@ -19,36 +19,6 @@
 
 
 ###############################################################################
-# These effects _fail_ the mission, which means it will restart given
-# the right conditions.
-# Which means these effects cant be used to verify conditions where a failure
-# will lead to a loop.
-#
-
-merc_verify_target_has_system = {
-	if = { limit = { event_target:merc_current_target = { NOT = { exists = solar_system } } }
-		log = "ERROR: Current target [merc_current_target.GetName] has no solar system."
-		merc_stage4_failed = yes
-		break = yes
-	}
-}
-
-merc_verify_fleet_same_system = {
-	if = { limit = { NOT = { exists = solar_system } }
-		log = "ERROR: Operations fleet has no solar system scope."
-		merc_stage4_failed = yes
-		break = yes
-	}
-	merc_verify_target_has_system = yes
-
-	if = { limit = { solar_system = { NOT = { is_same_value = event_target:merc_current_target.solar_system } } }
-		log = "ERROR: We are not in [merc_current_target.Solar_System.GetName] with [merc_current_target.GetName]."
-		merc_stage4_failed = yes
-		break = yes
-	}
-}
-
-###############################################################################
 # These effects _abort_ the operation abruptly and immediately
 #
 

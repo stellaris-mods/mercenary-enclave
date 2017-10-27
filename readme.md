@@ -7,7 +7,6 @@
 - MISSION TYPE: Guard Solar System (or Guard Colony), where the mercenaries will guard a system/colony from hostile fleets/invasions. This should probably cost influence per month, and not be usable while you're in an active conflict.
 - Add on monthly pulse (while operation is active) that increases operation detect chance?
 - AI Rebellion can colonize planets that we should be able to liberate
-- Make sure the enclave can spawn their operations fleet if the enclave HQ is inside the borders of an empire that has given them access, AND they are the target.
 - Make a copy of unrest.4235 and run that on the target if a planet liberation attempt fails? We would have to make a copy, because the vanilla event uses FROM/FROMFROM in the localisation strings
 - Probably want to ignore systems/planets with `has_any_megastructure = yes` for various operation types
 - Military Military Ships Raid target selection probably needs tweaking
