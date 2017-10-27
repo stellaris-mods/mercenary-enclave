@@ -124,6 +124,7 @@ country_event = {
 			merc_set_country = yes
 			merc_set_buyer = yes
 			subtract_variable = { which = "MercTargetCount" value = 1 }
+			change_variable = { which = "MercLiberatedPlanets" value = 1 }
 
 			log = "Liberation complete!"
 			merc_stage4_maybe_complete = yes

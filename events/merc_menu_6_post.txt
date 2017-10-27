@@ -95,13 +95,16 @@ country_event = {
 # Buyer is notified that operation has been completed
 # FROM is the mercenary operations country
 # XXX Make this diplomatic.
-# XXX Add planet liberation count.
 country_event = {
 	id = mercMenu.9004
 	title = merc.completed.title
 	desc = {
 		trigger = {
 			text = merc.completed.desc
+			success_text = {
+				text = "merc.completed.liberated"
+				FROM.owner = { check_variable = { which = "MercLiberatedPlanets" value > 0 } }
+			}
 			success_text = {
 				text = "merc.completed.pretext"
 				FROM.owner = { check_variable = { which = "MercKillsTotal" value > 0 } }
