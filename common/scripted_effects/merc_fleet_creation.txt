@@ -234,8 +234,11 @@ fmerc_stage3_match_fleet_power = {
 
 # THIS is the operations country
 # XXX make sure we _always_ return a fmerc_spawn_at, regardless of anything
-merc_ensure_best_harbour = {
+merc_ensure_harbor = {
 	# ZZZ Can't use any verify effects here, because this is used in stage 4
+
+	# XXX Use a flag instead of exists = event_target
+	remove_country_flag = "merc_found_harbor"
 
 	# First try to find something close to any existing operations fleet
 	if = { limit = { count_owned_ships { count > 0 } }
@@ -272,12 +275,17 @@ merc_ensure_best_harbour = {
 		if = { limit = { NOT = { exists = event_target:fmerc_spawn_at } }
 			event_target:merc_country = {
 				random_owned_ship = {
-					limit = { has_ship_flag = "merc_target" }
-					closest_system = {
-						limit = { merc_has_station = yes }
-						random_fleet_in_system = {
-							limit = { merc_is_station = yes }
-							save_event_target_as = fmerc_spawn_at
+					limit = {
+						has_ship_flag = "merc_target"
+						exists = fleet
+					}
+					fleet = {
+						closest_system = {
+							limit = { merc_has_station = yes }
+							random_fleet_in_system = {
+								limit = { merc_is_station = yes }
+								save_event_target_as = fmerc_spawn_at
+							}
 						}
 					}
 				}
@@ -302,7 +310,7 @@ merc_ensure_best_harbour = {
 # Depends on merc_buyer and merc_country
 merc_spawn_fleet = {
 	# Make sure we have somewhere to spawn
-	merc_ensure_best_harbour = yes
+	merc_ensure_harbor = yes
 
 	log = "Creating new fleet in [fmerc_spawn_at.GetStarName]."
 

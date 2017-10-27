@@ -150,7 +150,7 @@ merc.destroyed.button: "A blow to free trade."
 
 merc.condition.station.access: "We need to allow them access to construct operations facilities in our territory."
 merc.condition.deposit: "You need at least £minerals §G2500§! deposited with $merc.name.colored$."
-merc.condition.invalid.target: "We can not execute this type of operation against this type of empire."
+merc.condition.invalid.target: "We §Pnever§! execute this specific operation against this type of empire."
 merc.condition.invalid.target.now: "This empire is §Pnot currently§! a valid target for this type of operation. There can be many reasons for this, including §T(a)§! that they are too strong for us, or §T(b)§! that we don't consider them a worthy target, or §T(c)§! we might have an agreement with them that prevents us from targetting them at this point in time. We will never tell you.\n\n§GThe important thing to note is that this empire is usually a valid target for this operation type. But not right now.§!"
 merc.condition.funds: "Not enough funds"
 merc.condition.minerals.withdraw: "Not enough minerals in account."

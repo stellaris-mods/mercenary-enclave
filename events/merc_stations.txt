@@ -341,7 +341,7 @@ fleet_event = {
 		subtract_variable = { which = "MercExpansionAttempts" value = 1 }
 		if = { limit = { check_variable = { which = "MercExpansionAttempts" value = 0 } }
 			# Go home
-			# XXX use ensure_harbour
+			# XXX use ensure_harbor
 			owner = {
 				random_owned_fleet = {
 					limit = { merc_is_station = yes }

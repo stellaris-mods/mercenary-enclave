@@ -79,7 +79,16 @@ country_event = {
 	# Our operations fleet has been destroyed.
 	trigger = {
 		is_country_type = "fmerc_operations"
+		# This event results in an endless loop because merc_stage4_failed can
+		# chain to merc_stage4_destroy (depending on success %), which does
+		# every_owned_fleet = { delete_fleet }, which triggers this again.
+		# So the flag prevents that.
+		FROMFROM = { NOT = { has_fleet_flag = "merc_op_ignore" } }
 		count_owned_ships = { count = 0 }
 	}
-	immediate = { merc_stage4_failed = yes }
+	immediate = {
+		FROMFROM = { set_fleet_flag = "merc_op_ignore" }
+		log = "on_fleet_destroyed_victim"
+		merc_stage4_failed = yes
+	}
 }

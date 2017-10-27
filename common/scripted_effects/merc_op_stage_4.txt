@@ -82,7 +82,7 @@ merc_stage4_complete = {
 
 	merc_set_buyer = yes
 	merc_set_country = yes
-	merc_ensure_best_harbour = yes
+	merc_ensure_harbor = yes
 
 	if = {
 		limit = { count_owned_ships { count > 0 } }
@@ -104,11 +104,7 @@ merc_stage4_complete = {
 merc_stage4_failed = {
 	merc_stage4_verify_operation_ongoing = yes
 
-	subtract_variable = {
-		which = "MercSuccess"
-		value = 25
-	}
-	remove_country_flag = "fmerc_retry_operation"
+	subtract_variable = { which = "MercSuccess" value = 25 }
 	if = { limit = { check_variable = { which = "MercSuccess" value > 90 } }
 		random = { chance = 95 set_country_flag = "fmerc_retry_operation" }
 	else = { if = { limit = { check_variable = { which = "MercSuccess" value > 80 } }
