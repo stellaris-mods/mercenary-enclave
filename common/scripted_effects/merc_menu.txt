@@ -109,6 +109,7 @@ merc_menu_2_operation_spaceport = {
 }
 
 merc_menu_2_operation_liberate = {
+	# XXX I think this should scale with colony_age.
 	set_variable = { which = "MercCostEnergy" value = 7000 }
 	set_variable = { which = "MercCostInfluence" value = 75 }
 	set_variable = { which = "MercSuccess" value = 70 }
