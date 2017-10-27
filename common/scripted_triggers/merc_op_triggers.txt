@@ -53,7 +53,7 @@ merc_is_generic = {
 	# is_ai = no
 }
 
-merc_is_exd = {
+merc_is_unbidden = {
 	OR = {
 		is_country_type = "extradimensional"
 		is_country_type = "extradimensional_2"
@@ -113,7 +113,7 @@ merc_minimum = {
 			merc_country_type_generic = { always = yes }
 			merc_country_type_fallen = { PREV = { merc_minimum_fallen = yes } }
 			merc_country_type_hivemind = { always = yes }
-			merc_country_type_exd = { always = yes }
+			merc_country_type_unbidden = { always = yes }
 			merc_country_type_synthetic = { always = yes }
 		}
 	}

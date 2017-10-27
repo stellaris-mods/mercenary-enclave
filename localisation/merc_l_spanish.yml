@@ -247,7 +247,7 @@ merc.target.modifiers.generic: "Cost: §G-5%§!\nChance of success: §G5%§!\nDe
 merc.target.modifiers.fallen: "Cost: §R70%§!\nChance of success: §R-5%§!\nDetection risk: §G-20%§!"
 merc.target.modifiers.hivemind: "Cost: §R35%§!\nChance of success: §R-10%§!\nDetection risk: §G-20%§!"
 merc.target.modifiers.unbidden: "Cost: §R50%§!\nChance of success: §R-10%§!\nDetection risk: §G-20%§!"
-merc.target.modifiers.synthetic: "Cost: §R10%§!\nChance of success: §R-5%§!\nDetection risk: §G-10%§!"
+merc.target.modifiers.synthetic: "Cost: §R25%§!\nChance of success: §R-5%§!\nDetection risk: §G-10%§!"
 
 merc.target.selected.postfix: "§RIf an empire is disabled for selection, that means they are not a valid target right now - but may be at a later date. The criteria for this is a trade secret.§!"
 merc.target.selected.generic: "Standard empires are normal, independent empires found throughout the galaxy. Some of them should be available for selection on the right-hand side. Please do so now.\n\n$merc.target.modifiers.generic$\n$merc.target.selected.postfix$"

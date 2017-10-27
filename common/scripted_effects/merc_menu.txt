@@ -45,7 +45,7 @@
 # 	["default "] = { success = 5, detect = 5 },
 # 	["fallen  "] = { success = -5, detect = -20 },
 # 	["swarm   "] = { success = -10, detect = -20 },
-# 	["exd     "] = { success = -10, detect = -20 },
+# 	["unbidden"] = { success = -10, detect = -20 },
 # 	["airevolt"] = { success = -5, detect = -10 },
 # }
 # local disguise = {
@@ -146,7 +146,7 @@ merc_menu_3_target_init = {
 	remove_country_flag = "merc_country_type_generic"
 	remove_country_flag = "merc_country_type_fallen"
 	remove_country_flag = "merc_country_type_hivemind"
-	remove_country_flag = "merc_country_type_exd"
+	remove_country_flag = "merc_country_type_unbidden"
 	remove_country_flag = "merc_country_type_synthetic"
 
 	set_variable = { which = "MercTargetCostMultiplier" value = 0 }
@@ -185,12 +185,12 @@ merc_menu_3_target_hivemind = {
 	merc_menu_3_target_apply = yes
 }
 
-merc_menu_3_target_exd = {
+merc_menu_3_target_unbidden = {
 	# If you change these, please modify both the l10n string and the script above
 	set_variable = { which = "MercTargetCostMultiplier" value = 50 }
 	set_variable = { which = "MercTargetSuccessMultiplier" value = -10 }
 	set_variable = { which = "MercTargetDetectMultiplier" value = -20 }
-	set_country_flag = "merc_country_type_exd"
+	set_country_flag = "merc_country_type_unbidden"
 	merc_menu_3_target_apply = yes
 }
 

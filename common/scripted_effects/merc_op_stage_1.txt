@@ -50,7 +50,7 @@ merc_stage1_copy_country_type = {
 		merc_country_type_generic = { last_created_country = { set_country_flag = "merc_country_type_generic" } }
 		merc_country_type_fallen = { last_created_country = { set_country_flag = "merc_country_type_fallen" } }
 		merc_country_type_hivemind = { last_created_country = { set_country_flag = "merc_country_type_hivemind" } }
-		merc_country_type_exd = { last_created_country = { set_country_flag = "merc_country_type_exd" } }
+		merc_country_type_unbidden = { last_created_country = { set_country_flag = "merc_country_type_unbidden" } }
 		merc_country_type_synthetic = { last_created_country = { set_country_flag = "merc_country_type_synthetic" } }
 	}
 }
