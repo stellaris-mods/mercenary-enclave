@@ -51,28 +51,56 @@ merc_shameful_validate_all_targets = {
 		remove_country_flag = "merc_invalid"
 	}
 }
-# XXX dont save if event target already exists
+
 merc_shameful_save_target = {
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 1 } } } save_event_target_as = merc_tmp_1 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 2 } } } save_event_target_as = merc_tmp_2 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 3 } } } save_event_target_as = merc_tmp_3 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 4 } } } save_event_target_as = merc_tmp_4 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 5 } } } save_event_target_as = merc_tmp_5 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 6 } } } save_event_target_as = merc_tmp_6 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 7 } } } save_event_target_as = merc_tmp_7 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 8 } } } save_event_target_as = merc_tmp_8 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 9 } } } save_event_target_as = merc_tmp_9 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 10 } } } save_event_target_as = merc_tmp_10 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 11 } } } save_event_target_as = merc_tmp_11 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 12 } } } save_event_target_as = merc_tmp_12 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 13 } } } save_event_target_as = merc_tmp_13 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 14 } } } save_event_target_as = merc_tmp_14 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 15 } } } save_event_target_as = merc_tmp_15 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 16 } } } save_event_target_as = merc_tmp_16 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 17 } } } save_event_target_as = merc_tmp_17 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 18 } } } save_event_target_as = merc_tmp_18 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 19 } } } save_event_target_as = merc_tmp_19 }
-	if = { limit = { PREV = { check_variable = { which = "MercTmp" value = 20 } } } save_event_target_as = merc_tmp_20 }
+	merc_shameful_set_should_skip = yes
+	if = { limit = { NOT = { has_country_flag = "merc_skip" } }
+		if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_1 } event_target:merc_tmp_1 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_1
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_2 } event_target:merc_tmp_2 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_2
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_3 } event_target:merc_tmp_3 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_3
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_4 } event_target:merc_tmp_4 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_4
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_5 } event_target:merc_tmp_5 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_5
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_6 } event_target:merc_tmp_6 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_6
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_7 } event_target:merc_tmp_7 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_7
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_8 } event_target:merc_tmp_8 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_8
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_9 } event_target:merc_tmp_9 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_9
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_10 } event_target:merc_tmp_10 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_10
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_11 } event_target:merc_tmp_11 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_11
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_12 } event_target:merc_tmp_12 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_12
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_13 } event_target:merc_tmp_13 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_13
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_14 } event_target:merc_tmp_14 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_14
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_15 } event_target:merc_tmp_15 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_15
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_16 } event_target:merc_tmp_16 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_16
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_17 } event_target:merc_tmp_17 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_17
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_18 } event_target:merc_tmp_18 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_18
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_19 } event_target:merc_tmp_19 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_19
+		else = { if = { limit = { OR = { NOT = { exists = event_target:merc_tmp_20 } event_target:merc_tmp_20 = { has_country_flag = "merc_invalid" } } } save_event_target_as = merc_tmp_20
+		}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+	}
+	remove_country_flag = "merc_skip"
+}
+
+merc_shameful_set_should_skip = {
+	if = { limit = { exists = event_target:merc_tmp_1 event_target:merc_tmp_1 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_2 event_target:merc_tmp_2 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_3 event_target:merc_tmp_3 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_4 event_target:merc_tmp_4 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_5 event_target:merc_tmp_5 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_6 event_target:merc_tmp_6 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_7 event_target:merc_tmp_7 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_8 event_target:merc_tmp_8 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_9 event_target:merc_tmp_9 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_10 event_target:merc_tmp_10 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_11 event_target:merc_tmp_11 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_12 event_target:merc_tmp_12 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_13 event_target:merc_tmp_13 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_14 event_target:merc_tmp_14 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_15 event_target:merc_tmp_15 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_16 event_target:merc_tmp_16 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_17 event_target:merc_tmp_17 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_18 event_target:merc_tmp_18 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_19 event_target:merc_tmp_19 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
+	if = { limit = { exists = event_target:merc_tmp_20 event_target:merc_tmp_20 = { is_same_value = PREV } } set_country_flag = "merc_skip" }
 }
 
 # local tmpl = [[%d > { ROOT = { change_variable = { which = "MercSpawn" value = %d } } }]]

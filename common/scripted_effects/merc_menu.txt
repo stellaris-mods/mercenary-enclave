@@ -212,27 +212,19 @@ merc_menu_3_mark_and_update_targets = {
 	every_country = {
 		limit = { merc_menu_3_is_targetted_type = yes }
 		set_country_flag = "merc_tmp"
+		remove_country_flag = "merc_invalid"
 	}
-	set_variable = { which = "MercTmp" value = 1 }
 	while = {
-		limit = {
-			any_country = { has_country_flag = "merc_tmp" }
-			check_variable = { which = "MercTmp" value < 21 }
-		}
+		limit = { any_country = { has_country_flag = "merc_tmp" } }
 		random_country = {
 			limit = { has_country_flag = "merc_tmp" }
 			remove_country_flag = "merc_tmp"
-			remove_country_flag = "merc_invalid" # Make sure this country can be seen.
 			merc_shameful_save_target = yes
 		}
-		change_variable = { which = "MercTmp" value = 1 }
 	}
 
 	# Clean up
-	every_country = {
-		limit = { has_country_flag = "merc_tmp" }
-		remove_country_flag = "merc_tmp"
-	}
+	every_country = { limit = { has_country_flag = "merc_tmp" } remove_country_flag = "merc_tmp" }
 }
 
 ###############################################################################
