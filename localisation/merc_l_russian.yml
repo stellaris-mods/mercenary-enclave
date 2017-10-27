@@ -198,7 +198,7 @@ merc.operations.desc: "Мы в §YWhiteout Enterprises§! предлагаем �
 
 ##merc.condition.invalid.target: "We can not execute this type of operation against this type of empire."
 merc.condition.invalid.target: "Мы не можем выполнить эту операцию против этой империи."
-merc.condition.invalid.target.now: "This empire is §Pnot currently§! a valid target for this type of operation. There can be many reasons for this, including §T(a)§! that they are too strong for us, or §T(b)§! that we don't consider them a worthy target, or §T(c)§! we might have an agreement with them that prevents us from targetting them at this point in time. We will never tell you.\n\n§GThe important thing to note is that this empire is usually a valid target for this operation type. But not right now.§!"
+merc.condition.invalid.target.now: "This empire is §Pnot currently§! a valid target for this type of operation. There can be many reasons for this, including §g(a)§! that they are too strong for us, or §g(b)§! that we don't consider them a worthy target, or §g(c)§! we might have an agreement with them that prevents us from targetting them at this point in time. We will never tell you.\n\n§GThe important thing to note is that this empire is usually a valid target for this operation type. But not right now.§!"
 
 merc.operation.spaceport: "Spaceport Raid"
 merc.operation.spaceport.desc: "Locate and destroy one or more Spaceport facilities on your behalf."
