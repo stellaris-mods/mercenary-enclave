@@ -353,7 +353,7 @@ merc.completed.mining: "   - §G[from.Owner.MercKillsMining]x§! $mining_station
 merc.completed.spaceport: "   - §G[from.Owner.MercKillsSpaceport]x§! $orbital_station_plural$"
 merc.completed.stations: "   - §G[from.Owner.MercKillsStations]x§! $shipclass_military_station$"
 merc.completed.ships: "   - §G[from.Owner.MercKillsShips]x§! $shipclass_military$"
-merc.completed.total: "   - §G[from.Owner.MercKillsTotal]§! total signatures lost"
+merc.completed.total: "   - §G[from.Owner.MercKillsTotal]§! total signatures changed"
 merc.completed.transport: "   - §G[from.Owner.MercKillsTransport]x§! $shipclass_transport$"
 merc.completed.civilian: "   - §G[from.Owner.MercKillsCivilian]x§! $OUTLINER_CIVILIAN_FLEETS$"
 merc.completed.liberated: "   - §G[from.Owner.MercLiberatedPlanets]x§! Planets liberated"
