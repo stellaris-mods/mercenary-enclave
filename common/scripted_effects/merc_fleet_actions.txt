@@ -68,7 +68,11 @@ merc_fleet_move_generic = {
 					id = mercMoveGeneric.1
 					NOT = { is_fleet_idle = yes }
 				}
-				wait = 7
+				wait = 14
+				# We need to update the move_to periodically, because the
+				# initial move_to command moves to a fixed system point, and
+				# does not update to reflect the current location of the target
+				move_to = PREV
 			}
 			effect = {
 				id = mercMoveGeneric.2
