@@ -83,7 +83,7 @@ country_event = {
 	}
 	option = {
 		name = "merc.target.generic"
-		custom_tooltip = "merc.target.modifiers.generic"
+		custom_tooltip = "merc.multipliers.target.generic"
 		trigger = { any_country = { merc_menu_3_is_known_target_generic = yes } }
 		allow = {
 			custom_tooltip_fail = {
@@ -95,7 +95,7 @@ country_event = {
 	}
 	option = {
 		name = "merc.target.fallen"
-		custom_tooltip = "merc.target.modifiers.fallen"
+		custom_tooltip = "merc.multipliers.target.fallen"
 		trigger = { any_country = { merc_menu_3_is_known_target_fallen = yes } }
 		allow = {
 			custom_tooltip_fail = {
@@ -107,7 +107,7 @@ country_event = {
 	}
 	option = {
 		name = "merc.target.hivemind"
-		custom_tooltip = "merc.target.modifiers.hivemind"
+		custom_tooltip = "merc.multipliers.target.hivemind"
 		trigger = {
 			any_country = { merc_menu_3_is_known_target_hivemind = yes }
 		}
@@ -121,7 +121,7 @@ country_event = {
 	}
 	option = {
 		name = "merc.target.unbidden"
-		custom_tooltip = "merc.target.modifiers.unbidden"
+		custom_tooltip = "merc.multipliers.target.unbidden"
 		trigger = { any_country = { merc_menu_3_is_known_target_unbidden = yes } }
 		allow = {
 			custom_tooltip_fail = {
@@ -133,7 +133,7 @@ country_event = {
 	}
 	option = {
 		name = "merc.target.synthetic"
-		custom_tooltip = "merc.target.modifiers.synthetic"
+		custom_tooltip = "merc.multipliers.target.synthetic"
 		trigger = { any_country = { merc_menu_3_is_known_target_synthetic = yes } }
 		allow = {
 			custom_tooltip_fail = {

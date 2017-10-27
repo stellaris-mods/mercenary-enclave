@@ -89,6 +89,21 @@ merc.param.multiplier.target: "  Target type: Cost §H[root.MercTargetCostMultip
 merc.param.multiplier.disguise: "  Disguise: Cost §H[root.MercDisguiseCostMultiplier]%§! / Success §H[root.MercDisguiseSuccessMultiplier]%§! / Detection §H[root.MercDisguiseDetectMultiplier]%§!"
 
 ###############################################################################
+# Multipliers
+#
+
+merc.multipliers.disguise.random: "Cost: §G5%§!\nChance of success: §G-5%§!\nDetection risk: §G-15%§!"
+merc.multipliers.disguise.nonbuyer: "Cost: §G10%§!\nChance of success: §G-5%§!\nDetection risk: §G-20%§!"
+merc.multipliers.disguise.buyer: "Cost: §G-5%§!\nChance of success: §G15%§!\nDetection risk: §G15%§!"
+merc.multipliers.disguise.pirate: "Cost: §G-10%§!\nChance of success: §G-10%§!\nDetection risk: §G-5%§!"
+merc.multipliers.disguise.xenofauna: "Cost: §G15%§!\nChance of success: §G10%§!\nDetection risk: §G-10%§!"
+merc.multipliers.target.generic: "Cost: §G-5%§!\nChance of success: §G5%§!\nDetection risk: §R5%§!"
+merc.multipliers.target.fallen: "Cost: §R70%§!\nChance of success: §R-5%§!\nDetection risk: §G-20%§!"
+merc.multipliers.target.hivemind: "Cost: §R35%§!\nChance of success: §R-10%§!\nDetection risk: §G-20%§!"
+merc.multipliers.target.unbidden: "Cost: §R50%§!\nChance of success: §R-10%§!\nDetection risk: §G-20%§!"
+merc.multipliers.target.synthetic: "Cost: §R25%§!\nChance of success: §R-5%§!\nDetection risk: §G-10%§!"
+
+###############################################################################
 # Non-diplomacy events
 #
 
@@ -246,18 +261,12 @@ merc.target.hivemind: "§YPrethoryn Scourge ...§!"
 merc.target.unbidden: "§Y$crisis.1007.name$ ...§!"
 merc.target.synthetic: "§Y$ai_crisis_chain_title$ ...§!"
 
-merc.target.modifiers.generic: "Cost: §G-5%§!\nChance of success: §G5%§!\nDetection risk: §R5%§!"
-merc.target.modifiers.fallen: "Cost: §R70%§!\nChance of success: §R-5%§!\nDetection risk: §G-20%§!"
-merc.target.modifiers.hivemind: "Cost: §R35%§!\nChance of success: §R-10%§!\nDetection risk: §G-20%§!"
-merc.target.modifiers.unbidden: "Cost: §R50%§!\nChance of success: §R-10%§!\nDetection risk: §G-20%§!"
-merc.target.modifiers.synthetic: "Cost: §R25%§!\nChance of success: §R-5%§!\nDetection risk: §G-10%§!"
-
 merc.target.selected.postfix: "§RIf an empire is disabled for selection, that means they are not a valid target right now - but may be at a later date. The criteria for this is a trade secret.§!"
-merc.target.selected.generic: "Standard empires are normal, independent empires found throughout the galaxy. Some of them should be available for selection on the right-hand side. Please do so now.\n\n$merc.target.modifiers.generic$\n$merc.target.selected.postfix$"
-merc.target.selected.fallen: "$COUNTRY_FALLEN_EMPIRE$s are stagnant or awakened ancient empires that have been present in the galaxy as long as time itself. These kinds of targets are exceptionally hard to engage, and will require a substantial added investment. However, since they look down their nose at all us regular folk, the detection risk is a lot lower.\n\n$merc.target.modifiers.fallen$\n$merc.target.selected.postfix$"
-merc.target.selected.hivemind: "The Prethoryn Scourge is filthy, and we - like all sane, sentient beings - hate it. Therefore, we drop our price significantly. Because of their strength, however, the chances of success drop dramatically. As an added bonus, there is zero chance they will see through our guise. If they did, they probably wouldn't care.\n\n$merc.target.modifiers.hivemind$\n$merc.target.selected.postfix$"
-merc.target.selected.unbidden: "These beings are here to consume us all. We are honored to fight them in your name. Therefore, our prices are lowered for this target. Because of their strength, however, the chances of success drop dramatically. As an added bonus, there is zero chance they will see through our guise. If they did, they probably wouldn't care.\n\n$merc.target.modifiers.unbidden$\n$merc.target.selected.postfix$"
-merc.target.selected.synthetic: "These heartless robots are here to consume us all. We are honored to fight them in your name. Therefore, our prices are lowered for this target.\n\n$merc.target.modifiers.synthetic$\n$merc.target.selected.postfix$"
+merc.target.selected.generic: "Standard empires are normal, independent empires found throughout the galaxy. Some of them should be available for selection on the right-hand side. Please do so now.\n\n$merc.multipliers.target.generic$\n$merc.target.selected.postfix$"
+merc.target.selected.fallen: "$COUNTRY_FALLEN_EMPIRE$s are stagnant or awakened ancient empires that have been present in the galaxy as long as time itself. These kinds of targets are exceptionally hard to engage, and will require a substantial added investment. However, since they look down their nose at all us regular folk, the detection risk is a lot lower.\n\n$merc.multipliers.target.fallen$\n$merc.target.selected.postfix$"
+merc.target.selected.hivemind: "The Prethoryn Scourge is filthy, and we - like all sane, sentient beings - hate it. Therefore, we drop our price significantly. Because of their strength, however, the chances of success drop dramatically. As an added bonus, there is zero chance they will see through our guise. If they did, they probably wouldn't care.\n\n$merc.multipliers.target.hivemind$\n$merc.target.selected.postfix$"
+merc.target.selected.unbidden: "These beings are here to consume us all. We are honored to fight them in your name. Therefore, our prices are lowered for this target. Because of their strength, however, the chances of success drop dramatically. As an added bonus, there is zero chance they will see through our guise. If they did, they probably wouldn't care.\n\n$merc.multipliers.target.unbidden$\n$merc.target.selected.postfix$"
+merc.target.selected.synthetic: "These heartless robots are here to consume us all. We are honored to fight them in your name. Therefore, our prices are lowered for this target.\n\n$merc.multipliers.target.synthetic$\n$merc.target.selected.postfix$"
 
 # Question 2, disguise
 merc.disguise.name: "Disguise Selection"
@@ -265,19 +274,19 @@ merc.disguise.desc: "§Y[merc_country.GetName]§! will never know what hit them.
 
 merc.disguise.random: "Random"
 merc.disguise.random.button: "§Y$merc.disguise.random$ ...§!"
-merc.disguise.random.tooltip: "Lets $merc.name.colored$ pick a random disguise from their arsenal.\n\nCost: §G5%§!\nChance of success: §G-5%§!\nDetection risk: §G-15%§!"
+merc.disguise.random.tooltip: "Lets $merc.name.colored$ pick a random disguise from their arsenal.\n\n$merc.multipliers.disguise.random$"
 merc.disguise.nonbuyer: "Non-[Root.GetName]"
 merc.disguise.nonbuyer.button: "§Y$merc.disguise.nonbuyer$ ...§!"
-merc.disguise.nonbuyer.tooltip: "Make sure $merc.name.colored$ picks any disguise as long as it does not match your own ships.\n\nCost: §G10%§!\nChance of success: §G-5%§!\nDetection risk: §G-20%§!"
+merc.disguise.nonbuyer.tooltip: "Make sure $merc.name.colored$ picks any disguise as long as it does not match your own ships.\n\n$merc.multipliers.disguise.nonbuyer$"
 merc.disguise.buyer: "[Root.GetName]"
 merc.disguise.buyer.button: "§Y$merc.disguise.buyer$ ...§!"
-merc.disguise.buyer.tooltip: "No disguise, use the same ship type as your empire.\n\nCost: §G-5%§!\nChance of success: §G15%§!\nDetection risk: §G15%§!"
+merc.disguise.buyer.tooltip: "No disguise, use the same ship type as your empire.\n\n$merc.multipliers.disguise.buyer$"
 merc.disguise.pirate: "Pirate"
 merc.disguise.pirate.button: "§Y$merc.disguise.pirate$ ...§!"
-merc.disguise.pirate.tooltip: "Deconstruct random pieces of the ship hulls so the fleet appears as a rag-tag band of pirates.\n\nCost: §G-10%§!\nChance of success: §G-10%§!\nDetection risk: §G-5%§!"
+merc.disguise.pirate.tooltip: "Deconstruct random pieces of the ship hulls so the fleet appears as a rag-tag band of pirates.\n\n$merc.multipliers.disguise.pirate$"
 merc.disguise.xenofauna: "Xenofauna"
 merc.disguise.xenofauna.button: "§Y$merc.disguise.xenofauna$ ...§!"
-merc.disguise.xenofauna.tooltip: "Disguise the mercenary fleet as some type of fauna found naturally in the galaxy. For example the Space Whales, Amoebas, Clouds, and Drones.\n\nCost: §G15%§!\nChance of success: §G10%§!\nDetection risk: §G-10%§!"
+merc.disguise.xenofauna.tooltip: "Disguise the mercenary fleet as some type of fauna found naturally in the galaxy. For example the Space Whales, Amoebas, Clouds, and Drones.\n\n$merc.multipliers.disguise.xenofauna$"
 
 # Signature
 
