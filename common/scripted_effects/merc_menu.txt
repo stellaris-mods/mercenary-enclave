@@ -34,37 +34,39 @@
 # This script simply prints out all the possible permutations, so that I can
 # easily see whether any operation results in a success or detect chance of
 # either more than 95 or lower than 5.
-#
+
+# #!/usr/bin/lua
 # local base = {
-# 	["spaceport "] = { success = 75, detect = 50 },
-# 	["liberate  "] = { success = 70, detect = 55 },
-# 	["raid      "] = { success = 75, detect = 45 },
-# 	["fleet     "] = { success = 75, detect = 45 },
+#         ["spaceport "] = { success = 75, detect = 65 },
+#         ["liberate  "] = { success = 70, detect = 75 },
+#         ["raid      "] = { success = 75, detect = 45 },
+#         ["fleet     "] = { success = 75, detect = 65 },
 # }
 # local target = {
-# 	["default "] = { success = 5, detect = 5 },
-# 	["fallen  "] = { success = -5, detect = -20 },
-# 	["swarm   "] = { success = -10, detect = -20 },
-# 	["unbidden"] = { success = -10, detect = -20 },
-# 	["airevolt"] = { success = -5, detect = -10 },
+#         ["default "] = { success = 5, detect = 5 },
+#         ["fallen  "] = { success = -5, detect = -20 },
+#         ["swarm   "] = { success = -10, detect = -20 },
+#         ["unbidden"] = { success = -10, detect = -20 },
+#         ["airevolt"] = { success = -5, detect = -10 },
 # }
 # local disguise = {
-# 	["random   "] = { success = -5, detect = -15 },
-# 	["nonbuyer "] = { success = -5, detect = -20 },
-# 	["buyer    "] = { success = 15, detect = 15 },
-# 	["pirate   "] = { success = -10, detect = -5 },
-# 	["xenofauna"] = { success = 10, detect = -10 }
+#         ["random   "] = { success = -5, detect = -15 },
+#         ["nonbuyer "] = { success = -5, detect = -20 },
+#         ["buyer    "] = { success = 15, detect = 15 },
+#         ["pirate   "] = { success = -10, detect = -5 },
+#         ["xenofauna"] = { success = 10, detect = -10 }
 # }
 # for operation, chances in pairs(base) do
-# 	for country, typeMods in pairs(target) do
-# 		for outfit, disguiseMods in pairs(disguise) do
-# 			local totalSuccess = chances.success + typeMods.success + disguiseMods.success
-# 			local totalDetect = chances.detect + typeMods.detect + disguiseMods.detect
-# 			local p = {operation, country, outfit, totalSuccess, totalDetect}
-# 			print(table.concat(p, "\t"))
-# 		end
-# 	end
+#         for country, typeMods in pairs(target) do
+#                 for outfit, disguiseMods in pairs(disguise) do
+#                         local totalSuccess = chances.success + typeMods.success + disguiseMods.success
+#                         local totalDetect = chances.detect + typeMods.detect + disguiseMods.detect
+#                         local p = {operation, country, outfit, totalSuccess, totalDetect}
+#                         print(table.concat(p, "\t"))
+#                 end
+#         end
 # end
+
 
 
 ###############################################################################
@@ -102,8 +104,9 @@ merc_menu_2_operation_apply = {
 # These operation-specific effects are invoked
 merc_menu_2_operation_spaceport = {
 	set_variable = { which = "MercCostEnergy" value = 3000 }
+	set_variable = { which = "MercCostInfluence" value = 50 }
 	set_variable = { which = "MercSuccess" value = 75 }
-	set_variable = { which = "MercDetect" value = 50 }
+	set_variable = { which = "MercDetect" value = 65 }
 	set_country_flag = "merc_op_spaceport"
 	merc_menu_2_operation_apply = yes
 }
@@ -111,15 +114,16 @@ merc_menu_2_operation_spaceport = {
 merc_menu_2_operation_liberate = {
 	# XXX I think this should scale with colony_age.
 	set_variable = { which = "MercCostEnergy" value = 7000 }
-	set_variable = { which = "MercCostInfluence" value = 75 }
+	set_variable = { which = "MercCostInfluence" value = 100 }
 	set_variable = { which = "MercSuccess" value = 70 }
-	set_variable = { which = "MercDetect" value = 55 }
+	set_variable = { which = "MercDetect" value = 75 }
 	set_country_flag = "merc_op_liberate"
 	merc_menu_2_operation_apply = yes
 }
 
 merc_menu_2_operation_raid = {
-	set_variable = { which = "MercCostEnergy" value = 2000 }
+	set_variable = { which = "MercCostEnergy" value = 2500 }
+	set_variable = { which = "MercCostInfluence" value = 50 }
 	set_variable = { which = "MercSuccess" value = 75 }
 	set_variable = { which = "MercDetect" value = 45 }
 	set_country_flag = "merc_op_civilian"
@@ -129,8 +133,9 @@ merc_menu_2_operation_raid = {
 merc_menu_2_operation_fleet = {
 	set_variable = { which = "MercCost" value = 500 }
 	set_variable = { which = "MercCostEnergy" value = 5000 }
+	set_variable = { which = "MercCostInfluence" value = 50 }
 	set_variable = { which = "MercSuccess" value = 75 }
-	set_variable = { which = "MercDetect" value = 45 }
+	set_variable = { which = "MercDetect" value = 65 }
 	set_country_flag = "merc_op_military"
 	merc_menu_2_operation_apply = yes
 }
