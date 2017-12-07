@@ -19,6 +19,13 @@
 
 namespace = mercMenu
 
+# Menu redesign
+# 1. Select target
+# 2. Select operation type
+# 3. Buy fleet power
+# 4. Enclave accepts / rejects
+# 5. Sign
+
 # on_custom_diplomacy
 # Initial event, mainly to save the event target we use throughout
 country_event = {
