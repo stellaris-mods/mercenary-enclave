@@ -117,7 +117,7 @@ Allowing border access to the enclave will increase their trust of you every yea
 If you revoke the access, and there is a station complex inside your borders, the enclave will not care\. The complex will remain, and if you want it gone, you will have to attack it\.
 
 ## Contacting me
-[b]I do not read comments or forums on Steam any more. I can only be reached on Github.[/b]
+**I do not read comments or forums on Steam any more\. I can only be reached on Github\.**
 
 
 [//]: # (stop)
