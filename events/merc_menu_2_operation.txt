@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,11 +39,6 @@ country_event = {
 	immediate = { merc_menu_2_operation_init = yes }
 
 	option = {
-		name = "merc.close"
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
 		name = "merc.back"
 		hidden_effect = { country_event = { id = mercMenu.101 } }
 	}
@@ -78,6 +74,23 @@ country_event = {
 		}
 		hidden_effect = { country_event = { id = mercMenu.700 } }
 	}
+	option = {
+		name = "merc.operation.leviathans.button"
+		custom_tooltip = "merc.operation.leviathans.desc"
+		hidden_effect = { country_event = { id = mercMenu.800 } }
+	}
+	option = {
+		name = "merc.operation.dirty_missions.button"
+		custom_tooltip = "merc.operation.dirty_missions.desc"
+		hidden_effect = { country_event = { id = mercMenu.900 } }
+	}
+
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+
 }
 
 # Clear space
@@ -103,15 +116,7 @@ country_event = {
 
 	immediate = { merc_menu_2_operation_clear = yes }
 
-	option = {
-		name = "merc.close"
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = "merc.back"
-		hidden_effect = { country_event = { id = mercMenu.200 } }
-	}
+
 	option = {
 		name = merc.clearspace.amoeba
 		custom_tooltip = merc.clearspace.tooltip
@@ -152,6 +157,24 @@ country_event = {
 			country_event = { id = mercMenu.701 }
 		}
 	}
+	option = {
+		name = merc.clearspace.marauders
+		custom_tooltip = merc.clearspace.tooltip
+		hidden_effect = {
+			set_country_flag = "merc_tmp_marauders"
+			country_event = { id = mercMenu.701 }
+		}
+	}
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.200 } }
+	}
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+
 }
 
 
@@ -170,19 +193,42 @@ country_event = {
 		# This is because I had to use |any_ship| in the trigger, for reasons
 		# I explain in detail there.
 		#
+		
+		# Debug
+		if = { limit = { has_global_flag = "debug" }		
+			log = "mercMenu.701 This: [This.GetName], Root: [Root.GetName], [Prev.GetName]"
+		}
+		
 		switch = {
 			trigger = has_country_flag
-			merc_tmp_amoeba = { random_country = { limit = { is_country_type = "amoeba" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } }
-			merc_tmp_cloud = { random_country = { limit = { is_country_type = "cloud" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } }
-			merc_tmp_crystal = { random_country = { limit = { is_country_type = "crystal" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } }
-			merc_tmp_drone = { random_country = { limit = { is_country_type = "drone" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } }
-			merc_tmp_pirate = { random_country = { limit = { is_country_type = "pirate" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } }
+			merc_tmp_amoeba = { random_country = { limit = { is_country_type = "amoeba" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } log = "country_flag is: merc_tmp_amoeba" }
+			merc_tmp_cloud = { random_country = { limit = { is_country_type = "cloud" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } log = "country_flag is: merc_tmp_cloud" }
+			merc_tmp_crystal = { random_country = { limit = { is_country_type = "crystal" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } log = "country_flag is: merc_tmp_crystal" }
+			merc_tmp_drone = { random_country = { limit = { is_country_type = "drone" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } log = "country_flag is: merc_tmp_drone" }
+			merc_tmp_pirate = { random_country = { limit = { is_country_type = "pirate" merc_menu_3_is_valid_target = yes } save_event_target_as = merc_country } log = "country_flag is: merc_tmp_pirate" }
+			merc_tmp_marauders = {
+				random_country = {
+					limit = {
+						AND = {
+							OR = {
+								is_country_type = "dormant_marauders"
+								is_country_type = "ruined_marauders"
+								is_country_type = "awakened_marauders"
+							}
+							merc_menu_3_is_valid_target = yes							
+						}
+					}
+					save_event_target_as = merc_country
+				}
+				log = "country_flag is: merc_tmp_marauders"
+			}
 		}
 		remove_country_flag = "merc_tmp_amoeba"
 		remove_country_flag = "merc_tmp_cloud"
 		remove_country_flag = "merc_tmp_crystal"
 		remove_country_flag = "merc_tmp_drone"
 		remove_country_flag = "merc_tmp_pirate"
+		remove_country_flag = "merc_tmp_marauders"
 
 		set_country_flag = "merc_op_clear"
 		remove_country_flag = "fmerc_diplomacy_engaged"
@@ -193,4 +239,119 @@ country_event = {
 		}
 		fmerc_init_stage1 = yes
 	}
+}
+
+# Leviathans - will be in a future update
+country_event = {
+	id = mercMenu.800
+	title = merc.operation.leviathans
+	# Custom desc because variables can't represent zero
+	desc = {
+		trigger = {
+			text = "merc.operation.leviathans.desc"
+			text = "merc.param.multiplier.trust"
+		}
+	}
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:mercenaries
+		room = enclave_trader_room
+	}
+
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.200 } }
+	}
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+
+}
+
+#dirty_missions- will be in a future update
+country_event = {
+	id = mercMenu.900
+	title = merc.operation.dirty_missions
+	# Custom desc because variables can't represent zero
+	desc = {
+		trigger = {
+			text = "merc.operation.dirty_missions.desc"
+			text = "merc.param.multiplier.trust"
+			text = newline
+			success_text = {
+				text = merc.operation.dirty_missions.deny.desc
+				NOT = { privateering_enclave_exists = yes }
+			}
+		}
+	}
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:mercenaries
+		room = enclave_trader_room
+	}
+	option = {
+		name = merc.operation.dirty_missions.hunt
+		custom_tooltip = merc.operation.dirty_missions.hunt.tooltip
+		allow = {
+			custom_tooltip_fail = {
+				text = "merc.operation.dirty_missions.deny.tooltip"
+				privateering_enclave_exists = yes
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "dirty_missions_hunt"
+			# country_event = { id = mercMenu.910 }
+			country_event = { id = mercMenu.200 }
+		}
+	}
+	option = {
+		name = merc.operation.dirty_missions.assassination
+		custom_tooltip = merc.operation.dirty_missions.assassination.tooltip
+		allow = {
+			custom_tooltip_fail = {
+				text = "merc.operation.dirty_missions.deny.tooltip"
+				privateering_enclave_exists = yes
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "dirty_missions_assassination"
+			# country_event = { id = mercMenu.910 }
+			country_event = { id = mercMenu.200 }
+		}
+	}
+	option = {
+		name = merc.operation.dirty_missions.terror
+		custom_tooltip = merc.operation.dirty_missions.terror.tooltip
+		allow = {
+			custom_tooltip_fail = {
+				text = "merc.operation.dirty_missions.deny.tooltip"
+				privateering_enclave_exists = yes
+			}
+		}
+		hidden_effect = {
+			set_country_flag = "dirty_missions_terror"
+			# country_event = { id = mercMenu.910 }
+			country_event = { id = mercMenu.200 }
+		}
+	}
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.200 } }
+	}
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+
 }

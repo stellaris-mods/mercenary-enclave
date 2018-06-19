@@ -149,6 +149,7 @@ country_event = {
 			# Order the operation to complete immediately
 			event_target:fmerc_ops_country = {
 				merc_stage4_complete = yes
+				set_country_flag = "fmerc_ops_completed"
 			}
 		}
 	}

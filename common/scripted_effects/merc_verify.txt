@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,20 +27,25 @@ merc_verify_current_target = {
 	if = { limit = { NOT = { exists = event_target:merc_current_target } }
 		log = "ERROR: merc_current_target doesn't exist."
 		merc_stage4_abort = yes
+		set_country_flag = "fmerc_ops_completed"
 		break = yes
 	}
 }
 
 merc_verify_country = {
 	if = { limit = { NOT = { exists = event_target:merc_country } }
-		log = "ERROR: Target country doesn't exist, aborting."
-		merc_stage4_abort = yes
+		log = "ERROR merc_verify_country: Target country doesn't exist, aborting."
+		#merc_stage4_abort = yes
+		merc_stage4_no_target_abort = yes
+		set_country_flag = "fmerc_ops_completed"
 		break = yes
 	}
 
 	if = { limit = { event_target:merc_country = { is_scope_valid = no } }
-		log = "ERROR: Target country scope is invalid, aborting."
-		merc_stage4_abort = yes
+		log = "ERROR merc_verify_country: Target country scope is invalid, aborting."
+		#merc_stage4_abort = yes
+		merc_stage4_no_target_abort = yes
+		set_country_flag = "fmerc_ops_completed"
 		break = yes
 	}
 }

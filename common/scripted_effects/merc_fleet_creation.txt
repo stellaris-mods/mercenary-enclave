@@ -171,6 +171,57 @@ fmerc_stage3_match_fleet_power = {
 	set_variable = { which = "MercSpawnCruiser" value = 0 }
 	set_variable = { which = "MercSpawnBattleship" value = 0 }
 
+
+	# We need to spawn at least 10 000 for liberation mission to ensure normal borbadment
+	# # we will add fleet only for Liberation mission and only if Fleetpower less than 10000
+	if = {
+		limit = {
+			has_country_flag = "merc_op_liberate"				
+		}
+		if = {
+			limit = {
+				check_variable = { which = "MercSpawn" value > 0 value < 3000 }
+			}
+
+			multiply_variable = { which = MercSpawn value = 3.2 } # multiplier for liberate missions
+
+			log = "Liberate multiplier added (3.2). Final fleet power: [this.MercSpawn]."
+
+			else = {
+				if = {
+					limit = {
+						check_variable = { which = "MercSpawn" value > 3000 value < 5000 }
+					}
+					multiply_variable = { which = MercSpawn value = 2.0 } # multiplier for liberate missions
+					
+					log = "Liberate multiplier added (2.0). Final fleet power: [this.MercSpawn]."
+
+					else = {
+						if = {
+							limit = {
+								check_variable = { which = "MercSpawn" value > 5000 value < 7500 }
+							}
+							multiply_variable = { which = MercSpawn value = 1.35 } # multiplier for liberate missions
+							
+							log = "Liberate multiplier added (1.35). Final fleet power: [this.MercSpawn]."
+						}
+						else = {
+							if = {
+								limit = {
+									check_variable = { which = "MercSpawn" value > 7500 value < 10000 }
+								}
+								multiply_variable = { which = MercSpawn value = 1.2 } # multiplier for liberate missions
+								
+								log = "Liberate multiplier added (1.2). Final fleet power: [this.MercSpawn]."
+							}
+						}
+					}
+				}				
+			}				
+		}		
+	}
+
+	
 	# Because fleets can not contain more than 500 ships, we need to convert
 	# from fleet power to ship numbers.
 	# merc_use_global_designs is set or not in stage 1
@@ -234,41 +285,58 @@ fmerc_stage3_match_fleet_power = {
 
 # THIS is the operations country
 merc_ensure_harbor = {
+
 	# ZZZ Can't use any verify effects here, because this is used in stage 4
 
 	# ZZZ so apparently, at least for countries without a capital,
 	# ZZZ random_owned_fleet actually scopes to something even if
 	# ZZZ no actual fleets exist ingame
+
+	
 	random_owned_fleet = {
 		limit = { num_ships > 0 }
 		closest_system = {
 			limit = { merc_has_station = yes }
 			random_fleet_in_system = {
 				limit = { merc_is_station = yes }
-				log = "Harbor: Existing fleet."
+				
 				PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 				save_event_target_as = merc_harbor
+				
+				log = "Harbor: Existing fleet. merc_harbor name : [merc_harbor.GetName]"
 			}
 		}
 	}
 
 	random_system = {
-		limit = { has_star_flag = "merc_deathzone" }
+		limit = { has_star_flag = "merc_deathzone" }	
 		if = { limit = { merc_has_station = yes }
+
 			random_fleet_in_system = {
+
 				limit = { merc_is_station = yes }
-				log = "Harbor: In death zone."
+
 				PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 				save_event_target_as = merc_harbor
+				
+				log = "Harbor: In death zone. merc_harbor name : [merc_harbor.GetName]"
 			}
 		else = {
 			closest_system = {
 				limit = { merc_has_station = yes }
+				set_timed_star_flag = {
+					flag = "close_to_merc_deathzone"
+					days = 5
+				}
 				random_fleet_in_system = {
 					limit = { merc_is_station = yes }
-					log = "Harbor: Close to death zone."
-					PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
-					save_event_target_as = merc_harbor
+					log = "Harbor close to deathzone: Will try to spawn in another place"
+
+					#In case Leviafans system we will newer reach target system. All fleets will be killed 
+					
+					# PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
+					# save_event_target_as = merc_harbor
+
 				}
 			}
 		} }
@@ -287,12 +355,16 @@ merc_ensure_harbor = {
 				event_target:merc_current_target = {
 					solar_system = {
 						closest_system = {
-							limit = { merc_has_station = yes }
+							limit = { merc_has_station = yes
+									 NOT = { has_star_flag = "close_to_merc_deathzone" }
+							}
 							random_fleet_in_system = {
 								limit = { merc_is_station = yes }
-								log = "Harbor: Close to current target ship/planet."
+
 								PREVPREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 								save_event_target_as = merc_harbor
+								
+								log = "Harbor: Close to current target ship/planet. new merc_harbor name : [merc_harbor.GetName]"
 							}
 						}
 					}
@@ -306,9 +378,11 @@ merc_ensure_harbor = {
 						limit = { merc_has_station = yes }
 						random_fleet_in_system = {
 							limit = { merc_is_station = yes }
-							log = "Harbor: Inside targets borders."
+
 							PREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 							save_event_target_as = merc_harbor
+							
+							log = "Harbor: Inside targets borders new merc_harbor: [merc_harbor.GetName]"
 						}
 					}
 				}
@@ -325,9 +399,11 @@ merc_ensure_harbor = {
 							limit = { merc_has_station = yes }
 							random_fleet_in_system = {
 								limit = { merc_is_station = yes }
-								log = "Harbor: Close to target ship."
+								
 								PREVPREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 								save_event_target_as = merc_harbor
+								
+								log = "Close to target ship, new merc_harbor: [merc_harbor.GetName]"
 							}
 						}
 					}
@@ -342,9 +418,11 @@ merc_ensure_harbor = {
 							limit = { merc_has_station = yes }
 							random_fleet_in_system = {
 								limit = { merc_is_station = yes }
-								log = "Harbor: Close to target planet."
+
 								PREVPREVPREVPREV = { set_country_flag = "merc_found_harbor" }
 								save_event_target_as = merc_harbor
+								
+								log = "Harbor: Close to target planet, new merc_harbor: [merc_harbor.GetName]"
 							}
 						}
 					}
@@ -359,9 +437,11 @@ merc_ensure_harbor = {
 			limit = { is_country_type = "fmerc_enclave" }
 			random_owned_fleet = {
 				limit = { merc_is_station = yes }
-				log = "Harbor: Random enclave station."
+
 				PREVPREV = { set_country_flag = "merc_found_harbor" }
 				save_event_target_as = merc_harbor
+				
+				log = "Fall back to any station owned by an enclave : [merc_harbor.GetName]"
 			}
 		}
 	}
@@ -375,9 +455,11 @@ merc_ensure_harbor = {
 				}
 			}
 			random_system_planet = {
-				log = "Harbor: Clean rim system."
+
 				PREVPREV = { set_country_flag = "merc_found_harbor" }
 				save_event_target_as = merc_harbor
+
+				log = "Harbor: Clean rim system merc_harbor: [merc_harbor.GetName]"
 			}
 		}
 	}
@@ -386,8 +468,10 @@ merc_ensure_harbor = {
 	if = { limit = { NOT = { has_country_flag = "merc_found_harbor" } }
 		random_rim_system = {
 			random_system_planet = {
-				log = "Harbor: Random rim system."
+
 				save_event_target_as = merc_harbor
+
+				log = "Random rim system merc_harbor: [merc_harbor.GetName]"				
 			}
 		}
 	}
@@ -442,7 +526,7 @@ merc_spawn_fleet = {
 			set_owner = ROOT
 			set_location = {
 				target = event_target:merc_harbor
-				distance = 20
+				distance = 40
 				angle = random
 			}
 			set_fleet_stance = passive
@@ -462,7 +546,7 @@ merc_spawn_fleet = {
 		limit = { has_country_flag = "merc_op_liberate" }
 		# 1.5k extra fleet power.
 		# I don't want to add more right now, because it's not going to
-		# scale well in any meaningful way. I need to do a more indepth
+		# scale well in any meaningful way. I need to do a more in depth
 		# examination of the target country, see how many military fleets
 		# and how large they are before I can more easily determine
 		# what our "success chance" is.

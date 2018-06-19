@@ -18,69 +18,61 @@
 ###
 
 
-# Effects for the spaceport operation type
-# Will probably get merged to _raid.txt.
-
-
-merc_set_found_spaceport = {
-	random_owned_ship = { set_ship_flag = "merc_target" }
-	PREVPREVPREV = { set_country_flag = "merc_found_target" }
-}
-
 # THIS is op country
 merc_set_target_spaceport = {
 	event_target:merc_country = {
-		random_owned_planet = { limit = { merc_spaceport_p1 = yes }
-			log = "Spaceport target [this.GetName] (P1)"
-			spaceport = { merc_set_found_spaceport = yes }
+		random_owned_fleet = { limit = { merc_spaceport_p1 = yes }
+			log = "Spaceport target [this.GetName] (P1) in [This.GetStarName]"
+			random_owned_ship = { merc_set_found_target = yes }
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_planet = { limit = { merc_spaceport_p2 = yes }
-				log = "Spaceport target [this.GetName] (P2)"
-				spaceport = { merc_set_found_spaceport = yes }
+			random_owned_fleet = { limit = { merc_spaceport_p2 = yes }
+				log = "Spaceport target [this.GetName] (P2) in [This.GetStarName]"
+				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_planet = { limit = { merc_spaceport_p3 = yes }
-				log = "Spaceport target [this.GetName] (P3)"
-				spaceport = { merc_set_found_spaceport = yes }
+			random_owned_fleet = { limit = { merc_spaceport_p3 = yes }
+				log = "Spaceport target [this.GetName] (P3) in [This.GetStarName]"
+				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_planet = { limit = { merc_spaceport_p4 = yes }
-				log = "Spaceport target [this.GetName] (P4)"
-				spaceport = { merc_set_found_spaceport = yes }
+			random_owned_fleet = { limit = { merc_spaceport_p4 = yes }
+				log = "Spaceport target [this.GetName] (P4) in [This.GetStarName]"
+				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_planet = { limit = { merc_spaceport_p5 = yes }
-				log = "Spaceport target [this.GetName] (P5)"
-				spaceport = { merc_set_found_spaceport = yes }
+			random_owned_fleet = { limit = { merc_spaceport_p5 = yes }
+				log = "Spaceport target [this.GetName] (P5) in [This.GetStarName]"
+				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_planet = { limit = { merc_spaceport_p6 = yes }
-				log = "Spaceport target [this.GetName] (P6)"
-				spaceport = { merc_set_found_spaceport = yes }
+			random_owned_fleet = { limit = { merc_spaceport_p6 = yes }
+				log = "Spaceport target [this.GetName] (P6) in [This.GetStarName]"
+				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_planet = { limit = { merc_spaceport_p7 = yes }
-				log = "Spaceport target [this.GetName] (P7)"
-				spaceport = { merc_set_found_spaceport = yes }
+			random_owned_fleet = { limit = { merc_spaceport_p7 = yes }
+				log = "Spaceport target [this.GetName] (P7) in [This.GetStarName]"
+				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_planet = { limit = { merc_spaceport_p8 = yes }
-				log = "Spaceport target [this.GetName] (P8)"
-				spaceport = { merc_set_found_spaceport = yes }
+			random_owned_fleet = { limit = { merc_spaceport_p8 = yes }
+				log = "Spaceport target [this.GetName] (P8) in [This.GetStarName]"
+				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 		if = { limit = { merc_needs_target = yes }
-			random_owned_planet = { limit = { merc_spaceport_p9 = yes }
-				log = "Spaceport target [this.GetName] (P9)"
-				spaceport = { merc_set_found_spaceport = yes }
+			random_owned_fleet = { limit = { merc_spaceport_p9 = yes }
+				log = "Spaceport target [this.GetName] (P9) in [This.GetStarName]"
+				random_owned_ship = { merc_set_found_target = yes }
 			}
 		}
 	}
 }
+

@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,7 +23,7 @@ fmerc_enclave = {
 	show_in_contacts_list = yes
 	share_communications = no
 	playable = no
-	debris = no
+	#debris = no
 
 	ai = {
 		enabled = no
@@ -45,9 +46,12 @@ fmerc_enclave = {
 }
 
 fmerc_operations = {
+    attack_unarmed_orbital_stations = yes
+	#destroys_starbases = yes	# Will be wonderfull to enable this, BUT on_ship_destroyed_perp will not trigger on them for some reasons
 	government = no
 	needs_survey = no
-	has_leaders = no
+	#has_leaders = no was changed regarding Patch 2.0 notes
+	is_space_critter = yes
 	show_in_contacts_list = no
 	share_communications = no
 	playable = no
@@ -55,7 +59,7 @@ fmerc_operations = {
 	diplomatic_wars = no
 	relations = no
 	orbital_bombardment = yes
-	debris = yes
+	#debris = yes
 
 	ai = {
 		enabled = no

@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -199,6 +200,74 @@ ship_section_template = {
 	aux_utility_slots = 3
 }
 
+###################################################################################################
+####   Variant of common STARFORTRESS_STARBASE_SECTION created specially for enclave country   ####
+####   to bYpass issue with building starbases only around Star                                ####
+###################################################################################################
+
+ship_section_template = {
+	key = "SPACEPORT_CORE_SECTION"
+	ship_size = merc_spaceport
+
+	fits_on_slot = "core"
+	entity = "starbase_starfortress_section_entity"
+	icon = "GFX_ship_part_core_mid"
+
+	component_slot = {
+		name = "MEDIUM_GUN_01"
+		slot_size = torpedo
+		slot_type = weapon
+		locatorname = "medium_gun_01"
+	}
+
+	component_slot = {
+		name = "MEDIUM_GUN_02"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "medium_gun_02"
+	}
+
+	component_slot = {
+		name = "MEDIUM_GUN_03"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "medium_gun_03"
+	}
+
+	component_slot = {
+		name = "MEDIUM_GUN_04"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "medium_gun_04"
+	}
+
+	component_slot = {
+		name = "MEDIUM_GUN_05"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "medium_gun_05"
+	}
+
+	component_slot = {
+		name = "MEDIUM_GUN_06"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "medium_gun_06"
+	}
+	
+	component_slot = {
+		name = "MEDIUM_GUN_07"
+		slot_size = medium
+		slot_type = weapon
+		locatorname = "medium_gun_07"
+	}
+	
+	small_utility_slots = 0
+	medium_utility_slots = 0
+	large_utility_slots = 2
+	aux_utility_slots = 1
+}
+
 ship_section_template = {
 	key = "FMERC_MEDIUM_SECTION"
 	ship_size = military_station_medium
@@ -225,8 +294,7 @@ ship_section_template = {
 		locatorname = "medium_gun_02"
 	}
 
-	small_utility_slots = 2
-	medium_utility_slots = 1
+	small_utility_slots = 1
 	large_utility_slots = 1
 }
 
@@ -271,67 +339,83 @@ ship_section_template = {
 		is_side_slot = no
 	}
 
-	small_utility_slots = 2
+	small_utility_slots = 1
 	medium_utility_slots = 1
-	large_utility_slots = 1
+
 }
 
 ship_section_template = {
 	key = "FMERC_SPACEPORT_SECTION_1"
-	ship_size = orbital_station
+	#ship_size = orbital_station          changed for versions 2.0
+	ship_size = merc_spaceport
+
 	entity = "orbital_station_assemblyyard_section_entity"
 	icon = "GFX_ship_part_core_mid"
+	fits_on_slot = "1"
 	fits_on_slot = "2"
 	fits_on_slot = "3"
 	fits_on_slot = "4"
 	fits_on_slot = "5"
 	fits_on_slot = "6"
-	fits_on_slot = "7"
+	#fits_on_slot = "7"
 	prerequisites = { tech_mercenary_enclave }
-	large_utility_slots = 3
+
+	large_utility_slots = 2
 }
 
 ship_section_template = {
 	key = "FMERC_SPACEPORT_SECTION_2"
-	ship_size = orbital_station
+	#ship_size = orbital_station          changed for versions 2.0
+	ship_size = merc_spaceport
+
 	entity = "orbital_station_hangarbay_section_entity"
 	icon = "GFX_ship_part_core_mid"
+	fits_on_slot = "1"
 	fits_on_slot = "2"
 	fits_on_slot = "3"
 	fits_on_slot = "4"
 	fits_on_slot = "5"
 	fits_on_slot = "6"
-	fits_on_slot = "7"
+	#fits_on_slot = "7"
 	prerequisites = { tech_mercenary_enclave }
-	large_utility_slots = 3
+
+	large_utility_slots = 2
 }
 
 ship_section_template = {
 	key = "FMERC_SPACEPORT_SECTION_3"
-	ship_size = orbital_station
+	#ship_size = orbital_station          changed for versions 2.0
+	ship_size = merc_spaceport
+
 	entity = "orbital_station_refinery_section_entity"
 	icon = "GFX_ship_part_core_mid"
+	fits_on_slot = "1"
 	fits_on_slot = "2"
 	fits_on_slot = "3"
 	fits_on_slot = "4"
 	fits_on_slot = "5"
 	fits_on_slot = "6"
-	fits_on_slot = "7"
+	#fits_on_slot = "7"
 	prerequisites = { tech_mercenary_enclave }
-	large_utility_slots = 3
+
+	large_utility_slots = 2
 }
 
 ship_section_template = {
 	key = "FMERC_SPACEPORT_SECTION_4"
-	ship_size = orbital_station
+	#ship_size = orbital_station          changed for versions 2.x
+	ship_size = merc_spaceport
+	
 	entity = "orbital_station_science_section_entity"
 	icon = "GFX_ship_part_core_mid"
+	fits_on_slot = "1"
 	fits_on_slot = "2"
 	fits_on_slot = "3"
 	fits_on_slot = "4"
 	fits_on_slot = "5"
 	fits_on_slot = "6"
-	fits_on_slot = "7"
+	#fits_on_slot = "7"
 	prerequisites = { tech_mercenary_enclave }
-	large_utility_slots = 3
+
+	large_utility_slots = 2
 }

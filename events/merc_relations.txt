@@ -85,7 +85,7 @@ country_event = {
 # Only when the enclave is totally obliterated.
 country_event = {
 	id = mercRelations.142
-	title = "guardian.141"
+	title = "leviathans.141"
 	desc = merc.destroyed.desc
 	picture = GFX_evt_exploding_ship
 	location = event_target:trader_system

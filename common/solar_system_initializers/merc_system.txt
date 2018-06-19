@@ -20,8 +20,9 @@
 @base_moon_distance = 10
 
 folk_merc_init = {
-	class = random
-
+	name = random
+	
+	class = "sc_g"
 	usage = misc_system_init
 	usage_odds = {
 		base = 100
@@ -119,7 +120,8 @@ folk_merc_init = {
 				# Double mod, lulzpatrol
 				guardian_difficulty = yes
 				add_modifier = {
-					modifier = guardian_insane
+					#modifier = guardian_insane # erased in 2.1
+					modifier = ruler_ship
 					days = -1
 				}
 				set_graphical_culture = fungoid_01
@@ -128,19 +130,19 @@ folk_merc_init = {
 					effect = {
 						set_owner = PREV
 						create_ship = {
-							name = " "
+							name = "random"
 							design = "Mercenary Enclave Century"
 						}
 						create_ship = {
-							name = " "
+							name = "random"
 							design = "Mercenary Enclave Century"
 						}
 						create_ship = {
-							name = " "
+							name = "random"
 							design = "Mercenary Enclave Century"
 						}
 						create_ship = {
-							name = " "
+							name = "random"
 							design = "Mercenary Enclave Century"
 						}
 						create_ship = {
@@ -165,35 +167,35 @@ folk_merc_init = {
 							graphical_culture = "mammalian_01"
 						}
 						create_ship = {
-							name = " "
+							name = "random"
 							design = "Mercenary Enclave Pioneer"
 						}
 						create_ship = {
-							name = " "
+							name = "random"
 							design = "Mercenary Enclave Pioneer"
 						}
 						create_ship = {
-							name = " "
+							name = "random"
 							design = "Mercenary Enclave Pioneer"
 						}
 						create_ship = {
-							name = " "
+							name = "random"
 							design = "Mercenary Enclave Pioneer"
 						}
 						create_ship = {
-							name = " "
+							name = "random"
 							design = "Mercenary Enclave Pioneer"
 						}
 						create_ship = {
-							name = " "
+							name = "random"
 							design = "Mercenary Enclave Pioneer"
 						}
 						create_ship = {
-							name = " "
+							name = "random"
 							design = "Mercenary Enclave Pioneer"
 						}
 						create_ship = {
-							name = " "
+							name = "random"
 							design = "Mercenary Enclave Pioneer"
 						}
 						set_fleet_formation = {

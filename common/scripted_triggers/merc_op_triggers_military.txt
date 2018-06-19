@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +33,8 @@ merc_military_ideal = {
 			any_ship_in_system = {
 				OR = {
 					is_ship_class = shipclass_military_station
-					is_ship_class = shipclass_orbital_station
+					#is_ship_class = shipclass_orbital_station           changed for versions 2.x
+					is_ship_class = shipclass_starbase                 
 				}
 			}
 		}
@@ -41,7 +43,13 @@ merc_military_ideal = {
 
 merc_military_good = {
 	merc_military_minimum = yes
-	solar_system = { NOT = { any_ship_in_system = { is_ship_class = shipclass_military_station } } }
+	solar_system = {
+		NOT = {
+			any_ship_in_system = {
+				is_ship_class = shipclass_military_station
+			}
+		}
+	}
 }
 
 merc_military_minimum = {

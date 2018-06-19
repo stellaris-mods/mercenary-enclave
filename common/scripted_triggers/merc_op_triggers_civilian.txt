@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,12 +25,17 @@
 
 # Note that this trigger is used both in the diplomacy screen, and during the operation
 merc_valid_civilian_raid_target = {
+	
+	# we cannot any more attack mining_station after update 2.0 (without adding attribute to conutry)
 	OR = {
 		# Default
-		is_ship_size = mining_station
+		is_ship_size = mining_station 
 		is_ship_size = research_station
 		is_ship_size = observation_station
-		is_ship_size = outpost_station
+		#is_ship_size = outpost_station   update for versions 2.0
+
+		is_ship_size = starbase_outpost
+ 		
 		# Swarm
 		is_ship_size = construction_ship_swarm
 		is_ship_size = colony_ship_swarm
@@ -47,7 +53,8 @@ merc_civilian_ideal = {
 				OR = {
 					is_ship_class = shipclass_military_station
 					is_ship_class = shipclass_military
-					is_ship_class = shipclass_orbital_station # Spaceport
+					#is_ship_class = shipclass_orbital_station # Spaceport           changed for versions 2.x
+					is_ship_class = shipclass_starbase
 				}
 			}
 		}

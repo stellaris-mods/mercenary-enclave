@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,20 +27,39 @@ fleet_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		#log = "Moving operations fleet [this.GetName]."
-		merc_verify_current_target = yes
 
+		# Debug scope printing
+		if = { limit = { has_global_flag = "debug" }
+			target_scopes_log = yes
+			print_scope_effect = yes
+		}	
+		
+		merc_verify_current_target = yes
+		
 		if = { limit = { merc_is_target_valid = yes }
 			owner = {
 				merc_set_country = yes
+							
 				switch = {
 					trigger = has_country_flag
-					merc_op_dock = { ROOT = { merc_stage3_init_fleet = yes } }
-					merc_op_liberate = { ROOT = { merc_stage3_init_fleet_liberate = yes } }
-					merc_op_spaceport = { ROOT = { merc_stage3_init_fleet = yes } }
-					merc_op_civilian = { ROOT = { merc_stage3_init_fleet = yes } }
-					merc_op_military = { ROOT = { merc_stage3_init_fleet = yes } }
-					merc_op_clear = { ROOT = { merc_stage3_init_fleet = yes } }
+					merc_op_dock = {
+						log = "owner has merc_op_dock flag."
+						ROOT = { merc_stage3_init_fleet = yes } }
+					merc_op_liberate = {
+						log = "owner has merc_op_liberate flag."
+						ROOT = { merc_stage3_init_fleet_liberate = yes } }
+					merc_op_spaceport = {
+						log = "owner has merc_op_spaceport flag."
+						ROOT = { merc_stage3_init_fleet = yes } }
+					merc_op_civilian = {
+						log = "owner has merc_op_civilian flag."
+						ROOT = { merc_stage3_init_fleet = yes } }
+					merc_op_military = {
+						log = "owner has merc_op_military flag."
+						ROOT = { merc_stage3_init_fleet = yes } }
+					merc_op_clear = {
+						log = "owner has merc_op_clear flag."
+						ROOT = { merc_stage3_init_fleet = yes } }
 				}
 			}
 		else = {
@@ -49,20 +69,45 @@ fleet_event = {
 	}
 }
 
+
 fleet_event = {
 	id = mercControllerFleet.200
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
 		has_fleet_flag = "merc_operations"
-		owner = { NOT = { has_country_flag = "merc_op_dock" } }
+		owner = {
+			NOT = { has_country_flag = "merc_op_dock" }
+		}
 	}
+	# i have made separate fleet actions for liberation fleet, this will fix bordbadment issue
 	immediate = {
-		owner = { merc_set_country = yes }
-		merc_fleet_maybe_go_hostile = yes
+		if = {
+			limit = {
+				owner = { NOT = { has_country_flag = "merc_op_liberate" } }	
+			}
+			#log = "mercControllerFleet.200 NO merc_op_liberate flag"
+
+			owner = {
+				random_country = {
+					limit = {
+						reverse_has_relation_flag = {
+							who = PREV
+							flag = merc_operations_target
+						}
+					}
+					save_event_target_as = merc_country
+				}
+			}
+			merc_fleet_maybe_go_hostile = yes	
+		}
 	}
 }
 
+# This = owner of fleet 1 (destroyed)
+# From = owner of fleet 2 (combatant)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
 # on_fleet_destroyed_victim
 country_event = {
 	id = mercControllerFleet.300
@@ -85,11 +130,13 @@ country_event = {
 			solar_system = {
 				set_timed_star_flag = {
 					flag = "merc_deathzone"
-					days = 3
+					days = 5
 				}
 			}
 		}
-		log = "on_fleet_destroyed_victim"
+		set_country_flag = fleet_destroyed
+		
+		log = "mercControllerFleet.300 our fleet was destroyed"
 		merc_stage4_failed = yes
 	}
 }

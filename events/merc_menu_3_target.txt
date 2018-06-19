@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,6 +33,8 @@ country_event = {
 				merc_op_spaceport = {
 					text = "merc.param.operation.spaceport"
 					text = "merc.operation.spaceport.desc"
+					text = newline
+					text = "merc.operation.spaceport.targets"
 				}
 				merc_op_liberate = {
 					text = "merc.param.operation.liberate"
@@ -40,10 +43,14 @@ country_event = {
 				merc_op_civilian = {
 					text = "merc.param.operation.civilian"
 					text = "merc.operation.civilian.desc"
+					text = newline
+					text = "merc.operation.civilian.targets"
 				}
 				merc_op_military = {
 					text = "merc.param.operation.fleet"
 					text = "merc.operation.fleet.desc"
+					text = newline
+					text = "merc.operation.fleet.targets"
 				}
 			}
 			text = newline
@@ -73,30 +80,31 @@ country_event = {
 	immediate = { merc_menu_3_target_init = yes }
 
 	option = {
-		name = "merc.close"
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = "merc.back"
-		hidden_effect = { country_event = { id = mercMenu.200 } }
-	}
-	option = {
 		name = "merc.target.generic"
 		custom_tooltip = "merc.multipliers.target.generic"
-		trigger = { any_country = { merc_menu_3_is_known_target_generic = yes } }
+		trigger = {
+			any_country = {
+				merc_menu_3_is_known_target_generic = yes
+				}
+			}
 		allow = {
 			custom_tooltip_fail = {
 				text = "merc.condition.invalid.target"
 				merc_menu_3_has_valid_operation_generic = yes
 			}
 		}
-		hidden_effect = { merc_menu_3_target_default = yes }
+		hidden_effect = {
+			merc_menu_3_target_default = yes
+			}
 	}
 	option = {
 		name = "merc.target.fallen"
 		custom_tooltip = "merc.multipliers.target.fallen"
-		trigger = { any_country = { merc_menu_3_is_known_target_fallen = yes } }
+		trigger = {
+			any_country = {
+				merc_menu_3_is_known_target_fallen = yes
+				}
+			}
 		allow = {
 			custom_tooltip_fail = {
 				text = "merc.condition.invalid.target"
@@ -142,6 +150,15 @@ country_event = {
 			}
 		}
 		hidden_effect = { merc_menu_3_target_synthetic = yes }
+	}
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.200 } }
+	}
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 }
 
@@ -189,16 +206,42 @@ country_event = {
 		portrait = event_target:mercenaries
 		room = enclave_trader_room
 	}
-	immediate = { merc_menu_3_mark_and_update_targets = yes }
+	immediate = {
+		merc_menu_3_mark_and_update_targets = yes
+
+		# Debug checking
+		if = { limit = { has_global_flag = "debug" }
+			if = {
+				limit = {
+					NOT = {exists = event_target:merc_tmp_1}
+					event_target:merc_tmp_1 = { NOT = { has_country_flag = "merc_invalid" } }	
+				}			
+					
+				log = "merc_tmp_1 does not esist"
+			}
+			
+			if = {
+				limit = {
+					exists = event_target:merc_tmp_1
+					event_target:merc_tmp_1 = { NOT = { has_country_flag = "merc_invalid" } }	
+				}	
+				log = "merc_tmp_1 have 'merc_invalid' country flag "
+			}
+		}
+
+	}
+		
 	after = { hidden_effect = { merc_shameful_validate_all_targets = yes } }
+	
+
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.1000 } }
+	}
 	option = {
 		name = "merc.close"
 		default_hide_option = yes
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = "merc.back"
-		hidden_effect = { country_event = { id = mercMenu.1000 } }
 	}
 	option = {
 		name = "merc.country.1.button"

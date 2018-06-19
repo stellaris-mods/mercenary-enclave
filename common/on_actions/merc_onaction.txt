@@ -1,10 +1,11 @@
-
+# Triggers when the game starts
 on_game_start = {
 	events = {
 		mercInit.10
 	}
 }
 
+# No scope, like on_game_start
 on_monthly_pulse = {
 	events = {
 		mercOpsMeta.100
@@ -12,6 +13,7 @@ on_monthly_pulse = {
 	}
 }
 
+# No scope, like on_game_start
 on_yearly_pulse = {
 	events = {
 		mercRecurring.100
@@ -20,6 +22,7 @@ on_yearly_pulse = {
 	}
 }
 
+# No scope, like on_game_start
 on_bi_yearly_pulse = {
 	events = {
 		mercStations.1
@@ -27,12 +30,16 @@ on_bi_yearly_pulse = {
 	}
 }
 
+# No scope, like on_game_start
 on_decade_pulse = {
 	events = {
 		mercStations.200
 	}
 }
 
+# A fleet has entered a system
+# Scope = Fleet
+# From = System
 on_entering_system_fleet = {
 	events = {
 		mercCommunications.90
@@ -42,18 +49,30 @@ on_entering_system_fleet = {
 	}
 }
 
+# This = owner of fleet 1
+# From = owner of fleet 2
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
 on_entering_battle = {
 	events = {
 		mercRelations.155
 	}
 }
 
+# Triggers when trying to open the diplomacy view for countries with custom diplomacy.
+# Country scope
+# This = target country (player)
+# From = source country
 on_custom_diplomacy = {
 	events = {
 		mercMenu.100
 	}
 }
 
+# This = owner of fleet 1 (destroyed)
+# From = owner of fleet 2 (combatant)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
 on_fleet_destroyed_victim = {
 	events = {
 		mercControllerFleet.300
@@ -61,28 +80,80 @@ on_fleet_destroyed_victim = {
 	}
 }
 
+# Triggers country_event for the defender upon victory
+# Root = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
 on_planet_defenders_win = {
 	events = {
 		mercOpsLiberate.50
 	}
 }
 
+# Triggers country_event for the defender upon defeat
+# This = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
 on_planet_defenders_lose = {
 	events = {
 		mercOpsLiberate.60
 	}
 }
 
+# Initial rebels manage to take control of the planet, happens before the new owner is set, after the war is created.
+# This = Rebel Country
+# From = Planet
+# FromFrom = War
 on_rebels_take_planet = {
 	events = {
 		mercOpsLiberate.70
 	}
 }
 
+# Initial rebels manage to take control of the planet, happens after the new owner is set, after the war is created.
+# This = Rebel Country
+# From = Planet
+# FromFrom = War
 on_rebels_take_planet_owner_switched = {
 	events = {
 		mercOpsLiberate.71
 	}
 }
 
-on_ship_destroyed_perp = { events = { mercOpsMeta.200 } }
+# This = owner of ship 1 (combatant)
+# From = owner of ship 2 (destroyed)
+# FromFrom = ship 1
+# FromFromFrom = ship 2
+on_ship_destroyed_perp = {
+	events = {
+		mercOpsMeta.200
+	}
+}
+
+
+# This = Ship
+# From = Disabler Ship
+on_ship_disabled = {
+	events = {
+		mercOpsMeta.300
+	}
+}
+
+# Called when a Starbase changes owner
+# THIS = Ship (Starbase)
+# FROM = Former Owner (Country)
+on_starbase_transfer = {
+	events = {
+
+	}
+}
+
+# This = owner of fleet 1 (combatant)
+# From = owner of fleet 2 (destroyed)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+on_fleet_destroyed_perp = {
+	events = {
+
+	}
+}

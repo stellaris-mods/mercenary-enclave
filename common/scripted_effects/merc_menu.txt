@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -83,6 +84,10 @@ merc_menu_2_operation_init = {
 	remove_country_flag = "merc_op_liberate"
 	remove_country_flag = "merc_op_military"
 	remove_country_flag = "merc_op_clear"
+	remove_country_flag = "merc_op_leviathans"
+	remove_country_flag = "dirty_missions_hunt"
+	remove_country_flag = "dirty_missions_assassination"
+	remove_country_flag = "dirty_missions_terror"
 
 	merc_account_set_trust_multiplier = yes
 
@@ -103,6 +108,7 @@ merc_menu_2_operation_apply = {
 
 # These operation-specific effects are invoked
 merc_menu_2_operation_spaceport = {
+	set_variable = { which = "MercCost" value = 500 }
 	set_variable = { which = "MercCostEnergy" value = 3000 }
 	set_variable = { which = "MercCostInfluence" value = 50 }
 	set_variable = { which = "MercSuccess" value = 75 }
@@ -113,6 +119,7 @@ merc_menu_2_operation_spaceport = {
 
 merc_menu_2_operation_liberate = {
 	# XXX I think this should scale with colony_age.
+	set_variable = { which = "MercCost" value = 1000 }
 	set_variable = { which = "MercCostEnergy" value = 7000 }
 	set_variable = { which = "MercCostInfluence" value = 100 }
 	set_variable = { which = "MercSuccess" value = 70 }
@@ -122,6 +129,7 @@ merc_menu_2_operation_liberate = {
 }
 
 merc_menu_2_operation_raid = {
+	set_variable = { which = "MercCost" value = 500 }
 	set_variable = { which = "MercCostEnergy" value = 2500 }
 	set_variable = { which = "MercCostInfluence" value = 50 }
 	set_variable = { which = "MercSuccess" value = 75 }
@@ -142,6 +150,11 @@ merc_menu_2_operation_fleet = {
 
 merc_menu_2_operation_clear = {
 	set_country_flag = "merc_op_clear"
+}
+
+# ToDo, finish this new event that i planned
+merc_menu_2_operation_leviathans = {
+	set_country_flag = "merc_op_leviathans"
 }
 
 ###############################################################################
@@ -213,6 +226,8 @@ merc_menu_3_mark_and_update_targets = {
 	# This mess right here... I really wish I had a cleaner way of doing it.
 
 	# Mark all previous event targets as invalid
+	log = "merc_menu_3_mark_and_update_targets started"
+		
 	merc_shameful_invalidate_targets = yes
 
 	every_country = {
@@ -224,12 +239,14 @@ merc_menu_3_mark_and_update_targets = {
 		limit = { any_country = { has_country_flag = "merc_tmp" } }
 		random_country = {
 			limit = { has_country_flag = "merc_tmp" }
+
 			remove_country_flag = "merc_tmp"
 			merc_shameful_save_target = yes
 		}
 	}
 
 	# Clean up
+	#log = "removing 'merc_tmp' country flag"
 	every_country = { limit = { has_country_flag = "merc_tmp" } remove_country_flag = "merc_tmp" }
 }
 

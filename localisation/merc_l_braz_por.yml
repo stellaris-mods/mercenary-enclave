@@ -9,6 +9,7 @@ l_braz_por:
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,6 +55,12 @@ fmerc_opinion_liberate: "Mercenary Operation"
 fmerc_opinion_raid: "Mercenary Operation"
 fmerc_opinion_fleet: "Mercenary Operation"
 fmerc_opinion_spaceport: "Mercenary Operation"
+
+#######################
+# Sections and Designs
+#
+merc_spaceport: "Enclave Spaceport"
+merc_spaceport_plural: "Enclave Spaceports"
 
 ###############################################################################
 # Common dialogue
@@ -139,22 +146,52 @@ merc.insurance.prevented: "We regret to inform you that the target you selected 
 
 # operation completed
 merc.completed.title: "Open for business"
-merc.completed.desc: "$merc.name.colored$ is pleased to inform you that our services menu is now open for business."
-merc.completed.nothing: "Unfortunately, our operations did not manage to do much of anything before being beaten back by strong opposition. All transactions are final. Have a nice day."
+merc.completed.merc_op_spaceport: "§YSpaceport Raid Completed§!"
+merc.completed.merc_op_spaceport.failed: "§RSpaceport Raid FAILED\n\nNo valid targets found!§!"
+merc.completed.merc_op_liberate: "§YLiberate Planet mission Completed§!"
+merc.completed.merc_op_liberate.failed1: "§RLiberate Planet mission FAILED\n\nOur fleet was destroyed!§!"
+merc.completed.merc_op_liberate.failed2: "§RLiberate Planet mission FAILED\n\nNo valid targets found!§!"
+merc.completed.merc_op_civilian: "§YCivilian Raid Completed§!"
+merc.completed.merc_op_civilian.failed: "§RCivilian Raid FAILED\n\nNo valid targets found!§!"
+merc.completed.merc_op_military: "§YMilitary Ships Raid Completed§!"
+merc.completed.merc_op_military.failed: "§RMilitary Ships Raid FAILED\n\nNo valid targets found!§!"
+merc.completed.merc_op_clear: "§YClear Space mission Completed§!"
+merc.completed.merc_op_clear.failed: "§RClear Space mission FAILED\n\nNo valid targets found!§!"
+merc.completed.desc: "§Ymerc.name.colored§! is pleased to inform you that our services menu is now open for business."
+merc.completed.nothing: "Unfortunately, our operations did not manage to do much of anything before being beaten back by strong opposition. All transactions are final."
 merc.completed.pretext: "After carefully studying the long range scanner data, and reading the reports from our officers who returned, the data reveal the following discrepancies before and after the operation:"
-merc.completed.posttext: "We hope you are happy with services rendered. Have a nice day."
-merc.completed.frontier: "   - §G[from.Owner.MercKillsFrontier]x§! $outpost_station_plural$"
-merc.completed.obspost: "   - §G[from.Owner.MercKillsObs]x§! $observation_station_plural$"
-merc.completed.wormhole: "   - §G[from.Owner.MercKillsWormhole]x§! $wormhole_station_plural$"
-merc.completed.research: "   - §G[from.Owner.MercKillsResearch]x§! $research_station_plural$"
-merc.completed.mining: "   - §G[from.Owner.MercKillsMining]x§! $mining_station_plural$"
-merc.completed.spaceport: "   - §G[from.Owner.MercKillsSpaceport]x§! $orbital_station_plural$"
-merc.completed.stations: "   - §G[from.Owner.MercKillsStations]x§! $shipclass_military_station$"
-merc.completed.ships: "   - §G[from.Owner.MercKillsShips]x§! $shipclass_military$"
-merc.completed.total: "   - §G[from.Owner.MercKillsTotal]§! total signatures changed"
-merc.completed.transport: "   - §G[from.Owner.MercKillsTransport]x§! $shipclass_transport$"
-merc.completed.civilian: "   - §G[from.Owner.MercKillsCivilian]x§! $OUTLINER_CIVILIAN_FLEETS$"
-merc.completed.liberated: "   - §G[from.Owner.MercLiberatedPlanets]x§! Planets liberated"
+merc.completed.posttext: "We hope you are happy with services rendered. \nHave a nice day."
+merc.completed.merc_op_liberate.defenders: "§RLiberate Planet mission FAILED§! Planetary defenders repulsed all our attacks.\n\nYou were warned about a possible failure."
+
+#merc.completed.frontier: "   - §G[from.Owner.MercKillsFrontier]x§! $outpost_station_plural$"
+merc.completed.obspost: "   - §G[from.Owner.MercKillsObs]x§! $observation_station_plural$ destroyed"
+merc.completed.wormhole: "   - §G[from.Owner.MercKillsWormhole]x§! $wormhole_station_plural$ destroyed"
+merc.completed.research: "   - §G[from.Owner.MercKillsResearch]x§! $research_station_plural$ destroyed"
+merc.completed.mining: "   - §G[from.Owner.MercKillsMining]x§! $mining_station_plural$ destroyed destroyed"
+merc.completed.spaceport: "   - §G[from.Owner.MercKillsSpaceport]x§! $orbital_station_plural$ destroyed"
+merc.completed.stations: "   - §G[from.Owner.MercKillsStations]x§! $shipclass_military_station$ destroyed"
+merc.completed.ships: "   - §G[from.Owner.MercKillsShips]x§! $shipclass_military$ destroyed"
+merc.completed.transport: "   - §G[from.Owner.MercKillsTransport]x§! $shipclass_transport$ destroyed"
+merc.completed.civilian: "   - §G[from.Owner.MercKillsCivilian]x§! $OUTLINER_CIVILIAN_FLEETS$ destroyed"
+merc.completed.liberated: "   - §G[from.Owner.MercLiberatedPlanets]x§! §YPlanet liberated§!!"
+merc.completed.Colossus: "   - §G[from.Owner.MercKillsColossus]x§! $shipclass_military_special$"
+merc.completed.killedport: "   - §G[from.Owner.MercKilledPort]x§! $shipclass_starbase$ class-$starbase_starport$"
+merc.completed.killedhold: "   - §G[from.Owner.MercKilledHold]x§! $shipclass_starbase$ class-$starbase_starhold$"
+merc.completed.killedfortress: "   - §G[from.Owner.MercKilledFortress]x§! $shipclass_starbase$ class-$starbase_starfortress$"
+merc.completed.killedcit: "   - §G[from.Owner.MercKilledCit]x§! $shipclass_starbase$ class-$starbase_citadel$"
+merc.completed.killedother: "   - §G[from.Owner.MercKilledOther]x§! Other starbases destroyed"
+merc.completed.disabled: "   - §G[from.Owner.MercDisabledTotal]x§! Total disabled $shipclass_starbase$ including:"
+merc.completed.outpost: "   - §G[from.Owner.MercDisabledOut]x§! disabled $starbase_outpost$"
+merc.completed.starport: "   - §G[from.Owner.MercDisabledPort]x§! disabled $starbase_starport$"
+merc.completed.starhold: "   - §G[from.Owner.MercDisabledHold]x§! disabled $starbase_starhold$"
+merc.completed.starfortress: "   - §G[from.Owner.MercDisabledFortress]x§! disabled $starbase_starfortress$"
+merc.completed.citadel: "   - §G[from.Owner.MercDisabledCit]x§! disabled $starbase_citadel$"
+merc.completed.total: "   - §G[from.Owner.MercKillsTotal]§!  total signatures changed"
+
+
+
+merc.completed.notarget: "Unfortunately, our operations did not manage to do much of anything because, no such targets have been found inside of your borders. Try another target. All transactions are final. Have a nice day."
+merc.completed.pity: "It's a pity."
 
 # Merc Enclave destroyed
 merc.destroyed.desc: "The headquarters of $merc.name.colored$ in the [trader_system.GetName] system was recently destroyed by an attack force belonging to the [trader_destroyer.GetName]! The few surviving employees have fled the scene, and the corporation's remaining assets are being liquidated."
@@ -164,6 +201,7 @@ merc.destroyed.button: "A blow to free trade."
 # Tooltip conditions
 #
 
+merc_enclave.trust: "Requires this §YMercenary Enclave§! to have:\n£opinion  Opinion +20\n"
 merc.condition.station.access: "We need to allow them access to construct operations facilities in our territory."
 merc.condition.deposit: "You need at least £minerals §G2500§! deposited with $merc.name.colored$."
 merc.condition.invalid.target: "We §Pnever§! execute this specific operation against this type of empire."
@@ -228,15 +266,39 @@ merc.operations.desc: "We provide several services for our customers. Feel free 
 merc.operation.spaceport: "Spaceport Raid"
 merc.operation.spaceport.button: "§Y$merc.operation.spaceport$ ...§!"
 merc.operation.spaceport.desc: "Locate and destroy one or more Spaceport facilities on your behalf."
+merc.operation.spaceport.targets: "Optimal targets: large $shipclass_starbase$ in star systems, without space fleets."
 merc.operation.liberate: "Liberate Planet"
 merc.operation.liberate.button: "§Y$merc.operation.liberate$ ...§!"
 merc.operation.liberate.desc: "Planet liberation is always risky business, and has an immense upfront cost - but the payoff is exceptional. We find a suitable target to invade, and do all the dirty work for you. Once liberated, the population on the planet will be \"convinced\" to follow your ethos, and freed from what we can only presume is the tyranny of their former oppressors."
 merc.operation.civilian: "Civilian Raid"
 merc.operation.civilian.button: "§Y$merc.operation.civilian$ ...§!"
+merc.operation.civilian.targets: "§YOptimal targets:§! $mining_station_plural$, $research_station_plural$, $observation_station_plural$ in systems without $shipclass_military_station$, $shipclass_military$ or $shipclass_starbase$ bigger than $starbase_outpost$."
 merc.operation.civilian.desc: "Stifles your opponents economy. We locate, engage, and destroy, between 5 and 12 civilian targets, including transports, in your adversaries space. Of course, any loot we find is ours to keep."
 merc.operation.fleet: "Military Ships Raid"
 merc.operation.fleet.button: "§Y$merc.operation.fleet$ ...§!"
+merc.operation.fleet.targets: "§YOptimal targets:§! fleets with $FLEET_POWER$ is greater than §Y1200§! and smaller than §R90000§! in systems without $shipclass_military_station$ or $shipclass_starbase$."
 merc.operation.fleet.desc: "The most dangerous service we provide. This puts us inevitably in direct confrontation with military opponents, and as such comes with a premium. However, this is what we live for, and the part of our job we enjoy the most. We locate, identify, track, and engage, a minimum of 1 (one) military fleet of relative significance."
+
+# Help with Leviathans
+merc.operation.leviathans: "Help with Leviathans"
+merc.operation.leviathans.button: "§Y$merc.operation.leviathans$ ...§!"
+merc.operation.leviathans.desc: "New unusual service. Have you met with these strange, horrific and unusual giants.Of course, we will not be able to overcome them for You, but we can help You a little with them.We will create a fleet with fleet power 10K / 20K / 30K which will wait for you in the adjacent system from Leviathan.Drones will be programmed to follow you and possibly serve as a distracting maneuver when attacking a monster.This will reduce the loss of your fleet. Select the type of §RLeviathan§! in our services menu on the right."
+
+# Dirty Missions
+merc.operation.dirty_missions: "«Dirty Missions»"
+merc.operation.dirty_missions.button: "§B$merc.operation.dirty_missions$ ...§!"
+merc.operation.dirty_missions.desc: "Dirty missions from our partners Pirate clans in the entire galaxy. All of them usually lead to a strong deterioration in the attitude towards You and of course to us."
+merc.operation.dirty_missions.deny.desc: "§RWe consider it beneath our dignity to carry out such types of missions, but not mercenaries from the §Y"Privateering Enterprises"§!, unfortunately we could not contact them.§!"
+merc.operation.dirty_missions.deny.tooltip: "§RUnfortunately we could not contact §Y"Privateering Enterprises"§!.§!"
+
+merc.operation.dirty_missions.hunt: "Hunting for Researchers"
+merc.operation.dirty_missions.hunt.tooltip: "Mercenaries from §Y"Privateering Enterprises"§! locate, engage, and destroy from 3 to 5 of Your enemy's Research ships."
+
+merc.operation.dirty_missions.assassination: "Assassination"
+merc.operation.dirty_missions.assassination.tooltip: "Mercenaries from §Y"Privateering Enterprises"§! will be introduced into the state structures of your opponent and will try to eliminate the leader. If successful, your opponent will have to re-election. Completely, this is a very risky operation with a high risk of detection and failure."
+
+merc.operation.dirty_missions.terror: "Terror in the Capital"
+merc.operation.dirty_missions.terror.tooltip: "Mercenaries from §Y"Privateering Enterprises"§! having penetrated into the capital and will hold several explosions. In case of success, the state and industrial capacities of the capital will be undermined. Completely, this is a very risky operation with a high risk of detection and failure."
 
 # Clear Space
 merc.operation.clearspace: "Clear Space"
@@ -248,6 +310,7 @@ merc.clearspace.cloud: "§YImmediately attack $space_cloud_plural$§!"
 merc.clearspace.crystal: "§YImmediately attack Crystals§!"
 merc.clearspace.pirates: "§YImmediately attack Pirates§!"
 merc.clearspace.drones: "§YImmediately attack Drones§!"
+merc.clearspace.marauders: "Save us from the Marauders!"
 merc.clearspace.tooltip: "$merc.name.colored$ will §Rimmediately§! go to work on any hostile targets matching this description inside your territories. If there are no targets of this type, your minerals will be considered a donation.\n\nThe cost will vary depending on several factors, but $merc.name.colored$ sees this service as a friendly gesture among trusted customers, and will simply §Gdeduct the cost from your account§! after the operation has been completed."
 
 # Question 1, which country should we attack
@@ -324,3 +387,6 @@ merc.country.17.button: "§Y[merc_tmp_17.GetName] ...§!"
 merc.country.18.button: "§Y[merc_tmp_18.GetName] ...§!"
 merc.country.19.button: "§Y[merc_tmp_19.GetName] ...§!"
 merc.country.20.button: "§Y[merc_tmp_20.GetName] ...§!"
+
+mercOpsLiberate.1339.title: "It's about time"
+mercOpsLiberate.1339.desc: "It seems the mission was successful and it's time to get acquainted with the §Y[From.GetName]§!!"

@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,8 +24,8 @@ merc_menu_3_is_targetted_type = {
 		switch = {
 			trigger = has_country_flag
 			merc_country_type_generic = { PREV = { merc_menu_3_is_known_target_generic = yes } }
-			merc_country_type_fallen = { PREV = { merc_menu_3_is_known_target_fallen = yes } }
-			merc_country_type_hivemind = { PREV = { merc_menu_3_is_known_target_hivemind = yes } }
+			merc_country_type_fallen = { PREV = { merc_menu_3_is_known_target_fallen = yes } } 
+			merc_country_type_hivemind = { PREV = { merc_menu_3_is_known_target_hivemind = yes } } 
 			merc_country_type_unbidden = { PREV = { merc_menu_3_is_known_target_unbidden = yes } }
 			merc_country_type_synthetic = { PREV = { merc_menu_3_is_known_target_synthetic = yes } }
 		}
@@ -111,9 +112,24 @@ merc_menu_3_has_valid_operation_synthetic = {
 # just check is_country_type.
 #
 
+# Scope for spaceport was changed from planet to ship/fleet
+
+# was updated
 merc_menu_3_is_valid_target_spaceport = {
-	num_owned_planets > 2
-	any_owned_planet = { merc_spaceport_p9 = yes }
+	OR = {
+		count_owned_ships = {
+			limit = {
+				merc_valid_spaceport_target = yes
+				merc_minimum = yes
+			}
+			count > 3  # minimum 3 starports
+		}
+		AND = {
+			merc_is_unbidden = yes
+			# unbidden only has 1-4 constructors, usually 3.
+			any_owned_fleet = { merc_spaceport_p9 = yes }
+		}
+	}
 }
 
 merc_menu_3_is_valid_target_liberate = {

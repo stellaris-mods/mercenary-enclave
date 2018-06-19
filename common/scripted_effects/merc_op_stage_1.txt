@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -262,6 +263,7 @@ fmerc_stage1_determine_ship_powers = {
 	# In which case we won't use that type later.
 	log = "Ship Pwr: B=[this.BattleshipPower]  C=[this.CruiserPower]  D=[this.DestroyerPower] C=[this.CorvettePower]."
 	log = "Squadron: B=[this.BattleshipSquad] C=[this.CruiserSquad] D=[this.DestroyerSquad] C=[this.CorvettePower]."
+
 }
 
 fmerc_stage1_create_mercenaries = {
@@ -297,14 +299,24 @@ fmerc_stage1_create_mercenaries = {
 		auto_delete = no
 		ignore_initial_colony_error = yes
 		day_zero_contact = no
+		
+		
 	}
 	last_created_country = {
 		establish_communications_no_message = ROOT
 		establish_contact = { who = ROOT }
 		establish_communications_no_message = event_target:mercenaries
 		establish_contact = { who = event_target:mercenaries }
+		
+		# Added to fix bug with merc_stage4_complete
+		# we need to check if country still exist and if we have scope to remove flags, if mission was aborted
+		# in stage merc_stage4_complete we can face problem if fleet was destroyed or we lost scope (clear_space)
+		
+		save_event_target_as = mercenary_operations
 	}
-
+    
+	log = "Mercenary Operations created: [mercenary_operations.GetName]"
+	
 	# ZZZ Orbital bombardment clusterfuck
 	# This would be nice, but it stops orbital bombardment from working at all
 	# Surely there must be a way without declaring actual war of having
@@ -324,6 +336,7 @@ fmerc_init_stage1 = {
 	merc_verify_country = yes
 
 	event_target:merc_country = { set_country_flag = "fmerc_operations_target" }
+
 	log = "Stage 1: Buyer = [Root.GetName], target country = [merc_country.GetName]."
 
 	fmerc_stage1_create_mercenaries = yes
@@ -343,17 +356,19 @@ fmerc_init_stage1 = {
 			}
 		}
 		# Just make sure we have access to all 4 vanilla ship types
-		give_technology = { tech = tech_spaceport_1 message = no }
-		give_technology = { tech = tech_spaceport_2 message = no }
-		give_technology = { tech = tech_spaceport_3 message = no }
-		give_technology = { tech = tech_spaceport_4 message = no }
-		give_technology = { tech = tech_spaceport_5 message = no }
-		give_technology = { tech = tech_spaceport_6 message = no }
+
+		give_technology = { tech = tech_starbase_1 message = no }
+		give_technology = { tech = tech_starbase_2 message = no }
+		give_technology = { tech = tech_starbase_3 message = no }
+		give_technology = { tech = tech_starbase_4 message = no }
+		give_technology = { tech = tech_starbase_5 message = no }
 
 		# We need this so that we have any drive with a higher priority
 		# than WORMHOLE_DRIVE.
-		give_technology = { tech = tech_warp_drive_1 message = no }
-		give_technology = { tech = tech_warp_drive_2 message = no }
+		# give_technology = { tech = tech_warp_drive_1 message = no }
+		# give_technology = { tech = tech_warp_drive_2 message = no }
+
+		give_technology = { tech = tech_jump_drive_1 message = no }
 
 		# Hopefully this will force the ship designs to update, if they
 		# haven't already.
@@ -364,7 +379,7 @@ fmerc_init_stage1 = {
 		# ZZZ Does not apply to created fleets for some reason
 		set_policy = {
 			policy = orbital_bombardment
-			option = orbital_bombardment_full
+			option = orbital_bombardment_armageddon		#	 updated for version 2.0
 			cooldown = no
 		}
 
@@ -372,11 +387,20 @@ fmerc_init_stage1 = {
 		set_timed_country_flag = {
 			flag = "fmerc_ops_timeout"
 			days = 1800
+			#days = 20
 		}
 
 		set_relation_flag = {
 			who = ROOT
 			flag = merc_operations_squad
+		}
+
+		# this makes it show in the contact list,
+		# but at the same time it prevents the operations squad from engaging
+		# the enclave
+		set_subject_of = {
+			who = event_target:mercenaries
+			subject_type = mercsquad
 		}
 
 		set_relation_flag = {

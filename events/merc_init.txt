@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -64,6 +65,26 @@ country_event = {
 						has_star_flag = "guardians_dreadnought_system"
 						has_star_flag = "guardians_hive_system"
 						has_star_flag = "guardians_artists_system"
+						has_star_flag = "guardians_fortress_system"
+						has_star_flag = "enigmatic_system"
+						has_star_flag = "vechtar_zavonia_system"
+						has_star_flag = "pirate_enclave_system"
+						has_star_flag = "guardians_hatchling_system"
+						has_star_flag = "primitive_robot_system"
+						has_star_flag = "superflare_system"
+						has_star_flag = "collapse_system"
+						has_star_flag = "old_foes_system"
+						has_star_flag = "scavenger_bot_system"
+						has_star_flag = "living_planet_system"
+						has_star_flag = "elderly_tiyanki_system"
+						has_star_flag = "ruined_empire"
+						has_star_flag = "escape_pod_system"
+						has_star_flag = "graygoo_factory_system"
+						has_star_flag = "marauder_capital_1"
+						has_star_flag = "marauder_capital_2"
+						has_star_flag = "marauder_capital_3"
+						has_star_flag = "marauder_system"
+						
 						any_planet = { is_capital = yes }
 						any_neighbor_system = { any_planet = { is_capital = yes } }
 					}

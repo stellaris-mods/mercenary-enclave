@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,16 +23,33 @@
 merc_fleet_maybe_go_hostile = {
 	if = { limit = { merc_any_system_target = yes }
 		# We are in the same solar system, so make sure we turn aggressive
+		log = "We are in the same solar system,"
 		set_fleet_stance = aggressive
 
-		# Check if the owner is hostile to us
-		if = { limit = { event_target:merc_country = { NOT = { is_hostile = PREV.owner } } }
-			# We need to turn hostile vs them
-			log = "Going hostile."
-			owner = {
-				# Turn hostile when we find our first target,
-				# unless they are already hostile towards us.
-				set_faction_hostility = { set_hostile = yes }
+		# Debug scope printing standard
+		if = { limit = { has_global_flag = "debug" }
+			log = "merc_fleet_maybe_go_hostile Owner: [Owner.GetName]"
+			log = "merc_fleet_maybe_go_hostile Target county is: [merc_country.GetName]"		
+		}
+		
+		# Additional check to prevent # Undefined event target: merc_country
+		if = {
+			limit = {
+				exists = event_target:merc_country				
+			}
+			#log = "merc_fleet_maybe_go_hostile event_target:merc_country [merc_country.GetName]"
+			
+			# Check if the owner is hostile to us
+			if = { limit = { event_target:merc_country = { NOT = { is_hostile = PREV.owner } } }
+				# We need to turn hostile vs them
+
+				owner = {
+					# Turn hostile when we find our first target,
+					# unless they are already hostile towards us.
+					set_faction_hostility = {
+						target = event_target:merc_country
+						set_hostile = yes }
+				}
 			}
 		}
 	}
@@ -76,16 +94,25 @@ merc_fleet_move_generic = {
 	}
 }
 
+#old  integrated mercMovePlanet.1
+#Prev: Pirate Squadron
+#merc_current_target: Malggu
+#This: Malggu
 merc_fleet_move_planet = {
+
 	ROOT = {
 		queue_actions = {
-			orbit_planet = PREV
+			#orbit_planet = PREV
+			orbit_planet = event_target:merc_current_target
 			repeat = {
 				while = {
 					id = mercMovePlanet.1
-					NOT = { is_fleet_idle = yes }
+					exists = event_target:merc_current_target
+					NOT = { exists = orbit }
+					NOT = { owner = { has_country_flag = "fmerc_ops_completed" } }
 				}
-				wait = 7
+				orbit_planet = event_target:merc_current_target
+				wait = 4
 			}
 			effect = {
 				id = mercMovePlanet.2

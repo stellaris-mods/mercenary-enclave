@@ -1,0 +1,27 @@
+	##############################################################
+	######													######
+	######				 Changed by st@rk43      			######
+	######       Copyright (c) 2018 stark43@gmail.com       ######
+	######													######
+	##############################################################
+
+	
+
+entity = { name = "ai_01_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "fallen_empire_01_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "fallen_empire_02_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "fallen_empire_03_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "fallen_empire_04_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "swarm_01_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "extra_dimensional_01_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "extra_dimensional_02_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "extra_dimensional_03_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "industrial_01_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "preindustrial_01_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "ancient_drone_01_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "guardian_01_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "ancient_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "drone_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "npf_01_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "npf_01_dirty_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }
+entity = { name = "techno_merc_spaceport_entity" clone="fungoid_01_merc_spaceport_entity" }

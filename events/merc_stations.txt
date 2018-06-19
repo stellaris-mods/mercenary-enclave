@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -130,11 +131,11 @@ planet_event = {
 			effect = {
 				set_owner = event_target:mercenaries
 				create_ship = {
-					name = " "
+					name = "random"
 					design = "Mercenary Enclave Century"
 				}
 				create_ship = {
-					name = " "
+					name = "random"
 					design = "Mercenary Enclave Century"
 				}
 				create_ship = {
@@ -142,11 +143,11 @@ planet_event = {
 					design = "Mercenary Spaceport"
 				}
 				create_ship = {
-					name = " "
+					name = "random"
 					design = "Mercenary Enclave Pioneer"
 				}
 				create_ship = {
-					name = " "
+					name = "random"
 					design = "Mercenary Enclave Pioneer"
 				}
 				set_fleet_formation = {
@@ -430,7 +431,9 @@ fleet_event = {
 							merc_is_station = yes
 							distance = {
 								source = ROOT
-								max_distance = 80
+								max_distance <= 90
+								min_distance >= 5
+								#max_distance = 80 # setting only max_distance is not longer avaliable
 							}
 						}
 					}

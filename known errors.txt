@@ -1,0 +1,10 @@
+1. After destroyng in event any starbase, killing any  minning_station /shipclass_research_station will spawn weeoea in log
+[trigger.cpp:366]: starbase scope contains invalid object at file: common/starbase_types/00_starbase_types.txt line: 7
+[trigger.cpp:366]: starbase scope contains invalid object at file: common/starbase_types/00_starbase_types.txt line: 118
+[trigger.cpp:366]: starbase scope contains invalid object at file: common/starbase_types/00_starbase_types.txt line: 225
+[trigger.cpp:366]: starbase scope contains invalid object at file: common/starbase_types/00_starbase_types.txt line: 334
+[trigger.cpp:366]: starbase scope contains invalid object at file: common/starbase_types/00_starbase_types.txt line: 541
+
+2. New created country posts error
+AI for country 31 posting invalid command: 11786
+Некуда возвращаться ( Nowhere to go return )

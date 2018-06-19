@@ -62,15 +62,7 @@ country_event = {
 
 	immediate = { merc_menu_4_disguise_init = yes }
 
-	option = {
-		name = "merc.close"
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = "merc.back"
-		hidden_effect = { country_event = { id = mercMenu.1100 } }
-	}
+
 	option = {
 		name = "merc.disguise.random.button"
 		custom_tooltip = "merc.disguise.random.tooltip"
@@ -95,5 +87,14 @@ country_event = {
 		name = "merc.disguise.xenofauna.button"
 		custom_tooltip = "merc.disguise.xenofauna.tooltip"
 		hidden_effect = { merc_menu_4_disguise_xenofauna = yes }
+	}
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.1100 } }
+	}
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 }

@@ -1,0 +1,17 @@
+# Returned from previous version ))
+
+mercsquad = {
+	can_expand = no
+	can_be_integrated = no
+
+	joins_overlord_wars = no
+	calls_overlord_to_war = no
+	can_do_diplomacy = no
+	overlord_becomes_warleader = no
+
+	diplo_threat = 1.5
+
+	potential = {
+		is_country_type = "fmerc_operations"
+	}
+}

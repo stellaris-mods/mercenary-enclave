@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,17 +33,33 @@ fmerc_init_stage2 = {
 
 	log = "Stage 2: Launching operation"
 
-	if = { limit = { fmerc_enclave_exists = no }
+	if = {
+		limit = { fmerc_enclave_exists = no }
+
 		log = "Mercenary Enclave no longer exists, aborting operation."
+
 		merc_stage4_abort = yes
+		set_country_flag = "fmerc_ops_completed"
 		break = yes
 	}
-	if = { limit = { NOT = { exists = event_target:merc_buyer } }
+	if = {
+		limit = {
+			NOT = { exists = event_target:merc_buyer }
+		}
+
 		log = "The country who ordered this operation no longer exists, aborting operation."
+
 		merc_stage4_abort = yes
+		set_country_flag = "fmerc_ops_completed"
 		break = yes
 	}
 
+	# Debug scope printing targets
+	if = { limit = { has_global_flag = "debug" }
+		log = "Buyer is: [merc_buyer.GetName]."
+		log = "Target is [merc_country.GetName]."
+	}
+	
 	merc_verify_country = yes
 
 	merc_set_new_targets = yes
@@ -72,8 +89,10 @@ fmerc_init_stage2 = {
 }
 
 merc_stage2_operation_start = {
+
 	if = {
 		limit = { count_owned_ships { count = 0 } }
+		log = "merc_stage2_operation_start count = 0, fleet will be spawned."
 		merc_spawn_fleet = yes
 	}
 

@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +18,7 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
+# updated for versions 2.x. Reactors no longer fit in component slots
 
 ship_design = {
 	name = "Mercenary Exploration"
@@ -27,26 +29,23 @@ ship_design = {
 		slot = "mid"
 		component = {
 			slot = "SMALL_UTILITY_1"
-			template = "SMALL_ANTIMATTER_REACTOR"
+			template = "SMALL_SHIELD_3"
 		}
 		component = {
 			slot = "SMALL_UTILITY_2"
-			template = "SMALL_ANTIMATTER_REACTOR"
+			template = "SMALL_SHIELD_3"
 		}
 		component = {
 			slot = "SMALL_UTILITY_3"
-			template = "SMALL_ANTIMATTER_REACTOR"
-		}
-		component = {
-			slot = "SMALL_UTILITY_4"
-			template = "SMALL_SHIELD_3"
+			template = "SMALL_ARMOR_3"
 		}
 	}
 
-	required_component = "WARP_DRIVE_2"
-	required_component = "MEDIUM_SCIENCE_LAB_1"
+	required_component = "JUMP_DRIVE_1"
 	required_component = "SHIP_THRUSTER_2"
-	required_component = "SHIP_SENSOR_2"
+	required_component = "SENSOR_2"	
+	required_component = "CORVETTE_ANTIMATTER_REACTOR"
+
 }
 
 ship_design = {
@@ -56,25 +55,25 @@ ship_design = {
 	section = {
 		template = "DEFAULT_CONSTRUCTION_SECTION"
 		slot = "mid"
+
 		component = {
 			slot = "SMALL_UTILITY_1"
-			template = "SMALL_ANTIMATTER_REACTOR"
+			template = "SMALL_ARMOR_3"
 		}
 		component = {
 			slot = "SMALL_UTILITY_2"
-			template = "SMALL_ANTIMATTER_REACTOR"
+			template = "SMALL_ARMOR_3"
 		}
 		component = {
 			slot = "SMALL_UTILITY_3"
-			template = "SMALL_ANTIMATTER_REACTOR"
-		}
-		component = {
-			slot = "SMALL_UTILITY_4"
 			template = "SMALL_SHIELD_3"
 		}
+
 	}
 
-	required_component = "WARP_DRIVE_3"
+	required_component = "JUMP_DRIVE_1"
 	required_component = "SHIP_THRUSTER_2"
-	required_component = "SHIP_SENSOR_2"
+	required_component = "SENSOR_2"	
+	required_component = "CORVETTE_ANTIMATTER_REACTOR"
+	
 }

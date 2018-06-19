@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,6 +21,7 @@
 
 namespace = mercOpsLiberate
 
+
 # STAGE 3 CONTROLLER
 # These events are used exclusively by the "liberate" operation.
 
@@ -31,6 +33,7 @@ country_event = {
 	is_triggered_only = yes
 	hide_window = yes
 	trigger = {
+		is_country_type = "default"
 		FROMFROM = {
 			has_planet_flag = "merc_target"
 			controller = { is_same_value = ROOT }
@@ -38,6 +41,13 @@ country_event = {
 	}
 	immediate = {
 		log = "mercOpsLiberate: on_planet_defenders_win (.50)"
+		
+		# Debug scope printing standard + targets
+		if = { limit = { has_global_flag = "debug" }
+			target_scopes_log = yes
+			print_scope_effect = yes
+		}
+		
 		random_country = {
 			limit = {
 				is_country_type = "fmerc_operations"
@@ -46,7 +56,11 @@ country_event = {
 					who = FROM
 				}
 			}
+			log = "Checking if we should try again..."
+			
 			merc_stage4_failed = yes
+			set_country_flag = "planet_defenders_win"
+
 		}
 	}
 }
@@ -67,6 +81,8 @@ country_event = {
 		}
 	}
 	immediate = {
+		log = "mercOpsLiberate: on_planet_defenders_lose (.60)"	
+
 		# In vanilla, the leader was killed.
 		# But now that there's only one governor per sector,
 		# that sounds unreasonable to me.
@@ -80,6 +96,7 @@ country_event = {
 # Initial rebels manage to take control of the planet, happens before the new owner is set, after the war is created.
 # This = Rebel Country
 # From = Planet
+# FROM.Owner =  new owner
 country_event = {
 	id = mercOpsLiberate.70
 	hide_window = yes
@@ -89,6 +106,7 @@ country_event = {
 	}
 	immediate = {
 		log = "mercOpsLiberate: on_rebels_take_planet (.70)"
+
 		FROM.owner = {
 			# Event target used in 4211
 			save_event_target_as = rebelled_against
@@ -113,6 +131,7 @@ country_event = {
 		log = "mercOpsLiberate: on_rebels_take_planet_owner_switched (.71)"
 
 		# Find mercenary operations
+		# We can't use merc_set_country and merc_set_buyer directly, they were changed
 		random_country = {
 			limit = {
 				is_country_type = "fmerc_operations"
@@ -121,159 +140,166 @@ country_event = {
 					who = ROOT
 				}
 			}
-			merc_set_country = yes
-			merc_set_buyer = yes
+			
+			# Should be new colony			
+			random_country = {
+				limit = {
+					reverse_has_relation_flag = {
+						who = PREV
+						flag = merc_operations_target
+					}
+				}
+				save_event_target_as = merc_country
+			}
+				
+			# Should be byer # Ishini Pact
+			random_country = {
+				limit = {
+					reverse_has_relation_flag = {
+						who = PREV
+						flag = merc_operations_squad
+					}
+				}
+				save_event_target_as = merc_buyer
+			}			
+
 			subtract_variable = { which = "MercTargetCount" value = 1 }
 			change_variable = { which = "MercLiberatedPlanets" value = 1 }
 			change_variable = { which = "MercKillsTotal" value = 1 }
 
 			log = "Liberation complete!"
 			merc_stage4_maybe_complete = yes
+			
+			# Debug scope printing targets
+			if = { limit = { has_global_flag = "debug" }
+				target_scopes_log = yes
+			}
+
 		}
 
 		# Clean the slate as much as possible
-		FROM = { destroy_colony = { keep_buildings = yes } }
+		#FROM = { destroy_colony = { keep_buildings = yes } }
+			FROM = { 
+				clear_buildings = no
+				destroy_colony = yes
+			}
 		destroy_country = yes
 
+		# Debug scope printing targets
+		if = { limit = { has_global_flag = "debug" }
+			log = "mercOpsLiberate: (.71) scopes:"
+			print_scope_effect = yes
+		}
+		
+	#######################################   mercOpsLiberate.1335   ###################################
 		# And re-start colony
-		FROM = { planet_event = { id = mercOpsLiberate.1335 } }
-	}
-}
+		#FROM = { planet_event = { id = mercOpsLiberate.1335 } }
+		
+		# because scope in planet_event (.1335) have no event targets, such as merc_country, merc_buyer
+		
+		log = "mercOpsLiberate.71 destroing colony completed, re-start colony started"
 
-# No matter what I do, it seems I am unable to prevent the spam of errors like
-# [21:02:22][trigger.cpp:466]: Script Error, Checking trigger against an unsupported scope!
-# Event: mercOpsLiberate.1335
-# Location:  file: common/species_rights/species_rights.txt line: 2202
-# Trigger Type: has_citizenship_type
+		FROM = { # Planet
+			if = {
+				limit = {
+					merc_is_country_target_valid = yes
+					event_target:merc_country = {
+						NOT = { has_authority = auth_hive_mind }
+					}
+				}
 
-# I've tried everything I can think of;
-# - NOT creating a new country, but simply set_country_type = default on the
-#   rebel country, but this does not change all the "Rebels from XYZ" strings
-#   that show ingame to instead show "Independent" (or whatever the normal one)
-# - Never creating a rebel country and simply using a default for invasion.
-#   This presents a whole slew of problems on its own.
-# - Copying the species from the rebel country
-# - Copying the species from the target country
-# - Copying the species from any country
-# - create_country in country or planet scope
-# - create_species in an existing species scope:
-#   random_owned_pop = { owner_species = { create_species = { } } }
-# - create_species in a pop scope
-# - create_species in a planet scope, country scope
-#
-# If anyone reads this and thinks of something I haven't tried, please tell me.
-# The above list, plus some other tests I did, is the main reason this
-# shitshow is separated into three events now (.71 + 1335 + 1336).
-# It could really all be one event, or scripted effect.
-
-planet_event = {
-	id = mercOpsLiberate.1335
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		# Notice how we don't use the released_by_country and
-		# released_from_country properties. That's because they do two things
-		# (probably among other things) that we want to prevent:
-		# - Prevents the standard diplomacy screen that comes with a new
-		#   contact. We especially want this on the buyer end.
-		#   I could have faked this, of course.
-		# - Copies the techs from released_from_country. We don't want to do
-		#   this unless the new country was released from a default country
-		#   type. And I am considering testing tech_unlocked_ratio to perhaps
-		#   adjust the new countries tech level in more detail.
-
-		if = {
-			limit = {
-				merc_is_country_target_valid = yes
 				event_target:merc_country = {
-					NOT = { has_authority = auth_hive_mind }
+					random_owned_pop = {
+						limit = {
+							is_same_species = event_target:merc_country
+							is_robot_pop = no
+							NOT = { has_trait = trait_self_modified }
+						}
+						#log = "mercOpsLiberate.71 Creating copy of target countries main species."
+						
+						FROM = { set_planet_flag = "merc_got_species" }
+						species = {
+
+							create_species = {
+								name = this
+								plural = this
+								class = this
+								portrait = this
+								traits = this
+								homeworld = FROM
+							}
+						}
+					}
+				}
+			}	
+			
+			if = { limit = { NOT = { has_planet_flag = "merc_got_species" } }
+				log = "Creating random new species."
+				create_species = {
+					name = random
+					class = random_non_machine
+					portrait = random
+					traits = random
+					allow_negative_traits = no
+					extra_trait_points = 3 # They need a boost they are so tiny
+					homeworld = FROM
 				}
 			}
-			event_target:merc_country = {
-				random_owned_pop = {
-					limit = {
-						is_same_species = event_target:merc_country
-						is_robot_pop = no
-						NOT = { has_trait = trait_self_modified }
+			remove_planet_flag = "merc_got_species"
+
+			# Determine ethos template
+			if = {
+				limit = { event_target:merc_buyer = { has_ethic = ethic_gestalt_consciousness } }
+					random_country = {
+						limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
+						save_event_target_as = ethosTemplate
 					}
-					log = "Creating copy of target countries main species."
-					species = {
-						ROOT = { set_planet_flag = "merc_got_species" }
-						create_species = {
-							name = this
-							plural = this
-							class = this
-							portrait = this
-							traits = this
-							homeworld = ROOT
+					create_country = {
+						name = random
+						type = default
+						species = last_created_species
+						ethos = event_target:ethosTemplate
+						authority = random
+						civics = random
+						flag = random
+						day_zero_contact = no
+						effect = {
+							merc_liberate_fix_species = yes
+						}
+					}
+				else = {
+					create_country = {
+						name = random
+						type = default
+						species = last_created_species
+						ethos = event_target:merc_buyer
+						authority = random
+						civics = random
+						flag = random
+						day_zero_contact = no
+						effect = {
+							merc_liberate_fix_species = yes
 						}
 					}
 				}
 			}
-		}
-		if = { limit = { NOT = { has_planet_flag = "merc_got_species" } }
-			log = "Creating random new species."
-			create_species = {
-				name = random
-				class = random_non_machine
-				portrait = random
-				traits = random
-				allow_negative_traits = no
-				extra_trait_points = 3 # They need a boost they are so tiny
-				homeworld = ROOT
-			}
-		}
-		remove_planet_flag = "merc_got_species"
 
-		# Determine ethos template
-		if = {
-			limit = { event_target:merc_buyer = { has_ethic = ethic_gestalt_consciousness } }
-				random_country = {
-					limit = { NOT = { has_ethic = ethic_gestalt_consciousness } }
-					save_event_target_as = ethosTemplate
-				}
-				create_country = {
-					name = random
-					type = default
-					species = last_created_species
-					ethos = event_target:ethosTemplate
-					authority = random
-					civics = random
-					flag = random
-					day_zero_contact = no
-					effect = {
-						merc_liberate_fix_species = yes
-					}
-				}
-			else = {
-				create_country = {
-					name = random
-					type = default
-					species = last_created_species
-					ethos = event_target:merc_buyer
-					authority = random
-					civics = random
-					flag = random
-					day_zero_contact = no
-					effect = {
-						merc_liberate_fix_species = yes
-					}
-				}
+			set_owner = last_created_country
+			set_controller = last_created_country
+			create_colony = {
+				owner = last_created_country
+				species = owner_main_species
+				ethos = owner
 			}
+			set_capital = yes
+			last_created_country = { country_event = { id = mercOpsLiberate.1336 } }
 		}
-
-		set_owner = last_created_country
-		set_controller = last_created_country
-		create_colony = {
-			owner = last_created_country
-			species = owner_main_species
-			ethos = owner
-		}
-		set_capital = yes
-		last_created_country = { country_event = { id = mercOpsLiberate.1336 } }
 	}
 }
+
+# previous problem with [21:02:22][trigger.cpp:466]: Script Error, Checking trigger against an unsupported scope!
+# in mercOpsLiberate.1335 was fixed integreting code in mercOpsLiberate.71
+# it was easer than set all scopes one more time
 
 # Just so we get our own root scope here, it's just more clean.
 country_event = {
@@ -282,6 +308,15 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+
+		# Debug scope printing standard and targets
+		if = { limit = { has_global_flag = "debug" }
+			log = "mercOpsLiberate (.1336) scopes:"		
+			print_scope_effect = yes
+			target_scopes_log = yes
+		}
+		
+
 		set_country_flag = "day_0"
 		# lulz liberateD, no point in fixing that
 		set_country_flag = "merc_op_liberated_await_clear_skies"
@@ -333,10 +368,11 @@ country_event = {
 				trait = random_trait
 			}
 		}
-
+	
 		establish_contact = { who = event_target:merc_buyer location = capital_scope }
 		if = {
 			limit = { merc_is_country_target_valid = yes }
+
 			establish_contact = { who = event_target:merc_country location = capital_scope }
 		}
 		# Setting and removing this flag before and after `establish_contact`,
@@ -364,35 +400,56 @@ country_event = {
 				ROOT = { remove_opinion_modifier = { who = event_target:merc_country modifier = opinion_new_contact } }
 			}
 		}
+		
 		add_opinion_modifier = {
 			who = event_target:merc_buyer
 			modifier = opinion_liberated_us
 		}
+		
 		event_target:merc_buyer = {
 			add_opinion_modifier = {
 				who = ROOT
 				modifier = opinion_we_liberated
 			}
 		}
+
 		if = {
 			limit = { has_opinion_modifier = { who = event_target:merc_buyer modifier = opinion_new_contact } }
 			remove_opinion_modifier = { who = event_target:merc_buyer modifier = opinion_new_contact }
 		}
 
+		event_target:merc_buyer = { country_event = { id = mercOpsLiberate.1339 } }
+		
 		capital_scope = {
 			planet_event = { id = game_start.13 } # replace some buildings for special empires
+
 			planet_event = { id = game_start.21 } # upgrade colony shelter
+
 			planet_event = { id = game_start.22 } # set up additional buildings (mines, farms, power plants)
+
 			planet_event = { id = game_start.14 } # replace some tile blockers for special empires
 
 			# destroy_colony removed all the pops, probably.
 			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
+
 			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
+
 			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
+
 			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
+
 			best_tile_for_pop = { create_pop = { species = ROOT ethos = ROOT } }
+
 			# XXX Create project to contact merc
 		}
+		
+		## Open borders to byer. Not working in some cases -do not know why
+		set_closed_borders = {
+			who = event_target:merc_buyer
+			status = no
+			forced = 5
+		}
+
 	}
 }
 
@@ -406,6 +463,9 @@ event = {
 	}
 
 	immediate = {
+	
+		log = "mercOpsLiberate: (.1337) started"
+			
 		every_country = {
 			limit = { has_country_flag = "merc_op_liberated_await_clear_skies" }
 			country_event = { id = mercOpsLiberate.1338 }
@@ -437,9 +497,25 @@ country_event = {
 	}
 
 	immediate = {
-		log = "mercOpsLiberate: Solar system empty (.1337)"
+		log = "mercOpsLiberate: Solar system empty (.1338)"
 		remove_country_flag = "merc_op_liberated_await_clear_skies"
 		country_event = { id = game_start.9 } # Empire init - add ships
 		create_fleet_from_naval_cap = 0.5
+	}
+}
+
+country_event = {
+	id = mercOpsLiberate.1339
+	title = mercOpsLiberate.1339.title
+	desc = mercOpsLiberate.1339.desc
+	picture = GFX_evt_star_chart
+	location = FROM
+	is_triggered_only = yes
+
+	immediate = {
+
+	}
+	option = {
+		name = INTERESTING
 	}
 }

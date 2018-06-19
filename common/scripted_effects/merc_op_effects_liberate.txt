@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -104,14 +105,17 @@ merc_verify_fleet_orbit = {
 # PREV is owner
 merc_stage3_init_fleet_liberate = {
 	# In case we are in the same system as our target
+	log = "merc_stage3_init_fleet_liberate started"
 	merc_fleet_maybe_go_hostile = yes
 	merc_verify_fleet_liberate_target_status = yes
 	event_target:merc_current_target = { merc_fleet_move_planet = yes }
 }
 
 merc_stage3_fleet_arrived_liberate = {
-	owner = { merc_set_country = yes }
-	owner = { merc_set_buyer = yes }
+
+
+	log = "merc_stage3_fleet_arrived_liberate started"
+
 
 	# check distance to target
 	merc_verify_fleet_orbit = yes
@@ -121,39 +125,93 @@ merc_stage3_fleet_arrived_liberate = {
 	# verify target status
 	merc_verify_fleet_liberate_target_status = yes
 
-	# The rebel country does NOT exist, so create a new one
-	event_target:merc_current_target = {
-		create_rebels = {
-			name = random
-			ethos = event_target:merc_buyer
-			authority = event_target:merc_buyer
-			civics = random
-			species = event_target:merc_country
-			name_list = event_target:merc_country
-			flag = random
-			# auto_delete = no # much easier if the country is just destroyed every time they lose
-			effect = {
-				set_country_flag = "fmerc_liberate_rebels"
-				# This is weird; it seems that when the rebels win,
-				# this country is immediately turned into a "default" one,
-				# and so anyone that had contact with them is notified by
-				# vanilla event action.61. Try to prevent that.
-				set_country_flag = "silence_destroy_event"
-				# ZZZ
-				# event target only for create_army below.
-				# I don't know if last_created_country works with
-				# create_rebels, and I don't want to run it even once
-				# to find out.
-				save_event_target_as = tmp_army_country
-				establish_communications_no_message = PREVPREV.owner # merc operations
-				establish_communications_no_message = event_target:merc_country
-				set_relation_flag = {
+	# Debug scope printing standard
+	if = { limit = { has_global_flag = "debug" }
+		target_scopes_log = yes
+	}
+	
+
+	if = {
+		limit = {
+			any_country = {
+				has_relation_flag = {
 					flag = fmerc_liberate_rebels
-					who = PREVPREV.owner
+					who = PREVPREV.owner 
 				}
 			}
 		}
-		fmerc_liberate_create_armies = yes
+		# XXX I don't think this will ever happen.
+		log = "And we found an existing rebel country, so creating new armies."
+		# The rebel country exists, so create more armies
+		random_country = {
+			limit = {
+				has_relation_flag = {
+					flag = fmerc_liberate_rebels
+					who = PREVPREV.owner 
+				}
+			}
+			save_event_target_as = tmp_army_country
+		}
+		event_target:merc_current_target = {
+			while = {
+				count = 20
+				random = {
+					chance = 80
+					create_army = {
+						name = "Hired Rebels"
+						owner = event_target:tmp_army_country
+						species = event_target:merc_buyer
+						type = "rebel_slave_defense_army"  # defense_army will just disapear
+					}
+				}
+			}
+		}
+		else = {
+			# The rebel country does NOT exist, so create a new one
+			event_target:merc_current_target = {          # Planet !!!
+				create_rebels = {
+					name = random
+					ethos = event_target:merc_buyer
+					authority = event_target:merc_buyer
+					civics = random
+					species = event_target:merc_country
+					name_list = event_target:merc_country
+					flag = random
+					# auto_delete = no # much easier if the country is just destroyed every time they lose
+					effect = {
+						set_country_flag = "fmerc_liberate_rebels"
+						# This is weird; it seems that when the rebels win,
+						# this country is immediately turned into a "default" one,
+						# and so anyone that had contact with them is notified by
+						# vanilla event action.61. Try to prevent that.
+						set_country_flag = "silence_destroy_event"
+						# ZZZ
+						# event target only for create_army below.
+						# I don't know if last_created_country works with
+						# create_rebels, and I don't want to run it even once
+						# to find out.
+						save_event_target_as = tmp_army_country
+						establish_communications_no_message = PREVPREV.owner # merc operations
+						establish_communications_no_message = event_target:merc_country
+						set_relation_flag = {
+							flag = fmerc_liberate_rebels
+							who = PREVPREV.owner     # merc operations ?
+						}
+						log = "liberation flag <fmerc_liberate_rebels> set between [tmp_army_country.GetName] and [Prev.Prev.owner.GetName] country"
+					}
+				}
+				fmerc_liberate_create_armies = yes
+
+				# Perfect variant for testing if rebels exist
+				# create_army = {
+					# name = "NAME_Enraged_Titan"
+					# owner = event_target:tmp_army_country
+					# species = event_target:tmp_army_country
+					# type = "titanic_guardian_army"
+				# }
+
+			}
+		}
 	}
 }
 
@@ -226,12 +284,12 @@ fmerc_liberate_create_armies = {
 		else = { if = { limit = { army_type = xenomorph_army } fmerc_xenomorph_army = yes
 		else = { if = { limit = { army_type = gene_warrior_army } fmerc_gene_warrior_army = yes
 		else = { if = { limit = { army_type = swarm_army } fmerc_swarm_army = yes
-		else = { if = { limit = { army_type = elite_guard_army } fmerc_elite_guard_army = yes
+		# else = { if = { limit = { army_type = defense_army } fmerc_defense_army = yes
 		else = { if = { limit = { army_type = shroud_army } fmerc_shroud_army = yes
 		else = { if = { limit = { army_type = machine_assault_1 } fmerc_machine_assault_1 = yes
-		else = { if = { limit = { army_type = machine_defense_1 } fmerc_machine_defense_1 = yes
+		else = { if = { limit = { army_type = machine_defense } fmerc_machine_defense_1 = yes
 		else = { if = { limit = { army_type = machine_assault_2 } fmerc_machine_assault_2 = yes
-		else = { if = { limit = { army_type = machine_defense_2 } fmerc_machine_defense_2 = yes
+		# else = { if = { limit = { army_type = machine_defense_2 } fmerc_machine_defense_2 = yes
 		else = { if = { limit = { army_type = machine_assault_3 } fmerc_machine_assault_3 = yes
 		else = {
 			ROOT = {
@@ -240,8 +298,17 @@ fmerc_liberate_create_armies = {
 					value = 1
 				}
 			}
-		}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+		}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+		#}}
+		#}}
 	}
+
+	# Debug scope printing standard
+	if = { limit = { has_global_flag = "debug" }
+		print_scope_effect = yes
+		target_scopes_log = yes
+	}
+			
 	# Now we invade with the same number of armies that we found.
 	ROOT = {
 		set_variable = {
@@ -277,7 +344,8 @@ fmerc_liberate_create_armies = {
 					name = "Hired Rebels"
 					owner = event_target:tmp_army_country
 					species = event_target:merc_buyer
-					type = "defense_army"
+					#type = "defense_army"       # defense_army will just disapear
+					type = "rebel_slave_defense_army"
 				}
 			}
 			subtract_variable = {
@@ -398,16 +466,20 @@ fmerc_swarm_army = {
 		}
 	}
 }
-fmerc_elite_guard_army = {
-	PREV = { # Planet
-		create_army = {
-			name = "Hired Rebels"
-			owner = event_target:tmp_army_country
-			species = event_target:merc_buyer
-			type = "elite_guard_army"
-		}
-	}
-}
+# fmerc_defense_army = {
+	# log = "fmerc_defense_army This: [This.GetName]"
+	# log = "fmerc_defense_army Root: [Root.GetName]"
+	# log = "fmerc_defense_army From: [From.GetName]"
+	# log = "fmerc_defense_army Prev: [Prev.GetName]"
+	# PREV = { # Planet
+		# create_army = {
+			# name = "Hired Rebels"
+			# owner = event_target:tmp_army_country
+			# species = event_target:merc_buyer
+			# type = "defense_army"		
+		# }
+	# }
+# }
 fmerc_shroud_army = {
 	PREV = { # Planet
 		create_army = {
@@ -434,7 +506,8 @@ fmerc_machine_defense_1 = {
 			name = "Hired Rebels"
 			owner = event_target:tmp_army_country
 			species = event_target:merc_buyer
-			type = "machine_defense_1"
+			#type = "machine_defense_1"
+			type = "machine_defense"
 		}
 	}
 }
@@ -448,16 +521,17 @@ fmerc_machine_assault_2 = {
 		}
 	}
 }
-fmerc_machine_defense_2 = {
-	PREV = { # Planet
-		create_army = {
-			name = "Hired Rebels"
-			owner = event_target:tmp_army_country
-			species = event_target:merc_buyer
-			type = "machine_defense_2"
-		}
-	}
-}
+# fmerc_machine_defense_2 = {
+	# PREV = { # Planet
+		# create_army = {
+			# name = "Hired Rebels"
+			# owner = event_target:tmp_army_country
+			# species = event_target:merc_buyer
+			# #type = "machine_defense_1"
+			# type = "machine_defense"
+		# }
+	# }
+# }
 fmerc_machine_assault_3 = {
 	PREV = { # Planet
 		create_army = {

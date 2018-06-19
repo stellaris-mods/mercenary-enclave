@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,6 +27,14 @@
 fmerc_enclave_exists = {
 	any_country = {
 		is_country_type = "fmerc_enclave"
+		num_ships > 0
+	}
+}
+
+##  Checking  if Privateering Enterprises exist
+privateering_enclave_exists = {
+	any_country = {
+		is_country_type = "Spirate_enclave" # name will be changed untill i will create dirty_operations
 		num_ships > 0
 	}
 }
@@ -96,7 +105,9 @@ merc_counts_for_operation_military = {
 	OR = {
 		is_ship_class = shipclass_military
 		is_ship_class = shipclass_military_station
-		is_ship_class = shipclass_orbital_station
+		is_ship_class = shipclass_starbase
+		is_ship_class = shipclass_military_special           # added in order to expand scope
+		#is_ship_class = shipclass_orbital_station           changed for versions 2.x
 	}
 }
 
@@ -106,12 +117,33 @@ merc_counts_for_operation_civilian = {
 
 merc_counts_for_operation_spaceport = {
 	OR = {
-		is_ship_class = shipclass_military_station
-		is_ship_class = shipclass_orbital_station
+		#is_ship_class = shipclass_military_station
+		is_ship_class = shipclass_starbase
+		is_ship_class = shipclass_military_special
+		#is_ship_class = shipclass_orbital_station           changed for versions 2.x
+	}
+}
+
+merc_counts_for_disabled_operation_spaceport = {
+	OR = {
+		is_ship_size = starbase_starport
+		is_ship_size = starbase_starhold
+		is_ship_size = starbase_starfortress
+		is_ship_size = starbase_citadel
+
+		# extended bases
+		is_ship_size = starbase_swarm
+		is_ship_size = starbase_ai
+		is_ship_size = starbase_exd
+		is_ship_size = starbase_marauder
+		
+		is_ship_size = colossus
 	}
 }
 
 merc_counts_for_operation = {
+    
+	#log = "merc_counts_for_operation [ROOT.GetName]"
 	ROOT = {
 		switch = {
 			trigger = has_country_flag

@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,6 +32,14 @@ merc_stage3_fleet_arrived_generic = {
 # THIS and ROOT is the fleet
 # PREV is owner
 merc_stage3_init_fleet = {
+
+
 	merc_fleet_maybe_go_hostile = yes
+
+	# Debug scope printing merc_current_target
+	if = { limit = { has_global_flag = "debug" }
+		log = "merc_stage3_init_fleet - merc_current_target is: [merc_current_target.GetName]."
+	}
+
 	event_target:merc_current_target = { merc_fleet_move_generic = yes }
 }

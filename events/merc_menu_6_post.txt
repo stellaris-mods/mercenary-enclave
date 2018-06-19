@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -93,7 +94,7 @@ country_event = {
 }
 
 # Buyer is notified that operation has been completed
-# FROM is the mercenary operations country
+# FROM is the mercenary operations country  ???
 # XXX Make this diplomatic.
 country_event = {
 	id = mercMenu.9004
@@ -102,16 +103,102 @@ country_event = {
 		trigger = {
 			text = merc.completed.desc
 			success_text = {
+				text = "merc.completed.merc_op_spaceport"
+				FROM.owner = {
+					has_country_flag = merc_op_spaceport
+					NOT = { has_country_flag = fmerc_no_valid_targets }
+				}
+			}
+			success_text = {
+				text = "merc.completed.merc_op_spaceport.failed"
+				FROM.owner = {
+					AND = {
+						has_country_flag = merc_op_spaceport
+						has_country_flag = fmerc_no_valid_targets 
+					}
+				}
+			}
+			success_text = {
+				text = "merc.completed.merc_op_liberate"
+				FROM.owner = {
+					has_country_flag = merc_op_liberate
+					NOT = { has_country_flag = fmerc_no_valid_targets }
+					NOT = { has_country_flag = fleet_destroyed }
+				}
+			}
+			success_text = {
+				text = "merc.completed.merc_op_liberate.failed1"
+				FROM.owner = {
+					AND = {
+						has_country_flag = merc_op_liberate
+						has_country_flag = fleet_destroyed 
+					}
+				}
+			}
+			success_text = {
+				text = "merc.completed.merc_op_liberate.failed2"
+				FROM.owner = {
+					AND = {
+						has_country_flag = merc_op_liberate
+						has_country_flag = fmerc_no_valid_targets 
+					}
+				}
+			}
+			success_text = {
+				text = "merc.completed.merc_op_civilian"
+				FROM.owner = {
+					has_country_flag = merc_op_civilian
+					NOT = { has_country_flag = fmerc_no_valid_targets }
+				}
+			}
+			success_text = {
+				text = "merc.completed.merc_op_civilian.failed"
+				FROM.owner = {
+					AND = {
+						has_country_flag = merc_op_civilian
+						has_country_flag = fmerc_no_valid_targets 
+					}
+				}
+			}
+			success_text = {
+				text = "merc.completed.merc_op_military"
+				FROM.owner = {
+					has_country_flag = merc_op_military
+					NOT = { has_country_flag = fmerc_no_valid_targets }
+				}
+			}
+			success_text = {
+				text = "merc.completed.merc_op_military.failed"
+				FROM.owner = {
+					AND = {
+						has_country_flag = merc_op_military
+						has_country_flag = fmerc_no_valid_targets 
+					}
+				}
+			}
+			success_text = {
+				text = "merc.completed.merc_op_clear"
+				FROM.owner = {
+					has_country_flag = merc_op_clear
+					NOT = { has_country_flag = fmerc_no_valid_targets }
+				}
+			}
+			success_text = {
+				text = "merc.completed.merc_op_clear.failed"
+				FROM.owner = {
+					AND = {
+						has_country_flag = merc_op_clear
+						has_country_flag = fmerc_no_valid_targets 
+					}
+				}
+			}
+			success_text = {
 				text = "merc.completed.pretext"
 				FROM.owner = { check_variable = { which = "MercKillsTotal" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.liberated"
 				FROM.owner = { check_variable = { which = "MercLiberatedPlanets" value > 0 } }
-			}
-			success_text = {
-				text = "merc.completed.frontier"
-				FROM.owner = { check_variable = { which = "MercKillsFrontier" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.obspost"
@@ -138,6 +225,30 @@ country_event = {
 				FROM.owner = { check_variable = { which = "MercKillsStations" value > 0 } }
 			}
 			success_text = {
+				text = "merc.completed.Colossus"
+				FROM.owner = { check_variable = { which = "MercKillsColossus" value > 0 } }
+			}
+			success_text = {
+				text = "merc.completed.killedport"
+				FROM.owner = { check_variable = { which = "MercKilledPort" value > 0 } }
+			}
+			success_text = {
+				text = "merc.completed.killedhold"
+				FROM.owner = { check_variable = { which = "MercKilledHold" value > 0 } }
+			}
+			success_text = {
+				text = "merc.completed.killedfortress"
+				FROM.owner = { check_variable = { which = "MercKilledFortress" value > 0 } }
+			}
+			success_text = {
+				text = "merc.completed.killedcit"
+				FROM.owner = { check_variable = { which = "MercKilledCit" value > 0 } }
+			}
+			success_text = {
+				text = "merc.completed.killedother"
+				FROM.owner = { check_variable = { which = "MercKilledOther" value > 0 } }
+			}
+			success_text = {
 				text = "merc.completed.civilian"
 				FROM.owner = { check_variable = { which = "MercKillsCivilian" value > 0 } }
 			}
@@ -150,21 +261,91 @@ country_event = {
 				FROM.owner = { check_variable = { which = "MercKillsShips" value > 0 } }
 			}
 			success_text = {
+				text = "merc.completed.nothing"
+				FROM.owner = { check_variable = { which = "MercKillsTotal" value = 0 } }
+			}
+			success_text = {
 				text = "merc.completed.total"
 				FROM.owner = { check_variable = { which = "MercKillsTotal" value > 0 } }
 			}
 			success_text = {
-				text = "merc.completed.nothing"
-				FROM.owner = { check_variable = { which = "MercKillsTotal" value = 0 } }
+				text = "merc.completed.disabled"
+				FROM.owner = { check_variable = { which = "MercDisabledTotal" value > 0 } }
+			}
+			success_text = {
+				text = "merc.completed.outpost"
+				FROM.owner = { check_variable = { which = "MercDisabledOut" value > 0 } }
+			}
+			success_text = {
+				text = "merc.completed.starport"
+				FROM.owner = { check_variable = { which = "MercDisabledPort" value > 0 } }
+			}
+			success_text = {
+				text = "merc.completed.starhold"
+				FROM.owner = { check_variable = { which = "MercDisabledHold" value > 0 } }
+			}
+			success_text = {
+				text = "merc.completed.starfortress"
+				FROM.owner = { check_variable = { which = "MercDisabledFortress" value > 0 } }
+			}
+			success_text = {
+				text = "merc.completed.citadel"
+				FROM.owner = { check_variable = { which = "MercDisabledCit" value > 0 } }
 			}
 			success_text = {
 				text = "merc.completed.posttext"
 				FROM.owner = { check_variable = { which = "MercKillsTotal" value > 0 } }
 			}
+			success_text = {
+			text = "merc.completed.merc_op_liberate.defenders"
+				FROM.owner = {
+					AND = {
+						has_country_flag = merc_op_liberate
+						has_country_flag = planet_defenders_win 
+					}
+				}
+			}
 		}
 	}
+
+	immediate = {
+	
+		# Debug scope printing
+		if = { limit = { has_global_flag = "debug" }
+			log = "------------------------------"
+			log = "mercMenu.9004 Checking variables that should be transfered in this event"
+			log = "mercMenu.9004 From.owner: [From.owner.GetName]"
+			on_ship_destroyed_perp_log = yes
+		}
+	}	
 
 	picture = GFX_evt_smugglers_in_bar
 	is_triggered_only = yes
 	option = { name = EXCELLENT }
+}
+
+# In case when event_target:mercenary_operations DOES NOT EXIST in merc_stage4_no_target_abort
+# in most cases it will fire only in clear space operations
+country_event = {
+	id = mercMenu.9005
+	title = merc.completed.title
+	desc = merc.completed.notarget
+
+	immediate = {
+
+		# Debug scope printing
+		if = { limit = { has_global_flag = "debug" }
+			log = "------------------------------"
+			log = "mercMenu.9005 Checking variables that should be transfered in this event"
+			log = "mercMenu.9005 From.owner: [From.owner.GetName] -empty ?"
+			on_ship_destroyed_perp_log = yes
+		}
+
+	}	
+
+	picture = GFX_evt_smugglers_in_bar
+	is_triggered_only = yes
+	option = {
+		name = merc.completed.pity
+	}
 }

@@ -1,0 +1,122 @@
+###
+# This file is part of a project hosted at https://github.com/stellaris-mods
+# Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+###
+
+
+###############################################################################
+# Debug effects to make code cleaner
+# Copyright (c) 2018 stark43@gmail.com
+#
+
+
+# # Debug scope printing standard
+# if = { limit = { has_global_flag = "debug" }
+	# target_scopes_log = yes
+	# print_scope_effect = yes
+# }
+		
+target_scopes_log = {
+	log = "Printing the current scopes for targets (trigger) -"
+	log = "---"	
+	log = "Targets- merc_buyer is: [merc_buyer.GetName]."
+	log = "Targets- Target county is: [merc_country.GetName]."
+	log = "Targets- merc_current_target is: [merc_current_target.GetName]."
+	log = "------------------------------"
+}
+
+
+on_ship_destroyed_perp_log = {
+	log = "------------------------------"
+	log = "mercOpsMeta.200- Printing the current scopes (trigger) -"
+	log = "mercOpsMeta.200- This: [This.GetName]"
+	log = "mercOpsMeta.200- Root: [Root.GetName]"
+	log = "mercOpsMeta.200- Prev: [Prev.GetName]"
+	log = "mercOpsMeta.200- PrevPrev: [Prev.Prev.GetName]"
+	log = "mercOpsMeta.200- PrevPrevPrev: [Prev.Prev.Prev.GetName]"
+	log = "mercOpsMeta.200- PrevPrevPrevPrev: [Prev.Prev.Prev.Prev.GetName]"
+	log = "mercOpsMeta.200- From: [From.GetName]"
+	log = "mercOpsMeta.200- FromFrom: [From.From.GetName]"
+	log = "mercOpsMeta.200- FromFromFrom: [From.From.From.GetName]"
+	log = "mercOpsMeta.200- FromFromFromFrom: [From.From.From.From.GetName]"
+	log = "mercOpsMeta.200- This's Solar System: [This.GetStarName]"
+	log = "mercOpsMeta.200- This's Planet: [This.Planet.GetName]"
+	log = "mercOpsMeta.200- This's Sector: [This.Sector.GetName]"
+	log = "mercOpsMeta.200- Root's Solar System: [Root.GetStarName]"
+	log = "mercOpsMeta.200- Root's Owner's Name: [Root.Owner.GetName]"
+	log = "mercOpsMeta.200- Root's Owner's Capital's Name: [Root.Owner.Capital.GetName]"
+	log = "---"	
+	log = "mercOpsMeta.200- merc_buyer is: [merc_buyer.GetName]."
+	log = "mercOpsMeta.200- Target county is: [merc_country.GetName]."
+	log = "mercOpsMeta.200- merc_current_target is: [merc_current_target.GetName]."
+	log = "---"	
+	log = "mercOpsMeta.200 MercKillsObs: [this.MercKillsObs]"	
+	log = "mercOpsMeta.200 MercKillsResearch: [this.MercKillsResearch]"
+	log = "mercOpsMeta.200 MercKillsMining: [this.MercKillsMining]"
+	log = "mercOpsMeta.200 MercKillsSpaceport: [this.MercKillsSpaceport]"
+	log = "mercOpsMeta.200 MercKillsStations: [this.MercKillsStations]"
+	log = "mercOpsMeta.200 MercKillsShips: [this.MercKillsShips]"
+	log = "mercOpsMeta.200 MercKillsCivilian: [this.MercKillsCivilian]"
+	log = "mercOpsMeta.200 MercKillsTransport: [this.MercKillsTransport]"
+	log = "mercOpsMeta.200 MercKillsColossus: [this.MercKillsColossus]"
+	log = "mercOpsMeta.200 MercKillsTotal: [this.MercKillsTotal]"
+	log = "mercOpsMeta.200 MercTargetCount: [this.MercTargetCount]"	
+	log = "mercOpsMeta.200 MercKillsSomething: [this.MercKillsSomething]"	
+	log = "------------------------------"
+}
+
+on_ship_disabled_log = {
+	log = "------------------------------"
+	log = "mercOpsMeta.300- Printing the current scopes (trigger) -"
+	log = "mercOpsMeta.300- This: [This.GetName]"
+	log = "mercOpsMeta.300- Root: [Root.GetName]"
+	log = "mercOpsMeta.300- Prev: [Prev.GetName]"
+	log = "mercOpsMeta.300- PrevPrev: [Prev.Prev.GetName]"
+	log = "mercOpsMeta.300- PrevPrevPrev: [Prev.Prev.Prev.GetName]"
+	log = "mercOpsMeta.300- PrevPrevPrevPrev: [Prev.Prev.Prev.Prev.GetName]"
+	log = "mercOpsMeta.300- From: [From.GetName]"
+	log = "mercOpsMeta.300- FromFrom: [From.From.GetName]"
+	log = "mercOpsMeta.300- FromFromFrom: [From.From.From.GetName]"
+	log = "mercOpsMeta.300- FromFromFromFrom: [From.From.From.From.GetName]"
+	log = "mercOpsMeta.300- This's Solar System: [This.GetStarName]"
+	log = "mercOpsMeta.300- This's Planet: [This.Planet.GetName]"
+	log = "mercOpsMeta.300- This's Sector: [This.Sector.GetName]"
+	log = "mercOpsMeta.300- Root's Solar System: [Root.GetStarName]"
+	log = "mercOpsMeta.300- Root's Owner's Name: [Root.Owner.GetName]"
+	log = "mercOpsMeta.300- Root's Owner's Capital's Name: [Root.Owner.Capital.GetName]"
+	log = "---"	
+	log = "mercOpsMeta.300- merc_buyer is: [merc_buyer.GetName]."
+	log = "mercOpsMeta.300- Target county is: [merc_country.GetName]."
+	log = "mercOpsMeta.300- merc_current_target is: [merc_current_target.GetName]."
+	log = "---"	
+	log = "mercOpsMeta.300 MercDisabledOut: [from.owner.MercDisabledOut]"
+	log = "mercOpsMeta.300 MercDisabledPort: [from.owner.MercDisabledPort]"
+	log = "mercOpsMeta.300 MercDisabledHold: [from.owner.MercDisabledHold]"
+	log = "mercOpsMeta.300 MercDisabledFortress: [from.owner.MercDisabledFortress]"
+	log = "mercOpsMeta.300 MercDisabledCit: [from.owner.MercDisabledCit]"
+	log = "mercOpsMeta.300 MercDisabledTotal: [this.MercDisabledTotal]"
+	log = "mercOpsMeta.300 MercKillsTotal: [from.owner.MercKillsTotal]"
+	log = "mercOpsMeta.300 MercKilledPort: [from.owner.MercKilledPort]"
+	log = "mercOpsMeta.300 MercKilledHold: [from.owner.MercKilledHold]"
+	log = "mercOpsMeta.300 MercKilledFortress: [from.owner.MercKilledFortress]"
+	log = "mercOpsMeta.300 MercKilledCit: [from.owner.MercKilledCit]"
+	log = "mercOpsMeta.300 MercKilledOther: [from.owner.MercKilledOther]"
+	log = "mercOpsMeta.300 MercTargetCount: [from.owner.MercTargetCount]"	
+	log = "mercOpsMeta.300 MercDisabledOther: [from.owner.MercDisabledOther]"		
+	log = "------------------------------"
+}

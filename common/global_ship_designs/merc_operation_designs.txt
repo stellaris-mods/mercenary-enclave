@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,9 +23,11 @@
 # valid auto-generated designs. Which happens more often than you'd think,
 # because the Stellaris autodesigner is hilariously broken.
 
+# updated for versions 2.x. Reactors no longer fit in component slots
+
 ship_design = {
 	name = "Mercenary Corvette"
-	ship_size = "corvette"
+	ship_size = corvette
 	section = {
 		template = "CORVETTE_MID_S3"
 		slot = "mid"
@@ -34,69 +37,78 @@ ship_design = {
 		}
 		component = {
 			slot = "SMALL_GUN_02"
-			template = "SMALL_AUTOCANNON_3"
+			template = "AUTOCANNON_3"
 		}
 		component = {
 			slot = "SMALL_GUN_03"
 			template = "SMALL_RED_LASER"
 		}
+
 		component = {
 			slot = "SMALL_UTILITY_1"
-			template = "SMALL_ZERO_POINT_REACTOR"
+			template = "SMALL_ARMOR_5"
 		}
 		component = {
 			slot = "SMALL_UTILITY_2"
-			template = "SMALL_ZERO_POINT_REACTOR"
+			template = "SMALL_SHIELD_5"
 		}
 		component = {
 			slot = "SMALL_UTILITY_3"
 			template = "SMALL_SHIELD_5"
 		}
-		component = {
-			slot = "MEDIUM_UTILITY_1"
-			template = "MEDIUM_ZERO_POINT_REACTOR"
-		}
-		component = {
-			slot = "MEDIUM_UTILITY_2"
-			template = "MEDIUM_SHIELD_5"
-		}
+
 	}
 	required_component = "JUMP_DRIVE_1"
-	required_component = "CORVETTE_COMBAT_COMPUTER_3"
 	required_component = "SHIP_THRUSTER_4"
-	required_component = "SHIP_SENSOR_2"
+	required_component = "SENSOR_2"
+	required_component = "COMBAT_COMPUTER_SWARM_ADVANCED"		
+	required_component = "CORVETTE_ZERO_POINT_REACTOR"
+
 }
 
 ship_design = {
 	name = "Mercenary Destroyer"
-	ship_size = "destroyer"
+	ship_size = destroyer
 	section = {
 		template = "DESTROYER_BOW_M1S2"
 		slot = "bow"
 		component = {
-			slot = "MEDIUM_UTILITY_1"
-			template = "MEDIUM_SHIELD_5"
-		}
-		component = {
 			slot = "SMALL_GUN_01"
-			template = "SMALL_AUTOCANNON_3"
+			template = "AUTOCANNON_3"
 		}
 		component = {
 			slot = "SMALL_GUN_02"
 			template = "SMALL_RED_LASER"
 		}
 		component = {
-			slot = "MEDIUM_UTILITY_2"
-			template = "MEDIUM_ZERO_POINT_REACTOR"
-		}
-		component = {
-			slot = "MEDIUM_UTILITY_3"
-			template = "MEDIUM_ZERO_POINT_REACTOR"
-		}
-		component = {
 			slot = "MEDIUM_GUN_01"
-			template = "MEDIUM_MISSILE_5"
+			template = "MISSILE_5"
 		}
+		component = {
+			slot = "SMALL_UTILITY_1"
+			template = "SMALL_ARMOR_5"
+		}
+		component = {
+			slot = "SMALL_UTILITY_2"
+			template = "SMALL_ARMOR_5"
+		}
+		component = {
+			slot = "SMALL_UTILITY_3"
+			template = "SMALL_SHIELD_5"
+		}
+		component = {
+			slot = "SMALL_UTILITY_4"
+			template = "SMALL_SHIELD_5"
+		}
+		component = {
+			slot = "SMALL_UTILITY_5"
+			template = "SMALL_SHIELD_5"
+		}
+		component = {
+			slot = "SMALL_UTILITY_6"
+			template = "SMALL_SHIELD_5"
+		}
+
 	}
 	section = {
 		template = "DESTROYER_STERN_S2"
@@ -106,45 +118,36 @@ ship_design = {
 			template = "SMALL_MASS_DRIVER_5"
 		}
 		component = {
-			slot = "SMALL_UTILITY_4"
-			template = "SMALL_SHIELD_5"
-		}
-		component = {
-			slot = "SMALL_UTILITY_1"
-			template = "SMALL_SHIELD_5"
-		}
-		component = {
 			slot = "SMALL_GUN_02"
 			template = "SMALL_RED_LASER"
 		}
-		component = {
-			slot = "SMALL_UTILITY_2"
-			template = "SMALL_SHIELD_5"
-		}
-		component = {
-			slot = "SMALL_UTILITY_3"
-			template = "SMALL_ZERO_POINT_REACTOR"
-		}
+
 	}
 	required_component = "JUMP_DRIVE_1"
-	required_component = "DESTROYER_COMBAT_COMPUTER_3"
 	required_component = "SHIP_THRUSTER_4"
-	required_component = "SHIP_SENSOR_4"
+	required_component = "SENSOR_4"
+	required_component = "COMBAT_COMPUTER_PICKET_ADVANCED"	
+	required_component = "DESTROYER_ZERO_POINT_REACTOR"
 }
 
 ship_design = {
 	name = "Mercenary Cruiser"
-	ship_size = "cruiser"
+	ship_size = cruiser
 	section = {
 		template = "CRUISER_BOW_M2"
 		slot = "bow"
+
 		component = {
-			slot = "MEDIUM_UTILITY_2"
-			template = "MEDIUM_SHIELD_5"
+			slot = "MEDIUM_GUN_01"
+			template = "MEDIUM_RED_LASER"
 		}
 		component = {
 			slot = "MEDIUM_GUN_02"
 			template = "SWARMER_MISSILE_2"
+		}
+		component = {
+			slot = "MEDIUM_UTILITY_2"
+			template = "MEDIUM_SHIELD_5"
 		}
 		component = {
 			slot = "MEDIUM_UTILITY_1"
@@ -152,40 +155,18 @@ ship_design = {
 		}
 		component = {
 			slot = "MEDIUM_UTILITY_3"
-			template = "MEDIUM_ZERO_POINT_REACTOR"
+			template = "MEDIUM_SHIELD_5"
 		}
-		component = {
-			slot = "MEDIUM_GUN_01"
-			template = "MEDIUM_RED_LASER"
-		}
+
 	}
 	section = {
 		template = "CRUISER_MID_L1M1"
 		slot = "mid"
+
 		component = {
 			slot = "LARGE_GUN_01"
-			template = "LARGE_KINETIC_ARTILLERY_2"
+			template = "KINETIC_ARTILLERY_2"
 		}
-		component = {
-			slot = "MEDIUM_GUN_01"
-			template = "MEDIUM_MASS_DRIVER_5"
-		}
-		component = {
-			slot = "LARGE_UTILITY_1"
-			template = "LARGE_ZERO_POINT_REACTOR"
-		}
-		component = {
-			slot = "LARGE_UTILITY_2"
-			template = "LARGE_SHIELD_5"
-		}
-		component = {
-			slot = "LARGE_UTILITY_3"
-			template = "LARGE_ZERO_POINT_REACTOR"
-		}
-	}
-	section = {
-		template = "CRUISER_STERN_M1"
-		slot = "stern"
 		component = {
 			slot = "MEDIUM_GUN_01"
 			template = "MEDIUM_MASS_DRIVER_5"
@@ -202,34 +183,52 @@ ship_design = {
 			slot = "MEDIUM_UTILITY_3"
 			template = "MEDIUM_SHIELD_5"
 		}
+
+	}
+	section = {
+		template = "CRUISER_STERN_M1"
+		slot = "stern"
+
+		component = {
+			slot = "MEDIUM_GUN_01"
+			template = "MEDIUM_MASS_DRIVER_5"
+		}
+
 	}
 	required_component = "JUMP_DRIVE_1"
-	required_component = "CRUISER_COMBAT_COMPUTER_3"
+	required_component = "COMBAT_COMPUTER_LINE_ADVANCED"
 	required_component = "SHIP_THRUSTER_4"
-	required_component = "SHIP_SENSOR_2"
+	required_component = "SENSOR_2"
+	required_component = "CRUISER_ZERO_POINT_REACTOR"
 }
 
 ship_design = {
 	name = "Mercenary Battleship"
-	ship_size = "battleship"
+	ship_size = battleship
+
 	section = {
 		template = "BATTLESHIP_BOW_L2"
 		slot = "bow"
+
 		component = {
 			slot = "LARGE_GUN_01"
-			template = "LARGE_KINETIC_ARTILLERY_2"
+			template = "KINETIC_ARTILLERY_2"
 		}
 		component = {
 			slot = "LARGE_GUN_02"
-			template = "LARGE_KINETIC_ARTILLERY_2"
+			template = "KINETIC_ARTILLERY_2"
 		}
 		component = {
 			slot = "LARGE_UTILITY_1"
-			template = "LARGE_ZERO_POINT_REACTOR"
+			template = "LARGE_ARMOR_5"
 		}
 		component = {
 			slot = "LARGE_UTILITY_2"
-			template = "LARGE_ZERO_POINT_REACTOR"
+			template = "LARGE_ARMOR_5"
+		}
+		component = {
+			slot = "LARGE_UTILITY_3"
+			template = "LARGE_SHIELD_5"
 		}
 	}
 	section = {
@@ -237,63 +236,49 @@ ship_design = {
 		slot = "mid"
 		component = {
 			slot = "LARGE_GUN_01"
-			template = "LARGE_KINETIC_ARTILLERY_2"
+			template = "KINETIC_ARTILLERY_2"
 		}
 		component = {
 			slot = "LARGE_GUN_02"
-			template = "LARGE_KINETIC_ARTILLERY_2"
+			template = "KINETIC_ARTILLERY_2"
 		}
 		component = {
 			slot = "LARGE_GUN_03"
-			template = "LARGE_KINETIC_ARTILLERY_2"
+			template = "KINETIC_ARTILLERY_2"
 		}
+
 		component = {
 			slot = "LARGE_UTILITY_1"
-			template = "LARGE_ZERO_POINT_REACTOR"
-		}
-		component = {
-			slot = "LARGE_UTILITY_2"
-			template = "LARGE_ZERO_POINT_REACTOR"
-		}
-		component = {
-			slot = "LARGE_UTILITY_4"
 			template = "LARGE_SHIELD_5"
 		}
 		component = {
-			slot = "LARGE_UTILITY_6"
-			template = "LARGE_ARMOR_5"
+			slot = "LARGE_UTILITY_2"
+			template = "LARGE_SHIELD_5"
 		}
 		component = {
 			slot = "LARGE_UTILITY_3"
 			template = "LARGE_SHIELD_5"
 		}
-		component = {
-			slot = "LARGE_UTILITY_5"
-			template = "LARGE_SHIELD_5"
-		}
+
 	}
 	section = {
 		template = "BATTLESHIP_STERN_M2"
 		slot = "stern"
+
 		component = {
-			slot = "LARGE_UTILITY_2"
-			template = "LARGE_ARMOR_5"
+			slot = "MEDIUM_GUN_01"
+			template = "SWARMER_MISSILE_2"
 		}
 		component = {
 			slot = "MEDIUM_GUN_02"
 			template = "SWARMER_MISSILE_2"
 		}
-		component = {
-			slot = "LARGE_UTILITY_1"
-			template = "LARGE_SHIELD_5"
-		}
-		component = {
-			slot = "MEDIUM_GUN_01"
-			template = "SWARMER_MISSILE_2"
-		}
+
+
 	}
 	required_component = "JUMP_DRIVE_1"
-	required_component = "BATTLESHIP_COMBAT_COMPUTER_3"
+	required_component = "COMBAT_COMPUTER_ARTILLERY_ADVANCED"
 	required_component = "SHIP_THRUSTER_4"
-	required_component = "SHIP_SENSOR_4"
+	required_component = "SENSOR_2"
+	required_component = "BATTLESHIP_ZERO_POINT_REACTOR"
 }

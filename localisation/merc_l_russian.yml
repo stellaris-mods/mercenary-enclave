@@ -9,6 +9,7 @@ l_russian:
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,40 +26,20 @@ l_russian:
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-
-#####################################################################################
-#      Fixing errors in russian localization for Mercanary Enckave mod              #
-#      ( http://steamcommunity.com/sharedfiles/filedetails/?id=821458136 )          #
-#                                                                                   #
-#                                                                                   #
-#   Созданный пользователем folk                                                    #
-#  Его  профиль : http://steamcommunity.com/id/folk_                                #
-#                                                                                   #
-#                                                                                   #
-#  Добавлен для совместимости                                                       #
-#     мой профиль:    http://steamcommunity.com/profiles/76561198028826326/friends/ #                                                                          #
-#                                                                                   #
-#####################################################################################
-
-nongfx_fmerc_ship_01: "Странный"
-
-nongfx_fmerc_ship_01_plural: "Странный"
-
-civic_mercenary_operations: "Mercenary Operations"
-civic_mercenary_operations_desc: ""
-
-##folk_mercenary_government: "Mercenary Enclave"
-folk_mercenary_government: "Анклав Наемников"
-folk_mercenary_government_desc: "§LМежзвездный конгломерат наемников, интересующиеся заработком.§!"
-FOLK_HIGH_MERC: "Босс"
-
+###################################################################################
+###																				###
+###							Translation by ST@RK43								###
+###																				###
+###################################################################################
 
 format.mercenary.1: "<fmerc_names>"
 
-##Translated by FireBurn256, Steam Profile: http://steamcommunity.com/id/29910011/ Feel free to contact me if there is something you want to discuss.
-
 ##MERCENARY_SQUADRON: "Mercenary Squadron"
 MERCENARY_SQUADRON: "Эскадрон Наемников"
+SUBJECT_mercsquad: "Эскадрон Наемников"
+SUBJECT_DESC_mercsquad: "Эскадрон наемников на пути к заданной цели."
+##SUBJECT_merc_operations_squad: "Inconspicuous Operatives"
+SUBJECT_merc_operations_squad: "Неприметные оперативники"
 
 ##tech_mercenary_enclave: "Mercenary Enclave Hidden Tech"
 tech_mercenary_enclave: "Скрытая Технология для Анклавов Наемников"
@@ -68,13 +49,17 @@ tech_mercenary_enclave_desc: "Данная технология доступна
 ##merc_enclave_insurance: "Mercenary Insurance Policy"
 merc_enclave_insurance: "Страхование"
 ##merc_enclave_insurance_desc: "Whiteout Enterprises will contact you and allow you to make a counter-offer if some other empire tries to order an operation against you."
-merc_enclave_insurance_desc: "Whiteout Enterprises свяжется с вами и позволит вам сделать встречное предложение, если какая-то империя решит заказать операцию против вас."
+merc_enclave_insurance_desc: "Whiteout Enterprises свяжется с Вами и позволит Вам сделать встречное предложение, если какая-то империя решит заказать операцию против Вас."
 
 ##name_list_FMercenaries: "Wannabe Pirates"
 name_list_FMercenaries: "Подражающие пиратам"
-##SUBJECT_merc_operations_squad: "Inconspicuous Operatives"
-SUBJECT_merc_operations_squad: "Неприметные оперативники"
 
+##folk_mercenary_government: "Mercenary Enclave"
+folk_mercenary_government: "Анклав Наемников"
+##folk_mercenary_government_desc: "§LAn interstellar conglomerate of mercenaries dedicated to profiteering.§!"
+folk_mercenary_government_desc: "§LМежзвездный конгломерат наемников, интересующиеся заработком.§!"
+##FOLK_HIGH_MERC: "Boss"
+FOLK_HIGH_MERC: "Босс"
 
 
 
@@ -82,8 +67,6 @@ SUBJECT_merc_operations_squad: "Неприметные оперативники"
 INVESTIGATE_MERC_ENCLAVE: "Исследовать [fmercsystem.GetName]"
 ##INVESTIGATE_MERC_ENCLAVE_DESC: "We need to learn more about the mysterious aliens residing in the §Y[fmercsystem.GetName] System§!. If they possess a language, we must decipher it and establish communications.\n\nReward: £influence  §GInfluence§! or §SSpecial Project§!"
 INVESTIGATE_MERC_ENCLAVE_DESC: "Мы должны узнать побольше о загадочных инопланетянах, находящихся в §Y[fmercsystem.GetName] System§!. Если они владеют каким-либо способом общения, мы должны расшифровать его и связаться с ними.\n\nНаграда: £influence  §GВлияние§! или §SСпециальный проект§!"
-##INVESTIGATE_MERC_ENCLAVE_DESC: "Мы должны узнать побольше о загадочных инопланетянах, находящихся в §Y[Prev.From.GetName] System§!. Если они владеют каким-либо способом общения, мы должны расшифровать его и связаться с ними.\n\nНаграда: £influence  §GInfluence§! или §SSpecial Project§!"
-
 
 ##opinion_destroyed_mercenary: "Destroyed Mercenary Enclave"
 opinion_destroyed_mercenary: "Уничтоженная Станция Наемников"
@@ -96,6 +79,11 @@ fmerc_opinion_fleet: "Операция Наемников"
 ##fmerc_opinion_spaceport: "Mercenary Operation"
 fmerc_opinion_spaceport: "Операция Наемников"
 
+#######################
+# Sections and Designs
+#
+merc_spaceport: "Верфь Анклава"
+merc_spaceport_plural: "Верфи Анклава"
 
 
 ##LARGE_MASS_ACCELERATOR_FMERC: "Mercenary Station Accelerator XL"
@@ -119,15 +107,14 @@ merc.buyer.detected.desc: "На связи глава нашего Минист�
 ##merc.name: "Whiteout Enterprises"
 merc.name: "Whiteout Enterprises"
 ##merc.destroyedttacked.desc: "Ha ha ha! You think you can beat us? That is most hilarious. Have a good day, you filthy scum. We will meet again."
-merc.destroyedttacked.desc: "Ха-ха-ха! Думаете, вы сможете нас победить? Это просто смешно. Приятного дня, грязное ничтожество. Еще увидимся."
+merc.destroyedttacked.desc: "Ха-ха-ха! Думаете, вы сможете нас победить? Это просто смешно. Приятного дня, грязное ничтожество. Еще увидимся!"
 ##merc.close: "§PEnd communications§!"
 merc.close: "§PПрекратить связь§!"
 ##merc.back: "Back to previous menu"
 merc.back: "Назад в предыдущее меню"
 
-## fmerc_enclave.trust: "Requires this §YMercenary Enclave§! to have:\n£opinion  Opinion +50\n"
-##fmerc_enclave.trust: "Requires this §YMercenary Enclave§! to have:\n£opinion  Opinion +50\n"
-fmerc_enclave.trust: "Требуется отношение §YMercenary Enclave§! \n£opinion  Отношение +50\n"
+##merc_enclave.trust: "Requires this §YMercenary Enclave§! to have:\n£opinion  Opinion +20\n"
+merc_enclave.trust: "Требуется отношение §YMercenary Enclave§! \n£opinion  Отношение +20\n"
 ##merc.condition.station.access: "We need to allow them access to construct military facilities in our territory."
 merc.condition.station.access: "Мы должны разрешить им постройку военных баз на нашей территории."
 ##fmerc_enclave.has_insurance: "We are already insured."
@@ -139,11 +126,11 @@ merc.condition.deposit: "Вам необходимо иметь как мини�
 
 # Initial diplomacy window
 
-merc.initial.desc: "Приветствую! Если есть у Вас какая-то проблема, с которой мы можем Вам помочь ? Пожалуйста, просмотрите список наших услуг в правом экране."
-merc.initial.opinion.custom: "§PУчитывая, что вы атаковали наши станции, мы очень раздражены (-[this.MercCustomOpinion]), и это соответственно увеличит коэффициент цен.§!\n"
-merc.initial.deposit.minerals: "Депозит Минералов:  £minerals §G[Root.MercDeposit]§!\n"
-merc.initial.deposit.energy: "Депозит Энергии:  £energy §G[Root.MercDepositEnergy]§!\n"
-merc.initial.deposit.fee: "Административный сбор: §R5% / год§!"
+merc.initial.desc: "Приветствуем Вас! Если вы заинтересованны в некоторых наших услугах, пожалуйста, выберите ее на экране справа."
+merc.initial.opinion.custom: "§PУчитывая, что вы атаковали наши станции, мы очень раздражены, и соответственно мы увеличим коэффициент цен.(-[this.MercCustomOpinion])§!\n"
+merc.initial.deposit.minerals: "Минералы на счету:  £minerals §G[Root.MercDeposit]§!\n"
+merc.initial.deposit.energy: "Энергокредиты на счету:  £energy §G[Root.MercDepositEnergy]§!\n"
+merc.initial.deposit.fee: "Процент удержания: §R5% / year§!"
 
 ##merc.initial.active.operation: "§YWhiteout Enterprises§! is currently engaged in special operations activity on behalf of someone in your government. Please check back at a later date.\n\nNote that all our special operations are be terminated immediately after 5 years, regardless of progress."
 merc.initial.active.operation: "В настоящий момент §YWhiteout Enterprises§! выполняет заказ вашего правительства и не может ответить на ваш запрос. Пожалуйста, вернитесь в течении нескольких дней."
@@ -152,33 +139,45 @@ merc.initial.insurance.button: "Купить страховку"
 ##merc.initial.insurance.sell: "Sell insurance"
 merc.initial.insurance.sell: "Продать страховку"
 ##merc.initial.insurance.tooltip: "§YWhiteout Enterprises§! offers an insurance policy, which in simple terms means that if any other empire orders a §YWhiteout Enterprises§! service targetting you, you will be given an option to outbid them."
-merc.initial.insurance.tooltip: "§YWhiteout Enterprises§! предлагает оплатить страхование от действий враждебных вам империй. Если какая-то другая империя решит заказать "Вас" у нас, §YWhiteout Enterprises§! предложит Вам возможность перекупить эту услугу."
+merc.initial.insurance.tooltip: "§YWhiteout Enterprises§! предлагает оплатить страхование от действий враждебных Вам империй. Если какая-то другая империя решит заказать "Вас" у нас, §YWhiteout Enterprises§! предложит Вам возможность перекупить эту услугу."
 
 
 ##merc.initial.minerals.button: "§YDeposit £minerals 2500§!"
-merc.initial.minerals.button: "Пополнить счет на £minerals §G2500§!"
+merc.initial.minerals.button: "Положить на счет £minerals §G2500§!"
 ##merc.initial.minerals.tooltip: "Deposits another 2500 minerals in the §YWhiteout Enterprise§! emergency account. Any funds in this account will be spent first if you order any combat maneuvers or other services at a later date.\n\nAdministrative fee: §R5% / year§!\n$OPINION$: £opinion  §G+5§!"
-merc.initial.minerals.tooltip: "Пополнить счет на еще 2500 минералов на счет §YWhiteout Enterprise§!. При заказе услуг оплата сперва снимается с этого счета.\n\nПроцент удержания: §R5% / год§! \n$OPINION$: £opinion  §G+5§!"
+merc.initial.minerals.tooltip: "Размещает на счет §YWhiteout Enterprise§! еще 2500 минералов. При заказе дальнейших услуг или боевых операций оплата сперва снимается с этого счета.\n\nПроцент удержания: §R5% / год§! \n$OPINION$: £opinion  §G+5§!"
 ##merc.initial.minerals.reply: "Excellent, I'm sure those funds will come in handy for you one day.\n\nTotal deposit:  £minerals §G[Root.MercDeposit] +2500§!\nAdministrative fee: §R5% / year§!"
 merc.initial.minerals.reply: "Прекрасно, уверен, этот депозит когда-нибудь будет полезен.\n\nИтого:  £minerals §G[Root.MercDeposit] +2500§!\nПроцент удержания: §R5% / год§!"
-merc.initial.minerals.withdraw: "§YСнять £minerals 2500§!"
-merc.initial.minerals.withdraw.tooltip: "Снять 2500 минералов с вашего счета."
-merc.condition.minerals.withdraw: "Недостаточно минералов на счету."
-merc.initial.minerals.withdraw.reply: "Мы ценим продолжение наших деловых отношений.\n\nОбщий счет:  £minerals §G[Root.MercDeposit] -2500§!\nАдминистративный сбор: §R5% / year§!"
-merc.condition.clearspace: "$merc.name.colored$ требуется, наличие хотя бы 4500 £minerals на вашем счету прежде чем они предпримут этот вид операции."
+#merc.initial.minerals.withdraw: "§YWithdraw £minerals 2500§!"
+merc.initial.minerals.withdraw: "§YСнять со счета £minerals 2500§!"
+#merc.initial.energy.withdraw.tooltip: "Withdraws 2500 energy credits from your account."
+merc.initial.minerals.withdraw.tooltip: "Снять 2500 минералов со Вашего счета."
+#merc.condition.minerals.withdraw: "Not enough minerals in account."
+merc.condition.minerals.withdraw: "Недостаточно минералов на Вашем счету."
+#merc.initial.minerals.withdraw.reply: "We appreciate our continued business relationship.\n\nTotal deposit:  £minerals §G[Root.MercDeposit] -2500§!\nAdministrative fee: §R5% / year§!"
+merc.initial.minerals.withdraw.reply: "Мы ценим наши текущие деловые отношения.\n\nОбщий счет:  £minerals §G[Root.MercDeposit] -2500§!\nПроцент удержания: §R5% / год§!"
+#merc.condition.clearspace: "$merc.name.colored$ requires you to have at least £minerals 4500 deposited before they will undertake this type of operation."
+merc.condition.clearspace: "$merc.name.colored$ требует, чтобы у Вас было не менее £minerals 4500, прежде чем они начнут этот тип операции."
 
-merc.initial.energy.button: "§YПополнить счет на £energy 2500§!"
-merc.initial.energy.tooltip: "Пополнить счет у §YWhiteout Enterprise§! ещё 2500 £Энергии. Любые средства на этом счете будут потрачены первым, если вы закажете какие-либо боевые маневры или другие услуги на более поздний срок.\n\nАдминистративный сбор: §R5% / year§!\n"
-merc.initial.energy.reply: "Отлично, я уверен, что эти деньги вам пригодится однажды.\n\nОбщий счет:  £energy §G[Root.MercDepositEnergy] +2500§!\nАдминистративный сбор: §R5% / year§!"
-merc.initial.energy.withdraw: "§YСнять £energy 2500§!"
-merc.initial.energy.withdraw.tooltip: "Снять 2500 энергитических кредитов с Вашего счета."
-merc.condition.energy.withdraw: "Недостаточно энергетических кредитов на счету."
-merc.initial.energy.withdraw.reply: "Мы ценим продолжение наших деловых отношений.\n\nОбщий счет:  £energy §G[Root.MercDepositEnergy] -2500§!\nАдминистративный сбор: §R5% / year§!"
+#merc.initial.energy.button: "§YDeposit £energy 2500§!"
+merc.initial.energy.button: "§YПоложить на счет £energy 2500§!"
+#merc.initial.energy.tooltip: "Deposits another 2500 energy credits in the §YWhiteout Enterprise§! emergency account. Any funds in this account will be spent first if you order any combat maneuvers or other services at a later date.\n\nAdministrative fee: §R5% / year§!\n"
+merc.initial.energy.tooltip: "Размещает на счет §YWhiteout Enterprise§! еще 2500 энергокредитов. При заказе дальнейших услуг или боевых операций оплата сперва снимается с этого счета.\n\nПроцент удержания: §R5% / год§!\n"
+#merc.initial.energy.reply: "Excellent, I'm sure those funds will come in handy for you one day.\n\nTotal deposit:  £energy §G[Root.MercDepositEnergy] +2500§!\nAdministrative fee: §R5% / year§!"
+merc.initial.energy.reply: "Прекрасно, уверен, этот депозит когда-нибудь будет Вам полезен.\n\nОбщий счет:  £energy §G[Root.MercDepositEnergy] +2500§!\nПроцент удержания: §R5% / год§!"
+#merc.initial.energy.withdraw: "§YWithdraw £energy 2500§!"
+merc.initial.energy.withdraw: "§YСнять со счета £energy 2500§!"
+#merc.initial.energy.withdraw.tooltip: "Withdraws 2500 energy credits from your account."
+merc.initial.energy.withdraw.tooltip: "Снять 2500 энергокредитов со Вашего счета."
+#merc.condition.energy.withdraw: "Not enough energy credits in account."
+merc.condition.energy.withdraw: "Недостаточно энергокредитов на Вашем счету."
+#merc.initial.energy.withdraw.reply: "We appreciate our continued business relationship.\n\nTotal deposit:  £energy §G[Root.MercDepositEnergy] -2500§!\nAdministrative fee: §R5% / year§!"
+merc.initial.energy.withdraw.reply: "Мы ценим наши текущие деловые отношения.\n\nОбщий счет:  £energy §G[Root.MercDepositEnergy] -2500§!\nПроцент удержания: §R5% / год§!"
 
 
 
 ##merc.initial.operations.button: "§YServices ...§!"
-merc.initial.operations.button: "Дайте список Ваших услуг"
+merc.initial.operations.button: "Дайте список ваших услуг"
 ##merc.initial.stations.button: "§YAllow border access§!"
 merc.initial.stations.button: "Открыть границы"
 ##merc.initial.stations.tooltip: "This allows §YWhiteout Enterprises§! access to your territories. It's hard to speculate why they might want this, but they assure us it will be to our mutual benefit.\n\nHowever, rest assured it will also increase their effectiveness against you should someone else contract their services towards you."
@@ -192,7 +191,7 @@ merc.initial.nostations.tooltip: "Закрывает наши границы д�
 ##merc.stationaccess.open: "Excellent. We appreciate this."
 merc.stationaccess.open: "Прекрасно. Мы это ценим."
 ##merc.stationaccess.close: "That is unfortunate. We will disassemble any operational presence we might have ongoing inside your territories at our convenience."
-merc.stationaccess.close: "Сожалеем. Мы прекратим любое наше присутствие на Вашей территории."
+merc.stationaccess.close: "Сожалеем. Мы прекратим любое наше присутствие на вашей территории."
 
 
 # insurance
@@ -201,14 +200,23 @@ merc.insurance.buy: "Правильное решение. Мы дадим Вам
 ##merc.insurance.cancel: "That's unfortunate. Look for us on the horizon."
 merc.insurance.cancel: "Печально. Мы будем рядом."
 
+#merc.param.minerals: "Mineral cost: £minerals §G[root.MercCost]§!\n"
 merc.param.minerals: "Стоимость в минералах: £minerals §G[root.MercCost]§!\n"
-merc.param.energy: "Стоимость в энергии: £energy §G[root.MercCostEnergy]§!\n"
-merc.param.influence: "Стоимость в влиянии: £influence §G[root.MercCostInfluence]§!\n"
+#merc.param.energy: "Energy cost: £energy §G[root.MercCostEnergy]§!\n"
+merc.param.energy: "Стоимость в энергокредитах: £energy §G[root.MercCostEnergy]§!\n"
+#merc.param.influence: "Influence cost: £influence §G[root.MercCostInfluence]§!\n"
+merc.param.influence: "Расход влияния: £influence §G[root.MercCostInfluence]§!\n"
+#merc.param.minerals.monthly: "Monthly mineral cost: £minerals §G[root.MercMonthlyCost]§!\n"
 merc.param.minerals.monthly: "Месячная стоимость в минералах: £minerals §G[root.MercMonthlyCost]§!\n"
+#merc.param.energy.monthly: "Monthly energy cost: £energy §G[root.MercMonthlyCostEnergy]§!\n"
 merc.param.energy.monthly: "Месячная стоимость в энергокредитах: £energy §G[root.MercMonthlyCostEnergy]§!\n"
-merc.param.influence.monthly: "Месячная стоимость в влиянии: £influence §G[root.MercMonthlyCostInfluence]§!\n"
+#merc.param.influence.monthly: "Monthly influence cost: £influence §G[root.MercMonthlyCostInfluence]§!\n"
+merc.param.influence.monthly: "Ежемесячный расход влияния: £influence §G[root.MercMonthlyCostInfluence]§!\n"
+#merc.param.success: "Chance of success: §G[root.MercSuccess]%§!"
 merc.param.success: "Шанс успеха: §G[root.MercSuccess]%§!\n"
+#merc.param.detection: "Detection risk: §P[root.MercDetect]§!\n"
 merc.param.detection: "Риск обнаружения: §P[root.MercDetect]§!\n"
+#merc.param.multiplier.trust: "Trust multiplier: §H[root.MercTrustMultiplier]%§!\n"
 merc.param.multiplier.trust: "Множитель доверия: §H[root.MercTrustMultiplier]%§!\n"
 
 # Services menu
@@ -218,22 +226,63 @@ merc.operations.name: "Специальные операции"
 merc.operations.desc: "Мы в §YWhiteout Enterprises§! предлагаем несколько вариантов военных операций для наших клиентов. Не желаете ознакомиться с брошюрой? \n\nПожалуйста, прочитайте соглашения очень тщательно, и подпишите рядом с крестиком.\nОперации §YWhiteout Enterprise§! имеют несколько параметров, не контролируемые клиентом, и время одно из них. После подписания контракта, нам потребуется от 3 до 90-ти дней для тщательной подготовки - и это даже не обсуждается."
 
 ##merc.condition.invalid.target: "We can not execute this type of operation against this type of empire."
-merc.condition.invalid.target: "Мы не можем выполнить эту операцию против этой империи."
-merc.condition.invalid.target.now: "Эта Империя §PНе является§! коректной целью для этого типа операций. Может быть много причин почему, в том числе §g(a)§! потому что они слишком сильны для нас, или §g(b)§! потому что мы не считаем их достойной мишенью, или §g(c)§! потому что у нас с ними есть соглашениеиться с ними, что мешает нам атокавать их в данный момент времени..Мы никогда не скажем Вам.\n\n§GВажно отметить, что эта империя обычно является допустимой мишенью для этого типа операции. Но, не сейчас.§!"
+merc.condition.invalid.target: "Мы не можем выполнить эту операцию против этой Империи."
+#merc.condition.invalid.target.now: "This empire is §Pnot currently§! a valid target for this type of operation. There can be many reasons for this, including §g(a)§! that they are too strong for us, or §g(b)§! that we don't consider them a worthy target, or §g(c)§! we might have an agreement with them that prevents us from targetting them at this point in time. We will never tell you.\n\n§GThe important thing to note is that this empire is usually a valid target for this operation type. But not right now.§!"
+merc.condition.invalid.target.now: "§YWhiteout Enterprises§! не считает данную Империю подходящей целью для этой операции. Для этого может быть много причин таких как - §g(a)§! они слишком сильны для нас, §g(b)§! мы не считаем их достойной целью или §g(c)§!возможно унас с ними договор, что мешает нам проводить операции против них, в этот момент времени. Мы в любом случае не признались бы.\n\n§GВажно отметить, что эта империя обычно является допустимой мишенью для этого типа операции. Но не сейчас.§!"
 
-merc.operation.spaceport: "Атака на Космопорт"
-merc.operation.spaceport.desc: "Найти и уничтожить один или несколько объектов Spaceport от вашего имени."
-merc.operation.liberate: "Освободите Планету"
-merc.operation.liberate.desc: "Освобождение планеты всегда является рискованным бизнесом и имеет огромные первоначальные издержки, но выигрыш является исключительным. Мы находим подходящую цель для вторжения и делаем для Вас всю грязную работу. После освобождения население планеты будет \"убежденно\" следовать Вашему духу и освободиться от тирании их бывших угнетателей."
-merc.operation.civilian: "Гражданский рейд"
-merc.operation.civilian.desc: "Удушает экономику ваших противников. Мы находим, атакуем и уничтожаем от 5 до 12 гражданских целей, включая транспортные средства, в пространстве ваших противников. Конечно, любая добыча, которую мы находим, остается нашей."
-merc.operation.fleet: "Рейд"
-merc.operation.fleet.desc: "Самая опасная услуга, которую мы предоставляем. Это неизбежно ставит нас в прямое противостояние с военными оппонентами. Тем не менее, это то, ради чего мы живем, и та часть нашей работы, которой мы наслаждаемся больше всего. Мы находим, идентифицируем, отслеживаем и атакуем, как минимум 1 (один) военный флот относительной значимости."
+#merc.operation.spaceport: "Spaceport Raid"
+merc.operation.spaceport: "Рейд на §YКосмическую базу§!"
+merc.operation.spaceport.button: "§Y$merc.operation.spaceport$ ...§!"
+#merc.operation.spaceport.targets: "Optimal targets: large $shipclass_starbase$ in star systems, without space fleets."
+merc.operation.spaceport.targets: "§YОптимальные цели:§! большие §YКосмические базы§! в звёздных системах, без космических флотов."
+#merc.operation.spaceport.desc: "Locate and destroy one or more Spaceport facilities on your behalf."
+merc.operation.spaceport.desc: "Найдем и уничтожим одну или несколько §YКосмических баз§! от Вашего имени."
+#merc.operation.liberate: "Liberate Planet"
+merc.operation.liberate: "«Освободить» планету"
+merc.operation.liberate.button: "§Y$merc.operation.liberate$ ...§!"
+#merc.operation.liberate.desc: "Planet liberation is always risky business, and has an immense upfront cost - but the payoff is exceptional. We find a suitable target to invade, and do all the dirty work for you. Once liberated, the population on the planet will be \"convinced\" to follow your ethos, and freed from what we can only presume is the tyranny of their former oppressors."
+merc.operation.liberate.desc: "Освобождение планеты всегда является рискованным бизнесом и имеет ОГРОМНЫЕ первоначальные издержки, но и выигрыш является исключительным. Мы находим подходящую цель для вторжения и делаем для Вас всю грязную работу. После освобождения, население мира будет «убеждено» следовать вашему духу и освободиться от, как мы предполагаем, тирании своих бывших угнетателей."
+#merc.operation.civilian: "Civilian Raid"
+merc.operation.civilian: "«Гражданский» рейд"
+merc.operation.civilian.button: "§Y$merc.operation.civilian$ ...§!"
+#merc.operation.civilian.targets: "§YOptimal targets:§! $mining_station_plural$, $research_station_plural$, $observation_station_plural$ in systems without $shipclass_military_station$, $shipclass_military$ or $shipclass_starbase$ bigger than $starbase_outpost$."
+merc.operation.civilian.targets: "§YОптимальные цели:§! $mining_station_plural$, $research_station_plural$, $observation_station_plural$ в системах без $shipclass_military_station$, $shipclass_military$ или $shipclass_starbase$ размера больше $starbase_outpost$."
+#merc.operation.civilian.desc: "Stifles your opponents economy. We locate, engage, and destroy, between 5 and 12 civilian targets, including transports, in your adversaries space. Of course, any loot we find is ours to keep."
+merc.operation.civilian.desc: "Удушает экономику ваших противников. Мы находим, атакуем и уничтожаем от 5 до 12 гражданских целей, включая транспорты, в пространстве Ваших противников. Конечно, любая добыча, которую мы находим, остается нашей."
+merc.operation.fleet: "Уничтожить флотилию"
+merc.operation.fleet.button: "§Y$merc.operation.fleet$ ...§!"
+#merc.operation.fleet.targets: "§YOptimal targets:§! fleets with $FLEET_POWER$ is greater than 1200 and smaller than 90000 in systems without $shipclass_military_station$ or $shipclass_starbase$."
+merc.operation.fleet.targets: "§YОптимальные цели:§! Флоты с $FLEET_POWER$ больше чем §Y1200§! и меньше чем §R90000§! в системах без $shipclass_military_station$ или $shipclass_starbase$."
+#merc.operation.fleet.desc: "The most dangerous service we provide. This puts us inevitably in direct confrontation with military opponents, and as such comes with a premium. However, this is what we live for, and the part of our job we enjoy the most. We locate, identify, track, and engage, a minimum of 1 (one) military fleet of relative significance."
+merc.operation.fleet.desc: "Самая опасная услуга, которую мы предоставляем. Это неизбежно ставит нас в прямую конфронтацию с военными оппонентами, и как таковое приведёт к определённым §Bпоследствиям§!. Тем не менее, это то, ради чего мы живем, и та часть нашей работы, которой мы наслаждаемся больше всего. Мы находим, идентифицируем, отслеживаем и атакуем, как минимум 1 (один) военный флот относительной значимости."
+
+# Help with Leviathans
+merc.operation.leviathans: "«Помощь с Левиафанами»"
+merc.operation.leviathans.button: "§Y$merc.operation.leviathans$ ...§!"
+merc.operation.leviathans.desc: "Новый необычный сервис. Вы наверно встречались с этими странными ужасающими и необычными гигантами? Конечно мы не сможем их одолеть за Вас, но мы сможем немного помочь Вам с ними. Мы создадим флот Дронов силой в 10К/20К/30К который будет ждать Вас в соседней от Левиафана системе. Дроны будут запрограммированы следовать за Вами и возможно послужат отвлекающим манёвром при атаке на монстра. Это сократит потери Вашего флота. Выберите тип §RЛевиафана§! в меню наших услуг справа."
+
+# Dirty Missions
+merc.operation.dirty_missions: "«Грязные миссии»"
+merc.operation.dirty_missions.button: "§B$merc.operation.dirty_missions$ ...§!"
+merc.operation.dirty_missions.desc: "Грязные миссии от наших партнёров Пиратских кланов во всей галактике. Все они обычно приводят к сильному ухудшению отношения к Вам ну и к нам конечно."
+merc.operation.dirty_missions.deny.desc: "§RМы считаем ниже своего достоинства выполнять такие типы миссий, но не наёмники из §Y"Privateering Enterprises"§!, к сожалению мы не смогли с ними связаться.§!"
+merc.operation.dirty_missions.deny.tooltip: "§RК сожалению мы не смогли связаться с §Y"Privateering Enterprises"§!.§!"
+
+merc.operation.dirty_missions.hunt: "Охота на исследователей"
+merc.operation.dirty_missions.hunt.tooltip: "Наёмники из §Y"Privateering Enterprises"§! находят, атакуют и уничтожают от 3 до 5 Исследовательских кораблей Вашего противника."
+
+merc.operation.dirty_missions.assassination: "Убийство Лидера"
+merc.operation.dirty_missions.assassination.tooltip: "Наёмники из §Y"Privateering Enterprises"§! внедряются в государственные структуры Вашего противника и постараются устранить лидера. В случае успеха Вашему противнику придётся провести перевыборы. Кончено это очень рискованная операция с высоким риском обнаружения и провала."
+
+merc.operation.dirty_missions.terror: "Террор в Столице"
+merc.operation.dirty_missions.terror.tooltip: "Наёмники из §Y"Privateering Enterprises"§! проникнув в Столицу и проведут несколько взрывов. В случае успеха будут подорваны государственные и промышленные мощности столицы. Кончено это очень рискованная операция с высоким риском обнаружения и провала."
 
 # Clear Space
 ##merc.operation.clearspace: "Clear Space"
-merc.operation.clearspace: "Очистить пространство"
-merc.operation.clearspace.desc: "Пираты, беспилотные летательные аппараты, амебы или какая-то другая раздражающая чудовищная враждебная обстановка на вашей территории? $merc.name.colored$ может справиться с этим для Вас. За вознаграждение конечно!\n\nВыберите тип цели, которую Вы хотите §Rнемедленно§! атаковать в меню наших услуг справа, и давайте приступим к работе.. §GС этим не будет трудности.§!\n\nЦена: £минералов §GМежду 300 и 3000§!\nШанс успеха: §G95%§!\n"
+merc.operation.clearspace: "«Очистить» пространство"
+merc.operation.clearspace.button: "§Y$merc.operation.clearspace$ ...§!"
+#merc.operation.clearspace.desc: "Are pirates, drones, amoebas, or some other annoying monstrous hostile lounging about inside your territory? $merc.name.colored$ can handle that for you. For a price!\n\nSelect the type of target you want us to §Rimmediately§! engage in our services menu on the right, and let us get to work. §GThere is no red tape on this one.§!\n\nCost: £minerals §GBetween 300 and 3000§!\nChance of success: §G95%§!\n"
+merc.operation.clearspace.desc: "Пираты, дроны, амебы, и прочие агрессивные существа надоедают Вам? $merc.name.colored$ может заняться некоторыми из них. Не бесплатно!\n\nВыберите тип цели, в нашем меню услуг справа, которую вы хотите, чтобы мы §Rнемедленно§! нашли и атаковали, и давайте мы приступим к работе. §GИ никакой волокиты.§!\n\nЦена: £minerals §GМежду 300 и 3000§!\nШанс успеха: §G95%§!\n"
 
 
 ##merc.clearspace.amoeba: "§YImmediately attack $space_amoeba_plural$§!"
@@ -246,15 +295,16 @@ merc.clearspace.crystal: "Немедленно атакуйте Кристалл
 merc.clearspace.pirates: "Немедленно атакуйте пиратов!"
 ##merc.clearspace.drones: "§YImmediately attack Drones§!"
 merc.clearspace.drones: "Немедленно атакуйте дронов!"
-##merc.clearspace.tooltip: "§YWhiteout Enterprises§! will §Rimmediately§! go to work on any hostile targets matching this description inside your territories. If there are no targets of this type, your minerals will be considered a donation.\n\nThe Цена will vary depending on several factors, but §YWhiteout Enterprises§! sees this service as a friendly gesture among trusted customers, and will simply §Gdeduct the Цена from your account§! after the operation has been completed."
-merc.clearspace.tooltip: "§YWhiteout Enterprises§! §Rimmediately§! начнет работу по истреблению агрессивных существ согласно предоставленному Вами описанию на Вашей территории. Если подобных существ не будет, Ваши минералы послужат как пожертвование.\n\nЦена зависит от нескольих параметров, но §YWhiteout Enterprises§!  представляет эту услугу как дружеский жест в отношении наших доверенных клиентов и просто §Gвычтет стоимость с Вашего счета§! после выполнения операции."
+merc.clearspace.marauders: "Спасите нас от Мародёров!"
+##merc.clearspace.tooltip: "§YWhiteout Enterprises§! will §Rimmediately§! go to work on any hostile targets matching this description inside your territories. If there are no targets of this type, your minerals will be considered a donation.\n\nThe cost will vary depending on several factors, but §YWhiteout Enterprises§! sees this service as a friendly gesture among trusted customers, and will simply §Gdeduct the cost from your account§! after the operation has been completed."
+merc.clearspace.tooltip: "§YWhiteout Enterprises§! §Rimmediately§! начнет работу по истреблению агрессивных существ согласно предоставленному вами описанию на Вашей территории. Если подобных существ не будет, ваши минералы послужат как пожертвование.\n\nЦена зависит от нескольих параметров, но §YWhiteout Enterprises§! представляет эту услугу как дружеский жест в отношении наших доверенных клиентов и просто §Gвычтет стоимость с вашего счета§! после выполнения операции."
 
 # Question 1, which country should we attack
 
 ##merc.target.name: "Target Selection"
 merc.target.name: "Выбор цели"
-##merc.target.desc: "The very first parameter we need to know is what kind of target you want to select. §YWhiteout Enterprises§! has an internal classification system for most kinds of empires that can be found thriving around the galaxy.\n\nEach comes with bonuses and/or penalties to the final operational Ценаs.\n\nDue to our non-disclosure agreement, you will only be able to select targets with which you have active communications. If you see no relevant target categories, that means we are unable to fulfill your request."
-merc.target.desc: "Первый параметр - это какого типа Империю Вы хотите заказать. §YWhiteout Enterprises§! каталогиизирует империи по своим критериям.\n\nКаждый класс империй имеет свои бонусы и штрафы, которые отразятся на итоговой стоимости операции.\n\nНаша политика неразглашения клиентов позволяет Вам заказать только те империи, с которыми Вы уже связались. Если Вы не видите подходящих целей, то это может значить то, что мы не имеем возможности выполнить Ваш запрос."
+##merc.target.desc: "The very first parameter we need to know is what kind of target you want to select. §YWhiteout Enterprises§! has an internal classification system for most kinds of empires that can be found thriving around the galaxy.\n\nEach comes with bonuses and/or penalties to the final operational costs.\n\nDue to our non-disclosure agreement, you will only be able to select targets with which you have active communications. If you see no relevant target categories, that means we are unable to fulfill your request."
+merc.target.desc: "Первый параметр - это какого типа Империю вы хотите заказать. §YWhiteout Enterprises§! каталогиизирует империи по своим критериям.\n\nКаждый класс империй имеет свои бонусы и штрафы, которые отразятся на итоговой стоимости операции.\n\nНаша политика неразглашения клиентов позволяет вам заказать только те империи, с которыми вы уже связались. Если вы не видите подходящих целей, то это может значить то, что мы не имеем возможности выполнить Ваш запрос."
 ##merc.target.generic: "§YStandard Empires§!"
 merc.target.generic: "Стандартные Империи"
 ##merc.target.fallen: "§Y$COUNTRY_FALLEN_EMPIRE$s§!"
@@ -266,23 +316,41 @@ merc.target.unbidden: "Внепространственные захватчик
 ##merc.target.synthetic: "§Y$ai_crisis_chain_title$§!"
 merc.target.synthetic: "Восставшие Машины"
 
-merc.multipliers.target.generic: "Цена: §G-5%§!\nШанс успеха: §G5%§!\nРиск обнаружения: §R5%§!"
-merc.multipliers.target.fallen: "Цена: §R70%§!\nШанс успеха: §R-5%§!\nРиск обнаружения: §G-20%§!"
-merc.multipliers.target.hivemind: "Цена: §R35%§!\nШанс успеха: §R-10%§!\nРиск обнаружения: §G-20%§!"
-merc.multipliers.target.unbidden: "Цена: §R50%§!\nШанс успеха: §R-10%§!\nРиск обнаружения: §G-20%§!"
-merc.multipliers.target.synthetic: "Цена: §R25%§!\nШанс успеха: §R-5%§!\nРиск обнаружения: §G-10%§!"
-merc.multipliers.disguise.random: "Цена: §R5%§!\nШанс успеха: §R-5%§!\nРиск обнаружения: §G-15%§!"
-merc.multipliers.disguise.nonbuyer: "Цена: §R10%§!\nШанс успеха: §R-5%§!\nРиск обнаружения: §G-20%§!"
-merc.multipliers.disguise.buyer: "Цена: §G-5%§!\nШанс успеха: §G15%§!\nРиск обнаружения: §R15%§!"
+#merc.multipliers.target.generic: "Cost: §G-5%§!\nChance of success: §G+5%§!\nDetection risk: §R+5%§!"
+merc.multipliers.target.generic: "Цена: §G-5%§!\nШанс успеха: §G+5%§!\nРиск обнаружения: §R+5%§!"
+#merc.multipliers.target.fallen: "Cost: §R+70%§!\nChance of success: §R-5%§!\nDetection risk: §G-20%§!"
+merc.multipliers.target.fallen: "Цена: §R+70%§!\nШанс успеха: §R-5%§!\nРиск обнаружения: §G-20%§!"
+#merc.multipliers.target.hivemind: "Cost: §R+35%§!\nChance of success: §R-10%§!\nDetection risk: §G-20%§!"
+merc.multipliers.target.hivemind: "Цена: §R+35%§!\nШанс успеха: §R-10%§!\nРиск обнаружения: §G-20%§!"
+#merc.multipliers.target.unbidden: "Cost: §R+50%§!\nChance of success: §R-10%§!\nDetection risk: §G-20%§!"
+merc.multipliers.target.unbidden: "Цена: §R+50%§!\nШанс успеха: §R-10%§!\nРиск обнаружения: §G-20%§!"
+#merc.multipliers.target.synthetic: "Cost: §R+25%§!\nChance of success: §R-5%§!\nDetection risk: §G-10%§!"
+merc.multipliers.target.synthetic: "Цена: §R+25%§!\nШанс успеха: §R-5%§!\nРиск обнаружения: §G-10%§!"
+#merc.multipliers.disguise.random: "Cost: §R+5%§!\nChance of success: §R-5%§!\nDetection risk: §G-15%§!"
+merc.multipliers.disguise.random: "Цена: §R+5%§!\nШанс успеха: §R-5%§!\nРиск обнаружения: §G-15%§!"
+#merc.multipliers.disguise.nonbuyer: "Cost: §R+10%§!\nChance of success: §R-5%§!\nDetection risk: §G-20%§!"
+merc.multipliers.disguise.nonbuyer: "Цена: §R+10%§!\nШанс успеха: §R-5%§!\nРиск обнаружения: §G-20%§!"
+#merc.multipliers.disguise.buyer: "Cost: §G-5%§!\nChance of success: §G+15%§!\nDetection risk: §R+15%§!"
+merc.multipliers.disguise.buyer: "Цена: §G-5%§!\nШанс успеха: §G+15%§!\nРиск обнаружения: §R+15%§!"
+#merc.multipliers.disguise.pirate: "Cost: §G-10%§!\nChance of success: §R-10%§!\nDetection risk: §G-5%§!"
 merc.multipliers.disguise.pirate: "Цена: §G-10%§!\nШанс успеха: §R-10%§!\nРиск обнаружения: §G-5%§!"
-merc.multipliers.disguise.xenofauna: "Цена: §R15%§!\nШанс успеха: §G10%§!\nРиск обнаружения: §G-10%§!"
+#merc.multipliers.disguise.xenofauna: "Cost: §R+15%§!\nChance of success: §G+10%§!\nDetection risk: §G-10%§!"
+merc.multipliers.disguise.xenofauna: "Цена: §R+15%§!\nШанс успеха: §G+10%§!\nРиск обнаружения: §G-10%§!"
 
-merc.target.selected.postfix: "§RЕсли империя отсутствует для выбора, это означает, что они не являются подходящей целью прямо сейчас, но могут быть позже. Критерии для этого - коммерческая тайна.§!"
-merc.target.selected.generic: "Стандартные империи - это нормальные, независимые империи, найденные по всей галактике. Некоторые из них должны быть доступны для выбора с правой стороны. \n\n$merc.multipliers.target.generic$\n$merc.target.selected.postfix$"
-merc.target.selected.fallen: "$COUNTRY_FALLEN_EMPIRE$s являются падшими или пробужденными древними империями, которые присутствовали в галактике столько же, сколько и само время. Такие цели чрезвычайно трудны для атаки и потребуют значительных дополнительных инвестиций. Однако, так как они смотрят свысока на всех нас, обычных людей, риск обнаружения довольно не большой.\n\n$merc.multipliers.target.fallen$\n$merc.target.selected.postfix$"
-merc.target.selected.hivemind: "Рой является мерзким, и мы - как все разумные, живые существа - ненавидим его. Поэтому мы значительно снижаем нашу цену. Однако из-за их силы шансы на успех резко снижаются. В качестве дополнительного бонуса, есть нулевой шанс, что они увидят Вас в нашей маскеровке. Даже если узнают, им всё равно.\n\n$merc.multipliers.target.hivemind$\n$merc.target.selected.postfix$"
-merc.target.selected.unbidden: "Эти существа здесь, чтобы уничтожить всех нас. Для нас большая честь бороться с ними от Вашего имени. Поэтому наши цены снижаются для этой цели. Однако из-за их силы шансы на успех резко снижаются. В качестве дополнительного бонуса, есть нулевой шанс, что они увидят Вас в нашей маскеровке.  Даже если узнают, им наверно всё равно.\n\n$merc.multipliers.target.unbidden$\n$merc.target.selected.postfix$"
-merc.target.selected.synthetic: "Эти бессердечные роботы здесь, чтобы уничтожить всех нас. Для нас большая честь бороться с ними от Вашего имени. Поэтому наши цены снижаются для этой цели.\n\n$merc.multipliers.target.synthetic$\n$merc.target.selected.postfix$"
+
+#merc.target.selected.postfix: "§RIf an empire is disabled for selection, that means they are not a valid target right now - but may be at a later date. The criteria for this is a trade secret.§!"
+merc.target.selected.postfix: "§RЕсли империя недоступна для выбора, это означает, что они не являются подходящей целью прямо сейчас, но могут cтать ею позднее. Критерии – наша коммерческая тайна.§!"
+#merc.target.selected.generic: "Standard empires are normal, independent empires found throughout the galaxy. Some of them should be available for selection on the right-hand side. Please do so now.\n\n$merc.multipliers.target.generic$\n$merc.target.selected.postfix$"
+merc.target.selected.generic: "§GСтандартные Империи§!.\n\nВ этот список входят все нормальные независимые империи галактики. Если вы уже встретились хоть с одной, Вам предоставят их на выбор в меню справа.\n\n Операции против §Gобыкновенных империй§! не получают никаких бонусов или штрафов.\n§RТолько те империи, которые мы считаем подходящими, будут доступны для выбора.§! Пожалуйста, сделайте Ваш выбор сейчас.\n\n$merc.multipliers.target.generic$\n$merc.target.selected.postfix$"
+#merc.target.selected.fallen: "$COUNTRY_FALLEN_EMPIRE$s are stagnant or awakened ancient empires that have been present in the galaxy as long as time itself. These kinds of targets are exceptionally hard to engage, and will require a substantial added investment. However, since they look down their nose at all us regular folk, the detection risk is a lot lower.\n\n$merc.multipliers.target.fallen$\n$merc.target.selected.postfix$"
+merc.target.selected.fallen: "Вы выбрали: $COUNTRY_FALLEN_EMPIRE$.\n\nСтагнационные режимы - остатки бывших сверх империй, которые были в нашей галактики с начала времен. Эти цели очень опасны для атаки, мы их откровенно боимся, и нам потребуется довольно большие дополнительные инвестиции. Однако, так как они на всех нас поглядывают свысока, риск обнаружения намного ниже. §RТолько те империи, которые мы считаем подходящими, будут доступны для выбора.§!.\n\n$merc.multipliers.target.fallen$\n$merc.target.selected.postfix$"
+#merc.target.selected.hivemind: "The Prethoryn Scourge is filthy, and we - like all sane, sentient beings - hate it. Therefore, we drop our price significantly. Because of their strength, however, the chances of success drop dramatically. As an added bonus, there is zero chance they will see through our guise. If they did, they probably wouldn't care.\n\n$merc.multipliers.target.hivemind$\n$merc.target.selected.postfix$"
+merc.target.selected.hivemind: "Вы выбрали: §GРой§!.\n\nРой нам противен и мы - как и любые разумные существа - ненавидим его. И поэтому цена на заказ роя будет серьезно снижена. К сожалению, из-за их мощи, наши шансы на успех сильно снижены. И в качестве бонуса - абсолютно нулевой шанс, что они опознают нашу маскировку - а даже если и смогут, сомнительно, что их это беспокоит.\n\n$merc.multipliers.target.hivemind$\n$merc.target.selected.postfix$"
+#merc.target.selected.unbidden: "These beings are here to consume us all. We are honored to fight them in your name. Therefore, our prices are lowered for this target. Because of their strength, however, the chances of success drop dramatically. As an added bonus, there is zero chance they will see through our guise. If they did, they probably wouldn't care.\n\n$merc.multipliers.target.unbidden$\n$merc.target.selected.postfix$"
+merc.target.selected.unbidden: "Вы выбрали: §GЭкстрамерные§!.\n\nЭти существа прилетели, чтобы поглотить нас всех! Для нас будет честью бороться с ними от вашего имени. И поэтому наша цена будет снижена. К сожалению, из-за их мощи, наши шансы на успех сильно снижены. И в качестве бонуса - абсолютно нулевой шанс, что они опознают нашу маскировку - а даже если и смогут, сомнительно, что их это беспокоит.\n\n$merc.multipliers.target.unbidden$\n$merc.target.selected.postfix$"
+#merc.target.selected.synthetic: "These heartless robots are here to consume us all. We are honored to fight them in your name. Therefore, our prices are lowered for this target.\n\n$merc.multipliers.target.synthetic$\n$merc.target.selected.postfix$"
+merc.target.selected.synthetic: "Вы выбрали: §GИмперия Воставшего АИ§!.\n\nЭти бездушные машины хотят нас всех уничтожить! Для нас будет честью бороться с ними от Вашего имени. И поэтому наша цена будет снижена..\n\n$merc.multipliers.target.synthetic$\n$merc.target.selected.postfix$"
+
 
 # Question 2, disguise
 ##merc.disguise.name: "Disguise Selection"
@@ -292,28 +360,28 @@ merc.disguise.desc: "§Y[merc_country.GetName]§! никогда не узнае
 
 ##merc.disguise.random: "Random"
 merc.disguise.random: "Случайно"
-##merc.disguise.random.tooltip: "Lets §YWhiteout Enterprises§! pick a random disguise from their arsenal.\n\nЦена: £minerals §G-5%§!\nРиск обнаружения: §G+5%§!"
+##merc.disguise.random.tooltip: "Lets §YWhiteout Enterprises§! pick a random disguise from their arsenal.\n\nCost: £minerals §G-5%§!\nDetection risk: §G+5%§!"
 merc.disguise.random.tooltip: "Позволяет §YWhiteout Enterprises§! выбрать случайный тип маскировки из их арсенала.\n\nЦена: £minerals §G-5%§!\nРиск обнаружения: §G+5%§!"
 ##merc.disguise.nonbuyer: "Non-[Root.GetName]"
 merc.disguise.nonbuyer: "Не-[Root.GetName]"
-##merc.disguise.nonbuyer.tooltip: "Make sure §YWhiteout Enterprises§! picks any disguise as long as it does not match your own ships.\n\nЦена: £minerals §G+5%§!\nРиск обнаружения: §G-5%§!"
-merc.disguise.nonbuyer.tooltip: "§YWhiteout Enterprises§! выберет любой тип маскировки, лишь бы их корабли не выглядели как Ваши.\n\nЦена: £minerals §G+5%§!\nРиск обнаружения: §G-5%§!"
+##merc.disguise.nonbuyer.tooltip: "Make sure §YWhiteout Enterprises§! picks any disguise as long as it does not match your own ships.\n\nCost: £minerals §G+5%§!\nDetection risk: §G-5%§!"
+merc.disguise.nonbuyer.tooltip: "§YWhiteout Enterprises§! выберет любой тип маскировки, лишь бы их корабли не выглядели как наши.\n\nЦена: £minerals §G+5%§!\nРиск обнаружения: §G-5%§!"
 ##merc.disguise.buyer: "[Root.GetName]"
 merc.disguise.buyer: "[Root.GetName]"
-##merc.disguise.buyer.tooltip: "No disguise, use the same ship type as your empire.\n\nШанс успеха: §G15%§!\nРиск обнаружения: §G10%§!"
-merc.disguise.buyer.tooltip: "Никакой маскировки. Их корабли будут походить на Ваши.\n\nШанс успеха: §G15%§!\nРиск обнаружения: §G10%§!"
+##merc.disguise.buyer.tooltip: "No disguise, use the same ship type as your empire.\n\nChance of success: §G15%§!\nDetection risk: §G10%§!"
+merc.disguise.buyer.tooltip: "Никакой маскировки. Их корабли будут походить на наши.\n\nШанс успеха: §G15%§!\nРиск обнаружения: §G10%§!"
 ##merc.disguise.pirate: "Pirate"
 merc.disguise.pirate: "Пиратская"
-##merc.disguise.pirate.tooltip: "Deconstruct random pieces of the ship hulls so the fleet appears as a rag-tag band of pirates.\n\nЦена: £minerals §G-5%§!\nШанс успеха: §G-10%§!"
+##merc.disguise.pirate.tooltip: "Deconstruct random pieces of the ship hulls so the fleet appears as a rag-tag band of pirates.\n\nCost: £minerals §G-5%§!\nChance of success: §G-10%§!"
 merc.disguise.pirate.tooltip: "§YWhiteout Enterprises§! снимут несколько не самых важных частей со своих кораблей, так, чтобы их флот напоминал пиратский.\n\nЦена: £minerals §G-5%§!\nШанс успеха: §G-10%§!"
 ##merc.disguise.xenofauna: "Xenofauna"
 merc.disguise.xenofauna: "Ксенофауна"
-##merc.disguise.xenofauna.tooltip: "Disguise the mercenary fleet as some type of fauna found naturally in the galaxy. For example the Space Whales, Amoebas, Clouds, and Drones.\n\nЦена: £minerals §G15%§!\nРиск обнаружения: §G-10%§!"
+##merc.disguise.xenofauna.tooltip: "Disguise the mercenary fleet as some type of fauna found naturally in the galaxy. For example the Space Whales, Amoebas, Clouds, and Drones.\n\nCost: £minerals §G15%§!\nDetection risk: §G-10%§!"
 merc.disguise.xenofauna.tooltip: "Маскироваться под космических существ - например, космических китов, амебы, войд-облака или дронов.\n\nЦена: £minerals §G15%§!\nРиск обнаружения: §G-10%§!"
 
 # Conclusion
 ##merc.signature.desc: "Please accept responsibility for the outcome of this operation, agree to our terms and conditions, sign the non-disclosure agreement, sign for our limited access to your empires treasury, and finally, sign on the executive order."
-merc.signature.desc: "Подписывая этот контракт, Вы принимаете всю ответственность за результат этой операции, соглашаетесь с нашими условиями, принимаете соглашение о неразглашении, даете доступ к казначейству Вашей империи, и, наконец, даете добро на начало."
+merc.signature.desc: "Подписывая этот контракт, вы принимаете всю ответственность за результат этой операции, соглашаетесь с нашими условиями, принимаете соглашение о неразглашении, даете доступ к казначейству Вашей империи, и, наконец, даете добро на начало."
 
 
 ##merc.spaceport.conclusion: "Operation: §YSpaceport Raid§!\n$fmerc_enclave.conclusion.parameters$\n$merc.signature.desc$"
@@ -333,8 +401,8 @@ merc.signature.nda: "Принять соглашение о неразглаше
 merc.signature.treaty: "Дать доступ к казне"
 ##merc.signature.executive: "§YSign executive order§!"
 merc.signature.executive: "Дать добро на операцию"
-
-merc.conclusion.title: "Заключение по Операции Наемников"
+#merc.conclusion.title: "Mercenary Operation Conclusion"
+merc.conclusion.title: "Итоги Операции Наёмников:"
 
 
 ##merc.condition.funds: "Not enough minerals"
@@ -345,80 +413,132 @@ merc.conclusion.operation.abort: "§YWhiteout Enterprises§! не смогли �
 # insurance
 
 
-
 ##merc.insurance.title: "Friendly alert"
 merc.insurance.title: "Дружеское предупреждение"
 ##merc.insurance.desc: "We're pleased to inform you that your §YWhiteout Enterprises§! insurance policy has come into effect. Another valued customer has ordered an operation against your empire through our services menu.\n\nThis operation is already under way, and our fleets have entered your subspace. Rest assured they are effective.\n\nDue to our non-disclosure agreements with all our customers, this is the only information we will provide on the subject.\n\nSince your insurance policy allows you to make a counter-offer, you may do so now, at a 25% discount. If you accept the offer, our operations will be terminated immediately."
-merc.insurance.desc: "Мы рады проинформировать Вас, что наступил страховой случай, описанный в Вашем страховом договоре с §YWhiteout Enterprises§!. Другой заказчик решил заказать у нас операцию против Вашей империи.\n\nОперация уже идет в это самое время, и наши флотиллии уже вошли в Ваше подпространство. Мы ручаемся за их эффективность.\n\nСогласно нашему договору о неразглашении, который мы подписываем со всеми клиентами, это единственная информация, которую мы можем Вам предоставить.\n\nВаша страховка позволяет Вам сделать встречное предложение со 25-ти процентной скидкой. Если Вы соглашаетесь с условиями, данная операция против Вас будет немедленно прекращена."
-##merc.insurance.offer: "Pay £minerals §R[Root.MercЦена]§!"
-merc.insurance.offer: "Заплатить £minerals §R[Root.MercЦена]§!"
+merc.insurance.desc: "Дорогой Клиент! Мы рады проинформировать Вас, что наступил страховой случай, описанный в Вашем страховом договоре с §YWhiteout Enterprises§!. Другой заказчик решил заказать у нас операцию против Вашей империи.\n\nОперация уже идет в это самое время, и наши флотиллии уже вошли в Ваше подпространство. Мы ручаемся за их эффективность.\n\nСогласно нашему договору о неразглашении, который мы подписываем со всеми клиентами, это единственная информация, которую мы можем Вам предоставить.\n\nВаша страховка позволяет вам сделать встречное предложение со 25-ти процентной скидкой. Если вы соглашаетесь с условиями, данная операция против вас будет немедленно прекращена."
+##merc.insurance.offer: "Pay £minerals §R[Root.MercCost]§!"
+merc.insurance.offer: "Заплатить £minerals §R[Root.MercCost]§!"
 ##merc.insurance.decline: "Thank you for the heads up"
 merc.insurance.decline: "Спасибо за предупреждение"
 ##merc.insurance.prevented: "We regret to inform you that the target you selected for your last order has invoked their insurance policy with §YWhiteout Enterprises§!, and as such, if we had an ongoing operation against them on your behalf - which we're not saying we do, or did - then it would be terminated immediately.\n\nHave a nice day."
-merc.insurance.prevented: "Нам жаль, но Ваша цель в прошлом заключила с §YWhiteout Enterprises§! страховой договор, и поэтому, если у нас есть проводящиеся от Вашего имени против них операции, мы должны остановить их немедля.\n\nПриятного дня."
+merc.insurance.prevented: "Нам жаль, но Ваша цель в прошлом заключила с §YWhiteout Enterprises§! страховой договор, и поэтому, если у нас есть приводящиеся от Вашего имени против них операции, мы должны остановить их немедля.\n\nПриятного дня."
 
 # operation completed
 
 
 ##merc.completed.title: "Friendly \"Hello\""
-merc.completed.title: "Дружеское \"Привет\""
+merc.completed.title: "Мы снова доступны"
+merc.completed.merc_op_spaceport: "§YКосмический Рейд завершен§!!"
+merc.completed.merc_op_spaceport.failed: "§RКосмический Рейд ПРОВАЛЕН!\n\n Цели не найдены.§!"
+merc.completed.merc_op_liberate: "§YМиссия «Освободить планету» завершена§!!"
+merc.completed.merc_op_liberate.failed1: "§RМиссия «Освободить планету» ПРОВАЛЕНA!\n\n Наш флот был уничтожен.§!"
+merc.completed.merc_op_liberate.failed2: "§RМиссия «Освободить планету» ПРОВАЛЕНA!\n\n Цели не найдены.§!"
+merc.completed.merc_op_civilian: "§YГражданский Рейд Завершен§!!"
+merc.completed.merc_op_civilian.failed: "§RГражданский Рейд ПРОВАЛЕН!\n\n Цели не найдены.§!"
+merc.completed.merc_op_military: "§YВоенный Рейд завершен§!!"
+merc.completed.merc_op_military.failed: "§RВоенный Рейд ПРОВАЛЕН!\n\n Цели не найдены.§!"
+merc.completed.merc_op_clear: "§YМиссия «Очистить пространство» завершена§!!"
+merc.completed.merc_op_clear.failed: "§RМиссия «Очистить пространство» ПРОВАЛЕНA!\n\n Цели не найдены.§!"
 ##merc.completed.desc: "§YWhiteout Enterprises§! is pleased to inform you that our services menu is now open for business. We hope you are happy with any services we might have rendered in the past.\n\nHave a nice day."
-merc.completed.desc: "§YWhiteout Enterprises§! рада уведомить, что наши услуги открыты для всех желающих. Надеемся, Вы рады оказанным Вам в прошлом услугами.\n\nПриятного дня."
-merc.completed.nothing: "К сожалению, наши операции не смогли ничего сделать, прежде чем их оттеснили или уничтожили. Все транзакции закончены. Приятного дня!."
-merc.completed.pretext: "После тщательного изучения данных со сканеров дальнего действия и чтения отчетов от наших офицеров, которые вернулись, данные показывают следующии отличия до и после операции:"
-merc.completed.posttext: "Мы надеемся, что Вы довольны предоставляемыми услугами. Хорошего дня."
-merc.completed.frontier: "   - §G[from.Owner.MercKillsFrontier]x§! $outpost_station_plural$"
-merc.completed.obspost: "   - §G[from.Owner.MercKillsObs]x§! $observation_station_plural$"
-merc.completed.wormhole: "   - §G[from.Owner.MercKillsWormhole]x§! $wormhole_station_plural$"
-merc.completed.research: "   - §G[from.Owner.MercKillsResearch]x§! $research_station_plural$"
-merc.completed.mining: "   - §G[from.Owner.MercKillsMining]x§! $mining_station_plural$"
-merc.completed.spaceport: "   - §G[from.Owner.MercKillsSpaceport]x§! $orbital_station_plural$"
-merc.completed.stations: "   - §G[from.Owner.MercKillsStations]x§! $shipclass_military_station$"
-merc.completed.ships: "   - §G[from.Owner.MercKillsShips]x§! $shipclass_military$"
-merc.completed.total: "   - §G[from.Owner.MercKillsTotal]§! total signatures changed"
-merc.completed.transport: "   - §G[from.Owner.MercKillsTransport]x§! $shipclass_transport$"
-merc.completed.civilian: "   - §G[from.Owner.MercKillsCivilian]x§! $OUTLINER_CIVILIAN_FLEETS$"
-merc.completed.liberated: "   - §G[from.Owner.MercLiberatedPlanets]x§! Planets liberated"
+merc.completed.desc: "Дорогой Клиент! §YWhiteout Enterprises§! рада уведомить, что наши услуги снова открыты для всех желающих. Надеемся, Вы рады оказанным вам в прошлом услугами."
+#merc.completed.nothing: "Unfortunately, our operations did not manage to do much of anything before being beaten back by strong opposition. All transactions are final. Have a nice day."
+merc.completed.nothing: "К сожалению, наши оперативники не смогли многое сделать, прежде чем их уничтожила сильная оппозиция. Все сделки считаются завершенными. Хорошего дня."
+#merc.completed.pretext: "After carefully studying the long range scanner data, and reading the reports from our officers who returned, the data reveal the following discrepancies before and after the operation:"
+merc.completed.pretext: "После тщательного изучения данных сканера дальнего действия и чтения отчетов от наших офицеров, которые вернулись, данные показывают следующие различия до и после операции:"
+#merc.completed.posttext: "We hope you are happy with services rendered. \nHave a nice day."
+merc.completed.posttext: "Мы надеемся, что Вы довольны предоставляемыми услугами. \nПриятного дня!"
+merc.completed.merc_op_liberate.defenders:"§RМиссия «Освободить планету» ПРОВАЛЕНA§!! Планетарные защитники отразили все наши атаки.\n\n Вас предупреждали о возможном провале."
+
+#merc.completed.frontier: "   - §G[from.Owner.MercKillsFrontier]x§! $outpost_station_plural$"
+merc.completed.obspost: "   - §G[from.Owner.MercKillsObs]x§! $observation_station_plural$ уничтожены"
+merc.completed.wormhole: "   - §G[from.Owner.MercKillsWormhole]x§! $wormhole_station_plural$ уничтожены"
+merc.completed.research: "   - §G[from.Owner.MercKillsResearch]x§! $research_station_plural$ уничтожены"
+merc.completed.mining: "   - §G[from.Owner.MercKillsMining]x§! $mining_station_plural$ уничтожены"
+merc.completed.spaceport: "   - §G[from.Owner.MercKillsSpaceport]x§! $orbital_station_plural$ уничтожены"
+merc.completed.stations: "   - §G[from.Owner.MercKillsStations]x§! $shipclass_military_station$ уничтожены"
+merc.completed.ships: "   - §G[from.Owner.MercKillsShips]x§! $shipclass_military$ уничтожены"
+merc.completed.transport: "   - §G[from.Owner.MercKillsTransport]x§! $shipclass_transport$ уничтожены"
+merc.completed.civilian: "   - §G[from.Owner.MercKillsCivilian]x§! $OUTLINER_CIVILIAN_FLEETS$ уничтожены"
+merc.completed.liberated: "   - §G[from.Owner.MercLiberatedPlanets]x§! §YПланета освобождена§!!"
+merc.completed.Colossus: "   - §G[from.Owner.MercKillsColossus]x§! $shipclass_military_special$ уничтожены"
+merc.completed.killedport: "   - §G[from.Owner.MercKilledPort]x§! $shipclass_starbase$ класса $starbase_starport$"
+merc.completed.killedhold: "   - §G[from.Owner.MercKilledHold]x§! $shipclass_starbase$ класса $starbase_starhold$"
+merc.completed.killedfortress: "   - §G[from.Owner.MercKilledFortress]x§! $shipclass_starbase$ класса $starbase_starfortress$"
+merc.completed.killedcit: "   - §G[from.Owner.MercKilledCit]x§! $shipclass_starbase$ класса $starbase_citadel$"
+merc.completed.killedother: "   - §G[from.Owner.MercKilledOther]x§! Другие Базы уничтожены"
+merc.completed.disabled: "   - §G[from.Owner.MercDisabledTotal]x§! Всего заблокировано Космических баз, в том числе:"
+merc.completed.outpost: "   - §G[from.Owner.MercDisabledOut]x§! $starbase_outpost$(ов) заблокировано"
+merc.completed.starport: "   - §G[from.Owner.MercDisabledPort]x§! $starbase_starport$(ов) заблокировано"
+merc.completed.starhold: "   - §G[from.Owner.MercDisabledHold]x§! $starbase_starhold$(ов) заблокировано"
+merc.completed.starfortress: "   - §G[from.Owner.MercDisabledFortress]x§! $starbase_starfortress$(ей) заблокировано"
+merc.completed.citadel: "   - §G[from.Owner.MercDisabledCit]x§! $starbase_citadel$(ей) заблокировано"
+#merc.completed.total: "   - §G[from.Owner.MercKillsTotal]§!  total signatures changed"
+merc.completed.total: "   - §G[from.Owner.MercKillsTotal]§!  всего целей изменивших состояние"
+
+
+
+merc.completed.notarget: "К сожалению наши флоты не смогли многого сделать, потому что указанных целей в пределе Ваших границ не найдено. Попробуйте выберите другую цель. Приятного дня."
+merc.completed.pity: "Очень жаль."
 
 # Merc Enclave destroyed
-merc.destroyed.desc: "Штаб-квартира $merc.name.colored$ в [trader_system.GetName] системе была недавно уничтожена силой атаки кораблей, принадлежащих [trader_destroyer.GetName]! Несколько оставшихся в живых сотрудников покинули место происшествия, а оставшиеся активы корпорации ликвидируются."
+#merc.destroyed.desc: "The headquarters of $merc.name.colored$ in the [trader_system.GetName] system was recently destroyed by an attack force belonging to the [trader_destroyer.GetName]! The few surviving employees have fled the scene, and the corporation's remaining assets are being liquidated."
+merc.destroyed.desc: "Штаб-квартира $merc.name.colored$ в системе [trader_system.GetName] недавно была уничтожена атакующими силами, принадлежащими [trader_destroyer.GetName]! Несколько выживших успели скрыться, и оставшиеся активы корпорации ликвидируются."
+#merc.destroyed.button: "A blow to free trade."
 merc.destroyed.button: "Удар по свободной торговле."
-
 
 ##merc.precommunications.title: "Encounter in [From.From.GetName]"
 merc.precommunications.title: "Встреча в [From.From.GetName]"
 ##merc.precommunications.desc: "We have encountered some form of alien vessels in the §Y[From.From.GetName]§! System! The vessels have been flagged as §Y[fmercsystem.GetName]§! until we can learn more about them.\n\nPlease visit the §MSpecial Projects§! department to initiate an investigation into the nature of these vessels immediately."
 merc.precommunications.desc: "Мы встретили неизвестные корабли в системе §Y[From.From.GetName]§!! Мы отметили эти корабли как §Y[fmercsystem.GetName]§! до тех пор пока мы не выясним о них попбольше информации.\n\nПроверьте доступные §MОсобенные проекты§! чтобы начать исследование этих кораблей."
 # Comms established
-merc.communications.title: "Соединение установлено"
-merc.communications.delayed.desc: "Мы получаем передачу от независимой космической станции §Y[target_enclave.GetName]§!!Они, похоже, успешно перевели наш язык."
-merc.communications.project.desc: "После успешного перевода их языка мы установили связь с независимой космической станцией §Y[From.From.GetName]§!."
+#merc.communications.title: "Communications Established"
+merc.communications.title: "Связь установлена"
+#merc.communications.delayed.desc: "We are receiving a transmission from the independent space station of the §Y[target_enclave.GetName]§!! They appear to have successfully translated our language."
+merc.communications.delayed.desc: "Независимая космическая станция §Y[target_enclave.GetName]§!передаёт нам сообщение! Похоже, они справились с переводом. Дипломатические каналы открыты."
+#merc.communications.project.desc: "After successfully translating their language, we have established communications with the independent space station of the §Y[From.From.GetName]§!."
+merc.communications.project.desc: "После успешного перевода ихнего языка мы установили связь с независимой космической станцией §Y[From.From.GetName]§!."
 
 
 # Asks for station access
-merc.stationoffer.title: "Разрешить стройку защитных станций?"
-merc.stationoffer.desc: "Приветствую, [root.GetRulerName]! Мы здесь, в §YWhiteout Enterprises§! хотел бы предложить Вам захватывающие возможности для бизнеса!\n\nЭто было бы для нашей взаимной выгоды, если бы Вы были §Разрешили нам доступ§! чтобы построить защитные станции внутри ваших границ.\n\nМы понимаем, что это может показаться пугающим или подлым, поэтому мы готовы предложить Вам некоторую компенсацию, чтобы смазать колеса бюрократии, так сказать:\n\n£Энергия §G2500§!\n£Минералы §G500§!\n\nТакая сделка бывает только один раз в жизни, поэтому взвешивайте свое решение соответственно."
-merc.condition.station.access.cooldown: "Недавно Вы приняли денежное предложение, чтобы разрешить постройку защитных станций, и, таким образом, пока не сможете его ограничить."
-merc.condition.not.insured: "Вы не можете ограничить им доступ к границам при подписке на их страховой полис."
+#merc.stationoffer.title: "Allow station access?"
+merc.stationoffer.title: "Разрешить постройку военных баз?"
+#merc.stationoffer.desc: "Greetings, [root.GetRulerName]! We here at §YWhiteout Enterprises§! would like to offer you an exciting business opportunity!\n\nIt would be to our mutual benefit if you were to §Gallow us access§! to construct an operations outpost inside your borders.\n\nWe realise that this might seem intimidating, or sneaky, so we are prepared to offer you some compensation to grease the wheels of bureaucracy, so to speak:\n\n£energy §G2500§!\n£minerals §G500§!\n\nThis deal only comes once in a lifetime, so weigh your decision accordingly."
+merc.stationoffer.desc: "Мы, §YWhiteout Enterprises§!, хотели бы предложить вам захватывающие бизнес предложение!\n\nЕсли бы вы позволили нам §Gполучить доступ к построению оперативных аванпостов§! внутри Ваших границ, это было бы выгодно нам всем.\n\nМы понимаем, что это может показаться пугающим или подлым, поэтому мы готовы предложить вам некоторую компенсацию, чтобы, так сказать, смазать колеса бюрократии:\n\n£energy §G2500§!\n£minerals §G500§!\n\nТакая сделка выпадает только один раз в жизни, поэтому взвешивайте свое решение соответственно."
+#merc.condition.station.access.cooldown: "You have recently accepted a monetary offer to allow station access, and as such won't be able to restrict it yet."
+merc.condition.station.access.cooldown: "Недавно Вы приняли денежное предложение, разрешающее доступ к построению оперативных аванпостов, и таким образом, пока не сможете его ограничить."
+#merc.condition.not.insured: "You can't restrict border access while you subscribe to their insurance policy."
+merc.condition.not.insured: "Вы не можете ограничить доступ к построению оперативных аванпостов при оформлении подписки на их §YCтраховой полис§!."
 
 # You have destroyed one of the enclaves stations
-merc.attacker.title: "Уничтожена [From.GetName] станция"
-merc.attacker.desc: "Наш флот уничтожил комплекс станции, принадлежащий $merc.name.colored$, и усилия по спасению как можно большего количества ценностей из разрушенных остатков их станции идут полным ходом. Мы накопили большой объем ресурсов."
+#merc.attacker.title: "Destroyed a [From.GetName] station"
+merc.attacker.title: "Разрушена станция [From.GetName]"
+#merc.attacker.desc: "Our fleet has destroyed a station complex belonging to $merc.name.colored$, and efforts to recover as many valuables as possible from the shattered remnants of their station are well under way. We have gained a large amount of resources."
+merc.attacker.desc: "Наш флот уничтожил комплекс станции, принадлежащий $merc.name.colored$, и усилия по поиску как можно большего количества ценностей из разрушенных остатков их станции идут полным ходом! Мы получили большое количество ресурсов."
 
-merc.operation.fleet.desc: "Самая опасная операция, которую мы можем предпринять. Это неизбежно ставит нас в прямое противостояние с вражескими адмиралами и руководством, и, таким образом, шанс обнаружения чрезвычайно высок. Однако для этого мы и живем, для этого и работаем. Если вы выберите эту услугу, $merc.name.colored$ будет определять местонахождение, идентифицировать, отслеживать и атаковать, как минимум 1 (один) вражеский флот, по меньшей мере, 20 или более кораблей. Если мы не сможем найти флот такой величины, мы найдем самый большой."
+
+#merc.param.operation.fleet: "Operation: §YMilitary Ships Raid§!"
 merc.param.operation.fleet: "Операция: §YMilitary Ships Raid§!"
+#merc.param.disguise.pirate: "Disguise: §YPirate§!\n"
 merc.param.disguise.pirate: "Маскировка: §YPirate§!\n"
-merc.param.disguise.nonbuyer: "Маскировка: §YСлучайная кроме Вашего типа§!\n"
+#merc.param.disguise.nonbuyer: "Disguise: §YRandom except your ships§!\n"
+merc.param.disguise.nonbuyer: "Маскировка: §YСлучайная, кроме Ваших кораблей§!\n"
 merc.name.colored: "§YWhiteout Enterprises§!"
-merc.param.operation.spaceport: "Операция: §YКэйд на Spaceport§!"
+#merc.param.operation.spaceport: "Operation: §YSpaceport Raid§!"
+merc.param.operation.spaceport: "Операция: §YSpaceport Raid§!"
 civic_mercenary_operations_desc: ""
-
+civic_mercenary_operations: "Mercenary Operations"
+#merc.param.disguise.buyer: "Disguise: §YYour ships§!\n"
 merc.param.disguise.buyer: "Маскировка: §YВаши корабли§!\n"
+#merc.param.target: "Target: §Y[merc_country.GetName]§!\n"
 merc.param.target: "Цель: §Y[merc_country.GetName]§!\n"
-merc.operation.fleet: "Рейд"
-merc.param.operation.civilian: "Операция: §YГражданский рейд§!"
-merc.param.operation.liberate: "Операция: §YОсвободить планету§!"
-merc.param.disguise.random: "Маскировка: §YСлучайная§!\n"
+#merc.param.operation.civilian: "Operation: §YCivilian Raid§!"
+merc.param.operation.civilian: "Операция: §YCivilian Raid§!"
+#merc.param.operation.liberate: "Operation: §YLiberate Planet§!"
+merc.param.operation.liberate: "Операция: §YLiberate Planet§!"
+#merc.param.disguise.random: "Disguise: §YRandom§!\n"
+merc.param.disguise.random: "Маскировка: §Y§YСлучайная§!\n"
+#merc.param.disguise.xenofauna: "Disguise: §YXenofauna§!\n"
 merc.param.disguise.xenofauna: "Маскировка: §YКсенофауна§!\n"
 
 # Country buttons
@@ -443,19 +563,22 @@ merc.country.18.button: "§Y[merc_tmp_18.GetName] ...§!"
 merc.country.19.button: "§Y[merc_tmp_19.GetName] ...§!"
 merc.country.20.button: "§Y[merc_tmp_20.GetName] ...§!"
 
-merc.operation.liberate.button: "§Y$merc.operation.liberate$ ...§!"
+
 merc.disguise.pirate.button: "§Y$merc.disguise.pirate$ ...§!"
-merc.operation.spaceport.button: "§Y$merc.operation.spaceport$ ...§!"
-merc.operation.civilian.button: "§Y$merc.operation.civilian$ ...§!"
 merc.disguise.random.button: "§Y$merc.disguise.random$ ...§!"
-merc.param.multiplier.notyet: "Multipliers (not applied yet):"
+#merc.param.multiplier.notyet: "Multipliers (not applied yet):"
+merc.param.multiplier.notyet: "Множители (еще не применяются):"
 merc.disguise.xenofauna.button: "§Y$merc.disguise.xenofauna$ ...§!"
 merc.disguise.buyer.button: "§Y$merc.disguise.buyer$ ...§!"
 merc.disguise.nonbuyer.button: "§Y$merc.disguise.nonbuyer$ ...§!"
-merc.param.multiplier.applied: "Multipliers (applied):"
-merc.operation.clearspace.button: "§Y$merc.operation.clearspace$ ...§!"
-merc.param.multiplier.disguise: "  Disguise: Цена §H[root.MercDisguiseЦенаMultiplier]%§! / Успех §H[root.MercDisguiseSuccessMultiplier]%§! / Обнаружение §H[root.MercDisguiseDetectMultiplier]%§!"
+#merc.param.multiplier.applied: "Multipliers (applied):"
+merc.param.multiplier.applied: "Множители (применяются):"
+#merc.param.multiplier.disguise: "  Disguise: Cost §H[root.MercDisguiseCostMultiplier]%§! / Success §H[root.MercDisguiseSuccessMultiplier]%§! / Detection §H[root.MercDisguiseDetectMultiplier]%§!"
+merc.param.multiplier.disguise: "  Маскировка: Цена §H[root.MercDisguiseCostMultiplier]%§! / Шанс успеха §H[root.MercDisguiseSuccessMultiplier]%§! / Риск обнаружения §H[root.MercDisguiseDetectMultiplier]%§!"
+#merc.param.operation.liberate: "Operation: §Y$merc.operation.liberate$§!"
 merc.param.operation.liberate: "Операция: §Y$merc.operation.liberate$§!"
-merc.operation.fleet.button: "§Y$merc.operation.fleet$ ...§!"
-merc.param.multiplier.target: "  Тип цели: Цена §H[root.MercTargetЦенаMultiplier]%§! / Успех §H[root.MercTargetSuccessMultiplier]%§! / Обнаружение §H[root.MercTargetDetectMultiplier]%§!"
+#merc.param.multiplier.target: "  Target type: Cost §H[root.MercTargetCostMultiplier]%§! / Success §H[root.MercTargetSuccessMultiplier]%§! / Detection §H[root.MercTargetDetectMultiplier]%§!"
+merc.param.multiplier.target: "  Тип цели: Цена §H[root.MercTargetCostMultiplier]%§! / Шанс успеха §H[root.MercTargetSuccessMultiplier]%§! / Риск обнаружения §H[root.MercTargetDetectMultiplier]%§!"
 
+mercOpsLiberate.1339.title: "Самое время"
+mercOpsLiberate.1339.desc: "Похоже миссия удалось и самое время познакомиться с §Y[From.GetName]§!!"

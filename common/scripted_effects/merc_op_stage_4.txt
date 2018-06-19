@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,11 +29,26 @@ merc_stage4_additional_costs = {
 }
 
 merc_stage4_destroy = {
+
 	log = "Shutting down."
-	merc_stage4_additional_costs = yes
+
 	merc_set_buyer = yes
 	merc_set_country = yes
 
+	if = {
+		limit = {
+			exists = event_target:merc_buyer
+		}
+		merc_stage4_additional_costs = yes		
+	}
+
+	# Debug scope printing standard and targets
+	if = { limit = { has_global_flag = "debug" }
+		log = "merc_stage4_destroy Printing the current scopes (merc_stage4_destroy) -"
+		print_scope_effect = yes
+		target_scopes_log = yes
+	}	
+	
 	if = {
 		limit = { merc_is_country_target_valid = yes }
 		event_target:merc_country = {
@@ -48,19 +64,23 @@ merc_stage4_destroy = {
 		}
 	}
 
-	if = {
-		limit = { count_owned_ships { count > 0 } }
-		every_owned_fleet = {
-			clear_fleet_actions = this
-			delete_fleet = this
-		}
-	}
-
+	#  It was moved it upper, because mercMenu.9004 will have wrong scope If fleet will be deleted
 	event_target:merc_buyer = {
 		remove_country_flag = "fmerc_active_operation"
 		remove_country_flag = "fmerc_calculated_costs"
 		country_event = {
 			id = mercMenu.9004
+		}
+	}
+
+	if = {
+		limit = { count_owned_ships { count > 0 } }
+		every_owned_fleet = {
+		
+			log = "merc_stage4_destroy every_owned_fleet clear and destroy"
+			
+			clear_fleet_actions = this
+			delete_fleet = this
 		}
 	}
 
@@ -72,6 +92,7 @@ merc_stage4_destroy = {
 # All effects below check this first
 merc_stage4_verify_operation_ongoing = {
 	if = { limit = { has_country_flag = "merc_op_dock" }
+		log = "flag = merc_op_dock exist --> merc_stage4_destroy = yes, break"	
 		merc_stage4_destroy = yes
 		break = yes
 	}
@@ -79,27 +100,47 @@ merc_stage4_verify_operation_ongoing = {
 
 # Abruptly abort operation, regardless.
 merc_stage4_abort = {
+
 	merc_stage4_verify_operation_ongoing = yes
-	log = "Forcefully aborting operations."
+
+	log = "Forcefully aborting operations. (merc_stage4_abort)"
+
 	merc_stage4_complete = yes
 }
 
+# Normally This: is Mercenary Operations - but not always
 merc_stage4_complete = {
+	log = "Operation complete. (merc_stage4_complete)"
 	merc_stage4_verify_operation_ongoing = yes
-	log = "Operation complete."
 
 	set_faction_hostility = { set_hostile = no }
 
 	merc_set_buyer = yes
 	merc_set_country = yes
 
+	# Debug scope printing standard and target
+	if = { limit = { has_global_flag = "debug" }
+		target_scopes_log = yes
+		print_scope_effect = yes
+	}
+
 	if = {
 		limit = { count_owned_ships { count > 0 } }
+
+		log = "event_target:mercenary_operations seems exist, and count_owned_ships > 0 [This.count] "
+		
 		merc_ensure_harbor = yes
 
 		event_target:merc_harbor = { save_event_target_as = merc_current_target }
-		log = "Returning mercenary fleets to dock ..."
+
 		set_country_flag = "merc_op_dock"
+		
+		# Debug scope printing standard and target
+		if = { limit = { has_global_flag = "debug" }
+			target_scopes_log = yes
+			print_scope_effect = yes
+		}
+		
 		every_owned_fleet = {
 			clear_fleet_actions = this
 			fleet_event = { id = mercControllerFleet.100 }
@@ -109,6 +150,85 @@ merc_stage4_complete = {
 			merc_stage4_destroy = yes
 		}
 	}
+}
+
+# IF Mercenary Operations does not exist, we need another event that will not delete all players fleet and bases.
+merc_stage4_no_target_abort = {
+
+	log = "Operation complete beacuse target country was not find"
+	
+	merc_stage4_verify_operation_ongoing = yes
+
+	set_faction_hostility = { set_hostile = no }
+
+	merc_set_buyer = yes
+	merc_set_country = yes
+
+	# Debug scope printing standard and target
+	if = { limit = { has_global_flag = "debug" }
+		target_scopes_log = yes
+		print_scope_effect = yes
+		
+		if = {
+			limit = { NOT = { exists = event_target:merc_country } }
+
+			log = "event_target:merc_country does not exist."
+			
+		}
+	}
+
+	if = {
+		limit = { 
+			NOT = {exists = event_target:mercenary_operations}
+			}
+		log = "event_target:mercenary_operations DOES NOT EXIST"	
+
+		remove_country_flag = "fmerc_active_operation"
+		remove_country_flag = "fmerc_calculated_costs"
+		country_event = {
+			id = mercMenu.9005
+		}		
+	}
+			
+	if = {
+		limit = {
+			exists = event_target:mercenary_operations
+			event_target:mercenary_operations = {
+				count_owned_ships = {
+					count > 0
+				}
+			}
+		}		
+		
+		merc_ensure_harbor = yes
+
+		event_target:merc_harbor = { save_event_target_as = merc_current_target }
+		
+		log = "target_abort Returning mercenary fleets to dock ... current_target: [merc_current_target.GetName]"
+			
+		set_country_flag = "merc_op_dock"
+
+		# Debug scope printing standard and target
+		if = { limit = { has_global_flag = "debug" }
+			log = "Printing the current scopes (merc_stage4_no_target_abort) -"
+			target_scopes_log = yes
+			print_scope_effect = yes
+		}
+			
+		every_owned_fleet = {
+			clear_fleet_actions = this
+			fleet_event = { id = mercControllerFleet.100 }
+		}
+		
+		else = {
+			if = {
+				limit = { exists = event_target:mercenary_operations }
+
+				merc_stage4_destroy = yes
+				
+			}
+		}
+	}	
 }
 
 # Subtract success chance and see if we should try again.
@@ -143,8 +263,9 @@ merc_stage4_failed = {
 		merc_stage4_restart = yes
 
 		else = {
-			log = "Operation failed: Aborting due to low success factor ([this.MercSuccess])."
+			log = "Operation failed: Aborting due to low success factor ([this.MercSuccess])"
 			merc_stage4_abort = yes
+			set_country_flag = "fmerc_ops_completed"
 		}
 	}
 }
@@ -158,6 +279,7 @@ merc_stage4_maybe_complete = {
 		merc_stage4_restart = yes
 	else = {
 		merc_stage4_complete = yes
+		set_country_flag = "fmerc_ops_completed"
 	} }
 }
 

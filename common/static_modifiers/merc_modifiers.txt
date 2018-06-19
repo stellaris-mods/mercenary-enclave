@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,6 +20,6 @@
 
 merc_enclave_insurance = {
 	icon = "gfx/interface/icons/modifiers/mod_country_sensor_range_mult.dds"
-	country_sensor_range_mult = 0.1
+	#country_sensor_range_mult = 0.1 disabled in Patch 2.0
 	country_resource_energy_add = -20
 }

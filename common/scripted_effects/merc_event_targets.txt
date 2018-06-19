@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,12 +24,14 @@ merc_set_buyer = {
 	random_country = {
 		limit = {
 			reverse_has_relation_flag = {
-				who = PREV
+				#who = PREV
+				who = ROOT
 				flag = merc_operations_squad
 			}
 		}
 		save_event_target_as = merc_buyer
 	}
+		#log = "Buyer is: [merc_buyer.GetName]."
 }
 
 # THIS must be an fmerc_operations country
@@ -36,12 +39,16 @@ merc_set_country = {
 	random_country = {
 		limit = {
 			reverse_has_relation_flag = {
-				who = PREV
+				#who = PREV
+				who = ROOT
 				flag = merc_operations_target
 			}
 		}
 		save_event_target_as = merc_country
+
 	}
+
+	#log = "merc_set_country Target county is: [merc_country.GetName]."
 }
 
 merc_get_target = {

@@ -72,15 +72,7 @@ country_event = {
 		merc_account_apply_all_modifiers = yes
 	}
 
-	option = {
-		name = "merc.close"
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = "merc.back"
-		hidden_effect = { country_event = { id = mercMenu.101 } }
-	}
+
 	option = {
 		name = merc.signature.accept
 		hidden_effect = {
@@ -103,6 +95,16 @@ country_event = {
 		name = merc.signature.executive
 		allow = { hidden_trigger = { always = no } }
 	}
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+
 }
 
 country_event = {
@@ -154,15 +156,7 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	option = {
-		name = "merc.close"
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = "merc.back"
-		hidden_effect = { country_event = { id = mercMenu.101 } }
-	}
+
 	option = {
 		name = merc.signature.accept
 		allow = { hidden_trigger = { always = no } }
@@ -185,6 +179,16 @@ country_event = {
 		name = merc.signature.executive
 		allow = { hidden_trigger = { always = no } }
 	}
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+
 }
 
 country_event = {
@@ -236,15 +240,7 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	option = {
-		name = "merc.close"
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = "merc.back"
-		hidden_effect = { country_event = { id = mercMenu.101 } }
-	}
+
 	option = {
 		name = merc.signature.accept
 		allow = { hidden_trigger = { always = no } }
@@ -266,6 +262,15 @@ country_event = {
 	option = {
 		name = merc.signature.executive
 		allow = { hidden_trigger = { always = no } }
+	}
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 }
 
@@ -318,15 +323,7 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	option = {
-		name = "merc.close"
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = "merc.back"
-		hidden_effect = { country_event = { id = mercMenu.101 } }
-	}
+
 	option = {
 		name = merc.signature.accept
 		allow = { hidden_trigger = { always = no } }
@@ -349,6 +346,16 @@ country_event = {
 		name = merc.signature.executive
 		allow = { hidden_trigger = { always = no } }
 	}
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+
 }
 
 country_event = {
@@ -401,15 +408,6 @@ country_event = {
 	}
 
 	option = {
-		name = "merc.close"
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-	option = {
-		name = "merc.back"
-		hidden_effect = { country_event = { id = mercMenu.101 } }
-	}
-	option = {
 		name = merc.signature.accept
 		allow = { hidden_trigger = { always = no } }
 	}
@@ -430,5 +428,14 @@ country_event = {
 		hidden_effect = {
 			country_event = { id = mercMenu.9000 }
 		}
+	}
+	option = {
+		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
 }

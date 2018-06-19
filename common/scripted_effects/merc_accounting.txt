@@ -20,9 +20,11 @@
 merc_account_set_trust_multiplier = {
 	if = { limit = { has_global_flag = "has_mercenary_enclave_v2" }
 		merc_account_internal_set_base_multiplier = yes
-	else = {
-		set_variable = { which = "MercTrustMultiplier" value = 120 }
-	} }
+		else = {
+			set_variable = { which = "MercTrustMultiplier" value = 120 }
+
+		}
+	}
 	merc_account_internal_apply_custom_trust = yes
 }
 
@@ -61,6 +63,7 @@ merc_account_apply_all_modifiers = {
 }
 
 merc_account_update = {
+	#log = "merc_account_update started"
 	merc_account_internal_update_empire_minerals = yes
 	merc_account_internal_update_empire_energy = yes
 	merc_account_internal_update_empire_influence = yes

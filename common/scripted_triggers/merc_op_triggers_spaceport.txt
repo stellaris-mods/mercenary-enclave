@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,46 +18,73 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 ###
 
-
 merc_spaceport_ideal = {
-	merc_spaceport_minimum = yes
-	solar_system = {
-		NOT = {
-			any_ship_in_system = {
-				OR = {
-					is_ship_class = shipclass_military_station
+	OR = {
+		# Default
+		is_ship_class = shipclass_military_special
+		
+		is_ship_size = military_station_medium
+		is_ship_size = military_station_large			
+
+		is_ship_size = starbase_starport
+		is_ship_size = starbase_starhold
+		is_ship_size = starbase_starfortress
+		is_ship_size = starbase_citadel
+
+		# extended bases
+		is_ship_size = starbase_swarm
+		is_ship_size = starbase_ai
+		is_ship_size = starbase_exd
+		is_ship_size = starbase_marauder
+	}
+		solar_system = {
+			NOT = {
+				any_ship_in_system = {
 					is_ship_class = shipclass_military
 				}
 			}
 		}
-	}
 }
 
 merc_spaceport_good = {
-	merc_spaceport_minimum = yes
-	solar_system = { NOT = { any_ship_in_system = { is_ship_class = shipclass_military } } }
+	OR = {
+		# Default
+		is_ship_class = shipclass_military_special
+		
+		is_ship_size = military_station_medium
+		is_ship_size = military_station_large			
+
+		is_ship_size = starbase_starport
+		is_ship_size = starbase_starhold
+		is_ship_size = starbase_starfortress
+		is_ship_size = starbase_citadel
+
+		# extended bases
+		is_ship_size = starbase_swarm
+		is_ship_size = starbase_ai
+		is_ship_size = starbase_exd
+		is_ship_size = starbase_marauder
+	}
 }
 
-merc_spaceport_minimum = {
-	exists = owner
-	exists = controller
-	is_colony = yes
-	is_under_colonization = no
-	is_occupied_flag = no
-	has_ground_combat = no
-	under_bombardment = no
-	is_capital = no
-	is_homeworld = no
-	is_terraforming = no
-	is_controlled_by = owner
-	has_spaceport = yes # This is true even if it's under construction
-	exists = spaceport
-	spaceport = {
-		has_hp_percentage > 0.9 # 90%
-		NOT = { any_owned_ship = { has_ship_flag = "merc_target" } }
+# new scope
+merc_valid_spaceport_target = {
+	OR = {
+		# Default
+		is_ship_class = shipclass_starbase
+		is_ship_class = shipclass_military_special
+		#is_ship_class = shipclass_military_station
 	}
-	exists = solar_system
-	solar_system = { merc_has_station = no }
+}
+
+
+merc_spaceport_minimum = {
+	NOT = {
+		any_owned_ship = {
+			has_ship_flag = "merc_target"
+		}
+	}
+	merc_valid_spaceport_target = yes
 }
 
 merc_spaceport_p1 = {

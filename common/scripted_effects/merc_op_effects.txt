@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,6 +20,14 @@
 
 
 merc_set_found_target = {
+
+	# Debug scope printing standard and targets
+	if = { limit = { has_global_flag = "debug" }
+		log = "merc_set_found_target Printing the current scopes (trigger) -"
+		target_scopes_log = yes
+		print_scope_effect = yes
+	}
+
 	set_ship_flag = "merc_target"
 	PREVPREVPREV = { set_country_flag = "merc_found_target" }
 }
@@ -48,8 +57,13 @@ merc_set_new_targets = {
 		}
 	}
 	if = { limit = { NOT = { check_variable = { which = "MercTargetsFound" value > 0 } } }
+
 		log = "We did not find ANY valid targets, so abort immediately."
+
 		merc_stage4_abort = yes
+		set_country_flag = "fmerc_ops_completed"	
+		set_country_flag = "fmerc_no_valid_targets"
+
 		break = yes
 	}
 	if = {

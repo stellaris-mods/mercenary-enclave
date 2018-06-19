@@ -1,6 +1,7 @@
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +29,8 @@ country_event = {
 
 	# We should start the operation immediately, the delay has passed.
 	immediate = {
+	
+		#log = "mercOpsMeta.1 started"
 		fmerc_init_stage2 = yes
 	}
 }
@@ -39,9 +42,10 @@ event = {
 	immediate = {
 		every_country = {
 			limit = {
-				is_country_type = "fmerc_operations"
+				is_country_type = fmerc_operations
 				NOT = { has_country_flag = "fmerc_ops_timeout" }
 			}
+			log = "mercOpsMeta.100 fmerc_operations have no fmerc_ops_timeout flag, aborting "
 			merc_stage4_abort = yes
 		}
 	}
@@ -62,24 +66,174 @@ country_event = {
 		FROMFROMFROM = {
 			switch = {
 				trigger = is_ship_class
-				shipclass_outpost_station = { ROOT = { change_variable = { which = "MercKillsFrontier" value = 1 } } } # Frontier Outpost
+				#shipclass_outpost_station = { ROOT = { change_variable = { which = "MercKillsFrontier" value = 1 } } } # Frontier Outpost does not exist any more 
 				shipclass_observation_station = { ROOT = { change_variable = { which = "MercKillsObs" value = 1 } } }
-				shipclass_wormhole_station = { ROOT = { change_variable = { which = "MercKillsWormhole" value = 1 } } }
+				#shipclass_wormhole_station = { ROOT = { change_variable = { which = "MercKillsWormhole" value = 1 } } } # wormhole station does not exist any more 
 				shipclass_research_station = { ROOT = { change_variable = { which = "MercKillsResearch" value = 1 } } }
-				shipclass_mining_station = { ROOT = { change_variable = { which = "MercKillsMining" value = 1 } } }
-				shipclass_orbital_station = { ROOT = { change_variable = { which = "MercKillsSpaceport" value = 1 } } }
+				shipclass_mining_station = { ROOT = { change_variable = { which = "MercKillsMining" value = 1 } } }			
+				shipclass_starbase = { ROOT = { change_variable = { which = "MercKillsSpaceport" value = 1 } } }				
 				shipclass_military_station = { ROOT = { change_variable = { which = "MercKillsStations" value = 1 } } }
 				shipclass_military = { ROOT = { change_variable = { which = "MercKillsShips" value = 1 } } }
 				shipclass_constructor = { ROOT = { change_variable = { which = "MercKillsCivilian" value = 1 } } }
 				shipclass_colonizer = { ROOT = { change_variable = { which = "MercKillsCivilian" value = 1 } } }
 				shipclass_transport = { ROOT = { change_variable = { which = "MercKillsTransport" value = 1 } } }
+				shipclass_science_ship = { ROOT = { change_variable = { which = "MercKillsCivilian" value = 1 } } }  # added in order to expand civilian-raid scope 
+				shipclass_military_special = { ROOT = { change_variable = { which = "MercKillsColossus" value = 1 } } }
 				default = {
-					ROOT = { change_variable = { which = "MercKillsShips" value = 1 } }
+					#ROOT = { change_variable = { which = "MercKillsShips" value = 1 } }
+					ROOT = { change_variable = { which = "MercKillsSomething" value = 1 } }
 				}
 			}
 			if = { limit = { merc_counts_for_operation = yes }
 				ROOT = { subtract_variable = { which = "MercTargetCount" value = 1 } }
 			}
 		}
+
+		FROMFROMFROM = {
+			switch = {
+				trigger = is_ship_size
+			
+				starbase_outpost = { ROOT = { change_variable = { which = "MercDisabledOut" value = 1 } } }	
+				starbase_starport = { ROOT = { change_variable = { which = "MercDisabledPort" value = 1 } } }			
+				starbase_starhold = { ROOT = { change_variable = { which = "MercDisabledHold" value = 1 } } }	
+				starbase_starfortress = { ROOT = { change_variable = { which = "MercDisabledFortress" value = 1 } } }	
+				starbase_citadel = { ROOT = { change_variable = { which = "MercDisabledCit" value = 1 } } }	
+				
+			}
+			if = { limit = { merc_counts_for_operation = yes }
+				ROOT = { subtract_variable = { which = "MercTargetCount" value = 1 } }
+			}
+		}
+		
+		# Debug scope printing standard
+		if = { limit = { has_global_flag = "debug" }
+			on_ship_destroyed_perp_log = yes
+		}
+	}
+}
+
+
+# New event to count disabled ships
+
+# This = Disabled Ship
+# From = Disabler Ship
+# From.Owner. killer county
+# Root.Owner  County that lose ship 
+
+ship_event = {
+	id = mercOpsMeta.300
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		from.owner = { is_country_type = fmerc_operations }
+		is_ship_class = shipclass_starbase
+	}
+	
+	immediate = {
+	
+		from.owner = { change_variable = { which = "MercDisabledTotal" value = 1 } }
+
+        ROOT = {
+			switch = {
+				trigger = is_ship_size
+				starbase_outpost = { from.owner = { change_variable = { which = "MercDisabledOut" value = 1 } } }
+				starbase_starport = { from.owner = { change_variable = { which = "MercDisabledPort" value = 1 } } }
+				starbase_starhold = { from.owner = { change_variable = { which = "MercDisabledHold" value = 1 } } }
+				starbase_starfortress = { from.owner = { change_variable = { which = "MercDisabledFortress" value = 1 } } }				
+				starbase_citadel = { from.owner = { change_variable = { which = "MercDisabledCit" value = 1 } } }
+				default = {
+					from.owner = { change_variable = { which = "MercDisabledOther" value = 1 } }
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						merc_counts_for_disabled_operation_spaceport = yes
+						from.owner = {
+							has_country_flag = merc_op_spaceport
+						}
+					}
+				}
+				
+				from.owner = { subtract_variable = { which = "MercTargetCount" value = 1 } }
+				
+
+				if = {			
+					limit = { has_ship_flag = merc_target }
+										
+					switch = {
+						trigger = is_ship_size
+
+						starbase_starport = { from.owner = {
+							change_variable = { which = "MercKilledPort" value = 1 }
+							change_variable = { which = "MercKillsTotal" value = 1 }
+							subtract_variable = { which = "MercDisabledPort" value = 1 }
+							subtract_variable = { which = "MercDisabledTotal" value = 1 }
+											
+							} }
+						starbase_starhold = { from.owner = {
+							change_variable = { which = "MercKilledHold" value = 1 }
+							change_variable = { which = "MercKillsTotal" value = 1 }
+							subtract_variable = { which = "MercDisabledHold" value = 1 }
+							subtract_variable = { which = "MercDisabledTotal" value = 1 }
+							
+							} }
+						starbase_starfortress = { from.owner = {
+							change_variable = { which = "MercKilledFortress" value = 1 }
+							change_variable = { which = "MercKillsTotal" value = 1 }
+							subtract_variable = { which = "MercDisabledFortress" value = 1 }
+							subtract_variable = { which = "MercDisabledTotal" value = 1 }
+							
+							} }				
+						starbase_citadel = { from.owner = {
+							change_variable = { which = "MercKilledCit" value = 1 }
+							change_variable = { which = "MercKillsTotal" value = 1 }
+							subtract_variable = { which = "MercDisabledCit" value = 1 }
+							subtract_variable = { which = "MercDisabledTotal" value = 1 }
+							
+							} }
+						starbase_swarm = { from.owner = {
+							change_variable = { which = "MercKilledOther" value = 1 }
+							change_variable = { which = "MercKillsTotal" value = 1 }
+							subtract_variable = { which = "MercDisabledOther" value = 1 }
+							subtract_variable = { which = "MercDisabledTotal" value = 1 }
+							} }
+						starbase_ai = { from.owner = {
+							change_variable = { which = "MercKilledOther" value = 1 }
+							change_variable = { which = "MercKillsTotal" value = 1 }
+							subtract_variable = { which = "MercDisabledOther" value = 1 }
+							subtract_variable = { which = "MercDisabledTotal" value = 1 }
+							} }
+						starbase_exd = { from.owner = {
+							change_variable = { which = "MercKilledOther" value = 1 }
+							change_variable = { which = "MercKillsTotal" value = 1 }
+							subtract_variable = { which = "MercDisabledOther" value = 1 }
+							subtract_variable = { which = "MercDisabledTotal" value = 1 }
+							} }
+						starbase_marauder = { from.owner = {
+							change_variable = { which = "MercKilledOther" value = 1 }
+							change_variable = { which = "MercKillsTotal" value = 1 }
+							subtract_variable = { which = "MercDisabledOther" value = 1 }
+							subtract_variable = { which = "MercDisabledTotal" value = 1 }
+							} }
+					}
+					
+					# no matter what I do i will have errors after any minning_station will be killed 
+					# after firing this event
+					# starbase scope contains invalid object at file: common/starbase_types/00_starbase_types.txt line: 7
+					destroy_ship = this
+					
+					# ELSE = {
+						# log = "mercOpsMeta.300 has no flag 'merc_target', he will be only disabled"
+					# }
+				}
+			}
+		}
+
+		# Debug scope printing standard
+		if = { limit = { has_global_flag = "debug" }
+			on_ship_disabled_log = yes
+		}
+
 	}
 }
