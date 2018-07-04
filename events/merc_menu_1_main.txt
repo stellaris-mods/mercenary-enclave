@@ -93,11 +93,25 @@ country_event = {
 
 	option = { # list of operations
 		name = merc.initial.operations.button
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
 		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
 	option = { # Deposit Minerals
 		name = merc.initial.minerals.button
 		custom_tooltip = merc.initial.minerals.tooltip
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
 		allow = { minerals > 2500 }
 		add_minerals = -2500
 		event_target:mercenaries = {
@@ -115,6 +129,13 @@ country_event = {
 	option = { # Withdraw Minerals
 		name = merc.initial.minerals.withdraw
 		custom_tooltip = merc.initial.minerals.withdraw.tooltip
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = "merc.condition.minerals.withdraw"
@@ -131,6 +152,13 @@ country_event = {
 	option = { # Deposit Energy
 		name = merc.initial.energy.button
 		custom_tooltip = merc.initial.energy.tooltip
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
 		allow = { energy > 2500 }
 		add_energy = -2500
 		event_target:mercenaries = {
@@ -148,6 +176,13 @@ country_event = {
 	option = { # Withdraw Energy
 		name = merc.initial.energy.withdraw
 		custom_tooltip = merc.initial.energy.withdraw.tooltip
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = "merc.condition.energy.withdraw"
@@ -164,7 +199,20 @@ country_event = {
 	option = {
 		name = merc.initial.stations.button
 		custom_tooltip = "merc.initial.stations.tooltip"
-		trigger = { NOT = { has_country_flag = "fmerc_allow_stations" } }
+		trigger = {
+			NOR = {
+				has_country_flag = "fmerc_allow_stations"
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = "merc.condition.inwards_perfection"
+				NOT = { has_valid_civic = civic_inwards_perfection }
+			}
+		}
 		hidden_effect = {
 			set_country_flag = "fmerc_allow_stations"
 			country_event = { id = mercMenu.110 }
@@ -173,7 +221,14 @@ country_event = {
 	option = {
 		name = merc.initial.nostations.button
 		custom_tooltip = "merc.initial.nostations.tooltip"
-		trigger = { has_country_flag = "fmerc_allow_stations" }
+		trigger = {
+			has_country_flag = "fmerc_allow_stations"
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = "merc.condition.station.access.cooldown"
@@ -192,7 +247,14 @@ country_event = {
 	option = {
 		name = merc.initial.insurance.button
 		custom_tooltip = "merc.initial.insurance.tooltip"
-		trigger = { NOT = { has_modifier = merc_enclave_insurance } }
+		trigger = {
+			NOR = {
+				has_modifier = merc_enclave_insurance
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
 		allow = {
 			custom_tooltip_fail = {
 				text = merc.condition.station.access
@@ -217,14 +279,63 @@ country_event = {
 	option = {
 		name = merc.initial.insurance.sell
 		custom_tooltip = "merc.initial.insurance.tooltip"
-		trigger = { has_modifier = merc_enclave_insurance }
+		trigger = {
+			has_modifier = merc_enclave_insurance
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
 		remove_modifier = merc_enclave_insurance
 		hidden_effect = { country_event = { id = mercMenu.150 } }
 	}
+
+	# Default close button for all except genocidal empires
 	option = {
 		name = "merc.close"
 		default_hide_option = yes
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+
+	option = {
+		name = SCUM
+		custom_gui = "enclave_trader_option"
+		trigger = {
+			has_valid_civic = civic_fanatic_purifiers
+		}
+		hidden_effect = {
+			remove_country_flag = "fmerc_diplomacy_engaged"
+		}
+	}
+
+	option = {
+		name = TASTY
+		custom_gui = "enclave_trader_option"
+		trigger = {
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+		hidden_effect = {
+			remove_country_flag = "fmerc_diplomacy_engaged"
+		}
+	}
+
+	option = {
+		name = EXTERMINATE
+		custom_gui = "enclave_trader_option"
+		trigger = {
+			has_valid_civic = civic_machine_terminator
+		}
+		hidden_effect = {
+			remove_country_flag = "fmerc_diplomacy_engaged"
+		}
 	}
 }
 

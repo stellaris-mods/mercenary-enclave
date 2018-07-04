@@ -171,6 +171,7 @@ merc.initial.energy.withdraw: "§YСнять со счета £energy 2500§!"
 merc.initial.energy.withdraw.tooltip: "Снять 2500 энергокредитов со Вашего счета."
 #merc.condition.energy.withdraw: "Not enough energy credits in account."
 merc.condition.energy.withdraw: "Недостаточно энергокредитов на Вашем счету."
+merc.condition.inwards_perfection: "$civic_inwards_perfection$ - Наше спокойное и мирное общество не приемлет наличие чужих станций в пределах наших границ."
 #merc.initial.energy.withdraw.reply: "We appreciate our continued business relationship.\n\nTotal deposit:  £energy §G[Root.MercDepositEnergy] -2500§!\nAdministrative fee: §R5% / year§!"
 merc.initial.energy.withdraw.reply: "Мы ценим наши текущие деловые отношения.\n\nОбщий счет:  £energy §G[Root.MercDepositEnergy] -2500§!\nПроцент удержания: §R5% / год§!"
 

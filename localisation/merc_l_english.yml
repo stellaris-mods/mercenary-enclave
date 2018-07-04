@@ -209,6 +209,7 @@ merc.condition.invalid.target.now: "This empire is §Pnot currently§! a valid t
 merc.condition.funds: "Not enough funds"
 merc.condition.minerals.withdraw: "Not enough minerals in account."
 merc.condition.energy.withdraw: "Not enough energy credits in account."
+merc.condition.inwards_perfection: "$civic_inwards_perfection$ - Our calm and pacifist society does not accept the presence of foreign stations within our borders."
 merc.condition.clearspace: "$merc.name.colored$ requires you to have at least £minerals 4500 deposited before they will undertake this type of operation."
 merc.condition.station.access.cooldown: "You have recently accepted a monetary offer to allow station access, and as such won't be able to restrict it yet."
 merc.condition.not.insured: "You can't restrict border access while you subscribe to their insurance policy."
