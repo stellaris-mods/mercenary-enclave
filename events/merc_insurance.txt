@@ -177,3 +177,65 @@ country_event = {
 		name = merc.insurance.decline
 	}
 }
+
+# Fire on year pulse, empires without merc_insurance_flag will be asked to renew insurance
+event = {
+	id = mercInsurance.920
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = {
+				AND = {
+					is_ai = no
+					has_modifier = merc_enclave_insurance
+					NOT = { has_country_flag = "merc_insurance_flag" }
+				}
+			}
+			random_country = {
+				limit = {
+					is_country_type = "fmerc_enclave"
+					has_communications = this
+				}
+				save_event_target_as = mercenaries
+			}
+
+			# check if we found mercenaries
+			if = { limit = {
+				exists = event_target:mercenaries
+				}
+				set_country_flag = "merc_insurance_holder"
+				country_event = { id = mercMenu.140 }
+			}
+		}
+	}
+}
+
+# Fire impulse for the year, variable merc_insurance_years will be reduced 1 and calculate refund value
+event = {
+	id = mercInsurance.925
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = {
+				AND = {
+					is_ai = no
+					has_modifier = merc_enclave_insurance
+					has_country_flag = "merc_insurance_flag"
+					check_variable = { which = "merc_insurance_years" value > 0 }
+				}
+			}
+
+			if = {
+				limit = { has_country_flag = "merc_insurance_holder" }
+				change_variable = { which = merc_insurance_refund value = -480 }
+				
+				else = { change_variable = { which = merc_insurance_refund value = -600 } }
+			}
+			change_variable = { which = "merc_insurance_years" value = -1 }
+		}
+	}
+}

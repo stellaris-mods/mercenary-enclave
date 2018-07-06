@@ -19,6 +19,8 @@ on_yearly_pulse = {
 		mercRecurring.100
 		mercRecurring.200
 		mercStations.100
+		mercInsurance.920
+		mercInsurance.925
 	}
 }
 

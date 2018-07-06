@@ -42,9 +42,22 @@ country_event = {
 
 		if = { limit = { has_country_flag = "fmerc_active_operation" }
 			country_event = { id = mercMenu.102 }
-		else = {
-			country_event = { id = mercMenu.101 }
-		} }
+			else = {
+				if = {
+					limit = {
+						OR = {
+							has_valid_civic = civic_fanatic_purifiers
+							has_valid_civic = civic_hive_devouring_swarm
+							has_valid_civic = civic_machine_terminator
+						}
+					}
+					country_event = { id = mercMenu.103 }
+					else = {
+						country_event = { id = mercMenu.101 }
+					}
+				}
+			} 
+		}
 	}
 }
 
@@ -88,30 +101,20 @@ country_event = {
 		room = enclave_trader_room
 	}
 
-	immediate = { set_country_flag = "fmerc_diplomacy_engaged" }
+	immediate = {
+		set_country_flag = "fmerc_diplomacy_engaged"
+	}
 
-
-	option = { # list of operations
+	# list of operations
+	option = {
 		name = merc.initial.operations.button
-		trigger = {
-			NOR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_valid_civic = civic_machine_terminator
-			}
-		}
 		hidden_effect = { country_event = { id = mercMenu.200 } }
 	}
-	option = { # Deposit Minerals
+
+	# Deposit Minerals
+	option = {
 		name = merc.initial.minerals.button
 		custom_tooltip = merc.initial.minerals.tooltip
-		trigger = {
-			NOR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_valid_civic = civic_machine_terminator
-			}
-		}
 		allow = { minerals > 2500 }
 		add_minerals = -2500
 		event_target:mercenaries = {
@@ -126,16 +129,11 @@ country_event = {
 		is_dialog_only = yes
 		response_text = merc.initial.minerals.reply
 	}
-	option = { # Withdraw Minerals
+
+	# Withdraw Minerals
+	option = {
 		name = merc.initial.minerals.withdraw
 		custom_tooltip = merc.initial.minerals.withdraw.tooltip
-		trigger = {
-			NOR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_valid_civic = civic_machine_terminator
-			}
-		}
 		allow = {
 			custom_tooltip_fail = {
 				text = "merc.condition.minerals.withdraw"
@@ -149,16 +147,11 @@ country_event = {
 		is_dialog_only = yes
 		response_text = merc.initial.minerals.withdraw.reply
 	}
-	option = { # Deposit Energy
+
+	# Deposit Energy
+	option = {
 		name = merc.initial.energy.button
 		custom_tooltip = merc.initial.energy.tooltip
-		trigger = {
-			NOR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_valid_civic = civic_machine_terminator
-			}
-		}
 		allow = { energy > 2500 }
 		add_energy = -2500
 		event_target:mercenaries = {
@@ -173,16 +166,11 @@ country_event = {
 		is_dialog_only = yes
 		response_text = merc.initial.energy.reply
 	}
-	option = { # Withdraw Energy
+
+	# Withdraw Energy
+	option = {
 		name = merc.initial.energy.withdraw
 		custom_tooltip = merc.initial.energy.withdraw.tooltip
-		trigger = {
-			NOR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_valid_civic = civic_machine_terminator
-			}
-		}
 		allow = {
 			custom_tooltip_fail = {
 				text = "merc.condition.energy.withdraw"
@@ -196,15 +184,14 @@ country_event = {
 		is_dialog_only = yes
 		response_text = merc.initial.energy.withdraw.reply
 	}
+
+	# Open Borders
 	option = {
 		name = merc.initial.stations.button
 		custom_tooltip = "merc.initial.stations.tooltip"
 		trigger = {
-			NOR = {
+			NOT = {
 				has_country_flag = "fmerc_allow_stations"
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_valid_civic = civic_machine_terminator
 			}
 		}
 		allow = {
@@ -218,16 +205,13 @@ country_event = {
 			country_event = { id = mercMenu.110 }
 		}
 	}
+
+	# Close Borders
 	option = {
 		name = merc.initial.nostations.button
 		custom_tooltip = "merc.initial.nostations.tooltip"
 		trigger = {
 			has_country_flag = "fmerc_allow_stations"
-			NOR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_valid_civic = civic_machine_terminator
-			}
 		}
 		allow = {
 			custom_tooltip_fail = {
@@ -244,15 +228,14 @@ country_event = {
 			country_event = { id = mercMenu.110 }
 		}
 	}
+
+	# But insurance
 	option = {
 		name = merc.initial.insurance.button
 		custom_tooltip = "merc.initial.insurance.tooltip"
 		trigger = {
-			NOR = {
+			NOT = {
 				has_modifier = merc_enclave_insurance
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_valid_civic = civic_machine_terminator
 			}
 		}
 		allow = {
@@ -270,40 +253,121 @@ country_event = {
 				}
 			}
 		}
-		add_modifier = {
-			modifier = merc_enclave_insurance
-			days = -1
-		}
-		hidden_effect = { country_event = { id = mercMenu.150 } }
-	}
-	option = {
-		name = merc.initial.insurance.sell
-		custom_tooltip = "merc.initial.insurance.tooltip"
-		trigger = {
-			has_modifier = merc_enclave_insurance
-			NOR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_valid_civic = civic_machine_terminator
-			}
-		}
-		remove_modifier = merc_enclave_insurance
-		hidden_effect = { country_event = { id = mercMenu.150 } }
+
+		hidden_effect = { country_event = { id = mercMenu.140 } }
 	}
 
-	# Default close button for all except genocidal empires
+	# Sell insurance
+	option = {
+		name = merc.initial.insurance.sell
+		custom_tooltip = "merc.initial.insurance.refund"
+		
+		trigger = {
+			has_modifier = merc_enclave_insurance
+			check_variable = { which = "merc_insurance_years" value > 0 }
+			check_variable = { which = merc_insurance_refund value > 0 }
+		}
+
+		#add_minerals = merc_insurance_refund - not working...
+		
+		remove_modifier = merc_enclave_insurance
+		remove_country_flag = "merc_insurance_flag"
+
+		hidden_effect = {
+		
+			# # Make a copy we can mangle
+			set_variable = { which = "MercTmp" value = merc_insurance_refund }
+			# And give the country its minerals back
+			while = {
+				limit = { check_variable = { which = "MercTmp" value > 10000 } }
+				add_minerals = 10000
+				subtract_variable = { which = "MercTmp" value = 10000 }
+			}
+			while = {
+				limit = { check_variable = { which = "MercTmp" value > 1000 } }
+				add_minerals = 1000
+				subtract_variable = { which = "MercTmp" value = 1000 }
+			}
+			while = {
+				limit = { check_variable = { which = "MercTmp" value > 100 } }
+				add_minerals = 100
+				subtract_variable = { which = "MercTmp" value = 100 }
+			}
+			while = {
+				limit = { check_variable = { which = "MercTmp" value > 10 } }
+				add_minerals = 10
+				subtract_variable = { which = "MercTmp" value = 10 }
+			}
+			while = {
+				limit = { check_variable = { which = "MercTmp" value > 0 } }
+				add_minerals = 1
+				subtract_variable = { which = "MercTmp" value = 1 }
+			}	
+		
+			country_event = { id = mercMenu.150 }
+			}
+	}
+
 	option = {
 		name = "merc.close"
 		default_hide_option = yes
-		trigger = {
-			NOR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_valid_civic = civic_machine_terminator
-			}
-		}
 		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
 	}
+}
+
+# main menu if we have fmerc_active_operation
+country_event = {
+	id = mercMenu.102
+	title = merc.name
+	desc = merc.initial.active.operation
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:mercenaries
+		room = enclave_trader_room
+	}
+	immediate = { set_country_flag = "fmerc_diplomacy_engaged" }
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
+	}
+}
+
+# main menu for genocid empires
+country_event = {
+	id = mercMenu.103
+	title = merc.name
+	desc = {
+		trigger = {			
+			success_text = {
+				text = merc.initial.genocid.a
+				has_valid_civic = civic_fanatic_purifiers
+			}
+			success_text = {
+				text = merc.initial.genocid.b
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+			success_text = {
+				text = merc.initial.genocid.c
+				has_valid_civic = civic_machine_terminator
+			}
+			text = merc.initial.genocid.desc
+		}
+	}
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:mercenaries
+		room = enclave_trader_room
+	}
+	immediate = { set_country_flag = "fmerc_diplomacy_engaged" }
 
 	option = {
 		name = SCUM
@@ -339,28 +403,6 @@ country_event = {
 	}
 }
 
-# main menu if we have fmerc_active_operation
-country_event = {
-	id = mercMenu.102
-	title = merc.name
-	desc = merc.initial.active.operation
-	is_triggered_only = yes
-	diplomatic = yes
-	custom_gui = "enclave_trader_window"
-	custom_gui_option = "enclave_trader_option"
-	force_open = yes
-	picture_event_data = {
-		portrait = event_target:mercenaries
-		room = enclave_trader_room
-	}
-	immediate = { set_country_flag = "fmerc_diplomacy_engaged" }
-	option = {
-		name = "merc.close"
-		default_hide_option = yes
-		hidden_effect = { remove_country_flag = "fmerc_diplomacy_engaged" }
-	}
-}
-
 country_event = {
 	id = mercMenu.110
 	title = merc.name
@@ -389,6 +431,307 @@ country_event = {
 	}
 	option = {
 		name = "merc.back"
+		hidden_effect = { country_event = { id = mercMenu.101 } }
+	}
+}
+
+# This event could be fires from 2 places
+# From main menu and on year_pulse mercInsurance.920 if insurance has expired
+# insurance holder will have little discount
+country_event = {
+	id = mercMenu.140
+	title = merc.name
+	desc = {
+		trigger = {
+			success_text = {
+				text = merc.initial.renew_insurance
+				AND = {
+					has_modifier = merc_enclave_insurance
+					NOT = {
+						has_country_flag = "merc_insurance_flag"
+					}
+				}
+			}
+
+			success_text = {
+				text = merc.initial.insurance.tooltip
+				NOR = {
+					has_modifier = merc_enclave_insurance
+					has_country_flag = "merc_insurance_flag"
+				}
+			}
+		}
+	}
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_trader_window"
+	custom_gui_option = "enclave_trader_option"
+	force_open = yes
+	picture_event_data = {
+		portrait = event_target:mercenaries
+		room = enclave_trader_room
+	}
+
+	option = {
+		name = merc.initial.insurance.button.3
+		custom_tooltip = "merc.initial.insurance.end_tooltip"
+		trigger = {
+			NOT = { has_country_flag = "merc_insurance_flag" }
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = merc.condition.station.access
+				has_country_flag = "fmerc_allow_stations"
+			}
+			custom_tooltip = {
+				text = merc_enclave.trust
+				event_target:mercenaries = {
+					trust = {
+						who = ROOT
+						value > 20
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = "merc_insurance_holder" }
+				minerals > 1440
+				
+				else = { minerals > 1800 }
+			}
+		}
+		if = {
+			limit = { has_country_flag = "merc_insurance_holder" }
+			add_minerals = -1440
+			
+			else = { add_minerals = -1800 }
+		}
+
+		add_modifier = {
+			modifier = merc_enclave_insurance
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = merc_insurance_flag
+			days = 1095
+		}
+		set_variable = {
+			which = merc_insurance_years
+			value = 3
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = "merc_insurance_holder" }
+				set_variable = { which = merc_insurance_refund value = 960 }
+				
+				else = { set_variable = { which = merc_insurance_refund value = 1200 }	 
+				}
+			}
+			country_event = { id = mercMenu.150 }
+		}
+	}
+
+	option = {
+		name = merc.initial.insurance.button.5
+		custom_tooltip = "merc.initial.insurance.end_tooltip"
+		trigger = {
+			NOT = {
+				has_country_flag = "merc_insurance_flag"
+			}
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = merc.condition.station.access
+				has_country_flag = "fmerc_allow_stations"
+			}
+			custom_tooltip = {
+				text = merc_enclave.trust
+				event_target:mercenaries = {
+					trust = {
+						who = ROOT
+						value > 25
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = "merc_insurance_holder" }
+				minerals > 2000
+				
+				else = { minerals > 2500 }
+			}
+		}
+		if = {
+			limit = { has_country_flag = "merc_insurance_holder" }
+			add_minerals = -2000
+			
+			else = { add_minerals = -2500 }
+		}
+		add_modifier = {
+			modifier = merc_enclave_insurance
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = merc_insurance_flag
+			days = 1825
+		}
+		set_variable = {
+			which = merc_insurance_years
+			value = 5
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = "merc_insurance_holder" }
+				set_variable = { which = merc_insurance_refund value = 1600 }
+				
+				else = { set_variable = { which = merc_insurance_refund value = 2000 } }
+			}
+			country_event = { id = mercMenu.150 }
+		}
+	}
+
+	option = {
+		name = merc.initial.insurance.button.7
+		custom_tooltip = "merc.initial.insurance.end_tooltip"
+		trigger = {
+			NOT = { has_country_flag = "merc_insurance_flag" }
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = merc.condition.station.access
+				has_country_flag = "fmerc_allow_stations"
+			}
+			custom_tooltip = {
+				text = merc_enclave.trust
+				event_target:mercenaries = {
+					trust = {
+						who = ROOT
+						value > 30
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = "merc_insurance_holder" }
+				minerals > 2520
+				
+				else = { minerals > 3150 }
+			}
+		}
+		if = {
+			limit = { has_country_flag = "merc_insurance_holder" }
+			add_minerals = -2520
+			
+			else = { add_minerals = -3150 }
+		}
+		add_modifier = {
+			modifier = merc_enclave_insurance
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = merc_insurance_flag
+			days = 2555
+		}
+		set_variable = {
+			which = merc_insurance_years
+			value = 7
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = "merc_insurance_holder" }
+				set_variable = { which = merc_insurance_refund value = 2160 }
+				
+				else = { set_variable = { which = merc_insurance_refund value = 2700 } }
+			}
+			country_event = { id = mercMenu.150 }
+		}
+	}
+
+	option = {
+		name = merc.initial.insurance.button.10
+		custom_tooltip = "merc.initial.insurance.end_tooltip"
+		trigger = {
+			NOT = { has_country_flag = "merc_insurance_flag" }
+		}
+		allow = {
+			custom_tooltip_fail = {
+				text = merc.condition.station.access
+				has_country_flag = "fmerc_allow_stations"
+			}
+			custom_tooltip = {
+				text = merc_enclave.trust
+				event_target:mercenaries = {
+					trust = {
+						who = ROOT
+						value > 40
+					}
+				}
+			}
+			if = {
+				limit = { has_country_flag = "merc_insurance_holder" }
+				minerals > 3200
+				
+				else = { minerals > 4000 }
+			}
+		}
+		if = {
+			limit = { has_country_flag = "merc_insurance_holder" }
+			add_minerals = -3200
+			
+			else = { add_minerals = -4000 }
+		}
+		add_modifier = {
+			modifier = merc_enclave_insurance
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = merc_insurance_flag
+			days = 3650
+		}
+		set_variable = {
+			which = merc_insurance_years
+			value = 10
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = "merc_insurance_holder" }
+				set_variable = { which = merc_insurance_refund value = 2880 }
+				
+				else = { set_variable = { which = merc_insurance_refund value = 3600 } }
+			}
+			country_event = { id = mercMenu.150 }
+		}
+	}
+
+	# Separate close for case when we will be asked for renew insurance
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		trigger = {
+			has_modifier = merc_enclave_insurance
+		}
+		hidden_effect = {
+			remove_country_flag = "fmerc_diplomacy_engaged"
+			remove_country_flag = "merc_insurance_holder"
+			remove_modifier = merc_enclave_insurance
+		}
+	}
+
+	option = {
+		name = "merc.close"
+		default_hide_option = yes
+		trigger = {
+			NOT = {
+				has_modifier = merc_enclave_insurance
+			}
+		}
+		hidden_effect = {
+			remove_country_flag = "fmerc_diplomacy_engaged"
+		}
+	}
+
+	option = {
+		name = "merc.back"
+		trigger = {
+			NOT = { has_modifier = merc_enclave_insurance }
+		}
 		hidden_effect = { country_event = { id = mercMenu.101 } }
 	}
 }

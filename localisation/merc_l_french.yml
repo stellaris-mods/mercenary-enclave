@@ -9,6 +9,7 @@ l_french:
 ###
 # This file is part of a project hosted at https://github.com/stellaris-mods
 # Copyright (c) 2017 folk@folk.wtf
+# Copyright (c) 2018 stark43@gmail.com
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -225,6 +226,11 @@ merc.initial.deposit.minerals: "Minerals deposited:  £minerals §G[Root.MercDep
 merc.initial.deposit.energy: "Energy deposited:  £energy §G[Root.MercDepositEnergy]§!\n"
 merc.initial.deposit.fee: "Administrative fee: §R5% / year§!"
 
+merc.initial.genocid.a: "Ha ha §Y$civic_fanatic_purifiers$!§!"
+merc.initial.genocid.b: "Ha ha §Y$civic_hive_devouring_swarm$!§!"
+merc.initial.genocid.c: "Ha ha §Y$civic_machine_terminator$!§!"
+merc.initial.genocid.desc: "Your civilian model, and your insistent desire to destroy all life, prevent us from conducting business with you..\n\n§RWe caution you against attempts to attack. Our station is well protected and will be able to repel you.§"
+ 
 merc.initial.minerals.button: "§YDeposit £minerals 2500§!"
 merc.initial.minerals.tooltip: "Deposits another 2500 minerals in the §YWhiteout Enterprise§! emergency account. Any funds in this account will be spent first if you order any combat maneuvers or other services at a later date.\n\nAdministrative fee: §R5% / year§!\n"
 merc.initial.minerals.reply: "Excellent, I'm sure those funds will come in handy for you one day.\n\nTotal deposit:  £minerals §G[Root.MercDeposit] +2500§!\nAdministrative fee: §R5% / year§!"
@@ -242,8 +248,16 @@ merc.initial.energy.withdraw.reply: "We appreciate our continued business relati
 merc.initial.operations.button: "§YServices ...§!"
 
 merc.initial.insurance.button: "§YBuy insurance plan§!"
+merc.initial.insurance.button.3: "§YInsurance for 3 years§!"
+merc.initial.insurance.button.5: "§YInsurance for 5 years§!"
+merc.initial.insurance.button.7: "§YInsurance for 7 years§!"
+merc.initial.insurance.button.10: "§YInsurance for 10 years§!"
 merc.initial.insurance.sell: "§YCancel insurance plan§!"
 merc.initial.insurance.tooltip: "$merc.name.colored$ offers an insurance policy, which in simple terms means that if any other empire orders a $merc.name.colored$ service targetting you, you will be given an option to outbid them."
+merc_insurance_years:"Number of insurance years"
+merc.initial.insurance.refund: "Your refund will be: £minerals §G[this.merc_insurance_refund]§!"
+merc.initial.renew_insurance: "Your insurance has expired, do not want to extend it?\nOf course, you will have a discount.\n\nYour discount as current insurance holder: §R20%"
+merc.initial.insurance.end_tooltip: "After the specified period of time, §YWhiteout Enterprises§! will offer to extend it at a reduced rate."
 
 merc.initial.stations.button: "§YAllow border access§!"
 merc.initial.stations.tooltip: "This allows $merc.name.colored$ access to your territories. It's hard to speculate why they might want this, but they assure us it will be to our mutual benefit.\n\nHowever, rest assured it will also increase their effectiveness against you should someone else contract their services towards you."
